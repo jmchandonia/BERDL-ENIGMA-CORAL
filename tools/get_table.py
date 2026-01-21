@@ -14,9 +14,10 @@ REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
 DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
-SUPERSEDED_SCHEMA_PATHS = [
+SCHEMA_MARKDOWN_PATHS = [
+    os.environ.get("BERDL_SCHEMA_MARKDOWN_PATH"),
     os.environ.get("BERDL_SUPERSEDED_SCHEMA_PATH"),
-    os.path.join("supercededberdl_schema_data", "enigma_coral_schema.md"),
+    os.path.join("schema", "enigma_coral_schema.md"),
     os.path.join("..", "convert", "spark-minio", "berdl_schema_data", "enigma_coral_schema.md"),
 ]
 
@@ -46,7 +47,7 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
     raise RuntimeError(f"Request failed for {url}")
 
 
-def parse_superseded_schema(
+def parse_schema_markdown(
     path: str,
 ) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
     tables: Dict[str, Dict[str, Dict[str, str]]] = {}
@@ -87,16 +88,16 @@ def parse_superseded_schema(
     return tables, descriptions
 
 
-def load_superseded_schema() -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
-    for path in SUPERSEDED_SCHEMA_PATHS:
+def load_schema_markdown() -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
+    for path in SCHEMA_MARKDOWN_PATHS:
         if not path:
             continue
         if os.path.exists(path):
             if DEBUG:
-                print(f"[debug] using superseded schema: {path}", file=sys.stderr)
-            return parse_superseded_schema(path)
+                print(f"[debug] using schema markdown: {path}", file=sys.stderr)
+            return parse_schema_markdown(path)
     if DEBUG:
-        print("[debug] no superseded schema found", file=sys.stderr)
+        print("[debug] no schema markdown found", file=sys.stderr)
     return {}, {}
 
 
@@ -226,7 +227,7 @@ def main() -> int:
 
     headers = {"Authorization": f"Bearer {token}"}
 
-    overrides, descriptions = load_superseded_schema()
+    overrides, descriptions = load_schema_markdown()
     table_overrides = overrides.get(args.table, {})
     description = descriptions.get(args.table)
 

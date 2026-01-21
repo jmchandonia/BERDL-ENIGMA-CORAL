@@ -13,9 +13,10 @@ REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
 DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
-SUPERSEDED_SCHEMA_PATHS = [
+SCHEMA_MARKDOWN_PATHS = [
+    os.environ.get("BERDL_SCHEMA_MARKDOWN_PATH"),
     os.environ.get("BERDL_SUPERSEDED_SCHEMA_PATH"),
-    os.path.join("supercededberdl_schema_data", "enigma_coral_schema.md"),
+    os.path.join("schema", "enigma_coral_schema.md"),
     os.path.join("..", "convert", "spark-minio", "berdl_schema_data", "enigma_coral_schema.md"),
 ]
 
@@ -79,7 +80,7 @@ def try_db_structure(headers: Dict[str, str]) -> Optional[List[Dict[str, Any]]]:
     return None
 
 
-def parse_superseded_schema(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
+def parse_schema_markdown(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
     tables: Dict[str, Dict[str, Dict[str, str]]] = {}
     current_table: Optional[str] = None
     in_schema = False
@@ -114,16 +115,16 @@ def parse_superseded_schema(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
     return tables
 
 
-def load_superseded_schema() -> Dict[str, Dict[str, Dict[str, str]]]:
-    for path in SUPERSEDED_SCHEMA_PATHS:
+def load_schema_markdown() -> Dict[str, Dict[str, Dict[str, str]]]:
+    for path in SCHEMA_MARKDOWN_PATHS:
         if not path:
             continue
         if os.path.exists(path):
             if DEBUG:
-                print(f"[debug] using superseded schema: {path}", file=sys.stderr)
-            return parse_superseded_schema(path)
+                print(f"[debug] using schema markdown: {path}", file=sys.stderr)
+            return parse_schema_markdown(path)
     if DEBUG:
-        print("[debug] no superseded schema found", file=sys.stderr)
+        print("[debug] no schema markdown found", file=sys.stderr)
     return {}
 
 
@@ -198,7 +199,7 @@ def extract_columns(table: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def format_markdown(
     tables: Iterable[Dict[str, Any]],
-    superseded: Optional[Dict[str, Dict[str, Dict[str, str]]]] = None,
+    schema_markdown: Optional[Dict[str, Dict[str, Dict[str, str]]]] = None,
 ) -> str:
     lines: List[str] = [
         f"# Schema for `{DB_NAME}`",
@@ -206,10 +207,10 @@ def format_markdown(
         f"Source: `{BASE_URL}`",
         "",
     ]
-    superseded = superseded or {}
+    schema_markdown = schema_markdown or {}
     for table in tables:
         name = normalize_table_name(table)
-        override_columns = superseded.get(name, {})
+        override_columns = schema_markdown.get(name, {})
         lines.append(f"## `{name}`")
         lines.append("")
         lines.append("| Column | Type | Nullable | Comment |")
@@ -254,8 +255,8 @@ def main() -> int:
         tables = [describe_table(headers, name) for name in table_names]
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    superseded = load_superseded_schema()
-    markdown = format_markdown(tables, superseded)
+    schema_markdown = load_schema_markdown()
+    markdown = format_markdown(tables, schema_markdown)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as handle:
         handle.write(markdown)
 
