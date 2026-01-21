@@ -31,6 +31,20 @@ For Windows Command Prompt:
 set KB_AUTH_TOKEN=your-token-here
 ```
 
+To use a local `.env` file instead, create `.env` in the repo root with:
+
+```
+KB_AUTH_TOKEN=your-token-here
+```
+
+Then load it before running tools:
+
+```bash
+set -a
+source .env
+set +a
+```
+
 ## Output locations
 
 By default, table dumps and the schema markdown are written to the `schema`

@@ -20,15 +20,16 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
 3. **List tables in a database**: `POST /delta/databases/tables/list` with `{"database": "enigma_coral", "use_hms": true}`.
 4. **Get table schema**: `POST /delta/databases/tables/schema` with `{"database": "enigma_coral", "table": "..."}`.
 5. **Query data**:
-   - Structured builder: `POST /delta/tables/select` (safer; preferred).
-   - Raw SQL: `POST /delta/tables/query` (include `ORDER BY` when paginating).
+   - Use the structured builder only: `POST /delta/tables/select`.
+   - Do not use SQL syntax or `/delta/tables/query` (not supported in this environment).
 6. **Sample data**: `POST /delta/tables/sample` with `{"database": "enigma_coral", "table": "...", "limit": 10}`.
 7. **Count rows**: `POST /delta/tables/count` with `{"database": "enigma_coral", "table": "..."}`.
 
 ## Query guidance
 
-- Prefer `select` for safety and clarity (supports joins, filters, aggregations, pagination).
-- If using `query`, always add `ORDER BY` when `offset > 0` to avoid duplicate/missing rows.
+- Use `select` for joins, filters, aggregations, and pagination.
+- Use table names as `table_alias` values in `columns` when joins are present.
+- Keep filter column names unambiguous across joined tables (filters do not accept table aliases).
 - Keep `limit <= 1000` (API constraint).
 
 ## When to load references

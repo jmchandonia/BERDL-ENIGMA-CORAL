@@ -22,7 +22,7 @@ Use this skill to answer ENIGMA data questions by composing BERDL MCP API querie
    - the matching `ddt_brick{ID}` table
    - columns and joins from `sys_ddt_typedef`
 3. Build BERDL MCP API queries using only the schema-listed tables/columns.
-4. Prefer `/delta/tables/select` for safe, structured queries. Use `/delta/tables/query` only when necessary.
+4. Use `/delta/tables/select` for all queries (SQL is not supported).
 5. Keep `limit <= 1000` and use `order_by` when paginating.
 
 ## BERDL MCP API usage (summary)
@@ -36,7 +36,12 @@ Common endpoints:
 - Table schema: `POST /delta/databases/tables/schema`
 - Count rows: `POST /delta/tables/count`
 - Query (structured): `POST /delta/tables/select`
-- Query (SQL): `POST /delta/tables/query`
+
+## Structured query tips
+
+- Use table names as `table_alias` values in `columns` when joins are present.
+- Keep filter column names unambiguous across joined tables (filters do not accept table aliases).
+- Supported filter operators: `=`, `!=`, `<`, `>`, `<=`, `>=`, `IN`, `NOT IN`, `LIKE`, `NOT LIKE`, `IS NULL`, `IS NOT NULL`, `BETWEEN`.
 
 ## Brick (ndarray) guidance
 
