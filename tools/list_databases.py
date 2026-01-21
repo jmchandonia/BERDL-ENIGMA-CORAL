@@ -6,9 +6,9 @@ BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
 
 
 def main() -> int:
-    token = os.environ.get("KBASE_TOKEN")
+    token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
-        print("KBASE_TOKEN is not set", file=sys.stderr)
+        print("KB_AUTH_TOKEN is not set", file=sys.stderr)
         return 2
 
     headers = {"Authorization": f"Bearer {token}"}

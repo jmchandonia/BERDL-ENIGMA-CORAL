@@ -9,7 +9,7 @@ import requests
 
 BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
 DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
-OUTPUT_DIR = os.environ.get("BERDL_OUTPUT_DIR", "berdl_schema_data")
+OUTPUT_DIR = os.environ.get("BERDL_OUTPUT_DIR", "schema")
 REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
@@ -215,9 +215,9 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    token = os.environ.get("KBASE_TOKEN")
+    token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
-        print("KBASE_TOKEN is not set", file=sys.stderr)
+        print("KB_AUTH_TOKEN is not set", file=sys.stderr)
         return 2
 
     if args.limit <= 0 or args.limit > 1000:

@@ -8,7 +8,7 @@ import requests
 
 BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
 DB_NAME = "enigma_coral"
-OUTPUT_PATH = os.path.join("berdl_schema_data", "enigma_coral_schema.md")
+OUTPUT_PATH = os.path.join("schema", "enigma_coral_schema.md")
 REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
@@ -241,9 +241,9 @@ def format_markdown(
 
 
 def main() -> int:
-    token = os.environ.get("KBASE_TOKEN")
+    token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
-        print("KBASE_TOKEN is not set", file=sys.stderr)
+        print("KB_AUTH_TOKEN is not set", file=sys.stderr)
         return 2
 
     headers = {"Authorization": f"Bearer {token}"}
