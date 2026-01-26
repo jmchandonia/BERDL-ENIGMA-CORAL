@@ -2,7 +2,7 @@
 Generate NCBI SRA and Genome submission templates from BERDL provenance data.
 
 This script walks provenance from genomes to find:
-1. Raw reads with FASTQ files on genomcs.lbl.gov
+1. Raw reads with FASTQ files on genomics.lbl.gov
 2. Samples used to isolate strains
 3. Protocols used for sequencing and assembly
 4. Location information for biosamples
@@ -38,7 +38,7 @@ from tools.walk_provenance import (  # noqa: E402
 )
 
 
-FASTQ_HOST = "genomcs.lbl.gov"
+FASTQ_HOST = "genomics.lbl.gov"
 DEFAULT_OUTPUT_DIR = "ncbi_submission"
 PROTOCOL_TABLE = "sdt_protocol"
 
