@@ -1,4 +1,6 @@
 import argparse
+import hashlib
+import json
 import os
 import sys
 import time
@@ -11,22 +13,88 @@ DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
 REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
-DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
+_DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
+CACHE_DISABLED = os.environ.get("BERDL_CACHE_DISABLE", "").lower() in {"1", "true", "yes"}
+CACHE_DIR = os.environ.get("BERDL_CACHE_DIR", os.path.join(os.getcwd(), ".berdl_cache"))
+_CACHE_TTL = os.environ.get("BERDL_CACHE_TTL_SECONDS")
+CACHE_TTL_SECONDS = int(_CACHE_TTL) if _CACHE_TTL and _CACHE_TTL.isdigit() else None
+
+
+def set_debug(enabled: bool) -> None:
+    global _DEBUG
+    _DEBUG = enabled
 
 
 def debug(message: str) -> None:
-    if DEBUG:
+    if _DEBUG:
         print(f"[debug] {message}", file=sys.stderr)
+
+
+def _summarize_payload(payload: Dict[str, Any]) -> str:
+    parts: List[str] = []
+    for key in ["database", "table", "limit", "offset"]:
+        if key in payload:
+            parts.append(f"{key}={payload[key]}")
+    columns = payload.get("columns")
+    if isinstance(columns, list):
+        parts.append(f"columns={len(columns)}")
+    filters = payload.get("filters")
+    if isinstance(filters, list):
+        parts.append(f"filters={len(filters)}")
+    order_by = payload.get("order_by")
+    if isinstance(order_by, list):
+        parts.append(f"order_by={len(order_by)}")
+    return ", ".join(parts)
+
+
+def _cache_path(url: str, payload: Dict[str, Any]) -> str:
+    raw = json.dumps({"url": url, "payload": payload}, sort_keys=True, default=str).encode("utf-8")
+    digest = hashlib.sha256(raw).hexdigest()
+    return os.path.join(CACHE_DIR, f"{digest}.json")
+
+
+def _load_cache(path: str) -> Optional[Any]:
+    try:
+        if CACHE_TTL_SECONDS is not None:
+            age = time.time() - os.path.getmtime(path)
+            if age > CACHE_TTL_SECONDS:
+                return None
+        with open(path, "r", encoding="utf-8") as handle:
+            return json.load(handle)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return None
+
+
+def _store_cache(path: str, data: Any) -> None:
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        tmp_path = f"{path}.tmp"
+        with open(tmp_path, "w", encoding="utf-8") as handle:
+            json.dump(data, handle)
+        os.replace(tmp_path, path)
+    except OSError:
+        return
 
 
 def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> Any:
     url = f"{BASE_URL}{path}"
+    cache_path = None
+    if not CACHE_DISABLED:
+        cache_path = _cache_path(url, payload)
+        cached = _load_cache(cache_path)
+        if cached is not None:
+            debug(f"BERDL cache hit {path} ({_summarize_payload(payload)})")
+            return cached
     last_error: Optional[Exception] = None
     for attempt in range(REQUEST_RETRIES):
         try:
+            debug(f"BERDL POST {path} ({_summarize_payload(payload)}) attempt={attempt + 1}")
             resp = requests.post(url, json=payload, headers=headers, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()
-            return resp.json()
+            data = resp.json()
+            if cache_path is not None:
+                _store_cache(cache_path, data)
+            return data
         except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as exc:
             last_error = exc
             if attempt < REQUEST_RETRIES - 1:
@@ -361,7 +429,7 @@ def walk_provenance(
     if proc_list is None:
         print(f"{indent}{output_obj}  <-- (no upstream process)")
         return
-    if DEBUG and (depth == 0 or len(proc_list) > 1):
+    if _DEBUG and (depth == 0 or len(proc_list) > 1):
         debug(f"object {output_obj} has {len(proc_list)} producing process(es)")
     processes_traversed = 0
     for proc_idx, proc in enumerate(proc_list):
@@ -391,7 +459,7 @@ def walk_provenance(
                 walk_provenance(inp, out_lookup, resolver, depth + 2, visited)
         else:
             print(f"{indent}  (no inputs)")
-    if DEBUG and len(proc_list) > 1 and processes_traversed < len(proc_list):
+    if _DEBUG and len(proc_list) > 1 and processes_traversed < len(proc_list):
         debug(
             f"only {processes_traversed} of {len(proc_list)} processes were traversed for {output_obj}"
         )
@@ -614,6 +682,11 @@ def parse_args() -> argparse.Namespace:
         metavar=("TABLE", "NAME"),
         help="List all processes for the object from the provenance lookup.",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable verbose debugging, including BERDL API calls.",
+    )
     return parser.parse_args()
 
 
@@ -625,6 +698,8 @@ def main() -> int:
     headers = {"Authorization": f"Bearer {token}"}
 
     args = parse_args()
+    if args.debug:
+        set_debug(True)
     any_action = any(
         [
             args.show_tables,
