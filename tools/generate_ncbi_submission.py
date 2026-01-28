@@ -44,11 +44,17 @@ from tools.walk_provenance import (  # noqa: E402
 
 FASTQ_HOST = "genomics.lbl.gov"
 DEFAULT_OUTPUT_DIR = "ncbi_submission"
+DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
+EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
 PROTOCOL_TABLE = "sdt_protocol"
 BIOSAMPLE_TEMPLATE_CANDIDATES = [
     Path("ncbi_submission") / "Microbe.1.0.xlsx",
     Path("ncbi_submission") / "MIcrobe.1.0.xlsx",
     Path("genome_upload") / "ncbi_submission" / "Microbe.1.0.xlsx",
+]
+SRA_TEMPLATE_CANDIDATES = [
+    Path("ncbi_submission") / "SRA_metadata.xlsx",
+    Path("genome_upload") / "ncbi_submission" / "SRA_metadata.xlsx",
 ]
 
 
@@ -269,15 +275,11 @@ def find_oldest_reads_with_fastq(
                 processed = True
         return produced_by_copy, processed
 
-    def collect_reads_upstream(start_token: str) -> List[Dict[str, Any]]:
+    def collect_reads_inputs(start_token: str) -> List[str]:
         visited: set[str] = set()
-        reads_candidates: List[Dict[str, Any]] = []
+        reads_inputs: List[str] = []
 
-        def walk_upstream(
-            obj_token: str, depth: int = 0, path: Optional[List[str]] = None
-        ) -> None:
-            if path is None:
-                path = []
+        def walk_upstream(obj_token: str) -> None:
             if obj_token in visited:
                 return
             visited.add(obj_token)
@@ -286,59 +288,83 @@ def find_oldest_reads_with_fastq(
             if not table_name or not obj_id:
                 return
 
-            current_path = path + [obj_token]
-
             if table_name == "sdt_reads":
-                reads_data = get_reads_data(obj_id)
-                link = reads_data.get("link")
-                if read_link_ok(link):
-                    protocols = []
-                    for proc in out_lookup.get(obj_token, []):
-                        protocols.extend(normalize_protocol_names(proc.get("protocol")))
-                    produced_by_copy, processed = reads_process_flags(obj_token)
-                    reads_candidates.append(
-                        {
-                            "reads_id": obj_id,
-                            "reads_name": reads_data.get("sdt_reads_name"),
-                            "link": link,
-                            "read_type": reads_data.get("read_type_sys_oterm_name"),
-                            "sequencing_technology": reads_data.get(
-                                "sequencing_technology_sys_oterm_name"
-                            ),
-                            "protocols": sorted(set(protocols)),
-                            "depth": depth,
-                            "path": current_path.copy(),
-                            "produced_by_copy_data": produced_by_copy,
-                            "processed_by_trim": processed,
-                            "reads_token": obj_token,
-                        }
-                    )
+                reads_inputs.append(obj_token)
+                return
 
             proc_list = out_lookup.get(obj_token, [])
             for proc in proc_list:
                 process_name = (proc.get("process_term_name") or "").lower()
                 if table_name in ["sdt_assembly", "sdt_genome"]:
                     for inp in proc.get("input_objs", []):
-                        walk_upstream(inp, depth + 1, current_path)
-                elif table_name == "sdt_reads":
-                    if "reads processing" in process_name or "copy data" in process_name:
-                        for inp in proc.get("input_objs", []):
-                            walk_upstream(inp, depth + 1, current_path)
+                        walk_upstream(inp)
                 else:
                     for inp in proc.get("input_objs", []):
                         inp_table, _ = parse_token(inp)
                         if inp_table in ["sdt_reads", "sdt_assembly"]:
-                            walk_upstream(inp, depth + 1, current_path)
+                            walk_upstream(inp)
 
         walk_upstream(start_token)
-        return reads_candidates
+        seen: set[str] = set()
+        unique_reads = []
+        for token in reads_inputs:
+            if token in seen:
+                continue
+            seen.add(token)
+            unique_reads.append(token)
+        return unique_reads
 
-    def collect_reads_downstream(start_token: str) -> List[Dict[str, Any]]:
+    def collect_ancestral_reads(start_reads_token: str) -> List[str]:
+        visited: set[str] = set()
+        ancestors: List[str] = []
+
+        def walk_upstream(reads_token: str) -> None:
+            if reads_token in visited:
+                return
+            visited.add(reads_token)
+
+            table_name, _ = parse_token(reads_token)
+            if table_name != "sdt_reads":
+                return
+
+            upstream_reads: List[str] = []
+            for proc in out_lookup.get(reads_token, []):
+                process_name = (proc.get("process_term_name") or "").lower()
+                if "reads processing" in process_name or "copy data" in process_name:
+                    for inp in proc.get("input_objs", []):
+                        inp_table, _ = parse_token(inp)
+                        if inp_table == "sdt_reads":
+                            upstream_reads.append(inp)
+
+            if not upstream_reads:
+                ancestors.append(reads_token)
+                return
+
+            for inp in upstream_reads:
+                walk_upstream(inp)
+
+        walk_upstream(start_reads_token)
+        seen: set[str] = set()
+        unique_reads = []
+        for token in ancestors:
+            if token in seen:
+                continue
+            seen.add(token)
+            unique_reads.append(token)
+        return unique_reads
+
+    def collect_reads_downstream(
+        start_token: str, only_copy: bool
+    ) -> List[Dict[str, Any]]:
         visited: set[str] = set()
         reads_candidates: List[Dict[str, Any]] = []
 
         def walk_downstream(
-            obj_token: str, depth: int = 0, path: Optional[List[str]] = None
+            obj_token: str,
+            depth: int = 0,
+            path: Optional[List[str]] = None,
+            parent_token: Optional[str] = None,
+            parent_process: Optional[str] = None,
         ) -> None:
             if path is None:
                 path = []
@@ -375,33 +401,27 @@ def find_oldest_reads_with_fastq(
                             "produced_by_copy_data": produced_by_copy,
                             "processed_by_trim": processed,
                             "reads_token": obj_token,
+                            "parent_reads_token": parent_token,
+                            "parent_process_name": parent_process,
                         }
                     )
 
             for proc in downstream_lookup.get(obj_token, []):
+                process_name = (proc.get("process_term_name") or "").lower()
+                if only_copy and "copy data" not in process_name:
+                    continue
                 out_token = proc.get("output_obj")
                 if out_token:
-                    walk_downstream(out_token, depth + 1, current_path)
+                    walk_downstream(
+                        out_token,
+                        depth + 1,
+                        current_path,
+                        parent_token=obj_token,
+                        parent_process=proc.get("process_term_name"),
+                    )
 
         walk_downstream(start_token)
         return reads_candidates
-
-    def select_most_ancestral(candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        oldest_reads: List[Dict[str, Any]] = []
-        for reads in candidates:
-            reads_token = reads["reads_token"]
-            path = reads["path"]
-            is_oldest = True
-            for other_reads in candidates:
-                other_token = other_reads["reads_token"]
-                if other_token == reads_token:
-                    continue
-                if other_token in path:
-                    is_oldest = False
-                    break
-            if is_oldest:
-                oldest_reads.append(reads)
-        return oldest_reads
 
     def log_reads(message: str, reads_list: List[Dict[str, Any]]) -> None:
         prefix = log_label or ""
@@ -413,48 +433,184 @@ def find_oldest_reads_with_fastq(
         )
         log_info(f"{prefix}{message}: {details}")
 
-    def select_preferred_reads(candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def log_reads_detail(message: str, reads_list: List[Dict[str, Any]]) -> None:
+        prefix = log_label or ""
+        log_info(f"{prefix}{message}: {len(reads_list)}")
+        for reads in reads_list:
+            log_info(
+                f"{prefix}  - id={reads.get('reads_id')} "
+                f"name={reads.get('reads_name')!r} "
+                f"read_type={reads.get('read_type')!r} "
+                f"produced_by_copy={reads.get('produced_by_copy_data')} "
+                f"processed_by_trim={reads.get('processed_by_trim')} "
+                f"parent_reads={reads.get('parent_reads_token')!r} "
+                f"parent_process={reads.get('parent_process_name')!r} "
+                f"link={reads.get('link')!r}"
+            )
+
+    def choose_paired_from_group(reads_group: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        if len(reads_group) <= 1:
+            return reads_group
+        r1 = None
+        r2 = None
+        for reads in reads_group:
+            name_lower = (reads.get("reads_name") or "").lower()
+            link_lower = (reads.get("link") or "").lower()
+            marker = f"{name_lower} {link_lower}"
+            if any(x in marker for x in ["_r1", "_1.fastq", "_1.fq"]):
+                r1 = reads
+            elif any(x in marker for x in ["_r2", "_2.fastq", "_2.fq"]):
+                r2 = reads
+        if r1 and r2:
+            return [r1, r2]
+        return reads_group
+
+    def get_reads_protocols(reads_token: str) -> List[str]:
+        shotgun_protocols: List[str] = []
+        other_protocols: List[str] = []
+        for proc in out_lookup.get(reads_token, []):
+            process_name = (proc.get("process_term_name") or "").lower()
+            normalized = normalize_protocol_names(proc.get("protocol"))
+            if not normalized:
+                continue
+            if "shotgun sequencing and assembly" in process_name or "shotgun sequencing" in process_name:
+                shotgun_protocols.extend(normalized)
+            else:
+                other_protocols.extend(normalized)
+        ordered = shotgun_protocols + other_protocols
+        seen: set[str] = set()
+        unique = []
+        for name in ordered:
+            if name in seen:
+                continue
+            seen.add(name)
+            unique.append(name)
+        return unique
+
+    def select_best_reads(candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if not candidates:
             return []
-        original_candidates = candidates
-        copy_candidates = [c for c in candidates if c.get("produced_by_copy_data")]
+        if len(candidates) == 1:
+            return candidates
+        grouped: Dict[Tuple[Optional[str], str], List[Dict[str, Any]]] = defaultdict(list)
+        for reads in candidates:
+            parent_token = reads.get("parent_reads_token")
+            parent_process = (reads.get("parent_process_name") or "").lower()
+            grouped[(parent_token, parent_process)].append(reads)
+        copy_groups = {
+            key: group
+            for key, group in grouped.items()
+            if "copy data" in key[1]
+        }
+        if copy_groups:
+            grouped = copy_groups
+        best_group = None
+        best_pair = []
+        for parent_token, group in grouped.items():
+            pair = choose_paired_from_group(group)
+            if len(pair) >= 2:
+                best_group = group
+                best_pair = pair
+                break
+        if best_pair:
+            log_reads_detail("Selected paired reads from same parent", best_pair)
+            return best_pair
+        if len(grouped) == 1:
+            only_group = next(iter(grouped.values()))
+            return only_group
+        best_group = max(grouped.values(), key=len)
+        log_reads_detail("Selected reads from largest parent group", best_group)
+        return best_group
+
+    def select_submission_reads(
+        ancestor_reads_token: str,
+        ancestor_protocols: List[str],
+        ancestor_seq_tech: Optional[str],
+    ) -> List[Dict[str, Any]]:
+        table_name, obj_id = parse_token(ancestor_reads_token)
+        if table_name == "sdt_reads" and obj_id:
+            ancestor_data = get_reads_data(obj_id)
+            if read_link_ok(ancestor_data.get("link")):
+                chosen = [
+                    {
+                        "reads_id": obj_id,
+                        "reads_name": ancestor_data.get("sdt_reads_name"),
+                        "link": ancestor_data.get("link"),
+                        "read_type": ancestor_data.get("read_type_sys_oterm_name"),
+                        "sequencing_technology": ancestor_data.get(
+                            "sequencing_technology_sys_oterm_name"
+                        ),
+                        "protocols": ancestor_protocols,
+                        "depth": 0,
+                        "path": [ancestor_reads_token],
+                        "produced_by_copy_data": False,
+                        "processed_by_trim": False,
+                        "reads_token": ancestor_reads_token,
+                        "parent_reads_token": None,
+                        "parent_process_name": None,
+                    }
+                ]
+                for reads in chosen:
+                    reads["source_reads_token"] = ancestor_reads_token
+                    reads["source_protocols"] = ancestor_protocols
+                    reads["source_sequencing_technology"] = ancestor_seq_tech
+                return chosen
+
+        copy_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=True)
         if copy_candidates:
-            log_reads("Reads produced by copy data", copy_candidates)
-        raw_candidates = [c for c in candidates if not c.get("processed_by_trim")]
-        if raw_candidates:
-            removed = [c for c in candidates if c.get("processed_by_trim")]
-            log_reads("Filtered cutadapt/trimmomatic reads (raw available)", removed)
-            candidates = raw_candidates
-        oldest = select_most_ancestral(candidates)
-        removed = [c for c in candidates if c not in oldest]
-        log_reads("Filtered non-ancestral reads", removed)
-        candidates = oldest
+            log_reads_detail("Copy-data FASTQ candidates", copy_candidates)
+            chosen = select_best_reads(copy_candidates)
+        else:
+            all_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=False)
+            log_reads_detail("All downstream FASTQ candidates", all_candidates)
+            chosen = select_best_reads(all_candidates)
+
+        for reads in chosen:
+            reads["source_reads_token"] = ancestor_reads_token
+            reads["source_protocols"] = ancestor_protocols
+            reads["source_sequencing_technology"] = ancestor_seq_tech
+        return chosen
+
+    reads_inputs = collect_reads_inputs(genome_token)
+    if reads_inputs:
+        log_info(f"{log_label or ''}Assembly reads inputs: {len(reads_inputs)}")
+    selected_reads: List[Dict[str, Any]] = []
+    for reads_input in reads_inputs:
+        ancestral_reads = collect_ancestral_reads(reads_input)
+        if not ancestral_reads:
+            continue
+        for ancestor_token in ancestral_reads:
+            table_name, obj_id = parse_token(ancestor_token)
+            if table_name != "sdt_reads" or not obj_id:
+                continue
+            ancestor_data = get_reads_data(obj_id)
+            ancestor_protocols = get_reads_protocols(ancestor_token)
+            ancestor_seq_tech = ancestor_data.get("sequencing_technology_sys_oterm_name")
+            submissions = select_submission_reads(
+                ancestor_token, ancestor_protocols, ancestor_seq_tech
+            )
+            if submissions:
+                selected_reads.extend(submissions)
+
+    if selected_reads:
         seen_ids: set[str] = set()
         unique_reads: List[Dict[str, Any]] = []
-        for reads in candidates:
-            if reads["reads_id"] in seen_ids:
+        for reads in selected_reads:
+            reads_id = reads.get("reads_id")
+            if reads_id in seen_ids:
                 continue
-            seen_ids.add(reads["reads_id"])
+            if reads_id:
+                seen_ids.add(reads_id)
             unique_reads.append(reads)
         log_reads("Selected reads", unique_reads)
-        if not unique_reads:
-            log_reads("No reads selected from", original_candidates)
         return unique_reads
 
-    reads_candidates = collect_reads_upstream(genome_token)
-    if reads_candidates:
-        log_reads("Found upstream reads", reads_candidates)
-    selected_reads = select_preferred_reads(reads_candidates)
-    if selected_reads:
-        return selected_reads
-
     if strain_token:
-        downstream_candidates = collect_reads_downstream(strain_token)
+        downstream_candidates = collect_reads_downstream(strain_token, only_copy=False)
         if downstream_candidates:
             log_reads("Found strain-downstream reads", downstream_candidates)
-        selected_reads = select_preferred_reads(downstream_candidates)
-        if selected_reads:
-            return selected_reads
+        if downstream_candidates:
+            return downstream_candidates
 
     return []
 
@@ -663,6 +819,157 @@ def load_biosample_template_workbook(output_dir: str) -> Tuple[Path, Any, int, D
     return template_path, sheet, header_row, header_map
 
 
+def load_sra_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
+    candidates = [Path(output_dir) / "SRA_metadata.xlsx"]
+    candidates.extend(SRA_TEMPLATE_CANDIDATES)
+    template_path = next((path for path in candidates if path.exists()), None)
+    if not template_path:
+        raise FileNotFoundError(
+            "SRA template not found. Expected SRA_metadata.xlsx."
+        )
+    workbook = load_workbook(template_path)
+    sheet = workbook["SRA_data"] if "SRA_data" in workbook.sheetnames else workbook.active
+
+    header_row = None
+    header_map: Dict[str, int] = {}
+    for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row):
+        for cell in row:
+            if (cell.value or "").strip() == "sample_name":
+                header_row = cell.row
+                for header_cell in sheet[header_row]:
+                    header = header_cell.value
+                    if header is None:
+                        continue
+                    header_str = str(header).strip()
+                    if header_str:
+                        header_map[header_str] = header_cell.column
+                break
+        if header_row is not None:
+            break
+
+    if header_row is None:
+        raise ValueError(f"No header row found in SRA template: {template_path}")
+
+    return template_path, sheet, header_row, header_map
+
+
+def load_sra_instrument_models(workbook: Any) -> set[str]:
+    sheet_name = "Library and Platform Terms"
+    if sheet_name not in workbook.sheetnames:
+        return set()
+    sheet = workbook[sheet_name]
+    platforms_row = None
+    for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row):
+        for cell in row:
+            if (cell.value or "").strip() == "Platforms":
+                platforms_row = cell.row
+                break
+        if platforms_row:
+            break
+    if not platforms_row:
+        return set()
+    platform_labels = {"ILLUMINA", "PACBIO_SMRT", "OXFORD_NANOPORE"}
+    instrument_models: set[str] = set()
+    for row in sheet.iter_rows(min_row=platforms_row + 1, max_row=sheet.max_row):
+        for col_idx in (3, 7, 10):
+            value = sheet.cell(row=row[0].row, column=col_idx).value
+            if not value:
+                continue
+            value_str = str(value).strip()
+            if not value_str or value_str in platform_labels:
+                continue
+            instrument_models.add(value_str)
+    return instrument_models
+
+
+def resolve_edr_path(link: str, edr_root: str) -> Optional[Path]:
+    if not link or not link.startswith(EDR_URL_PREFIX):
+        return None
+    rel_path = link.replace(EDR_URL_PREFIX, "").lstrip("/")
+    edr_root_path = Path(edr_root).resolve()
+    return edr_root_path / rel_path
+
+
+def link_fastq_files(
+    genome_data: List[Dict[str, Any]],
+    output_dir: str,
+    edr_root: str,
+    debug: bool = False,
+) -> None:
+    target_dir = Path(output_dir) / "reads_to_upload"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    seen_targets: set[str] = set()
+    link_count = 0
+    for genome in genome_data:
+        reads_list = genome.get("reads", []) or []
+        for reads in reads_list:
+            link = reads.get("link")
+            if not link or ".fastq" not in link and ".fq" not in link:
+                continue
+            edr_path = resolve_edr_path(link, edr_root)
+            if not edr_path:
+                log_debug(f"Skipping non-EDR link: {link}", enabled=debug)
+                continue
+            filename = Path(link).name
+            target = target_dir / filename
+            if target.name in seen_targets:
+                continue
+            seen_targets.add(target.name)
+            if target.exists() or target.is_symlink():
+                continue
+            try:
+                os.symlink(edr_path, target)
+                link_count += 1
+            except FileExistsError:
+                continue
+    log_info(f"Symlinked {link_count} file(s) to {target_dir}")
+
+
+def normalize_instrument_model(
+    instrument_model: Optional[str],
+    platform: Optional[str],
+    allowed_instruments: set[str],
+) -> str:
+    if not instrument_model:
+        return ""
+    if not allowed_instruments:
+        return instrument_model
+    if instrument_model in allowed_instruments:
+        return instrument_model
+
+    lowered = instrument_model.strip().lower()
+    allowed_lower = {inst.lower(): inst for inst in allowed_instruments}
+    if lowered in allowed_lower:
+        return allowed_lower[lowered]
+
+    def strip_vendor(value: str) -> str:
+        value = value.strip()
+        for prefix in ("illumina ", "pacbio ", "oxford nanopore "):
+            if value.lower().startswith(prefix):
+                return value[len(prefix) :]
+        return value
+
+    stripped = strip_vendor(instrument_model).lower()
+    for inst in allowed_instruments:
+        if strip_vendor(inst).lower() == stripped:
+            return inst
+
+    if platform == "ILLUMINA" and not lowered.startswith("illumina "):
+        candidate = f"Illumina {instrument_model}"
+        if candidate in allowed_instruments:
+            return candidate
+    if platform == "PACBIO_SMRT" and not lowered.startswith("pacbio "):
+        candidate = f"PacBio {instrument_model}"
+        if candidate in allowed_instruments:
+            return candidate
+    if platform == "OXFORD_NANOPORE" and not lowered.startswith("oxford nanopore "):
+        candidate = f"Oxford Nanopore {instrument_model}"
+        if candidate in allowed_instruments:
+            return candidate
+
+    return ""
+
+
 def get_gtdb_genus_for_strain(
     headers: Dict[str, str],
     strain_name: Optional[str],
@@ -844,8 +1151,89 @@ def infer_sequencing_techs(
     return sorted(techs)
 
 
+def infer_isolation_source(sample_name: str, sample: Dict[str, Any]) -> Optional[str]:
+    material = sample.get("material_name") or ""
+    description = sample.get("description") or ""
+    text = " ".join(part for part in [material, description, sample_name] if part).lower()
+    if (
+        "groundwater" in text
+        or re.search(r"\bground\s*water\b", text)
+        or "subsurface water" in text
+        or "aquifer" in text
+    ):
+        return f"Groundwater sample {sample_name} from ORR".strip()
+    if (
+        re.search(r"\bsoil\b", text)
+        or "topsoil" in text
+        or "subsoil" in text
+        or "rhizosphere" in text
+        or "sediment" in text
+    ):
+        if "sediment" in text:
+            return f"Sediment sample {sample_name} from ORR".strip()
+        return f"Soil sample {sample_name} from ORR".strip()
+    return None
+
+
+def format_depth_meters(depth_value: Any) -> str:
+    if depth_value in (None, ""):
+        return ""
+    try:
+        depth_float = float(depth_value)
+    except (TypeError, ValueError):
+        depth_str = str(depth_value).strip()
+        if not depth_str:
+            return ""
+        return f"{depth_str} m"
+    if depth_float.is_integer():
+        depth_str = str(int(depth_float))
+    else:
+        depth_str = str(depth_float)
+    return f"{depth_str} m"
+
+
+def build_biosample_name(sample_name: str, strain_name: str) -> str:
+    formatted = f"environmental sample {sample_name} isolate {strain_name}".strip()
+    return formatted
+
+
+def extract_date_from_filenames(*filenames: Optional[str]) -> Optional[str]:
+    for filename in filenames:
+        if not filename:
+            continue
+        match = re.search(r"\d{4}-\d{2}-\d{2}", filename)
+        if match:
+            return match.group(0)
+    return None
+
+
+def infer_read_tech_label(platform: Optional[str], sequencing_tech: Optional[str]) -> str:
+    platform_upper = (platform or "").upper()
+    seq_lower = (sequencing_tech or "").lower()
+    if "PACBIO" in platform_upper or "pacbio" in seq_lower:
+        return "Pacbio"
+    if "NANOPORE" in platform_upper or "nanopore" in seq_lower or "ont" in seq_lower:
+        return "Nanopore"
+    return "Illumina"
+
+
+def is_long_read_tech(platform: Optional[str], sequencing_tech: Optional[str]) -> bool:
+    platform_upper = (platform or "").upper()
+    seq_lower = (sequencing_tech or "").lower()
+    return bool(
+        "PACBIO" in platform_upper
+        or "NANOPORE" in platform_upper
+        or "pacbio" in seq_lower
+        or "nanopore" in seq_lower
+        or "ont" in seq_lower
+    )
+
+
 def generate_biosample_table(
-    genome_data: List[Dict[str, Any]], output_file: str, output_dir: str
+    genome_data: List[Dict[str, Any]],
+    output_file: str,
+    output_dir: str,
+    debug: bool = False,
 ) -> None:
     template_path, sheet, header_row, header_map = load_biosample_template_workbook(
         output_dir
@@ -864,16 +1252,20 @@ def generate_biosample_table(
 
         sample_name = sample.get("sample_name") or ""
         strain_name = strain.get("strain_name") or sample.get("sample_name")
-        formatted_sample_name = f"environmental sample {sample_name} isolate {strain_name}".strip()
+        formatted_sample_name = build_biosample_name(sample_name, strain_name)
         genus = genome.get("gtdb_genus")
         organism_name = build_organism_name(genus, strain_name)
 
-        material = (sample.get("material_name") or "").lower()
-        isolation_source = None
-        if "soil" in material:
-            isolation_source = f"Soil sample {sample_name}".strip()
-        elif "groundwater" in material:
-            isolation_source = f"Groundwater sample{sample_name}".strip()
+        isolation_source = infer_isolation_source(sample_name, sample)
+        if debug:
+            log_debug(
+                "Biosample isolation_source debug: "
+                f"sample_name={sample_name!r} "
+                f"material_name={(sample.get('material_name') or '')!r} "
+                f"description={(sample.get('description') or '')!r} "
+                f"resolved={isolation_source!r}",
+                enabled=True,
+            )
 
         values = {
             "*sample_name": formatted_sample_name,
@@ -886,7 +1278,7 @@ def generate_biosample_table(
             "*geo_loc_name": "USA: Tennessee, Oak Ridge Reservation (ORR)",
             "*sample_type": "cell culture",
             "collected_by": genome.get("collected_by") or "",
-            "depth": sample.get("depth_meter") or "",
+            "depth": format_depth_meters(sample.get("depth_meter")),
             "env_broad_scale": "temperate woodland biome [ENVO:01000221]",
             "lat_lon": format_lat_lon(location) or "",
         }
@@ -908,116 +1300,354 @@ def generate_sra_table(
     headers: Dict[str, str],
     column_cache: Dict[str, List[str]],
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
+    debug: bool = False,
 ) -> None:
-    fieldnames = [
-        "sample_name",
-        "library_ID",
-        "title",
-        "library_strategy",
-        "library_source",
-        "library_selection",
-        "library_layout",
-        "platform",
-        "instrument_model",
-        "filetype",
-        "filename",
-        "filename2",
-    ]
-
-    with open(output_file, "w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=fieldnames, extrasaction="ignore", delimiter="\t"
+    template_path, sheet, header_row, header_map = load_sra_template_workbook(
+        Path(output_file).parent
+    )
+    allowed_instruments = load_sra_instrument_models(sheet.parent)
+    if debug:
+        log_debug(
+            "SRA template headers: "
+            f"platform_col={header_map.get('platform')} "
+            f"instrument_model_col={header_map.get('instrument_model')} "
+            f"allowed_instruments={len(allowed_instruments)}",
+            enabled=True,
         )
-        writer.writeheader()
 
-        for genome in genome_data:
-            strain = genome.get("strain", {}) or {}
-            sample = genome.get("sample", {}) or {}
-            sample_name = strain.get("strain_name") or genome.get("genome_name", "")
-            reads_list = genome.get("reads", []) or []
+    last_data_row = header_row
+    for row in sheet.iter_rows(min_row=header_row + 1, max_row=sheet.max_row):
+        if any(cell.value not in (None, "") for cell in row):
+            last_data_row = row[0].row
 
-            reads_by_base_name: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-            for reads in reads_list:
-                reads_name = reads.get("reads_name", "") or ""
-                base_name = re.sub(
-                    r"[_-](R[12]|fwd|rev|forward|reverse|paired|unpaired).*$",
-                    "",
-                    reads_name,
-                    flags=re.IGNORECASE,
+    next_row = last_data_row + 1
+    used_library_ids: Dict[str, int] = {}
+    used_titles: Dict[str, int] = {}
+    short_read_date_flag: Dict[str, bool] = {}
+    short_read_dates: Dict[str, List[Optional[str]]] = {}
+    for genome in genome_data:
+        strain = genome.get("strain", {}) or {}
+        sample = genome.get("sample", {}) or {}
+        sample_name = sample.get("sample_name") or ""
+        isolate_name = strain.get("strain_name") or sample.get("sample_name") or genome.get(
+            "genome_name", ""
+        )
+        biosample_name = build_biosample_name(sample_name, isolate_name)
+        reads_list = genome.get("reads", []) or []
+
+        reads_by_base_name: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        for reads in reads_list:
+            reads_name = reads.get("reads_name", "") or ""
+            base_name = re.sub(
+                r"[_-](R[12]|fwd|rev|forward|reverse|paired|unpaired).*$",
+                "",
+                reads_name,
+                flags=re.IGNORECASE,
+            )
+            reads_by_base_name[base_name].append(reads)
+
+        for base_name, reads_group in reads_by_base_name.items():
+            if len(reads_group) >= 2:
+                library_layout = "PAIRED"
+                forward_reads = None
+                reverse_reads = None
+                for reads in reads_group:
+                    name_lower = (reads.get("reads_name") or "").lower()
+                    if any(
+                        x in name_lower
+                        for x in ["_r1", "_fwd", "_forward", "_1.fastq", "_1.fq"]
+                    ):
+                        forward_reads = reads
+                    elif any(
+                        x in name_lower
+                        for x in ["_r2", "_rev", "_reverse", "_2.fastq", "_2.fq"]
+                    ):
+                        reverse_reads = reads
+                if not forward_reads:
+                    forward_reads = reads_group[0]
+                if not reverse_reads and len(reads_group) > 1:
+                    reverse_reads = reads_group[1]
+                filename = (forward_reads.get("link") or "").split("/")[-1]
+                filename2 = (reverse_reads.get("link") or "").split("/")[-1]
+                primary_reads = forward_reads
+            else:
+                library_layout = "SINGLE"
+                primary_reads = reads_group[0] if reads_group else None
+                filename = (
+                    (primary_reads.get("link") or "").split("/")[-1]
+                    if primary_reads
+                    else ""
                 )
-                reads_by_base_name[base_name].append(reads)
+                filename2 = None
 
-            for base_name, reads_group in reads_by_base_name.items():
-                if len(reads_group) >= 2:
-                    library_layout = "PAIRED"
-                    forward_reads = None
-                    reverse_reads = None
-                    for reads in reads_group:
-                        name_lower = (reads.get("reads_name") or "").lower()
-                        if any(
-                            x in name_lower
-                            for x in ["_r1", "_fwd", "_forward", "_1.fastq", "_1.fq"]
-                        ):
-                            forward_reads = reads
-                        elif any(
-                            x in name_lower
-                            for x in ["_r2", "_rev", "_reverse", "_2.fastq", "_2.fq"]
-                        ):
-                            reverse_reads = reads
-                    if not forward_reads:
-                        forward_reads = reads_group[0]
-                    if not reverse_reads and len(reads_group) > 1:
-                        reverse_reads = reads_group[1]
-                    filename = (forward_reads.get("link") or "").split("/")[-1]
-                    filename2 = (reverse_reads.get("link") or "").split("/")[-1]
-                    primary_reads = forward_reads
-                else:
-                    library_layout = "SINGLE"
-                    primary_reads = reads_group[0] if reads_group else None
-                    filename = (primary_reads.get("link") or "").split("/")[-1] if primary_reads else ""
-                    filename2 = None
+            if not primary_reads:
+                continue
 
-                if not primary_reads:
-                    continue
-
+            source_protocols = primary_reads.get("source_protocols", []) or []
+            seq_tech_debug = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+                or ""
+            )
+            if source_protocols:
+                protocol_names = list(source_protocols)
+            else:
                 protocol_names = []
                 protocol_names.extend(normalize_protocol_names(sample.get("protocol")))
                 protocol_names.extend(primary_reads.get("protocols", []))
-                platform, instrument_model = infer_platform_from_protocols(
-                    protocol_names, headers, column_cache, protocol_cache
+            platform, instrument_model = infer_platform_from_protocols(
+                protocol_names, headers, column_cache, protocol_cache
+            )
+
+            if not platform:
+                seq_tech = (
+                    primary_reads.get("source_sequencing_technology")
+                    or primary_reads.get("sequencing_technology")
+                    or ""
+                ).lower()
+                if "illumina" in seq_tech:
+                    platform = "ILLUMINA"
+                    instrument_model = "unknown"
+                elif "nanopore" in seq_tech or "ont" in seq_tech:
+                    platform = "OXFORD_NANOPORE"
+                    instrument_model = "unknown"
+                elif "pacbio" in seq_tech:
+                    platform = "PACBIO_SMRT"
+                    instrument_model = "unknown"
+                else:
+                    platform = "ILLUMINA"
+                    instrument_model = "unknown"
+
+            if debug:
+                log_debug(
+                    "SRA instrument debug: "
+                    f"sample={biosample_name!r} "
+                    f"reads={primary_reads.get('reads_name')!r} "
+                    f"source_reads={primary_reads.get('source_reads_token')!r} "
+                    f"source_protocols={source_protocols!r} "
+                    f"protocol_names={protocol_names!r} "
+                    f"seq_tech={seq_tech_debug!r} "
+                    f"platform={platform!r} "
+                    f"instrument_model={instrument_model!r}",
+                    enabled=True,
                 )
 
-                if not platform:
-                    seq_tech = (primary_reads.get("sequencing_technology") or "").lower()
-                    if "illumina" in seq_tech:
-                        platform = "ILLUMINA"
-                        instrument_model = "Illumina NovaSeq 6000"
-                    elif "nanopore" in seq_tech or "ont" in seq_tech:
-                        platform = "OXFORD_NANOPORE"
-                        instrument_model = "PromethION"
-                    elif "pacbio" in seq_tech:
-                        platform = "PACBIO_SMRT"
-                        instrument_model = "PacBio Sequel"
-                    else:
-                        platform = "ILLUMINA"
-                        instrument_model = "Illumina NovaSeq 6000"
+            instrument_model = normalize_instrument_model(
+                instrument_model if instrument_model != "unknown" else "",
+                platform,
+                allowed_instruments,
+            )
+            if debug and instrument_model == "":
+                log_debug(
+                    "SRA instrument filtered: "
+                    f"instrument_model not in template list",
+                    enabled=True,
+                )
 
-                row_data = {
-                    "sample_name": sample_name,
-                    "library_ID": base_name or primary_reads.get("reads_name", ""),
-                    "title": f"Genome sequencing of {sample_name}",
-                    "library_strategy": "WGS",
-                    "library_source": "GENOMIC",
-                    "library_selection": "RANDOM",
-                    "library_layout": library_layout,
-                    "platform": platform,
-                    "instrument_model": instrument_model,
-                    "filetype": "fastq",
-                    "filename": filename,
-                }
-                if filename2:
-                    row_data["filename2"] = filename2
-                writer.writerow(row_data)
+            seq_tech = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+            )
+            tech_label = infer_read_tech_label(platform, seq_tech)
+            long_read = is_long_read_tech(platform, seq_tech)
+            reads_date = extract_date_from_filenames(filename, filename2)
+
+            if not long_read:
+                short_read_dates.setdefault(isolate_name, []).append(reads_date)
+
+    for isolate_name, dates in short_read_dates.items():
+        if len(dates) > 1 and any(date for date in dates):
+            short_read_date_flag[isolate_name] = True
+
+    for genome in genome_data:
+        strain = genome.get("strain", {}) or {}
+        sample = genome.get("sample", {}) or {}
+        sample_name = sample.get("sample_name") or ""
+        isolate_name = strain.get("strain_name") or sample.get("sample_name") or genome.get(
+            "genome_name", ""
+        )
+        biosample_name = build_biosample_name(sample_name, isolate_name)
+        reads_list = genome.get("reads", []) or []
+
+        reads_by_base_name = defaultdict(list)
+        for reads in reads_list:
+            reads_name = reads.get("reads_name", "") or ""
+            base_name = re.sub(
+                r"[_-](R[12]|fwd|rev|forward|reverse|paired|unpaired).*$",
+                "",
+                reads_name,
+                flags=re.IGNORECASE,
+            )
+            reads_by_base_name[base_name].append(reads)
+
+        for base_name, reads_group in reads_by_base_name.items():
+            if len(reads_group) >= 2:
+                library_layout = "PAIRED"
+                forward_reads = None
+                reverse_reads = None
+                for reads in reads_group:
+                    name_lower = (reads.get("reads_name") or "").lower()
+                    if any(
+                        x in name_lower
+                        for x in ["_r1", "_fwd", "_forward", "_1.fastq", "_1.fq"]
+                    ):
+                        forward_reads = reads
+                    elif any(
+                        x in name_lower
+                        for x in ["_r2", "_rev", "_reverse", "_2.fastq", "_2.fq"]
+                    ):
+                        reverse_reads = reads
+                if not forward_reads:
+                    forward_reads = reads_group[0]
+                if not reverse_reads and len(reads_group) > 1:
+                    reverse_reads = reads_group[1]
+                filename = (forward_reads.get("link") or "").split("/")[-1]
+                filename2 = (reverse_reads.get("link") or "").split("/")[-1]
+                primary_reads = forward_reads
+            else:
+                library_layout = "SINGLE"
+                primary_reads = reads_group[0] if reads_group else None
+                filename = (
+                    (primary_reads.get("link") or "").split("/")[-1]
+                    if primary_reads
+                    else ""
+                )
+                filename2 = None
+
+            if not primary_reads:
+                continue
+
+            source_protocols = primary_reads.get("source_protocols", []) or []
+            seq_tech_debug = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+                or ""
+            )
+            if source_protocols:
+                protocol_names = list(source_protocols)
+            else:
+                protocol_names = []
+                protocol_names.extend(normalize_protocol_names(sample.get("protocol")))
+                protocol_names.extend(primary_reads.get("protocols", []))
+            platform, instrument_model = infer_platform_from_protocols(
+                protocol_names, headers, column_cache, protocol_cache
+            )
+
+            if not platform:
+                seq_tech = (
+                    primary_reads.get("source_sequencing_technology")
+                    or primary_reads.get("sequencing_technology")
+                    or ""
+                ).lower()
+                if "illumina" in seq_tech:
+                    platform = "ILLUMINA"
+                    instrument_model = "unknown"
+                elif "nanopore" in seq_tech or "ont" in seq_tech:
+                    platform = "OXFORD_NANOPORE"
+                    instrument_model = "unknown"
+                elif "pacbio" in seq_tech:
+                    platform = "PACBIO_SMRT"
+                    instrument_model = "unknown"
+                else:
+                    platform = "ILLUMINA"
+                    instrument_model = "unknown"
+
+            if debug:
+                log_debug(
+                    "SRA instrument debug: "
+                    f"sample={biosample_name!r} "
+                    f"reads={primary_reads.get('reads_name')!r} "
+                    f"source_reads={primary_reads.get('source_reads_token')!r} "
+                    f"source_protocols={source_protocols!r} "
+                    f"protocol_names={protocol_names!r} "
+                    f"seq_tech={seq_tech_debug!r} "
+                    f"platform={platform!r} "
+                    f"instrument_model={instrument_model!r}",
+                    enabled=True,
+                )
+
+            instrument_model = normalize_instrument_model(
+                instrument_model if instrument_model != "unknown" else "",
+                platform,
+                allowed_instruments,
+            )
+            if debug and instrument_model == "":
+                log_debug(
+                    "SRA instrument filtered: "
+                    f"instrument_model not in template list",
+                    enabled=True,
+                )
+
+            seq_tech = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+            )
+            tech_label = infer_read_tech_label(platform, seq_tech)
+            long_read = is_long_read_tech(platform, seq_tech)
+            reads_date = extract_date_from_filenames(filename, filename2)
+
+            if long_read:
+                if tech_label == "Pacbio":
+                    base_library_id = f"{isolate_name}_pacbio"
+                else:
+                    base_library_id = f"{isolate_name}_nano"
+            else:
+                base_library_id = isolate_name
+
+            library_id = base_library_id
+            if (
+                not long_read
+                and short_read_date_flag.get(isolate_name)
+                and reads_date
+            ):
+                library_id = f"{base_library_id}_{reads_date}"
+            if library_id in used_library_ids and reads_date:
+                library_id = f"{base_library_id}_{reads_date}"
+            if library_id in used_library_ids:
+                suffix = used_library_ids[library_id] + 1
+                library_id = f"{library_id}_{suffix}"
+            used_library_ids[library_id] = used_library_ids.get(library_id, 0) + 1
+
+            title = f"{tech_label} reads for {isolate_name}"
+            if (
+                not long_read
+                and short_read_date_flag.get(isolate_name)
+                and reads_date
+            ):
+                title = f"{title}, {reads_date}"
+            elif title in used_titles and reads_date:
+                title = f"{title}, {reads_date}"
+            if title in used_titles:
+                suffix = used_titles[title] + 1
+                title = f"{title}, {suffix}"
+            used_titles[title] = used_titles.get(title, 0) + 1
+
+            values = {
+                "sample_name": biosample_name,
+                "library_ID": library_id,
+                "title": title,
+                "library_strategy": "WGS",
+                "library_source": "GENOMIC",
+                "library_selection": "RANDOM",
+                "library_layout": library_layout,
+                "platform": platform,
+                "instrument_model": instrument_model,
+                "design_description": "Whole genome shotgun sequencing for isolate characterization.",
+                "filetype": "fastq",
+                "filename": filename,
+            }
+            if filename2:
+                values["filename2"] = filename2
+
+            for header, value in values.items():
+                col = header_map.get(header)
+                if col is not None:
+                    sheet.cell(row=next_row, column=col, value=value)
+            next_row += 1
+
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    sheet.parent.save(output_path)
 
 
 def generate_genome_table(
@@ -1092,6 +1722,7 @@ def process_genomes_for_submission(
     genome_names: Sequence[str],
     output_dir: str = DEFAULT_OUTPUT_DIR,
     debug: bool = False,
+    edr_path: str = DEFAULT_EDR_PATH,
 ) -> List[Dict[str, Any]]:
     if debug:
         set_debug(True)
@@ -1224,14 +1855,16 @@ def process_genomes_for_submission(
         genome_data,
         os.path.join(output_dir, "biosample_table_Microbe.1.0.xlsx"),
         output_dir,
+        debug=debug,
     )
     log_info("Writing SRA metadata table")
     generate_sra_table(
         genome_data,
-        os.path.join(output_dir, "sra_table.tsv"),
+        os.path.join(output_dir, "sra_table_SRA_metadata.xlsx"),
         headers,
         column_cache,
         protocol_cache,
+        debug=debug,
     )
     log_info("Writing genome metadata table")
     generate_genome_table(
@@ -1241,10 +1874,12 @@ def process_genomes_for_submission(
         column_cache,
         protocol_cache,
     )
+    log_info("Linking FASTQ files for upload")
+    link_fastq_files(genome_data, output_dir, edr_path, debug=debug)
 
     print("Generated submission tables:")
     print(f"  - {os.path.join(output_dir, 'biosample_table_Microbe.1.0.xlsx')}")
-    print(f"  - {os.path.join(output_dir, 'sra_table.tsv')}")
+    print(f"  - {os.path.join(output_dir, 'sra_table_SRA_metadata.xlsx')}")
     print(f"  - {os.path.join(output_dir, 'genome_table.tsv')}")
 
     return genome_data
@@ -1274,6 +1909,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Enable verbose debugging, including BERDL API calls.",
     )
+    parser.add_argument(
+        "--edr-path",
+        default=DEFAULT_EDR_PATH,
+        help=f"Path to ENIGMA data repository root (default: {DEFAULT_EDR_PATH}).",
+    )
     return parser.parse_args()
 
 
@@ -1302,7 +1942,11 @@ def main() -> None:
         raise SystemExit("No genomes provided. Use --genome-name or --genome-list.")
     headers = get_headers()
     process_genomes_for_submission(
-        headers, genome_names, output_dir=args.output_dir, debug=args.debug
+        headers,
+        genome_names,
+        output_dir=args.output_dir,
+        debug=args.debug,
+        edr_path=args.edr_path,
     )
 
 
