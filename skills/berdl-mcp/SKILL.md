@@ -34,5 +34,7 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
 
 ## When to load references
 
+- For CORAL schema details, load:
+  - `references/enigma_coral_schema.md`
 - For request/response schemas, supported operators, and pagination details, load:
-  - `references/berdl_mcp_openapi.json`
+  - `references/berdl_mcp_openapi.json` (if available in the project using this skill)

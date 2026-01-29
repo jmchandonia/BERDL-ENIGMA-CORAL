@@ -7,17 +7,17 @@ description: Query ENIGMA (coral_enigma) data using the BERDL MCP API with the p
 
 ## Overview
 
-Use this skill to answer ENIGMA data questions by composing BERDL MCP API queries against the `enigma_coral` database using only the tables and columns listed in `references/coral_enigma_schema.md`. Do not use any other data source for ENIGMA data.
+Use this skill to answer ENIGMA data questions by composing BERDL MCP API queries against the `enigma_coral` database using only the tables and columns listed in `references/enigma_coral_schema.md`. Do not use any other data source for ENIGMA data.
 
 ## Required references
 
-- `references/coral_enigma_schema.md` for the allowed table/column list.
-- `references/ndarray_bricks.md` when questions involve bricks/ndarrays (tables named `ddt_brick*`).
+- `references/enigma_coral_schema.md` for the allowed table/column list.
+- `references/ddt_ndarray_table.md` and `references/sys_ddt_typedef_table.md` when questions involve bricks/ndarrays (tables named `ddt_brick*`).
 
 ## Workflow
 
-1. Load `references/coral_enigma_schema.md` and confirm the tables/columns needed by the request.
-2. If the request involves bricks/ndarrays, load `references/ndarray_bricks.md` and identify:
+1. Load `references/enigma_coral_schema.md` and confirm the tables/columns needed by the request.
+2. If the request involves bricks/ndarrays, load `references/ddt_ndarray_table.md` and `references/sys_ddt_typedef_table.md` and identify:
    - the relevant `ddt_ndarray` record(s)
    - the matching `ddt_brick{ID}` table
    - columns and joins from `sys_ddt_typedef`
@@ -51,6 +51,6 @@ Common endpoints:
 
 ## Guardrails
 
-- Only use tables and columns that appear in `references/coral_enigma_schema.md`.
+- Only use tables and columns that appear in `references/enigma_coral_schema.md`.
 - Do not use any other ENIGMA data sources beyond the BERDL MCP API.
 - When unsure about a column, ask for clarification instead of guessing.

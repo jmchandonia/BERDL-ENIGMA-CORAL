@@ -7,7 +7,7 @@ description: Find and explain relationships/provenance between ENIGMA objects us
 
 ## Overview
 
-Use `tools/walk_provenance.py` to load ENIGMA process data once and walk upstream relationships between objects. Prefer this when you need provenance, lineage, or shared-process relationships.
+Use `tools/walk_provenance.py` (bundled with this skill) to load ENIGMA process data once and walk upstream relationships between objects. Prefer this when you need provenance, lineage, or shared-process relationships.
 
 ## Quick start (CLI)
 
@@ -15,25 +15,25 @@ Use `tools/walk_provenance.py` to load ENIGMA process data once and walk upstrea
 - Discover tables and name mappings:
 
 ```bash
-python tools/walk_provenance.py --show-tables
+python skills/enigma-object-relationships/tools/walk_provenance.py --show-tables
 ```
 
 - Walk provenance:
 
 ```bash
-python tools/walk_provenance.py --walk-provenance <TABLE> "<NAME>"
+python skills/enigma-object-relationships/tools/walk_provenance.py --walk-provenance <TABLE> "<NAME>"
 ```
 
 - Check for coassembly in the lineage:
 
 ```bash
-python tools/walk_provenance.py --coassembly <TABLE> "<NAME>"
+python skills/enigma-object-relationships/tools/walk_provenance.py --coassembly <TABLE> "<NAME>"
 ```
 
 - List processes producing an object:
 
 ```bash
-python tools/walk_provenance.py --list-processes <TABLE> "<NAME>"
+python skills/enigma-object-relationships/tools/walk_provenance.py --list-processes <TABLE> "<NAME>"
 ```
 
 ## Relationship workflow
@@ -46,7 +46,7 @@ python tools/walk_provenance.py --list-processes <TABLE> "<NAME>"
 ## Python usage (reuse cached process data)
 
 ```python
-from tools.walk_provenance import discover_tables, NameResolver, load_process_cache, walk_provenance_by_name
+from skills.enigma-object-relationships.tools.walk_provenance import discover_tables, NameResolver, load_process_cache, walk_provenance_by_name
 
 headers = {"Authorization": f"Bearer {token}"}
 discovered_tables = discover_tables(headers)
