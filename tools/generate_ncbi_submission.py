@@ -275,6 +275,39 @@ def find_oldest_reads_with_fastq(
                 processed = True
         return produced_by_copy, processed
 
+    def collect_reads_protocols(reads_token: str) -> List[str]:
+        shotgun_protocols: List[str] = []
+        other_protocols: List[str] = []
+
+        def add_protocols(proc: Dict[str, Any]) -> None:
+            process_name = (proc.get("process_term_name") or "").lower()
+            normalized = normalize_protocol_names(proc.get("protocol"))
+            if not normalized:
+                return
+            if (
+                "shotgun sequencing and assembly" in process_name
+                or "shotgun sequencing" in process_name
+                or "sequencing" in process_name
+            ):
+                shotgun_protocols.extend(normalized)
+            else:
+                other_protocols.extend(normalized)
+
+        for proc in out_lookup.get(reads_token, []):
+            add_protocols(proc)
+        for proc in downstream_lookup.get(reads_token, []):
+            add_protocols(proc)
+
+        ordered = shotgun_protocols + other_protocols
+        seen: set[str] = set()
+        unique = []
+        for name in ordered:
+            if name in seen:
+                continue
+            seen.add(name)
+            unique.append(name)
+        return unique
+
     def collect_reads_inputs(start_token: str) -> List[str]:
         visited: set[str] = set()
         reads_inputs: List[str] = []
@@ -382,9 +415,7 @@ def find_oldest_reads_with_fastq(
                 reads_data = get_reads_data(obj_id)
                 link = reads_data.get("link")
                 if read_link_ok(link):
-                    protocols = []
-                    for proc in out_lookup.get(obj_token, []):
-                        protocols.extend(normalize_protocol_names(proc.get("protocol")))
+                    protocols = collect_reads_protocols(obj_token)
                     produced_by_copy, processed = reads_process_flags(obj_token)
                     reads_candidates.append(
                         {
@@ -466,26 +497,7 @@ def find_oldest_reads_with_fastq(
         return reads_group
 
     def get_reads_protocols(reads_token: str) -> List[str]:
-        shotgun_protocols: List[str] = []
-        other_protocols: List[str] = []
-        for proc in out_lookup.get(reads_token, []):
-            process_name = (proc.get("process_term_name") or "").lower()
-            normalized = normalize_protocol_names(proc.get("protocol"))
-            if not normalized:
-                continue
-            if "shotgun sequencing and assembly" in process_name or "shotgun sequencing" in process_name:
-                shotgun_protocols.extend(normalized)
-            else:
-                other_protocols.extend(normalized)
-        ordered = shotgun_protocols + other_protocols
-        seen: set[str] = set()
-        unique = []
-        for name in ordered:
-            if name in seen:
-                continue
-            seen.add(name)
-            unique.append(name)
-        return unique
+        return collect_reads_protocols(reads_token)
 
     def select_best_reads(candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if not candidates:
@@ -954,6 +966,11 @@ def normalize_instrument_model(
         if strip_vendor(inst).lower() == stripped:
             return inst
 
+    if platform == "ILLUMINA" and "novaseq" in lowered:
+        for candidate in ("Illumina NovaSeq 6000", "NovaSeq 6000"):
+            if candidate in allowed_instruments:
+                return candidate
+
     if platform == "ILLUMINA" and not lowered.startswith("illumina "):
         candidate = f"Illumina {instrument_model}"
         if candidate in allowed_instruments:
@@ -1395,6 +1412,11 @@ def generate_sra_table(
                 protocol_names = []
                 protocol_names.extend(normalize_protocol_names(sample.get("protocol")))
                 protocol_names.extend(primary_reads.get("protocols", []))
+                if not protocol_names:
+                    assembly_protocols = collect_protocols_from_processes(
+                        genome.get("assembly_processes", []) or []
+                    )
+                    protocol_names.extend(assembly_protocols)
             platform, instrument_model = infer_platform_from_protocols(
                 protocol_names, headers, column_cache, protocol_cache
             )
@@ -1529,6 +1551,11 @@ def generate_sra_table(
                 protocol_names = []
                 protocol_names.extend(normalize_protocol_names(sample.get("protocol")))
                 protocol_names.extend(primary_reads.get("protocols", []))
+                if not protocol_names:
+                    assembly_protocols = collect_protocols_from_processes(
+                        genome.get("assembly_processes", []) or []
+                    )
+                    protocol_names.extend(assembly_protocols)
             platform, instrument_model = infer_platform_from_protocols(
                 protocol_names, headers, column_cache, protocol_cache
             )
