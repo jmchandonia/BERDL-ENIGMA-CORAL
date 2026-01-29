@@ -1,3 +1,21 @@
+import json
+
+
+def _format_markdown_cell(value):
+    if value is None:
+        return "NULL"
+    if isinstance(value, (list, dict)):
+        rendered = json.dumps(value, ensure_ascii=True)
+    else:
+        rendered = str(value)
+    rendered = rendered.replace("\r\n", "\n").replace("\r", "\n")
+    multiline = "\n" in rendered
+    if multiline:
+        rendered = rendered.replace("\n", "<br>")
+        rendered = f"\"{rendered}\""
+    return rendered.replace("|", "\\|")
+
+
 def export_table_to_markdown(database_name, table_name, output_file):
     """
     Export entire Spark SQL table to markdown format.
@@ -53,9 +71,7 @@ def export_table_to_markdown(database_name, table_name, output_file):
             # Write all rows
             rows = df.collect()
             for row in rows:
-                row_values = [str(row[col]) if row[col] is not None else "NULL" for col in columns]
-                # Escape pipe characters in data to avoid breaking table
-                row_values = [val.replace("|", "\\|") for val in row_values]
+                row_values = [_format_markdown_cell(row[col]) for col in columns]
                 f.write("| " + " | ".join(row_values) + " |\n")
         else:
             f.write("*Table is empty*\n")
