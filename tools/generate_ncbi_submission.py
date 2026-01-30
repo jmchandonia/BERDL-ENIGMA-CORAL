@@ -16,7 +16,6 @@ It generates:
 from __future__ import annotations
 
 import argparse
-import csv
 import os
 import re
 from collections import defaultdict
@@ -48,13 +47,20 @@ DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
 EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
 PROTOCOL_TABLE = "sdt_protocol"
 BIOSAMPLE_TEMPLATE_CANDIDATES = [
+    REPO_ROOT / "templates" / "Microbe.1.0.xlsx",
     Path("ncbi_submission") / "Microbe.1.0.xlsx",
     Path("ncbi_submission") / "MIcrobe.1.0.xlsx",
     Path("genome_upload") / "ncbi_submission" / "Microbe.1.0.xlsx",
 ]
 SRA_TEMPLATE_CANDIDATES = [
+    REPO_ROOT / "templates" / "SRA_metadata.xlsx",
     Path("ncbi_submission") / "SRA_metadata.xlsx",
     Path("genome_upload") / "ncbi_submission" / "SRA_metadata.xlsx",
+]
+GENOME_TEMPLATE_CANDIDATES = [
+    REPO_ROOT / "templates" / "Template_GenomeBatch.xlsx",
+    Path("ncbi_submission") / "Template_GenomeBatch.xlsx",
+    Path("genome_upload") / "ncbi_submission" / "Template_GenomeBatch.xlsx",
 ]
 
 
@@ -798,8 +804,10 @@ def build_downstream_lookup(
 
 
 def load_biosample_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
-    candidates = [Path(output_dir) / "Microbe.1.0.xlsx", Path(output_dir) / "MIcrobe.1.0.xlsx"]
-    candidates.extend(BIOSAMPLE_TEMPLATE_CANDIDATES)
+    candidates = list(BIOSAMPLE_TEMPLATE_CANDIDATES)
+    candidates.extend(
+        [Path(output_dir) / "Microbe.1.0.xlsx", Path(output_dir) / "MIcrobe.1.0.xlsx"]
+    )
     template_path = next((path for path in candidates if path.exists()), None)
     if not template_path:
         raise FileNotFoundError(
@@ -832,8 +840,8 @@ def load_biosample_template_workbook(output_dir: str) -> Tuple[Path, Any, int, D
 
 
 def load_sra_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
-    candidates = [Path(output_dir) / "SRA_metadata.xlsx"]
-    candidates.extend(SRA_TEMPLATE_CANDIDATES)
+    candidates = list(SRA_TEMPLATE_CANDIDATES)
+    candidates.append(Path(output_dir) / "SRA_metadata.xlsx")
     template_path = next((path for path in candidates if path.exists()), None)
     if not template_path:
         raise FileNotFoundError(
@@ -861,6 +869,40 @@ def load_sra_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[st
 
     if header_row is None:
         raise ValueError(f"No header row found in SRA template: {template_path}")
+
+    return template_path, sheet, header_row, header_map
+
+
+def load_genome_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
+    candidates = list(GENOME_TEMPLATE_CANDIDATES)
+    candidates.append(Path(output_dir) / "Template_GenomeBatch.xlsx")
+    template_path = next((path for path in candidates if path.exists()), None)
+    if not template_path:
+        raise FileNotFoundError(
+            "Genome template not found. Expected Template_GenomeBatch.xlsx."
+        )
+    workbook = load_workbook(template_path)
+    sheet = workbook["Genome_data"] if "Genome_data" in workbook.sheetnames else workbook.active
+
+    header_row = None
+    header_map: Dict[str, int] = {}
+    for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row):
+        for cell in row:
+            if (cell.value or "").strip().lower() == "biosample_accession":
+                header_row = cell.row
+                for header_cell in sheet[header_row]:
+                    header = header_cell.value
+                    if header is None:
+                        continue
+                    header_str = str(header).strip()
+                    if header_str:
+                        header_map[header_str] = header_cell.column
+                break
+        if header_row is not None:
+            break
+
+    if header_row is None:
+        raise ValueError(f"No header row found in genome template: {template_path}")
 
     return template_path, sheet, header_row, header_map
 
@@ -1151,6 +1193,15 @@ def infer_assembly_method_from_protocols(
         if "unicycler" in text:
             return "Unicycler"
     return None
+
+
+def split_assembly_method(method: Optional[str]) -> Tuple[str, str]:
+    if not method:
+        return "", ""
+    match = re.match(r"^(.*?)[\\s]+(\\d+(?:\\.\\d+){0,3})$", method.strip())
+    if match:
+        return match.group(1).strip(), match.group(2).strip()
+    return method.strip(), ""
 
 
 def infer_sequencing_techs(
@@ -1684,64 +1735,79 @@ def generate_genome_table(
     column_cache: Dict[str, List[str]],
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
 ) -> None:
-    fieldnames = [
-        "Biosample",
-        "Organism",
-        "Assembly method",
-        "Sequencing technology",
-        "Coverage",
-        "Fasta file path",
-        "Genome name",
-    ]
+    template_path, sheet, header_row, header_map = load_genome_template_workbook(
+        Path(output_file).parent
+    )
 
-    with open(output_file, "w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=fieldnames, extrasaction="ignore", delimiter="\t"
+    last_data_row = header_row
+    for row in sheet.iter_rows(min_row=header_row + 1, max_row=sheet.max_row):
+        if any(cell.value not in (None, "") for cell in row):
+            last_data_row = row[0].row
+
+    next_row = last_data_row + 1
+    for genome in genome_data:
+        strain = genome.get("strain", {}) or {}
+        sample = genome.get("sample", {}) or {}
+        raw_sample_name = sample.get("sample_name") or ""
+        isolate_name = strain.get("strain_name") or raw_sample_name or genome.get(
+            "genome_name", ""
         )
-        writer.writeheader()
+        if not raw_sample_name:
+            raw_sample_name = isolate_name
+        biosample_name = build_biosample_name(raw_sample_name, isolate_name)
 
-        for genome in genome_data:
-            strain = genome.get("strain", {}) or {}
-            sample_name = strain.get("strain_name") or genome.get("genome_name", "")
+        assembly_protocols = collect_protocols_from_processes(
+            genome.get("assembly_processes", []) or []
+        )
+        assembly_method = infer_assembly_method_from_protocols(
+            assembly_protocols, headers, column_cache, protocol_cache
+        )
+        method_name, method_version = split_assembly_method(assembly_method)
 
-            assembly_protocols = collect_protocols_from_processes(
-                genome.get("assembly_processes", []) or []
-            )
-            assembly_method = infer_assembly_method_from_protocols(
-                assembly_protocols, headers, column_cache, protocol_cache
-            )
+        seq_techs = infer_sequencing_techs(
+            assembly_protocols, headers, column_cache, protocol_cache
+        )
+        if not seq_techs:
+            for reads in genome.get("reads", []) or []:
+                tech = reads.get("sequencing_technology")
+                if tech:
+                    seq_techs.append(tech)
+        sequencing_technology = "; ".join(sorted(set(seq_techs))) if seq_techs else ""
 
-            seq_techs = infer_sequencing_techs(
-                assembly_protocols, headers, column_cache, protocol_cache
-            )
-            if not seq_techs:
-                for reads in genome.get("reads", []) or []:
-                    tech = reads.get("sequencing_technology")
-                    if tech:
-                        seq_techs.append(tech)
-            sequencing_technology = "; ".join(sorted(set(seq_techs))) if seq_techs else None
-
-            genome_link = genome.get("genome_link") or ""
-            if genome_link:
-                strain_name = strain.get("strain_name") or ""
-                if strain_name:
-                    fasta_path = f"{genome_link.rstrip('/')}/{strain_name}_contigs.fasta"
-                else:
-                    fasta_path = f"{genome_link.rstrip('/')}/contigs.fasta"
+        genome_link = genome.get("genome_link") or ""
+        if genome_link:
+            strain_name = strain.get("strain_name") or ""
+            if strain_name:
+                fasta_path = f"{genome_link.rstrip('/')}/{strain_name}_contigs.fasta"
             else:
-                fasta_path = None
+                fasta_path = f"{genome_link.rstrip('/')}/contigs.fasta"
+        else:
+            fasta_path = ""
 
-            writer.writerow(
-                {
-                    "Biosample": sample_name,
-                    "Organism": None,
-                    "Assembly method": assembly_method,
-                    "Sequencing technology": sequencing_technology,
-                    "Coverage": None,
-                    "Fasta file path": fasta_path,
-                    "Genome name": genome.get("genome_name", ""),
-                }
-            )
+        values = {
+            "biosample_accession": "",
+            "sample_name": biosample_name,
+            "assembly_date": "",
+            "assembly_name": genome.get("genome_name", ""),
+            "assembly_method": method_name,
+            "assembly_method_version": method_version,
+            "genome_coverage": "",
+            "sequencing_technology": sequencing_technology,
+            "reference_genome": "",
+            "update_for": "",
+            "bacteria_available_from": "",
+            "filename": fasta_path,
+        }
+
+        for header, value in values.items():
+            col = header_map.get(header)
+            if col is not None:
+                sheet.cell(row=next_row, column=col, value=value)
+        next_row += 1
+
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    sheet.parent.save(output_path)
 
 
 def process_genomes_for_submission(
@@ -1896,7 +1962,7 @@ def process_genomes_for_submission(
     log_info("Writing genome metadata table")
     generate_genome_table(
         genome_data,
-        os.path.join(output_dir, "genome_table.tsv"),
+        os.path.join(output_dir, "genome_table_Template_GenomeBatch.xlsx"),
         headers,
         column_cache,
         protocol_cache,
@@ -1907,7 +1973,7 @@ def process_genomes_for_submission(
     print("Generated submission tables:")
     print(f"  - {os.path.join(output_dir, 'biosample_table_Microbe.1.0.xlsx')}")
     print(f"  - {os.path.join(output_dir, 'sra_table_SRA_metadata.xlsx')}")
-    print(f"  - {os.path.join(output_dir, 'genome_table.tsv')}")
+    print(f"  - {os.path.join(output_dir, 'genome_table_Template_GenomeBatch.xlsx')}")
 
     return genome_data
 
