@@ -1,6 +1,6 @@
 # Database Schema: enigma_coral
 
-Total Tables: 44
+Total Tables: 45
 
 ---
 
@@ -187,11 +187,11 @@ Total Tables: 44
 
 | sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_molecular_weight_dalton | molecule_presence_molecule_from_list_helium_0 | concentration_statistic_average_parts_per_billion | concentration_statistic_standard_deviation_parts_per_billion | detection_limit_parts_per_billion |
 |---|---|---|---|---|---|---|---|
-| FW127-D64 | CHEBI:33324 | strontium atom | 88.0 | True | 433.036384206056 | 3.90444907957109 | 0.0171 |
-| FW127-D64 | CHEBI:33342 | zirconium atom | 90.0 | True | 0.164850102997522 | 0.056643754329317 | 0.0566 |
-| FW127-D64 | CHEBI:33344 | niobium atom | 93.0 | True | 0.005850448472764 | 0.003772904991139 | 0.0091 |
-| FW127-D64 | CHEBI:28685 | molybdenum atom | 95.0 | True | 0.008484774489076 | 0.023399294872951 | 0.0771 |
-| FW127-D64 | CHEBI:22977 | cadmium atom | 114.0 | True | 140.533294897435 | 0.943642478870656 | 0.0182 |
+| ED04-D01 | CHEBI:30501 | beryllium atom | 9.0 | False | 0.001562349753452 | 0.000366941008739 | 0.000469808553261 |
+| ED04-D01 | CHEBI:27560 | boron atom | 11.0 | False | 33.7619347281608 | 0.191036459932015 | 0.023132926454591 |
+| ED04-D01 | CHEBI:26708 | sodium atom | 23.0 | False | 5696.39023311947 | 32.3566930281299 | 0.894455712265924 |
+| ED04-D01 | CHEBI:25107 | magnesium atom | 24.0 | False | 17678.0757968573 | 297.141974133571 | 0.079527218969207 |
+| ED04-D01 | CHEBI:28984 | aluminium atom | 27.0 | True | 1.63612631792486 | 0.078702157706031 | 0.03413258127732 |
 
 ---
 
@@ -210,11 +210,11 @@ Total Tables: 44
 
 | sdt_asv_name | sequence_sequence_type_16s_sequence |
 |---|---|
-| 36dace37b4f264444528e5c12c367af4 | TACGGGGGGGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCTCGTAGGCGGCCGTTTTAGTCCGACGTGAAATCCCACGGCTCAACCGTGGAACTGCGTCGGATACTGAATGGCTTGAATCCAAGAGAGGGATGCGGAATTCCAGGTGTAGCGGTGAAATGCGTAGATATCTGGAGGAACACCGGTGGCGAAGGCGGCATCCTGGATTGGCATTGACGCTGAGGAGCGAAAGCCAGGGGAGCAAACGGG |
-| 36daf00c1aec53fe5c3ccfedec020ebf | TACGGAGGATCCAAGCGTTATCCGGAATTACTGGGCGTAAAGAGTTGCGTAGGTGGCAGAGTAAGTAGACAGTGAAAGCGTGTGGCTCAACCATACACACATTGCCTAAACTGCTCAGCTAGAAGATGAGAGAGGTCACTGGAATTCCTAGTGTAGGAGTGAAATCCGTAGATATTAGGAGGAACACCGATGGCGTAGGCAGGTGACTGGCTCATTCTTGACACTAAGGCACGAAAGCGTGGGGAGCAAACGGG |
-| 36db6446ae6c982e730ecc96246c0a64 | TACGAAGGTGGCAAGCGTTACTCGGAATTACTAGGCGTAAAGGGCAGGTAGGTGGTTTGATAAGTCTGTTGTGTAAGCTCCCGGCTTAACCGGGAGAGGTCAACGGATACTGTCAGACTTGAGTATAGGAGAGGATGCTGGAATTCCCGGTGTAGCGGTGAAATGCGCAGATATCGGGAGGAACACCAATGGCGAAAGCAGGCATCTGGACTATTACTGACGCTAAGCTGCGAAAGCTAGGGGAGCAAACAGG |
-| 36db75e1c35c05403b8c5e77f0a5be9f | TACGAAGGGGGCTAGCGTTGTTCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTACAAGTCAGGGGTGAAAGCCCAGAGCTCAACTCTGGAAATGCCCTTGAAACTGTTAAGCTCGAGTGCGGGAGAGGTGAGTGGAATTCCCAGTGTAGAGGTGAAATTCGTAGATATTGGGAAGAACACCGGTGGCGAAGGCGGCTCACTGGCCCGTTTCTGACGCTCATGCACGATAGCGTGGGGATCAAACAGG |
-| 36dba26a89cb0a9534fce3e83e369ef4 | TACGGGGGGGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCTCGTAGGCGGCCAACTAAGTCAGACGTGAAATCCCTCGGCTTAACCGGGGAACTGCGTCTGATACTGGATGGCTTGAGTGTGGCAGAGGGGGGTGGAATTCCGCGTGTAGCAGTGAAATGCGTAGAGATGCGGAGGAACACCGATGGCGAAGGCAACCCCCTGGGCTGACACTGACGCTCAGGCACGAAAGCGTGGGGAGCAAACAGG |
+| 8596cf3f138f9a1eb8b88cfedb4188ea | TACGGAGGTGGCAAGCGTTACTCGGATTTATTGGGTGTAAAGGGCAGGTAGGTGGTCTTGTAAGTTGGGAGTGAAATCCCCCGGCTCAACCGGGGAACTGCTTTCAAAACTGCAAGACTTGGGACTAGAAGAGGAGAACGGAATTCCCGGTGTAAGGGTGAAATCTGTAGATATCGGGAGGAACACCAGTAGCGAAGGCGGTTCTCTGGGCTAGTTCTGACACTGAGCTGCGAAAGCTAGGGGAGCAAACAGG |
+| 8597b02df0861a148003228718227162 | TACAGAGGGGGCAAGCGTTGTTCGGAATTATTGGGCGTAAAGGGTGTGTAGGCGGCTTGACAAGTCAGTGGTGAAATCCCCCGGCTTAACCGGGGACGTGCCTTTGATACTGTCAGGCTTGAGTACGGAAGAGGAGAGTGGAATTCCCAGTGTAGCGGTGAAATGCGTAGATATTGGGAAGAACACCGGCGGCGAAGGCGGCTCTCTGGTCCGTTACTGACGCTGAGACACGAAAGCCAGGGTAGCAAACGGG |
+| 8597b8c50a71f8ab34d326d3b4b4068c | AACGTAGGAGGCGAGCGTTATCCGGATTTACTGGGCGTAAAGCGCGTGCAGGTGGTACGGTTAGTTGGATGTGAAAGCTCCTGGCTTAACTGGGAGAGGTCGTTCAATACTGCCGAACTGGAGTATGGGAGAGGGAGGTGGAATTCCGAGTGTAGTGGTGAAATGCGTAGATATTCGGAGGAACACCAGTGGCGAAAGCGGCCTCCTGGCCCATTACTGACACTCAGACGCGAAAGCTAGGGGAGCGAACGGG |
+| 85984a4ef5ce3ceaf718c8fb20b09721 | TACGTAGGGTGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGGCGCGTAAGTCGGCTGTGAAAGCCCTGGGCTTAACCCGGGAATTGCAGTTGAAACTGCGTGTCTTGAGTGTTTGAGAGGGTGGTGGAATTCCTGGTGTAGAGGTGAAATTCGTAGATATCAGGAGGAACACCGGAGGCGAAGGCGGCCACCTGGCAATACACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
+| 85985b3f96eefb54d7dfef9beb107f8b | TACGGGGGGGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTGCTCTAAGTCGGATGTGAAAACTCTGGGCTCAACCCAGAGCCTGCATCCGAAACTGGAGTGCTGGAGTTCTGGAGGGGGTAGCGGAATTCCTGGTGTAGCGGTGAAATGCGTAGATATCAGGAGGAACACCGGTGGCGAAGGCGGCTACCTGGACAGAAACTGACGCTGAGGCACGAAAGCTAGGGGAGCAAACAGG |
 
 ---
 
@@ -235,11 +235,11 @@ Total Tables: 44
 
 | sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
 |---|---|---|---|
-| 0000672cf37091ed24be6595ac42659c | ME:0000351 | Taxonomic Domain | Bacteria |
-| 0000672cf37091ed24be6595ac42659c | ME:0000252 | Phylum | Elusimicrobiota |
-| 0000672cf37091ed24be6595ac42659c | ME:0000253 | Class | Elusimicrobia |
-| 0000672cf37091ed24be6595ac42659c | ME:0000254 | Order | Lineage_IV |
-| 0000672cf37091ed24be6595ac42659c | ME:0000255 | Family | Lineage_IV |
+| 4716d5b2f4559853424c60c46689a288 | ME:0000253 | Class | Omnitrophia |
+| 4716d5b2f4559853424c60c46689a288 | ME:0000254 | Order | Omnitrophales |
+| 4716d5b2f4559853424c60c46689a288 | ME:0000255 | Family | Omnitrophaceae |
+| 4716d5b2f4559853424c60c46689a288 | ME:0000256 | Genus | Candidatus_Omnitrophus |
+| 4719c3ac824b9bc042d678e923a01d4c | ME:0000351 | Taxonomic Domain | Bacteria |
 
 ---
 
@@ -283,11 +283,11 @@ Total Tables: 44
 
 | sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
 |---|---|---|---|
-| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000254 | Order | Desulfobulbales |
-| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000255 | Family | Desulfobulbaceae |
-| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000256 | Genus | Desulfobulbus |
-| 92774a391b34f2442444371af4bb1143 | ME:0000351 | Taxonomic Domain | Bacteria |
-| 92774a391b34f2442444371af4bb1143 | ME:0000252 | Phylum | Proteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000351 | Taxonomic Domain | Bacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000252 | Phylum | Proteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000253 | Class | Alphaproteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000254 | Order | Rhizobiales |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000255 | Family | Beijerinckiaceae |
 
 ---
 
@@ -307,11 +307,11 @@ Total Tables: 44
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L8-C10-00 | 0 |
-| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C3-00 | 0 |
-| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C5-00 | 0 |
-| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C7-00 | 0 |
-| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C10-00 | 0 |
+| 8c7237d4628046aae33addc398333dcf | SSO-L8-C10-00 | 0 |
+| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C3-00 | 0 |
+| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C5-00 | 0 |
+| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C7-00 | 0 |
+| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C10-00 | 0 |
 
 ---
 
@@ -380,11 +380,11 @@ Total Tables: 44
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ1-20240313-F8 | 0 |
-| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ2-20240319-F01 | 0 |
-| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ2-20240319-F8 | 0 |
-| e6bb966a6a98df0553ea4f5c449c98cb | L8-SZ1-20240314-F01 | 0 |
-| e6bb966a6a98df0553ea4f5c449c98cb | L8-SZ1-20240314-F8 | 8 |
+| e9d6145e68007c14026e66332ae3ee96 | L8-SZ1-20240314-F01 | 214 |
+| e9d6145e68007c14026e66332ae3ee96 | L8-SZ1-20240314-F8 | 8 |
+| e9d6145e68007c14026e66332ae3ee96 | L8-SZ2-20240320-F01 | 60 |
+| e9d6145e68007c14026e66332ae3ee96 | L8-SZ2-20240320-F8 | 1009 |
+| e9d6145e68007c14026e66332ae3ee96 | M5-SZ1-20240318-F01 | 303 |
 
 ---
 
@@ -453,122 +453,11 @@ Total Tables: 44
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| 4d3f58e50214da6a52783e2bce1714d6 | L9-SZ2-20240909-F01 | 0 |
-| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ1-20240918-F8 | 0 |
-| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ1-20240918-F01 | 0 |
-| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ2-20240918-F8 | 0 |
-| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ2-20240918-F01 | 0 |
-
----
-
-## Table: ddt_brick0000495
-
-**Table Description:** DDT Brick table: Brick0000495
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|---|
-| FW305-130 | NULL | ME:0000351 | Taxonomic Domain | Bacteria |
-| FW305-130 | NULL | ME:0000252 | Phylum | Actinomycetota |
-| FW305-130 | NULL | ME:0000253 | Class | Actinomycetes |
-| FW305-130 | NULL | ME:0000254 | Order | Mycobacteriales |
-| FW305-130 | NULL | ME:0000255 | Family | Mycobacteriaceae |
-
----
-
-## Table: ddt_brick0000501
-
-**Table Description:** DDT Brick table: Brick0000501
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| description_comment_original_condition_description | string | Yes | {"description": "description, Comment=Original Condition Description"} |
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| date_comment_sampling_date | string | Yes | {"description": "date, Comment=Sampling Date"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, Comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, Comment=Contact Person or Lab"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
-|---|---|---|---|---|---|---|---|---|---|
-| FW305-130 | Anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW305-BF6 | Anaerobic = 0; Aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | Anaerobic = 0; Aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW104-L1 | Anaerobic = 0; media name = LB; temperature = 30.0 (degree Celsius) | Anaerobic = 0; media name = LB; temperature = 30.0 (degree Celsius) | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-19G05 | Anaerobic = 0; media name = Eugon Broth; temperature = 30.0 (degree Celsius) | Anaerobic = 0; media name = Eugon Broth; temperature = 30.0 (degree Celsius) | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-4D12 | Anaerobic = 0; media name = R2A; temperature = 30.0 (degree Celsius) | Anaerobic = 0; media name = R2A; temperature = 30.0 (degree Celsius) | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-
----
-
-## Table: ddt_brick0000507
-
-**Table Description:** DDT Brick table: Brick0000507
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
-| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
-| sequence | string | Yes | {"description": "sequence"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
-|---|---|---|---|---|---|
-| FW305-130 | ME:0000190 | 16S Sequence | ME:0000187 | Forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
-| FW305-BF6 | ME:0000190 | 16S Sequence | ME:0000187 | Forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
-| FW104-L1 | ME:0000190 | 16S Sequence | ME:0000187 | Forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
-| FW507-19G05 | ME:0000190 | 16S Sequence | ME:0000187 | Forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
-| FW507-4D12 | ME:0000190 | 16S Sequence | ME:0000187 | Forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
-
----
-
-## Table: ddt_brick0000508
-
-**Table Description:** DDT Brick table: Brick0000508
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, Statistic=Average, Comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
-| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, Statistic=Average, Comment=average percent identity of aligned reads", "unit": "percent"} |
-| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, Comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
-|---|---|---|---|---|---|
-| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
-| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.3 | 3.730473 | 99.3451 | 89.5223 |
-| 20240529-EFP01-F01 | DP16D-E2 | DP16D-E2.1 | 1.834835 | 96.9795 | 58.741699999999994 |
+| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ1-20240918-F01 | 0 |
+| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ2-20240918-F8 | 0 |
+| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ2-20240918-F01 | 0 |
+| 97d95ee93b0d992e190508d16a66eb65 | L7-SZ1-20240918-F8 | 0 |
+| 97d95ee93b0d992e190508d16a66eb65 | L7-SZ1-20240918-F01 | 0 |
 
 ---
 
@@ -601,6 +490,93 @@ Total Tables: 44
 
 ---
 
+## Table: sys_process_input
+
+**Table Description:** Process Inputs
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
+| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+
+### Sample Data (5 rows)
+
+| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+|---|---|---|---|---|---|---|---|---|---|
+| Process0009812 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001421 | NULL |
+| Process0009813 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001422 | NULL |
+| Process0009814 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001423 | NULL |
+| Process0009815 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001424 | NULL |
+| Process0009816 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001425 | NULL |
+
+---
+
+## Table: sys_process_output
+
+**Table Description:** Process Outputs
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
+| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
+| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+
+### Sample Data (5 rows)
+
+| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Process0201007 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015944 | NULL | NULL | NULL |
+| Process0201008 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015945 | NULL | NULL | NULL |
+| Process0201009 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015946 | NULL | NULL | NULL |
+| Process0201010 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015947 | NULL | NULL | NULL |
+| Process0201011 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015948 | NULL | NULL | NULL |
+
+---
+
+## Table: ddt_brick0000476
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | replicate_series_count_unit | count_count_unit |
+|---|---|---|---|
+| 1b885550c8fe9c5305ef38efd64f8762 | GW621-21-12-17-12 0.2 micron filter | 1 | 0 |
+| 1b885550c8fe9c5305ef38efd64f8762 | GW621-21-12-17-12 10 micron filter | 1 | 0 |
+| 1b885550c8fe9c5305ef38efd64f8762 | GW631-98-12-11-12 0.2 micron filter | 1 | 0 |
+| 1b885550c8fe9c5305ef38efd64f8762 | GW631-98-12-11-12 10 micron filter | 1 | 0 |
+| 1b885550c8fe9c5305ef38efd64f8762 | GW636-32-1-28-13 0.2 micron filter | 1 | 0 |
+
+---
+
 ## Table: sys_process
 
 **Table Description:** CDM table for CORAL type `Process`
@@ -626,11 +602,11 @@ Total Tables: 44
 
 | sys_process_id | process_sys_oterm_id | process_sys_oterm_name | person_sys_oterm_id | person_sys_oterm_name | campaign_sys_oterm_id | campaign_sys_oterm_name | sdt_protocol_name | date_start | date_end | input_objects | output_objects |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Process0044816 | PROCESS:0000020 | 16S Sequencing | ENIGMA:0000053 | Chakraborty Lab | ENIGMA:0000004 | ENIGMA Microbial Isolation Characterization | NULL | NULL | NULL | ["Strain:Strain0000455"] | ["Brick-0000064:Brick0000383"] |
-| Process0044817 | PROCESS:0000020 | 16S Sequencing | ENIGMA:0000053 | Chakraborty Lab | ENIGMA:0000004 | ENIGMA Microbial Isolation Characterization | NULL | NULL | NULL | ["Strain:Strain0000456"] | ["Brick-0000064:Brick0000383"] |
-| Process0044818 | PROCESS:0000020 | 16S Sequencing | ENIGMA:0000053 | Chakraborty Lab | ENIGMA:0000004 | ENIGMA Microbial Isolation Characterization | NULL | NULL | NULL | ["Strain:Strain0000457"] | ["Brick-0000064:Brick0000383"] |
-| Process0044819 | PROCESS:0000020 | 16S Sequencing | ENIGMA:0000053 | Chakraborty Lab | ENIGMA:0000004 | ENIGMA Microbial Isolation Characterization | NULL | NULL | NULL | ["Strain:Strain0000458"] | ["Brick-0000064:Brick0000383"] |
-| Process0044820 | PROCESS:0000020 | 16S Sequencing | ENIGMA:0000053 | Chakraborty Lab | ENIGMA:0000004 | ENIGMA Microbial Isolation Characterization | NULL | NULL | NULL | ["Strain:Strain0000459"] | ["Brick-0000064:Brick0000383"] |
+| Process0000001 | PROCESS:0000006 | Assay Growth | ENIGMA:0000032 | Michael Thorgersen | ENIGMA:0000013 | Metal Metabolism | NULL | NULL | NULL | ["Strain:Strain0000672"] | ["Brick-0000019:Brick0000003"] |
+| Process0000002 | PROCESS:0000006 | Assay Growth | ENIGMA:0000032 | Michael Thorgersen | ENIGMA:0000013 | Metal Metabolism | NULL | NULL | NULL | ["Strain:Strain0000669"] | ["Brick-0000019:Brick0000004"] |
+| Process0000003 | PROCESS:0000006 | Assay Growth | ENIGMA:0000032 | Michael Thorgersen | ENIGMA:0000013 | Metal Metabolism | NULL | NULL | NULL | ["Strain:Strain0000672"] | ["Brick-0000019:Brick0000005"] |
+| Process0000004 | PROCESS:0000006 | Assay Growth | ENIGMA:0000032 | Michael Thorgersen | ENIGMA:0000013 | Metal Metabolism | NULL | NULL | NULL | ["Strain:Strain0000666"] | ["Brick-0000019:Brick0000005"] |
+| Process0000005 | PROCESS:0000006 | Assay Growth | ENIGMA:0000032 | Michael Thorgersen | ENIGMA:0000013 | Metal Metabolism | NULL | NULL | NULL | ["Strain:Strain0000668"] | ["Brick-0000019:Brick0000005"] |
 
 ---
 
@@ -678,11 +654,11 @@ Total Tables: 44
 
 | sdt_location_id | sdt_location_name | latitude_degree | longitude_degree | continent_sys_oterm_id | continent_sys_oterm_name | country_sys_oterm_id | country_sys_oterm_name | region | biome_sys_oterm_id | biome_sys_oterm_name | feature_sys_oterm_id | feature_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Location0000450 | MLSB5-14.8 | 35.97567215 | -84.27469319 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000451 | MLSB6-16.8 | 35.97567215 | -84.27469319 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000452 | MLSB7-19.2 | 35.97567215 | -84.27469319 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000453 | MLSC1-19.2 | 35.97564541 | -84.27472289 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000454 | MLSC2-18.0 | 35.97564541 | -84.27472289 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000151 | GW-220 | 35.993381 | -84.236976 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 50 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000152 | GW-750 | 35.994376 | -84.235312 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 28 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000153 | GW-800 | 35.968949 | -84.28178 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 70 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000154 | GW-737 | 35.97079 | -84.280741 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 64 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000155 | GW-704 | 35.96353 | -84.290837 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 5 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
 
 ---
 
@@ -809,11 +785,11 @@ Total Tables: 44
 
 | sdt_strain_id | sdt_strain_name | sdt_strain_description | sdt_genome_name | derived_from_sdt_strain_name | sdt_gene_names_changed |
 |---|---|---|---|---|---|
-| Strain0001578 | FW305-C-30-11 | NULL | NULL | NULL | [] |
-| Strain0001579 | FW305-C-30-12 | NULL | NULL | NULL | [] |
-| Strain0001580 | FW305-C-30-13 | NULL | NULL | NULL | [] |
-| Strain0001581 | FW305-C-30-14 | NULL | NULL | NULL | [] |
-| Strain0001582 | FW305-C-30-16 | NULL | NULL | NULL | [] |
+| Strain0000789 | EB106-05-01-XG146 | NULL | NULL | NULL | [] |
+| Strain0000790 | EB106-05-01-XG147 | NULL | NULL | NULL | [] |
+| Strain0000791 | EB106-07-01-XG149 | NULL | NULL | NULL | [] |
+| Strain0000792 | EB106-07-01-XG150 | NULL | NULL | NULL | [] |
+| Strain0000793 | EB106-08-01-XG153 | NULL | NULL | NULL | [] |
 
 ---
 
@@ -839,11 +815,11 @@ Total Tables: 44
 
 | sdt_community_id | sdt_community_name | community_type_sys_oterm_id | community_type_sys_oterm_name | sdt_sample_name | parent_sdt_community_name | sdt_condition_name | defined_sdt_strain_names | sdt_community_description |
 |---|---|---|---|---|---|---|---|---|
-| Community0001105 | Isolate MT109 | ME:0000235 | Isolate Community | NULL | NULL | Cd (0.5 uM) + Co (3 uM) + Cu (1 uM) + Fe (1 uM) + Mn (10 uM) + Ni (15 uM) + U (10 uM) + fumarate + lactate + nitrate (20 mM) + pH5.5 + aerobic | ["MT109"] | NULL |
-| Community0001106 | Isolate FW106-XG1 | ME:0000235 | Isolate Community | NULL | NULL | 25 °C + anaerobic + Basal + fumarate | ["FW106-XG1"] | NULL |
-| Community0001107 | Isolate FW115-XG2 | ME:0000235 | Isolate Community | NULL | NULL | 25 °C + anaerobic + Basal + carbon mix | ["FW115-XG2"] | NULL |
-| Community0001108 | Isolate GW271-XG3 | ME:0000235 | Isolate Community | NULL | NULL | 25 °C + anaerobic + Basal + carbon mix | ["GW271-XG3"] | NULL |
-| Community0001109 | Isolate GW271-XG4 | ME:0000235 | Isolate Community | NULL | NULL | 25 °C + anaerobic + LB | ["GW271-XG4"] | NULL |
+| Community0000001 | EB106-02-01 BONCAT community | ME:0000237 | Active Fraction | EB106-02-01 | EB106-02-01 | NULL | [] | NULL |
+| Community0000002 | EB106-02-02 BONCAT community | ME:0000237 | Active Fraction | EB106-02-02 | EB106-02-02 | NULL | [] | NULL |
+| Community0000003 | EB106-02-03 BONCAT community | ME:0000237 | Active Fraction | EB106-02-03 | EB106-02-03 | NULL | [] | NULL |
+| Community0000004 | EB106-03-01 BONCAT community | ME:0000237 | Active Fraction | EB106-03-01 | EB106-03-01 | NULL | [] | NULL |
+| Community0000005 | EB106-03-02 BONCAT community | ME:0000237 | Active Fraction | EB106-03-02 | EB106-03-02 | NULL | [] | NULL |
 
 ---
 
@@ -868,11 +844,11 @@ Total Tables: 44
 
 | sdt_reads_id | sdt_reads_name | read_count_count_unit | read_type_sys_oterm_id | read_type_sys_oterm_name | sequencing_technology_sys_oterm_id | sequencing_technology_sys_oterm_name | link |
 |---|---|---|---|---|---|---|---|
-| Reads0012933 | 148125/GW821-FHT10F05-cutadapt-trim.reads_unpaired_fwd | 36970 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/148125/GW821-FHT10F05-cutadapt-trim.reads_unpaired_fwd |
-| Reads0012934 | 148125/GW821-FHT10F05-cutadapt-trim.reads_unpaired_rev | 18459 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/148125/GW821-FHT10F05-cutadapt-trim.reads_unpaired_rev |
-| Reads0012935 | 148125/GW821-FHT10A06-cutadapt-trim.reads_unpaired_fwd | 32818 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/148125/GW821-FHT10A06-cutadapt-trim.reads_unpaired_fwd |
-| Reads0012936 | 148125/GW821-FHT10A06-cutadapt-trim.reads_unpaired_rev | 17525 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/148125/GW821-FHT10A06-cutadapt-trim.reads_unpaired_rev |
-| Reads0012937 | 148125/GW821-FHT10C06-cutadapt-trim.reads_unpaired_fwd | 35494 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/148125/GW821-FHT10C06-cutadapt-trim.reads_unpaired_fwd |
+| Reads0017831 | GW823-FHT01F02/reads/illumina/GW823-FHT01F02_2020-03-23_raw_unpaired_R2.fastq.gz | 1202663 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW823-FHT01F02/reads/illumina/GW823-FHT01F02_2020-03-23_raw_unpaired_R2.fastq.gz |
+| Reads0017832 | GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R1.fastq.gz | 31423 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R1.fastq.gz |
+| Reads0017833 | GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R2.fastq.gz | 31423 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R2.fastq.gz |
+| Reads0017834 | GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R1.fastq.gz | 395152 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R1.fastq.gz |
+| Reads0017835 | GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R2.fastq.gz | 395152 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R2.fastq.gz |
 
 ---
 
@@ -894,11 +870,11 @@ Total Tables: 44
 
 | sdt_assembly_id | sdt_assembly_name | sdt_strain_name | n_contigs_count_unit | link |
 |---|---|---|---|---|
-| Assembly0000857 | 154265/GW821-FHT12H02.contigs/1 | GW821-FHT12H02 | 20 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12H02.contigs/1 |
-| Assembly0000858 | 154265/GW821-FHT12C03.contigs/1 | GW821-FHT12C03 | 83 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12C03.contigs/1 |
-| Assembly0000859 | 154265/GW101-3H11.contigs/2 | GW101-3H11 | 19 | https://narrative.kbase.us/#dataview/154265/GW101-3H11.contigs/2 |
-| Assembly0000860 | 154265/GW821-FHT10B04.contigs/2 | GW821-FHT10B04 | 166 | https://narrative.kbase.us/#dataview/154265/GW821-FHT10B04.contigs/2 |
-| Assembly0000861 | 154265/GW821-FHT12D04.contigs/1 | GW821-FHT12D04 | 2784 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12D04.contigs/1 |
+| Assembly0002571 | 154265/GW821-FHT12B10.contigs | GW821-FHT12B10 | 6 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12B10.contigs |
+| Assembly0002572 | 154265/FW101-FHT12H10.contigs | FW101-FHT12H10 | 17 | https://narrative.kbase.us/#dataview/154265/FW101-FHT12H10.contigs |
+| Assembly0002573 | 154265/GW821-FHT09A05.contigs | GW821-FHT09A05 | 72 | https://narrative.kbase.us/#dataview/154265/GW821-FHT09A05.contigs |
+| Assembly0002574 | 154265/GW821-FHT10C11.contigs | GW821-FHT10C11 | 22 | https://narrative.kbase.us/#dataview/154265/GW821-FHT10C11.contigs |
+| Assembly0002575 | 154265/GW821-FHT12F11.contigs | GW821-FHT12F11 | 16 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12F11.contigs |
 
 ---
 
@@ -921,11 +897,11 @@ Total Tables: 44
 
 | sdt_genome_id | sdt_genome_name | sdt_strain_name | n_contigs_count_unit | n_features_count_unit | link |
 |---|---|---|---|---|---|
-| Genome0003353 | 54002/GW821-FHT07D05.genome | GW821-FHT07D05 | 2805 | 12591 | https://narrative.kbase.us/#dataview/54002/GW821-FHT07D05.genome |
-| Genome0003354 | 54002/FW305-97A.genome | FW305-97A | 223 | 8263 | https://narrative.kbase.us/#dataview/54002/FW305-97A.genome |
-| Genome0003355 | 54002/GW823-FHT01A01.genome | GW823-FHT01A01 | 1698 | 5179 | https://narrative.kbase.us/#dataview/54002/GW823-FHT01A01.genome |
-| Genome0003356 | 54002/GW821-FHT07B01.genome | GW821-FHT07B01 | 1428 | 5569 | https://narrative.kbase.us/#dataview/54002/GW821-FHT07B01.genome |
-| Genome0003357 | 54002/GW822-FHT01C09.genome | GW822-FHT01C09 | 52 | 33 | https://narrative.kbase.us/#dataview/54002/GW822-FHT01C09.genome |
+| Genome0000001 | FW305-37-reassembled.genome | FW305-37 | 149 | 5866 | https://narrative.kbase.us/#dataview/41372/FW305-37-reassembled.genome |
+| Genome0000002 | FW507-29LB-reassembled.genome | FW507-29LB | 220 | 7535 | https://narrative.kbase.us/#dataview/41372/FW507-29LB-reassembled.genome |
+| Genome0000003 | MPR-WIN1-reassembled.genome | MPR-WIN1 | 2373 | 8294 | https://narrative.kbase.us/#dataview/41372/MPR-WIN1-reassembled.genome |
+| Genome0000004 | MPR-TSA4-reassembled.genome | MPR-TSA4 | 101 | 3172 | https://narrative.kbase.us/#dataview/41372/MPR-TSA4-reassembled.genome |
+| Genome0000005 | MT42-reassembled.genome | MT42 | 856 | 4958 | https://narrative.kbase.us/#dataview/41372/MT42-reassembled.genome |
 
 ---
 
@@ -951,11 +927,11 @@ Total Tables: 44
 
 | sdt_gene_id | sdt_gene_name | sdt_genome_name | aliases | contig_number_count_unit | strand | start_base_pair | stop_base_pair | function |
 |---|---|---|---|---|---|---|---|---|
-| Gene0007508 | ODPJKPKL_03780 | FW300-N2E2.genome | [] | 1 | + | 4340935 | 4341402 | hypothetical protein |
-| Gene0007509 | ODPJKPKL_03781 | FW300-N2E2.genome | [] | 1 | + | 4341399 | 4342127 | 3-oxoacyl-[acyl-carrier-protein] reductase FabG |
-| Gene0007510 | ODPJKPKL_03782 | FW300-N2E2.genome | [] | 1 | + | 4342127 | 4343353 | 3-oxoacyl-[acyl-carrier-protein] synthase 2 |
-| Gene0007511 | ODPJKPKL_03783 | FW300-N2E2.genome | [] | 1 | + | 4343396 | 4343842 | hypothetical protein |
-| Gene0007512 | ODPJKPKL_03785 | FW300-N2E2.genome | [] | 1 | + | 4344885 | 4345844 | Soluble epoxide hydrolase |
+| Gene0000001 | MEPIHFMG_04711 | FW300-N2A2.genome | [] | 91 | + | 12032 | 13033 | Glyceraldehyde-3-phosphate dehydrogenase 1 |
+| Gene0000002 | MEPIHFMG_04712 | FW300-N2A2.genome | [] | 91 | + | 13173 | 13637 | Methylglyoxal synthase |
+| Gene0000003 | MEPIHFMG_04713 | FW300-N2A2.genome | [] | 91 | + | 13715 | 14233 | ECF RNA polymerase sigma factor SigE |
+| Gene0000004 | MEPIHFMG_04714 | FW300-N2A2.genome | [] | 91 | + | 14315 | 15280 | hypothetical protein |
+| Gene0000005 | MEPIHFMG_04715 | FW300-N2A2.genome | [] | 91 | + | 15403 | 17994 | Hemin receptor |
 
 ---
 
@@ -976,11 +952,11 @@ Total Tables: 44
 
 | sdt_bin_id | sdt_bin_name | sdt_assembly_name | contigs |
 |---|---|---|---|
-| Bin0000156 | FW300_bin_30 | FW300.contigs | ["FW300_contig_918", "FW300_contig_1050", "FW300_contig_1169", "FW300_contig_1242", "FW300_contig_1258", "FW300_contig_1356", "FW300_contig_1409", "FW300_contig_1505", "FW300_contig_1683", "FW300_contig_1943", "FW300_contig_1968", "FW300_contig_2017", "FW300_contig_2020", "FW300_contig_2030", "FW300_contig_2067", "FW300_contig_2355", "FW300_contig_2569", "FW300_contig_2714", "FW300_contig_2784", "FW300_contig_2840", "FW300_contig_2993", "FW300_contig_3188", "FW300_contig_3364", "FW300_contig_3416", "FW300_contig_3771", "FW300_contig_3806", "FW300_contig_3839", "FW300_contig_3864", "FW300_contig_4064", "FW300_contig_4079", "FW300_contig_4096", "FW300_contig_4199", "FW300_contig_4213", "FW300_contig_4235", "FW300_contig_4374", "FW300_contig_4728", "FW300_contig_5039", "FW300_contig_5183", "FW300_contig_5348", "FW300_contig_5389", "FW300_contig_5809", "FW300_contig_5911", "FW300_contig_6132", "FW300_contig_6247", "FW300_contig_6250", "FW300_contig_6462", "FW300_contig_6464", "FW300_contig_6498", "FW300_contig_6607", "FW300_contig_6895", "FW300_contig_7003", "FW300_contig_7271", "FW300_contig_7625", "FW300_contig_8078", "FW300_contig_8418", "FW300_contig_8856", "FW300_contig_9074", "FW300_contig_9534", "FW300_contig_9568", "FW300_contig_9612", "FW300_contig_9738", "FW300_contig_9897", "FW300_contig_9901", "FW300_contig_10005", "FW300_contig_10033", "FW300_contig_10036", "FW300_contig_10127", "FW300_contig_10425", "FW300_contig_10610", "FW300_contig_11136", "FW300_contig_11563", "FW300_contig_11578", "FW300_contig_11837", "FW300_contig_11869", "FW300_contig_11905", "FW300_contig_12004", "FW300_contig_12069", "FW300_contig_12363", "FW300_contig_12694", "FW300_contig_13254", "FW300_contig_13346", "FW300_contig_13474", "FW300_contig_13946", "FW300_contig_13982", "FW300_contig_13998", "FW300_contig_14127", "FW300_contig_14128", "FW300_contig_14236", "FW300_contig_14851", "FW300_contig_15049", "FW300_contig_15454", "FW300_contig_15733", "FW300_contig_15858", "FW300_contig_15901", "FW300_contig_16444", "FW300_contig_16604", "FW300_contig_18041", "FW300_contig_18664", "FW300_contig_18818", "FW300_contig_19054", "FW300_contig_19119", "FW300_contig_20373", "FW300_contig_21713", "FW300_contig_22391", "FW300_contig_22459", "FW300_contig_22754", "FW300_contig_23837", "FW300_contig_24177", "FW300_contig_24203"] |
-| Bin0000157 | FW300_bin_31 | FW300.contigs | ["FW300_contig_4", "FW300_contig_6", "FW300_contig_7", "FW300_contig_10", "FW300_contig_11", "FW300_contig_16", "FW300_contig_19", "FW300_contig_22", "FW300_contig_28", "FW300_contig_30", "FW300_contig_36", "FW300_contig_42", "FW300_contig_46", "FW300_contig_48", "FW300_contig_49", "FW300_contig_61", "FW300_contig_67", "FW300_contig_75", "FW300_contig_99", "FW300_contig_102", "FW300_contig_123", "FW300_contig_135", "FW300_contig_179", "FW300_contig_181", "FW300_contig_187", "FW300_contig_202", "FW300_contig_215", "FW300_contig_265", "FW300_contig_308", "FW300_contig_450", "FW300_contig_486", "FW300_contig_496", "FW300_contig_694", "FW300_contig_723", "FW300_contig_1052", "FW300_contig_1144", "FW300_contig_1266", "FW300_contig_6642", "FW300_contig_10334", "FW300_contig_12755", "FW300_contig_16386", "FW300_contig_18883"] |
-| Bin0000158 | FW300_bin_32 | FW300.contigs | ["FW300_contig_92", "FW300_contig_98", "FW300_contig_112", "FW300_contig_113", "FW300_contig_119", "FW300_contig_164", "FW300_contig_177", "FW300_contig_180", "FW300_contig_183", "FW300_contig_196", "FW300_contig_200", "FW300_contig_203", "FW300_contig_213", "FW300_contig_246", "FW300_contig_252", "FW300_contig_253", "FW300_contig_262", "FW300_contig_270", "FW300_contig_287", "FW300_contig_327", "FW300_contig_352", "FW300_contig_360", "FW300_contig_361", "FW300_contig_373", "FW300_contig_375", "FW300_contig_392", "FW300_contig_411", "FW300_contig_413", "FW300_contig_417", "FW300_contig_435", "FW300_contig_453", "FW300_contig_520", "FW300_contig_553", "FW300_contig_556", "FW300_contig_578", "FW300_contig_579", "FW300_contig_596", "FW300_contig_613", "FW300_contig_629", "FW300_contig_647", "FW300_contig_683", "FW300_contig_698", "FW300_contig_717", "FW300_contig_751", "FW300_contig_771", "FW300_contig_774", "FW300_contig_784", "FW300_contig_792", "FW300_contig_797", "FW300_contig_847", "FW300_contig_863", "FW300_contig_896", "FW300_contig_898", "FW300_contig_905", "FW300_contig_931", "FW300_contig_956", "FW300_contig_958", "FW300_contig_985", "FW300_contig_995", "FW300_contig_1164", "FW300_contig_1207", "FW300_contig_1339", "FW300_contig_1373", "FW300_contig_1380", "FW300_contig_1395", "FW300_contig_1403", "FW300_contig_1411", "FW300_contig_1469", "FW300_contig_1585", "FW300_contig_1639", "FW300_contig_1644", "FW300_contig_1679", "FW300_contig_1680", "FW300_contig_1709", "FW300_contig_1759", "FW300_contig_1787", "FW300_contig_1845", "FW300_contig_1877", "FW300_contig_1907", "FW300_contig_1965", "FW300_contig_2180", "FW300_contig_2237", "FW300_contig_2284", "FW300_contig_2300", "FW300_contig_2432", "FW300_contig_2756", "FW300_contig_2894", "FW300_contig_3080", "FW300_contig_3146", "FW300_contig_3282", "FW300_contig_3630", "FW300_contig_3632", "FW300_contig_3876", "FW300_contig_3933", "FW300_contig_4158", "FW300_contig_4258", "FW300_contig_4280", "FW300_contig_4655", "FW300_contig_4949", "FW300_contig_5345", "FW300_contig_5666", "FW300_contig_5730", "FW300_contig_5756", "FW300_contig_5797", "FW300_contig_6166", "FW300_contig_6586", "FW300_contig_6623", "FW300_contig_6753", "FW300_contig_7255", "FW300_contig_7703", "FW300_contig_7923", "FW300_contig_8156", "FW300_contig_9004", "FW300_contig_11770", "FW300_contig_12092", "FW300_contig_12801", "FW300_contig_12818", "FW300_contig_13491", "FW300_contig_13879", "FW300_contig_14295", "FW300_contig_14652", "FW300_contig_15895", "FW300_contig_19080", "FW300_contig_21873"] |
-| Bin0000159 | FW300_bin_33 | FW300.contigs | ["FW300_contig_63", "FW300_contig_70", "FW300_contig_89", "FW300_contig_105", "FW300_contig_107", "FW300_contig_144", "FW300_contig_206", "FW300_contig_207", "FW300_contig_222", "FW300_contig_237", "FW300_contig_254", "FW300_contig_272", "FW300_contig_292", "FW300_contig_319", "FW300_contig_328", "FW300_contig_362", "FW300_contig_394", "FW300_contig_416", "FW300_contig_445", "FW300_contig_464", "FW300_contig_483", "FW300_contig_532", "FW300_contig_537", "FW300_contig_540", "FW300_contig_551", "FW300_contig_552", "FW300_contig_564", "FW300_contig_568", "FW300_contig_580", "FW300_contig_585", "FW300_contig_601", "FW300_contig_633", "FW300_contig_665", "FW300_contig_704", "FW300_contig_726", "FW300_contig_728", "FW300_contig_733", "FW300_contig_734", "FW300_contig_795", "FW300_contig_812", "FW300_contig_832", "FW300_contig_836", "FW300_contig_838", "FW300_contig_845", "FW300_contig_848", "FW300_contig_913", "FW300_contig_923", "FW300_contig_939", "FW300_contig_945", "FW300_contig_946", "FW300_contig_949", "FW300_contig_997", "FW300_contig_1057", "FW300_contig_1062", "FW300_contig_1105", "FW300_contig_1115", "FW300_contig_1130", "FW300_contig_1163", "FW300_contig_1279", "FW300_contig_1289", "FW300_contig_1314", "FW300_contig_1383", "FW300_contig_1429", "FW300_contig_1439", "FW300_contig_1517", "FW300_contig_1549", "FW300_contig_1596", "FW300_contig_1602", "FW300_contig_1614", "FW300_contig_1663", "FW300_contig_1755", "FW300_contig_1957", "FW300_contig_1975", "FW300_contig_1993", "FW300_contig_2008", "FW300_contig_2118", "FW300_contig_2124", "FW300_contig_2478", "FW300_contig_2529", "FW300_contig_2579", "FW300_contig_2665", "FW300_contig_2745", "FW300_contig_3000", "FW300_contig_3019", "FW300_contig_3150", "FW300_contig_3155", "FW300_contig_3338", "FW300_contig_3376", "FW300_contig_3413", "FW300_contig_3845", "FW300_contig_4027", "FW300_contig_4653", "FW300_contig_5210", "FW300_contig_5229", "FW300_contig_5379", "FW300_contig_5536", "FW300_contig_6043", "FW300_contig_6080", "FW300_contig_6121", "FW300_contig_6364", "FW300_contig_6415", "FW300_contig_6930", "FW300_contig_7019", "FW300_contig_7184", "FW300_contig_8488", "FW300_contig_8583", "FW300_contig_8706", "FW300_contig_8709", "FW300_contig_9095", "FW300_contig_9390", "FW300_contig_9530", "FW300_contig_9533", "FW300_contig_9885", "FW300_contig_10454", "FW300_contig_10699", "FW300_contig_11001", "FW300_contig_11195", "FW300_contig_12597", "FW300_contig_13415", "FW300_contig_13480", "FW300_contig_13846", "FW300_contig_14006", "FW300_contig_14711", "FW300_contig_15202", "FW300_contig_15484", "FW300_contig_16176", "FW300_contig_16317", "FW300_contig_17497", "FW300_contig_17616", "FW300_contig_17773", "FW300_contig_17829", "FW300_contig_17981", "FW300_contig_19479", "FW300_contig_23855"] |
-| Bin0000160 | FW300_bin_34 | FW300.contigs | ["FW300_contig_703", "FW300_contig_3230", "FW300_contig_3414", "FW300_contig_3739", "FW300_contig_3878", "FW300_contig_4346", "FW300_contig_4670", "FW300_contig_4953", "FW300_contig_5288", "FW300_contig_5332", "FW300_contig_5518", "FW300_contig_6206", "FW300_contig_6420", "FW300_contig_7176", "FW300_contig_7332", "FW300_contig_7475", "FW300_contig_7773", "FW300_contig_7803", "FW300_contig_7928", "FW300_contig_8314", "FW300_contig_8580", "FW300_contig_8604", "FW300_contig_8647", "FW300_contig_8654", "FW300_contig_8757", "FW300_contig_8772", "FW300_contig_8829", "FW300_contig_9404", "FW300_contig_9469", "FW300_contig_9798", "FW300_contig_9912", "FW300_contig_10062", "FW300_contig_10108", "FW300_contig_10210", "FW300_contig_10336", "FW300_contig_10358", "FW300_contig_10502", "FW300_contig_10563", "FW300_contig_10629", "FW300_contig_10660", "FW300_contig_10686", "FW300_contig_10849", "FW300_contig_10963", "FW300_contig_10980", "FW300_contig_10993", "FW300_contig_11114", "FW300_contig_11247", "FW300_contig_11272", "FW300_contig_11300", "FW300_contig_11436", "FW300_contig_11462", "FW300_contig_11623", "FW300_contig_11797", "FW300_contig_11886", "FW300_contig_12019", "FW300_contig_12081", "FW300_contig_12130", "FW300_contig_12141", "FW300_contig_12260", "FW300_contig_12356", "FW300_contig_12392", "FW300_contig_12431", "FW300_contig_12439", "FW300_contig_12447", "FW300_contig_12603", "FW300_contig_12605", "FW300_contig_12644", "FW300_contig_12754", "FW300_contig_12832", "FW300_contig_12867", "FW300_contig_12869", "FW300_contig_13006", "FW300_contig_13018", "FW300_contig_13076", "FW300_contig_13275", "FW300_contig_13279", "FW300_contig_13307", "FW300_contig_13311", "FW300_contig_13349", "FW300_contig_13363", "FW300_contig_13371", "FW300_contig_13374", "FW300_contig_13384", "FW300_contig_13433", "FW300_contig_13449", "FW300_contig_13504", "FW300_contig_13521", "FW300_contig_13586", "FW300_contig_13600", "FW300_contig_13628", "FW300_contig_13726", "FW300_contig_13775", "FW300_contig_13787", "FW300_contig_13798", "FW300_contig_13865", "FW300_contig_13883", "FW300_contig_13920", "FW300_contig_13931", "FW300_contig_13943", "FW300_contig_13950", "FW300_contig_13957", "FW300_contig_13990", "FW300_contig_14011", "FW300_contig_14031", "FW300_contig_14104", "FW300_contig_14117", "FW300_contig_14199", "FW300_contig_14202", "FW300_contig_14228", "FW300_contig_14239", "FW300_contig_14562", "FW300_contig_14770", "FW300_contig_14790", "FW300_contig_14795", "FW300_contig_14817", "FW300_contig_14818", "FW300_contig_14863", "FW300_contig_15053", "FW300_contig_15133", "FW300_contig_15146", "FW300_contig_15147", "FW300_contig_15208", "FW300_contig_15299", "FW300_contig_15310", "FW300_contig_15339", "FW300_contig_15496", "FW300_contig_15543", "FW300_contig_15554", "FW300_contig_15571", "FW300_contig_15573", "FW300_contig_15675", "FW300_contig_15779", "FW300_contig_15789", "FW300_contig_15823", "FW300_contig_15861", "FW300_contig_15973", "FW300_contig_15995", "FW300_contig_16160", "FW300_contig_16161", "FW300_contig_16221", "FW300_contig_16252", "FW300_contig_16331", "FW300_contig_16345", "FW300_contig_16346", "FW300_contig_16433", "FW300_contig_16451", "FW300_contig_16479", "FW300_contig_16481", "FW300_contig_16498", "FW300_contig_16502", "FW300_contig_16586", "FW300_contig_16701", "FW300_contig_16719", "FW300_contig_16738", "FW300_contig_16755", "FW300_contig_16783", "FW300_contig_16815", "FW300_contig_16824", "FW300_contig_16859", "FW300_contig_16872", "FW300_contig_16887", "FW300_contig_16940", "FW300_contig_16981", "FW300_contig_17002", "FW300_contig_17010", "FW300_contig_17015", "FW300_contig_17051", "FW300_contig_17079", "FW300_contig_17098", "FW300_contig_17138", "FW300_contig_17170", "FW300_contig_17284", "FW300_contig_17342", "FW300_contig_17431", "FW300_contig_17448", "FW300_contig_17565", "FW300_contig_17582", "FW300_contig_17611", "FW300_contig_17641", "FW300_contig_17647", "FW300_contig_17648", "FW300_contig_17705", "FW300_contig_17733", "FW300_contig_17802", "FW300_contig_17872", "FW300_contig_17930", "FW300_contig_17936", "FW300_contig_18002", "FW300_contig_18045", "FW300_contig_18054", "FW300_contig_18089", "FW300_contig_18147", "FW300_contig_18177", "FW300_contig_18228", "FW300_contig_18230", "FW300_contig_18242", "FW300_contig_18285", "FW300_contig_18304", "FW300_contig_18331", "FW300_contig_18383", "FW300_contig_18470", "FW300_contig_18484", "FW300_contig_18492", "FW300_contig_18530", "FW300_contig_18536", "FW300_contig_18560", "FW300_contig_18600", "FW300_contig_18611", "FW300_contig_18656", "FW300_contig_18697", "FW300_contig_18756", "FW300_contig_18782", "FW300_contig_18784", "FW300_contig_18785", "FW300_contig_18819", "FW300_contig_18836", "FW300_contig_18926", "FW300_contig_18937", "FW300_contig_18940", "FW300_contig_18956", "FW300_contig_18964", "FW300_contig_18986", "FW300_contig_18999", "FW300_contig_19092", "FW300_contig_19123", "FW300_contig_19157", "FW300_contig_19196", "FW300_contig_19216", "FW300_contig_19244", "FW300_contig_19273", "FW300_contig_19276", "FW300_contig_19317", "FW300_contig_19335", "FW300_contig_19336", "FW300_contig_19371", "FW300_contig_19375", "FW300_contig_19408", "FW300_contig_19430", "FW300_contig_19433", "FW300_contig_19488", "FW300_contig_19574", "FW300_contig_19590", "FW300_contig_19633", "FW300_contig_19679", "FW300_contig_19681", "FW300_contig_19700", "FW300_contig_19721", "FW300_contig_19735", "FW300_contig_19776", "FW300_contig_19882", "FW300_contig_20023", "FW300_contig_20037", "FW300_contig_20061", "FW300_contig_20206", "FW300_contig_20265", "FW300_contig_20376", "FW300_contig_20493", "FW300_contig_20657", "FW300_contig_20680", "FW300_contig_20711", "FW300_contig_20780", "FW300_contig_20785", "FW300_contig_20794", "FW300_contig_20800", "FW300_contig_20849", "FW300_contig_20882", "FW300_contig_20914", "FW300_contig_20926", "FW300_contig_20994", "FW300_contig_21008", "FW300_contig_21235", "FW300_contig_21251", "FW300_contig_21275", "FW300_contig_21290", "FW300_contig_21336", "FW300_contig_21361", "FW300_contig_21428", "FW300_contig_21434", "FW300_contig_21446", "FW300_contig_21469", "FW300_contig_21504", "FW300_contig_21506", "FW300_contig_21600", "FW300_contig_21601", "FW300_contig_21628", "FW300_contig_21722", "FW300_contig_21784", "FW300_contig_21814", "FW300_contig_21824", "FW300_contig_21830", "FW300_contig_21851", "FW300_contig_21861", "FW300_contig_21961", "FW300_contig_21985", "FW300_contig_22028", "FW300_contig_22043", "FW300_contig_22067", "FW300_contig_22069", "FW300_contig_22095", "FW300_contig_22120", "FW300_contig_22127", "FW300_contig_22159", "FW300_contig_22160", "FW300_contig_22166", "FW300_contig_22260", "FW300_contig_22366", "FW300_contig_22472", "FW300_contig_22478", "FW300_contig_22494", "FW300_contig_22510", "FW300_contig_22542", "FW300_contig_22551", "FW300_contig_22584", "FW300_contig_22602", "FW300_contig_22626", "FW300_contig_22729", "FW300_contig_22811", "FW300_contig_22815", "FW300_contig_22837", "FW300_contig_22844", "FW300_contig_22887", "FW300_contig_22971", "FW300_contig_23018", "FW300_contig_23039", "FW300_contig_23053", "FW300_contig_23128", "FW300_contig_23141", "FW300_contig_23187", "FW300_contig_23194", "FW300_contig_23196", "FW300_contig_23246", "FW300_contig_23289", "FW300_contig_23319", "FW300_contig_23346", "FW300_contig_23359", "FW300_contig_23372", "FW300_contig_23407", "FW300_contig_23429", "FW300_contig_23464", "FW300_contig_23505", "FW300_contig_23547", "FW300_contig_23568", "FW300_contig_23576", "FW300_contig_23691", "FW300_contig_23712", "FW300_contig_23723", "FW300_contig_23753", "FW300_contig_23769", "FW300_contig_23783", "FW300_contig_23794", "FW300_contig_23827", "FW300_contig_23841", "FW300_contig_23854", "FW300_contig_23910", "FW300_contig_23911", "FW300_contig_23999", "FW300_contig_24002", "FW300_contig_24024", "FW300_contig_24053", "FW300_contig_24070", "FW300_contig_24080", "FW300_contig_24095", "FW300_contig_24110", "FW300_contig_24129", "FW300_contig_24143", "FW300_contig_24148", "FW300_contig_24161", "FW300_contig_24163", "FW300_contig_24197", "FW300_contig_24205", "FW300_contig_24207", "FW300_contig_24212", "FW300_contig_24216", "FW300_contig_24228", "FW300_contig_24237", "FW300_contig_24244", "FW300_contig_24325", "FW300_contig_24363", "FW300_contig_24382", "FW300_contig_24384", "FW300_contig_24408", "FW300_contig_24526", "FW300_contig_24528", "FW300_contig_24531", "FW300_contig_24540", "FW300_contig_24605", "FW300_contig_24652", "FW300_contig_24654"] |
+| Bin0000001 | FW215_bin_47 | FW215.contigs | ["FW215_contig_1948", "FW215_contig_3592", "FW215_contig_4370", "FW215_contig_5127", "FW215_contig_5247", "FW215_contig_5390", "FW215_contig_5505", "FW215_contig_5607", "FW215_contig_5821", "FW215_contig_5833", "FW215_contig_5917", "FW215_contig_6337", "FW215_contig_6498", "FW215_contig_6778", "FW215_contig_6883", "FW215_contig_7526", "FW215_contig_8063", "FW215_contig_8142", "FW215_contig_8164", "FW215_contig_8239", "FW215_contig_8279", "FW215_contig_8516", "FW215_contig_8530", "FW215_contig_8632", "FW215_contig_9346", "FW215_contig_9508", "FW215_contig_9659", "FW215_contig_9760", "FW215_contig_9994", "FW215_contig_10117", "FW215_contig_10299", "FW215_contig_10392", "FW215_contig_10702", "FW215_contig_10981", "FW215_contig_11090", "FW215_contig_11187", "FW215_contig_11255", "FW215_contig_11666", "FW215_contig_11691", "FW215_contig_11745", "FW215_contig_11802", "FW215_contig_11832", "FW215_contig_12111", "FW215_contig_12122", "FW215_contig_12152", "FW215_contig_12231", "FW215_contig_12270", "FW215_contig_12354", "FW215_contig_12467", "FW215_contig_12635", "FW215_contig_12719", "FW215_contig_12829", "FW215_contig_13018", "FW215_contig_13277", "FW215_contig_13533", "FW215_contig_13626", "FW215_contig_13802", "FW215_contig_13848", "FW215_contig_13893", "FW215_contig_13967", "FW215_contig_13979", "FW215_contig_13985", "FW215_contig_14100", "FW215_contig_14333", "FW215_contig_14340", "FW215_contig_14556", "FW215_contig_14659", "FW215_contig_14669", "FW215_contig_14722", "FW215_contig_14755", "FW215_contig_15099", "FW215_contig_15298", "FW215_contig_15510", "FW215_contig_15829", "FW215_contig_15843", "FW215_contig_16049", "FW215_contig_16326", "FW215_contig_16598", "FW215_contig_16885", "FW215_contig_17109", "FW215_contig_17503", "FW215_contig_17609", "FW215_contig_17718", "FW215_contig_17735", "FW215_contig_17858", "FW215_contig_18022", "FW215_contig_18106", "FW215_contig_18113", "FW215_contig_18323", "FW215_contig_18356", "FW215_contig_18558", "FW215_contig_18624", "FW215_contig_18723", "FW215_contig_18860", "FW215_contig_18926", "FW215_contig_18956", "FW215_contig_18974", "FW215_contig_19259", "FW215_contig_19521", "FW215_contig_19591", "FW215_contig_19619", "FW215_contig_19668", "FW215_contig_20050", "FW215_contig_20111", "FW215_contig_20377", "FW215_contig_20391", "FW215_contig_20585", "FW215_contig_20634", "FW215_contig_20688", "FW215_contig_20862", "FW215_contig_20883", "FW215_contig_20910", "FW215_contig_21051", "FW215_contig_21292", "FW215_contig_21584", "FW215_contig_21610", "FW215_contig_21708", "FW215_contig_21755", "FW215_contig_21957", "FW215_contig_22263", "FW215_contig_22317", "FW215_contig_22413", "FW215_contig_22430", "FW215_contig_22643", "FW215_contig_22886", "FW215_contig_23132", "FW215_contig_23260", "FW215_contig_23366", "FW215_contig_23379", "FW215_contig_23521", "FW215_contig_23643", "FW215_contig_23739", "FW215_contig_23793", "FW215_contig_23913", "FW215_contig_24051", "FW215_contig_24106", "FW215_contig_24228", "FW215_contig_24321", "FW215_contig_24514", "FW215_contig_24614", "FW215_contig_24889", "FW215_contig_24935", "FW215_contig_25335", "FW215_contig_25584", "FW215_contig_25760", "FW215_contig_25852", "FW215_contig_26127", "FW215_contig_26502", "FW215_contig_26537", "FW215_contig_26587", "FW215_contig_26650", "FW215_contig_26677", "FW215_contig_27359", "FW215_contig_27436", "FW215_contig_27473", "FW215_contig_27673", "FW215_contig_27695", "FW215_contig_27919", "FW215_contig_28103", "FW215_contig_28240", "FW215_contig_29060"] |
+| Bin0000002 | FW215_bin_1 | FW215.contigs | ["FW215_contig_4", "FW215_contig_6", "FW215_contig_7", "FW215_contig_8", "FW215_contig_9", "FW215_contig_17", "FW215_contig_30", "FW215_contig_31", "FW215_contig_32", "FW215_contig_39", "FW215_contig_43", "FW215_contig_45", "FW215_contig_50", "FW215_contig_53", "FW215_contig_55", "FW215_contig_60", "FW215_contig_62", "FW215_contig_84", "FW215_contig_92", "FW215_contig_96", "FW215_contig_108", "FW215_contig_119", "FW215_contig_123", "FW215_contig_133", "FW215_contig_134", "FW215_contig_137", "FW215_contig_151", "FW215_contig_161", "FW215_contig_164", "FW215_contig_176", "FW215_contig_177", "FW215_contig_187", "FW215_contig_202", "FW215_contig_240", "FW215_contig_299", "FW215_contig_334", "FW215_contig_367", "FW215_contig_410", "FW215_contig_412", "FW215_contig_435", "FW215_contig_502", "FW215_contig_507", "FW215_contig_533", "FW215_contig_603", "FW215_contig_717", "FW215_contig_762", "FW215_contig_773", "FW215_contig_783", "FW215_contig_827", "FW215_contig_1151", "FW215_contig_1319", "FW215_contig_1338", "FW215_contig_1669", "FW215_contig_2013", "FW215_contig_2377", "FW215_contig_2385", "FW215_contig_3179", "FW215_contig_4398", "FW215_contig_5032", "FW215_contig_5216", "FW215_contig_6214", "FW215_contig_6349", "FW215_contig_9491", "FW215_contig_10616", "FW215_contig_21984", "FW215_contig_28548"] |
+| Bin0000003 | FW215_bin_48 | FW215.contigs | ["FW215_contig_204", "FW215_contig_243", "FW215_contig_501", "FW215_contig_757", "FW215_contig_769", "FW215_contig_829", "FW215_contig_845", "FW215_contig_971", "FW215_contig_1036", "FW215_contig_1257", "FW215_contig_1273", "FW215_contig_1401", "FW215_contig_1880", "FW215_contig_2044", "FW215_contig_2047", "FW215_contig_2160", "FW215_contig_2168", "FW215_contig_2197", "FW215_contig_2284", "FW215_contig_2445", "FW215_contig_2729", "FW215_contig_2844", "FW215_contig_2883", "FW215_contig_3215", "FW215_contig_3251", "FW215_contig_3551", "FW215_contig_3853", "FW215_contig_4222", "FW215_contig_4672", "FW215_contig_4681", "FW215_contig_4925", "FW215_contig_6032", "FW215_contig_6486", "FW215_contig_6845", "FW215_contig_7358", "FW215_contig_7366", "FW215_contig_7413", "FW215_contig_7449", "FW215_contig_7931", "FW215_contig_8736", "FW215_contig_8808", "FW215_contig_8815", "FW215_contig_9108", "FW215_contig_9910", "FW215_contig_9989", "FW215_contig_10868", "FW215_contig_10969", "FW215_contig_11037", "FW215_contig_11244", "FW215_contig_11767", "FW215_contig_12510", "FW215_contig_13488", "FW215_contig_14765", "FW215_contig_15376", "FW215_contig_15403", "FW215_contig_17510", "FW215_contig_18221", "FW215_contig_20077", "FW215_contig_20461", "FW215_contig_23640", "FW215_contig_23811", "FW215_contig_28525", "FW215_contig_29745"] |
+| Bin0000004 | FW215_bin_10 | FW215.contigs | ["FW215_contig_232", "FW215_contig_241", "FW215_contig_292", "FW215_contig_297", "FW215_contig_315", "FW215_contig_330", "FW215_contig_459", "FW215_contig_460", "FW215_contig_493", "FW215_contig_564", "FW215_contig_571", "FW215_contig_671", "FW215_contig_687", "FW215_contig_727", "FW215_contig_738", "FW215_contig_774", "FW215_contig_775", "FW215_contig_858", "FW215_contig_1060", "FW215_contig_1167", "FW215_contig_1172", "FW215_contig_1178", "FW215_contig_1214", "FW215_contig_1249", "FW215_contig_1255", "FW215_contig_1296", "FW215_contig_1503", "FW215_contig_1695", "FW215_contig_2035", "FW215_contig_2266", "FW215_contig_2515", "FW215_contig_2569", "FW215_contig_2929", "FW215_contig_3023", "FW215_contig_3198", "FW215_contig_3495", "FW215_contig_4581", "FW215_contig_5683", "FW215_contig_5686", "FW215_contig_6180", "FW215_contig_6520", "FW215_contig_6971", "FW215_contig_7613", "FW215_contig_8859", "FW215_contig_10631", "FW215_contig_10845", "FW215_contig_14092", "FW215_contig_20010", "FW215_contig_25256"] |
+| Bin0000005 | FW215_bin_5 | FW215.contigs | ["FW215_contig_1374", "FW215_contig_1770", "FW215_contig_2320", "FW215_contig_2347", "FW215_contig_2431", "FW215_contig_2474", "FW215_contig_2609", "FW215_contig_2864", "FW215_contig_3072", "FW215_contig_3096", "FW215_contig_3115", "FW215_contig_3298", "FW215_contig_3505", "FW215_contig_3630", "FW215_contig_3641", "FW215_contig_4332", "FW215_contig_4380", "FW215_contig_5029", "FW215_contig_5270", "FW215_contig_5396", "FW215_contig_5428", "FW215_contig_5539", "FW215_contig_5768", "FW215_contig_5839", "FW215_contig_5940", "FW215_contig_6051", "FW215_contig_6262", "FW215_contig_6309", "FW215_contig_6356", "FW215_contig_6375", "FW215_contig_6434", "FW215_contig_6544", "FW215_contig_6685", "FW215_contig_6707", "FW215_contig_6737", "FW215_contig_6888", "FW215_contig_8085", "FW215_contig_8285", "FW215_contig_8471", "FW215_contig_8489", "FW215_contig_8554", "FW215_contig_8650", "FW215_contig_8904", "FW215_contig_8971", "FW215_contig_9067", "FW215_contig_9460", "FW215_contig_9487", "FW215_contig_9595", "FW215_contig_9644", "FW215_contig_9931", "FW215_contig_9951", "FW215_contig_10053", "FW215_contig_10314", "FW215_contig_10339", "FW215_contig_10624", "FW215_contig_10649", "FW215_contig_10947", "FW215_contig_11428", "FW215_contig_11528", "FW215_contig_12017", "FW215_contig_12392", "FW215_contig_12588", "FW215_contig_13398", "FW215_contig_13443", "FW215_contig_13698", "FW215_contig_14055", "FW215_contig_14170", "FW215_contig_14367", "FW215_contig_14904", "FW215_contig_15034", "FW215_contig_15154", "FW215_contig_15276", "FW215_contig_15370", "FW215_contig_15703", "FW215_contig_15810", "FW215_contig_15895", "FW215_contig_16504", "FW215_contig_16539", "FW215_contig_17528", "FW215_contig_17666", "FW215_contig_17675", "FW215_contig_18474", "FW215_contig_18649", "FW215_contig_18981", "FW215_contig_19168", "FW215_contig_19199", "FW215_contig_19483", "FW215_contig_19530", "FW215_contig_19554", "FW215_contig_19781", "FW215_contig_19918", "FW215_contig_19974", "FW215_contig_20157", "FW215_contig_20369", "FW215_contig_20392", "FW215_contig_20568", "FW215_contig_20782", "FW215_contig_21428", "FW215_contig_21905", "FW215_contig_22011", "FW215_contig_22283", "FW215_contig_22732", "FW215_contig_23075", "FW215_contig_23485", "FW215_contig_23635", "FW215_contig_23696", "FW215_contig_24155", "FW215_contig_24451", "FW215_contig_24636", "FW215_contig_24914", "FW215_contig_25162", "FW215_contig_25295", "FW215_contig_25343", "FW215_contig_25565", "FW215_contig_26095", "FW215_contig_28300", "FW215_contig_28871", "FW215_contig_29205"] |
 
 ---
 
@@ -1001,11 +977,11 @@ Total Tables: 44
 
 | sdt_protocol_id | sdt_protocol_name | sdt_protocol_description | link |
 |---|---|---|---|
-| Protocol0000001 | spencer-2017-cutadapt | The program Cutadapt v1.12 was used to remove adapter sequences with parameters -a CTGTCTCTTAT -A CTGTCTCTTAT (Martin, 2011).  | NULL |
-| Protocol0000002 | spencer-2017-trimmomatic | We performed sliding window quality filtering with Trimmomatic v0.36 using parameters (-phred33 LEADING:3 TRAILING:3 SLIDINGWINDOW:5:20 MINLEN:50) (Bolger et al., 2014) | NULL |
-| Protocol0000003 | spencer-2017-spades | All genomes were assembled de novo using SPAdes v3.9.0 with the following options (-k 21,33,55,77 --careful) (Bankevich et al., 2012) | NULL |
-| Protocol0000004 | chandonia-2019-cutadapt | "kb_cutadapt 1.0.7 (cutadapt 1.18) with options: {<br>                    "input_reads": name,<br>                    "output_object_name": cut_name,<br>                    "5P": None,<br>                    "3P": {<br>                        "adapter_sequence_3P": "CTGTCTCTTAT",<br>                        "anchored_3P": 0<br>                    },<br>                    "error_tolerance": 0.1,<br>                    "min_overlap_length": 3,<br>                    "min_read_length": 50,<br>                    "discard_untrimmed": "0"<br>                }," | https://narrative.kbase.us/narrative/ws.38718.obj.1 |
-| Protocol0000005 | chandonia-2019-trimmomatic | "kb_trimmomatic 1.2.13 (trimmomatic 0.36) with options: {<br>                    "input_reads_ref": name,<br>                    "output_reads_name": trim_name,<br>                    "translate_to_phred33": "1",<br>                    "adapter_clip": None,<br>                    "sliding_window": {<br>                        "sliding_window_size": 5,<br>                        "sliding_window_min_quality": 20<br>                    },<br>                    "crop_length": 0,<br>                    "head_crop_length": 0,<br>                    "leading_min_quality": 3,<br>                    "trailing_min_quality": 3,<br>                    "min_length": 50<br>                }," | https://narrative.kbase.us/narrative/ws.38718.obj.1 |
+| Protocol0000026 | ning-2020-matchseq | The forward and reverse sequences are matched according to coordinate of each sequence. Matched sequences are ranked in the same order in [Sample ID]_m_R1.fastq and [Sample ID]_m_R2.fastq, while unmatched sequences were removed. | NULL |
+| Protocol0000027 | ning-lui-2021-qiime2 | QIIME2 (version 2021.2) was used to generate ASV table. After barcode and primer sequences were trimmed with zero error, sequencing data were processed by DADA2 to identify exact amplicon sequence variants (ASV). The method ‘consensus’ was used to remove chimeras; samples are denoised independently; forward and reverse truncate positions are 163 and 130, respectively, after quality trim with a quality score 2; maximal expected error score is 2.0 when combining forward and reverse sequences. The ASVs were identified taxonomically based on the Silva 138 dataset using QIIME2 pre-fitted sklearn-based taxonomy classifier with the default confidence (0.7). After classification, ASVs identified as Chloroplast, Mitochondria, Eukaryota, or unclassified kingdom were removed. The prokaryotic ASV sequences were aligned using MAFFT in QIIME2, without mask. Then, aligned sequences were used to build phylogenetic tree by FastTree (4, 5).  November 16, 2021:  Lauren Lui dereplicated the ASV table from Adam Arkin and combined it with taxonomy. The taxonomy was called by loading the sequences into QIIME2 and using the Naive Bayes classifier trained on the SILVA138 database.  Lauren removed any ASVs with “Mitochondria” or “Chloroplast” in the taxonomy before calculating relative abundance.   | NULL |
+| Protocol0000028 | chandonia-2020-cutadapt | "kb_cutadapt 1.0.8 (cutadapt 1.18) with options: {<br>                    "input_reads": name,<br>                    "output_object_name": cut_name,<br>                    "5P": None,<br>                    "3P": {<br>                        "adapter_sequence_3P": "CTGTCTCTTATACACATCT",<br>                        "anchored_3P": 0<br>                    },<br>                    "error_tolerance": 0.1,<br>                    "min_overlap_length": 3,<br>                    "min_read_length": 50,<br>                    "discard_untrimmed": "0"<br>                }," | NULL |
+| Protocol0000029 | lui-nielsen-2020-flye-canu | We reassembled these genomes using Flye v1.7 and CANU v1.9 for assembly | NULL |
+| Protocol0000030 | lui-2020-spades | "Valentine sequenced some ENIGMA genomes that were problematic in the previous batch of sequencing.<br>These nextera sequencing libraries were made by Valentine.<br><br>A single index was used.<br><br>Sequencing was done on novaseq machine at UC Berkeley (SP 250PE)<br><br>2 x 250bp paired end reads<br>Lauren assembled them outside KBase using SPAdes in late 2020." | NULL |
 
 ---
 
@@ -1029,11 +1005,11 @@ Total Tables: 44
 
 | sdt_image_id | sdt_image_name | sdt_image_description | mime_type | size_byte | dimensions | link |
 |---|---|---|---|---|---|---|
-| Image0000055 | EB271-05-03-aodc.jpg | EB271-05-03 AODC image | image/jpeg | 673845 | 2560,1920 | /images/EB271-05-03-aodc.jpg |
-| Image0000056 | EB271-05-04-aodc.jpg | EB271-05-04 AODC image | image/jpeg | 656716 | 2560,1920 | /images/EB271-05-04-aodc.jpg |
-| Image0000057 | FW106-2016-11-16-10ml-aodc.jpg | FW106-2016-11-16-10ml AODC image | image/jpeg | 714792 | 2560,1920 | /images/FW106-2016-11-16-10ml-aodc.jpg |
-| Image0000058 | FW106-2016-11-16-1ml-aodc.jpg | FW106-2016-11-16-1ml AODC image | image/jpeg | 605010 | 2560,1920 | /images/FW106-2016-11-16-1ml-aodc.jpg |
-| Image0000059 | FW106-2017-04-05-1ml-aodc.jpg | FW106-2017-04-05-1ml AODC image | image/jpeg | 606245 | 2560,1920 | /images/FW106-2017-04-05-1ml-aodc.jpg |
+| Image0000164 | GW821-FHT03E03_Sphingobacterium.tif | GW821-FHT03E03_Sphingobacterium isolate image | image/tiff | 1863672 | 682,683 | /images/GW821-FHT03E03_Sphingobacterium.tif |
+| Image0000165 | GW821-FHT03G07_Serratia.tif | GW821-FHT03G07_Serratia isolate image | image/tiff | 2693336 | 820,821 | /images/GW821-FHT03G07_Serratia.tif |
+| Image0000166 | GW821-FHT04A06_Chryseobacterium.tif | GW821-FHT04A06_Chryseobacterium isolate image | image/tiff | 3062980 | 875,875 | /images/GW821-FHT04A06_Chryseobacterium.tif |
+| Image0000167 | GW821-FHT04A12_Delftia.tif | GW821-FHT04A12_Delftia isolate image | image/tiff | 2693336 | 820,821 | /images/GW821-FHT04A12_Delftia.tif |
+| Image0000168 | GW821-FHT04C08_Delftia_acidovorans.tif | GW821-FHT04C08_Delftia_acidovorans isolate image | image/tiff | 3226096 | 897,899 | /images/GW821-FHT04C08_Delftia_acidovorans.tif |
 
 ---
 
@@ -1081,9 +1057,9 @@ Total Tables: 44
 
 | sdt_dubseq_library_id | sdt_dubseq_library_name | sdt_genome_name | n_fragments_count_unit |
 |---|---|---|---|
-| DubSeq_Library0000001 | Escherichia-coli-BW25113.dubseq_library | Escherichia-coli-BW25113.genome | NULL |
 | DubSeq_Library0000002 | Pseudomonas-putida-KT2440.dubseq_library | Pseudomonas-putida-KT2440.genome | NULL |
 | DubSeq_Library0000003 | Bacteroides-thetaiotaomicron-VPI-5482.dubseq_library | Bacteroides-thetaiotaomicron-VPI-5482.genome | NULL |
+| DubSeq_Library0000001 | Escherichia-coli-BW25113.dubseq_library | Escherichia-coli-BW25113.genome | NULL |
 
 ---
 
@@ -1114,98 +1090,143 @@ Total Tables: 44
 
 | type_name | field_name | cdm_column_name | scalar_type | is_required | is_pk | is_upk | fk | constraint | comment | units_sys_oterm_id | units_sys_oterm_name | type_sys_oterm_id | type_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Community | defined_strains | defined_sdt_strain_names | [text] | False | False | False | [Strain.name] | NULL | List of strains that comprise the community, if the community is defined | NULL | NULL | ME:0000044 | strain ID |
-| Community | description | sdt_community_description | text | False | False | False | NULL | NULL | Free-text field providing additional details or notes about the community | NULL | NULL | ME:0000202 | description |
-| Reads | id | sdt_reads_id | text | True | True | False | NULL | NULL | Unique identifier for each reads dataset (Primary key) | NULL | NULL | ME:0000273 | internal Reads ID |
-| Reads | name | sdt_reads_name | text | True | False | True | NULL | NULL | Unique name for the reads | NULL | NULL | ME:0000248 | reads ID |
-| Reads | read_count | read_count_count_unit | int | True | False | False | NULL | NULL | Number of reads | UO:0000189 | count unit | ME:0000126 | count |
+| Sample | depth | depth_meter | float | False | False | False | NULL | NULL | For below-ground samples, the average distance below ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000219 | depth |
+| Sample | elevation | elevation_meter | float | False | False | False | NULL | NULL | For above-ground samples, the average distance above ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000220 | elevation |
+| Sample | date | date | text | True | False | False | NULL | \d\d\d\d(-\d\d(-\d\d)?)? | YYYY[-MM[-DD]] | NULL | NULL | ME:0000009 | date |
+| Sample | time | time | text | False | False | False | NULL | \d(\d)?(:\d\d(:\d\d)?)?\s*([apAP][mM])? | HH[:MM[:SS]] [AM\|PM] | NULL | NULL | ME:0000010 | time |
+| Sample | timezone | timezone | text | False | False | False | NULL | NULL | ISO8601 compliant format, ie. UTC-7 | NULL | NULL | ME:0000201 | time zone |
 
 ---
 
-## Table: sys_process_input
-
-**Table Description:** Process Inputs
+## Table: ddt_brick0000510
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
-| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| description_comment_original_condition_description | string | Yes | {"description": "description, comment=Original Condition Description"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| date_comment_sampling_date | string | Yes | {"description": "date, comment=Sampling Date"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab"} |
 
 ### Sample Data (5 rows)
 
-| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|
-| Process0009812 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001421 | NULL |
-| Process0009813 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001422 | NULL |
-| Process0009814 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001423 | NULL |
-| Process0009815 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001424 | NULL |
-| Process0009816 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001425 | NULL |
+| FW305-130 | anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-4D12 | anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | R2A | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
 
 ---
 
-## Table: sys_process_output
-
-**Table Description:** Process Outputs
+## Table: ddt_brick0000517
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
-| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
-| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, statistic=average, comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
+| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, statistic=average, comment=average percent identity of aligned reads", "unit": "percent"} |
+| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
 
 ### Sample Data (5 rows)
 
-| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Process0201007 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015944 | NULL | NULL | NULL |
-| Process0201008 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015945 | NULL | NULL | NULL |
-| Process0201009 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015946 | NULL | NULL | NULL |
-| Process0201010 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015947 | NULL | NULL | NULL |
-| Process0201011 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015948 | NULL | NULL | NULL |
+| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
+|---|---|---|---|---|---|
+| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
+| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
+| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
+| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.3 | 3.730473 | 99.3451 | 89.5223 |
+| 20240529-EFP01-F01 | DP16D-E2 | DP16D-E2.1 | 1.834835 | 96.9795 | 58.741699999999994 |
 
 ---
 
-## Table: ddt_brick0000476
+## Table: ddt_brick0000520
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
-| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
-| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
+| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
+| sequence | string | Yes | {"description": "sequence"} |
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | replicate_series_count_unit | count_count_unit |
-|---|---|---|---|
-| 9d30df1c09b60bb791f16b9f769c6335 | GW800-12-12-12 0.2 micron filter | 1 | 0 |
-| 9d30df1c09b60bb791f16b9f769c6335 | GW800-12-12-12 10 micron filter | 1 | 0 |
-| 9d30df1c09b60bb791f16b9f769c6335 | GW921-86-1-28-13 0.2 micron filter | 1 | 0 |
-| 9d30df1c09b60bb791f16b9f769c6335 | GW921-86-1-28-13 10 micron filter | 1 | 0 |
-| 9d30df1c09b60bb791f16b9f769c6335 | GW925-68-1-28-13 0.2 micron filter | 1 | 0 |
+| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
+|---|---|---|---|---|---|
+| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
+| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
+| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
+| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
+| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
+
+---
+
+## Table: ddt_brick0000521
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
+| link_context_genome | string | Yes | {"description": "link, context=genome"} |
+| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
+| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
+| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
+| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
+| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
+| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
+| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | link_context_read_set | link_context_genome | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
+|---|---|---|---|---|---|---|---|---|---|
+| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
+| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.1/ | 125 | 6645 | 100.0 | 1.17 | 125507 | 27.971576692981095 | 0.001443 |
+| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
+| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
+| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
+
+---
+
+## Table: ddt_brick0000522
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
+| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
+| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
+| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
+| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
 
 ---
 
