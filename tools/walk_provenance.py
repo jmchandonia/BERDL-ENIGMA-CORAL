@@ -10,9 +10,9 @@ import requests
 
 BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
 DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
-REQUEST_TIMEOUT = 120
-REQUEST_RETRIES = 3
-REQUEST_RETRY_DELAY = 2
+REQUEST_TIMEOUT = 180
+REQUEST_RETRIES = 5
+REQUEST_RETRY_DELAY = 4
 _DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
 CACHE_DISABLED = os.environ.get("BERDL_CACHE_DISABLE", "").lower() in {"1", "true", "yes"}
 CACHE_DIR = os.environ.get("BERDL_CACHE_DIR", os.path.join(os.getcwd(), ".berdl_cache"))
@@ -96,6 +96,14 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
                 _store_cache(cache_path, data)
             return data
         except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as exc:
+            if isinstance(exc, requests.HTTPError):
+                resp = exc.response
+                if resp is not None and resp.status_code in {408, 504}:
+                    print(
+                        "[info] BERDL request timed out. "
+                        f"path={path} payload={json.dumps(payload, sort_keys=True, default=str)}",
+                        file=sys.stderr,
+                    )
             last_error = exc
             if attempt < REQUEST_RETRIES - 1:
                 time.sleep(REQUEST_RETRY_DELAY)
