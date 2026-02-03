@@ -24,6 +24,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 from pathlib import Path
 import sys
 from openpyxl import load_workbook
+import requests
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
@@ -46,6 +47,11 @@ DEFAULT_OUTPUT_DIR = "ncbi_submission"
 DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
 EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
 PROTOCOL_TABLE = "sdt_protocol"
+READ_COVERAGE_TABLE = "ddt_brick0000521"
+READ_COVERAGE_COLUMN = "read_coverage_statistic_average_count_unit"
+Bacteria_AVAILABLE_FROM = (
+    "Romy Chakraborty Lab, Berkeley National Lab, Berkeley CA, USA"
+)
 BIOSAMPLE_TEMPLATE_CANDIDATES = [
     REPO_ROOT / "templates" / "Microbe.1.0.xlsx",
     Path("ncbi_submission") / "Microbe.1.0.xlsx",
@@ -191,6 +197,13 @@ def parse_protocol_metadata(protocol_name: str, description: str) -> Dict[str, O
         "machine_type": machine_type,
         "program_version": program_version,
     }
+
+
+def is_paired_read_type(read_type: Optional[str]) -> bool:
+    if not read_type:
+        return False
+    read_type_lower = read_type.lower()
+    return "paired" in read_type_lower or "pair" in read_type_lower
 
 
 def get_protocol_info(
@@ -979,6 +992,185 @@ def link_fastq_files(
     log_info(f"Symlinked {link_count} file(s) to {target_dir}")
 
 
+def build_contig_link(genome: Dict[str, Any]) -> str:
+    genome_link = genome.get("genome_link") or ""
+    if not genome_link:
+        return ""
+    strain_name = (genome.get("strain") or {}).get("strain_name") or ""
+    if strain_name:
+        return f"{genome_link.rstrip('/')}/{strain_name}_contigs.fasta"
+    return f"{genome_link.rstrip('/')}/contigs.fasta"
+
+
+def select_contig_link_and_path(
+    genome: Dict[str, Any],
+    edr_root: str,
+    debug: bool = False,
+) -> Tuple[str, Optional[Path]]:
+    link = build_contig_link(genome)
+    if not link:
+        return "", None
+    edr_path = resolve_edr_path(link, edr_root)
+    if not edr_path:
+        return link, None
+    filename = edr_path.name
+    filtered_name = None
+    if filename.endswith("_contigs.fasta"):
+        filtered_name = filename.replace(
+            "_contigs.fasta", "_coverage_filtered_contigs.fasta"
+        )
+    elif filename == "contigs.fasta":
+        filtered_name = "contigs_filtered.fasta"
+    if filtered_name:
+        filtered_path = edr_path.with_name(filtered_name)
+        if filtered_path.exists():
+            edr_root_path = Path(edr_root).resolve()
+            try:
+                rel_path = filtered_path.resolve().relative_to(edr_root_path)
+            except ValueError:
+                log_debug(
+                    f"Filtered contig path outside EDR root: {filtered_path}",
+                    enabled=debug,
+                )
+                return link, edr_path
+            filtered_link = f"{EDR_URL_PREFIX.rstrip('/')}/{rel_path.as_posix()}"
+            return filtered_link, filtered_path
+    return link, edr_path
+
+
+def link_contig_files(
+    genome_data: List[Dict[str, Any]],
+    output_dir: str,
+    edr_root: str,
+    debug: bool = False,
+) -> None:
+    target_dir = Path(output_dir) / "contigs_to_upload"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    seen_targets: set[str] = set()
+    link_count = 0
+    for genome in genome_data:
+        link, edr_path = select_contig_link_and_path(
+            genome, edr_root=edr_root, debug=debug
+        )
+        if not link or not link.endswith(".fasta"):
+            continue
+        if not edr_path:
+            log_debug(f"Skipping non-EDR link: {link}", enabled=debug)
+            continue
+        filename = Path(link).name
+        target = target_dir / filename
+        if target.name in seen_targets:
+            continue
+        seen_targets.add(target.name)
+        if target.exists() or target.is_symlink():
+            continue
+        try:
+            os.symlink(edr_path, target)
+            link_count += 1
+        except FileExistsError:
+            continue
+    log_info(f"Symlinked {link_count} file(s) to {target_dir}")
+
+
+def read_total_bases_from_reads_count(path: Path) -> Optional[int]:
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            for line in handle:
+                parts = line.rstrip("\n").split("\t", 1)
+                if len(parts) == 2 and parts[0] == "total_bases":
+                    return int(parts[1])
+    except (OSError, ValueError):
+        return None
+    return None
+
+
+def reads_count_path_from_reads_file(path: Path) -> Path:
+    name = path.name
+    for suffix in (".fastq.gz", ".fq.gz", ".fastq", ".fq"):
+        if name.endswith(suffix):
+            return path.with_name(name[: -len(suffix)] + "_reads_count.txt")
+    return path.with_name(name + "_reads_count.txt")
+
+
+def count_fasta_bases(path: Path) -> Optional[Tuple[int, int, int]]:
+    total_chars = 0
+    total_lines = 0
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            for line in handle:
+                if line.startswith(">"):
+                    continue
+                total_chars += len(line)
+                total_lines += 1
+    except OSError:
+        return None
+    total_bases = total_chars - total_lines
+    return total_bases, total_chars, total_lines
+
+
+def compute_coverage_from_files(
+    genome: Dict[str, Any],
+    edr_root: str,
+    debug: bool = False,
+) -> Optional[float]:
+    contig_link, contig_path = select_contig_link_and_path(
+        genome, edr_root=edr_root, debug=debug
+    )
+    if not contig_path or not contig_path.exists():
+        log_debug(
+            f"Coverage fallback: contig path missing for {contig_link}",
+            enabled=debug,
+        )
+        return None
+    contig_counts = count_fasta_bases(contig_path)
+    if not contig_counts:
+        log_debug(
+            f"Coverage fallback: unable to read contigs at {contig_path}",
+            enabled=debug,
+        )
+        return None
+    contig_bases, contig_chars, contig_lines = contig_counts
+    if contig_bases <= 0:
+        log_debug(
+            f"Coverage fallback: contigs bases <= 0 for {contig_path}",
+            enabled=debug,
+        )
+        return None
+    reads_total_bases = 0
+    reads_files: List[str] = []
+    for reads in genome.get("reads", []) or []:
+        link = reads.get("link") or ""
+        if not link or ".fastq" not in link and ".fq" not in link:
+            continue
+        edr_path = resolve_edr_path(link, edr_root)
+        if not edr_path:
+            continue
+        count_path = reads_count_path_from_reads_file(edr_path)
+        total_bases = read_total_bases_from_reads_count(count_path)
+        if total_bases is None:
+            continue
+        reads_total_bases += total_bases
+        reads_files.append(str(count_path))
+    if reads_total_bases <= 0:
+        log_debug(
+            "Coverage fallback: no reads_count files found for coverage estimate.",
+            enabled=debug,
+        )
+        return None
+    coverage = reads_total_bases / contig_bases
+    log_debug(
+        "Coverage fallback: "
+        f"reads_total_bases={reads_total_bases} "
+        f"contig_bases={contig_bases} "
+        f"(chars={contig_chars} lines={contig_lines}) "
+        f"coverage={coverage:.4f} "
+        f"reads_count_files={reads_files} "
+        f"contigs_file={contig_path}",
+        enabled=debug,
+    )
+    return coverage
+
+
 def normalize_instrument_model(
     instrument_model: Optional[str],
     platform: Optional[str],
@@ -1036,21 +1228,50 @@ def get_gtdb_genus_for_strain(
 ) -> Optional[str]:
     if not strain_name:
         return None
-    table = "ddt_brick0000495"
+    table = "ddt_brick0000522"
     columns = get_table_columns(headers, table, column_cache)
     desired = [
         col
-        for col in ["sdt_strain_name", "taxonomic_level_sys_oterm_name", "sdt_taxon_name"]
+        for col in [
+            "sdt_strain_name",
+            "taxonomic_level_sys_oterm_name",
+            "sdt_taxon_name",
+        ]
         if col in columns
     ]
     if "sdt_strain_name" not in desired or "sdt_taxon_name" not in desired:
         return None
-    rows = select_all_rows(
-        headers,
-        table,
-        columns=desired,
-        filters=[{"column": "sdt_strain_name", "operator": "=", "value": strain_name}],
-    )
+    try:
+        rows = select_all_rows(
+            headers,
+            table,
+            columns=desired,
+            filters=[{"column": "sdt_strain_name", "operator": "=", "value": strain_name}],
+        )
+    except requests.HTTPError as exc:
+        if exc.response is not None and exc.response.status_code == 504:
+            log_info(f"GTDB genus query timed out for {strain_name}.")
+            log_info(
+                "Query payload: "
+                + str(
+                    {
+                        "database": "enigma_coral",
+                        "table": table,
+                        "columns": [{"column": col} for col in desired],
+                        "filters": [
+                            {
+                                "column": "sdt_strain_name",
+                                "operator": "=",
+                                "value": strain_name,
+                            }
+                        ],
+                        "limit": 1000,
+                        "offset": 0,
+                    }
+                )
+            )
+            raise
+        raise
     genus = None
     for row in rows:
         level = (row.get("taxonomic_level_sys_oterm_name") or "").lower()
@@ -1195,13 +1416,79 @@ def infer_assembly_method_from_protocols(
     return None
 
 
-def split_assembly_method(method: Optional[str]) -> Tuple[str, str]:
+def split_assembly_method(method: Optional[str], debug: bool = False) -> Tuple[str, str]:
     if not method:
         return "", ""
-    match = re.match(r"^(.*?)[\\s]+(\\d+(?:\\.\\d+){0,3})$", method.strip())
-    if match:
-        return match.group(1).strip(), match.group(2).strip()
-    return method.strip(), ""
+    text = method.strip()
+    match = re.search(r"(?:v\.?\s*)?(\d+(?:\.\d+){1,3})", text, re.IGNORECASE)
+    if not match:
+        if debug:
+            log_debug(
+                f"Assembly method parse: raw={method!r} -> method={text!r} version=''",
+                enabled=debug,
+            )
+        return text, ""
+    version = match.group(1)
+    name = (text[: match.start()] + text[match.end() :]).strip(" -_()")
+    if not name:
+        name = text.strip()
+    if debug:
+        log_debug(
+            f"Assembly method parse: raw={method!r} -> method={name!r} version={version!r}",
+            enabled=debug,
+        )
+    return name, version
+
+
+def choose_assembly_date(processes: Iterable[Dict[str, Any]]) -> str:
+    dates = [proc.get("date_end") for proc in processes if proc.get("date_end")]
+    if not dates:
+        return ""
+    return sorted(dates)[-1]
+
+
+def normalize_strain_name(genome_name: str, strain: Optional[Dict[str, Any]]) -> str:
+    if strain and strain.get("strain_name"):
+        return str(strain.get("strain_name"))
+    if genome_name:
+        return genome_name.split(".", 1)[0]
+    return ""
+
+
+def fetch_read_coverage_map(
+    headers: Dict[str, str],
+    strain_names: Sequence[str],
+    column_cache: Dict[str, List[str]],
+) -> Dict[str, float]:
+    if not strain_names:
+        return {}
+    columns = get_table_columns(headers, READ_COVERAGE_TABLE, column_cache)
+    if "sdt_strain_name" not in columns or READ_COVERAGE_COLUMN not in columns:
+        return {}
+    rows = select_all_rows(
+        headers,
+        READ_COVERAGE_TABLE,
+        columns=["sdt_strain_name", READ_COVERAGE_COLUMN],
+        filters=None,
+        limit=1000,
+    )
+    coverage_values: Dict[str, List[float]] = defaultdict(list)
+    for row in rows:
+        strain = row.get("sdt_strain_name")
+        value = row.get(READ_COVERAGE_COLUMN)
+        if strain is None or value is None:
+            continue
+        if strain_names and str(strain) not in strain_names:
+            continue
+        try:
+            coverage_values[str(strain)].append(float(value))
+        except (TypeError, ValueError):
+            continue
+    coverage_map: Dict[str, float] = {}
+    for strain, values in coverage_values.items():
+        if values:
+            coverage_map[strain] = sum(values) / len(values)
+    return coverage_map
 
 
 def infer_sequencing_techs(
@@ -1439,7 +1726,6 @@ def generate_sra_table(
                 filename2 = (reverse_reads.get("link") or "").split("/")[-1]
                 primary_reads = forward_reads
             else:
-                library_layout = "SINGLE"
                 primary_reads = reads_group[0] if reads_group else None
                 filename = (
                     (primary_reads.get("link") or "").split("/")[-1]
@@ -1447,6 +1733,10 @@ def generate_sra_table(
                     else ""
                 )
                 filename2 = None
+                if primary_reads and is_paired_read_type(primary_reads.get("read_type")):
+                    library_layout = "PAIRED"
+                else:
+                    library_layout = "SINGLE"
 
             if not primary_reads:
                 continue
@@ -1578,7 +1868,6 @@ def generate_sra_table(
                 filename2 = (reverse_reads.get("link") or "").split("/")[-1]
                 primary_reads = forward_reads
             else:
-                library_layout = "SINGLE"
                 primary_reads = reads_group[0] if reads_group else None
                 filename = (
                     (primary_reads.get("link") or "").split("/")[-1]
@@ -1586,6 +1875,10 @@ def generate_sra_table(
                     else ""
                 )
                 filename2 = None
+                if primary_reads and is_paired_read_type(primary_reads.get("read_type")):
+                    library_layout = "PAIRED"
+                else:
+                    library_layout = "SINGLE"
 
             if not primary_reads:
                 continue
@@ -1734,6 +2027,8 @@ def generate_genome_table(
     headers: Dict[str, str],
     column_cache: Dict[str, List[str]],
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
+    edr_root: str,
+    debug: bool = False,
 ) -> None:
     template_path, sheet, header_row, header_map = load_genome_template_workbook(
         Path(output_file).parent
@@ -1762,7 +2057,11 @@ def generate_genome_table(
         assembly_method = infer_assembly_method_from_protocols(
             assembly_protocols, headers, column_cache, protocol_cache
         )
-        method_name, method_version = split_assembly_method(assembly_method)
+        method_name, method_version = split_assembly_method(assembly_method, debug=debug)
+        if not method_name:
+            method_name = "unknown"
+        if not method_version:
+            method_version = "unknown"
 
         seq_techs = infer_sequencing_techs(
             assembly_protocols, headers, column_cache, protocol_cache
@@ -1774,29 +2073,25 @@ def generate_genome_table(
                     seq_techs.append(tech)
         sequencing_technology = "; ".join(sorted(set(seq_techs))) if seq_techs else ""
 
-        genome_link = genome.get("genome_link") or ""
-        if genome_link:
-            strain_name = strain.get("strain_name") or ""
-            if strain_name:
-                fasta_path = f"{genome_link.rstrip('/')}/{strain_name}_contigs.fasta"
-            else:
-                fasta_path = f"{genome_link.rstrip('/')}/contigs.fasta"
-        else:
-            fasta_path = ""
+        fasta_link, _ = select_contig_link_and_path(
+            genome, edr_root=edr_root, debug=debug
+        )
+        fasta_filename = Path(fasta_link).name if fasta_link else ""
+        assembly_date = choose_assembly_date(genome.get("assembly_processes", []) or [])
 
         values = {
             "biosample_accession": "",
             "sample_name": biosample_name,
-            "assembly_date": "",
+            "assembly_date": assembly_date,
             "assembly_name": genome.get("genome_name", ""),
             "assembly_method": method_name,
             "assembly_method_version": method_version,
-            "genome_coverage": "",
+            "genome_coverage": genome.get("genome_coverage", ""),
             "sequencing_technology": sequencing_technology,
             "reference_genome": "",
             "update_for": "",
-            "bacteria_available_from": "",
-            "filename": fasta_path,
+            "bacteria_available_from": Bacteria_AVAILABLE_FROM,
+            "filename": fasta_filename,
         }
 
         for header, value in values.items():
@@ -1943,6 +2238,22 @@ def process_genomes_for_submission(
         for warning in warnings:
             print(f"  - {warning}", file=sys.stderr)
 
+    log_info("Fetching read coverage data")
+    strain_names = [
+        normalize_strain_name(genome.get("genome_name", ""), genome.get("strain"))
+        for genome in genome_data
+    ]
+    strain_names = [name for name in strain_names if name]
+    coverage_map = fetch_read_coverage_map(headers, strain_names, column_cache)
+    for genome in genome_data:
+        strain_name = normalize_strain_name(genome.get("genome_name", ""), genome.get("strain"))
+        if strain_name in coverage_map:
+            genome["genome_coverage"] = coverage_map[strain_name]
+        else:
+            coverage = compute_coverage_from_files(genome, edr_path, debug=debug)
+            if coverage is not None:
+                genome["genome_coverage"] = coverage
+
     log_info("Writing biosample table")
     generate_biosample_table(
         genome_data,
@@ -1966,9 +2277,13 @@ def process_genomes_for_submission(
         headers,
         column_cache,
         protocol_cache,
+        edr_root=edr_path,
+        debug=debug,
     )
     log_info("Linking FASTQ files for upload")
     link_fastq_files(genome_data, output_dir, edr_path, debug=debug)
+    log_info("Linking contig files for upload")
+    link_contig_files(genome_data, output_dir, edr_path, debug=debug)
 
     print("Generated submission tables:")
     print(f"  - {os.path.join(output_dir, 'biosample_table_Microbe.1.0.xlsx')}")
