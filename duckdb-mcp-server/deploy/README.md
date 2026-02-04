@@ -27,3 +27,7 @@ sudo systemctl status duckdb-mcp-server
 DuckDB path:
 - Default is `/scratch/jmc/linkml-coral/cdm_store_bricks_full.db`.
 - Override via `Environment=DUCKDB_PATH=...` in the unit file.
+
+Optional schema comments:
+- Set `Environment=DUCKDB_SCHEMA_MARKDOWN_PATH=/path/to/enigma_coral_schema.md`
+  to provide column comments for the schema endpoint.

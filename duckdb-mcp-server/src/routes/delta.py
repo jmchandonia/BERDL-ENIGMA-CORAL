@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 from typing import Any, Dict, List, Tuple
 
 import sqlparse
@@ -80,6 +81,65 @@ def _table_columns(table: str) -> List[str]:
     # PRAGMA table_info returns: cid, name, type, notnull, dflt_value, pk
     return [r[1] for r in rows]
 
+
+@lru_cache(maxsize=1)
+def _load_schema_comments() -> Dict[str, Dict[str, str]]:
+    settings = get_settings()
+    path = settings.schema_markdown_path
+    if not path:
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            tables: Dict[str, Dict[str, str]] = {}
+            current_table = None
+            in_schema = False
+            for raw_line in handle:
+                line = raw_line.rstrip("\n")
+                if line.startswith("## Table:"):
+                    current_table = line.split(":", 1)[1].strip()
+                    in_schema = False
+                    continue
+                if line.startswith("### Schema"):
+                    in_schema = True
+                    continue
+                if line.startswith("### Sample Data"):
+                    in_schema = False
+                    continue
+                if not in_schema or not current_table:
+                    continue
+                if line.startswith("| Column Name |"):
+                    continue
+                if not line.startswith("|"):
+                    continue
+                parts = [part.strip() for part in line.strip().strip("|").split("|")]
+                if len(parts) < 4:
+                    continue
+                col_name, _col_type, _nullable, comment = parts[:4]
+                tables.setdefault(current_table, {})[col_name] = comment
+            return tables
+    except OSError:
+        return {}
+
+
+def _table_schema_details(table: str) -> List[Dict[str, Any]]:
+    comments = _load_schema_comments()
+    with duckdb_conn() as con:
+        rows = con.execute(f"PRAGMA table_info({_q_ident(table)})").fetchall()
+    # cid, name, type, notnull, dflt_value, pk
+    results: List[Dict[str, Any]] = []
+    for _, name, data_type, notnull, _default, _pk in rows:
+        nullable = "No" if notnull else "Yes"
+        comment = comments.get(table, {}).get(name, "")
+        results.append(
+            {
+                "name": name,
+                "type": data_type,
+                "nullable": nullable,
+                "comment": comment,
+            }
+        )
+    return results
+
 # ---- Routes ----
 @router.post(
     "/databases/list",
@@ -109,14 +169,14 @@ def list_database_tables(req: TableListRequest) -> TableListResponse:
     response_model=TableSchemaResponse,
     status_code=status.HTTP_200_OK,
     summary="Get table schema",
-    description="Gets the schema (column names) of a specific table.",
+    description="Gets the schema (column names with types, nullability, and comments) of a specific table.",
     operation_id="get_table_schema",
 )
 def get_table_schema(req: TableSchemaRequest) -> TableSchemaResponse:
     _require_enigma_coral(req.database)
     if not _table_exists(req.table):
         raise not_found(f"Table [{req.table}] not found in database [{req.database}]")
-    return TableSchemaResponse(columns=_table_columns(req.table))
+    return TableSchemaResponse(columns=_table_schema_details(req.table))
 
 @router.post(
     "/databases/structure",
@@ -130,8 +190,22 @@ def get_database_structure(req: DatabaseStructureRequest) -> DatabaseStructureRe
     db = get_settings().berdl_database_name
     tables = _list_tables()
     if not req.with_schema:
-        return DatabaseStructureResponse(structure={db: tables})
-    return DatabaseStructureResponse(structure={db: {t: _table_columns(t) for t in tables}})
+        return DatabaseStructureResponse(
+            structure={
+                db: {
+                    "tables": [{"name": t} for t in tables]
+                }
+            }
+        )
+    return DatabaseStructureResponse(
+        structure={
+            db: {
+                "tables": [
+                    {"name": t, "columns": _table_schema_details(t)} for t in tables
+                ]
+            }
+        }
+    )
 
 @router.post(
     "/tables/count",

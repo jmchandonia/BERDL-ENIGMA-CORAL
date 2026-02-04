@@ -8,6 +8,7 @@ WorkingDirectory=/var/lib/duckdb-mcp/app
 Environment=HOST=10.2.2.14
 Environment=PORT=80
 Environment=DUCKDB_PATH=/scratch/jmc/linkml-coral/cdm_store_bricks_full.db
+Environment=DUCKDB_SCHEMA_MARKDOWN_PATH=/var/lib/duckdb-mcp/app/schema/enigma_coral_schema.md
 ExecStartPre=/lab/bin/uv sync --project /var/lib/duckdb-mcp/app
 ExecStart=/lab/bin/uv run --project /var/lib/duckdb-mcp/app python -m src.main
 Restart=on-failure

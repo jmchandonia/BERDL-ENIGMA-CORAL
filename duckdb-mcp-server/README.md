@@ -23,6 +23,14 @@ The exposed database name is `enigma_coral`.
 
 See `duckdb-mcp-server/deploy/README.md` for systemd setup instructions.
 
+## Schema metadata
+
+By default, the server derives column types and nullability from DuckDB. To add
+column comments that mirror BERDL, point the server at a Spark-exported schema
+markdown file (e.g., `schema/enigma_coral_schema.md`) using:
+
+- `DUCKDB_SCHEMA_MARKDOWN_PATH=/path/to/enigma_coral_schema.md`
+
 ## Data source
 
 The DuckDB file is produced from ENIGMA tables. The current recipe for building it

@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     # DuckDB file path
     duckdb_path: str = Field(default="/scratch/jmc/linkml-coral/cdm_store_bricks_full.db")
 
+    # Optional schema markdown for column comments (Spark-export format)
+    schema_markdown_path: str | None = Field(default=None)
+
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
