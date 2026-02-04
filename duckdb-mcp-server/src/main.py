@@ -37,9 +37,4 @@ def create_application() -> FastAPI:
 if __name__ == "__main__":
     app_instance = create_application()
 
-    host = os.getenv("HOST", "")
-    if not host.startswith("10."):
-        raise ValueError("Refusing to start: set HOST to a 10.*.*.* interface address (e.g. HOST=10.x.y.z)")
-
-    port = int(os.getenv("PORT", "8000"))
-    uvicorn.run(app_instance, host=host, port=port)
+    uvicorn.run(app_instance, host="10.2.2.14", port=80)
