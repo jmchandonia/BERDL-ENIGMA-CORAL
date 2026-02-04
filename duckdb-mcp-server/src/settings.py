@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     api_version: str = Field(default="0.1.0")
 
     # Single “database” in BERDL terms
-    berdl_database_name: str = Field(default="enigma-coral")
+    berdl_database_name: str = Field(default="enigma_coral")
 
     # DuckDB file path
     duckdb_path: str = Field(default="/scratch/jmc/linkml-coral/cdm_store_bricks_full.db")
