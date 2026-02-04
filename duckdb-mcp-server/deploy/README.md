@@ -6,8 +6,9 @@ Place the unit file here:
 Create a www-data-owned app directory and install deps:
 ```bash
 sudo mkdir -p /var/lib/duckdb-mcp/app
-sudo rsync -a /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server/ /var/lib/duckdb-mcp/app/
+sudo rsync -a --exclude .venv /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server/ /var/lib/duckdb-mcp/app/
 sudo chown -R www-data:www-data /var/lib/duckdb-mcp/app
+sudo rm -rf /var/lib/duckdb-mcp/app/.venv
 sudo -u www-data /lab/bin/uv sync --project /var/lib/duckdb-mcp/app
 ```
 
