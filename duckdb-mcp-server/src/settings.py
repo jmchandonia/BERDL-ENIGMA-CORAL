@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     berdl_database_name: str = Field(default="enigma-coral")
 
     # DuckDB file path
-    duckdb_path: str = Field(default="cdm_store_bricks_full.db")
+    duckdb_path: str = Field(default="/scratch/jmc/linkml-coral/cdm_store_bricks_full.db")
 
 
 @lru_cache(maxsize=1)

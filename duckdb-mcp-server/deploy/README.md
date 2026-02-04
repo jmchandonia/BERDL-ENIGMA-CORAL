@@ -8,7 +8,7 @@ Create a www-data-owned venv and install deps:
 sudo mkdir -p /var/lib/duckdb-mcp
 sudo chown www-data:www-data /var/lib/duckdb-mcp
 sudo -u www-data /lab/bin/uv venv /var/lib/duckdb-mcp/venv
-sudo -u www-data /lab/bin/uv sync --project /mnt/net/ipa.jmcnet/data/h/jmc/src/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
+sudo -u www-data /lab/bin/uv sync --project /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
 ```
 
 Start and enable it:
@@ -22,3 +22,7 @@ Check status:
 ```bash
 sudo systemctl status duckdb-mcp-server
 ```
+
+DuckDB path:
+- Default is `/scratch/jmc/linkml-coral/cdm_store_bricks_full.db`.
+- Override via `Environment=DUCKDB_PATH=...` in the unit file.
