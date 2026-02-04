@@ -50,3 +50,12 @@ set +a
 By default, table dumps and the schema markdown are written to the `schema`
 directory in this repo. You can override the output directory with
 `BERDL_OUTPUT_DIR`.
+
+## Directories
+
+- `tools/`: CLI utilities for querying BERDL and generating outputs.
+- `schema/`: Generated schema markdown (and related artifacts).
+- `templates/`: NCBI submission spreadsheet templates.
+- `duckdb-mcp-server/`: Local DuckDB-backed MCP server implementation.
+- `benchmarks/`: Benchmark prompts, answers, and results.
+- `skills/`: Codex skills and references.
