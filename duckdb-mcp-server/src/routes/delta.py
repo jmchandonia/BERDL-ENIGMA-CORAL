@@ -83,21 +83,26 @@ def _table_columns(table: str) -> List[str]:
 
 
 @lru_cache(maxsize=1)
-def _load_schema_comments() -> Dict[str, Dict[str, str]]:
+def _load_schema_markdown() -> Dict[str, Dict[str, Any]]:
     settings = get_settings()
     path = settings.schema_markdown_path
     if not path:
         return {}
     try:
         with open(path, "r", encoding="utf-8") as handle:
-            tables: Dict[str, Dict[str, str]] = {}
+            tables: Dict[str, Dict[str, Any]] = {}
             current_table = None
             in_schema = False
             for raw_line in handle:
                 line = raw_line.rstrip("\n")
                 if line.startswith("## Table:"):
                     current_table = line.split(":", 1)[1].strip()
+                    tables.setdefault(current_table, {"description": None, "columns": {}})
                     in_schema = False
+                    continue
+                if line.startswith("**Table Description:**") and current_table:
+                    desc = line.split(":", 1)[1].strip()
+                    tables[current_table]["description"] = desc.replace("**", "").strip()
                     continue
                 if line.startswith("### Schema"):
                     in_schema = True
@@ -114,26 +119,33 @@ def _load_schema_comments() -> Dict[str, Dict[str, str]]:
                 parts = [part.strip() for part in line.strip().strip("|").split("|")]
                 if len(parts) < 4:
                     continue
-                col_name, _col_type, _nullable, comment = parts[:4]
-                tables.setdefault(current_table, {})[col_name] = comment
+                col_name, col_type, nullable, comment = parts[:4]
+                tables[current_table]["columns"][col_name] = {
+                    "type": col_type,
+                    "nullable": nullable,
+                    "comment": comment,
+                }
             return tables
     except OSError:
         return {}
 
 
 def _table_schema_details(table: str) -> List[Dict[str, Any]]:
-    comments = _load_schema_comments()
+    schema_md = _load_schema_markdown()
     with duckdb_conn() as con:
         rows = con.execute(f"PRAGMA table_info({_q_ident(table)})").fetchall()
     # cid, name, type, notnull, dflt_value, pk
     results: List[Dict[str, Any]] = []
     for _, name, data_type, notnull, _default, _pk in rows:
-        nullable = "No" if notnull else "Yes"
-        comment = comments.get(table, {}).get(name, "")
+        md_table = schema_md.get(table, {})
+        md_col = md_table.get("columns", {}).get(name, {})
+        nullable = md_col.get("nullable") or ("No" if notnull else "Yes")
+        comment = md_col.get("comment", "")
+        col_type = md_col.get("type") or data_type
         results.append(
             {
                 "name": name,
-                "type": data_type,
+                "type": col_type,
                 "nullable": nullable,
                 "comment": comment,
             }
@@ -189,11 +201,22 @@ def get_table_schema(req: TableSchemaRequest) -> TableSchemaResponse:
 def get_database_structure(req: DatabaseStructureRequest) -> DatabaseStructureResponse:
     db = get_settings().berdl_database_name
     tables = _list_tables()
+    schema_md = _load_schema_markdown()
     if not req.with_schema:
         return DatabaseStructureResponse(
             structure={
                 db: {
-                    "tables": [{"name": t} for t in tables]
+                    "tables": [
+                        {
+                            "name": t,
+                            **(
+                                {"description": schema_md.get(t, {}).get("description")}
+                                if schema_md.get(t, {}).get("description")
+                                else {}
+                            ),
+                        }
+                        for t in tables
+                    ]
                 }
             }
         )
@@ -201,7 +224,16 @@ def get_database_structure(req: DatabaseStructureRequest) -> DatabaseStructureRe
         structure={
             db: {
                 "tables": [
-                    {"name": t, "columns": _table_schema_details(t)} for t in tables
+                    {
+                        "name": t,
+                        "columns": _table_schema_details(t),
+                        **(
+                            {"description": schema_md.get(t, {}).get("description")}
+                            if schema_md.get(t, {}).get("description")
+                            else {}
+                        ),
+                    }
+                    for t in tables
                 ]
             }
         }
