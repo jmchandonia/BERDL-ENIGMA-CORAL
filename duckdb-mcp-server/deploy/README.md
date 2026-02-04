@@ -3,13 +3,12 @@
 Place the unit file here:
 `/etc/systemd/system/duckdb-mcp-server.service`
 
-Create a www-data-owned venv and install deps:
+Create a www-data-owned app directory and install deps:
 ```bash
-sudo mkdir -p /var/lib/duckdb-mcp
-sudo chown www-data:www-data /var/lib/duckdb-mcp
-sudo -u www-data mkdir -p /var/lib/duckdb-mcp/venv
-sudo -u www-data /lab/bin/uv venv /var/lib/duckdb-mcp/venv
-sudo -u www-data UV_PROJECT_ENV=/var/lib/duckdb-mcp/venv /lab/bin/uv sync --project /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
+sudo mkdir -p /var/lib/duckdb-mcp/app
+sudo rsync -a /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server/ /var/lib/duckdb-mcp/app/
+sudo chown -R www-data:www-data /var/lib/duckdb-mcp/app
+sudo -u www-data /lab/bin/uv sync --project /var/lib/duckdb-mcp/app
 ```
 
 Start and enable it:
