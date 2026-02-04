@@ -7,8 +7,9 @@ Create a www-data-owned venv and install deps:
 ```bash
 sudo mkdir -p /var/lib/duckdb-mcp
 sudo chown www-data:www-data /var/lib/duckdb-mcp
+sudo -u www-data mkdir -p /var/lib/duckdb-mcp/venv
 sudo -u www-data /lab/bin/uv venv /var/lib/duckdb-mcp/venv
-sudo -u www-data /lab/bin/uv sync --project /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
+sudo -u www-data UV_PROJECT_ENV=/var/lib/duckdb-mcp/venv /lab/bin/uv sync --project /scratch/jmc/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
 ```
 
 Start and enable it:

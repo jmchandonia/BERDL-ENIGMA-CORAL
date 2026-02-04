@@ -8,6 +8,7 @@ WorkingDirectory=/mnt/net/ipa.jmcnet/data/h/jmc/src/BERDL-ENIGMA-CORAL/duckdb-mc
 Environment=HOST=10.2.2.14
 Environment=PORT=80
 Environment=DUCKDB_PATH=/scratch/jmc/linkml-coral/cdm_store_bricks_full.db
+Environment=UV_PROJECT_ENV=/var/lib/duckdb-mcp/venv
 ExecStartPre=/lab/bin/uv sync --project /mnt/net/ipa.jmcnet/data/h/jmc/src/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python
 ExecStart=/lab/bin/uv run --project /mnt/net/ipa.jmcnet/data/h/jmc/src/BERDL-ENIGMA-CORAL/duckdb-mcp-server --python /var/lib/duckdb-mcp/venv/bin/python src/main.py
 Restart=on-failure
