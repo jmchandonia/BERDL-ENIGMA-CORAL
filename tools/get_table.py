@@ -89,8 +89,11 @@ def parse_schema_markdown(
     return tables, descriptions
 
 
-def load_schema_markdown() -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
-    for path in SCHEMA_MARKDOWN_PATHS:
+def load_schema_markdown(
+    schema_paths: Optional[Iterable[Optional[str]]] = None,
+) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
+    paths = list(schema_paths) if schema_paths is not None else SCHEMA_MARKDOWN_PATHS
+    for path in paths:
         if not path:
             continue
         if os.path.exists(path):
@@ -205,6 +208,11 @@ def parse_args() -> argparse.Namespace:
         default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
         help=f"MCP base URL (default: {DEFAULT_BASE_URL})",
     )
+    parser.add_argument(
+        "--schema-dir",
+        default=None,
+        help="Directory to read schema markdown (defaults to ./schema).",
+    )
     parser.add_argument("--limit", type=int, default=1000, help="Rows per page (max 1000)")
     parser.add_argument(
         "--max-rows",
@@ -235,7 +243,11 @@ def main() -> int:
 
     headers = {"Authorization": f"Bearer {token}"}
 
-    overrides, descriptions = load_schema_markdown()
+    schema_paths: List[Optional[str]] = []
+    if args.schema_dir:
+        schema_paths.append(os.path.join(args.schema_dir, "enigma_coral_schema.md"))
+    schema_paths.extend(SCHEMA_MARKDOWN_PATHS)
+    overrides, descriptions = load_schema_markdown(schema_paths)
     table_overrides = overrides.get(args.table, {})
     description = descriptions.get(args.table)
 

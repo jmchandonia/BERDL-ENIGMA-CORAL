@@ -117,8 +117,11 @@ def parse_schema_markdown(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
     return tables
 
 
-def load_schema_markdown() -> Dict[str, Dict[str, Dict[str, str]]]:
-    for path in SCHEMA_MARKDOWN_PATHS:
+def load_schema_markdown(
+    schema_paths: Optional[Iterable[Optional[str]]] = None,
+) -> Dict[str, Dict[str, Dict[str, str]]]:
+    paths = list(schema_paths) if schema_paths is not None else SCHEMA_MARKDOWN_PATHS
+    for path in paths:
         if not path:
             continue
         if os.path.exists(path):
@@ -250,6 +253,11 @@ def parse_args() -> argparse.Namespace:
         default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
         help=f"MCP base URL (default: {DEFAULT_BASE_URL})",
     )
+    parser.add_argument(
+        "--schema-dir",
+        default=None,
+        help="Directory to read/write schema markdown (defaults to ./schema).",
+    )
     return parser.parse_args()
 
 
@@ -257,6 +265,12 @@ def main() -> int:
     args = parse_args()
     global BASE_URL
     BASE_URL = args.base_url
+    output_path = OUTPUT_PATH
+    schema_paths: List[Optional[str]] = []
+    if args.schema_dir:
+        output_path = os.path.join(args.schema_dir, os.path.basename(OUTPUT_PATH))
+        schema_paths.append(output_path)
+    schema_paths.extend(SCHEMA_MARKDOWN_PATHS)
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)
@@ -269,13 +283,13 @@ def main() -> int:
         table_names = list_tables(headers)
         tables = [describe_table(headers, name) for name in table_names]
 
-    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-    schema_markdown = load_schema_markdown()
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    schema_markdown = load_schema_markdown(schema_paths)
     markdown = format_markdown(tables, schema_markdown)
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as handle:
+    with open(output_path, "w", encoding="utf-8") as handle:
         handle.write(markdown)
 
-    print(f"Wrote schema markdown to {OUTPUT_PATH}")
+    print(f"Wrote schema markdown to {output_path}")
     return 0
 
 
