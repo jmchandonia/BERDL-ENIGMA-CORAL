@@ -7,7 +7,8 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 import requests
 
-BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
+DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
+BASE_URL = os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL)
 DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
 OUTPUT_DIR = os.environ.get("BERDL_OUTPUT_DIR", "schema")
 REQUEST_TIMEOUT = 120
@@ -199,6 +200,11 @@ def format_markdown(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Download a BERDL table to markdown.")
     parser.add_argument("table", help="Table name (without database prefix)")
+    parser.add_argument(
+        "--base-url",
+        default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
+        help=f"MCP base URL (default: {DEFAULT_BASE_URL})",
+    )
     parser.add_argument("--limit", type=int, default=1000, help="Rows per page (max 1000)")
     parser.add_argument(
         "--max-rows",
@@ -216,6 +222,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    global BASE_URL
+    BASE_URL = args.base_url
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)

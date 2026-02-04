@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import sys
@@ -6,7 +7,8 @@ from typing import Any, Dict, Iterable, List, Optional
 
 import requests
 
-BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
+DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
+BASE_URL = os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL)
 DB_NAME = "enigma_coral"
 OUTPUT_PATH = os.path.join("schema", "enigma_coral_schema.md")
 REQUEST_TIMEOUT = 120
@@ -241,7 +243,20 @@ def format_markdown(
     return "\n".join(lines)
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Fetch BERDL schema metadata to markdown.")
+    parser.add_argument(
+        "--base-url",
+        default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
+        help=f"MCP base URL (default: {DEFAULT_BASE_URL})",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
+    global BASE_URL
+    BASE_URL = args.base_url
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)

@@ -8,7 +8,8 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import requests
 
-BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
+DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
+BASE_URL = os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL)
 DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
 REQUEST_TIMEOUT = 180
 REQUEST_RETRIES = 5
@@ -659,6 +660,11 @@ def show_available_tables(headers: Dict[str, str], discovered_tables: Sequence[s
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Walk CORAL provenance using the BERDL API.")
+    parser.add_argument(
+        "--base-url",
+        default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
+        help=f"MCP base URL (default: {DEFAULT_BASE_URL})",
+    )
     parser.add_argument("--show-tables", action="store_true", help="List tables with name mappings.")
     parser.add_argument(
         "--walk-provenance",
@@ -699,13 +705,15 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> int:
+    args = parse_args()
+    global BASE_URL
+    BASE_URL = args.base_url
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)
         return 2
     headers = {"Authorization": f"Bearer {token}"}
 
-    args = parse_args()
     if args.debug:
         set_debug(True)
     any_action = any(

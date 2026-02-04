@@ -40,9 +40,11 @@ from tools.walk_provenance import (  # noqa: E402
     set_debug,
     walk_provenance,
 )
+from tools import walk_provenance as walk_provenance_module  # noqa: E402
 
 
 FASTQ_HOST = "genomics.lbl.gov"
+DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
 DEFAULT_OUTPUT_DIR = "ncbi_submission"
 DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
 EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
@@ -2313,6 +2315,11 @@ def parse_args() -> argparse.Namespace:
         help=f"Directory to write output files (default: {DEFAULT_OUTPUT_DIR}).",
     )
     parser.add_argument(
+        "--base-url",
+        default=os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL),
+        help=f"MCP base URL (default: {DEFAULT_BASE_URL}).",
+    )
+    parser.add_argument(
         "--debug",
         action="store_true",
         help="Enable verbose debugging, including BERDL API calls.",
@@ -2345,6 +2352,7 @@ def load_genome_names(args: argparse.Namespace) -> List[str]:
 
 def main() -> None:
     args = parse_args()
+    walk_provenance_module.BASE_URL = args.base_url
     genome_names = load_genome_names(args)
     if not genome_names:
         raise SystemExit("No genomes provided. Use --genome-name or --genome-list.")
