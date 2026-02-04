@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     # Match BERDL mounting style: serve the app under /apis/mcp
     service_root_path: str = Field(default="/apis/mcp")
     app_name: str = Field(default="DuckDB MCP Server")
-    app_description: str = Field(default="MCP-like REST API backed by DuckDB (enigma-coral)")
+    app_description: str = Field(default="MCP-like REST API backed by DuckDB (enigma_coral)")
     api_version: str = Field(default="0.1.0")
 
     # Single “database” in BERDL terms

@@ -86,7 +86,7 @@ def _table_columns(table: str) -> List[str]:
     response_model=DatabaseListResponse,
     status_code=status.HTTP_200_OK,
     summary="List all databases in the Hive metastore",
-    description="Compatibility endpoint: returns only ['enigma-coral'] for DuckDB backend.",
+    description="Compatibility endpoint: returns only ['enigma_coral'] for DuckDB backend.",
     operation_id="list_databases",
 )
 def list_databases(_: DatabaseListRequest) -> DatabaseListResponse:
@@ -97,7 +97,7 @@ def list_databases(_: DatabaseListRequest) -> DatabaseListResponse:
     response_model=TableListResponse,
     status_code=status.HTTP_200_OK,
     summary="List tables in a database",
-    description="Lists all tables in the single DuckDB-backed database (enigma-coral).",
+    description="Lists all tables in the single DuckDB-backed database (enigma_coral).",
     operation_id="list_database_tables",
 )
 def list_database_tables(req: TableListRequest) -> TableListResponse:
@@ -123,7 +123,7 @@ def get_table_schema(req: TableSchemaRequest) -> TableSchemaResponse:
     response_model=DatabaseStructureResponse,
     status_code=status.HTTP_200_OK,
     summary="Get database structure",
-    description="Gets structure of enigma-coral; optionally includes table schemas.",
+    description="Gets structure of enigma_coral; optionally includes table schemas.",
     operation_id="get_database_structure",
 )
 def get_database_structure(req: DatabaseStructureRequest) -> DatabaseStructureResponse:
