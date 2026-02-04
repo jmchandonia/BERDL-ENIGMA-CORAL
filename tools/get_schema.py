@@ -3,7 +3,7 @@ import json
 import os
 import sys
 import time
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 import requests
 
@@ -15,6 +15,7 @@ REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2
 DEBUG = os.environ.get("BERDL_DEBUG", "").lower() in {"1", "true", "yes"}
+SAMPLE_ROWS = 5
 SCHEMA_MARKDOWN_PATHS = [
     os.environ.get("BERDL_SCHEMA_MARKDOWN_PATH"),
     os.environ.get("BERDL_SUPERSEDED_SCHEMA_PATH"),
@@ -28,6 +29,12 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
     last_error: Optional[Exception] = None
     for attempt in range(REQUEST_RETRIES):
         try:
+            if DEBUG:
+                print(
+                    f"[debug] POST {url} attempt={attempt + 1}/{REQUEST_RETRIES} "
+                    f"payload_keys={list(payload.keys())}",
+                    file=sys.stderr,
+                )
             resp = requests.post(url, json=payload, headers=headers, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()
             data = resp.json()
@@ -39,6 +46,11 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
             return data
         except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as exc:
             last_error = exc
+            if DEBUG:
+                print(
+                    f"[debug] request error on {path}: {type(exc).__name__} ({exc})",
+                    file=sys.stderr,
+                )
             if attempt < REQUEST_RETRIES - 1:
                 time.sleep(REQUEST_RETRY_DELAY)
             else:
@@ -51,6 +63,8 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
 def try_db_structure(headers: Dict[str, str]) -> Optional[List[Dict[str, Any]]]:
     payload = {"with_schema": True, "use_hms": True}
     try:
+        if DEBUG:
+            print("[debug] attempting /delta/databases/structure", file=sys.stderr)
         data = post_json("/delta/databases/structure", payload, headers)
     except requests.HTTPError:
         return None
@@ -82,8 +96,11 @@ def try_db_structure(headers: Dict[str, str]) -> Optional[List[Dict[str, Any]]]:
     return None
 
 
-def parse_schema_markdown(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
+def parse_schema_markdown(
+    path: str,
+) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
     tables: Dict[str, Dict[str, Dict[str, str]]] = {}
+    descriptions: Dict[str, str] = {}
     current_table: Optional[str] = None
     in_schema = False
     with open(path, "r", encoding="utf-8") as handle:
@@ -92,6 +109,10 @@ def parse_schema_markdown(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
             if line.startswith("## Table:"):
                 current_table = line.split(":", 1)[1].strip()
                 in_schema = False
+                continue
+            if line.startswith("**Table Description:**") and current_table:
+                desc = line.split(":", 1)[1].strip()
+                descriptions[current_table] = desc.replace("**", "").strip()
                 continue
             if line.startswith("### Schema"):
                 in_schema = True
@@ -114,12 +135,12 @@ def parse_schema_markdown(path: str) -> Dict[str, Dict[str, Dict[str, str]]]:
                 "nullable": nullable,
                 "comment": comment,
             }
-    return tables
+    return tables, descriptions
 
 
 def load_schema_markdown(
     schema_paths: Optional[Iterable[Optional[str]]] = None,
-) -> Dict[str, Dict[str, Dict[str, str]]]:
+) -> Tuple[Dict[str, Dict[str, Dict[str, str]]], Dict[str, str]]:
     paths = list(schema_paths) if schema_paths is not None else SCHEMA_MARKDOWN_PATHS
     for path in paths:
         if not path:
@@ -130,7 +151,7 @@ def load_schema_markdown(
             return parse_schema_markdown(path)
     if DEBUG:
         print("[debug] no schema markdown found", file=sys.stderr)
-    return {}
+    return {}, {}
 
 
 def list_tables(headers: Dict[str, str]) -> List[str]:
@@ -151,6 +172,8 @@ def describe_table(headers: Dict[str, str], table: str) -> Dict[str, Any]:
         "table": table,
         "use_hms": True,
     }
+    if DEBUG:
+        print(f"[debug] describing table {table}", file=sys.stderr)
     data = post_json("/delta/databases/tables/schema", payload, headers)
     if isinstance(data, dict):
         if "columns" in data and isinstance(data["columns"], list):
@@ -159,10 +182,10 @@ def describe_table(headers: Dict[str, str], table: str) -> Dict[str, Any]:
                     f"[debug] schema columns type={type(data['columns'][0])}",
                     file=sys.stderr,
                 )
-            return {
-                "name": table,
-                "columns": [{"name": col} for col in data["columns"]],
-            }
+            columns = data["columns"]
+            if all(isinstance(col, dict) for col in columns):
+                return {"name": table, "columns": [col for col in columns if isinstance(col, dict)]}
+            return {"name": table, "columns": [{"name": col} for col in columns]}
         for key in ("table", "schema", "table_schema"):
             if key in data and isinstance(data[key], dict):
                 return data[key]
@@ -205,21 +228,34 @@ def extract_columns(table: Dict[str, Any]) -> List[Dict[str, Any]]:
 def format_markdown(
     tables: Iterable[Dict[str, Any]],
     schema_markdown: Optional[Dict[str, Dict[str, Dict[str, str]]]] = None,
+    table_descriptions: Optional[Dict[str, str]] = None,
+    samples: Optional[Dict[str, Tuple[List[Dict[str, Any]], Optional[str]]]] = None,
 ) -> str:
+    table_list = list(tables)
     lines: List[str] = [
-        f"# Schema for `{DB_NAME}`",
+        f"# Database Schema: {DB_NAME}",
         "",
-        f"Source: `{BASE_URL}`",
+        f"Total Tables: {len(table_list)}",
+        "",
+        "---",
         "",
     ]
     schema_markdown = schema_markdown or {}
-    for table in tables:
+    table_descriptions = table_descriptions or {}
+    samples = samples or {}
+    for table in table_list:
         name = normalize_table_name(table)
         override_columns = schema_markdown.get(name, {})
-        lines.append(f"## `{name}`")
+        lines.append(f"## Table: {name}")
         lines.append("")
-        lines.append("| Column | Type | Nullable | Comment |")
-        lines.append("| --- | --- | --- | --- |")
+        description = table_descriptions.get(name)
+        if description:
+            lines.append(f"**Table Description:** {description}")
+            lines.append("")
+        lines.append("### Schema")
+        lines.append("")
+        lines.append("| Column Name | Data Type | Nullable | Comment |")
+        lines.append("|-------------|-----------|----------|----------|")
         columns = extract_columns(table)
         if not columns and override_columns:
             columns = [
@@ -232,7 +268,7 @@ def format_markdown(
             col_type = str(column.get("type", column.get("data_type", "")))
             nullable = column.get("nullable", column.get("is_nullable", ""))
             if isinstance(nullable, bool):
-                nullable = "YES" if nullable else "NO"
+                nullable = "Yes" if nullable else "No"
             comment = str(column.get("comment", column.get("description", "")))
             override = override_columns.get(col_name, {})
             if not col_type:
@@ -243,7 +279,53 @@ def format_markdown(
                 comment = override.get("comment", comment)
             lines.append(f"| {col_name} | {col_type} | {nullable} | {comment} |")
         lines.append("")
+        lines.append(f"### Sample Data ({SAMPLE_ROWS} rows)")
+        lines.append("")
+        sample_rows, sample_error = samples.get(name, ([], None))
+        if sample_rows:
+            columns_list = list(sample_rows[0].keys())
+            lines.append("| " + " | ".join(columns_list) + " |")
+            lines.append("|" + "|".join(["---" for _ in columns_list]) + "|")
+            for row in sample_rows:
+                row_values = [format_cell(row.get(col)) for col in columns_list]
+                lines.append("| " + " | ".join(row_values) + " |")
+        elif sample_error:
+            lines.append(f"*Error retrieving sample data: {sample_error}*")
+        else:
+            lines.append("*Table is empty*")
+        lines.append("")
+        lines.append("---")
+        lines.append("")
     return "\n".join(lines)
+
+
+def format_cell(value: Any) -> str:
+    if value is None:
+        return "NULL"
+    if isinstance(value, (list, dict)):
+        rendered = json.dumps(value, ensure_ascii=True)
+    else:
+        rendered = str(value)
+    rendered = rendered.replace("\n", " ").replace("\r", " ")
+    return rendered.replace("|", "\\|")
+
+
+def fetch_sample_data(
+    headers: Dict[str, str], table: str, limit: int = SAMPLE_ROWS
+) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+    payload = {"database": DB_NAME, "table": table, "limit": limit}
+    if DEBUG:
+        print(f"[debug] fetching sample rows for {table}", file=sys.stderr)
+    try:
+        data = post_json("/delta/tables/sample", payload, headers)
+    except Exception as exc:
+        return [], str(exc)
+    if not isinstance(data, dict):
+        return [], None
+    sample = data.get("sample")
+    if isinstance(sample, list):
+        return [row for row in sample if isinstance(row, dict)], None
+    return [], None
 
 
 def parse_args() -> argparse.Namespace:
@@ -258,19 +340,32 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Directory to read/write schema markdown (defaults to ./schema).",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable verbose debugging, including BERDL API calls.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     global BASE_URL
+    global DEBUG
     BASE_URL = args.base_url
+    if args.debug:
+        DEBUG = True
+    if DEBUG:
+        print(f"[debug] base_url={BASE_URL}", file=sys.stderr)
     output_path = OUTPUT_PATH
     schema_paths: List[Optional[str]] = []
     if args.schema_dir:
         output_path = os.path.join(args.schema_dir, os.path.basename(OUTPUT_PATH))
         schema_paths.append(output_path)
     schema_paths.extend(SCHEMA_MARKDOWN_PATHS)
+    if DEBUG:
+        print(f"[debug] output_path={output_path}", file=sys.stderr)
+        print(f"[debug] schema search paths={schema_paths}", file=sys.stderr)
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)
@@ -278,14 +373,15 @@ def main() -> int:
 
     headers = {"Authorization": f"Bearer {token}"}
 
-    tables = try_db_structure(headers)
-    if tables is None:
-        table_names = list_tables(headers)
-        tables = [describe_table(headers, name) for name in table_names]
+    table_names = list_tables(headers)
+    if DEBUG:
+        print(f"[debug] discovered {len(table_names)} tables", file=sys.stderr)
+    tables = [describe_table(headers, name) for name in table_names]
+    samples = {name: fetch_sample_data(headers, name, SAMPLE_ROWS) for name in table_names}
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    schema_markdown = load_schema_markdown(schema_paths)
-    markdown = format_markdown(tables, schema_markdown)
+    schema_markdown, table_descriptions = load_schema_markdown(schema_paths)
+    markdown = format_markdown(tables, schema_markdown, table_descriptions, samples)
     with open(output_path, "w", encoding="utf-8") as handle:
         handle.write(markdown)
 

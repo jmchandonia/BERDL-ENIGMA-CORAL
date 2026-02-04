@@ -111,6 +111,13 @@ def get_table_schema(headers: Dict[str, str], table: str) -> List[str]:
     columns = data.get("columns") if isinstance(data, dict) else None
     if not isinstance(columns, list):
         raise ValueError(f"Unexpected schema response for {table}: {json.dumps(data)[:500]}")
+    if columns and all(isinstance(col, dict) for col in columns):
+        names: List[str] = []
+        for col in columns:
+            name = col.get("name") or col.get("column_name")
+            if name:
+                names.append(str(name))
+        return names
     return [str(col) for col in columns]
 
 
@@ -213,6 +220,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Directory to read schema markdown (defaults to ./schema).",
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable verbose debugging, including BERDL API calls.",
+    )
     parser.add_argument("--limit", type=int, default=1000, help="Rows per page (max 1000)")
     parser.add_argument(
         "--max-rows",
@@ -231,7 +243,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     global BASE_URL
+    global DEBUG
     BASE_URL = args.base_url
+    if args.debug:
+        DEBUG = True
     token = os.environ.get("KB_AUTH_TOKEN")
     if not token:
         print("KB_AUTH_TOKEN is not set", file=sys.stderr)
