@@ -43,6 +43,11 @@ def _q_ident(name: str) -> str:
         raise bad_request(f"Invalid identifier: {name}")
     return f'"{name}"'
 
+def _q_any_ident(name: str) -> str:
+    # Use for DuckDB-generated column names (e.g., from DESCRIBE); escape quotes defensively.
+    safe = name.replace('"', '""')
+    return f'"{safe}"'
+
 def _check_query_is_valid_select_only(query: str) -> None:
     try:
         statements = sqlparse.parse(query)
@@ -80,6 +85,33 @@ def _table_columns(table: str) -> List[str]:
         rows = con.execute(f"PRAGMA table_info({_q_ident(table)})").fetchall()
     # PRAGMA table_info returns: cid, name, type, notnull, dflt_value, pk
     return [r[1] for r in rows]
+
+@lru_cache(maxsize=256)
+def _table_column_types(table: str) -> Dict[str, str]:
+    with duckdb_conn() as con:
+        rows = con.execute(f"PRAGMA table_info({_q_ident(table)})").fetchall()
+    return {r[1]: str(r[2]) for r in rows}
+
+def _is_float_type(type_name: str) -> bool:
+    t = type_name.strip().lower()
+    return ("float" in t) or ("double" in t) or (t == "real")
+
+def _q_table_col(table: str, col: str) -> str:
+    return f"{_q_ident(table)}.{_q_ident(col)}"
+
+def _select_expr_for_column(
+    table: str | None,
+    col: str,
+    alias: str | None,
+    type_name: str | None,
+) -> str:
+    ref = _q_ident(col) if table is None else _q_table_col(table, col)
+    if type_name and _is_float_type(type_name):
+        out_name = alias or col
+        return f"CAST({ref} AS DOUBLE) AS {_q_ident(out_name)}"
+    if alias:
+        return f"{ref} AS {_q_ident(alias)}"
+    return ref
 
 
 @lru_cache(maxsize=1)
@@ -268,12 +300,16 @@ def sample_table(req: TableSampleRequest) -> TableSampleResponse:
     if not _table_exists(req.table):
         raise not_found(f"Table [{req.table}] not found in database [{req.database}]")
 
-    cols = req.columns or ["*"]
-    if cols != ["*"]:
-        # validate identifiers
-        cols_sql = ", ".join([_q_ident(c) for c in cols])
+    type_map = _table_column_types(req.table)
+    cols = req.columns
+    if cols:
+        cols_sql = ", ".join(
+            [_select_expr_for_column(req.table, c, None, type_map.get(c)) for c in cols]
+        )
     else:
-        cols_sql = "*"
+        cols_sql = ", ".join(
+            [_select_expr_for_column(req.table, c, None, type_map.get(c)) for c in _table_columns(req.table)]
+        )
 
     where_sql = ""
     if req.where_clause:
@@ -300,7 +336,19 @@ def sample_table(req: TableSampleRequest) -> TableSampleResponse:
 def query_table(req: TableQueryRequest) -> TableQueryResponse:
     _check_query_is_valid_select_only(req.query)
     with duckdb_conn() as con:
-        rows = con.execute(req.query).fetchall()
+        desc_rows = con.execute(f"DESCRIBE SELECT * FROM ({req.query}) AS subq").fetchall()
+        if desc_rows:
+            select_exprs = []
+            for name, type_name, *_rest in desc_rows:
+                ref = _q_any_ident(str(name))
+                if _is_float_type(str(type_name)):
+                    select_exprs.append(f"CAST({ref} AS DOUBLE) AS {_q_any_ident(str(name))}")
+                else:
+                    select_exprs.append(ref)
+            wrapped = f"SELECT {', '.join(select_exprs)} FROM ({req.query}) AS subq"
+            rows = con.execute(wrapped).fetchall()
+        else:
+            rows = con.execute(req.query).fetchall()
         colnames = [d[0] for d in con.description]
     result = [dict(zip(colnames, r)) for r in rows]
     return TableQueryResponse(result=result)
@@ -335,6 +383,9 @@ def _build_select(req: TableSelectRequest) -> Tuple[str, List[Any], str, List[An
         raise not_found(f"Table [{req.table}] not found in database [{req.database}]")
 
     params: List[Any] = []
+    base_type_map = _table_column_types(req.table)
+    join_tables = [j.table for j in req.joins] if req.joins else []
+    join_type_maps = {t: _table_column_types(t) for t in join_tables}
 
     # SELECT list
     parts: List[str] = ["SELECT"]
@@ -353,13 +404,31 @@ def _build_select(req: TableSelectRequest) -> Tuple[str, List[Any], str, List[An
 
     if req.columns:
         for c in req.columns:
-            expr = _q_ident(c.column)
-            if c.alias:
-                expr += f" AS {_q_ident(c.alias)}"
+            source_table = None
+            if c.table_alias:
+                source_table = c.table_alias
+            elif c.column in base_type_map:
+                source_table = req.table
+            else:
+                matches = [t for t, m in join_type_maps.items() if c.column in m]
+                if len(matches) == 1:
+                    source_table = matches[0]
+            type_name = None
+            if source_table == req.table:
+                type_name = base_type_map.get(c.column)
+            elif source_table in join_type_maps:
+                type_name = join_type_maps[source_table].get(c.column)
+            expr = _select_expr_for_column(source_table, c.column, c.alias, type_name)
             select_exprs.append(expr)
 
     if not select_exprs:
-        select_exprs = ["*"]
+        if join_tables:
+            select_exprs = ["*"]
+        else:
+            select_exprs = [
+                _select_expr_for_column(req.table, c, None, base_type_map.get(c))
+                for c in _table_columns(req.table)
+            ]
 
     parts.append(", ".join(select_exprs))
     parts.append(f"FROM {_q_ident(req.table)}")
