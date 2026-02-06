@@ -46,9 +46,9 @@ class TableSchemaRequest(BaseModel):
 
 class TableSchemaResponse(BaseModel):
     columns: Annotated[
-        List[Any],
+        List[str],
         Field(
-            description="List of column names or objects with name/type/nullable/comment for the table",
+            description="List of column names in the table",
         ),
     ]
 

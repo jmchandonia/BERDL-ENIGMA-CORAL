@@ -213,14 +213,14 @@ def list_database_tables(req: TableListRequest) -> TableListResponse:
     response_model=TableSchemaResponse,
     status_code=status.HTTP_200_OK,
     summary="Get table schema",
-    description="Gets the schema (column names with types, nullability, and comments) of a specific table.",
+    description="Gets the schema (column names) of a specific table.",
     operation_id="get_table_schema",
 )
 def get_table_schema(req: TableSchemaRequest) -> TableSchemaResponse:
     _require_enigma_coral(req.database)
     if not _table_exists(req.table):
         raise not_found(f"Table [{req.table}] not found in database [{req.database}]")
-    return TableSchemaResponse(columns=_table_schema_details(req.table))
+    return TableSchemaResponse(columns=_table_columns(req.table))
 
 @router.post(
     "/databases/structure",

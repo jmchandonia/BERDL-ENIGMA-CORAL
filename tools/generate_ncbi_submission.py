@@ -16,6 +16,7 @@ It generates:
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 from collections import defaultdict
@@ -79,6 +80,55 @@ def log_info(message: str) -> None:
 def log_debug(message: str, enabled: bool) -> None:
     if enabled:
         print(f"[debug] {message}", file=sys.stderr)
+
+
+def _format_json_for_log(value: Any, fallback: str = "<unavailable>") -> str:
+    if value is None:
+        return fallback
+    try:
+        return json.dumps(value, sort_keys=True, default=str)
+    except (TypeError, ValueError):
+        return str(value)
+
+
+def log_request_failure(
+    exc: requests.HTTPError,
+    payload: Optional[Dict[str, Any]] = None,
+    path: Optional[str] = None,
+) -> None:
+    request = getattr(exc, "request", None)
+    response = exc.response
+    request_url = getattr(request, "url", None) or getattr(response, "url", None)
+    if not request_url and path:
+        request_url = f"{walk_provenance_module.BASE_URL}{path}"
+
+    log_info(f"HTTP request failed: {exc}")
+    log_info(f"Failed URL: {request_url or '<unknown>'}")
+    if payload is not None:
+        log_info(f"Failed payload: {_format_json_for_log(payload)}")
+    if response is not None:
+        body = (response.text or "").strip()
+        if body:
+            if len(body) > 2000:
+                body = f"{body[:2000]}... [truncated]"
+            log_info(f"Response body: {body}")
+
+
+def enable_request_failure_logging() -> None:
+    if getattr(walk_provenance_module, "_generate_ncbi_post_json_wrapped", False):
+        return
+
+    original_post_json = walk_provenance_module.post_json
+
+    def wrapped_post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> Any:
+        try:
+            return original_post_json(path, payload, headers)
+        except requests.HTTPError as exc:
+            log_request_failure(exc, payload=payload, path=path)
+            raise
+
+    walk_provenance_module.post_json = wrapped_post_json
+    walk_provenance_module._generate_ncbi_post_json_wrapped = True
 
 
 def get_headers() -> Dict[str, str]:
@@ -2353,6 +2403,7 @@ def load_genome_names(args: argparse.Namespace) -> List[str]:
 def main() -> None:
     args = parse_args()
     walk_provenance_module.BASE_URL = args.base_url
+    enable_request_failure_logging()
     genome_names = load_genome_names(args)
     if not genome_names:
         raise SystemExit("No genomes provided. Use --genome-name or --genome-list.")
