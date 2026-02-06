@@ -54,14 +54,23 @@ def _cache_path(url: str, payload: Dict[str, Any]) -> str:
     return os.path.join(CACHE_DIR, f"{digest}.json")
 
 
-def _load_cache(path: str) -> Optional[Any]:
+def _build_cache_entry(url: str, payload: Dict[str, Any], response: Any) -> Dict[str, Any]:
+    return {"query": {"url": url, "payload": payload}, "response": response}
+
+
+def _load_cache(path: str, url: Optional[str] = None, payload: Optional[Dict[str, Any]] = None) -> Optional[Any]:
     try:
         if CACHE_TTL_SECONDS is not None:
             age = time.time() - os.path.getmtime(path)
             if age > CACHE_TTL_SECONDS:
                 return None
         with open(path, "r", encoding="utf-8") as handle:
-            return json.load(handle)
+            cached = json.load(handle)
+        if isinstance(cached, dict) and "query" in cached and "response" in cached:
+            return cached["response"]
+        if url is not None and payload is not None:
+            _store_cache(path, _build_cache_entry(url, payload, cached))
+        return cached
     except (FileNotFoundError, json.JSONDecodeError, OSError):
         return None
 
@@ -82,7 +91,7 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
     cache_path = None
     if not CACHE_DISABLED:
         cache_path = _cache_path(url, payload)
-        cached = _load_cache(cache_path)
+        cached = _load_cache(cache_path, url, payload)
         if cached is not None:
             debug(f"BERDL cache hit {path} ({_summarize_payload(payload)})")
             return cached
@@ -94,7 +103,7 @@ def post_json(path: str, payload: Dict[str, Any], headers: Dict[str, str]) -> An
             resp.raise_for_status()
             data = resp.json()
             if cache_path is not None:
-                _store_cache(cache_path, data)
+                _store_cache(cache_path, _build_cache_entry(url, payload, data))
             return data
         except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as exc:
             if isinstance(exc, requests.HTTPError):

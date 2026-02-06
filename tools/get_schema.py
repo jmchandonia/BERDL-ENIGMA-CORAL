@@ -277,14 +277,17 @@ def format_markdown(
                 nullable = override.get("nullable", nullable)
             if not comment:
                 comment = override.get("comment", comment)
-            lines.append(f"| {col_name} | {col_type} | {nullable} | {comment} |")
+            lines.append(
+                f"| {escape_markdown_cell(col_name)} | {escape_markdown_cell(col_type)} | "
+                f"{escape_markdown_cell(str(nullable))} | {escape_markdown_cell(comment)} |"
+            )
         lines.append("")
         lines.append(f"### Sample Data ({SAMPLE_ROWS} rows)")
         lines.append("")
         sample_rows, sample_error = samples.get(name, ([], None))
         if sample_rows:
             columns_list = list(sample_rows[0].keys())
-            lines.append("| " + " | ".join(columns_list) + " |")
+            lines.append("| " + " | ".join(escape_markdown_cell(col) for col in columns_list) + " |")
             lines.append("|" + "|".join(["---" for _ in columns_list]) + "|")
             for row in sample_rows:
                 row_values = [format_cell(row.get(col)) for col in columns_list]
@@ -307,6 +310,11 @@ def format_cell(value: Any) -> str:
     else:
         rendered = str(value)
     rendered = rendered.replace("\n", " ").replace("\r", " ")
+    return rendered.replace("|", "\\|")
+
+
+def escape_markdown_cell(value: str) -> str:
+    rendered = value.replace("\n", " ").replace("\r", " ")
     return rendered.replace("|", "\\|")
 
 
