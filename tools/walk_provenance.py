@@ -494,6 +494,86 @@ def walk_provenance_by_name(
     walk_provenance(token, out_lookup, resolver, depth=1)
 
 
+def build_downstream_lookup(
+    out_lookup: Dict[str, List[Dict[str, Any]]]
+) -> Dict[str, List[Dict[str, Any]]]:
+    downstream_lookup: Dict[str, List[Dict[str, Any]]] = {}
+    for output_obj, processes in out_lookup.items():
+        for proc in processes:
+            for input_obj in proc.get("input_objs", []):
+                downstream_lookup.setdefault(input_obj, []).append(
+                    {
+                        "id": proc.get("id"),
+                        "process_term_name": proc.get("process_term_name"),
+                        "person_term_name": proc.get("person_term_name"),
+                        "protocol": proc.get("protocol"),
+                        "date_end": proc.get("date_end"),
+                        "output_obj": output_obj,
+                    }
+                )
+    return downstream_lookup
+
+
+def walk_downstream_provenance(
+    input_obj: str,
+    downstream_lookup: Dict[str, List[Dict[str, Any]]],
+    resolver: NameResolver,
+    depth: int = 0,
+    visited: Optional[set] = None,
+) -> None:
+    if visited is None:
+        visited = set()
+    indent = "    " * depth
+    proc_list = downstream_lookup.get(input_obj)
+    if proc_list is None:
+        print(f"{indent}{input_obj}  <-- (no downstream process)")
+        return
+    if _DEBUG and (depth == 0 or len(proc_list) > 1):
+        debug(f"object {input_obj} has {len(proc_list)} downstream process(es)")
+    processes_traversed = 0
+    for proc_idx, proc in enumerate(proc_list):
+        output_obj = proc.get("output_obj")
+        process_key = (input_obj, proc.get("id"), output_obj)
+        if process_key in visited:
+            if len(proc_list) > 1:
+                print(f"{indent}[Process {proc_idx + 1} of {len(proc_list)}] (already traversed)")
+            else:
+                print(f"{indent}{input_obj} (already traversed via this process)")
+            continue
+        visited.add(process_key)
+        processes_traversed += 1
+        if len(proc_list) > 1:
+            print(f"{indent}--- Process {proc_idx + 1} of {len(proc_list)} ---")
+        print(
+            f"{indent}Process: {proc.get('process_term_name')} | "
+            f"Person: {proc.get('person_term_name')} | "
+            f"Protocol: {proc.get('protocol')} | "
+            f"Date: {proc.get('date_end')} | "
+            f"ID: {proc.get('id')}"
+        )
+        if output_obj:
+            print(f"{indent}  Outputs (1):")
+            print(f"{indent}    - {resolve_name(resolver, output_obj)}")
+            walk_downstream_provenance(output_obj, downstream_lookup, resolver, depth + 2, visited)
+        else:
+            print(f"{indent}  (no outputs)")
+    if _DEBUG and len(proc_list) > 1 and processes_traversed < len(proc_list):
+        debug(
+            f"only {processes_traversed} of {len(proc_list)} processes were traversed for {input_obj}"
+        )
+
+
+def walk_downstream_provenance_by_name(
+    resolver: NameResolver,
+    downstream_lookup: Dict[str, List[Dict[str, Any]]],
+    table_name: str,
+    object_name: str,
+) -> None:
+    token = object_token_from_name(resolver, table_name, object_name)
+    print(f"{object_name}  ({token})")
+    walk_downstream_provenance(token, downstream_lookup, resolver, depth=1)
+
+
 def _is_coassembly_process(proc_info: Dict[str, Any], discovered_tables: Sequence[str]) -> bool:
     inputs = proc_info.get("input_objs") or []
     reads_tables = [table for table in discovered_tables if "reads" in table.lower()]
@@ -682,6 +762,12 @@ def parse_args() -> argparse.Namespace:
         help="Walk provenance starting from an object name.",
     )
     parser.add_argument(
+        "--walk-downstream",
+        nargs=2,
+        metavar=("TABLE", "NAME"),
+        help="Walk downstream provenance starting from an object name.",
+    )
+    parser.add_argument(
         "--coassembly",
         nargs=2,
         metavar=("TABLE", "NAME"),
@@ -729,6 +815,7 @@ def main() -> int:
         [
             args.show_tables,
             args.walk_provenance,
+            args.walk_downstream,
             args.coassembly,
             args.raw_output_rows,
             args.sys_process,
@@ -748,6 +835,7 @@ def main() -> int:
     needs_process_data = any(
         [
             args.walk_provenance,
+            args.walk_downstream,
             args.coassembly,
             args.sys_process,
             args.list_processes,
@@ -756,16 +844,24 @@ def main() -> int:
 
     process_rows: List[Dict[str, Any]] = []
     out_lookup: Dict[str, List[Dict[str, Any]]] = {}
+    downstream_lookup: Dict[str, List[Dict[str, Any]]] = {}
     meta_columns: Dict[str, Optional[str]] = {}
     if needs_process_data:
         cache = load_process_cache(headers, discovered_tables)
         process_rows = cache.process_rows
         out_lookup = cache.out_lookup
+        downstream_lookup = build_downstream_lookup(out_lookup)
         meta_columns = cache.meta_columns
 
     if args.walk_provenance:
         table_name, object_name = args.walk_provenance
         walk_provenance_by_name(resolver, out_lookup, table_name, object_name)
+
+    if args.walk_downstream:
+        table_name, object_name = args.walk_downstream
+        walk_downstream_provenance_by_name(
+            resolver, downstream_lookup, table_name, object_name
+        )
 
     if args.coassembly:
         table_name, object_name = args.coassembly
