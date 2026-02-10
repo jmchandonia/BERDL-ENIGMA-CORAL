@@ -32,6 +32,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from tools.walk_provenance import (  # noqa: E402
+    build_downstream_lookup,
     discover_tables,
     get_table_schema,
     load_process_cache,
@@ -80,6 +81,21 @@ def log_info(message: str) -> None:
 def log_debug(message: str, enabled: bool) -> None:
     if enabled:
         print(f"[debug] {message}", file=sys.stderr)
+
+
+def normalize_edr_link(link: Optional[str]) -> Optional[str]:
+    if not link:
+        return None
+    normalized = str(link).strip()
+    if not normalized:
+        return None
+    if normalized.startswith(EDR_URL_PREFIX):
+        return normalized
+    match = re.match(r"^/?enigma-data-repository/(.+)$", normalized, flags=re.IGNORECASE)
+    if match:
+        rel_path = match.group(1).lstrip("/")
+        return f"{EDR_URL_PREFIX.rstrip('/')}/{rel_path}"
+    return normalized
 
 
 def _format_json_for_log(value: Any, fallback: str = "<unavailable>") -> str:
@@ -308,9 +324,10 @@ def find_oldest_reads_with_fastq(
     log_label: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     def read_link_ok(link: Optional[str]) -> bool:
-        if not link:
+        normalized_link = normalize_edr_link(link)
+        if not normalized_link:
             return False
-        link_lower = link.lower()
+        link_lower = normalized_link.lower()
         if FASTQ_HOST not in link_lower:
             return False
         return ".fastq" in link_lower or ".fq" in link_lower
@@ -335,16 +352,41 @@ def find_oldest_reads_with_fastq(
         read_cache[obj_id] = reads_data
         return reads_data
 
-    def reads_process_flags(reads_token: str) -> Tuple[bool, bool]:
+    def reads_process_flags(reads_token: str) -> Tuple[bool, bool, bool]:
         produced_by_copy = False
+        produced_by_reads_processing = False
         processed = False
         for proc in out_lookup.get(reads_token, []):
             process_name = (proc.get("process_term_name") or "").lower()
             if "copy data" in process_name:
                 produced_by_copy = True
-            if "cutadapt" in process_name or "trimmomatic" in process_name:
+            if "reads processing" in process_name:
+                produced_by_reads_processing = True
+            if (
+                "reads processing" in process_name
+                or "cutadapt" in process_name
+                or "trimmomatic" in process_name
+            ):
                 processed = True
-        return produced_by_copy, processed
+        return produced_by_copy, produced_by_reads_processing, processed
+
+    def has_processed_name_marker(value: Optional[str]) -> bool:
+        if not value:
+            return False
+        value_lower = value.lower()
+        markers = [
+            "cutadapt",
+            "trimmomatic",
+            "-cut",
+            "_cut",
+            ".cut",
+            "-trim",
+            "_trim",
+            ".trim",
+            "reads_cut",
+            "reads_trim",
+        ]
+        return any(marker in value_lower for marker in markers)
 
     def collect_reads_protocols(reads_token: str) -> List[str]:
         shotgun_protocols: List[str] = []
@@ -364,8 +406,23 @@ def find_oldest_reads_with_fastq(
             else:
                 other_protocols.extend(normalized)
 
-        for proc in out_lookup.get(reads_token, []):
-            add_protocols(proc)
+        # Include protocols from the selected reads object and its upstream reads lineage
+        # so copied reads can still inherit the original sequencing protocol.
+        visited_reads: set[str] = set()
+
+        def walk_upstream_reads(token: str) -> None:
+            if token in visited_reads:
+                return
+            visited_reads.add(token)
+            for proc in out_lookup.get(token, []):
+                add_protocols(proc)
+                for inp in proc.get("input_objs", []):
+                    inp_table, _ = parse_token(inp)
+                    if inp_table == "sdt_reads":
+                        walk_upstream_reads(inp)
+
+        walk_upstream_reads(reads_token)
+
         for proc in downstream_lookup.get(reads_token, []):
             add_protocols(proc)
 
@@ -484,14 +541,22 @@ def find_oldest_reads_with_fastq(
 
             if table_name == "sdt_reads":
                 reads_data = get_reads_data(obj_id)
-                link = reads_data.get("link")
+                link = normalize_edr_link(reads_data.get("link"))
                 if read_link_ok(link):
                     protocols = collect_reads_protocols(obj_token)
-                    produced_by_copy, processed = reads_process_flags(obj_token)
+                    (
+                        produced_by_copy,
+                        produced_by_reads_processing,
+                        processed,
+                    ) = reads_process_flags(obj_token)
+                    reads_name = reads_data.get("sdt_reads_name")
+                    processed_by_name = has_processed_name_marker(reads_name) or has_processed_name_marker(
+                        link
+                    )
                     reads_candidates.append(
                         {
                             "reads_id": obj_id,
-                            "reads_name": reads_data.get("sdt_reads_name"),
+                            "reads_name": reads_name,
                             "link": link,
                             "read_type": reads_data.get("read_type_sys_oterm_name"),
                             "sequencing_technology": reads_data.get(
@@ -501,7 +566,9 @@ def find_oldest_reads_with_fastq(
                             "depth": depth,
                             "path": current_path.copy(),
                             "produced_by_copy_data": produced_by_copy,
+                            "produced_by_reads_processing": produced_by_reads_processing,
                             "processed_by_trim": processed,
+                            "processed_name_marker": processed_by_name,
                             "reads_token": obj_token,
                             "parent_reads_token": parent_token,
                             "parent_process_name": parent_process,
@@ -544,7 +611,9 @@ def find_oldest_reads_with_fastq(
                 f"name={reads.get('reads_name')!r} "
                 f"read_type={reads.get('read_type')!r} "
                 f"produced_by_copy={reads.get('produced_by_copy_data')} "
+                f"produced_by_reads_processing={reads.get('produced_by_reads_processing')} "
                 f"processed_by_trim={reads.get('processed_by_trim')} "
+                f"processed_name_marker={reads.get('processed_name_marker')} "
                 f"parent_reads={reads.get('parent_reads_token')!r} "
                 f"parent_process={reads.get('parent_process_name')!r} "
                 f"link={reads.get('link')!r}"
@@ -610,43 +679,26 @@ def find_oldest_reads_with_fastq(
         ancestor_protocols: List[str],
         ancestor_seq_tech: Optional[str],
     ) -> List[Dict[str, Any]]:
-        table_name, obj_id = parse_token(ancestor_reads_token)
-        if table_name == "sdt_reads" and obj_id:
-            ancestor_data = get_reads_data(obj_id)
-            if read_link_ok(ancestor_data.get("link")):
-                chosen = [
-                    {
-                        "reads_id": obj_id,
-                        "reads_name": ancestor_data.get("sdt_reads_name"),
-                        "link": ancestor_data.get("link"),
-                        "read_type": ancestor_data.get("read_type_sys_oterm_name"),
-                        "sequencing_technology": ancestor_data.get(
-                            "sequencing_technology_sys_oterm_name"
-                        ),
-                        "protocols": ancestor_protocols,
-                        "depth": 0,
-                        "path": [ancestor_reads_token],
-                        "produced_by_copy_data": False,
-                        "processed_by_trim": False,
-                        "reads_token": ancestor_reads_token,
-                        "parent_reads_token": None,
-                        "parent_process_name": None,
-                    }
-                ]
-                for reads in chosen:
-                    reads["source_reads_token"] = ancestor_reads_token
-                    reads["source_protocols"] = ancestor_protocols
-                    reads["source_sequencing_technology"] = ancestor_seq_tech
-                return chosen
+        def is_raw_candidate(reads: Dict[str, Any]) -> bool:
+            if reads.get("produced_by_reads_processing"):
+                return False
+            if reads.get("processed_by_trim"):
+                return False
+            if reads.get("processed_name_marker"):
+                return False
+            return True
 
+        # Step 2: follow only Copy Data processes downstream from ancestral reads.
         copy_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=True)
         if copy_candidates:
             log_reads_detail("Copy-data FASTQ candidates", copy_candidates)
             chosen = select_best_reads(copy_candidates)
         else:
+            # Step 3 fallback: any raw FASTQ reads in EDR, excluding processed reads.
             all_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=False)
-            log_reads_detail("All downstream FASTQ candidates", all_candidates)
-            chosen = select_best_reads(all_candidates)
+            raw_candidates = [reads for reads in all_candidates if is_raw_candidate(reads)]
+            log_reads_detail("Raw downstream FASTQ candidates", raw_candidates)
+            chosen = select_best_reads(raw_candidates)
 
         for reads in chosen:
             reads["source_reads_token"] = ancestor_reads_token
@@ -690,10 +742,16 @@ def find_oldest_reads_with_fastq(
 
     if strain_token:
         downstream_candidates = collect_reads_downstream(strain_token, only_copy=False)
-        if downstream_candidates:
-            log_reads("Found strain-downstream reads", downstream_candidates)
-        if downstream_candidates:
-            return downstream_candidates
+        raw_downstream = [
+            reads
+            for reads in downstream_candidates
+            if not reads.get("produced_by_reads_processing")
+            and not reads.get("processed_by_trim")
+            and not reads.get("processed_name_marker")
+        ]
+        if raw_downstream:
+            log_reads("Found raw strain-downstream reads", raw_downstream)
+            return select_best_reads(raw_downstream)
 
     return []
 
@@ -849,25 +907,6 @@ def get_strain_id(
     return row.get("sdt_strain_id") if row else None
 
 
-def build_downstream_lookup(
-    out_lookup: Dict[str, List[Dict[str, Any]]]
-) -> Dict[str, List[Dict[str, Any]]]:
-    downstream: Dict[str, List[Dict[str, Any]]] = {}
-    for output_obj, processes in out_lookup.items():
-        for proc in processes:
-            for inp in proc.get("input_objs", []):
-                downstream.setdefault(inp, []).append(
-                    {
-                        "output_obj": output_obj,
-                        "process_term_name": proc.get("process_term_name"),
-                        "protocol": proc.get("protocol"),
-                        "date_end": proc.get("date_end"),
-                        "id": proc.get("id"),
-                    }
-                )
-    return downstream
-
-
 def load_biosample_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
     candidates = list(BIOSAMPLE_TEMPLATE_CANDIDATES)
     candidates.extend(
@@ -1002,9 +1041,10 @@ def load_sra_instrument_models(workbook: Any) -> set[str]:
 
 
 def resolve_edr_path(link: str, edr_root: str) -> Optional[Path]:
-    if not link or not link.startswith(EDR_URL_PREFIX):
+    normalized_link = normalize_edr_link(link)
+    if not normalized_link or not normalized_link.startswith(EDR_URL_PREFIX):
         return None
-    rel_path = link.replace(EDR_URL_PREFIX, "").lstrip("/")
+    rel_path = normalized_link.replace(EDR_URL_PREFIX, "").lstrip("/")
     edr_root_path = Path(edr_root).resolve()
     return edr_root_path / rel_path
 
@@ -1441,6 +1481,40 @@ def infer_platform_from_protocols(
     return platform, instrument_model
 
 
+def infer_instrument_model_overrides(
+    protocol_names: Sequence[str],
+    platform: Optional[str],
+    sequencing_technology: Optional[str],
+    reads_date: Optional[str],
+) -> Optional[str]:
+    protocol_text = " ".join(protocol_names).lower()
+    platform_upper = (platform or "").upper()
+    seq_tech_lower = (sequencing_technology or "").lower()
+
+    is_illumina = platform_upper == "ILLUMINA" or "illumina" in seq_tech_lower
+    is_ont = platform_upper == "OXFORD_NANOPORE" or "nanopore" in seq_tech_lower or "ont" in seq_tech_lower
+    is_pacbio = platform_upper == "PACBIO_SMRT" or "pacbio" in seq_tech_lower
+
+    if "plasmidsaurus" in protocol_text:
+        if is_illumina:
+            return "NextSeq 2000"
+        if is_ont:
+            return "PromethION"
+
+    if is_pacbio:
+        year = None
+        if reads_date:
+            match = re.match(r"^(\d{4})-\d{2}-\d{2}$", reads_date)
+            if match:
+                year = int(match.group(1))
+        if year is not None:
+            if year >= 2016:
+                return "Sequel"
+            return "RS II"
+
+    return None
+
+
 def infer_assembly_method_from_protocols(
     protocol_names: Sequence[str],
     headers: Dict[str, str],
@@ -1794,6 +1868,7 @@ def generate_sra_table(
                 continue
 
             source_protocols = primary_reads.get("source_protocols", []) or []
+            reads_date = extract_date_from_filenames(filename, filename2)
             seq_tech_debug = (
                 primary_reads.get("source_sequencing_technology")
                 or primary_reads.get("sequencing_technology")
@@ -1833,6 +1908,17 @@ def generate_sra_table(
                     platform = "ILLUMINA"
                     instrument_model = "unknown"
 
+            seq_tech = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+                or ""
+            )
+            override_model = infer_instrument_model_overrides(
+                protocol_names, platform, seq_tech, reads_date
+            )
+            if override_model:
+                instrument_model = override_model
+
             if debug:
                 log_debug(
                     "SRA instrument debug: "
@@ -1865,7 +1951,6 @@ def generate_sra_table(
             )
             tech_label = infer_read_tech_label(platform, seq_tech)
             long_read = is_long_read_tech(platform, seq_tech)
-            reads_date = extract_date_from_filenames(filename, filename2)
 
             if not long_read:
                 short_read_dates.setdefault(isolate_name, []).append(reads_date)
@@ -1936,6 +2021,7 @@ def generate_sra_table(
                 continue
 
             source_protocols = primary_reads.get("source_protocols", []) or []
+            reads_date = extract_date_from_filenames(filename, filename2)
             seq_tech_debug = (
                 primary_reads.get("source_sequencing_technology")
                 or primary_reads.get("sequencing_technology")
@@ -1975,6 +2061,17 @@ def generate_sra_table(
                     platform = "ILLUMINA"
                     instrument_model = "unknown"
 
+            seq_tech = (
+                primary_reads.get("source_sequencing_technology")
+                or primary_reads.get("sequencing_technology")
+                or ""
+            )
+            override_model = infer_instrument_model_overrides(
+                protocol_names, platform, seq_tech, reads_date
+            )
+            if override_model:
+                instrument_model = override_model
+
             if debug:
                 log_debug(
                     "SRA instrument debug: "
@@ -2007,7 +2104,6 @@ def generate_sra_table(
             )
             tech_label = infer_read_tech_label(platform, seq_tech)
             long_read = is_long_read_tech(platform, seq_tech)
-            reads_date = extract_date_from_filenames(filename, filename2)
 
             if long_read:
                 if tech_label == "Pacbio":
@@ -2163,6 +2259,7 @@ def process_genomes_for_submission(
     output_dir: str = DEFAULT_OUTPUT_DIR,
     debug: bool = False,
     edr_path: str = DEFAULT_EDR_PATH,
+    skip_coverage_calculation: bool = False,
 ) -> List[Dict[str, Any]]:
     if debug:
         set_debug(True)
@@ -2297,11 +2394,15 @@ def process_genomes_for_submission(
     ]
     strain_names = [name for name in strain_names if name]
     coverage_map = fetch_read_coverage_map(headers, strain_names, column_cache)
+    if skip_coverage_calculation:
+        log_info(
+            "Skipping EDR file-based coverage fallback; using BERDL read coverage values only."
+        )
     for genome in genome_data:
         strain_name = normalize_strain_name(genome.get("genome_name", ""), genome.get("strain"))
         if strain_name in coverage_map:
             genome["genome_coverage"] = coverage_map[strain_name]
-        else:
+        elif not skip_coverage_calculation:
             coverage = compute_coverage_from_files(genome, edr_path, debug=debug)
             if coverage is not None:
                 genome["genome_coverage"] = coverage
@@ -2379,6 +2480,14 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_EDR_PATH,
         help=f"Path to ENIGMA data repository root (default: {DEFAULT_EDR_PATH}).",
     )
+    parser.add_argument(
+        "--skip-coverage-calculation",
+        action="store_true",
+        help=(
+            "Skip EDR file-based coverage fallback. "
+            "Use only genome coverage values available in BERDL."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -2414,6 +2523,7 @@ def main() -> None:
         output_dir=args.output_dir,
         debug=args.debug,
         edr_path=args.edr_path,
+        skip_coverage_calculation=args.skip_coverage_calculation,
     )
 
 
