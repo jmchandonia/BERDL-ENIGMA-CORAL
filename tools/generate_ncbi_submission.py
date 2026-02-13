@@ -16,6 +16,7 @@ It generates:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import re
@@ -56,6 +57,7 @@ READ_COVERAGE_COLUMN = "read_coverage_statistic_average_count_unit"
 Bacteria_AVAILABLE_FROM = (
     "Romy Chakraborty Lab, Berkeley National Lab, Berkeley CA, USA"
 )
+BIOSAMPLE_COLLECTED_BY_OVERRIDE = "Hazen Lab"
 BIOSAMPLE_TEMPLATE_CANDIDATES = [
     REPO_ROOT / "templates" / "Microbe.1.0.xlsx",
     Path("ncbi_submission") / "Microbe.1.0.xlsx",
@@ -71,6 +73,10 @@ GENOME_TEMPLATE_CANDIDATES = [
     REPO_ROOT / "templates" / "Template_GenomeBatch.xlsx",
     Path("ncbi_submission") / "Template_GenomeBatch.xlsx",
     Path("genome_upload") / "ncbi_submission" / "Template_GenomeBatch.xlsx",
+]
+SAMPLE_METADATA_CANDIDATES = [
+    Path("sample_metadata.tsv"),
+    Path("genome_upload") / "sample_metadata.tsv",
 ]
 
 
@@ -1530,7 +1536,14 @@ def infer_assembly_method_from_protocols(
             version_match = re.search(r"spades\s+v?(\d+\.\d+\.\d+)", text)
             return f"SPAdes {version_match.group(1)}" if version_match else "SPAdes"
         if "flye" in text:
-            version_match = re.search(r"flye\s+v?(\d+\.\d+)", text)
+            # Prefer explicit Flye tool version (often in parentheses) over wrapper versions such as kb_flye.
+            version_match = re.search(
+                r"\(\s*flye\s+v?(\d+(?:\.\d+){1,3})\s*\)", text, re.IGNORECASE
+            )
+            if not version_match:
+                version_match = re.search(
+                    r"\bflye\b\s+v?(\d+(?:\.\d+){1,3})", text, re.IGNORECASE
+                )
             return f"Flye {version_match.group(1)}" if version_match else "Flye"
         if "canu" in text:
             version_match = re.search(r"canu\s+v?(\d+\.\d+)", text)
@@ -1678,6 +1691,276 @@ def build_biosample_name(sample_name: str, strain_name: str) -> str:
     return formatted
 
 
+def _normalize_text(value: Any) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _normalize_date_for_compare(value: Any) -> str:
+    text = _normalize_text(value)
+    if not text:
+        return ""
+    match = re.match(r"^(\d{4}-\d{2}-\d{2})", text)
+    if match:
+        return match.group(1)
+    return text
+
+
+def _to_float(value: Any) -> Optional[float]:
+    text = _normalize_text(value)
+    if not text:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def _values_match(
+    berdl_value: Any,
+    metadata_value: Any,
+    *,
+    numeric_tolerance: Optional[float] = None,
+    normalize_date: bool = False,
+) -> bool:
+    if normalize_date:
+        left = _normalize_date_for_compare(berdl_value)
+        right = _normalize_date_for_compare(metadata_value)
+        return bool(left and right and left == right)
+
+    if numeric_tolerance is not None:
+        left_num = _to_float(berdl_value)
+        right_num = _to_float(metadata_value)
+        if left_num is not None and right_num is not None:
+            return abs(left_num - right_num) <= numeric_tolerance
+
+    left_text = _normalize_text(berdl_value)
+    right_text = _normalize_text(metadata_value)
+    return bool(left_text and right_text and left_text.casefold() == right_text.casefold())
+
+
+def should_promote_comment_to_description(comment: str) -> bool:
+    text = _normalize_text(comment).lower()
+    if not text:
+        return False
+    keywords = [
+        "capillary fringe",
+        "vadose",
+        "variably saturated",
+        "saturated",
+        "unsaturated",
+        "clay",
+        "sand",
+        "silt",
+        "gravel",
+        "brown",
+        "red",
+        "gray",
+        "grey",
+        "black",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "wet",
+        "dry",
+        "water",
+        "groundwater",
+    ]
+    return any(keyword in text for keyword in keywords)
+
+
+def format_biosample_description_from_comment(comment: str) -> str:
+    text = _normalize_text(comment)
+    if not text:
+        return ""
+    lowered = text.lower()
+    blocked_prefixes = ("ground water", "groundwater", "3l", "3 l", "initial", "unfiltered")
+    if lowered.startswith(blocked_prefixes):
+        return ""
+    if not should_promote_comment_to_description(text):
+        return ""
+    return f"soil sample: {text}"
+
+
+def load_sample_metadata(
+    metadata_path: Optional[str], debug: bool = False
+) -> Dict[str, Dict[str, str]]:
+    path_candidates: List[Path] = []
+    if metadata_path:
+        path_candidates.append(Path(metadata_path))
+    else:
+        path_candidates.extend(SAMPLE_METADATA_CANDIDATES)
+    metadata_file = next((path for path in path_candidates if path.exists()), None)
+    if not metadata_file:
+        log_info("No sample_metadata.tsv found; skipping metadata enrichment.")
+        return {}
+
+    log_info(f"Loading sample metadata from {metadata_file}")
+    rows_by_sample_id: Dict[str, Dict[str, str]] = {}
+    with open(metadata_file, "r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        for row in reader:
+            if not row:
+                continue
+            sample_id = _normalize_text(row.get("sample ID"))
+            if not sample_id:
+                continue
+            rows_by_sample_id[sample_id] = {k: _normalize_text(v) for k, v in row.items() if k}
+    log_info(f"Loaded {len(rows_by_sample_id)} sample metadata row(s)")
+    if debug and rows_by_sample_id:
+        sample_keys = list(rows_by_sample_id.keys())[:5]
+        log_debug(f"sample_metadata.tsv sample IDs (first 5): {sample_keys}", enabled=True)
+    return rows_by_sample_id
+
+
+def validate_sample_metadata_match(
+    genome_name: str,
+    sample: Dict[str, Any],
+    location: Dict[str, Any],
+    metadata: Dict[str, str],
+) -> List[str]:
+    mismatches: List[str] = []
+    checks = [
+        (
+            "sampling_date",
+            sample.get("date"),
+            metadata.get("sampling date"),
+            {"normalize_date": True},
+        ),
+        (
+            "location/well ID",
+            sample.get("location_name"),
+            metadata.get("location/well ID"),
+            {},
+        ),
+        (
+            "latitude",
+            location.get("latitude"),
+            metadata.get("latitude"),
+            {"numeric_tolerance": 1e-6},
+        ),
+        (
+            "longitude",
+            location.get("longitude"),
+            metadata.get("longitude"),
+            {"numeric_tolerance": 1e-6},
+        ),
+        (
+            "material",
+            sample.get("material_name"),
+            metadata.get("material"),
+            {},
+        ),
+        (
+            "sampling depth",
+            sample.get("depth_meter"),
+            metadata.get("mean sampling depth (m)"),
+            {"numeric_tolerance": 1e-6},
+        ),
+    ]
+    for field_name, berdl_value, metadata_value, options in checks:
+        metadata_text = _normalize_text(metadata_value)
+        berdl_text = _normalize_text(berdl_value)
+        if not metadata_text:
+            continue
+        if not berdl_text:
+            mismatches.append(
+                f"{genome_name}: sample metadata has {field_name}={metadata_value!r} "
+                "but BERDL value is missing"
+            )
+            continue
+        if not _values_match(berdl_value, metadata_value, **options):
+            mismatches.append(
+                f"{genome_name}: sample metadata mismatch for {field_name}: "
+                f"BERDL={berdl_value!r} sample_metadata.tsv={metadata_value!r}"
+            )
+    return mismatches
+
+
+def summarize_sample_metadata_match(
+    sample: Dict[str, Any], location: Dict[str, Any], metadata: Dict[str, str]
+) -> Dict[str, Any]:
+    checks = [
+        (
+            "sampling_date",
+            sample.get("date"),
+            metadata.get("sampling date"),
+            {"normalize_date": True},
+        ),
+        (
+            "location/well ID",
+            sample.get("location_name"),
+            metadata.get("location/well ID"),
+            {},
+        ),
+        (
+            "latitude",
+            location.get("latitude"),
+            metadata.get("latitude"),
+            {"numeric_tolerance": 1e-6},
+        ),
+        (
+            "longitude",
+            location.get("longitude"),
+            metadata.get("longitude"),
+            {"numeric_tolerance": 1e-6},
+        ),
+        (
+            "material",
+            sample.get("material_name"),
+            metadata.get("material"),
+            {},
+        ),
+        (
+            "sampling depth",
+            sample.get("depth_meter"),
+            metadata.get("mean sampling depth (m)"),
+            {"numeric_tolerance": 1e-6},
+        ),
+    ]
+
+    compared_fields: List[str] = []
+    matched_fields: List[str] = []
+    mismatched_fields: List[str] = []
+
+    for field_name, berdl_value, metadata_value, options in checks:
+        metadata_text = _normalize_text(metadata_value)
+        if not metadata_text:
+            continue
+        compared_fields.append(field_name)
+        berdl_text = _normalize_text(berdl_value)
+        if berdl_text and _values_match(berdl_value, metadata_value, **options):
+            matched_fields.append(field_name)
+        else:
+            mismatched_fields.append(field_name)
+
+    return {
+        "compared_count": len(compared_fields),
+        "matched_count": len(matched_fields),
+        "compared_fields": compared_fields,
+        "matched_fields": matched_fields,
+        "mismatched_fields": mismatched_fields,
+    }
+
+
+def ensure_header_column(
+    sheet: Any, header_row: int, header_map: Dict[str, int], header_name: str
+) -> int:
+    existing = header_map.get(header_name)
+    if existing is not None:
+        return existing
+    max_used_col = 0
+    for col in range(1, sheet.max_column + 1):
+        if sheet.cell(row=header_row, column=col).value not in (None, ""):
+            max_used_col = col
+    new_col = max_used_col + 1 if max_used_col else sheet.max_column + 1
+    sheet.cell(row=header_row, column=new_col, value=header_name)
+    header_map[header_name] = new_col
+    return new_col
+
+
 def extract_date_from_filenames(*filenames: Optional[str]) -> Optional[str]:
     for filename in filenames:
         if not filename:
@@ -1726,10 +2009,15 @@ def generate_biosample_table(
             last_data_row = row[0].row
 
     next_row = last_data_row + 1
+    custom_headers = ["Moisture (%)", "Conductivity (mS/cm)", "pH"]
+    for custom_header in custom_headers:
+        ensure_header_column(sheet, header_row, header_map, custom_header)
+
     for genome in genome_data:
         sample = genome.get("sample", {}) or {}
         location = genome.get("location", {}) or {}
         strain = genome.get("strain", {}) or {}
+        sample_metadata = genome.get("sample_metadata", {}) or {}
 
         sample_name = sample.get("sample_name") or ""
         strain_name = strain.get("strain_name") or sample.get("sample_name")
@@ -1738,6 +2026,8 @@ def generate_biosample_table(
         organism_name = build_organism_name(genus, strain_name)
 
         isolation_source = infer_isolation_source(sample_name, sample)
+        metadata_comment = sample_metadata.get("comments", "")
+        description_value = format_biosample_description_from_comment(metadata_comment)
         if debug:
             log_debug(
                 "Biosample isolation_source debug: "
@@ -1758,10 +2048,15 @@ def generate_biosample_table(
             "*collection_date": sample.get("date") or "",
             "*geo_loc_name": "USA: Tennessee, Oak Ridge Reservation (ORR)",
             "*sample_type": "cell culture",
-            "collected_by": genome.get("collected_by") or "",
+            "collected_by": BIOSAMPLE_COLLECTED_BY_OVERRIDE,
             "depth": format_depth_meters(sample.get("depth_meter")),
             "env_broad_scale": "temperate woodland biome [ENVO:01000221]",
             "lat_lon": format_lat_lon(location) or "",
+            "temp": sample_metadata.get("Temperature (Celsius)") or "",
+            "description": description_value,
+            "Moisture (%)": sample_metadata.get("Moisture (%)") or "",
+            "Conductivity (mS/cm)": sample_metadata.get("Conductivity (mS/cm)") or "",
+            "pH": sample_metadata.get("pH") or "",
         }
 
         for header, value in values.items():
@@ -2260,6 +2555,7 @@ def process_genomes_for_submission(
     debug: bool = False,
     edr_path: str = DEFAULT_EDR_PATH,
     skip_coverage_calculation: bool = False,
+    sample_metadata_path: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     if debug:
         set_debug(True)
@@ -2268,6 +2564,10 @@ def process_genomes_for_submission(
     column_cache: Dict[str, List[str]] = {}
     protocol_cache: Dict[str, Dict[str, Optional[str]]] = {}
     read_cache: Dict[str, Dict[str, Any]] = {}
+    sample_metadata_map = load_sample_metadata(sample_metadata_path, debug=debug)
+    total_metadata_fields_compared = 0
+    total_metadata_fields_matched = 0
+    total_samples_with_metadata = 0
 
     log_info(f"Preparing BERDL provenance data for {len(genome_names)} genome(s)")
     log_info("Discovering tables in BERDL")
@@ -2346,11 +2646,39 @@ def process_genomes_for_submission(
         )
         log_info(f"Found {len(samples_list)} sample(s) for {genome_name}")
         sample_data = samples_list[0] if samples_list else None
+        sample_metadata = {}
+        if sample_data:
+            sample_id = _normalize_text(sample_data.get("sample_name"))
+            sample_metadata = sample_metadata_map.get(sample_id, {})
+            if not sample_metadata and sample_metadata_map:
+                warnings.append(
+                    f"{genome_name}: sample {sample_id!r} not found in sample_metadata.tsv"
+                )
         location_data = None
         if sample_data and sample_data.get("location_name"):
             log_info(f"Resolving location {sample_data['location_name']}")
             location_data = get_location_info(
                 headers, sample_data["location_name"], column_cache
+            )
+        if sample_data and sample_metadata:
+            match_summary = summarize_sample_metadata_match(
+                sample_data, location_data or {}, sample_metadata
+            )
+            total_samples_with_metadata += 1
+            total_metadata_fields_compared += int(match_summary["compared_count"])
+            total_metadata_fields_matched += int(match_summary["matched_count"])
+            if debug:
+                log_debug(
+                    f"Sample metadata match summary for {genome_name}: "
+                    f"{match_summary['matched_count']}/{match_summary['compared_count']} matched; "
+                    f"matched={match_summary['matched_fields']}; "
+                    f"mismatched={match_summary['mismatched_fields']}",
+                    enabled=True,
+                )
+            warnings.extend(
+                validate_sample_metadata_match(
+                    genome_name, sample_data, location_data or {}, sample_metadata
+                )
             )
 
         if strain_name:
@@ -2379,6 +2707,7 @@ def process_genomes_for_submission(
                 "assembly_processes": assembly_processes,
                 "gtdb_genus": gtdb_genus,
                 "collected_by": collected_by,
+                "sample_metadata": sample_metadata,
             }
         )
 
@@ -2386,6 +2715,12 @@ def process_genomes_for_submission(
         log_info("Warnings:")
         for warning in warnings:
             print(f"  - {warning}", file=sys.stderr)
+    if sample_metadata_map:
+        log_info(
+            "Sample metadata overall match summary: "
+            f"{total_metadata_fields_matched}/{total_metadata_fields_compared} matched "
+            f"across {total_samples_with_metadata} sample(s) with metadata."
+        )
 
     log_info("Fetching read coverage data")
     strain_names = [
@@ -2488,6 +2823,14 @@ def parse_args() -> argparse.Namespace:
             "Use only genome coverage values available in BERDL."
         ),
     )
+    parser.add_argument(
+        "--sample-metadata",
+        default=None,
+        help=(
+            "Optional path to sample metadata TSV (default search order: "
+            "sample_metadata.tsv, genome_upload/sample_metadata.tsv)."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -2524,6 +2867,7 @@ def main() -> None:
         debug=args.debug,
         edr_path=args.edr_path,
         skip_coverage_calculation=args.skip_coverage_calculation,
+        sample_metadata_path=args.sample_metadata,
     )
 
 
