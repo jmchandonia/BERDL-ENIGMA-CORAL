@@ -1,6 +1,6 @@
 ---
 name: enigma-berdl-query
-description: Query ENIGMA (coral_enigma) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the coral_enigma table/column list.
+description: Query ENIGMA (enigma_coral) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the enigma_coral table/column list.
 ---
 
 # Enigma BERDL Query

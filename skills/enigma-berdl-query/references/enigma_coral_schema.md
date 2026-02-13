@@ -1,6 +1,6 @@
 # Database Schema: enigma_coral
 
-Total Tables: 45
+Total Tables: 47
 
 ---
 
@@ -78,7 +78,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000010
 
-**Table Description:** DDT Brick table: Brick0000010
+**Table Description:** adams_metals_100ws.ndarray - Adams Lab Metals Measurements for 100 Well Survey
 
 ### Schema
 
@@ -108,7 +108,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000072
 
-**Table Description:** DDT Brick table: Brick0000072
+**Table Description:** adams_metals_corepilot_271.ndarray - Adams Lab Metals Measurements from Core Pilot
 
 ### Schema
 
@@ -138,7 +138,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000073
 
-**Table Description:** DDT Brick table: Brick0000073
+**Table Description:** adams_metals_corepilot_106.ndarray - Adams Lab Metals Measurements from Core Pilot
 
 ### Schema
 
@@ -168,7 +168,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000080
 
-**Table Description:** DDT Brick table: Brick0000080
+**Table Description:** adams_metals_27ws.hndarray - Adams Lab Metals Measurements from 27 Well Survey
 
 ### Schema
 
@@ -187,17 +187,17 @@ Total Tables: 45
 
 | sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_molecular_weight_dalton | molecule_presence_molecule_from_list_helium_0 | concentration_statistic_average_parts_per_billion | concentration_statistic_standard_deviation_parts_per_billion | detection_limit_parts_per_billion |
 |---|---|---|---|---|---|---|---|
-| ED04-D01 | CHEBI:30501 | beryllium atom | 9.0 | False | 0.001562349753452 | 0.000366941008739 | 0.000469808553261 |
-| ED04-D01 | CHEBI:27560 | boron atom | 11.0 | False | 33.7619347281608 | 0.191036459932015 | 0.023132926454591 |
-| ED04-D01 | CHEBI:26708 | sodium atom | 23.0 | False | 5696.39023311947 | 32.3566930281299 | 0.894455712265924 |
-| ED04-D01 | CHEBI:25107 | magnesium atom | 24.0 | False | 17678.0757968573 | 297.141974133571 | 0.079527218969207 |
-| ED04-D01 | CHEBI:28984 | aluminium atom | 27.0 | True | 1.63612631792486 | 0.078702157706031 | 0.03413258127732 |
+| FW127-D64 | CHEBI:33324 | strontium atom | 88.0 | True | 433.036384206056 | 3.90444907957109 | 0.0171 |
+| FW127-D64 | CHEBI:33342 | zirconium atom | 90.0 | True | 0.164850102997522 | 0.056643754329317 | 0.0566 |
+| FW127-D64 | CHEBI:33344 | niobium atom | 93.0 | True | 0.005850448472764 | 0.003772904991139 | 0.0091 |
+| FW127-D64 | CHEBI:28685 | molybdenum atom | 95.0 | True | 0.008484774489076 | 0.023399294872951 | 0.0771 |
+| FW127-D64 | CHEBI:22977 | cadmium atom | 114.0 | True | 140.533294897435 | 0.943642478870656 | 0.0182 |
 
 ---
 
 ## Table: ddt_brick0000452
 
-**Table Description:** DDT Brick table: Brick0000452
+**Table Description:** zhou_lab_100ws_spring19_corepilot_27ws_cpt_ASV_16S.ndarray - Zhou Lab 100WS Spring19 CorePilot 27WS CPT ASV 16S Sequences
 
 ### Schema
 
@@ -210,17 +210,17 @@ Total Tables: 45
 
 | sdt_asv_name | sequence_sequence_type_16s_sequence |
 |---|---|
-| 8596cf3f138f9a1eb8b88cfedb4188ea | TACGGAGGTGGCAAGCGTTACTCGGATTTATTGGGTGTAAAGGGCAGGTAGGTGGTCTTGTAAGTTGGGAGTGAAATCCCCCGGCTCAACCGGGGAACTGCTTTCAAAACTGCAAGACTTGGGACTAGAAGAGGAGAACGGAATTCCCGGTGTAAGGGTGAAATCTGTAGATATCGGGAGGAACACCAGTAGCGAAGGCGGTTCTCTGGGCTAGTTCTGACACTGAGCTGCGAAAGCTAGGGGAGCAAACAGG |
-| 8597b02df0861a148003228718227162 | TACAGAGGGGGCAAGCGTTGTTCGGAATTATTGGGCGTAAAGGGTGTGTAGGCGGCTTGACAAGTCAGTGGTGAAATCCCCCGGCTTAACCGGGGACGTGCCTTTGATACTGTCAGGCTTGAGTACGGAAGAGGAGAGTGGAATTCCCAGTGTAGCGGTGAAATGCGTAGATATTGGGAAGAACACCGGCGGCGAAGGCGGCTCTCTGGTCCGTTACTGACGCTGAGACACGAAAGCCAGGGTAGCAAACGGG |
-| 8597b8c50a71f8ab34d326d3b4b4068c | AACGTAGGAGGCGAGCGTTATCCGGATTTACTGGGCGTAAAGCGCGTGCAGGTGGTACGGTTAGTTGGATGTGAAAGCTCCTGGCTTAACTGGGAGAGGTCGTTCAATACTGCCGAACTGGAGTATGGGAGAGGGAGGTGGAATTCCGAGTGTAGTGGTGAAATGCGTAGATATTCGGAGGAACACCAGTGGCGAAAGCGGCCTCCTGGCCCATTACTGACACTCAGACGCGAAAGCTAGGGGAGCGAACGGG |
-| 85984a4ef5ce3ceaf718c8fb20b09721 | TACGTAGGGTGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGGCGCGTAAGTCGGCTGTGAAAGCCCTGGGCTTAACCCGGGAATTGCAGTTGAAACTGCGTGTCTTGAGTGTTTGAGAGGGTGGTGGAATTCCTGGTGTAGAGGTGAAATTCGTAGATATCAGGAGGAACACCGGAGGCGAAGGCGGCCACCTGGCAATACACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
-| 85985b3f96eefb54d7dfef9beb107f8b | TACGGGGGGGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTGCTCTAAGTCGGATGTGAAAACTCTGGGCTCAACCCAGAGCCTGCATCCGAAACTGGAGTGCTGGAGTTCTGGAGGGGGTAGCGGAATTCCTGGTGTAGCGGTGAAATGCGTAGATATCAGGAGGAACACCGGTGGCGAAGGCGGCTACCTGGACAGAAACTGACGCTGAGGCACGAAAGCTAGGGGAGCAAACAGG |
+| d505e65f17f39139eb72706e07d950b1 | TACGGAGGGTGCAAGCGTTGTCCGGATTTATTGGGTTTAAAGGGTGGGTAGGCGGTTTAATAAGTCAGTGTTTAAAGTCTTCAGCTTAACTGGAGGAATGGCATTGATACTGTTGAACTTGAGTAAAGTTGAGGTGGGCGGAATTGAAAGTGTAGGGGTGAAATGCATAGATATTTTCAAGAACACCAATTGCGAAGGCAGCTCACTAAGCTTTAACTGACGCTGAGGCACGAAAGTGTGGGGATCAAACAGG |
+| d50646d65d7459868463ff6aa8ccf09c | GACGTAGGATGCAAGCGTTACTCGGAATCACTGGGCGTAAAGCGTCTGTAGGCGGTGTGATGCGTCTGATGTGAAAGCTACCGGGCTCAACCCGGTATCCGCATTGGAAACGGTCACACTTGAGAGACCTAGGGGCACCTGGAATGCTGTGTGTAGGGGTAAAATCCGTAGATACACAGTAGAACGCTCAAAGCGAAAGCAGGGTGCTGGGGGTTTTCTGACGCTGAGAGACGAAAGCGTGGGGAGCAAACGGG |
+| d506bd8f87890c7ffddd396d4fffb457 | GACGAACCGAGCGAACGTTGTTCGGAATCACTGGGCTTAAAGGGTGCGTAGGCGGGCTGCCAAGTTTGGGGTGAAATCCTCCGGCTCAACCGGGGAAGTGCCTCGAATACTGGCGGTCTGGAGGGAGGTAGGGGCGTGCGGAACTAACGGTGGAGCGGTGAAATGCGTTGATATCGTTAGGAACTCCGGTGGCGAAGGCGGCACGCTAGACCTTTTCTGACGCTGAGGCACGAAAGCCAGGGGAGCGAACGGG |
+| d5076d6dede8caeec4b849774946341b | GACGAGGGATCCTAGCGTTGTTCGGAATCATTGGGCGTAAAGCGGATGTAGGTGGCTTTGTAAGTCAGGTGTGAAAGCCCCGGGCTCAACCCGGGAAGTGCATTTGATACTGCGAAGCTTGAGTGCTGGAGAGGTTACTAGAATACCTGGTGTAGTGGTGAAATACGTAGATATCAGGTGGAATACCGGAGGCGAAGGCGGGTAACCAGCCAGACACTGACACTCAGATCCGAAAGTGTGGGGATCAAACAGG |
+| d50791eecf03c725397b07ef123657ca | TACGTAGGGTGCAAGCGTTGCCCGGATTTATTGGGCGTAAAGGGCGCGCAGGCGGCCACGCACGTCCGTTGTGAAATCGCTCGGCTCAACTGGGCGGGGTCAGCGGATACGGCGCGGCTGGAGCAAGCTAGGGGGCAATGGAATTCCCGGTGTAGTGGTGGAATGCGTAGATATCGGGAGGAACACCAGTGGCGAAGGCGGTTGCCTGGAGCTTTGCTGACGCTGAGGCGCGAAAGCGTGGGGAGCGATCCGG |
 
 ---
 
 ## Table: ddt_brick0000454
 
-**Table Description:** DDT Brick table: Brick0000454
+**Table Description:** zhou_lab_100ws_spring19_corepilot_27ws_cpt_ASV_taxonomy.ndarray - Zhou Lab 100WS Spring19 CorePilot 27WS CPT ASV Taxonomy
 
 ### Schema
 
@@ -245,7 +245,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000457
 
-**Table Description:** DDT Brick table: Brick0000457
+**Table Description:** zhou_lab_sso_sediment_ASV_16S.ndarray - Zhou Lab SSO Sediment ASV 16S Sequences
 
 ### Schema
 
@@ -258,17 +258,17 @@ Total Tables: 45
 
 | sdt_asv_name | sequence_sequence_type_16s_sequence |
 |---|---|
-| 0001d123420b59585627edf5a1292ae8 | TACGAAGGGGGCTAGCGTTGTTCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGCTTTGTAAGTCGGGGGTGAAAGCCTGTGGCTCAACCACAGAATTGCCTTCGATACTGCATGGCTTGAGACCGGAAGAGGTAAGTGGAACTGCGAGTGTAGAGGTGAAATTCGTAGATATTCGCAAGAACACCAGTGGCGAAGGCGGCTTACTGGTCCGGTTCTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
-| 00075a89460c8f6f09b52d9a8439cc3b | GACGGAGGGAGCTAGCGTTGTTCGGAATGACTGGGCGTAAAGGGCGCGTAGGCGGTTTTTTAAGTGAGGCGTGAAAGCCCTGGGCTTAACCCAGGAGGTGCGTTTCATACTGGAAGACTTGAGTGCGAGAGAGGAAAGTGGAATTCCTAGTGTAGAGGTGAAATTCGTAGATATTAGGAAGAACACCAGAGGCGAAGGCGGCTTTCTGGCTCGCAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
-| 000d07f2a82557601686d86686203205 | AACGTAGGGGGCGAGCGTTGTCCGGAATTACTGGGCGTAAAGGGCGTGTAGGTGGCCTGTGAAGTCGAGAGTGAAAACCTGGGGCTCAACCCCGGGCCTGCTTTCGAAACCAGCAGGCTTGAGGACAGGAGAGGGAAGCGGAATTCCCAGTGTAGCGGTGAAATGCGTAGATATTGGGAGGAACACCAGTGGCGAAAGCGGCTTTCTGGCCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
-| 000dd512be8bcd3ee3f14a5996fa08ed | TACGTAGGGAGCTAGCGTTGTTCGGAATCACTGGGCGTAAAGGGAGTGTAGGCGGATAGATAAGTTAGGAGTGAAATGTACAGGCTTAACCTGTGACCTGCTTCTAATACTGTCAGTCTGGAGTATGGGAGAGGAAGATGGAATTCCAGGTGTAGTGGTAAAATACGTAGATATCTGGAAGAACACCAGTTGCGAAGGCGGTCTTCTGGCCCAATACTGACGCTGAGGCTCGAAAGCTAGGGGAGCAAACAGG |
-| 00110df9ef266a6900a52bc9ab3b9692 | CACCAGCGCCACAAGTGGTGACCACAATTATTGGGCCTAAAGCGTCCGTAGCCGGTCTAATAAATCTTTTGTGAAATCGTTGTGCTTAACTCAACGACGTGCAGAAGAGACTGTTAGACTTGGAACCGGGAGGAGTCAGAGGTATTCCGTGGGGAGCGGTAAAATGTTATAATCCTCGGAGGACCACCTGTGGCGAAGGCGTCTGACTATAACGGTTTCGACGGTGAGGGACGAAAGCTAGGGGAGCAATCCGG |
+| 9f2e9dfaae401c1daf2a4c476ee847c0 | TATGTAGGGTGCAAGCGTTGTTCGGAATTACTAGGTGTAAAGCGCCTGTAGGTTTTTTGATAAGTTTCGTGTGAAATCTTCCCGCTTAACGGGAAAACTGCACGAAATACTGTCGGAATTGAGTGCGAGAGAGGAAACTGGAATTCCCGGTGTAGCAGTGAAATGCGTAGATATCGGGAGGAACACCAATGGCGAAGGCAGGTTTCTGGCTCGTTACTGACACTGAGAGACGAAAGCGTGGGGAGCAAACAGG |
+| 9f2f865861674e7c831053d1ccb21e25 | TACAGAGGTTGCAAGCGTTATCCGGATTTATTGGGCGTAAAGCGTTTCGTAGGCGGATTTAAAAGTTACCCTTCAAAGACTACGGCTCAACCGGAGGAAGGGGGGTAATACTGTGAGTCTGGACATTTGGTGGGGCTTCTGGAACTGATGGTGTAGTAGTGAAATACGTTGATATCATCAGGAACTCCGAGGGCGAAGGCAGGAAGCTAACCAACTTGTGACGCTGAGGAACGACAGCTAGGGGAGCGAAAGGG |
+| 9f2fce61534f2d010a6aebeb59ada171 | TACGTAGGTGGCTAGCGTTATCCGGATTTACTGGGCGTAAAGCGGGCGCAGGCGGCTCTTCAAGTTGGATGTAAAATCTCCCGGCTTAACTGGGAGGCGACGTCTGATACTGTTGAGCTTGAGGGTAGCAAGGGGAGACGGAATTCCCGGTGTAGCGGTGAAATGCGTAGATATCGGGAGGAACACCAGTGGCGAAAGCGGTCTCCTGGGCTATTTCTGACGCTGAGGTCCAAAAGCGTGGGGAGCAAACAGG |
+| 9f3608e0efa20931c5f72477274befdf | TACGAGTGCCCCGAGCGTTATCCGGAATCATTGGGCGTAAAGGATGTGTAGGCGGTCTTGTTAGTCTTTTGTTAAAACTCCCGGCTTAACCGGGAAAACGCAGAGGAAACGGCAAGGCTTGAGGGTGCGAGGGGTCTATGGAACTCTCGGTGTAGCGGTGAAATGCGTTGATATCGAGGGGAACACCAAAAGCGAAGGCAATAGACTGGAGCACTCCTGACGCTGAAACATGAAAGCGTGGGTAGCGAATGGG |
+| 9f3699b82706dbbed7e60840475195a8 | TACGGAGGGTGCAAGCGTTATCCGGATTCACTGGGTTTAAAGGGTGCGTAGGCGGGTCTGTAAGTCAGTGGTGAAAGCCTTCAGCTTAACTGGAGAATTGCCATTGATACTGCTGACCTTGAATTCGGTTGAAGTGGGCGGAATGTGTGGTGTAGCGGTGAAATGCATAGATATCACACAGAACACCGATTGCGAAGGCAGCTTACCAAGCCGACACTGACACTGAGGCACGAAAGCGTGGGGATCAAACAGG |
 
 ---
 
 ## Table: ddt_brick0000458
 
-**Table Description:** DDT Brick table: Brick0000458
+**Table Description:** zhou_lab_sso_sediment_ASV_taxonomy.ndarray - Zhou Lab SSO Sediment ASV Taxonomy
 
 ### Schema
 
@@ -283,17 +283,17 @@ Total Tables: 45
 
 | sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
 |---|---|---|---|
-| 0001d123420b59585627edf5a1292ae8 | ME:0000351 | Taxonomic Domain | Bacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000252 | Phylum | Proteobacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000253 | Class | Alphaproteobacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000254 | Order | Rhizobiales |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000255 | Family | Beijerinckiaceae |
+| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000254 | Order | Desulfobulbales |
+| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000255 | Family | Desulfobulbaceae |
+| 92762aeec32ee2df1dc7aa1cd079b8a2 | ME:0000256 | Genus | Desulfobulbus |
+| 92774a391b34f2442444371af4bb1143 | ME:0000351 | Taxonomic Domain | Bacteria |
+| 92774a391b34f2442444371af4bb1143 | ME:0000252 | Phylum | Proteobacteria |
 
 ---
 
 ## Table: ddt_brick0000459
 
-**Table Description:** DDT Brick table: Brick0000459
+**Table Description:** zhou_lab_sso_sediment_ASV_count.ndarray - Zhou Lab SSO Sediment ASV Counts
 
 ### Schema
 
@@ -307,17 +307,17 @@ Total Tables: 45
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| 8c7237d4628046aae33addc398333dcf | SSO-L8-C10-00 | 0 |
-| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C3-00 | 0 |
-| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C5-00 | 0 |
-| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C7-00 | 0 |
-| 8c7237d4628046aae33addc398333dcf | SSO-L9B-C10-00 | 0 |
+| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C3-00 | 0 |
+| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C5-00 | 0 |
+| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C7-00 | 0 |
+| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C10-00 | 0 |
+| 0001d123420b59585627edf5a1292ae8 | SSO-U2-C3-00 | 0 |
 
 ---
 
 ## Table: ddt_brick0000460
 
-**Table Description:** DDT Brick table: Brick0000460
+**Table Description:** zhou_lab_sso_pump_test_ASV_16S.ndarray - Zhou Lab SSO Pump Test ASV 16S Sequences
 
 ### Schema
 
@@ -340,7 +340,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000461
 
-**Table Description:** DDT Brick table: Brick0000461
+**Table Description:** zhou_lab_sso_pump_test_ASV_taxonomy.ndarray - Zhou Lab SSO Pump Test ASV Taxonomy
 
 ### Schema
 
@@ -366,7 +366,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000462
 
-**Table Description:** DDT Brick table: Brick0000462
+**Table Description:** zhou_lab_sso_pump_test_ASV_count.ndarray - Zhou Lab SSO Pump Test ASV Counts
 
 ### Schema
 
@@ -380,17 +380,17 @@ Total Tables: 45
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| e9d6145e68007c14026e66332ae3ee96 | L8-SZ1-20240314-F01 | 214 |
-| e9d6145e68007c14026e66332ae3ee96 | L8-SZ1-20240314-F8 | 8 |
-| e9d6145e68007c14026e66332ae3ee96 | L8-SZ2-20240320-F01 | 60 |
-| e9d6145e68007c14026e66332ae3ee96 | L8-SZ2-20240320-F8 | 1009 |
-| e9d6145e68007c14026e66332ae3ee96 | M5-SZ1-20240318-F01 | 303 |
+| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ1-20240313-F8 | 0 |
+| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ2-20240319-F01 | 0 |
+| 1e663d96e33d1bc78ad5cc5879a85589 | U2-SZ2-20240319-F8 | 0 |
+| e6bb966a6a98df0553ea4f5c449c98cb | L8-SZ1-20240314-F01 | 0 |
+| e6bb966a6a98df0553ea4f5c449c98cb | L8-SZ1-20240314-F8 | 8 |
 
 ---
 
 ## Table: ddt_brick0000477
 
-**Table Description:** DDT Brick table: Brick0000477
+**Table Description:** zhou_lab_sso_pilot_time_series_ASV_16S.ndarray - Zhou Lab SSO Pilot Time Series ASV 16S Sequences
 
 ### Schema
 
@@ -413,7 +413,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000478
 
-**Table Description:** DDT Brick table: Brick0000478
+**Table Description:** zhou_lab_sso_pilot_time_series_ASV_taxonomy.ndarray - Zhou Lab SSO Pilot Time Series ASV Taxonomy
 
 ### Schema
 
@@ -439,7 +439,7 @@ Total Tables: 45
 
 ## Table: ddt_brick0000479
 
-**Table Description:** DDT Brick table: Brick0000479
+**Table Description:** zhou_lab_sso_pilot_time_series_ASV_count.ndarray - Zhou Lab SSO Pilot Time Series ASV Counts
 
 ### Schema
 
@@ -453,11 +453,11 @@ Total Tables: 45
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ1-20240918-F01 | 0 |
-| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ2-20240918-F8 | 0 |
-| 97d95ee93b0d992e190508d16a66eb65 | M6-SZ2-20240918-F01 | 0 |
-| 97d95ee93b0d992e190508d16a66eb65 | L7-SZ1-20240918-F8 | 0 |
-| 97d95ee93b0d992e190508d16a66eb65 | L7-SZ1-20240918-F01 | 0 |
+| e6c945696a1514beeffd9bab207aba83 | M4-SZ2-20240909-F8 | 0 |
+| e6c945696a1514beeffd9bab207aba83 | M4-SZ2-20240909-F01 | 0 |
+| e6c945696a1514beeffd9bab207aba83 | M6-SZ1-20240909-F8 | 0 |
+| e6c945696a1514beeffd9bab207aba83 | M6-SZ1-20240909-F01 | 0 |
+| e6c945696a1514beeffd9bab207aba83 | M6-SZ2-20240909-F8 | 0 |
 
 ---
 
@@ -490,71 +490,9 @@ Total Tables: 45
 
 ---
 
-## Table: sys_process_input
-
-**Table Description:** Process Inputs
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
-| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
-
-### Sample Data (5 rows)
-
-| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
-|---|---|---|---|---|---|---|---|---|---|
-| Process0009812 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001421 | NULL |
-| Process0009813 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001422 | NULL |
-| Process0009814 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001423 | NULL |
-| Process0009815 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001424 | NULL |
-| Process0009816 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Strain0001425 | NULL |
-
----
-
-## Table: sys_process_output
-
-**Table Description:** Process Outputs
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
-| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
-| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
-
-### Sample Data (5 rows)
-
-| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Process0201007 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015944 | NULL | NULL | NULL |
-| Process0201008 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015945 | NULL | NULL | NULL |
-| Process0201009 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015946 | NULL | NULL | NULL |
-| Process0201010 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015947 | NULL | NULL | NULL |
-| Process0201011 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0015948 | NULL | NULL | NULL |
-
----
-
 ## Table: ddt_brick0000476
+
+**Table Description:** zhou_lab_100ws_spring19_corepilot_27ws_cpt_unnormalized_ASV_count.ndarray - Zhou Lab 100WS Spring19 CorePilot 27WS CPT unnormalized ASV Counts
 
 ### Schema
 
@@ -569,17 +507,159 @@ Total Tables: 45
 
 | sdt_asv_name | sdt_community_name | replicate_series_count_unit | count_count_unit |
 |---|---|---|---|
-| 1b885550c8fe9c5305ef38efd64f8762 | GW621-21-12-17-12 0.2 micron filter | 1 | 0 |
-| 1b885550c8fe9c5305ef38efd64f8762 | GW621-21-12-17-12 10 micron filter | 1 | 0 |
-| 1b885550c8fe9c5305ef38efd64f8762 | GW631-98-12-11-12 0.2 micron filter | 1 | 0 |
-| 1b885550c8fe9c5305ef38efd64f8762 | GW631-98-12-11-12 10 micron filter | 1 | 0 |
-| 1b885550c8fe9c5305ef38efd64f8762 | GW636-32-1-28-13 0.2 micron filter | 1 | 0 |
+| 9d30df1c09b60bb791f16b9f769c6335 | GW800-12-12-12 0.2 micron filter | 1 | 0 |
+| 9d30df1c09b60bb791f16b9f769c6335 | GW800-12-12-12 10 micron filter | 1 | 0 |
+| 9d30df1c09b60bb791f16b9f769c6335 | GW921-86-1-28-13 0.2 micron filter | 1 | 0 |
+| 9d30df1c09b60bb791f16b9f769c6335 | GW921-86-1-28-13 10 micron filter | 1 | 0 |
+| 9d30df1c09b60bb791f16b9f769c6335 | GW925-68-1-28-13 0.2 micron filter | 1 | 0 |
+
+---
+
+## Table: ddt_brick0000510
+
+**Table Description:** isolation_conditions_251112.hndarray - Isolation conditions for each ENIGMA isolate strain, as of 2025-11-12
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| description_comment_original_condition_description | string | Yes | {"description": "description, comment=Original Condition Description"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| date_comment_sampling_date | string | Yes | {"description": "date, comment=Sampling Date"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
+|---|---|---|---|---|---|---|---|---|---|
+| FW305-130 | anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-4D12 | anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | R2A | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+
+---
+
+## Table: ddt_brick0000517
+
+**Table Description:** isolate_environment_map_260108.hndarray - ENIGMA isolate strains mapped to Shotgun Metagenomic Samples as of 2026-01-08
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, statistic=average, comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
+| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, statistic=average, comment=average percent identity of aligned reads", "unit": "percent"} |
+| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
+|---|---|---|---|---|---|
+| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
+| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
+| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
+| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.3 | 3.730473 | 99.3451 | 89.5223 |
+| 20240529-EFP01-F01 | DP16D-E2 | DP16D-E2.1 | 1.834835 | 96.9795 | 58.741699999999994 |
+
+---
+
+## Table: ddt_brick0000520
+
+**Table Description:** isolate_16S_sanger_260121.ndarray - Isolate 16S Sequences from Sanger sequencing, as of 2026-01-21
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
+| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
+| sequence | string | Yes | {"description": "sequence"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
+|---|---|---|---|---|---|
+| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
+| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
+| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
+| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
+| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
+
+---
+
+## Table: ddt_brick0000521
+
+**Table Description:** isolate_sequence_and_quality_arkin_260129.hndarray - Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-01-29
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
+| link_context_genome | string | Yes | {"description": "link, context=genome"} |
+| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
+| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
+| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
+| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
+| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
+| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
+| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | link_context_read_set | link_context_genome | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
+|---|---|---|---|---|---|---|---|---|---|
+| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
+| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.1/ | 125 | 6645 | 100.0 | 1.17 | 125507 | 27.971576692981095 | 0.001443 |
+| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
+| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
+| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
+
+---
+
+## Table: ddt_brick0000522
+
+**Table Description:** isolate_classification_gtdb_260129.ndarray - GTDB-Tk classification of each ENIGMA isolate strain with a genome, as of 2026-01-29
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
+| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
+| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
+| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
+| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
 
 ---
 
 ## Table: sys_process
 
-**Table Description:** CDM table for CORAL type `Process`
+**Table Description:** Records provenance of all data, linking the process type, responsible person or lab, protocol, dates, and the input and output objects
 
 ### Schema
 
@@ -612,7 +692,7 @@ Total Tables: 45
 
 ## Table: sdt_enigma
 
-**Table Description:** CDM table for CORAL type `ENIGMA`
+**Table Description:** Root of all datasets in this project
 
 ### Schema
 
@@ -630,7 +710,7 @@ Total Tables: 45
 
 ## Table: sdt_location
 
-**Table Description:** CDM table for CORAL type `Location`
+**Table Description:** Two dimensional location on Earth of a field site where samples are taken or measurements made
 
 ### Schema
 
@@ -654,17 +734,17 @@ Total Tables: 45
 
 | sdt_location_id | sdt_location_name | latitude_degree | longitude_degree | continent_sys_oterm_id | continent_sys_oterm_name | country_sys_oterm_id | country_sys_oterm_name | region | biome_sys_oterm_id | biome_sys_oterm_name | feature_sys_oterm_id | feature_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Location0000151 | GW-220 | 35.993381 | -84.236976 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 50 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000152 | GW-750 | 35.994376 | -84.235312 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 28 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000153 | GW-800 | 35.968949 | -84.28178 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 70 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000154 | GW-737 | 35.97079 | -84.280741 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 64 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
-| Location0000155 | GW-704 | 35.96353 | -84.290837 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 5 | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000001 | CPT1 | 35.9781191944 | -84.2742077222 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
+| Location0000002 | CPT2 | 35.9780786389 | -84.2742687778 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
+| Location0000003 | CPT3 | 35.9780356111 | -84.2743169722 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
+| Location0000004 | CPT4 | 35.9780438611 | -84.2741839722 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
+| Location0000005 | CPT5 | 35.9780081111 | -84.2742193889 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
 
 ---
 
 ## Table: sdt_sample
 
-**Table Description:** CDM table for CORAL type `Sample`
+**Table Description:** A sample of material collected from a field location on which further assays or experiments are performed
 
 ### Schema
 
@@ -698,7 +778,7 @@ Total Tables: 45
 
 ## Table: sdt_taxon
 
-**Table Description:** CDM table for CORAL type `Taxon`
+**Table Description:** Taxonomic records, each with a unique identifier, the taxon's name, and optionally the corresponding NCBI taxonomy ID
 
 ### Schema
 
@@ -712,17 +792,17 @@ Total Tables: 45
 
 | sdt_taxon_id | sdt_taxon_name | ncbi_taxid |
 |---|---|---|
-| Taxon0000842 | Cytophagales | NCBITaxon:768507 |
-| Taxon0000843 | Cytophaga | NCBITaxon:978 |
-| Taxon0000844 | Cytophagia | NCBITaxon:768503 |
-| Taxon0000845 | Dactylosporangium | NCBITaxon:35753 |
-| Taxon0000846 | Dadabacteriales | NULL |
+| Taxon0000001 | 0319-6G20 | NULL |
+| Taxon0000002 | 053A03-B-DI-P58 | NULL |
+| Taxon0000003 | 11-24 | NULL |
+| Taxon0000004 | 1921-3 | NULL |
+| Taxon0000005 | 27F-1492R | NULL |
 
 ---
 
 ## Table: sdt_asv
 
-**Table Description:** CDM table for CORAL type `OTU`
+**Table Description:** ASV (Amplicon Sequence Variant) or OTU (Operational Taxonomic Unit) for older datasets
 
 ### Schema
 
@@ -735,17 +815,17 @@ Total Tables: 45
 
 | sdt_asv_id | sdt_asv_name |
 |---|---|
-| ASV0106523 | 2e56bda85383e9058b038f24e7266e0f |
-| ASV0106524 | 2e57aec929df910d3c2b55b86bf9ef1d |
-| ASV0106525 | 2e59dc23020840844b142289a792c14c |
-| ASV0106526 | 2e59e241bdb04cf8408be0d5c48eee12 |
-| ASV0106527 | 2e5b1764668375892d88df73711f8033 |
+| ASV0000001 | 1000161 |
+| ASV0000002 | 100054 |
+| ASV0000003 | 1000654 |
+| ASV0000004 | 1000876 |
+| ASV0000005 | 1001013 |
 
 ---
 
 ## Table: sdt_condition
 
-**Table Description:** CDM table for CORAL type `Condition`
+**Table Description:** A field or lab condition imposed by researchers, e.g., used for isolation or growth
 
 ### Schema
 
@@ -758,17 +838,17 @@ Total Tables: 45
 
 | sdt_condition_id | sdt_condition_name |
 |---|---|
-| Condition0000785 | Anaerobic = 0; media addition = fulvic acid; media name = Basal Media; media name = Bulk groundwater BOTTOM; media name = TSA; temperature = 30.0 (degree Celsius) |
-| Condition0000786 | Anaerobic = 0; media name = Casamino Acids; media name = R2A, concentration = 10.0 (fold dilution); temperature = 30.0 (degree Celsius) |
-| Condition0000787 | Anaerobic = 1; media addition = sodium pyruvate, concentration = 73.3 (mM); media addition = yeast extract, concentration = 0.1 (mass volume percentage); media name = MO Basal Medium; temperature = 18.0 (degree Celsius) |
-| Condition0000788 | Eugon Broth |
-| Condition0000789 | Anaerobic = 1; media addition = fumarate; media addition = lactate; media addition = sulfate, concentration = 20.0 (mM); media name = Metal Mixture; pH = 5.5 (pH) |
+| Condition0000001 | set12IT085 |
+| Condition0000002 | set12IT086 |
+| Condition0000003 | set12IT087 |
+| Condition0000004 | set12IT088 |
+| Condition0000005 | set1IT001 |
 
 ---
 
 ## Table: sdt_strain
 
-**Table Description:** CDM table for CORAL type `Strain`
+**Table Description:** Microbial strain, either a possibly genetically modified lab-grown strain or one that is found in the environment
 
 ### Schema
 
@@ -785,17 +865,17 @@ Total Tables: 45
 
 | sdt_strain_id | sdt_strain_name | sdt_strain_description | sdt_genome_name | derived_from_sdt_strain_name | sdt_gene_names_changed |
 |---|---|---|---|---|---|
-| Strain0000789 | EB106-05-01-XG146 | NULL | NULL | NULL | [] |
-| Strain0000790 | EB106-05-01-XG147 | NULL | NULL | NULL | [] |
-| Strain0000791 | EB106-07-01-XG149 | NULL | NULL | NULL | [] |
-| Strain0000792 | EB106-07-01-XG150 | NULL | NULL | NULL | [] |
-| Strain0000793 | EB106-08-01-XG153 | NULL | NULL | NULL | [] |
+| Strain0000001 | FW305-130 | NULL | NULL | NULL | [] |
+| Strain0000002 | FW305-BF6 | NULL | NULL | NULL | [] |
+| Strain0000003 | FW104-L1 | NULL | NULL | NULL | [] |
+| Strain0000004 | FW507-19G05 | NULL | NULL | NULL | [] |
+| Strain0000005 | FW507-4D12 | NULL | NULL | NULL | [] |
 
 ---
 
 ## Table: sdt_community
 
-**Table Description:** CDM table for CORAL type `Community`
+**Table Description:** A Microbial community, either defined or containing one or more unknown microbes
 
 ### Schema
 
@@ -825,7 +905,7 @@ Total Tables: 45
 
 ## Table: sdt_reads
 
-**Table Description:** CDM table for CORAL type `Reads`
+**Table Description:** Reads from genome or metagenome sequencing, including count, type, technology, and related metadata
 
 ### Schema
 
@@ -844,17 +924,17 @@ Total Tables: 45
 
 | sdt_reads_id | sdt_reads_name | read_count_count_unit | read_type_sys_oterm_id | read_type_sys_oterm_name | sequencing_technology_sys_oterm_id | sequencing_technology_sys_oterm_name | link |
 |---|---|---|---|---|---|---|---|
-| Reads0017831 | GW823-FHT01F02/reads/illumina/GW823-FHT01F02_2020-03-23_raw_unpaired_R2.fastq.gz | 1202663 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW823-FHT01F02/reads/illumina/GW823-FHT01F02_2020-03-23_raw_unpaired_R2.fastq.gz |
-| Reads0017832 | GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R1.fastq.gz | 31423 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R1.fastq.gz |
-| Reads0017833 | GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R2.fastq.gz | 31423 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT01H02/reads/illumina/GW821-FHT01H02_2020-03-23_raw_unpaired_R2.fastq.gz |
-| Reads0017834 | GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R1.fastq.gz | 395152 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R1.fastq.gz |
-| Reads0017835 | GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R2.fastq.gz | 395152 | ME:0000113 | Paired End Read | ME:0000117 | Illumina | enigma-data-repository/genome_processing/GW821-FHT05G01/reads/illumina/GW821-FHT05G01_2020-03-23_raw_unpaired_R2.fastq.gz |
+| Reads0000001 | FW511_7_26_13_02.reads | 76138 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/26835/FW511_7_26_13_02.reads |
+| Reads0000002 | DP16D_67_11_27_12_02.reads | 63207 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/26835/DP16D_67_11_27_12_02.reads |
+| Reads0000003 | GW056_87_1_8_13_10.reads | 94927 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/26835/GW056_87_1_8_13_10.reads |
+| Reads0000004 | DP16D_67_11_27_12_10.reads | 58667 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/26835/DP16D_67_11_27_12_10.reads |
+| Reads0000005 | GW057_10_1_8_13_02.reads | 108098 | ME:0000114 | Single End Read | ME:0000117 | Illumina | https://narrative.kbase.us/#dataview/26835/GW057_10_1_8_13_02.reads |
 
 ---
 
 ## Table: sdt_assembly
 
-**Table Description:** CDM table for CORAL type `Assembly`
+**Table Description:** A genome assembly, including only the contigs and not annotated genes
 
 ### Schema
 
@@ -870,17 +950,17 @@ Total Tables: 45
 
 | sdt_assembly_id | sdt_assembly_name | sdt_strain_name | n_contigs_count_unit | link |
 |---|---|---|---|---|
-| Assembly0002571 | 154265/GW821-FHT12B10.contigs | GW821-FHT12B10 | 6 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12B10.contigs |
-| Assembly0002572 | 154265/FW101-FHT12H10.contigs | FW101-FHT12H10 | 17 | https://narrative.kbase.us/#dataview/154265/FW101-FHT12H10.contigs |
-| Assembly0002573 | 154265/GW821-FHT09A05.contigs | GW821-FHT09A05 | 72 | https://narrative.kbase.us/#dataview/154265/GW821-FHT09A05.contigs |
-| Assembly0002574 | 154265/GW821-FHT10C11.contigs | GW821-FHT10C11 | 22 | https://narrative.kbase.us/#dataview/154265/GW821-FHT10C11.contigs |
-| Assembly0002575 | 154265/GW821-FHT12F11.contigs | GW821-FHT12F11 | 16 | https://narrative.kbase.us/#dataview/154265/GW821-FHT12F11.contigs |
+| Assembly0000001 | FW305-37-reassembled.contigs | FW305-37 | 149 | https://narrative.kbase.us/#dataview/39899/FW305-37-reassembled.contigs |
+| Assembly0000002 | FW507-29LB-reassembled.contigs | FW507-29LB | 220 | https://narrative.kbase.us/#dataview/39899/FW507-29LB-reassembled.contigs |
+| Assembly0000003 | MPR-WIN1-reassembled.contigs | MPR-WIN1 | 2373 | https://narrative.kbase.us/#dataview/39899/MPR-WIN1-reassembled.contigs |
+| Assembly0000004 | MPR-TSA4-reassembled.contigs | MPR-TSA4 | 101 | https://narrative.kbase.us/#dataview/39899/MPR-TSA4-reassembled.contigs |
+| Assembly0000005 | MT42-reassembled.contigs | MT42 | 856 | https://narrative.kbase.us/#dataview/39899/MT42-reassembled.contigs |
 
 ---
 
 ## Table: sdt_genome
 
-**Table Description:** CDM table for CORAL type `Genome`
+**Table Description:** Annotated genome, including summary metadata
 
 ### Schema
 
@@ -907,7 +987,7 @@ Total Tables: 45
 
 ## Table: sdt_gene
 
-**Table Description:** CDM table for CORAL type `Gene`
+**Table Description:** Genes with genomic coordinates, identifiers, and functional annotations for each genome
 
 ### Schema
 
@@ -937,7 +1017,7 @@ Total Tables: 45
 
 ## Table: sdt_bin
 
-**Table Description:** CDM table for CORAL type `Bin`
+**Table Description:** Binned contigs from a metagenomic assembly
 
 ### Schema
 
@@ -962,7 +1042,7 @@ Total Tables: 45
 
 ## Table: sdt_protocol
 
-**Table Description:** CDM table for CORAL type `Protocol`
+**Table Description:** Protocol definitions used to describe experimental procedures and support provenance tracking
 
 ### Schema
 
@@ -977,17 +1057,17 @@ Total Tables: 45
 
 | sdt_protocol_id | sdt_protocol_name | sdt_protocol_description | link |
 |---|---|---|---|
-| Protocol0000026 | ning-2020-matchseq | The forward and reverse sequences are matched according to coordinate of each sequence. Matched sequences are ranked in the same order in [Sample ID]_m_R1.fastq and [Sample ID]_m_R2.fastq, while unmatched sequences were removed. | NULL |
-| Protocol0000027 | ning-lui-2021-qiime2 | QIIME2 (version 2021.2) was used to generate ASV table. After barcode and primer sequences were trimmed with zero error, sequencing data were processed by DADA2 to identify exact amplicon sequence variants (ASV). The method ‘consensus’ was used to remove chimeras; samples are denoised independently; forward and reverse truncate positions are 163 and 130, respectively, after quality trim with a quality score 2; maximal expected error score is 2.0 when combining forward and reverse sequences. The ASVs were identified taxonomically based on the Silva 138 dataset using QIIME2 pre-fitted sklearn-based taxonomy classifier with the default confidence (0.7). After classification, ASVs identified as Chloroplast, Mitochondria, Eukaryota, or unclassified kingdom were removed. The prokaryotic ASV sequences were aligned using MAFFT in QIIME2, without mask. Then, aligned sequences were used to build phylogenetic tree by FastTree (4, 5).  November 16, 2021:  Lauren Lui dereplicated the ASV table from Adam Arkin and combined it with taxonomy. The taxonomy was called by loading the sequences into QIIME2 and using the Naive Bayes classifier trained on the SILVA138 database.  Lauren removed any ASVs with “Mitochondria” or “Chloroplast” in the taxonomy before calculating relative abundance.   | NULL |
-| Protocol0000028 | chandonia-2020-cutadapt | "kb_cutadapt 1.0.8 (cutadapt 1.18) with options: {<br>                    "input_reads": name,<br>                    "output_object_name": cut_name,<br>                    "5P": None,<br>                    "3P": {<br>                        "adapter_sequence_3P": "CTGTCTCTTATACACATCT",<br>                        "anchored_3P": 0<br>                    },<br>                    "error_tolerance": 0.1,<br>                    "min_overlap_length": 3,<br>                    "min_read_length": 50,<br>                    "discard_untrimmed": "0"<br>                }," | NULL |
-| Protocol0000029 | lui-nielsen-2020-flye-canu | We reassembled these genomes using Flye v1.7 and CANU v1.9 for assembly | NULL |
-| Protocol0000030 | lui-2020-spades | "Valentine sequenced some ENIGMA genomes that were problematic in the previous batch of sequencing.<br>These nextera sequencing libraries were made by Valentine.<br><br>A single index was used.<br><br>Sequencing was done on novaseq machine at UC Berkeley (SP 250PE)<br><br>2 x 250bp paired end reads<br>Lauren assembled them outside KBase using SPAdes in late 2020." | NULL |
+| Protocol0000001 | spencer-2017-cutadapt | The program Cutadapt v1.12 was used to remove adapter sequences with parameters -a CTGTCTCTTAT -A CTGTCTCTTAT (Martin, 2011).  | NULL |
+| Protocol0000002 | spencer-2017-trimmomatic | We performed sliding window quality filtering with Trimmomatic v0.36 using parameters (-phred33 LEADING:3 TRAILING:3 SLIDINGWINDOW:5:20 MINLEN:50) (Bolger et al., 2014) | NULL |
+| Protocol0000003 | spencer-2017-spades | All genomes were assembled de novo using SPAdes v3.9.0 with the following options (-k 21,33,55,77 --careful) (Bankevich et al., 2012) | NULL |
+| Protocol0000004 | chandonia-2019-cutadapt | "kb_cutadapt 1.0.7 (cutadapt 1.18) with options: {<br>                    "input_reads": name,<br>                    "output_object_name": cut_name,<br>                    "5P": None,<br>                    "3P": {<br>                        "adapter_sequence_3P": "CTGTCTCTTAT",<br>                        "anchored_3P": 0<br>                    },<br>                    "error_tolerance": 0.1,<br>                    "min_overlap_length": 3,<br>                    "min_read_length": 50,<br>                    "discard_untrimmed": "0"<br>                }," | https://narrative.kbase.us/narrative/ws.38718.obj.1 |
+| Protocol0000005 | chandonia-2019-trimmomatic | "kb_trimmomatic 1.2.13 (trimmomatic 0.36) with options: {<br>                    "input_reads_ref": name,<br>                    "output_reads_name": trim_name,<br>                    "translate_to_phred33": "1",<br>                    "adapter_clip": None,<br>                    "sliding_window": {<br>                        "sliding_window_size": 5,<br>                        "sliding_window_min_quality": 20<br>                    },<br>                    "crop_length": 0,<br>                    "head_crop_length": 0,<br>                    "leading_min_quality": 3,<br>                    "trailing_min_quality": 3,<br>                    "min_length": 50<br>                }," | https://narrative.kbase.us/narrative/ws.38718.obj.1 |
 
 ---
 
 ## Table: sdt_image
 
-**Table Description:** CDM table for CORAL type `Image`
+**Table Description:** File containing images or multidimensional image data
 
 ### Schema
 
@@ -1005,17 +1085,17 @@ Total Tables: 45
 
 | sdt_image_id | sdt_image_name | sdt_image_description | mime_type | size_byte | dimensions | link |
 |---|---|---|---|---|---|---|
-| Image0000164 | GW821-FHT03E03_Sphingobacterium.tif | GW821-FHT03E03_Sphingobacterium isolate image | image/tiff | 1863672 | 682,683 | /images/GW821-FHT03E03_Sphingobacterium.tif |
-| Image0000165 | GW821-FHT03G07_Serratia.tif | GW821-FHT03G07_Serratia isolate image | image/tiff | 2693336 | 820,821 | /images/GW821-FHT03G07_Serratia.tif |
-| Image0000166 | GW821-FHT04A06_Chryseobacterium.tif | GW821-FHT04A06_Chryseobacterium isolate image | image/tiff | 3062980 | 875,875 | /images/GW821-FHT04A06_Chryseobacterium.tif |
-| Image0000167 | GW821-FHT04A12_Delftia.tif | GW821-FHT04A12_Delftia isolate image | image/tiff | 2693336 | 820,821 | /images/GW821-FHT04A12_Delftia.tif |
-| Image0000168 | GW821-FHT04C08_Delftia_acidovorans.tif | GW821-FHT04C08_Delftia_acidovorans isolate image | image/tiff | 3226096 | 897,899 | /images/GW821-FHT04C08_Delftia_acidovorans.tif |
+| Image0000001 | EB106-02-01-aodc.jpg | EB106-02-01 AODC image | image/jpeg | 609611 | 2560,1920 | /images/EB106-02-01-aodc.jpg |
+| Image0000002 | EB106-02-02-aodc.jpg | EB106-02-02 AODC image | image/jpeg | 650292 | 2560,1920 | /images/EB106-02-02-aodc.jpg |
+| Image0000003 | EB106-02-03-aodc.jpg | EB106-02-03 AODC image | image/jpeg | 683078 | 2560,1920 | /images/EB106-02-03-aodc.jpg |
+| Image0000004 | EB106-03-01-aodc.jpg | EB106-03-01 AODC image | image/jpeg | 610700 | 2560,1920 | /images/EB106-03-01-aodc.jpg |
+| Image0000005 | EB106-03-02-aodc.jpg | EB106-03-02 AODC image | image/jpeg | 687540 | 2560,1920 | /images/EB106-03-02-aodc.jpg |
 
 ---
 
 ## Table: sdt_tnseq_library
 
-**Table Description:** CDM table for CORAL type `TnSeq_Library`
+**Table Description:** Transposon Sequencing (TnSeq) library, including some quality metrics, metadata, and the genome used
 
 ### Schema
 
@@ -1042,7 +1122,7 @@ Total Tables: 45
 
 ## Table: sdt_dubseq_library
 
-**Table Description:** CDM table for CORAL type `DubSeq_Library`
+**Table Description:** Dual Barcoded Shotgun Expression Library Sequencing (DubSeq) library, including some quality metrics, metadata, and the genome used
 
 ### Schema
 
@@ -1057,9 +1137,9 @@ Total Tables: 45
 
 | sdt_dubseq_library_id | sdt_dubseq_library_name | sdt_genome_name | n_fragments_count_unit |
 |---|---|---|---|
+| DubSeq_Library0000001 | Escherichia-coli-BW25113.dubseq_library | Escherichia-coli-BW25113.genome | NULL |
 | DubSeq_Library0000002 | Pseudomonas-putida-KT2440.dubseq_library | Pseudomonas-putida-KT2440.genome | NULL |
 | DubSeq_Library0000003 | Bacteroides-thetaiotaomicron-VPI-5482.dubseq_library | Bacteroides-thetaiotaomicron-VPI-5482.genome | NULL |
-| DubSeq_Library0000001 | Escherichia-coli-BW25113.dubseq_library | Escherichia-coli-BW25113.genome | NULL |
 
 ---
 
@@ -1090,143 +1170,125 @@ Total Tables: 45
 
 | type_name | field_name | cdm_column_name | scalar_type | is_required | is_pk | is_upk | fk | constraint | comment | units_sys_oterm_id | units_sys_oterm_name | type_sys_oterm_id | type_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Sample | depth | depth_meter | float | False | False | False | NULL | NULL | For below-ground samples, the average distance below ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000219 | depth |
-| Sample | elevation | elevation_meter | float | False | False | False | NULL | NULL | For above-ground samples, the average distance above ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000220 | elevation |
-| Sample | date | date | text | True | False | False | NULL | \d\d\d\d(-\d\d(-\d\d)?)? | YYYY[-MM[-DD]] | NULL | NULL | ME:0000009 | date |
-| Sample | time | time | text | False | False | False | NULL | \d(\d)?(:\d\d(:\d\d)?)?\s*([apAP][mM])? | HH[:MM[:SS]] [AM\|PM] | NULL | NULL | ME:0000010 | time |
-| Sample | timezone | timezone | text | False | False | False | NULL | NULL | ISO8601 compliant format, ie. UTC-7 | NULL | NULL | ME:0000201 | time zone |
+| Gene | function | function | text | False | False | False | NULL | NULL | Annotated biological function of the gene | NULL | NULL | ME:0000250 | gene annotation |
+| Bin | id | sdt_bin_id | text | True | True | False | NULL | NULL | Unique identifier for the bin (Primary key) | NULL | NULL | ME:0000331 | internal Bin ID |
+| Bin | name | sdt_bin_name | text | True | False | True | NULL | NULL | Human-readable, unique name for the bin | NULL | NULL | ME:0000330 | bin ID |
+| Bin | assembly | sdt_assembly_name | text | True | False | False | Assembly | NULL | Identifier of the metagenomic assembly that the bin belongs to (foreign key to Assembly.name) | NULL | NULL | ME:0000280 | assembly ID |
+| Bin | contigs | contigs | [text] | True | False | False | NULL | NULL | Array of contig identifiers included in the bin | NULL | NULL | ME:0000240 | contig |
 
 ---
 
-## Table: ddt_brick0000510
+## Table: sys_process_input
+
+**Table Description:** Process Inputs
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| description_comment_original_condition_description | string | Yes | {"description": "description, comment=Original Condition Description"} |
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| date_comment_sampling_date | string | Yes | {"description": "date, comment=Sampling Date"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab"} |
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
+| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
 ### Sample Data (5 rows)
 
-| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
+| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
 |---|---|---|---|---|---|---|---|---|---|
-| FW305-130 | anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-4D12 | anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | R2A | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| Process0040762 | NULL | NULL | NULL | NULL | Location0000140 | NULL | NULL | NULL | NULL |
+| Process0040763 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
+| Process0040764 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
+| Process0040765 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
+| Process0040766 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
 
 ---
 
-## Table: ddt_brick0000517
+## Table: sys_process_output
+
+**Table Description:** Process Outputs
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, statistic=average, comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
-| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, statistic=average, comment=average percent identity of aligned reads", "unit": "percent"} |
-| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
+| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
+| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
+| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Process0196582 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004931 | NULL | NULL | NULL |
+| Process0196583 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0009159 | NULL | NULL | NULL |
+| Process0196584 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007747 | NULL | NULL | NULL |
+| Process0196585 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004932 | NULL | NULL | NULL |
+| Process0196586 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007749 | NULL | NULL | NULL |
+
+---
+
+## Table: ddt_brick0000525
+
+**Table Description:** isolate_genbank_links_260211.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-02-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| availability_sequence_type_genome_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=genome sequence, database=GenBank"} |
+| availability_sequence_type_16s_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=16S sequence, database=GenBank"} |
+| link_sequence_type_genome_sequence_database_genbank | string | Yes | {"description": "link, sequence type=genome sequence, database=GenBank"} |
+| strain_name_database_genbank | string | Yes | {"description": "strain name, database=GenBank"} |
+| link_sequence_type_16s_sequence_database_genbank | string | Yes | {"description": "link, sequence type=16S sequence, database=GenBank"} |
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | availability_sequence_type_genome_sequence_database_genbank | availability_sequence_type_16s_sequence_database_genbank | link_sequence_type_genome_sequence_database_genbank | strain_name_database_genbank | link_sequence_type_16s_sequence_database_genbank |
 |---|---|---|---|---|---|
-| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
-| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.3 | 3.730473 | 99.3451 | 89.5223 |
-| 20240529-EFP01-F01 | DP16D-E2 | DP16D-E2.1 | 1.834835 | 96.9795 | 58.741699999999994 |
+| GW101-3H11 | True | False | GCF_001633105.1 | GW101-3H11 | NULL |
+| FHTAMBA | True | False | GCF_038958875.1 | FHTAMBA | NULL |
+| FW104-12G02 | True | False | GCF_040276125.1 | FW104-12G02 | NULL |
+| FW104-7C03 | True | False | GCF_040276085.1 | FW104-7C03 | NULL |
+| GW247-6E4 | True | False | GCF_040276065.1 | GW247-6E4 | NULL |
 
 ---
 
-## Table: ddt_brick0000520
+## Table: ddt_brick0000526
+
+**Table Description:** isolate_publication_260211.ndarray - Publications of ENIGMA isolate strains, as of 2026-02-11
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
 | sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
-| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
-| sequence | string | Yes | {"description": "sequence"} |
+| pubmed_id_dimensionless_unit | int | Yes | {"description": "PubMed ID", "unit": "dimensionless unit"} |
 
 ### Sample Data (5 rows)
 
-| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
-|---|---|---|---|---|---|
-| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
-| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
-| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
-| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
-| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
-
----
-
-## Table: ddt_brick0000521
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
-| link_context_genome | string | Yes | {"description": "link, context=genome"} |
-| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
-| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
-| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
-| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
-| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
-| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
-| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | link_context_read_set | link_context_genome | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
-|---|---|---|---|---|---|---|---|---|---|
-| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
-| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.1/ | 125 | 6645 | 100.0 | 1.17 | 125507 | 27.971576692981095 | 0.001443 |
-| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
-| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
-| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/illumina/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
-
----
-
-## Table: ddt_brick0000522
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|---|
-| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
-| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
-| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
-| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
-| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
+| sdt_strain_name | pubmed_id_dimensionless_unit |
+|---|---|
+| FW305-130 | 34184913 |
+| FW507-14D01 | 34184913 |
+| FW510-T9 | 34184913 |
+| FW301-21C12A | 34184913 |
+| FW306-2-1A-C05A | 34184913 |
 
 ---
 

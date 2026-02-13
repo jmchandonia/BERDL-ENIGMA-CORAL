@@ -22,7 +22,7 @@
 | withdrawn_date | string | Yes |
 | superceded_by_ddt_ndarray_id | string | Yes |
 
-**Total Rows:** 21
+**Total Rows:** 23
 
 ## Data
 
@@ -49,3 +49,5 @@
 | Brick0000520 | isolate_16S_sanger_260121.ndarray | Isolate 16S Sequences from Sanger sequencing, as of 2026-01-21 | [] | DA:0000064 | Microbial Sequence | [3070, 2] | "[""ME:0000042"" |  ""ME:0000189""]" | "[""strain"" |  ""sequence type""]" | "[[""ME:0000044""] |  [""ME:0000189"" |  ""ME:0000186""]]" | "[[""strain ID""] |
 | Brick0000521 | isolate_sequence_and_quality_arkin_260129.hndarray | Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-01-29 | [] | DA:0000064 | Microbial Sequence | [1499] | "[""ME:0000042""]" | "[""strain""]" | "[[""ME:0000044""]]" | "[[""strain ID""]]" | "[""ME:0000203"" |  ""ME:0000203"" |  ""ME:0000126"" |  ""ME:0000126"" |
 | Brick0000522 | isolate_classification_gtdb_260129.ndarray | GTDB-Tk classification of each ENIGMA isolate strain with a genome, as of 2026-01-29 | "[[""method <ME:0000007>"" |  ""GTDB-Tk classifier""]]" | DA:0000067 | Taxonomic Assignment | [1328, 7] | "[""ME:0000042"" |  ""ME:0000090""]" | "[""strain"" |  ""taxonomic level""]" | "[[""ME:0000044"" |  ""ME:0000431""] |  [""ME:0000090""]]" |
+| Brick0000525 | isolate_genbank_links_260211.hndarray | GenBank links for ENIGMA isolate strains, as of 2026-02-11 | [] | DA:0000064 | Microbial Sequence | [390] | "[""ME:0000042""]" | "[""strain""]" | "[[""ME:0000044""]]" | "[[""strain ID""]]" | "[""ME:0000333"" |  ""ME:0000333"" |  ""ME:0000203"" |  ""ME:0000043"" |
+| Brick0000526 | isolate_publication_260211.ndarray | Publications of ENIGMA isolate strains, as of 2026-02-11 | [] | DA:0000017 | Microbial Assay | [635] | "[""ME:0000042""]" | "[""strain""]" | "[[""ME:0000044""]]" | "[[""strain ID""]]" | "[""ME:0000433""]" | "[""PubMed ID""]" | NULL | NULL |

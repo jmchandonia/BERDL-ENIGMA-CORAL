@@ -22,7 +22,7 @@
 | variable_oterm_name | string | Yes |
 | original_csv_string | string | Yes |
 
-**Total Rows:** 111
+**Total Rows:** 119
 
 ## Data
 
@@ -139,3 +139,11 @@
 | Brick0000522 | strain_relative_evolutionary_divergence_dimensionless_unit | dimension_variable | float | NULL | relative evolutionary divergence | UO:0000186 | dimensionless unit | 1 | ME:0000042 | strain | 2 | ME:0000431 | relative evolutionary divergence | dmeta,1,strain <ME:0000042>,relative evolutionary divergence <ME:0000431>,dimensionless unit <UO:0000186> |
 | Brick0000522 | taxonomic_level_sys_oterm_id | dimension_variable | oterm_ref | sys_oterm.sys_oterm_id | taxonomic level, ontology term CURIE | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,taxonomic level <ME:0000090>,taxonomic level <ME:0000090> |
 | Brick0000522 | taxonomic_level_sys_oterm_name | dimension_variable | oterm_ref | NULL | taxonomic level | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,taxonomic level <ME:0000090>,taxonomic level <ME:0000090> |
+| Brick0000525 | availability_sequence_type_genome_sequence_database_genbank | variable | boolean | NULL | availability, sequence type=genome sequence, database=GenBank | NULL | NULL | NULL | NULL | NULL | 1 | ME:0000333 | availability | 1,availability <ME:0000333>,sequence type <ME:0000189>,genome sequence <ME:0000195>,database <ME:0000435>,GenBank |
+| Brick0000525 | availability_sequence_type_16s_sequence_database_genbank | variable | boolean | NULL | availability, sequence type=16S sequence, database=GenBank | NULL | NULL | NULL | NULL | NULL | 2 | ME:0000333 | availability | 2,availability <ME:0000333>,sequence type <ME:0000189>,16S sequence <ME:0000190>,database <ME:0000435>,GenBank |
+| Brick0000525 | link_sequence_type_genome_sequence_database_genbank | variable | string | NULL | link, sequence type=genome sequence, database=GenBank | NULL | NULL | NULL | NULL | NULL | 3 | ME:0000203 | link | 3,link <ME:0000203>,sequence type <ME:0000189>,genome sequence <ME:0000195>,database <ME:0000435>,GenBank |
+| Brick0000525 | strain_name_database_genbank | variable | string | NULL | strain name, database=GenBank | NULL | NULL | NULL | NULL | NULL | 4 | ME:0000043 | strain name | 4,strain name <ME:0000043>,database <ME:0000435>,GenBank |
+| Brick0000525 | link_sequence_type_16s_sequence_database_genbank | variable | string | NULL | link, sequence type=16S sequence, database=GenBank | NULL | NULL | NULL | NULL | NULL | 5 | ME:0000203 | link | 5,link <ME:0000203>,sequence type <ME:0000189>,16S sequence <ME:0000190>,database <ME:0000435>,GenBank |
+| Brick0000525 | sdt_strain_name | dimension_variable | object_ref | sdt_strain.sdt_strain_name | strain ID | NULL | NULL | 1 | ME:0000042 | strain | 1 | ME:0000044 | strain ID | dmeta,2,strain <ME:0000042>,strain ID <ME:0000044> |
+| Brick0000526 | pubmed_id_dimensionless_unit | variable | int | NULL | PubMed ID | UO:0000186 | dimensionless unit | NULL | NULL | NULL | 1 | ME:0000433 | PubMed ID | values,PubMed ID <ME:0000433>,dimensionless unit <UO:0000186> |
+| Brick0000526 | sdt_strain_name | dimension_variable | object_ref | sdt_strain.sdt_strain_name | strain ID | NULL | NULL | 1 | ME:0000042 | strain | 1 | ME:0000044 | strain ID | dmeta,1,strain <ME:0000042>,strain ID <ME:0000044> |
