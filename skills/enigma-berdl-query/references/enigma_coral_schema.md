@@ -98,11 +98,11 @@ Total Tables: 47
 
 | sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_molecular_weight_dalton | molecule_algorithm_parameter | molecule_detection_limit_micromolar | physiochemical_state | replicate_series_count_unit | concentration_micromolar |
 |---|---|---|---|---|---|---|---|---|
-| GW773-35-2-4-13 | CHEBI:27214 | uranium atom | 238.0 | Collision mode 0 | NULL | Suspension | 3 | 0.0006932770000000001 |
-| GW773-35-2-4-13 | CHEBI:27214 | uranium atom | 238.0 | Collision mode 0 | NULL | Pellet | 1 | 0.000159664 |
-| GW773-35-2-4-13 | CHEBI:27214 | uranium atom | 238.0 | Collision mode 0 | NULL | Pellet | 2 | 0.00013025200000000003 |
-| GW773-35-2-4-13 | CHEBI:27214 | uranium atom | 238.0 | Collision mode 0 | NULL | Pellet | 3 | 0.000142857 |
-| GW198-41-2-11-13 | CHEBI:17632 | nitrate | NULL | NULL | 2.5 | Supernatant | 1 | 81.85473439968399 |
+| FW106-7-25-12 | CHEBI:17632 | nitrate | NULL | NULL | 2.5 | Supernatant | 1 | 12683.281195937114 |
+| FW106-7-25-12 | CHEBI:16301 | nitrite | NULL | NULL | 2.0 | Supernatant | 1 | 0.0 |
+| FW106-7-25-12 | CHEBI:33341 | titanium atom | 47.0 | Collision mode 1 | NULL | Supernatant | 1 | 0.026787234000000004 |
+| FW106-7-25-12 | CHEBI:33341 | titanium atom | 47.0 | Collision mode 1 | NULL | Supernatant | 2 | 0.02512766 |
+| FW106-7-25-12 | CHEBI:33341 | titanium atom | 47.0 | Collision mode 1 | NULL | Supernatant | 3 | 0.026404255000000005 |
 
 ---
 
@@ -210,11 +210,11 @@ Total Tables: 47
 
 | sdt_asv_name | sequence_sequence_type_16s_sequence |
 |---|---|
-| d505e65f17f39139eb72706e07d950b1 | TACGGAGGGTGCAAGCGTTGTCCGGATTTATTGGGTTTAAAGGGTGGGTAGGCGGTTTAATAAGTCAGTGTTTAAAGTCTTCAGCTTAACTGGAGGAATGGCATTGATACTGTTGAACTTGAGTAAAGTTGAGGTGGGCGGAATTGAAAGTGTAGGGGTGAAATGCATAGATATTTTCAAGAACACCAATTGCGAAGGCAGCTCACTAAGCTTTAACTGACGCTGAGGCACGAAAGTGTGGGGATCAAACAGG |
-| d50646d65d7459868463ff6aa8ccf09c | GACGTAGGATGCAAGCGTTACTCGGAATCACTGGGCGTAAAGCGTCTGTAGGCGGTGTGATGCGTCTGATGTGAAAGCTACCGGGCTCAACCCGGTATCCGCATTGGAAACGGTCACACTTGAGAGACCTAGGGGCACCTGGAATGCTGTGTGTAGGGGTAAAATCCGTAGATACACAGTAGAACGCTCAAAGCGAAAGCAGGGTGCTGGGGGTTTTCTGACGCTGAGAGACGAAAGCGTGGGGAGCAAACGGG |
-| d506bd8f87890c7ffddd396d4fffb457 | GACGAACCGAGCGAACGTTGTTCGGAATCACTGGGCTTAAAGGGTGCGTAGGCGGGCTGCCAAGTTTGGGGTGAAATCCTCCGGCTCAACCGGGGAAGTGCCTCGAATACTGGCGGTCTGGAGGGAGGTAGGGGCGTGCGGAACTAACGGTGGAGCGGTGAAATGCGTTGATATCGTTAGGAACTCCGGTGGCGAAGGCGGCACGCTAGACCTTTTCTGACGCTGAGGCACGAAAGCCAGGGGAGCGAACGGG |
-| d5076d6dede8caeec4b849774946341b | GACGAGGGATCCTAGCGTTGTTCGGAATCATTGGGCGTAAAGCGGATGTAGGTGGCTTTGTAAGTCAGGTGTGAAAGCCCCGGGCTCAACCCGGGAAGTGCATTTGATACTGCGAAGCTTGAGTGCTGGAGAGGTTACTAGAATACCTGGTGTAGTGGTGAAATACGTAGATATCAGGTGGAATACCGGAGGCGAAGGCGGGTAACCAGCCAGACACTGACACTCAGATCCGAAAGTGTGGGGATCAAACAGG |
-| d50791eecf03c725397b07ef123657ca | TACGTAGGGTGCAAGCGTTGCCCGGATTTATTGGGCGTAAAGGGCGCGCAGGCGGCCACGCACGTCCGTTGTGAAATCGCTCGGCTCAACTGGGCGGGGTCAGCGGATACGGCGCGGCTGGAGCAAGCTAGGGGGCAATGGAATTCCCGGTGTAGTGGTGGAATGCGTAGATATCGGGAGGAACACCAGTGGCGAAGGCGGTTGCCTGGAGCTTTGCTGACGCTGAGGCGCGAAAGCGTGGGGAGCGATCCGG |
+| 8596cf3f138f9a1eb8b88cfedb4188ea | TACGGAGGTGGCAAGCGTTACTCGGATTTATTGGGTGTAAAGGGCAGGTAGGTGGTCTTGTAAGTTGGGAGTGAAATCCCCCGGCTCAACCGGGGAACTGCTTTCAAAACTGCAAGACTTGGGACTAGAAGAGGAGAACGGAATTCCCGGTGTAAGGGTGAAATCTGTAGATATCGGGAGGAACACCAGTAGCGAAGGCGGTTCTCTGGGCTAGTTCTGACACTGAGCTGCGAAAGCTAGGGGAGCAAACAGG |
+| 8597b02df0861a148003228718227162 | TACAGAGGGGGCAAGCGTTGTTCGGAATTATTGGGCGTAAAGGGTGTGTAGGCGGCTTGACAAGTCAGTGGTGAAATCCCCCGGCTTAACCGGGGACGTGCCTTTGATACTGTCAGGCTTGAGTACGGAAGAGGAGAGTGGAATTCCCAGTGTAGCGGTGAAATGCGTAGATATTGGGAAGAACACCGGCGGCGAAGGCGGCTCTCTGGTCCGTTACTGACGCTGAGACACGAAAGCCAGGGTAGCAAACGGG |
+| 8597b8c50a71f8ab34d326d3b4b4068c | AACGTAGGAGGCGAGCGTTATCCGGATTTACTGGGCGTAAAGCGCGTGCAGGTGGTACGGTTAGTTGGATGTGAAAGCTCCTGGCTTAACTGGGAGAGGTCGTTCAATACTGCCGAACTGGAGTATGGGAGAGGGAGGTGGAATTCCGAGTGTAGTGGTGAAATGCGTAGATATTCGGAGGAACACCAGTGGCGAAAGCGGCCTCCTGGCCCATTACTGACACTCAGACGCGAAAGCTAGGGGAGCGAACGGG |
+| 85984a4ef5ce3ceaf718c8fb20b09721 | TACGTAGGGTGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGGCGCGTAAGTCGGCTGTGAAAGCCCTGGGCTTAACCCGGGAATTGCAGTTGAAACTGCGTGTCTTGAGTGTTTGAGAGGGTGGTGGAATTCCTGGTGTAGAGGTGAAATTCGTAGATATCAGGAGGAACACCGGAGGCGAAGGCGGCCACCTGGCAATACACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
+| 85985b3f96eefb54d7dfef9beb107f8b | TACGGGGGGGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTGCTCTAAGTCGGATGTGAAAACTCTGGGCTCAACCCAGAGCCTGCATCCGAAACTGGAGTGCTGGAGTTCTGGAGGGGGTAGCGGAATTCCTGGTGTAGCGGTGAAATGCGTAGATATCAGGAGGAACACCGGTGGCGAAGGCGGCTACCTGGACAGAAACTGACGCTGAGGCACGAAAGCTAGGGGAGCAAACAGG |
 
 ---
 
@@ -307,11 +307,11 @@ Total Tables: 47
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C3-00 | 0 |
-| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C5-00 | 0 |
-| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C7-00 | 0 |
-| 0001d123420b59585627edf5a1292ae8 | SSO-U1-C10-00 | 0 |
-| 0001d123420b59585627edf5a1292ae8 | SSO-U2-C3-00 | 0 |
+| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L8-C10-00 | 0 |
+| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C3-00 | 0 |
+| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C5-00 | 0 |
+| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C7-00 | 0 |
+| d25b9a35f0ffbb18c0a28a4c01488946 | SSO-L9B-C10-00 | 0 |
 
 ---
 
@@ -453,11 +453,11 @@ Total Tables: 47
 
 | sdt_asv_name | sdt_community_name | count_count_unit |
 |---|---|---|
-| e6c945696a1514beeffd9bab207aba83 | M4-SZ2-20240909-F8 | 0 |
-| e6c945696a1514beeffd9bab207aba83 | M4-SZ2-20240909-F01 | 0 |
-| e6c945696a1514beeffd9bab207aba83 | M6-SZ1-20240909-F8 | 0 |
-| e6c945696a1514beeffd9bab207aba83 | M6-SZ1-20240909-F01 | 0 |
-| e6c945696a1514beeffd9bab207aba83 | M6-SZ2-20240909-F8 | 0 |
+| 4d3f58e50214da6a52783e2bce1714d6 | L9-SZ2-20240909-F01 | 0 |
+| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ1-20240918-F8 | 0 |
+| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ1-20240918-F01 | 0 |
+| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ2-20240918-F8 | 0 |
+| 4d3f58e50214da6a52783e2bce1714d6 | U2-SZ2-20240918-F01 | 0 |
 
 ---
 
@@ -654,6 +654,70 @@ Total Tables: 47
 | FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
 | FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
 | FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
+
+---
+
+## Table: sys_process_input
+
+**Table Description:** Process Inputs
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
+| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+
+### Sample Data (5 rows)
+
+| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+|---|---|---|---|---|---|---|---|---|---|
+| Process0040762 | NULL | NULL | NULL | NULL | Location0000140 | NULL | NULL | NULL | NULL |
+| Process0040763 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
+| Process0040764 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
+| Process0040765 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
+| Process0040766 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
+
+---
+
+## Table: sys_process_output
+
+**Table Description:** Process Outputs
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
+| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
+| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
+| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
+| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
+| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
+| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
+| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
+| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
+| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
+| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
+| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+
+### Sample Data (5 rows)
+
+| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Process0196582 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004931 | NULL | NULL | NULL |
+| Process0196583 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0009159 | NULL | NULL | NULL |
+| Process0196584 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007747 | NULL | NULL | NULL |
+| Process0196585 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004932 | NULL | NULL | NULL |
+| Process0196586 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007749 | NULL | NULL | NULL |
 
 ---
 
@@ -1170,81 +1234,40 @@ Total Tables: 47
 
 | type_name | field_name | cdm_column_name | scalar_type | is_required | is_pk | is_upk | fk | constraint | comment | units_sys_oterm_id | units_sys_oterm_name | type_sys_oterm_id | type_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Gene | function | function | text | False | False | False | NULL | NULL | Annotated biological function of the gene | NULL | NULL | ME:0000250 | gene annotation |
-| Bin | id | sdt_bin_id | text | True | True | False | NULL | NULL | Unique identifier for the bin (Primary key) | NULL | NULL | ME:0000331 | internal Bin ID |
-| Bin | name | sdt_bin_name | text | True | False | True | NULL | NULL | Human-readable, unique name for the bin | NULL | NULL | ME:0000330 | bin ID |
-| Bin | assembly | sdt_assembly_name | text | True | False | False | Assembly | NULL | Identifier of the metagenomic assembly that the bin belongs to (foreign key to Assembly.name) | NULL | NULL | ME:0000280 | assembly ID |
-| Bin | contigs | contigs | [text] | True | False | False | NULL | NULL | Array of contig identifiers included in the bin | NULL | NULL | ME:0000240 | contig |
+| Sample | depth | depth_meter | float | False | False | False | NULL | NULL | For below-ground samples, the average distance below ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000219 | depth |
+| Sample | elevation | elevation_meter | float | False | False | False | NULL | NULL | For above-ground samples, the average distance above ground level in meters where the sample was taken | UO:0000008 | meter | ME:0000220 | elevation |
+| Sample | date | date | text | True | False | False | NULL | \d\d\d\d(-\d\d(-\d\d)?)? | YYYY[-MM[-DD]] | NULL | NULL | ME:0000009 | date |
+| Sample | time | time | text | False | False | False | NULL | \d(\d)?(:\d\d(:\d\d)?)?\s*([apAP][mM])? | HH[:MM[:SS]] [AM\|PM] | NULL | NULL | ME:0000010 | time |
+| Sample | timezone | timezone | text | False | False | False | NULL | NULL | ISO8601 compliant format, ie. UTC-7 | NULL | NULL | ME:0000201 | time zone |
 
 ---
 
-## Table: sys_process_input
+## Table: ddt_brick0000528
 
-**Table Description:** Process Inputs
+**Table Description:** isolate_publication_260213.ndarray - Publications of ENIGMA isolate strains, as of 2026-02-13
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Input object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Input object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Input object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_genome_id | string | Yes | {"description": "Input object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_location_id | string | Yes | {"description": "Input object from sdt_location", "type": "foreign_key", "references": "sdt_location.sdt_location_id"} |
-| sdt_reads_id | string | Yes | {"description": "Input object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Input object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Input object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Input object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| pubmed_id_dimensionless_unit | int | Yes | {"description": "PubMed ID", "unit": "dimensionless unit"} |
 
 ### Sample Data (5 rows)
 
-| sys_process_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_genome_id | sdt_location_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
-|---|---|---|---|---|---|---|---|---|---|
-| Process0040762 | NULL | NULL | NULL | NULL | Location0000140 | NULL | NULL | NULL | NULL |
-| Process0040763 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
-| Process0040764 | NULL | NULL | NULL | NULL | Location0000142 | NULL | NULL | NULL | NULL |
-| Process0040765 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
-| Process0040766 | NULL | NULL | NULL | NULL | Location0000143 | NULL | NULL | NULL | NULL |
+| sdt_strain_name | pubmed_id_dimensionless_unit |
+|---|---|
+| FW305-130 | 34184913 |
+| FW507-14D01 | 34184913 |
+| FW510-T9 | 34184913 |
+| FW301-21C12A | 34184913 |
+| FW306-2-1A-C05A | 34184913 |
 
 ---
 
-## Table: sys_process_output
+## Table: ddt_brick0000529
 
-**Table Description:** Process Outputs
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sys_process_id | string | Yes | {"description": "Foreign key to sys_process", "type": "foreign_key", "references": "sys_process.sys_process_id"} |
-| ddt_ndarray_id | string | Yes | {"description": "Output object from ddt_ndarray", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
-| sdt_assembly_id | string | Yes | {"description": "Output object from sdt_assembly", "type": "foreign_key", "references": "sdt_assembly.sdt_assembly_id"} |
-| sdt_bin_id | string | Yes | {"description": "Output object from sdt_bin", "type": "foreign_key", "references": "sdt_bin.sdt_bin_id"} |
-| sdt_community_id | string | Yes | {"description": "Output object from sdt_community", "type": "foreign_key", "references": "sdt_community.sdt_community_id"} |
-| sdt_dubseq_library_id | string | Yes | {"description": "Output object from sdt_dubseq_library", "type": "foreign_key", "references": "sdt_dubseq_library.sdt_dubseq_library_id"} |
-| sdt_genome_id | string | Yes | {"description": "Output object from sdt_genome", "type": "foreign_key", "references": "sdt_genome.sdt_genome_id"} |
-| sdt_image_id | string | Yes | {"description": "Output object from sdt_image", "type": "foreign_key", "references": "sdt_image.sdt_image_id"} |
-| sdt_reads_id | string | Yes | {"description": "Output object from sdt_reads", "type": "foreign_key", "references": "sdt_reads.sdt_reads_id"} |
-| sdt_sample_id | string | Yes | {"description": "Output object from sdt_sample", "type": "foreign_key", "references": "sdt_sample.sdt_sample_id"} |
-| sdt_strain_id | string | Yes | {"description": "Output object from sdt_strain", "type": "foreign_key", "references": "sdt_strain.sdt_strain_id"} |
-| sdt_tnseq_library_id | string | Yes | {"description": "Output object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
-
-### Sample Data (5 rows)
-
-| sys_process_id | ddt_ndarray_id | sdt_assembly_id | sdt_bin_id | sdt_community_id | sdt_dubseq_library_id | sdt_genome_id | sdt_image_id | sdt_reads_id | sdt_sample_id | sdt_strain_id | sdt_tnseq_library_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Process0196582 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004931 | NULL | NULL | NULL |
-| Process0196583 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0009159 | NULL | NULL | NULL |
-| Process0196584 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007747 | NULL | NULL | NULL |
-| Process0196585 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0004932 | NULL | NULL | NULL |
-| Process0196586 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Reads0007749 | NULL | NULL | NULL |
-
----
-
-## Table: ddt_brick0000525
-
-**Table Description:** isolate_genbank_links_260211.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-02-11
+**Table Description:** isolate_genbank_links_260218.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-02-18
 
 ### Schema
 
@@ -1266,29 +1289,6 @@ Total Tables: 47
 | FW104-12G02 | True | False | GCF_040276125.1 | FW104-12G02 | NULL |
 | FW104-7C03 | True | False | GCF_040276085.1 | FW104-7C03 | NULL |
 | GW247-6E4 | True | False | GCF_040276065.1 | GW247-6E4 | NULL |
-
----
-
-## Table: ddt_brick0000526
-
-**Table Description:** isolate_publication_260211.ndarray - Publications of ENIGMA isolate strains, as of 2026-02-11
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| pubmed_id_dimensionless_unit | int | Yes | {"description": "PubMed ID", "unit": "dimensionless unit"} |
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | pubmed_id_dimensionless_unit |
-|---|---|
-| FW305-130 | 34184913 |
-| FW507-14D01 | 34184913 |
-| FW510-T9 | 34184913 |
-| FW301-21C12A | 34184913 |
-| FW306-2-1A-C05A | 34184913 |
 
 ---
 
