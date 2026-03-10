@@ -51,9 +51,15 @@ DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
 DEFAULT_OUTPUT_DIR = "ncbi_submission"
 DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
 EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
+MAX_GENOMES_PER_SUBMISSION = 400
+MAX_SRA_ROWS_PER_SUBMISSION = 1000
+DEFAULT_REMAINING_UNKNOWN_ASSEMBLIES_PATH = (
+    REPO_ROOT / "genome_upload" / "remaining_unknown_assemblies.txt"
+)
 PROTOCOL_TABLE = "sdt_protocol"
 READ_COVERAGE_TABLE = "ddt_brick0000521"
 READ_COVERAGE_COLUMN = "read_coverage_statistic_average_count_unit"
+GENBANK_LINK_TABLE = "ddt_brick0000529"
 Bacteria_AVAILABLE_FROM = (
     "Romy Chakraborty Lab, Berkeley National Lab, Berkeley CA, USA"
 )
@@ -78,6 +84,320 @@ SAMPLE_METADATA_CANDIDATES = [
     Path("sample_metadata.tsv"),
     Path("genome_upload") / "sample_metadata.tsv",
 ]
+SRA_DEFAULT_DESIGN_DESCRIPTION = (
+    "Whole genome shotgun sequencing for isolate characterization."
+)
+SRA_ILLUMINA_DESIGN_DESCRIPTION = (
+    "Illumina libraries were prepared using ~500ng of input isolate DNA with the "
+    "Illumina DNA prep kit  with  IDT(R) for Illumina(R) DNA/RNA sets A-D or with "
+    "Illumina Nextera DNA Flex kits with Nextera DNA CD Indexes."
+)
+SRA_ONT_PLASMIDSAURUS_DESIGN_DESCRIPTION = (
+    "Oxford Nanopore libraries were prepared using the Rapid Barcoding Kit 96 V14 "
+    "(part # SQK-RBK114.96), Libraries were sequenced on a PromethION P24 with "
+    "R10.4.1. flow cell.  Base calling with ont-doradod-for-promethion on "
+    "super-accurate mode, minimum Qscore 10, adapters trimmed by MinKnow."
+)
+SRA_ONT_LAUREN_DESIGN_DESCRIPTION = (
+    "The native barcoding expansion (EXP-NBD104; Oxford Nanopore Technologies) and "
+    "ligation sequencing (LSK-SQK109; Oxford Nanopore Technologies) kits were used "
+    "for barcoding and adapter ligation, respectively.  Libraries were sequenced on "
+    "a R9.4.1 flow cell on a MinION device (Oxford Nanopore Technologies).  Base "
+    "calling, adapter removal, demultiplexing, and quality filtering were performed "
+    "using Guppy v4.0."
+)
+SRA_PACBIO_SEQUEL_DESIGN_DESCRIPTION = (
+    "gDNA from different genera of bacteria were mixed and libraries were "
+    "constructed and sequenced with Pacbio SMRTbell Library prep."
+)
+
+FLYE_292_B1786_GENOMES = {
+    "GW821-FHT02D03",
+    "GW821-FHT03E06",
+    "GW821-FHT03G07",
+    "GW821-FHT09A04",
+    "GW821-FHT09A07",
+    "GW822-FHT05B01",
+    "GW823-FHT04A11",
+}
+
+FLYE_29_B1768_GENOMES = {
+    "GW821-FHT01A05",
+    "GW821-FHT01B05",
+    "GW821-FHT01H02",
+    "GW821-FHT02A12",
+    "GW821-FHT05F08",
+    "GW821-FHT09G11",
+    "GW821-FHT10B07",
+    "GW821-FHT11D02",
+    "GW822-FHT02A07",
+    "GW822-FHT02H01",
+    "GW822-FHT03E02",
+    "GW823-FHT05D11",
+}
+
+LUI_NIELSEN_2022_FLYE_UNICYCLER_GENOMES = {
+    "FW104-R5.2",
+    "FW300-N1B4.2",
+    "FW305-C-49.2",
+    "FW306-02-B.2",
+    "GW822-FHT05A05.2",
+    "GW822-FHT05C07.2",
+    "GW823-FHT01H08.2",
+}
+
+PRICE_2024_HIFI_GENOMES = {
+    "EB106-05-01-XG201.3",
+    "FW305-C-30-35.4",
+    "GW101-3B10.1",
+    "GW821-FHT01E09.3",
+    "GW821-FHT04C10.3",
+    "GW822-FHT03B03.3",
+    "GW822-FHT04H01.4",
+    "GW823-FHT01F03.4",
+}
+
+HARDCODED_GTDB_GENUS_BY_ISOLATE = {
+    "FW305-113": "Pseudomonas",
+    "GW821-FHT02G11": "Pseudomonas",
+}
+
+HARDCODED_SHORT_READ_DATE_BY_GENOME = {
+    "GW823-FHT02G05.1": "2024-11-15",
+}
+
+HARDCODED_READ_TYPE_BY_READS_ID = {
+    "Reads0016183": "single end read",
+}
+
+LONG_READ_HARDCODED_METADATA: Dict[str, Dict[str, str]] = {
+    "CPT19-411-MTA": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "CPT56D-587-MTF": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "EB106-05-01-XG146": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW104-R8": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW106-PBR-LB-1-21": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW106-PBR-LB-2-19": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW106-PBR-R2A-1-13": {"assembler": "Flye", "illumina": "NovaSeq"},
+    "FW106-PBR-R2A-3-15": {"assembler": "Flye", "illumina": "NovaSeq"},
+    "FW215-T2": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N1A5": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N1B4": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N2A2": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N2C3": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N2E3": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW300-N2F2": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-113": {"assembler": "Unicycler", "illumina": "HiSeq"},
+    "FW305-123": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-127": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-25": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-3": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-3-2-15-A-R2A1": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-3-2-15-E-R2A1": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-3-2-15-F-LB2": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-42": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-47B": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-53": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-63": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-BF8": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-C-10-9": {"assembler": "Flye", "illumina": "N/A"},
+    "FW305-C-134A": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-C-21": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-C-271": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW305-C-272": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-04-A": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-05-C": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-06-A": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-07-I": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-2-11AB": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-2-11AD": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-2-2C-B10A": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW306-2-2C-D06B": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW507-14TSA": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "FW507-4G11": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW101-11A03": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW101-3H06": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW101-3H11": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW247-26LB": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-11-11-14-LB4": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-12-1-14-LB2": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-12-10-14-TSB1": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-E6": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-L13": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-L15": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW456-R20": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-11-11-14-LB1": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-11-11-14-LB5": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-12-1-14-LB3": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-12-10-14-LB2": {"assembler": "Flye", "illumina": "None"},
+    "GW460-8": {"assembler": "Flye + Circlator", "illumina": "NovaSeq"},
+    "GW460-C8": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-E12": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW460-R15": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW531-T4": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW704-E3": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW821-FHT01H03": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW821-FHT02G11": {"assembler": "Flye", "illumina": "HiSeq"},
+    "GW821-FHT05B06": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT02A01": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT02H05": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT03B08": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT03C01": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT05A08": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT05C05": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT05D05": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT05E02": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT05E05": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW822-FHT07H11": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW823-FHT01D03": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW823-FHT05C09": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW823-FHT05D11": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "GW823-FHT05G12": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MLSD5-FHT05A06": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MLSD5-FHT05C12": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MPR-LB4": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MPR-R2A7": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT049": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT066": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT094": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT123": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT124": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT58": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+    "MT86": {"assembler": "Unicycler", "illumina": "NovaSeq"},
+}
+
+
+def normalize_isolate_key(name: Optional[str]) -> str:
+    if not name:
+        return ""
+    return str(name).split(".", 1)[0].strip()
+
+
+def _normalized_token(value: Optional[str]) -> str:
+    if value is None:
+        return ""
+    return re.sub(r"[^a-z0-9]+", "", str(value).strip().lower())
+
+
+def _is_metadata_unknown(value: Optional[str]) -> bool:
+    token = _normalized_token(value)
+    return token in {"", "unknown", "na", "none", "null"}
+
+
+def _assembler_family(value: Optional[str]) -> str:
+    text = str(value or "").lower()
+    if "unicycler" in text:
+        return "unicycler"
+    if "flye" in text:
+        return "flye"
+    if "spades" in text:
+        return "spades"
+    if "canu" in text:
+        return "canu"
+    if "metaspades" in text:
+        return "metaspades"
+    return ""
+
+
+def _illumina_family(value: Optional[str]) -> str:
+    text = str(value or "").lower()
+    if "novaseq" in text:
+        return "novaseq"
+    if "hiseq" in text:
+        return "hiseq"
+    if "nextseq" in text:
+        return "nextseq"
+    return ""
+
+
+def hardcoded_metadata_for_isolate(isolate_name: Optional[str]) -> Dict[str, str]:
+    return LONG_READ_HARDCODED_METADATA.get(normalize_isolate_key(isolate_name), {})
+
+
+def has_hardcoded_long_read_metadata(isolate_name: Optional[str]) -> bool:
+    return normalize_isolate_key(isolate_name) in LONG_READ_HARDCODED_METADATA
+
+
+def normalize_hardcoded_assembler_name(value: Optional[str]) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    family = _assembler_family(text)
+    if family == "unicycler":
+        return "Unicycler"
+    if family == "flye":
+        return "Flye"
+    if family == "spades":
+        return "SPAdes"
+    if family == "canu":
+        return "CANU"
+    if family == "metaspades":
+        return "MetaSPAdes"
+    return text
+
+
+def hardcoded_illumina_model(value: Optional[str]) -> str:
+    if _is_metadata_unknown(value):
+        return ""
+    family = _illumina_family(value)
+    if family == "novaseq":
+        return "Illumina NovaSeq 6000"
+    if family == "hiseq":
+        return "Illumina HiSeq 4000"
+    if family == "nextseq":
+        return "Illumina NextSeq 2000"
+    return ""
+
+
+def hardcoded_read_type(
+    reads_id: Optional[str], default: Optional[str]
+) -> Optional[str]:
+    if not reads_id:
+        return default
+    return HARDCODED_READ_TYPE_BY_READS_ID.get(reads_id, default)
+
+
+def enforce_assembler_match(
+    isolate_name: str,
+    berdl_assembler: Optional[str],
+    metadata_assembler: Optional[str],
+) -> None:
+    if _is_metadata_unknown(metadata_assembler):
+        return
+    berdl_family = _assembler_family(berdl_assembler)
+    metadata_family = _assembler_family(metadata_assembler)
+    if not berdl_family or not metadata_family:
+        return
+    if berdl_family != metadata_family:
+        raise ValueError(
+            "Assembler mismatch for "
+            f"{isolate_name}: BERDL={berdl_assembler!r}, hardcoded={metadata_assembler!r}"
+        )
+
+
+def enforce_illumina_match(
+    isolate_name: str,
+    berdl_platform: Optional[str],
+    berdl_instrument_model: Optional[str],
+    metadata_illumina: Optional[str],
+) -> None:
+    metadata_token = _normalized_token(metadata_illumina)
+    metadata_family = _illumina_family(metadata_illumina)
+    berdl_family = _illumina_family(berdl_instrument_model)
+    if not berdl_family:
+        return
+    if metadata_token in {"none", "na"}:
+        log_info(
+            "FIXME Illumina mismatch for "
+            f"{isolate_name}: BERDL={berdl_instrument_model!r}, hardcoded={metadata_illumina!r}. "
+            "Update read-source protocol metadata in BERDL."
+        )
+        return
+    if metadata_family and berdl_family != metadata_family:
+        log_info(
+            "FIXME Illumina mismatch for "
+            f"{isolate_name}: BERDL={berdl_instrument_model!r}, hardcoded={metadata_illumina!r}. "
+            "Update read-source protocol metadata in BERDL."
+        )
 
 
 def log_info(message: str) -> None:
@@ -328,7 +648,11 @@ def find_oldest_reads_with_fastq(
     read_cache: Dict[str, Dict[str, Any]],
     strain_token: Optional[str] = None,
     log_label: Optional[str] = None,
+    genome_name: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
+    downstream_genome_cache: Dict[str, set[str]] = {}
+    upstream_copy_reads_cache: Dict[str, set[str]] = {}
+
     def read_link_ok(link: Optional[str]) -> bool:
         normalized_link = normalize_edr_link(link)
         if not normalized_link:
@@ -532,6 +856,7 @@ def find_oldest_reads_with_fastq(
             path: Optional[List[str]] = None,
             parent_token: Optional[str] = None,
             parent_process: Optional[str] = None,
+            parent_process_id: Optional[str] = None,
         ) -> None:
             if path is None:
                 path = []
@@ -564,7 +889,9 @@ def find_oldest_reads_with_fastq(
                             "reads_id": obj_id,
                             "reads_name": reads_name,
                             "link": link,
-                            "read_type": reads_data.get("read_type_sys_oterm_name"),
+                            "read_type": hardcoded_read_type(
+                                obj_id, reads_data.get("read_type_sys_oterm_name")
+                            ),
                             "sequencing_technology": reads_data.get(
                                 "sequencing_technology_sys_oterm_name"
                             ),
@@ -578,6 +905,7 @@ def find_oldest_reads_with_fastq(
                             "reads_token": obj_token,
                             "parent_reads_token": parent_token,
                             "parent_process_name": parent_process,
+                            "parent_process_id": parent_process_id,
                         }
                     )
 
@@ -593,6 +921,7 @@ def find_oldest_reads_with_fastq(
                         current_path,
                         parent_token=obj_token,
                         parent_process=proc.get("process_term_name"),
+                        parent_process_id=proc.get("sys_process_id"),
                     )
 
         walk_downstream(start_token)
@@ -622,6 +951,7 @@ def find_oldest_reads_with_fastq(
                 f"processed_name_marker={reads.get('processed_name_marker')} "
                 f"parent_reads={reads.get('parent_reads_token')!r} "
                 f"parent_process={reads.get('parent_process_name')!r} "
+                f"parent_process_id={reads.get('parent_process_id')!r} "
                 f"link={reads.get('link')!r}"
             )
 
@@ -645,23 +975,280 @@ def find_oldest_reads_with_fastq(
     def get_reads_protocols(reads_token: str) -> List[str]:
         return collect_reads_protocols(reads_token)
 
+    def reads_is_long(reads: Dict[str, Any]) -> bool:
+        seq_tech = reads.get("sequencing_technology") or ""
+        return is_long_read_tech(None, str(seq_tech))
+
+    def reads_is_short(reads: Dict[str, Any]) -> bool:
+        return not reads_is_long(reads)
+
+    def reads_is_nanopore(reads: Dict[str, Any]) -> bool:
+        seq_tech = str(reads.get("sequencing_technology") or "").lower()
+        marker = " ".join(
+            [
+                str(reads.get("reads_name") or ""),
+                str(reads.get("link") or ""),
+            ]
+        ).lower()
+        return "nanopore" in seq_tech or "/ont/" in marker or "ont/" in marker
+
+    def reads_is_pacbio(reads: Dict[str, Any]) -> bool:
+        seq_tech = str(reads.get("sequencing_technology") or "").lower()
+        marker = " ".join(
+            [
+                str(reads.get("reads_name") or ""),
+                str(reads.get("link") or ""),
+            ]
+        ).lower()
+        return "pacbio" in seq_tech or "/pacbio/" in marker or "pacbio/" in marker
+
+    def prefer_nanopore_when_long_platforms_mixed(
+        reads_list: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        if not reads_list:
+            return reads_list
+        has_nanopore = any(reads_is_long(r) and reads_is_nanopore(r) for r in reads_list)
+        has_pacbio = any(reads_is_long(r) and reads_is_pacbio(r) for r in reads_list)
+        if not (has_nanopore and has_pacbio):
+            return reads_list
+        filtered = [
+            r
+            for r in reads_list
+            if not (reads_is_long(r) and reads_is_pacbio(r))
+        ]
+        log_info(
+            f"{log_label or ''}WARNING: both PacBio and Nanopore long reads were selected "
+            f"for {genome_token}; keeping Nanopore long reads and dropping PacBio long reads."
+        )
+        log_reads_detail("Reads after preferring Nanopore over PacBio", filtered)
+        return filtered
+
+    def reads_has_raw_paired_marker(reads: Dict[str, Any]) -> bool:
+        marker = " ".join(
+            [
+                str(reads.get("reads_name") or ""),
+                str(reads.get("link") or ""),
+            ]
+        ).lower()
+        return bool(re.search(r"raw[_-]?paired", marker))
+
+    def reads_inferred_date(reads: Dict[str, Any]) -> Optional[str]:
+        return extract_date_from_filenames(
+            Path(str(reads.get("link") or "")).name,
+            str(reads.get("reads_name") or ""),
+        )
+
+    def find_downstream_genome_tokens(start_token: Optional[str]) -> set[str]:
+        if not start_token:
+            return set()
+        cached = downstream_genome_cache.get(start_token)
+        if cached is not None:
+            return cached
+        found: set[str] = set()
+        visited: set[str] = set()
+
+        def walk(token: str) -> None:
+            if token in visited:
+                return
+            visited.add(token)
+            table_name, _ = parse_token(token)
+            if table_name == "sdt_genome":
+                found.add(token)
+            for proc in downstream_lookup.get(token, []):
+                output_obj = proc.get("output_obj")
+                if output_obj:
+                    walk(str(output_obj))
+
+        walk(start_token)
+        downstream_genome_cache[start_token] = found
+        return found
+
+    def find_upstream_copy_reads_tokens(start_token: Optional[str]) -> set[str]:
+        if not start_token:
+            return set()
+        cached = upstream_copy_reads_cache.get(start_token)
+        if cached is not None:
+            return cached
+        found: set[str] = set()
+        visited: set[str] = set()
+
+        def walk(token: str) -> None:
+            if token in visited:
+                return
+            visited.add(token)
+            table_name, _ = parse_token(token)
+            if table_name != "sdt_reads":
+                return
+            for proc in out_lookup.get(token, []):
+                process_name = (proc.get("process_term_name") or "").lower()
+                if "copy data" not in process_name:
+                    continue
+                for inp in proc.get("input_objs", []) or []:
+                    inp_table, _ = parse_token(inp)
+                    if inp_table != "sdt_reads":
+                        continue
+                    found.add(inp)
+                    walk(inp)
+
+        walk(start_token)
+        upstream_copy_reads_cache[start_token] = found
+        return found
+
     def select_best_reads(candidates: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if not candidates:
             return []
         if len(candidates) == 1:
             return candidates
-        grouped: Dict[Tuple[Optional[str], str], List[Dict[str, Any]]] = defaultdict(list)
+        grouped: Dict[Tuple[Optional[str], str, Optional[str]], List[Dict[str, Any]]] = defaultdict(list)
         for reads in candidates:
             parent_token = reads.get("parent_reads_token")
             parent_process = (reads.get("parent_process_name") or "").lower()
-            grouped[(parent_token, parent_process)].append(reads)
-        copy_groups = {
+            parent_process_id = reads.get("parent_process_id")
+            grouped[(parent_token, parent_process, parent_process_id)].append(reads)
+        prioritized_groups = {
             key: group
             for key, group in grouped.items()
-            if "copy data" in key[1]
+            if "copy data" in key[1] or "shotgun sequencing" in key[1]
         }
-        if copy_groups:
-            grouped = copy_groups
+        if prioritized_groups:
+            grouped = prioritized_groups
+
+        has_long_candidates = any(reads_is_long(reads) for reads in candidates)
+        short_paired_groups: List[
+            Tuple[Tuple[Optional[str], str, Optional[str]], List[Dict[str, Any]]]
+        ] = []
+
+        def select_long_only_candidates() -> List[Dict[str, Any]]:
+            long_only = [reads for reads in candidates if reads_is_long(reads)]
+            if long_only:
+                log_reads_detail(
+                    "Selected long-read candidates only; no short-read candidates remained",
+                    long_only,
+                )
+            return long_only
+
+        def is_short_read_candidate_group(reads_group: List[Dict[str, Any]]) -> bool:
+            if not reads_group:
+                return False
+            if not all(reads_is_short(reads) for reads in reads_group):
+                return False
+            if len(reads_group) >= 2:
+                return True
+            return any(is_paired_read_type(reads.get("read_type")) for reads in reads_group)
+
+        for key, group in grouped.items():
+            pair = choose_paired_from_group(group)
+            # Treat mixed groups as valid short-read candidates by evaluating
+            # the short-read subset independently (for example, clean_paired + ONT).
+            short_pair = [reads for reads in pair if reads_is_short(reads)]
+            if is_short_read_candidate_group(short_pair):
+                short_paired_groups.append((key, short_pair))
+
+        forced_short_read_date = HARDCODED_SHORT_READ_DATE_BY_GENOME.get(genome_name or "")
+        if forced_short_read_date:
+            matched_forced_groups = []
+            for _, pair in short_paired_groups:
+                short_dates = {reads_inferred_date(reads) for reads in pair}
+                short_dates.discard(None)
+                if forced_short_read_date in short_dates:
+                    matched_forced_groups.append(pair)
+            if len(matched_forced_groups) == 1:
+                selected_pair = matched_forced_groups[0]
+                log_reads_detail(
+                    f"Selected hardcoded short-read date {forced_short_read_date}",
+                    selected_pair,
+                )
+                return selected_pair
+            if len(matched_forced_groups) > 1:
+                log_info(
+                    f"{log_label or ''}WARNING: hardcoded short-read date "
+                    f"{forced_short_read_date} matched multiple candidate groups for "
+                    f"{genome_token}."
+                )
+            else:
+                log_info(
+                    f"{log_label or ''}WARNING: hardcoded short-read date "
+                    f"{forced_short_read_date} had no matching short-read pair for "
+                    f"{genome_token}."
+                )
+
+        ambiguous_short_candidates = len(short_paired_groups) > 1
+        if ambiguous_short_candidates:
+            # Rule 1: in hybrid contexts, prefer raw_paired short-read pairs
+            # that match a long-read date, if present.
+            long_read_dates = {
+                reads_inferred_date(reads)
+                for reads in candidates
+                if reads_is_long(reads)
+            }
+            long_read_dates.discard(None)
+            raw_paired_short_groups = [
+                (key, pair)
+                for key, pair in short_paired_groups
+                if any(reads_has_raw_paired_marker(reads) for reads in pair)
+            ]
+            date_matched_raw_paired_groups = []
+            if long_read_dates:
+                for key, pair in raw_paired_short_groups:
+                    short_dates = {reads_inferred_date(reads) for reads in pair}
+                    short_dates.discard(None)
+                    if short_dates & long_read_dates:
+                        date_matched_raw_paired_groups.append((key, pair))
+            if has_long_candidates and len(date_matched_raw_paired_groups) == 1:
+                selected_pair = date_matched_raw_paired_groups[0][1]
+                log_reads_detail(
+                    "Selected date-matched raw_paired short-read pair for hybrid read context",
+                    selected_pair,
+                )
+                return selected_pair
+
+            # Rule 2: remove short-read candidates whose provenance reaches non-target genomes.
+            filtered_short_groups: List[
+                Tuple[Tuple[Optional[str], str, Optional[str]], List[Dict[str, Any]]]
+            ] = []
+            eliminated_groups = 0
+            for key, pair in short_paired_groups:
+                downstream_genomes: set[str] = set()
+                for reads in pair:
+                    reads_token = str(reads.get("reads_token") or "")
+                    related_tokens: set[str] = {reads_token}
+                    related_tokens.update(find_upstream_copy_reads_tokens(reads_token))
+                    for token in related_tokens:
+                        downstream_genomes.update(find_downstream_genome_tokens(token))
+                other_genomes = {
+                    genome_ref for genome_ref in downstream_genomes if genome_ref != genome_token
+                }
+                if other_genomes:
+                    eliminated_groups += 1
+                    continue
+                filtered_short_groups.append((key, pair))
+
+            if eliminated_groups:
+                log_info(
+                    f"{log_label or ''}Filtered {eliminated_groups} short-read candidate "
+                    "group(s) due to downstream provenance linking to other genomes."
+                )
+            if not filtered_short_groups:
+                log_info(
+                    f"{log_label or ''}WARNING: short-read ambiguity for {genome_token}; "
+                    "downstream-genome filtering removed all short-read candidates."
+                )
+                # Do not fall back to arbitrary short-read selection when all
+                # ambiguous short-read groups were eliminated.
+                return select_long_only_candidates()
+            elif len(filtered_short_groups) == 1:
+                selected_pair = filtered_short_groups[0][1]
+                log_reads_detail(
+                    "Selected short-read pair after downstream-genome filtering",
+                    selected_pair,
+                )
+                return selected_pair
+            else:
+                log_info(
+                    f"{log_label or ''}WARNING: short-read ambiguity remains for {genome_token} "
+                    "after raw_paired date-match preference and downstream-genome filtering."
+                )
+
         best_group = None
         best_pair = []
         for parent_token, group in grouped.items():
@@ -680,6 +1267,62 @@ def find_oldest_reads_with_fastq(
         log_reads_detail("Selected reads from largest parent group", best_group)
         return best_group
 
+    def is_filtlong_long_read(reads: Dict[str, Any]) -> bool:
+        if not reads_is_long(reads):
+            return False
+        marker = " ".join(
+            [
+                str(reads.get("reads_name") or ""),
+                str(reads.get("link") or ""),
+            ]
+        ).lower()
+        return "filtlong" in marker
+
+    def drop_filtlong_when_raw_long_available(
+        candidates: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        if not candidates:
+            return candidates
+        has_raw_long = any(
+            reads_is_long(r) and not is_filtlong_long_read(r) for r in candidates
+        )
+        if not has_raw_long:
+            return candidates
+        filtered = [
+            r
+            for r in candidates
+            if not (reads_is_long(r) and is_filtlong_long_read(r))
+        ]
+        if len(filtered) != len(candidates):
+            log_reads_detail(
+                "Dropped filtlong long reads because raw long reads are available",
+                filtered,
+            )
+        return filtered
+
+    def merge_with_long_read_candidates(
+        selected: List[Dict[str, Any]], candidates: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        if not candidates:
+            return selected
+        selected_has_long = any(reads_is_long(r) for r in selected)
+        if selected_has_long:
+            return selected
+        long_candidates = [r for r in candidates if reads_is_long(r)]
+        if not long_candidates:
+            return selected
+        merged = list(selected)
+        seen_ids = {r.get("reads_id") for r in merged if r.get("reads_id")}
+        for reads in long_candidates:
+            reads_id = reads.get("reads_id")
+            if reads_id and reads_id in seen_ids:
+                continue
+            merged.append(reads)
+            if reads_id:
+                seen_ids.add(reads_id)
+        log_reads_detail("Added long-read candidates to selected reads", merged)
+        return merged
+
     def select_submission_reads(
         ancestor_reads_token: str,
         ancestor_protocols: List[str],
@@ -697,12 +1340,14 @@ def find_oldest_reads_with_fastq(
         # Step 2: follow only Copy Data processes downstream from ancestral reads.
         copy_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=True)
         if copy_candidates:
+            copy_candidates = drop_filtlong_when_raw_long_available(copy_candidates)
             log_reads_detail("Copy-data FASTQ candidates", copy_candidates)
             chosen = select_best_reads(copy_candidates)
         else:
             # Step 3 fallback: any raw FASTQ reads in EDR, excluding processed reads.
             all_candidates = collect_reads_downstream(ancestor_reads_token, only_copy=False)
             raw_candidates = [reads for reads in all_candidates if is_raw_candidate(reads)]
+            raw_candidates = drop_filtlong_when_raw_long_available(raw_candidates)
             log_reads_detail("Raw downstream FASTQ candidates", raw_candidates)
             chosen = select_best_reads(raw_candidates)
 
@@ -743,6 +1388,7 @@ def find_oldest_reads_with_fastq(
             if reads_id:
                 seen_ids.add(reads_id)
             unique_reads.append(reads)
+        unique_reads = prefer_nanopore_when_long_platforms_mixed(unique_reads)
         log_reads("Selected reads", unique_reads)
         return unique_reads
 
@@ -755,9 +1401,24 @@ def find_oldest_reads_with_fastq(
             and not reads.get("processed_by_trim")
             and not reads.get("processed_name_marker")
         ]
+        # If assembly provenance indicates short-read-only sequencing, do not
+        # pull long reads from the broad strain-downstream fallback path.
+        assembly_processes = find_assembly_processes(genome_token, out_lookup)
+        assembly_protocols = collect_protocols_from_processes(assembly_processes)
+        assembly_protocol_cache: Dict[str, Dict[str, Optional[str]]] = {}
+        assembly_seq_techs = infer_sequencing_techs(
+            assembly_protocols, headers, column_cache, assembly_protocol_cache
+        )
+        if assembly_seq_techs and not any(
+            is_long_read_tech(None, tech) for tech in assembly_seq_techs
+        ):
+            raw_downstream = [reads for reads in raw_downstream if not reads_is_long(reads)]
         if raw_downstream:
+            raw_downstream = drop_filtlong_when_raw_long_available(raw_downstream)
             log_reads("Found raw strain-downstream reads", raw_downstream)
-            return select_best_reads(raw_downstream)
+            chosen = select_best_reads(raw_downstream)
+            chosen = merge_with_long_read_candidates(chosen, raw_downstream)
+            return prefer_nanopore_when_long_platforms_mixed(chosen)
 
     return []
 
@@ -1059,9 +1720,10 @@ def link_fastq_files(
     genome_data: List[Dict[str, Any]],
     output_dir: str,
     edr_root: str,
+    target_subdir: str = "reads_to_upload",
     debug: bool = False,
 ) -> None:
-    target_dir = Path(output_dir) / "reads_to_upload"
+    target_dir = Path(output_dir) / target_subdir
     target_dir.mkdir(parents=True, exist_ok=True)
     seen_targets: set[str] = set()
     link_count = 0
@@ -1136,13 +1798,89 @@ def select_contig_link_and_path(
     return link, edr_path
 
 
+def infer_assembler_version_from_edr_logs(
+    contig_path: Optional[Path],
+    assembler_name: Optional[str],
+    debug: bool = False,
+) -> str:
+    if not contig_path or not assembler_name:
+        return ""
+    if not contig_path.exists():
+        return ""
+    assembler = assembler_name.strip().lower()
+    if assembler not in {"flye", "unicycler"}:
+        return ""
+
+    assembly_dir = contig_path.parent
+    if not assembly_dir.exists():
+        return ""
+
+    log_filename = "flye.log" if assembler == "flye" else "unicycler.log"
+    candidate_files: List[Path] = [assembly_dir / log_filename]
+
+    # Expected BERDL layout: logs can also be under results_* folders
+    # such as results_flye, results_unicycler, results_circlator_flye.
+    for results_dir in sorted(assembly_dir.glob("results_*")):
+        if not results_dir.is_dir():
+            continue
+        candidate_files.append(results_dir / log_filename)
+        candidate_files.extend(results_dir.rglob(log_filename))
+
+    candidate_files = sorted(
+        {path for path in candidate_files if path.exists()},
+        key=lambda path: str(path),
+    )
+    if not candidate_files:
+        log_debug(
+            "No assembler logs found for version inference: "
+            f"assembler={assembler_name!r} expected={log_filename!r} dir={str(assembly_dir)!r}",
+            enabled=debug,
+        )
+        return ""
+    patterns = {
+        "flye": [
+            re.compile(
+                r"\bflye\b[^\n\r]{0,80}?v?(\d+(?:\.\d+){1,3}(?:-[A-Za-z0-9._-]+)?)",
+                re.IGNORECASE,
+            ),
+        ],
+        "unicycler": [
+            re.compile(
+                r"\bunicycler\b[^\n\r]{0,80}?v?(\d+(?:\.\d+){1,3}(?:-[A-Za-z0-9._-]+)?)",
+                re.IGNORECASE,
+            ),
+        ],
+    }
+
+    for log_path in candidate_files:
+        try:
+            text = log_path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        if len(text) > 2_000_000:
+            text = text[:2_000_000]
+        for pattern in patterns.get(assembler, []):
+            match = pattern.search(text)
+            if match:
+                version = (match.group(1) or "").strip()
+                if version:
+                    log_debug(
+                        "Resolved assembler version from log: "
+                        f"assembler={assembler_name!r} version={version!r} file={str(log_path)!r}",
+                        enabled=debug,
+                    )
+                    return version
+    return ""
+
+
 def link_contig_files(
     genome_data: List[Dict[str, Any]],
     output_dir: str,
     edr_root: str,
+    target_subdir: str = "contigs_to_upload",
     debug: bool = False,
 ) -> None:
-    target_dir = Path(output_dir) / "contigs_to_upload"
+    target_dir = Path(output_dir) / target_subdir
     target_dir.mkdir(parents=True, exist_ok=True)
     seen_targets: set[str] = set()
     link_count = 0
@@ -1371,16 +2109,19 @@ def get_gtdb_genus_for_strain(
             raise
         raise
     genus = None
+    family = None
     for row in rows:
         level = (row.get("taxonomic_level_sys_oterm_name") or "").lower()
         if level == "genus":
             genus = row.get("sdt_taxon_name")
-            break
-    if not genus:
+        elif level == "family":
+            family = row.get("sdt_taxon_name")
+    selected = genus or family
+    if not selected:
         return None
-    if "_" in genus:
-        genus = genus.split("_", 1)[0]
-    return genus
+    if "_" in selected:
+        selected = selected.split("_", 1)[0]
+    return selected
 
 
 def build_organism_name(genus: Optional[str], strain_name: Optional[str]) -> Optional[str]:
@@ -1521,6 +2262,39 @@ def infer_instrument_model_overrides(
     return None
 
 
+def infer_sra_design_description(
+    platform: Optional[str],
+    instrument_model: Optional[str],
+    protocol_names: Sequence[str],
+) -> str:
+    platform_upper = (platform or "").upper()
+    model_lower = str(instrument_model or "").lower()
+    protocol_text = " ".join(str(name or "") for name in protocol_names).lower()
+
+    if platform_upper == "OXFORD_NANOPORE":
+        if "plasmidsaurus" in protocol_text:
+            return SRA_ONT_PLASMIDSAURUS_DESIGN_DESCRIPTION
+        if "lui" in protocol_text or "arkin" in protocol_text:
+            return SRA_ONT_LAUREN_DESIGN_DESCRIPTION
+
+    if platform_upper == "ILLUMINA" and any(
+        key in model_lower
+        for key in (
+            "hiseq 4000",
+            "novaseq 6000",
+            "novaseq x plus",
+            "nextseq 2000",
+            "nextseq 500",
+        )
+    ):
+        return SRA_ILLUMINA_DESIGN_DESCRIPTION
+
+    if platform_upper == "PACBIO_SMRT" and "sequel" in model_lower:
+        return SRA_PACBIO_SEQUEL_DESIGN_DESCRIPTION
+
+    return SRA_DEFAULT_DESIGN_DESCRIPTION
+
+
 def infer_assembly_method_from_protocols(
     protocol_names: Sequence[str],
     headers: Dict[str, str],
@@ -1532,6 +2306,21 @@ def infer_assembly_method_from_protocols(
         desc = (info.get("protocol_description") or "").lower()
         proto_name = (info.get("protocol_name") or name).lower()
         text = f"{proto_name} {desc}"
+        # Ambiguous protocol text mentioning multiple assemblers should not
+        # be force-resolved to whichever check runs first.
+        assembler_hits = 0
+        if "metaspades" in text:
+            assembler_hits += 1
+        if "spades" in text and "metaspades" not in text:
+            assembler_hits += 1
+        if "flye" in text:
+            assembler_hits += 1
+        if "canu" in text:
+            assembler_hits += 1
+        if "unicycler" in text:
+            assembler_hits += 1
+        if assembler_hits > 1:
+            return None
         if "spades" in text:
             version_match = re.search(r"spades\s+v?(\d+\.\d+\.\d+)", text)
             return f"SPAdes {version_match.group(1)}" if version_match else "SPAdes"
@@ -1577,6 +2366,17 @@ def split_assembly_method(method: Optional[str], debug: bool = False) -> Tuple[s
             enabled=debug,
         )
     return name, version
+
+
+def normalize_assembler_version(version: Optional[str]) -> str:
+    if version is None:
+        return ""
+    text = str(version).strip()
+    if not text:
+        return ""
+    if text.lower() == "unknown":
+        return "unknown"
+    return re.sub(r"^[vV]\s*", "", text)
 
 
 def choose_assembly_date(processes: Iterable[Dict[str, Any]]) -> str:
@@ -1630,6 +2430,118 @@ def fetch_read_coverage_map(
     return coverage_map
 
 
+def _parse_accession_key(accession: str) -> Tuple[int, int, int]:
+    match = re.match(r"^(GC[AF])_(\d+)(?:\.(\d+))?$", accession.strip(), re.IGNORECASE)
+    if not match:
+        return (0, -1, -1)
+    prefix = match.group(1).upper()
+    number = int(match.group(2))
+    version = int(match.group(3) or 0)
+    prefix_rank = 2 if prefix == "GCF" else 1
+    return (prefix_rank, number, version)
+
+
+def _choose_refseq_accession(values: Sequence[str]) -> str:
+    candidates = [
+        value.strip()
+        for value in values
+        if isinstance(value, str)
+        and re.match(r"^GC[AF]_\d+(?:\.\d+)?$", value.strip(), flags=re.IGNORECASE)
+    ]
+    if not candidates:
+        return ""
+    unique_candidates = sorted(set(candidates), key=_parse_accession_key, reverse=True)
+    return unique_candidates[0]
+
+
+def fetch_isolate_refseq_map(
+    headers: Dict[str, str],
+    strain_names: Sequence[str],
+    discovered_tables: Sequence[str],
+    column_cache: Dict[str, List[str]],
+) -> Dict[str, str]:
+    unique_strains = sorted({name for name in strain_names if name})
+    if not unique_strains:
+        return {}
+
+    table_name = GENBANK_LINK_TABLE
+    required_columns = {
+        "sdt_strain_name",
+        "link_sequence_type_genome_sequence_database_genbank",
+    }
+    discovered_normalized = {str(name).strip().lower() for name in discovered_tables}
+    if table_name.lower() not in discovered_normalized:
+        log_info(
+            f"Current GenBank link table {table_name} not listed by table discovery; "
+            "attempting direct schema lookup."
+        )
+    try:
+        columns_in_table = set(get_table_columns(headers, table_name, column_cache))
+    except requests.HTTPError:
+        log_info(
+            f"Current GenBank link table {table_name} unavailable via schema lookup; "
+            "leaving update_for blank."
+        )
+        return {}
+    if not required_columns.issubset(columns_in_table):
+        log_info(
+            f"Current GenBank link table {table_name} missing required columns; leaving update_for blank."
+        )
+        return {}
+    log_info(f"Using {table_name} for isolate RefSeq lookup")
+    refseq_values: Dict[str, List[str]] = defaultdict(list)
+    chunk_size = 200
+    columns = [
+        "sdt_strain_name",
+        "link_sequence_type_genome_sequence_database_genbank",
+    ]
+    for idx in range(0, len(unique_strains), chunk_size):
+        chunk = unique_strains[idx : idx + chunk_size]
+        try:
+            rows = select_all_rows(
+                headers,
+                table_name,
+                columns=columns,
+                filters=[{"column": "sdt_strain_name", "operator": "IN", "value": chunk}],
+                limit=1000,
+            )
+        except requests.HTTPError as exc:
+            if exc.response is None or exc.response.status_code != 400:
+                raise
+            # Some deployments reject IN filters for this table; fall back to
+            # one equality query per strain.
+            rows = []
+            for strain_name in chunk:
+                rows.extend(
+                    select_all_rows(
+                        headers,
+                        table_name,
+                        columns=columns,
+                        filters=[
+                            {
+                                "column": "sdt_strain_name",
+                                "operator": "=",
+                                "value": strain_name,
+                            }
+                        ],
+                        limit=1000,
+                    )
+                )
+        for row in rows:
+            strain_name = row.get("sdt_strain_name")
+            accession = row.get("link_sequence_type_genome_sequence_database_genbank")
+            if not strain_name or not accession:
+                continue
+            refseq_values[str(strain_name)].append(str(accession))
+
+    refseq_map: Dict[str, str] = {}
+    for strain_name, values in refseq_values.items():
+        chosen = _choose_refseq_accession(values)
+        if chosen:
+            refseq_map[strain_name] = chosen
+    return refseq_map
+
+
 def infer_sequencing_techs(
     protocol_names: Sequence[str],
     headers: Dict[str, str],
@@ -1643,6 +2555,96 @@ def infer_sequencing_techs(
         if tech:
             techs.add(tech)
     return sorted(techs)
+
+
+def is_long_read_assembly_from_protocols(
+    protocol_names: Sequence[str],
+    headers: Dict[str, str],
+    column_cache: Dict[str, List[str]],
+    protocol_cache: Dict[str, Dict[str, Optional[str]]],
+) -> bool:
+    for tech in infer_sequencing_techs(protocol_names, headers, column_cache, protocol_cache):
+        if is_long_read_tech(None, tech):
+            return True
+    return False
+
+
+def is_long_read_submission_context(
+    protocol_names: Sequence[str],
+    reads_list: Sequence[Dict[str, Any]],
+    headers: Dict[str, str],
+    column_cache: Dict[str, List[str]],
+    protocol_cache: Dict[str, Dict[str, Optional[str]]],
+) -> bool:
+    protocol_techs = infer_sequencing_techs(
+        protocol_names, headers, column_cache, protocol_cache
+    )
+    if protocol_techs:
+        return any(is_long_read_tech(None, tech) for tech in protocol_techs)
+    for reads in reads_list or []:
+        seq_tech = (
+            reads.get("source_sequencing_technology")
+            or reads.get("sequencing_technology")
+            or ""
+        )
+        platform = ""
+        if "pacbio" in str(seq_tech).lower():
+            platform = "PACBIO_SMRT"
+        elif "nanopore" in str(seq_tech).lower() or "ont" in str(seq_tech).lower():
+            platform = "OXFORD_NANOPORE"
+        if is_long_read_tech(platform, str(seq_tech)):
+            return True
+    return False
+
+
+def is_hybrid_reads_context(reads_list: Sequence[Dict[str, Any]]) -> bool:
+    has_long = False
+    has_illumina = False
+    for reads in reads_list or []:
+        seq_tech = (
+            reads.get("source_sequencing_technology")
+            or reads.get("sequencing_technology")
+            or ""
+        )
+        seq_lower = str(seq_tech).lower()
+        if "illumina" in seq_lower:
+            has_illumina = True
+        if is_long_read_tech(None, seq_tech):
+            has_long = True
+    return has_long and has_illumina
+
+
+def infer_plasmidsaurus_protocol_year(protocol_names: Sequence[str]) -> Optional[str]:
+    for name in protocol_names:
+        text = str(name or "").lower()
+        if "plasmidsaurus" not in text:
+            continue
+        match = re.search(r"(20\d{2})", text)
+        if match:
+            return match.group(1)
+    return None
+
+
+def is_plasmidsaurus_protocol(protocol_names: Sequence[str]) -> bool:
+    return infer_plasmidsaurus_protocol_year(protocol_names) is not None
+
+
+def has_long_reads_for_year(reads_list: Sequence[Dict[str, Any]], year: str) -> bool:
+    year_prefix = f"{year}-"
+    for reads in reads_list or []:
+        seq_tech = (
+            reads.get("source_sequencing_technology")
+            or reads.get("sequencing_technology")
+            or ""
+        )
+        if not is_long_read_tech(None, seq_tech):
+            continue
+        link_name = Path(str(reads.get("link") or "")).name
+        reads_name = str(reads.get("reads_name") or "")
+        reads_date = extract_date_from_filenames(link_name, reads_name)
+        if reads_date and reads_date.startswith(year_prefix):
+            return True
+    return False
 
 
 def infer_isolation_source(sample_name: str, sample: Dict[str, Any]) -> Optional[str]:
@@ -1971,6 +2973,25 @@ def extract_date_from_filenames(*filenames: Optional[str]) -> Optional[str]:
     return None
 
 
+def infer_replicate_number_from_filenames(*filenames: Optional[str]) -> Optional[int]:
+    pattern = re.compile(
+        r"(?:^|[_-])rep(?:licate)?\s*0*(\d+)(?=[_.-]|$)", re.IGNORECASE
+    )
+    for filename in filenames:
+        if not filename:
+            continue
+        match = pattern.search(str(filename))
+        if not match:
+            continue
+        try:
+            value = int(match.group(1))
+        except (TypeError, ValueError):
+            continue
+        if value > 0:
+            return value
+    return None
+
+
 def infer_read_tech_label(platform: Optional[str], sequencing_tech: Optional[str]) -> str:
     platform_upper = (platform or "").upper()
     seq_lower = (sequencing_tech or "").lower()
@@ -1998,7 +3019,8 @@ def generate_biosample_table(
     output_file: str,
     output_dir: str,
     debug: bool = False,
-) -> None:
+    dry_run: bool = False,
+) -> int:
     template_path, sheet, header_row, header_map = load_biosample_template_workbook(
         output_dir
     )
@@ -2009,6 +3031,7 @@ def generate_biosample_table(
             last_data_row = row[0].row
 
     next_row = last_data_row + 1
+    start_row = next_row
     custom_headers = ["Moisture (%)", "Conductivity (mS/cm)", "pH"]
     for custom_header in custom_headers:
         ensure_header_column(sheet, header_row, header_map, custom_header)
@@ -2067,7 +3090,9 @@ def generate_biosample_table(
 
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    sheet.parent.save(output_path)
+    if not dry_run:
+        sheet.parent.save(output_path)
+    return max(0, next_row - start_row)
 
 
 def generate_sra_table(
@@ -2077,7 +3102,8 @@ def generate_sra_table(
     column_cache: Dict[str, List[str]],
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
     debug: bool = False,
-) -> None:
+    dry_run: bool = False,
+) -> int:
     template_path, sheet, header_row, header_map = load_sra_template_workbook(
         Path(output_file).parent
     )
@@ -2097,8 +3123,9 @@ def generate_sra_table(
             last_data_row = row[0].row
 
     next_row = last_data_row + 1
-    used_library_ids: Dict[str, int] = {}
-    used_titles: Dict[str, int] = {}
+    start_row = next_row
+    used_library_ids: set[str] = set()
+    next_suffix_by_library_stem: Dict[str, int] = {}
     short_read_date_flag: Dict[str, bool] = {}
     short_read_dates: Dict[str, List[Optional[str]]] = {}
     for genome in genome_data:
@@ -2108,6 +3135,28 @@ def generate_sra_table(
         isolate_name = strain.get("strain_name") or sample.get("sample_name") or genome.get(
             "genome_name", ""
         )
+        assembly_protocols = collect_protocols_from_processes(
+            genome.get("assembly_processes", []) or []
+        )
+        plasmidsaurus_year = infer_plasmidsaurus_protocol_year(assembly_protocols)
+        prefer_plasmidsaurus_year_long_reads = bool(
+            plasmidsaurus_year
+            and has_long_reads_for_year(genome.get("reads", []) or [], plasmidsaurus_year)
+        )
+        use_long_read_hardcoded_metadata = is_long_read_submission_context(
+            assembly_protocols,
+            genome.get("reads", []) or [],
+            headers,
+            column_cache,
+            protocol_cache,
+        )
+        hardcoded_meta = (
+            hardcoded_metadata_for_isolate(isolate_name)
+            if use_long_read_hardcoded_metadata
+            else {}
+        )
+        hardcoded_illumina = hardcoded_meta.get("illumina", "")
+        hybrid_reads_context = is_hybrid_reads_context(genome.get("reads", []) or [])
         biosample_name = build_biosample_name(sample_name, isolate_name)
         reads_list = genome.get("reads", []) or []
 
@@ -2213,6 +3262,22 @@ def generate_sra_table(
             )
             if override_model:
                 instrument_model = override_model
+            enforce_illumina_match(
+                normalize_isolate_key(isolate_name),
+                platform,
+                instrument_model,
+                hardcoded_illumina,
+            )
+            if (
+                use_long_read_hardcoded_metadata
+                and hybrid_reads_context
+                and "illumina" in str(seq_tech).lower()
+                and _illumina_family(hardcoded_illumina) == "novaseq"
+            ):
+                platform = "ILLUMINA"
+            hardcoded_model = hardcoded_illumina_model(hardcoded_illumina)
+            if platform == "ILLUMINA" and hardcoded_model:
+                instrument_model = hardcoded_model
 
             if debug:
                 log_debug(
@@ -2246,6 +3311,21 @@ def generate_sra_table(
             )
             tech_label = infer_read_tech_label(platform, seq_tech)
             long_read = is_long_read_tech(platform, seq_tech)
+            if (
+                plasmidsaurus_year
+                and prefer_plasmidsaurus_year_long_reads
+                and long_read
+                and reads_date
+                and not reads_date.startswith(f"{plasmidsaurus_year}-")
+            ):
+                if debug:
+                    log_debug(
+                        "Skipping long read due to plasmidsaurus protocol year mismatch: "
+                        f"isolate={isolate_name!r} reads={primary_reads.get('reads_name')!r} "
+                        f"reads_date={reads_date!r} protocol_year={plasmidsaurus_year!r}",
+                        enabled=True,
+                    )
+                continue
 
             if not long_read:
                 short_read_dates.setdefault(isolate_name, []).append(reads_date)
@@ -2261,6 +3341,28 @@ def generate_sra_table(
         isolate_name = strain.get("strain_name") or sample.get("sample_name") or genome.get(
             "genome_name", ""
         )
+        assembly_protocols = collect_protocols_from_processes(
+            genome.get("assembly_processes", []) or []
+        )
+        plasmidsaurus_year = infer_plasmidsaurus_protocol_year(assembly_protocols)
+        prefer_plasmidsaurus_year_long_reads = bool(
+            plasmidsaurus_year
+            and has_long_reads_for_year(genome.get("reads", []) or [], plasmidsaurus_year)
+        )
+        use_long_read_hardcoded_metadata = is_long_read_submission_context(
+            assembly_protocols,
+            genome.get("reads", []) or [],
+            headers,
+            column_cache,
+            protocol_cache,
+        )
+        hardcoded_meta = (
+            hardcoded_metadata_for_isolate(isolate_name)
+            if use_long_read_hardcoded_metadata
+            else {}
+        )
+        hardcoded_illumina = hardcoded_meta.get("illumina", "")
+        hybrid_reads_context = is_hybrid_reads_context(genome.get("reads", []) or [])
         biosample_name = build_biosample_name(sample_name, isolate_name)
         reads_list = genome.get("reads", []) or []
 
@@ -2366,6 +3468,22 @@ def generate_sra_table(
             )
             if override_model:
                 instrument_model = override_model
+            enforce_illumina_match(
+                normalize_isolate_key(isolate_name),
+                platform,
+                instrument_model,
+                hardcoded_illumina,
+            )
+            if (
+                use_long_read_hardcoded_metadata
+                and hybrid_reads_context
+                and "illumina" in str(seq_tech).lower()
+                and _illumina_family(hardcoded_illumina) == "novaseq"
+            ):
+                platform = "ILLUMINA"
+            hardcoded_model = hardcoded_illumina_model(hardcoded_illumina)
+            if platform == "ILLUMINA" and hardcoded_model:
+                instrument_model = hardcoded_model
 
             if debug:
                 log_debug(
@@ -2399,6 +3517,21 @@ def generate_sra_table(
             )
             tech_label = infer_read_tech_label(platform, seq_tech)
             long_read = is_long_read_tech(platform, seq_tech)
+            if (
+                plasmidsaurus_year
+                and prefer_plasmidsaurus_year_long_reads
+                and long_read
+                and reads_date
+                and not reads_date.startswith(f"{plasmidsaurus_year}-")
+            ):
+                if debug:
+                    log_debug(
+                        "Skipping long read due to plasmidsaurus protocol year mismatch: "
+                        f"isolate={isolate_name!r} reads={primary_reads.get('reads_name')!r} "
+                        f"reads_date={reads_date!r} protocol_year={plasmidsaurus_year!r}",
+                        enabled=True,
+                    )
+                continue
 
             if long_read:
                 if tech_label == "Pacbio":
@@ -2408,33 +3541,63 @@ def generate_sra_table(
             else:
                 base_library_id = isolate_name
 
-            library_id = base_library_id
-            if (
-                not long_read
-                and short_read_date_flag.get(isolate_name)
-                and reads_date
-            ):
-                library_id = f"{base_library_id}_{reads_date}"
-            if library_id in used_library_ids and reads_date:
-                library_id = f"{base_library_id}_{reads_date}"
-            if library_id in used_library_ids:
-                suffix = used_library_ids[library_id] + 1
-                library_id = f"{library_id}_{suffix}"
-            used_library_ids[library_id] = used_library_ids.get(library_id, 0) + 1
+            # Force ONT submissions to single-end metadata regardless of BERDL read_type.
+            if platform == "OXFORD_NANOPORE":
+                library_layout = "SINGLE"
+                filename2 = None
 
-            title = f"{tech_label} reads for {isolate_name}"
+            library_stem = base_library_id
             if (
                 not long_read
                 and short_read_date_flag.get(isolate_name)
                 and reads_date
             ):
-                title = f"{title}, {reads_date}"
-            elif title in used_titles and reads_date:
-                title = f"{title}, {reads_date}"
-            if title in used_titles:
-                suffix = used_titles[title] + 1
-                title = f"{title}, {suffix}"
-            used_titles[title] = used_titles.get(title, 0) + 1
+                library_stem = f"{base_library_id}_{reads_date}"
+            elif library_stem in used_library_ids and reads_date:
+                library_stem = f"{base_library_id}_{reads_date}"
+
+            title_base = f"{tech_label} reads for {isolate_name}"
+            if (
+                not long_read
+                and short_read_date_flag.get(isolate_name)
+                and reads_date
+            ):
+                title_base = f"{title_base}, {reads_date}"
+            elif library_stem.endswith(f"_{reads_date}") and reads_date:
+                title_base = f"{title_base}, {reads_date}"
+
+            replicate_from_filename = infer_replicate_number_from_filenames(
+                filename, filename2, primary_reads.get("reads_name")
+            )
+            suffix_number: Optional[int] = None
+            if replicate_from_filename is not None:
+                suffix_number = replicate_from_filename
+                library_id = f"{library_stem}_{suffix_number}"
+                while library_id in used_library_ids:
+                    suffix_number += 1
+                    library_id = f"{library_stem}_{suffix_number}"
+                next_suffix_by_library_stem[library_stem] = max(
+                    next_suffix_by_library_stem.get(library_stem, 2), suffix_number + 1
+                )
+            else:
+                library_id = library_stem
+                if library_id in used_library_ids:
+                    suffix_number = next_suffix_by_library_stem.get(library_stem, 2)
+                    while f"{library_stem}_{suffix_number}" in used_library_ids:
+                        suffix_number += 1
+                    library_id = f"{library_stem}_{suffix_number}"
+                    next_suffix_by_library_stem[library_stem] = suffix_number + 1
+                else:
+                    next_suffix_by_library_stem.setdefault(library_stem, 2)
+
+            used_library_ids.add(library_id)
+
+            title = title_base if suffix_number is None else f"{title_base}, {suffix_number}"
+            design_description = infer_sra_design_description(
+                platform,
+                instrument_model,
+                list(protocol_names) + list(assembly_protocols),
+            )
 
             values = {
                 "sample_name": biosample_name,
@@ -2446,7 +3609,7 @@ def generate_sra_table(
                 "library_layout": library_layout,
                 "platform": platform,
                 "instrument_model": instrument_model,
-                "design_description": "Whole genome shotgun sequencing for isolate characterization.",
+                "design_description": design_description,
                 "filetype": "fastq",
                 "filename": filename,
             }
@@ -2461,7 +3624,9 @@ def generate_sra_table(
 
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    sheet.parent.save(output_path)
+    if not dry_run:
+        sheet.parent.save(output_path)
+    return max(0, next_row - start_row)
 
 
 def generate_genome_table(
@@ -2472,7 +3637,8 @@ def generate_genome_table(
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
     edr_root: str,
     debug: bool = False,
-) -> None:
+    dry_run: bool = False,
+) -> int:
     template_path, sheet, header_row, header_map = load_genome_template_workbook(
         Path(output_file).parent
     )
@@ -2483,6 +3649,7 @@ def generate_genome_table(
             last_data_row = row[0].row
 
     next_row = last_data_row + 1
+    start_row = next_row
     for genome in genome_data:
         strain = genome.get("strain", {}) or {}
         sample = genome.get("sample", {}) or {}
@@ -2494,17 +3661,15 @@ def generate_genome_table(
             raw_sample_name = isolate_name
         biosample_name = build_biosample_name(raw_sample_name, isolate_name)
 
-        assembly_protocols = collect_protocols_from_processes(
-            genome.get("assembly_processes", []) or []
+        method_name, method_version, assembly_protocols = resolve_assembly_method_for_genome(
+            genome,
+            headers,
+            column_cache,
+            protocol_cache,
+            edr_root=edr_root,
+            debug=debug,
         )
-        assembly_method = infer_assembly_method_from_protocols(
-            assembly_protocols, headers, column_cache, protocol_cache
-        )
-        method_name, method_version = split_assembly_method(assembly_method, debug=debug)
-        if not method_name:
-            method_name = "unknown"
-        if not method_version:
-            method_version = "unknown"
+        genome_name = genome.get("genome_name", "")
 
         seq_techs = infer_sequencing_techs(
             assembly_protocols, headers, column_cache, protocol_cache
@@ -2515,6 +3680,11 @@ def generate_genome_table(
                 if tech:
                     seq_techs.append(tech)
         sequencing_technology = "; ".join(sorted(set(seq_techs))) if seq_techs else ""
+        if (
+            (not sequencing_technology)
+            or sequencing_technology.strip().lower() in {"unknown", "none", "na", "n/a"}
+        ) and str(method_name or "").strip().lower() == "spades":
+            sequencing_technology = "Illumina"
 
         fasta_link, _ = select_contig_link_and_path(
             genome, edr_root=edr_root, debug=debug
@@ -2526,13 +3696,13 @@ def generate_genome_table(
             "biosample_accession": "",
             "sample_name": biosample_name,
             "assembly_date": assembly_date,
-            "assembly_name": genome.get("genome_name", ""),
+            "assembly_name": genome_name,
             "assembly_method": method_name,
             "assembly_method_version": method_version,
             "genome_coverage": genome.get("genome_coverage", ""),
             "sequencing_technology": sequencing_technology,
             "reference_genome": "",
-            "update_for": "",
+            "update_for": genome.get("refseq_id", ""),
             "bacteria_available_from": Bacteria_AVAILABLE_FROM,
             "filename": fasta_filename,
         }
@@ -2545,7 +3715,238 @@ def generate_genome_table(
 
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    sheet.parent.save(output_path)
+    if not dry_run:
+        sheet.parent.save(output_path)
+    return max(0, next_row - start_row)
+
+
+def _add_part_suffix(filename: str, part_index: int) -> str:
+    path = Path(filename)
+    return str(path.with_name(f"{path.stem}_part{part_index}{path.suffix}"))
+
+
+def resolve_assembly_method_for_genome(
+    genome: Dict[str, Any],
+    headers: Dict[str, str],
+    column_cache: Dict[str, List[str]],
+    protocol_cache: Dict[str, Dict[str, Optional[str]]],
+    edr_root: Optional[str] = None,
+    debug: bool = False,
+) -> Tuple[str, str, List[str]]:
+    assembly_processes = genome.get("assembly_processes", []) or []
+    assembly_protocols = collect_protocols_from_processes(assembly_processes)
+    assembly_method = infer_assembly_method_from_protocols(
+        assembly_protocols, headers, column_cache, protocol_cache
+    )
+    use_long_read_hardcoded_metadata = is_long_read_submission_context(
+        assembly_protocols,
+        genome.get("reads", []) or [],
+        headers,
+        column_cache,
+        protocol_cache,
+    )
+    method_name, method_version = split_assembly_method(assembly_method, debug=debug)
+    genome_name = genome.get("genome_name", "")
+    strain_id = str(genome_name).split(".", 1)[0] if genome_name else ""
+    submission_genome_name = str(genome_name or "")
+    if submission_genome_name.endswith(".genome"):
+        submission_genome_name = submission_genome_name[: -len(".genome")]
+    has_lui_nielsen_2022_flye_unicycler_protocol = any(
+        "lui-nielsen-2022-flye-unicycler" in str(protocol_name).lower()
+        for protocol_name in assembly_protocols
+    )
+    has_price_2024_hifi_protocol = any(
+        "price-2024-hifi" in str(protocol_name).lower()
+        for protocol_name in assembly_protocols
+    )
+    has_lui_2020_spades_protocol = any(
+        "lui-2020-spades" in str(protocol_name).lower()
+        for protocol_name in assembly_protocols
+    )
+    strain = genome.get("strain", {}) or {}
+    sample = genome.get("sample", {}) or {}
+    raw_sample_name = sample.get("sample_name") or ""
+    isolate_name = (
+        strain.get("strain_name") or raw_sample_name or genome.get("genome_name", "")
+    )
+    hardcoded_meta = (
+        hardcoded_metadata_for_isolate(isolate_name)
+        if use_long_read_hardcoded_metadata
+        else {}
+    )
+    hardcoded_assembler = hardcoded_meta.get("assembler", "")
+    if use_long_read_hardcoded_metadata:
+        enforce_assembler_match(strain_id, method_name, hardcoded_assembler)
+
+    if use_long_read_hardcoded_metadata and not _is_metadata_unknown(hardcoded_assembler):
+        method_name = normalize_hardcoded_assembler_name(hardcoded_assembler)
+        if method_version in {"", "unknown"}:
+            method_version = ""
+    elif strain_id in FLYE_292_B1786_GENOMES:
+        method_name = "Flye"
+        method_version = "2.9.2-b1786"
+    elif strain_id in FLYE_29_B1768_GENOMES:
+        method_name = "Flye"
+        method_version = "2.9-b1768"
+    plasmidsaurus_protocol = False
+    for protocol_name in assembly_protocols:
+        info = get_protocol_info(headers, protocol_name, column_cache, protocol_cache)
+        proto_text = " ".join(
+            [
+                str(info.get("protocol_name") or protocol_name),
+                str(info.get("protocol_description") or ""),
+            ]
+        ).lower()
+        if "plasmidsaurus" in proto_text:
+            plasmidsaurus_protocol = True
+            break
+    if plasmidsaurus_protocol:
+        method_name = "Flye"
+        method_version = "2.9.6"
+    if has_lui_2020_spades_protocol:
+        method_name = "Unicycler"
+        method_version = "0.4.8"
+    if (
+        submission_genome_name in LUI_NIELSEN_2022_FLYE_UNICYCLER_GENOMES
+        and has_lui_nielsen_2022_flye_unicycler_protocol
+    ):
+        method_name = "Unicycler"
+        method_version = "0.4.8"
+    if (
+        submission_genome_name in PRICE_2024_HIFI_GENOMES
+        and has_price_2024_hifi_protocol
+    ):
+        method_name = "Flye"
+        method_version = "2.9.2-b1786"
+    if not method_name:
+        method_name = "unknown"
+    if not method_version and method_name == "unknown":
+        method_version = "unknown"
+
+    if method_name in {"Flye", "Unicycler"} and not method_version and edr_root:
+        _, fasta_path = select_contig_link_and_path(genome, edr_root=edr_root, debug=debug)
+        method_version = infer_assembler_version_from_edr_logs(
+            fasta_path, method_name, debug=debug
+        )
+    method_version = normalize_assembler_version(method_version)
+    return method_name, method_version, assembly_protocols
+
+
+def write_remaining_unknown_assemblies_report(
+    genome_data: List[Dict[str, Any]],
+    output_file: str,
+    headers: Dict[str, str],
+    column_cache: Dict[str, List[str]],
+    protocol_cache: Dict[str, Dict[str, Optional[str]]],
+    edr_root: str,
+    debug: bool = False,
+) -> None:
+    grouped: Dict[str, List[Tuple[str, str, str]]] = defaultdict(list)
+    total = 0
+    for genome in genome_data:
+        method_name, method_version, assembly_protocols = resolve_assembly_method_for_genome(
+            genome,
+            headers,
+            column_cache,
+            protocol_cache,
+            edr_root=edr_root,
+            debug=debug,
+        )
+        unresolved = (
+            (not method_name)
+            or method_name.lower() == "unknown"
+            or (not method_version)
+            or method_version.lower() == "unknown"
+        )
+        if not unresolved:
+            continue
+        total += 1
+        genome_name = str(genome.get("genome_name") or "")
+        if not assembly_protocols:
+            protocol_label = "<no assembly-like process found>"
+        elif len(assembly_protocols) == 1:
+            protocol_label = f"{assembly_protocols[0]} [Shotgun Sequencing and Assembly]"
+        else:
+            protocol_label = (
+                f"{', '.join(assembly_protocols)} [Shotgun Sequencing and Assembly]"
+            )
+        version_display = method_version if method_version else "<blank>"
+        grouped[protocol_label].append((genome_name, method_name or "unknown", version_display))
+
+    output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    lines: List[str] = []
+    lines.append("Remaining genomes with unknown assembly method or version")
+    lines.append(f"Total genomes: {total}")
+    lines.append("")
+    protocol_labels = sorted(label for label in grouped.keys() if label != "<no assembly-like process found>")
+    if "<no assembly-like process found>" in grouped:
+        protocol_labels = ["<no assembly-like process found>"] + protocol_labels
+    for label in protocol_labels:
+        rows = sorted(grouped[label], key=lambda row: row[0])
+        lines.append(f"Protocol: {label}")
+        lines.append(f"Count: {len(rows)}")
+        for genome_name, method_name, method_version in rows:
+            lines.append(
+                f"- {genome_name}\tassembly_method={method_name}\tassembly_method_version={method_version}"
+            )
+        lines.append("")
+    output_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
+
+
+def partition_genome_data_for_submission(
+    genome_data: List[Dict[str, Any]],
+    output_dir: str,
+    headers: Dict[str, str],
+    column_cache: Dict[str, List[str]],
+    protocol_cache: Dict[str, Dict[str, Optional[str]]],
+    max_genomes_per_file: int,
+    max_sra_rows_per_file: int,
+    debug: bool = False,
+) -> List[List[Dict[str, Any]]]:
+    if not genome_data:
+        return []
+
+    pending: List[List[Dict[str, Any]]] = [list(genome_data)]
+    accepted: List[List[Dict[str, Any]]] = []
+
+    while pending:
+        part = pending.pop(0)
+        biosample_rows = len(part)
+        genome_rows = len(part)
+        sra_rows = generate_sra_table(
+            part,
+            os.path.join(output_dir, "_dryrun_sra_table_SRA_metadata.xlsx"),
+            headers,
+            column_cache,
+            protocol_cache,
+            debug=debug,
+            dry_run=True,
+        )
+
+        over_limit = (
+            biosample_rows > max_genomes_per_file
+            or genome_rows > max_genomes_per_file
+            or sra_rows > max_sra_rows_per_file
+        )
+        if not over_limit:
+            accepted.append(part)
+            continue
+
+        if len(part) <= 1:
+            log_info(
+                "WARNING: A single-genome part exceeds submission limits "
+                f"({biosample_rows=}, {genome_rows=}, {sra_rows=}). "
+                "Keeping this part unsplit."
+            )
+            accepted.append(part)
+            continue
+
+        midpoint = len(part) // 2
+        pending.insert(0, part[midpoint:])
+        pending.insert(0, part[:midpoint])
+
+    return accepted
 
 
 def process_genomes_for_submission(
@@ -2633,6 +4034,7 @@ def process_genomes_for_submission(
             read_cache,
             strain_token=strain_token,
             log_label=f"[reads {genome_name}] ",
+            genome_name=genome_name,
         )
         if not reads_list:
             warnings.append(
@@ -2685,6 +4087,9 @@ def process_genomes_for_submission(
             log_info(f"Resolving strain {strain_name}")
         strain_data = get_strain_info(headers, strain_name, column_cache) if strain_name else None
         gtdb_genus = get_gtdb_genus_for_strain(headers, strain_name, column_cache)
+        isolate_key = normalize_isolate_key(strain_name or genome_name)
+        if isolate_key in HARDCODED_GTDB_GENUS_BY_ISOLATE:
+            gtdb_genus = HARDCODED_GTDB_GENUS_BY_ISOLATE[isolate_key]
         collected_by = None
         if sample_data and sample_data.get("sample_token"):
             collected_by = resolve_collected_by(sample_data["sample_token"], cache.out_lookup)
@@ -2728,6 +4133,16 @@ def process_genomes_for_submission(
         for genome in genome_data
     ]
     strain_names = [name for name in strain_names if name]
+    log_info("Fetching current isolate RefSeq IDs from BERDL")
+    refseq_map = fetch_isolate_refseq_map(headers, strain_names, discovered_tables, column_cache)
+    for genome in genome_data:
+        strain_name = normalize_strain_name(genome.get("genome_name", ""), genome.get("strain"))
+        refseq_id = refseq_map.get(strain_name) or refseq_map.get(
+            normalize_isolate_key(strain_name)
+        )
+        if refseq_id:
+            genome["refseq_id"] = refseq_id
+
     coverage_map = fetch_read_coverage_map(headers, strain_names, column_cache)
     if skip_coverage_calculation:
         log_info(
@@ -2742,41 +4157,104 @@ def process_genomes_for_submission(
             if coverage is not None:
                 genome["genome_coverage"] = coverage
 
-    log_info("Writing biosample table")
-    generate_biosample_table(
+    partitioned_genomes = partition_genome_data_for_submission(
         genome_data,
-        os.path.join(output_dir, "biosample_table_Microbe.1.0.xlsx"),
         output_dir,
-        debug=debug,
-    )
-    log_info("Writing SRA metadata table")
-    generate_sra_table(
-        genome_data,
-        os.path.join(output_dir, "sra_table_SRA_metadata.xlsx"),
         headers,
         column_cache,
         protocol_cache,
+        max_genomes_per_file=MAX_GENOMES_PER_SUBMISSION,
+        max_sra_rows_per_file=MAX_SRA_ROWS_PER_SUBMISSION,
         debug=debug,
     )
-    log_info("Writing genome metadata table")
-    generate_genome_table(
+    split_mode = len(partitioned_genomes) > 1
+    if split_mode:
+        log_info(
+            f"Splitting submission into {len(partitioned_genomes)} part(s) "
+            f"to keep genome/biosample tables <= {MAX_GENOMES_PER_SUBMISSION} rows "
+            f"and SRA table <= {MAX_SRA_ROWS_PER_SUBMISSION} rows."
+        )
+
+    generated_files: List[str] = []
+    for idx, part_genomes in enumerate(partitioned_genomes, start=1):
+        biosample_file = os.path.join(output_dir, "biosample_table_Microbe.1.0.xlsx")
+        sra_file = os.path.join(output_dir, "sra_table_SRA_metadata.xlsx")
+        genome_file = os.path.join(output_dir, "genome_table_Template_GenomeBatch.xlsx")
+        reads_dir = "reads_to_upload"
+        contigs_dir = "contigs_to_upload"
+        if split_mode:
+            biosample_file = _add_part_suffix(biosample_file, idx)
+            sra_file = _add_part_suffix(sra_file, idx)
+            genome_file = _add_part_suffix(genome_file, idx)
+            reads_dir = f"reads_to_upload_part{idx}"
+            contigs_dir = f"contigs_to_upload_part{idx}"
+
+        if split_mode:
+            log_info(
+                f"Writing part {idx}/{len(partitioned_genomes)} "
+                f"({len(part_genomes)} genome(s))"
+            )
+        log_info("Writing biosample table")
+        generate_biosample_table(
+            part_genomes,
+            biosample_file,
+            output_dir,
+            debug=debug,
+        )
+        log_info("Writing SRA metadata table")
+        generate_sra_table(
+            part_genomes,
+            sra_file,
+            headers,
+            column_cache,
+            protocol_cache,
+            debug=debug,
+        )
+        log_info("Writing genome metadata table")
+        generate_genome_table(
+            part_genomes,
+            genome_file,
+            headers,
+            column_cache,
+            protocol_cache,
+            edr_root=edr_path,
+            debug=debug,
+        )
+        log_info("Linking FASTQ files for upload")
+        link_fastq_files(
+            part_genomes,
+            output_dir,
+            edr_path,
+            target_subdir=reads_dir,
+            debug=debug,
+        )
+        log_info("Linking contig files for upload")
+        link_contig_files(
+            part_genomes,
+            output_dir,
+            edr_path,
+            target_subdir=contigs_dir,
+            debug=debug,
+        )
+
+        generated_files.extend([biosample_file, sra_file, genome_file])
+
+    remaining_unknown_path = str(DEFAULT_REMAINING_UNKNOWN_ASSEMBLIES_PATH)
+    log_info("Writing remaining unknown assemblies report")
+    write_remaining_unknown_assemblies_report(
         genome_data,
-        os.path.join(output_dir, "genome_table_Template_GenomeBatch.xlsx"),
+        remaining_unknown_path,
         headers,
         column_cache,
         protocol_cache,
         edr_root=edr_path,
         debug=debug,
     )
-    log_info("Linking FASTQ files for upload")
-    link_fastq_files(genome_data, output_dir, edr_path, debug=debug)
-    log_info("Linking contig files for upload")
-    link_contig_files(genome_data, output_dir, edr_path, debug=debug)
 
     print("Generated submission tables:")
-    print(f"  - {os.path.join(output_dir, 'biosample_table_Microbe.1.0.xlsx')}")
-    print(f"  - {os.path.join(output_dir, 'sra_table_SRA_metadata.xlsx')}")
-    print(f"  - {os.path.join(output_dir, 'genome_table_Template_GenomeBatch.xlsx')}")
+    for file_path in generated_files:
+        print(f"  - {file_path}")
+    print(f"  - {remaining_unknown_path}")
 
     return genome_data
 
