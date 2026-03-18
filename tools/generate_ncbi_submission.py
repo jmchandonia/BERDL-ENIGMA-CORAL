@@ -21,7 +21,7 @@ import json
 import os
 import re
 from collections import defaultdict
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from pathlib import Path
 import sys
@@ -52,7 +52,9 @@ DEFAULT_OUTPUT_DIR = "ncbi_submission"
 DEFAULT_EDR_PATH = "/mnt/net/dipa.jmcnet/data/edr"
 EDR_URL_PREFIX = "https://genomics.lbl.gov/enigma-data/"
 MAX_GENOMES_PER_SUBMISSION = 400
+MAX_BIOSAMPLE_ROWS_PER_SUBMISSION = 1000
 MAX_SRA_ROWS_PER_SUBMISSION = 1000
+MIN_NCBI_CONTIG_LENGTH = 200
 DEFAULT_REMAINING_UNKNOWN_ASSEMBLIES_PATH = (
     REPO_ROOT / "genome_upload" / "remaining_unknown_assemblies.txt"
 )
@@ -74,6 +76,11 @@ SRA_TEMPLATE_CANDIDATES = [
     REPO_ROOT / "templates" / "SRA_metadata.xlsx",
     Path("ncbi_submission") / "SRA_metadata.xlsx",
     Path("genome_upload") / "ncbi_submission" / "SRA_metadata.xlsx",
+]
+SRA_ACCESSION_TEMPLATE_CANDIDATES = [
+    REPO_ROOT / "templates" / "SRA_metadata_acc.xlsx",
+    Path("ncbi_submission") / "SRA_metadata_acc.xlsx",
+    Path("genome_upload") / "ncbi_submission" / "SRA_metadata_acc.xlsx",
 ]
 GENOME_TEMPLATE_CANDIDATES = [
     REPO_ROOT / "templates" / "Template_GenomeBatch.xlsx",
@@ -1610,13 +1617,21 @@ def load_biosample_template_workbook(output_dir: str) -> Tuple[Path, Any, int, D
     return template_path, sheet, header_row, header_map
 
 
-def load_sra_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[str, int]]:
-    candidates = list(SRA_TEMPLATE_CANDIDATES)
-    candidates.append(Path(output_dir) / "SRA_metadata.xlsx")
+def load_sra_template_workbook(
+    output_dir: str,
+    use_accession_template: bool = False,
+) -> Tuple[Path, Any, int, Dict[str, int]]:
+    if use_accession_template:
+        candidates = list(SRA_ACCESSION_TEMPLATE_CANDIDATES)
+        candidates.append(Path(output_dir) / "SRA_metadata_acc.xlsx")
+    else:
+        candidates = list(SRA_TEMPLATE_CANDIDATES)
+        candidates.append(Path(output_dir) / "SRA_metadata.xlsx")
     template_path = next((path for path in candidates if path.exists()), None)
     if not template_path:
+        expected = "SRA_metadata_acc.xlsx" if use_accession_template else "SRA_metadata.xlsx"
         raise FileNotFoundError(
-            "SRA template not found. Expected SRA_metadata.xlsx."
+            f"SRA template not found. Expected {expected}."
         )
     workbook = load_workbook(template_path)
     sheet = workbook["SRA_data"] if "SRA_data" in workbook.sheetnames else workbook.active
@@ -1625,7 +1640,8 @@ def load_sra_template_workbook(output_dir: str) -> Tuple[Path, Any, int, Dict[st
     header_map: Dict[str, int] = {}
     for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row):
         for cell in row:
-            if (cell.value or "").strip() == "sample_name":
+            value = (cell.value or "").strip()
+            if value in {"sample_name", "biosample_accession"}:
                 header_row = cell.row
                 for header_cell in sheet[header_row]:
                     header = header_cell.value
@@ -1716,6 +1732,319 @@ def resolve_edr_path(link: str, edr_root: str) -> Optional[Path]:
     return edr_root_path / rel_path
 
 
+def clear_existing_symlinks(target_dir: Path, debug: bool = False) -> int:
+    removed = 0
+    for entry in target_dir.iterdir():
+        if not entry.is_symlink():
+            continue
+        try:
+            entry.unlink()
+            removed += 1
+        except OSError as exc:
+            log_debug(
+                f"Failed to remove existing symlink {entry}: {exc}",
+                enabled=debug,
+            )
+    return removed
+
+
+def _part_index_from_filename(path: Path) -> int:
+    match = re.search(r"_part(\d+)\.xlsx$", path.name)
+    if match:
+        return max(1, int(match.group(1)))
+    return 1
+
+
+def _normalize_header_map(sheet: Any) -> Dict[str, int]:
+    header_map: Dict[str, int] = {}
+    for cell in sheet[1]:
+        value = cell.value
+        if value is None:
+            continue
+        text = str(value).strip()
+        if not text:
+            continue
+        header_map[text] = cell.column
+    return header_map
+
+
+def _find_header_map_with_key(
+    sheet: Any,
+    header_name: str,
+    max_scan_rows: int = 200,
+) -> Tuple[int, Dict[str, int]]:
+    aliases = {header_name}
+    if header_name == "*sample_name":
+        aliases.add("sample_name")
+    elif header_name == "sample_name":
+        aliases.add("*sample_name")
+    aliases = {alias.strip() for alias in aliases}
+
+    for row_idx in range(1, min(sheet.max_row, max_scan_rows) + 1):
+        row_map: Dict[str, int] = {}
+        for cell in sheet[row_idx]:
+            value = cell.value
+            if value is None:
+                continue
+            text = str(value).strip()
+            if text:
+                row_map[text] = cell.column
+        if not row_map:
+            continue
+        if any(alias in row_map for alias in aliases):
+            return row_idx, row_map
+    return 1, {}
+
+
+def _read_column_values_from_xlsx(path: Path, header_name: str) -> List[str]:
+    if not path.exists():
+        return []
+    workbook = load_workbook(path, data_only=True)
+    if header_name.startswith("*"):
+        if "BioSample" in workbook.sheetnames:
+            sheet = workbook["BioSample"]
+        elif "Microbe.1.0" in workbook.sheetnames:
+            sheet = workbook["Microbe.1.0"]
+        else:
+            sheet = workbook.active
+    elif "SRA_data" in workbook.sheetnames:
+        sheet = workbook["SRA_data"]
+    elif "Genome_data" in workbook.sheetnames:
+        sheet = workbook["Genome_data"]
+    else:
+        sheet = workbook.active
+    header_row, header_map = _find_header_map_with_key(sheet, header_name)
+    if not header_map:
+        header_map = _normalize_header_map(sheet)
+        header_row = 1
+    col = header_map.get(header_name)
+    if col is None and header_name == "*sample_name":
+        col = header_map.get("sample_name")
+    if col is None:
+        return []
+    values: List[str] = []
+    for row in range(header_row + 1, sheet.max_row + 1):
+        value = sheet.cell(row=row, column=col).value
+        if value is None:
+            continue
+        text = str(value).strip()
+        if text:
+            values.append(text)
+    return values
+
+
+def _extract_sra_filenames(path: Path) -> Set[str]:
+    if not path.exists():
+        return set()
+    workbook = load_workbook(path, data_only=True)
+    sheet = workbook["SRA_data"] if "SRA_data" in workbook.sheetnames else workbook.active
+    header_map = _normalize_header_map(sheet)
+    filename_col = header_map.get("filename")
+    filename2_col = header_map.get("filename2")
+    filenames: Set[str] = set()
+    for row in range(2, sheet.max_row + 1):
+        if filename_col is not None:
+            value = sheet.cell(row=row, column=filename_col).value
+            if value:
+                filenames.add(str(value).strip())
+        if filename2_col is not None:
+            value2 = sheet.cell(row=row, column=filename2_col).value
+            if value2:
+                filenames.add(str(value2).strip())
+    return {name for name in filenames if name}
+
+
+def _extract_genome_filenames(path: Path) -> Set[str]:
+    if not path.exists():
+        return set()
+    workbook = load_workbook(path, data_only=True)
+    sheet = workbook["Genome_data"] if "Genome_data" in workbook.sheetnames else workbook.active
+    header_map = _normalize_header_map(sheet)
+    filename_col = header_map.get("filename")
+    if filename_col is None:
+        return set()
+    filenames: Set[str] = set()
+    for row in range(2, sheet.max_row + 1):
+        value = sheet.cell(row=row, column=filename_col).value
+        if value:
+            filenames.add(str(value).strip())
+    return {name for name in filenames if name}
+
+
+def _populate_symlink_dir_from_filenames(
+    target_dir: Path,
+    filenames: Set[str],
+    filename_to_path: Dict[str, Path],
+    debug: bool = False,
+) -> None:
+    if not filenames:
+        if target_dir.exists():
+            removed = clear_existing_symlinks(target_dir, debug=debug)
+            if removed:
+                log_info(f"Removed {removed} existing symlink(s) from {target_dir}")
+            try:
+                if not any(target_dir.iterdir()):
+                    target_dir.rmdir()
+                    log_info(f"Removed empty directory {target_dir}")
+            except OSError:
+                pass
+        return
+
+    target_dir.mkdir(parents=True, exist_ok=True)
+    removed = clear_existing_symlinks(target_dir, debug=debug)
+    if removed:
+        log_info(f"Removed {removed} existing symlink(s) from {target_dir}")
+    missing: List[str] = []
+    link_count = 0
+    for filename in sorted(filenames):
+        source = filename_to_path.get(filename)
+        if source is None:
+            missing.append(filename)
+            continue
+        target = target_dir / filename
+        try:
+            os.symlink(source, target)
+            link_count += 1
+        except FileExistsError:
+            continue
+    log_info(f"Symlinked {link_count} file(s) to {target_dir}")
+    if missing:
+        preview = ", ".join(missing[:5])
+        suffix = "" if len(missing) <= 5 else ", ..."
+        log_info(
+            f"WARNING: Missing EDR paths for {len(missing)} referenced file(s) in {target_dir}: "
+            f"{preview}{suffix}"
+        )
+
+
+def _clear_upload_dir_entries(target_dir: Path, debug: bool = False) -> int:
+    removed = 0
+    for entry in target_dir.iterdir():
+        if entry.is_dir():
+            continue
+        try:
+            entry.unlink()
+            removed += 1
+        except OSError as exc:
+            log_debug(
+                f"Failed to remove existing upload entry {entry}: {exc}",
+                enabled=debug,
+            )
+    return removed
+
+
+def _populate_contig_upload_dir_from_filenames(
+    target_dir: Path,
+    filenames: Set[str],
+    existing_filename_to_path: Dict[str, Path],
+    generated_contig_uploads: Dict[str, Dict[str, Any]],
+    min_length: int = MIN_NCBI_CONTIG_LENGTH,
+    debug: bool = False,
+) -> None:
+    if not filenames:
+        if target_dir.exists():
+            removed = _clear_upload_dir_entries(target_dir, debug=debug)
+            if removed:
+                log_info(f"Removed {removed} existing upload file(s) from {target_dir}")
+            try:
+                if not any(target_dir.iterdir()):
+                    target_dir.rmdir()
+                    log_info(f"Removed empty directory {target_dir}")
+            except OSError:
+                pass
+        return
+
+    target_dir.mkdir(parents=True, exist_ok=True)
+    removed = _clear_upload_dir_entries(target_dir, debug=debug)
+    if removed:
+        log_info(f"Removed {removed} existing upload file(s) from {target_dir}")
+
+    missing: List[str] = []
+    symlink_count = 0
+    copied_count = 0
+    for filename in sorted(filenames):
+        target = target_dir / filename
+        upload = generated_contig_uploads.get(filename)
+        if upload is not None:
+            source_path = upload.get("source_path")
+            if not isinstance(source_path, Path) or not source_path.exists():
+                missing.append(filename)
+                continue
+            if upload.get("needs_filter"):
+                kept, removed_records = write_filtered_fasta_records(
+                    source_path,
+                    target,
+                    min_length=min_length,
+                )
+                copied_count += 1
+                if debug:
+                    log_debug(
+                        "Wrote filtered contig upload file: "
+                        f"source={source_path} target={target} kept={kept} removed={removed_records}",
+                        enabled=True,
+                    )
+            else:
+                try:
+                    os.symlink(source_path, target)
+                    symlink_count += 1
+                except FileExistsError:
+                    continue
+            continue
+
+        source = existing_filename_to_path.get(filename)
+        if source is None:
+            missing.append(filename)
+            continue
+        try:
+            os.symlink(source, target)
+            symlink_count += 1
+        except FileExistsError:
+            continue
+
+    log_info(
+        f"Prepared {symlink_count + copied_count} contig upload file(s) in {target_dir} "
+        f"({symlink_count} symlink(s), {copied_count} filtered copy/copies)."
+    )
+    if missing:
+        preview = ", ".join(missing[:5])
+        suffix = "" if len(missing) <= 5 else ", ..."
+        log_info(
+            f"WARNING: Missing contig source paths for {len(missing)} referenced file(s) in {target_dir}: "
+            f"{preview}{suffix}"
+        )
+
+
+def _collect_filename_to_path_from_symlink_dirs(
+    existing_xlsx_paths: Sequence[Path],
+    output_dir: str,
+    kind: str,
+) -> Dict[str, Path]:
+    if kind not in {"reads", "contigs"}:
+        return {}
+    mapping: Dict[str, Path] = {}
+    prefix = "reads_to_upload" if kind == "reads" else "contigs_to_upload"
+    candidate_dirs: Set[Path] = set()
+    for xlsx_path in existing_xlsx_paths:
+        part_idx = _part_index_from_filename(xlsx_path)
+        parent = xlsx_path.parent
+        candidate_dirs.add(parent / f"{prefix}_part{part_idx}")
+        candidate_dirs.add(parent / prefix)
+        output_parent = Path(output_dir)
+        candidate_dirs.add(output_parent / f"{prefix}_part{part_idx}")
+        candidate_dirs.add(output_parent / prefix)
+    for dir_path in sorted(candidate_dirs):
+        if not dir_path.exists() or not dir_path.is_dir():
+            continue
+        for entry in dir_path.iterdir():
+            if not entry.is_symlink() and not (kind == "contigs" and entry.is_file()):
+                continue
+            try:
+                mapping[entry.name] = entry.resolve(strict=False)
+            except OSError:
+                continue
+    return mapping
+
+
 def link_fastq_files(
     genome_data: List[Dict[str, Any]],
     output_dir: str,
@@ -1725,6 +2054,9 @@ def link_fastq_files(
 ) -> None:
     target_dir = Path(output_dir) / target_subdir
     target_dir.mkdir(parents=True, exist_ok=True)
+    removed = clear_existing_symlinks(target_dir, debug=debug)
+    if removed:
+        log_info(f"Removed {removed} existing symlink(s) from {target_dir}")
     seen_targets: set[str] = set()
     link_count = 0
     for genome in genome_data:
@@ -1760,6 +2092,107 @@ def build_contig_link(genome: Dict[str, Any]) -> str:
     if strain_name:
         return f"{genome_link.rstrip('/')}/{strain_name}_contigs.fasta"
     return f"{genome_link.rstrip('/')}/contigs.fasta"
+
+
+def append_for_ncbi_suffix(filename: str) -> str:
+    path = Path(filename)
+    suffix = path.suffix
+    if suffix:
+        return f"{path.stem}_for_ncbi{suffix}"
+    return f"{filename}_for_ncbi"
+
+
+def count_short_fasta_records(path: Path, min_length: int = MIN_NCBI_CONTIG_LENGTH) -> int:
+    if not path.exists():
+        return 0
+    short_count = 0
+    seq_len = 0
+    in_record = False
+    with open(path, "r", encoding="utf-8", errors="replace") as handle:
+        for line in handle:
+            if line.startswith(">"):
+                if in_record and seq_len < min_length:
+                    short_count += 1
+                in_record = True
+                seq_len = 0
+                continue
+            if not in_record:
+                continue
+            seq_len += len(line.strip())
+    if in_record and seq_len < min_length:
+        short_count += 1
+    return short_count
+
+
+def write_filtered_fasta_records(
+    source_path: Path,
+    target_path: Path,
+    min_length: int = MIN_NCBI_CONTIG_LENGTH,
+) -> Tuple[int, int]:
+    removed = 0
+    kept = 0
+    header: Optional[str] = None
+    seq_lines: List[str] = []
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(source_path, "r", encoding="utf-8", errors="replace") as src, open(
+        target_path, "w", encoding="utf-8"
+    ) as dst:
+        def flush_record() -> None:
+            nonlocal removed, kept, header, seq_lines
+            if header is None:
+                return
+            seq_len = sum(len(line.strip()) for line in seq_lines)
+            if seq_len >= min_length:
+                dst.write(header)
+                for seq_line in seq_lines:
+                    dst.write(seq_line)
+                kept += 1
+            else:
+                removed += 1
+
+        for line in src:
+            if line.startswith(">"):
+                flush_record()
+                header = line if line.endswith("\n") else f"{line}\n"
+                seq_lines = []
+            elif header is not None:
+                seq_lines.append(line if line.endswith("\n") else f"{line}\n")
+        flush_record()
+    return kept, removed
+
+
+def prepare_ncbi_contig_upload_plan(
+    genome_data: List[Dict[str, Any]],
+    edr_root: str,
+    debug: bool = False,
+) -> None:
+    for genome in genome_data:
+        link, contig_path = select_contig_link_and_path(
+            genome, edr_root=edr_root, debug=debug
+        )
+        filename = Path(link).name if link else ""
+        plan: Dict[str, Any] = {
+            "link": link,
+            "source_path": contig_path,
+            "source_filename": filename,
+            "upload_filename": filename,
+            "needs_filter": False,
+            "short_record_count": 0,
+        }
+        if contig_path and filename.lower().endswith((".fasta", ".fa", ".fna")):
+            short_count = count_short_fasta_records(
+                contig_path, min_length=MIN_NCBI_CONTIG_LENGTH
+            )
+            plan["short_record_count"] = short_count
+            if short_count > 0:
+                plan["needs_filter"] = True
+                plan["upload_filename"] = append_for_ncbi_suffix(filename)
+                log_info(
+                    "Contig filtering enabled for NCBI upload: "
+                    f"{filename} has {short_count} contig(s) shorter than "
+                    f"{MIN_NCBI_CONTIG_LENGTH} nt."
+                )
+        genome["ncbi_contig_upload"] = plan
 
 
 def select_contig_link_and_path(
@@ -1882,6 +2315,9 @@ def link_contig_files(
 ) -> None:
     target_dir = Path(output_dir) / target_subdir
     target_dir.mkdir(parents=True, exist_ok=True)
+    removed = clear_existing_symlinks(target_dir, debug=debug)
+    if removed:
+        log_info(f"Removed {removed} existing symlink(s) from {target_dir}")
     seen_targets: set[str] = set()
     link_count = 0
     for genome in genome_data:
@@ -1944,6 +2380,30 @@ def count_fasta_bases(path: Path) -> Optional[Tuple[int, int, int]]:
     return total_bases, total_chars, total_lines
 
 
+def sum_reads_count_bases_from_files(paths: Sequence[Path]) -> Tuple[int, List[str]]:
+    reads_total_bases = 0
+    reads_files: List[str] = []
+    for count_path in paths:
+        total_bases = read_total_bases_from_reads_count(count_path)
+        if total_bases is None:
+            continue
+        reads_total_bases += total_bases
+        reads_files.append(str(count_path))
+    return reads_total_bases, reads_files
+
+
+def list_all_reads_count_files_for_contigs(contigs_path: Path) -> List[Path]:
+    reads_dir: Optional[Path] = None
+    for parent in contigs_path.parents:
+        candidate = parent / "reads"
+        if candidate.is_dir():
+            reads_dir = candidate
+            break
+    if not reads_dir:
+        return []
+    return sorted(path for path in reads_dir.rglob("*_reads_count.txt") if path.is_file())
+
+
 def compute_coverage_from_files(
     genome: Dict[str, Any],
     edr_root: str,
@@ -1972,8 +2432,8 @@ def compute_coverage_from_files(
             enabled=debug,
         )
         return None
-    reads_total_bases = 0
-    reads_files: List[str] = []
+
+    selected_reads_count_paths: List[Path] = []
     for reads in genome.get("reads", []) or []:
         link = reads.get("link") or ""
         if not link or ".fastq" not in link and ".fq" not in link:
@@ -1982,24 +2442,46 @@ def compute_coverage_from_files(
         if not edr_path:
             continue
         count_path = reads_count_path_from_reads_file(edr_path)
-        total_bases = read_total_bases_from_reads_count(count_path)
-        if total_bases is None:
-            continue
-        reads_total_bases += total_bases
-        reads_files.append(str(count_path))
+        selected_reads_count_paths.append(count_path)
+
+    reads_total_bases, reads_files = sum_reads_count_bases_from_files(
+        selected_reads_count_paths
+    )
     if reads_total_bases <= 0:
         log_debug(
-            "Coverage fallback: no reads_count files found for coverage estimate.",
+            "Coverage fallback: no reads_count files found for selected reads coverage estimate.",
             enabled=debug,
         )
         return None
     coverage = reads_total_bases / contig_bases
+    coverage_mode = "selected_reads"
+    if coverage < 1.0:
+        all_reads_count_paths = list_all_reads_count_files_for_contigs(contig_path)
+        all_total_bases, all_reads_files = sum_reads_count_bases_from_files(
+            all_reads_count_paths
+        )
+        if all_total_bases > 0:
+            all_reads_coverage = all_total_bases / contig_bases
+            log_debug(
+                "Coverage fallback recompute (<1.0): "
+                f"selected_reads_coverage={coverage:.4f} "
+                f"all_reads_coverage={all_reads_coverage:.4f} "
+                f"selected_reads_count_files={len(reads_files)} "
+                f"all_reads_count_files={len(all_reads_files)} "
+                f"contigs_file={contig_path}",
+                enabled=debug,
+            )
+            coverage = all_reads_coverage
+            reads_total_bases = all_total_bases
+            reads_files = all_reads_files
+            coverage_mode = "all_reads"
     log_debug(
         "Coverage fallback: "
         f"reads_total_bases={reads_total_bases} "
         f"contig_bases={contig_bases} "
         f"(chars={contig_chars} lines={contig_lines}) "
         f"coverage={coverage:.4f} "
+        f"mode={coverage_mode} "
         f"reads_count_files={reads_files} "
         f"contigs_file={contig_path}",
         enabled=debug,
@@ -2108,20 +2590,31 @@ def get_gtdb_genus_for_strain(
             )
             raise
         raise
+    def clean_taxon_name(value: Optional[str]) -> Optional[str]:
+        if not value:
+            return None
+        cleaned = value
+        if "_" in cleaned:
+            cleaned = cleaned.split("_", 1)[0]
+        cleaned = cleaned.strip()
+        return cleaned or None
+
+    def genus_has_edge_digit(value: Optional[str]) -> bool:
+        if not value:
+            return False
+        return value[0].isdigit() or value[-1].isdigit()
+
     genus = None
     family = None
     for row in rows:
         level = (row.get("taxonomic_level_sys_oterm_name") or "").lower()
         if level == "genus":
-            genus = row.get("sdt_taxon_name")
+            genus = clean_taxon_name(row.get("sdt_taxon_name"))
         elif level == "family":
-            family = row.get("sdt_taxon_name")
-    selected = genus or family
-    if not selected:
-        return None
-    if "_" in selected:
-        selected = selected.split("_", 1)[0]
-    return selected
+            family = clean_taxon_name(row.get("sdt_taxon_name"))
+    if genus and not genus_has_edge_digit(genus):
+        return genus
+    return family
 
 
 def build_organism_name(genus: Optional[str], strain_name: Optional[str]) -> Optional[str]:
@@ -2817,6 +3310,91 @@ def load_sample_metadata(
     return rows_by_sample_id
 
 
+def load_biosample_accession_table(
+    biosample_table_path: Optional[str],
+) -> Dict[str, str]:
+    if not biosample_table_path:
+        return {}
+    table_path = Path(biosample_table_path)
+    if not table_path.exists():
+        raise FileNotFoundError(f"BioSample accession table not found: {table_path}")
+
+    log_info(f"Loading BioSample accession table from {table_path}")
+    accession_by_name: Dict[str, str] = {}
+    with open(table_path, "r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.reader(handle, delimiter="\t")
+        for line_number, row in enumerate(reader, start=1):
+            if not row or all(not _normalize_text(cell) for cell in row):
+                continue
+            if len(row) < 2:
+                log_info(
+                    f"WARNING: Ignoring malformed BioSample table row {line_number} "
+                    f"(expected at least 2 columns)."
+                )
+                continue
+            accession = _normalize_text(row[0])
+            sample_name = _normalize_text(row[-2])
+            if (
+                line_number == 1
+                and accession.lower() == "accession"
+                and sample_name.lower() in {"biosample.name", "biosample_name", "sample_name"}
+            ):
+                continue
+            if not accession or not sample_name:
+                continue
+            prior = accession_by_name.get(sample_name)
+            if prior and prior != accession:
+                log_info(
+                    "WARNING: Duplicate BioSample name with conflicting accession in "
+                    f"{table_path}: {sample_name!r} -> keeping {prior!r}, ignoring {accession!r}"
+                )
+                continue
+            accession_by_name[sample_name] = accession
+    log_info(f"Loaded {len(accession_by_name)} BioSample accession mapping(s)")
+    return accession_by_name
+
+
+def lookup_biosample_accession(
+    biosample_name: str,
+    accession_by_name: Optional[Dict[str, str]],
+    missing_names: Optional[Set[str]] = None,
+    warn: bool = True,
+) -> str:
+    if not accession_by_name:
+        return ""
+    accession = accession_by_name.get(biosample_name, "")
+    if accession:
+        return accession
+    if warn and missing_names is not None and biosample_name not in missing_names:
+        missing_names.add(biosample_name)
+        log_info(
+            f"WARNING: No BioSample accession found for generated sample name {biosample_name!r}; "
+            "leaving accession blank."
+        )
+    return ""
+
+
+def resolve_existing_submission_paths(
+    paths: Optional[Sequence[str]],
+    option_name: str,
+) -> List[Path]:
+    resolved: List[Path] = []
+    for raw_path in paths or []:
+        if not raw_path:
+            continue
+        path = Path(raw_path)
+        if not path.exists():
+            raise FileNotFoundError(
+                f"{option_name}: file does not exist: {path}"
+            )
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"{option_name}: path is not a file: {path}"
+            )
+        resolved.append(path)
+    return resolved
+
+
 def validate_sample_metadata_match(
     genome_name: str,
     sample: Dict[str, Any],
@@ -3020,6 +3598,7 @@ def generate_biosample_table(
     output_dir: str,
     debug: bool = False,
     dry_run: bool = False,
+    existing_sample_names: Optional[Set[str]] = None,
 ) -> int:
     template_path, sheet, header_row, header_map = load_biosample_template_workbook(
         output_dir
@@ -3045,6 +3624,8 @@ def generate_biosample_table(
         sample_name = sample.get("sample_name") or ""
         strain_name = strain.get("strain_name") or sample.get("sample_name")
         formatted_sample_name = build_biosample_name(sample_name, strain_name)
+        if existing_sample_names and formatted_sample_name in existing_sample_names:
+            continue
         genus = genome.get("gtdb_genus")
         organism_name = build_organism_name(genus, strain_name)
 
@@ -3088,11 +3669,15 @@ def generate_biosample_table(
                 sheet.cell(row=next_row, column=col, value=value)
         next_row += 1
 
+    rows_written = max(0, next_row - start_row)
+    if dry_run:
+        return rows_written
+    if rows_written == 0:
+        return 0
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    if not dry_run:
-        sheet.parent.save(output_path)
-    return max(0, next_row - start_row)
+    sheet.parent.save(output_path)
+    return rows_written
 
 
 def generate_sra_table(
@@ -3103,9 +3688,14 @@ def generate_sra_table(
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
     debug: bool = False,
     dry_run: bool = False,
+    existing_library_ids: Optional[Set[str]] = None,
+    biosample_accession_by_name: Optional[Dict[str, str]] = None,
+    missing_biosample_accession_names: Optional[Set[str]] = None,
 ) -> int:
+    use_accession_template = biosample_accession_by_name is not None
     template_path, sheet, header_row, header_map = load_sra_template_workbook(
-        Path(output_file).parent
+        Path(output_file).parent,
+        use_accession_template=use_accession_template,
     )
     allowed_instruments = load_sra_instrument_models(sheet.parent)
     if debug:
@@ -3598,9 +4188,16 @@ def generate_sra_table(
                 instrument_model,
                 list(protocol_names) + list(assembly_protocols),
             )
+            if existing_library_ids and library_id in existing_library_ids:
+                continue
 
+            biosample_accession = lookup_biosample_accession(
+                biosample_name,
+                biosample_accession_by_name,
+                missing_names=missing_biosample_accession_names,
+                warn=not dry_run,
+            )
             values = {
-                "sample_name": biosample_name,
                 "library_ID": library_id,
                 "title": title,
                 "library_strategy": "WGS",
@@ -3613,6 +4210,13 @@ def generate_sra_table(
                 "filetype": "fastq",
                 "filename": filename,
             }
+            if use_accession_template:
+                if "biosample_accession" in header_map:
+                    values["biosample_accession"] = biosample_accession
+                else:
+                    values["sample_name"] = biosample_accession
+            else:
+                values["sample_name"] = biosample_name
             if filename2:
                 values["filename2"] = filename2
 
@@ -3638,6 +4242,8 @@ def generate_genome_table(
     edr_root: str,
     debug: bool = False,
     dry_run: bool = False,
+    biosample_accession_by_name: Optional[Dict[str, str]] = None,
+    missing_biosample_accession_names: Optional[Set[str]] = None,
 ) -> int:
     template_path, sheet, header_row, header_map = load_genome_template_workbook(
         Path(output_file).parent
@@ -3660,6 +4266,12 @@ def generate_genome_table(
         if not raw_sample_name:
             raw_sample_name = isolate_name
         biosample_name = build_biosample_name(raw_sample_name, isolate_name)
+        biosample_accession = lookup_biosample_accession(
+            biosample_name,
+            biosample_accession_by_name,
+            missing_names=missing_biosample_accession_names,
+            warn=not dry_run,
+        )
 
         method_name, method_version, assembly_protocols = resolve_assembly_method_for_genome(
             genome,
@@ -3686,15 +4298,20 @@ def generate_genome_table(
         ) and str(method_name or "").strip().lower() == "spades":
             sequencing_technology = "Illumina"
 
-        fasta_link, _ = select_contig_link_and_path(
-            genome, edr_root=edr_root, debug=debug
-        )
-        fasta_filename = Path(fasta_link).name if fasta_link else ""
+        upload_plan = genome.get("ncbi_contig_upload", {}) or {}
+        planned_filename = str(upload_plan.get("upload_filename") or "")
+        if planned_filename:
+            fasta_filename = planned_filename
+        else:
+            fasta_link, _ = select_contig_link_and_path(
+                genome, edr_root=edr_root, debug=debug
+            )
+            fasta_filename = Path(fasta_link).name if fasta_link else ""
         assembly_date = choose_assembly_date(genome.get("assembly_processes", []) or [])
 
         values = {
-            "biosample_accession": "",
-            "sample_name": biosample_name,
+            "biosample_accession": biosample_accession,
+            "sample_name": "" if biosample_accession_by_name is not None else biosample_name,
             "assembly_date": assembly_date,
             "assembly_name": genome_name,
             "assembly_method": method_name,
@@ -3894,15 +4511,18 @@ def write_remaining_unknown_assemblies_report(
     output_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
-def partition_genome_data_for_submission(
+def partition_sra_biosample_data_for_submission(
     genome_data: List[Dict[str, Any]],
     output_dir: str,
     headers: Dict[str, str],
     column_cache: Dict[str, List[str]],
     protocol_cache: Dict[str, Dict[str, Optional[str]]],
-    max_genomes_per_file: int,
+    max_biosample_rows_per_file: int,
     max_sra_rows_per_file: int,
     debug: bool = False,
+    existing_sample_names: Optional[Set[str]] = None,
+    existing_library_ids: Optional[Set[str]] = None,
+    biosample_accession_by_name: Optional[Dict[str, str]] = None,
 ) -> List[List[Dict[str, Any]]]:
     if not genome_data:
         return []
@@ -3913,7 +4533,15 @@ def partition_genome_data_for_submission(
     while pending:
         part = pending.pop(0)
         biosample_rows = len(part)
-        genome_rows = len(part)
+        if existing_sample_names:
+            biosample_rows = generate_biosample_table(
+                part,
+                os.path.join(output_dir, "_dryrun_biosample_table_Microbe.1.0.xlsx"),
+                output_dir,
+                debug=debug,
+                dry_run=True,
+                existing_sample_names=existing_sample_names,
+            )
         sra_rows = generate_sra_table(
             part,
             os.path.join(output_dir, "_dryrun_sra_table_SRA_metadata.xlsx"),
@@ -3922,11 +4550,14 @@ def partition_genome_data_for_submission(
             protocol_cache,
             debug=debug,
             dry_run=True,
+            existing_library_ids=existing_library_ids,
+            biosample_accession_by_name=biosample_accession_by_name,
         )
+        if biosample_rows == 0 and sra_rows == 0:
+            continue
 
         over_limit = (
-            biosample_rows > max_genomes_per_file
-            or genome_rows > max_genomes_per_file
+            biosample_rows > max_biosample_rows_per_file
             or sra_rows > max_sra_rows_per_file
         )
         if not over_limit:
@@ -3935,8 +4566,8 @@ def partition_genome_data_for_submission(
 
         if len(part) <= 1:
             log_info(
-                "WARNING: A single-genome part exceeds submission limits "
-                f"({biosample_rows=}, {genome_rows=}, {sra_rows=}). "
+                "WARNING: A single-genome SRA/biosample part exceeds submission limits "
+                f"({biosample_rows=}, {sra_rows=}). "
                 "Keeping this part unsplit."
             )
             accepted.append(part)
@@ -3949,6 +4580,28 @@ def partition_genome_data_for_submission(
     return accepted
 
 
+def partition_genome_table_data_for_submission(
+    genome_data: List[Dict[str, Any]],
+    max_genomes_per_file: int,
+) -> List[List[Dict[str, Any]]]:
+    if not genome_data:
+        return []
+    pending: List[List[Dict[str, Any]]] = [list(genome_data)]
+    accepted: List[List[Dict[str, Any]]] = []
+    while pending:
+        part = pending.pop(0)
+        if len(part) <= max_genomes_per_file:
+            accepted.append(part)
+            continue
+        if len(part) <= 1:
+            accepted.append(part)
+            continue
+        midpoint = len(part) // 2
+        pending.insert(0, part[midpoint:])
+        pending.insert(0, part[:midpoint])
+    return accepted
+
+
 def process_genomes_for_submission(
     headers: Dict[str, str],
     genome_names: Sequence[str],
@@ -3957,6 +4610,10 @@ def process_genomes_for_submission(
     edr_path: str = DEFAULT_EDR_PATH,
     skip_coverage_calculation: bool = False,
     sample_metadata_path: Optional[str] = None,
+    biosample_accession_table_path: Optional[str] = None,
+    existing_biosample_files: Optional[Sequence[str]] = None,
+    existing_sra_files: Optional[Sequence[str]] = None,
+    existing_genome_files: Optional[Sequence[str]] = None,
 ) -> List[Dict[str, Any]]:
     if debug:
         set_debug(True)
@@ -3966,6 +4623,11 @@ def process_genomes_for_submission(
     protocol_cache: Dict[str, Dict[str, Optional[str]]] = {}
     read_cache: Dict[str, Dict[str, Any]] = {}
     sample_metadata_map = load_sample_metadata(sample_metadata_path, debug=debug)
+    biosample_accession_by_name = load_biosample_accession_table(
+        biosample_accession_table_path
+    )
+    use_biosample_accessions = biosample_accession_table_path is not None
+    missing_biosample_accession_names: Set[str] = set()
     total_metadata_fields_compared = 0
     total_metadata_fields_matched = 0
     total_samples_with_metadata = 0
@@ -4156,50 +4818,110 @@ def process_genomes_for_submission(
             coverage = compute_coverage_from_files(genome, edr_path, debug=debug)
             if coverage is not None:
                 genome["genome_coverage"] = coverage
+    prepare_ncbi_contig_upload_plan(genome_data, edr_root=edr_path, debug=debug)
 
-    partitioned_genomes = partition_genome_data_for_submission(
+    existing_biosample_paths = resolve_existing_submission_paths(
+        existing_biosample_files,
+        "--existing-biosample-xlsx",
+    )
+    existing_sra_paths = resolve_existing_submission_paths(
+        existing_sra_files,
+        "--existing-sra-xlsx",
+    )
+    existing_genome_paths = resolve_existing_submission_paths(
+        existing_genome_files,
+        "--existing-genome-xlsx",
+    )
+
+    existing_sample_names: Set[str] = set()
+    for path in existing_biosample_paths:
+        existing_sample_names.update(_read_column_values_from_xlsx(path, "*sample_name"))
+    existing_library_ids: Set[str] = set()
+    for path in existing_sra_paths:
+        existing_library_ids.update(_read_column_values_from_xlsx(path, "library_ID"))
+    existing_assembly_names: Set[str] = set()
+    for path in existing_genome_paths:
+        existing_assembly_names.update(_read_column_values_from_xlsx(path, "assembly_name"))
+
+    sra_biosample_parts = partition_sra_biosample_data_for_submission(
         genome_data,
         output_dir,
         headers,
         column_cache,
         protocol_cache,
-        max_genomes_per_file=MAX_GENOMES_PER_SUBMISSION,
+        max_biosample_rows_per_file=MAX_BIOSAMPLE_ROWS_PER_SUBMISSION,
         max_sra_rows_per_file=MAX_SRA_ROWS_PER_SUBMISSION,
         debug=debug,
+        existing_sample_names=existing_sample_names,
+        existing_library_ids=existing_library_ids,
+        biosample_accession_by_name=(
+            biosample_accession_by_name if use_biosample_accessions else None
+        ),
     )
-    split_mode = len(partitioned_genomes) > 1
-    if split_mode:
+    genome_incremental_data = [
+        genome
+        for genome in genome_data
+        if str(genome.get("genome_name") or "") not in existing_assembly_names
+    ]
+    genome_parts = partition_genome_table_data_for_submission(
+        genome_incremental_data,
+        max_genomes_per_file=MAX_GENOMES_PER_SUBMISSION,
+    )
+
+    split_sra_biosample = len(sra_biosample_parts) > 1
+    if split_sra_biosample:
         log_info(
-            f"Splitting submission into {len(partitioned_genomes)} part(s) "
-            f"to keep genome/biosample tables <= {MAX_GENOMES_PER_SUBMISSION} rows "
+            f"Splitting SRA/biosample submission into {len(sra_biosample_parts)} part(s) "
+            f"to keep biosample table <= {MAX_BIOSAMPLE_ROWS_PER_SUBMISSION} rows "
             f"and SRA table <= {MAX_SRA_ROWS_PER_SUBMISSION} rows."
         )
+    split_genome = len(genome_parts) > 1
+    if split_genome:
+        log_info(
+            f"Splitting genome submission into {len(genome_parts)} part(s) "
+            f"to keep genome table <= {MAX_GENOMES_PER_SUBMISSION} rows."
+        )
+
+    existing_sra_part_max = max((_part_index_from_filename(path) for path in existing_sra_paths), default=0)
+    existing_biosample_part_max = max(
+        (_part_index_from_filename(path) for path in existing_biosample_paths), default=0
+    )
+    existing_sra_biosample_part_max = max(existing_sra_part_max, existing_biosample_part_max)
+    existing_genome_part_max = max(
+        (_part_index_from_filename(path) for path in existing_genome_paths), default=0
+    )
 
     generated_files: List[str] = []
-    for idx, part_genomes in enumerate(partitioned_genomes, start=1):
+    generated_sra_paths: List[Path] = []
+    generated_genome_paths: List[Path] = []
+    for idx, part_genomes in enumerate(sra_biosample_parts, start=1):
+        part_number = existing_sra_biosample_part_max + idx
         biosample_file = os.path.join(output_dir, "biosample_table_Microbe.1.0.xlsx")
-        sra_file = os.path.join(output_dir, "sra_table_SRA_metadata.xlsx")
-        genome_file = os.path.join(output_dir, "genome_table_Template_GenomeBatch.xlsx")
+        sra_file = os.path.join(
+            output_dir,
+            "sra_table_SRA_metadata_acc.xlsx"
+            if use_biosample_accessions
+            else "sra_table_SRA_metadata.xlsx",
+        )
         reads_dir = "reads_to_upload"
-        contigs_dir = "contigs_to_upload"
-        if split_mode:
-            biosample_file = _add_part_suffix(biosample_file, idx)
-            sra_file = _add_part_suffix(sra_file, idx)
-            genome_file = _add_part_suffix(genome_file, idx)
-            reads_dir = f"reads_to_upload_part{idx}"
-            contigs_dir = f"contigs_to_upload_part{idx}"
+        use_part_suffix = split_sra_biosample or existing_sra_biosample_part_max > 0
+        if use_part_suffix:
+            biosample_file = _add_part_suffix(biosample_file, part_number)
+            sra_file = _add_part_suffix(sra_file, part_number)
+            reads_dir = f"reads_to_upload_part{part_number}"
 
-        if split_mode:
+        if split_sra_biosample:
             log_info(
-                f"Writing part {idx}/{len(partitioned_genomes)} "
+                f"Writing SRA/biosample part {idx}/{len(sra_biosample_parts)} "
                 f"({len(part_genomes)} genome(s))"
             )
         log_info("Writing biosample table")
-        generate_biosample_table(
+        biosample_rows_written = generate_biosample_table(
             part_genomes,
             biosample_file,
             output_dir,
             debug=debug,
+            existing_sample_names=existing_sample_names,
         )
         log_info("Writing SRA metadata table")
         generate_sra_table(
@@ -4209,7 +4931,40 @@ def process_genomes_for_submission(
             column_cache,
             protocol_cache,
             debug=debug,
+            existing_library_ids=existing_library_ids,
+            biosample_accession_by_name=(
+                biosample_accession_by_name if use_biosample_accessions else None
+            ),
+            missing_biosample_accession_names=missing_biosample_accession_names,
         )
+
+        if biosample_rows_written > 0:
+            generated_files.append(biosample_file)
+            existing_sample_names.update(
+                _read_column_values_from_xlsx(Path(biosample_file), "*sample_name")
+            )
+        else:
+            log_info(
+                "No new BioSample rows for this part; skipped writing biosample table."
+            )
+        generated_files.append(sra_file)
+        generated_sra_paths.append(Path(sra_file))
+        existing_library_ids.update(_read_column_values_from_xlsx(Path(sra_file), "library_ID"))
+
+    for idx, part_genomes in enumerate(genome_parts, start=1):
+        part_number = existing_genome_part_max + idx
+        genome_file = os.path.join(output_dir, "genome_table_Template_GenomeBatch.xlsx")
+        contigs_dir = "contigs_to_upload"
+        use_part_suffix = split_genome or existing_genome_part_max > 0
+        if use_part_suffix:
+            genome_file = _add_part_suffix(genome_file, part_number)
+            contigs_dir = f"contigs_to_upload_part{part_number}"
+
+        if split_genome:
+            log_info(
+                f"Writing genome part {idx}/{len(genome_parts)} "
+                f"({len(part_genomes)} genome(s))"
+            )
         log_info("Writing genome metadata table")
         generate_genome_table(
             part_genomes,
@@ -4219,25 +4974,85 @@ def process_genomes_for_submission(
             protocol_cache,
             edr_root=edr_path,
             debug=debug,
-        )
-        log_info("Linking FASTQ files for upload")
-        link_fastq_files(
-            part_genomes,
-            output_dir,
-            edr_path,
-            target_subdir=reads_dir,
-            debug=debug,
-        )
-        log_info("Linking contig files for upload")
-        link_contig_files(
-            part_genomes,
-            output_dir,
-            edr_path,
-            target_subdir=contigs_dir,
-            debug=debug,
+            biosample_accession_by_name=(
+                biosample_accession_by_name if use_biosample_accessions else None
+            ),
+            missing_biosample_accession_names=missing_biosample_accession_names,
         )
 
-        generated_files.extend([biosample_file, sra_file, genome_file])
+        generated_files.append(genome_file)
+        generated_genome_paths.append(Path(genome_file))
+
+    # Rebuild symlink directories for all parts (existing + newly generated)
+    fastq_filename_to_path: Dict[str, Path] = _collect_filename_to_path_from_symlink_dirs(
+        existing_sra_paths, output_dir, kind="reads"
+    )
+    contig_filename_to_path: Dict[str, Path] = _collect_filename_to_path_from_symlink_dirs(
+        existing_genome_paths, output_dir, kind="contigs"
+    )
+    generated_contig_uploads: Dict[str, Dict[str, Any]] = {}
+    for genome in genome_data:
+        for reads in genome.get("reads", []) or []:
+            link = reads.get("link")
+            if not link or (".fastq" not in link and ".fq" not in link):
+                continue
+            resolved_path = resolve_edr_path(str(link), edr_path)
+            if not resolved_path:
+                continue
+            fastq_filename_to_path[Path(str(link)).name] = resolved_path
+        upload_plan = genome.get("ncbi_contig_upload", {}) or {}
+        upload_filename = str(upload_plan.get("upload_filename") or "")
+        source_path = upload_plan.get("source_path")
+        if upload_filename and isinstance(source_path, Path):
+            existing = generated_contig_uploads.get(upload_filename)
+            if existing and existing.get("source_path") != source_path:
+                log_info(
+                    "WARNING: Conflicting contig upload filename maps to multiple sources: "
+                    f"{upload_filename}. Keeping first source."
+                )
+            else:
+                generated_contig_uploads[upload_filename] = {
+                    "source_path": source_path,
+                    "needs_filter": bool(upload_plan.get("needs_filter")),
+                }
+
+    all_sra_paths = existing_sra_paths + generated_sra_paths
+    sra_filenames_by_part: Dict[int, Set[str]] = defaultdict(set)
+    for path in all_sra_paths:
+        if not path.exists():
+            continue
+        filenames = _extract_sra_filenames(path)
+        if not filenames:
+            continue
+        sra_filenames_by_part[_part_index_from_filename(path)].update(filenames)
+    if sra_filenames_by_part:
+        use_part_dirs = len(sra_filenames_by_part) > 1 or max(sra_filenames_by_part) > 1
+        for part_idx, filenames in sorted(sra_filenames_by_part.items()):
+            subdir = f"reads_to_upload_part{part_idx}" if use_part_dirs else "reads_to_upload"
+            _populate_symlink_dir_from_filenames(
+                Path(output_dir) / subdir,
+                filenames,
+                fastq_filename_to_path,
+                debug=debug,
+            )
+
+    all_genome_paths = existing_genome_paths + generated_genome_paths
+    contig_filenames_by_part: Dict[int, Set[str]] = defaultdict(set)
+    for path in all_genome_paths:
+        if not path.exists():
+            continue
+        contig_filenames_by_part[_part_index_from_filename(path)].update(_extract_genome_filenames(path))
+    if contig_filenames_by_part:
+        use_part_dirs = len(contig_filenames_by_part) > 1 or max(contig_filenames_by_part) > 1
+        for part_idx, filenames in sorted(contig_filenames_by_part.items()):
+            subdir = f"contigs_to_upload_part{part_idx}" if use_part_dirs else "contigs_to_upload"
+            _populate_contig_upload_dir_from_filenames(
+                Path(output_dir) / subdir,
+                filenames,
+                contig_filename_to_path,
+                generated_contig_uploads,
+                debug=debug,
+            )
 
     remaining_unknown_path = str(DEFAULT_REMAINING_UNKNOWN_ASSEMBLIES_PATH)
     log_info("Writing remaining unknown assemblies report")
@@ -4309,6 +5124,32 @@ def parse_args() -> argparse.Namespace:
             "sample_metadata.tsv, genome_upload/sample_metadata.tsv)."
         ),
     )
+    parser.add_argument(
+        "--biosample-accession-table",
+        default=None,
+        help=(
+            "Optional path to BioSample mapping TSV where accession is the first column "
+            "and BioSample name is the second-to-last column."
+        ),
+    )
+    parser.add_argument(
+        "--existing-biosample-xlsx",
+        action="append",
+        default=None,
+        help="Path to a previously submitted biosample table XLSX (repeatable).",
+    )
+    parser.add_argument(
+        "--existing-sra-xlsx",
+        action="append",
+        default=None,
+        help="Path to a previously submitted SRA table XLSX (repeatable).",
+    )
+    parser.add_argument(
+        "--existing-genome-xlsx",
+        action="append",
+        default=None,
+        help="Path to a previously submitted genome table XLSX (repeatable).",
+    )
     return parser.parse_args()
 
 
@@ -4346,6 +5187,10 @@ def main() -> None:
         edr_path=args.edr_path,
         skip_coverage_calculation=args.skip_coverage_calculation,
         sample_metadata_path=args.sample_metadata,
+        biosample_accession_table_path=args.biosample_accession_table,
+        existing_biosample_files=args.existing_biosample_xlsx,
+        existing_sra_files=args.existing_sra_xlsx,
+        existing_genome_files=args.existing_genome_xlsx,
     )
 
 
