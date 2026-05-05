@@ -1,6 +1,6 @@
 ---
 name: berdl-mcp
-description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Delta Lake data (including enigma_coral).
+description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Delta Lake data, including the current generated ENIGMA CORAL schema in enigma_coral.
 ---
 
 # BERDL MCP API
@@ -31,6 +31,9 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
 - Use table names as `table_alias` values in `columns` when joins are present.
 - Keep filter column names unambiguous across joined tables (filters do not accept table aliases).
 - Keep `limit <= 1000` (API constraint).
+- For ENIGMA, verify table and column names against the generated schema reference or the live schema endpoint before querying.
+- For provenance/object links, `sys_process` has `input_objects` and `output_objects`, while `sys_process_input` and `sys_process_output` expose normalized link rows.
+- For dynamic data, `ddt_ndarray_id` values like `Brick0000529` map to brick tables like `ddt_brick0000529`; inspect `sys_ddt_typedef` for column semantics.
 
 ## When to load references
 
@@ -38,3 +41,9 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
   - `references/enigma_coral_schema.md`
 - For request/response schemas, supported operators, and pagination details, load:
   - `references/berdl_mcp_openapi.json` (if available in the project using this skill)
+
+The ENIGMA schema reference is large. Prefer targeted lookup:
+
+- `rg -n "^## Table:" references/enigma_coral_schema.md`
+- `rg -n "^## Table: <table>$|<column_or_term>" references/enigma_coral_schema.md`
+- Read only the table section needed for the task.

@@ -314,10 +314,13 @@ class NameResolver:
         filters = [{"column": name_col, "operator": "=", "value": object_name}]
         rows = select_all_rows(self.headers, table, columns=[id_col], filters=filters)
         if not rows:
-            raise ValueError(f"Object name '{object_name}' not found in table '{table}'.")
+            filters = [{"column": id_col, "operator": "=", "value": object_name}]
+            rows = select_all_rows(self.headers, table, columns=[id_col], filters=filters)
+        if not rows:
+            raise ValueError(f"Object name or id '{object_name}' not found in table '{table}'.")
         object_id = rows[0].get(id_col)
         if object_id is None:
-            raise ValueError(f"Object name '{object_name}' returned no id in table '{table}'.")
+            raise ValueError(f"Object name or id '{object_name}' returned no id in table '{table}'.")
         self.name_to_id[cache_key] = object_id
         return object_id
 
@@ -655,31 +658,31 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--walk-provenance",
         nargs=2,
-        metavar=("TABLE", "NAME"),
-        help="Walk provenance starting from an object name.",
+        metavar=("TABLE", "NAME_OR_ID"),
+        help="Walk provenance starting from an object name or id.",
     )
     parser.add_argument(
         "--coassembly",
         nargs=2,
-        metavar=("TABLE", "NAME"),
+        metavar=("TABLE", "NAME_OR_ID"),
         help="Check if provenance includes a co-assembled assembly.",
     )
     parser.add_argument(
         "--raw-output-rows",
         nargs=2,
-        metavar=("TABLE", "NAME"),
+        metavar=("TABLE", "NAME_OR_ID"),
         help="List rows from sys_process_output that contain the object.",
     )
     parser.add_argument(
         "--sys-process",
         nargs=2,
-        metavar=("TABLE", "NAME"),
+        metavar=("TABLE", "NAME_OR_ID"),
         help="List rows from sys_process that contain the object.",
     )
     parser.add_argument(
         "--list-processes",
         nargs=2,
-        metavar=("TABLE", "NAME"),
+        metavar=("TABLE", "NAME_OR_ID"),
         help="List all processes for the object from the provenance lookup.",
     )
     parser.add_argument(
