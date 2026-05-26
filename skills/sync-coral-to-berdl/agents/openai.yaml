@@ -1,0 +1,3 @@
+display_name: Sync CORAL to BERDL
+short_description: Export CORAL data and sync changed tables into BERDL.
+default_prompt: Sync CORAL exports into BERDL, importing only changed tables and preserving comments.

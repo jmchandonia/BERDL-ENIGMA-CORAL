@@ -1,10 +1,11 @@
 # Skills for BERDL-ENIGMA-CORAL
 
-This directory contains three Codex skills:
+This directory contains Codex skills for working with ENIGMA/CORAL data:
 
 - `berdl-mcp`: BERDL MCP API discovery and querying workflow.
 - `enigma-berdl-query`: ENIGMA/CORAL queries constrained to the published schema.
 - `enigma-object-relationships`: Object lineage and provenance workflows using a bundled CLI.
+- `sync-coral-to-berdl`: CORAL export packaging and changed-table sync planning for BERDL ingest.
 
 ## Install for Codex
 
@@ -16,6 +17,7 @@ mkdir -p ~/.codex/skills
 cp -R skills/berdl-mcp ~/.codex/skills/
 cp -R skills/enigma-berdl-query ~/.codex/skills/
 cp -R skills/enigma-object-relationships ~/.codex/skills/
+cp -R skills/sync-coral-to-berdl ~/.codex/skills/
 ```
 
 Restart Codex so it picks up the new skills.

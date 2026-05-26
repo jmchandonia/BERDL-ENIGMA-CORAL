@@ -24,3 +24,12 @@ This manifest summarizes the Codex skills available in this repo.
   path: skills/enigma-object-relationships/SKILL.md
   tools:
     - skills/enigma-object-relationships/tools/walk_provenance.py
+
+- name: sync-coral-to-berdl
+  description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using BERDL ingest, preserving column comments and validating table/comment updates.
+  path: skills/sync-coral-to-berdl/SKILL.md
+  references:
+    - skills/sync-coral-to-berdl/references/workflow.md
+    - skills/sync-coral-to-berdl/references/manifest_schema.md
+    - skills/sync-coral-to-berdl/references/comment_contract.md
+    - skills/sync-coral-to-berdl/references/csv_import_pitfalls.md
