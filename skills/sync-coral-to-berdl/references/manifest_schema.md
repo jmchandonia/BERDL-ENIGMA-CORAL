@@ -49,6 +49,14 @@ the durable sync location for the next run.
     "table_sha256": "..."
   },
   "parser_warnings": [],
+  "lifecycle": {
+    "status": "current|obsolete|not_applicable|review_needed",
+    "source": "explicit_update|explicit_withdraw|inferred_version|inferred_date|none",
+    "withdrawn_date": "optional ISO-8601 date",
+    "superceded_by_ddt_ndarray_id": "optional successor ddt_ndarray id",
+    "process_id": "optional CORAL process id",
+    "inferred_process_tsv": "optional export/metadata/process_update_data_<run_id>.tsv"
+  },
   "change_status": "new|data_changed|schema_changed|comments_changed|unchanged|missing_from_current_export"
 }
 ```
@@ -62,3 +70,21 @@ the durable sync location for the next run.
 
 Use sorted object keys and stable separators when hashing JSON-derived content.
 Do not include local absolute work paths in table hashes.
+
+## Brick Lifecycle Fields
+
+Use `lifecycle.status = "obsolete"` for a brick table when the source
+`ddt_ndarray` row is withdrawn or superseded. Obsolete brick data tables must
+not be enabled in the BERDL ingest config, even if their data hash changed.
+
+Use `lifecycle.status = "current"` for brick data tables that may be exposed as
+`ddt_brick...` tables in BERDL.
+
+Use `lifecycle.status = "review_needed"` when a brick appears in ambiguous
+update/withdraw provenance or when name-based inference finds multiple possible
+successors.
+
+For non-brick tables, set `lifecycle.status = "not_applicable"`.
+
+When lifecycle metadata changes only in `ddt_ndarray`, treat `ddt_ndarray` as
+changed even if the obsolete brick's own data file is excluded from ingest.

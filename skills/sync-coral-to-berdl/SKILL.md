@@ -16,6 +16,10 @@ MinIO copy plus notebook paste workflow.
 - Default runtime work directory: `sync-coral-to-berdl/exports/<tenant>_<dataset>/<run_id>/`.
 - Keep generated TSV/CSV/manifest output out of git.
 - Never drop Lakehouse tables just because they disappeared from the current CORAL export; report removals for review.
+- Obsolete brick tables are the exception: after explicit CORAL lifecycle
+  provenance or reviewed lifecycle inference identifies a brick as withdrawn or
+  superseded, exclude its `ddt_brick...` data table from ingest and generate a
+  reviewed Lakehouse drop plan if the table already exists.
 - Only import tables whose data, schema, or comments changed.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
 
@@ -34,28 +38,40 @@ MinIO copy plus notebook paste workflow.
      - `convert_to_berdl_loader.py` for existing BERDL config/comment mapping ideas.
    - Write exports under `<work_dir>/export/`, not inside the skill directory.
 
-3. **Build the ingest package**
+3. **Classify brick lifecycle**
+   - After all bricks are downloaded, classify current and obsolete bricks from
+     explicit CORAL `withdraw data` and `update data` process provenance.
+   - Infer missing `update data` relationships only for brick families with
+     clear version/date naming progressions and no existing explicit lifecycle
+     provenance.
+   - Write candidate inferred updates to `process_update_data_<run_id>.tsv`
+     for CORAL import/review.
+   - Keep obsolete bricks in `ddt_ndarray` with `withdrawn_date` and
+     `superceded_by_ddt_ndarray_id` where known, but do not expose obsolete
+     bricks as BERDL `ddt_brick...` tables.
+
+4. **Build the ingest package**
    - Normalize files into `export/data/`, `export/schema/`, `export/metadata/`, and `export/reports/`.
    - Produce BERDL ingest config with structured per-column schema maps, not `schema_sql`, so ingest applies column comments.
    - Prefer TSV or Parquet-compatible output when CSV parsing risk is high.
 
-4. **Detect changed tables**
+5. **Detect changed tables**
    - Compute a stable hash per table from data bytes, normalized schema, column comments, table comment, and source metadata.
    - Compare against the prior sync manifest from the previous run or Lakehouse/MinIO.
    - Enable only changed data tables in the generated BERDL ingest config.
    - Treat comment-only changes as a comment sync path, avoiding unnecessary data upload.
 
-5. **Run BERDL ingest**
+6. **Run BERDL ingest**
    - Follow the `berdl-ingest` skill for infrastructure, upload, chunking, ingest, and row-count verification.
    - Use the generated config and metadata files from this skill.
 
-6. **Validate comments**
+7. **Validate comments**
    - Inspect BERDL ingest `comments_report`.
    - Read table schema metadata back from Spark.
    - If expected comments are missing, generate a fallback SQL file with only the missing `ALTER TABLE ... ALTER COLUMN ... COMMENT` statements.
    - Apply table-level comments separately if the target Lakehouse supports them and they are required.
 
-7. **Report**
+8. **Report**
    - Write a sync report listing updated, skipped, comment-only, failed, and removed-from-export tables.
    - Include row counts, hashes, comment validation status, and any parser workarounds used.
 
@@ -65,3 +81,4 @@ MinIO copy plus notebook paste workflow.
 - For manifest fields and hash inputs, read `references/manifest_schema.md`.
 - For BERDL ingest comment behavior and fallback policy, read `references/comment_contract.md`.
 - For CSV/TSV parser risk handling, read `references/csv_import_pitfalls.md`.
+- For current/obsolete brick classification and inferred update provenance, read `references/brick_lifecycle.md`.

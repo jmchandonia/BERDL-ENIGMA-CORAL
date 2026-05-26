@@ -11,6 +11,12 @@ This manifest summarizes the Codex skills available in this repo.
     - skills/berdl-mcp/references/enigma_coral_schema.md
     - skills/berdl-mcp/references/berdl_mcp_openapi.json
 
+- name: cleanup-coral-process-data
+  description: Clean up CORAL Process.tsv exports by detecting duplicate or conflicting process provenance, preserving valid brick lifecycle provenance, and generating reviewed deletion candidates.
+  path: skills/cleanup-coral-process-data/SKILL.md
+  references:
+    - skills/cleanup-coral-process-data/references/process_cleanup.md
+
 - name: enigma-berdl-query
   description: Query ENIGMA (enigma_coral) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the enigma_coral table/column list.
   path: skills/enigma-berdl-query/SKILL.md
@@ -33,3 +39,4 @@ This manifest summarizes the Codex skills available in this repo.
     - skills/sync-coral-to-berdl/references/manifest_schema.md
     - skills/sync-coral-to-berdl/references/comment_contract.md
     - skills/sync-coral-to-berdl/references/csv_import_pitfalls.md
+    - skills/sync-coral-to-berdl/references/brick_lifecycle.md

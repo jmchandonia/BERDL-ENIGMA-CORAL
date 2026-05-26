@@ -1,0 +1,3 @@
+display_name: Cleanup CORAL Process Data
+short_description: Find redundant CORAL process provenance and generate reviewed cleanup candidates.
+default_prompt: Clean up CORAL Process.tsv provenance, preserving valid brick lifecycle processes and reporting deletion candidates.

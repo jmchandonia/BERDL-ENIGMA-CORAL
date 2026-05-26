@@ -3,6 +3,7 @@
 This directory contains Codex skills for working with ENIGMA/CORAL data:
 
 - `berdl-mcp`: BERDL MCP API discovery and querying workflow.
+- `cleanup-coral-process-data`: CORAL Process.tsv duplicate/conflict cleanup workflow.
 - `enigma-berdl-query`: ENIGMA/CORAL queries constrained to the published schema.
 - `enigma-object-relationships`: Object lineage and provenance workflows using a bundled CLI.
 - `sync-coral-to-berdl`: CORAL export packaging and changed-table sync planning for BERDL ingest.
@@ -15,6 +16,7 @@ Copy the skill folders into your Codex skills directory. By default this is
 ```bash
 mkdir -p ~/.codex/skills
 cp -R skills/berdl-mcp ~/.codex/skills/
+cp -R skills/cleanup-coral-process-data ~/.codex/skills/
 cp -R skills/enigma-berdl-query ~/.codex/skills/
 cp -R skills/enigma-object-relationships ~/.codex/skills/
 cp -R skills/sync-coral-to-berdl ~/.codex/skills/
