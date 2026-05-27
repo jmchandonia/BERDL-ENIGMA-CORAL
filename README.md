@@ -4,46 +4,15 @@ Tools for querying ENIGMA data from CORAL in BERDL using AI.
 
 ## Authentication
 
-These tools use a KBase auth token. You can create one in KBase by going to
-Account and then Developer Tokens.
+You need a KBase account linked to the KBase Lakehouse.  Once you have
+one, go to https://hub.berdl.kbase.us/, log in, start a new Jupyter
+notebook, click on "Get Credentials" in the upper right corner of the
+screen, and download the config file to ~/.berdl/remote-config.yaml.
 
-Set the token in your environment before running any tools:
+## Database Access
 
-```bash
-export KB_AUTH_TOKEN="your-token-here"
-```
-
-For tcsh:
-
-```tcsh
-setenv KB_AUTH_TOKEN "your-token-here"
-```
-
-For Windows PowerShell:
-
-```powershell
-$env:KB_AUTH_TOKEN = "your-token-here"
-```
-
-For Windows Command Prompt:
-
-```bat
-set KB_AUTH_TOKEN=your-token-here
-```
-
-To use a local `.env` file instead, create `.env` in the repo root with:
-
-```
-KB_AUTH_TOKEN=your-token-here
-```
-
-Then load it before running tools:
-
-```bash
-set -a
-source .env
-set +a
-```
+After doing the above authentication steps, you should also click on
+"Request Tenant Access" for any datasets you need access to.
 
 ## Output locations
 
