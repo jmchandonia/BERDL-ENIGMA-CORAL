@@ -28,7 +28,7 @@ You also need to get a KBASE_AUTH_TOKEN and put it in a .env
 file, e.g.,
 
 ```
-KB_AUTH_TOKEN=....
+KBASE_AUTH_TOKEN=....
 ```
 
 When you're logged in to BERDL, and in a Jupyter notebook, run:
