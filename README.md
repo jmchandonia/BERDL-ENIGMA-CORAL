@@ -40,11 +40,23 @@ BERDLSettings().KBASE_AUTH_TOKEN and paste the token that comes back
 After doing the authentication steps, click **Request Tenant Access** for any
 datasets you need access to.
 
-## Output locations
+## Output Locations
 
 By default, table dumps and the schema markdown are written to the `schema`
 directory in this repo. You can override the output directory with
 `BERDL_OUTPUT_DIR`.
+
+## Table Loading
+
+If using the skill to load tables, put in your .env file the location
+of the CORAL typedef.json file and the directory where your obo files with
+microtypes, units, etc are located.
+
+```
+CORAL_TYPEDEF=/path/to/typedef.json
+CORAL_ONTOLOGIES=/path/to_obo_files_directory/
+```
+
 
 ## Directories
 
