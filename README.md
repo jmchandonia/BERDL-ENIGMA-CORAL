@@ -4,15 +4,41 @@ Tools for querying ENIGMA data from CORAL in BERDL using AI.
 
 ## Authentication
 
-You need a KBase account linked to the KBase Lakehouse.  Once you have
-one, go to https://hub.berdl.kbase.us/, log in, start a new Jupyter
-notebook, click on "Get Credentials" in the upper right corner of the
-screen, and download the config file to ~/.berdl/remote-config.yaml.
+You need a KBase account linked to the KBase Lakehouse.
+
+To get current BERDL credentials:
+
+1. Go to https://hub.berdl.kbase.us/ and log in.
+2. Start a new Jupyter notebook.
+3. Click **Get Credentials** in the upper right corner of the screen.
+4. Download the config file to `~/.berdl/remote-config.yaml`.
+
+Command-line BERDL tools in this repo should use `berdl-remote` with
+`~/.berdl/remote-config.yaml` rather than stale tokens copied into a local
+`.env` file. If you downloaded the file somewhere else first, import it with:
+
+```bash
+berdl-remote configure -f /path/to/remote-config.yaml
+```
+
+If the config expires or BERDL reports invalid credentials, repeat the steps
+above to download a fresh config.
+
+You also need to get a KBASE_AUTH_TOKEN and put it in a .env
+file, e.g.,
+
+```
+KB_AUTH_TOKEN=....
+```
+
+When you're logged in to BERDL, and in a Jupyter notebook, run:
+BERDLSettings().KBASE_AUTH_TOKEN and paste the token that comes back
+(without quotes) into your .env file.
 
 ## Database Access
 
-After doing the above authentication steps, you should also click on
-"Request Tenant Access" for any datasets you need access to.
+After doing the authentication steps, click **Request Tenant Access** for any
+datasets you need access to.
 
 ## Output locations
 
