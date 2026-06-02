@@ -28,7 +28,7 @@ the durable sync location for the next run.
 {
   "table": "sdt_sample",
   "source_kind": "typedef|brick|ddt_metadata|ontology",
-  "data_path": "export/data/sdt_sample.tsv",
+  "data_path": "berdl_upload/data/sdt_sample.tsv",
   "format": "tsv",
   "delimiter": "\t",
   "row_count": 123,
@@ -55,7 +55,7 @@ the durable sync location for the next run.
     "withdrawn_date": "optional ISO-8601 date",
     "superceded_by_ddt_ndarray_id": "optional successor ddt_ndarray id",
     "process_id": "optional CORAL process id",
-    "inferred_process_tsv": "optional export/metadata/process_update_data_<run_id>.tsv"
+    "inferred_process_tsv": "optional metadata/process_update_data_<run_id>.tsv"
   },
   "change_status": "new|data_changed|schema_changed|comments_changed|unchanged|missing_from_current_export"
 }

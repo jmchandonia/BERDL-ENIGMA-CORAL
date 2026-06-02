@@ -13,7 +13,7 @@ MinIO copy plus notebook paste workflow.
 ## Guardrails
 
 - Do not run the actual CORAL export until the user confirms the working disk.
-- Default runtime work directory: `sync-coral-to-berdl/exports/<tenant>_<dataset>/<run_id>/`.
+- Default runtime work directory: `sync-coral-to-berdl/exports/<run_id>/`.
 - Keep generated TSV/CSV/manifest output out of git.
 - Never drop Lakehouse tables just because they disappeared from the current CORAL export; report removals for review.
 - Obsolete brick tables are the exception: after explicit CORAL lifecycle
@@ -28,6 +28,8 @@ MinIO copy plus notebook paste workflow.
 1. **Preflight**
    - Confirm the target tenant/dataset/namespace and the work directory.
    - Check available disk space before export.
+   - Confirm `.env` has `CORAL_TYPEDEF` and `CORAL_ONTOLOGIES`; these are
+     the canonical sources for static table schemas/comments and `sys_oterm`.
    - Confirm `KBASE_AUTH_TOKEN`, BERDL ingest prerequisites, and MinIO configuration using the `berdl-ingest` skill workflow.
 
 2. **Export CORAL locally**
@@ -36,7 +38,7 @@ MinIO copy plus notebook paste workflow.
      - `to_spark.py` for schema/comment derivation patterns.
      - `convert_bricks.py` for brick conversion and DDT metadata.
      - `convert_to_berdl_loader.py` for existing BERDL config/comment mapping ideas.
-   - Write exports under `<work_dir>/export/`, not inside the skill directory.
+   - Write raw CORAL exports under `<work_dir>/coral_export/`, not inside the skill directory.
 
 3. **Classify brick lifecycle**
    - After all bricks are downloaded, classify current and obsolete bricks from
@@ -44,14 +46,27 @@ MinIO copy plus notebook paste workflow.
    - Infer missing `update data` relationships only for brick families with
      clear version/date naming progressions and no existing explicit lifecycle
      provenance.
+   - Treat single-letter date suffixes such as `240314b` as corrected versions
+     of that date, and recognize embedded version tokens such as
+     `_v2_ASV_count`.
+   - For HTCP growth bricks 215-343, infer updates to later RELOADS data when
+     row overlap supports replacement; infer withdrawals for the remaining
+     accepted obsolete HTCP bricks.
    - Write candidate inferred updates to `process_update_data_<run_id>.tsv`
      for CORAL import/review.
+   - Write candidate inferred withdrawals to
+     `process_withdraw_data_<run_id>.tsv` for CORAL import/review.
    - Keep obsolete bricks in `ddt_ndarray` with `withdrawn_date` and
      `superceded_by_ddt_ndarray_id` where known, but do not expose obsolete
      bricks as BERDL `ddt_brick...` tables.
 
 4. **Build the ingest package**
-   - Normalize files into `export/data/`, `export/schema/`, `export/metadata/`, and `export/reports/`.
+   - Keep raw server output under `coral_export/static_tsv/` and `coral_export/brick_csv/`.
+   - Put BERDL-ready table files under `berdl_upload/data/`, brick schemas under `berdl_upload/schema/`, and intermediate sidecars under `metadata/brick_sidecars/`.
+   - Put source metadata files to upload under `berdl_upload/source/`:
+     `source/data/typedef.json`, `source/ontologies/*.obo`, and
+     `source/upload_manifest.json`.
+   - Put reports directly under `reports/` and generated metadata directly under `metadata/`.
    - Produce BERDL ingest config with structured per-column schema maps, not `schema_sql`, so ingest applies column comments.
    - Prefer TSV or Parquet-compatible output when CSV parsing risk is high.
 

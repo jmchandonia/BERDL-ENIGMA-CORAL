@@ -5,12 +5,16 @@
 Default work root:
 
 ```text
-sync-coral-to-berdl/exports/<tenant>_<dataset>/<run_id>/
-├── export/
+sync-coral-to-berdl/exports/<run_id>/
+├── coral_export/
+│   ├── static_tsv/
+│   └── brick_csv/
+├── berdl_upload/
 │   ├── data/
-│   ├── schema/
-│   ├── metadata/
-│   └── reports/
+│   └── schema/
+├── metadata/
+│   └── brick_sidecars/
+├── reports/
 ├── ingest/
 │   ├── config.json
 │   └── enabled_tables.txt
@@ -37,9 +41,18 @@ scratch disk.
    - work directory exists or can be created
    - enough free space for exported TSV/CSV/Parquet plus manifests
    - CORAL source paths exist
+   - `.env` defines `CORAL_TYPEDEF` and `CORAL_ONTOLOGIES`
    - BERDL ingest prerequisites are available
 
 3. Export:
+   - stage `typedef.json` under `coral_export/schema/` and
+     `berdl_upload/source/data/`
+   - stage all OBO source files under `coral_export/ontologies/` and
+     `berdl_upload/source/ontologies/`
+   - parse staged OBO files into `berdl_upload/data/sys_oterm.tsv`
+   - parse staged `typedef.json` into `metadata/table_schemas.json`,
+     `metadata/table_comments.json`, `berdl_upload/data/sys_typedef.tsv`,
+     and normalized `sdt_*`/`sys_*` static table TSVs
    - static/system typedef tables into TSV
    - dynamic bricks into normalized delimited files
    - DDT metadata tables: `ddt_ndarray` and `sys_ddt_typedef`
@@ -51,13 +64,17 @@ scratch disk.
    - for explicit `update data`, treat output brick(s) as successors when unambiguous
    - for explicit `withdraw data`, set `withdrawn_date` from process end date, or start date if end date is blank
    - infer missing update relationships only when names show clear version/date progression and CORAL does not already contain the lifecycle relationship
-   - write inferred update rows to `export/metadata/process_update_data_<run_id>.tsv` for CORAL import/review
-   - write `export/reports/brick_lifecycle.tsv` with current, obsolete, explicit, inferred, and review-needed classifications
+   - infer HTCP growth lifecycle for bricks 215-343 by comparing HTCP rows with later RELOADS/RELOADS_v2 rows
+   - write inferred update rows to `metadata/process_update_data_<run_id>.tsv` for CORAL import/review
+   - write inferred withdrawal rows to `metadata/process_withdraw_data_<run_id>.tsv` for CORAL import/review
+   - write `reports/brick_lifecycle.tsv` with explicit lifecycle rows plus inference candidates
+   - write `reports/brick_lifecycle_with_inference.tsv` with one resolved lifecycle row per brick
    - retain obsolete bricks in `ddt_ndarray`, filling `withdrawn_date` and `superceded_by_ddt_ndarray_id` where known
    - exclude obsolete `ddt_brick...` data tables from the generated ingest config
-   - compare obsolete brick tables against existing BERDL tables and write `export/reports/obsolete_berdl_tables_to_drop.sql` for reviewed deletion
+   - compare obsolete brick tables against existing BERDL tables and write `reports/obsolete_berdl_tables_to_drop.sql` for reviewed deletion
 
 5. Normalize:
+   - keep raw server TSV/CSV output separate from BERDL-ready upload files
    - standardize table names to target BERDL names
    - validate headers against schema
    - validate row widths with Python `csv`
@@ -84,6 +101,8 @@ scratch disk.
    - only changed data/schema tables enabled
    - no obsolete `ddt_brick...` tables enabled
    - comment-only tables excluded from data ingest and queued for validation/fallback
+   - include `source_files` entries for `typedef.json` and OBO files so the
+     BERDL upload step stages them to the run Bronze prefix before ingest
 
 9. Run BERDL ingest using the `berdl-ingest` workflow.
 
