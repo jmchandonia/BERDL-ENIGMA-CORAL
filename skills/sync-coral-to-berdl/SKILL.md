@@ -53,9 +53,14 @@ MinIO copy plus notebook paste workflow.
      row overlap supports replacement; infer withdrawals for the remaining
      accepted obsolete HTCP bricks.
    - Write candidate inferred updates to `process_update_data_<run_id>.tsv`
-     for CORAL import/review.
+     for CORAL import/review only when at least one row is present.
    - Write candidate inferred withdrawals to
-     `process_withdraw_data_<run_id>.tsv` for CORAL import/review.
+     `process_withdraw_data_<run_id>.tsv` for CORAL import/review only when at
+     least one row is present.
+   - If any non-empty `process_*_<run_id>.tsv` file is generated, stop the sync
+     before BERDL ingest. Tell the user to import the generated process file(s)
+     into CORAL, then rerun the CORAL export so the updated `Process` table is
+     used for lifecycle classification.
    - Keep obsolete bricks in `ddt_ndarray` with `withdrawn_date` and
      `superceded_by_ddt_ndarray_id` where known, but do not expose obsolete
      bricks as BERDL `ddt_brick...` tables.
@@ -89,6 +94,15 @@ MinIO copy plus notebook paste workflow.
 8. **Report**
    - Write a sync report listing updated, skipped, comment-only, failed, and removed-from-export tables.
    - Include row counts, hashes, comment validation status, and any parser workarounds used.
+
+9. **Publish schema updates**
+   - Whenever the sync adds or drops Lakehouse tables, regenerate the
+     repository `schema/` reference files from the completed sync package.
+   - Copy the updated schema references into every dependent skill that vendors
+     the ENIGMA CORAL schema, including `berdl-mcp` and
+     `enigma-berdl-query`.
+   - Commit and push the sync workflow changes plus schema reference updates to
+     GitHub after BERDL verification.
 
 ## References
 

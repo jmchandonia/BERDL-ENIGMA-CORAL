@@ -179,6 +179,15 @@ def write_tsv(path, rows, fieldnames):
             writer.writerow({field: row.get(field, "") for field in fieldnames})
 
 
+def write_tsv_if_rows(path, rows, fieldnames):
+    if not rows:
+        if path.exists():
+            path.unlink()
+        return None
+    write_tsv(path, rows, fieldnames)
+    return path
+
+
 def brick_ids(value):
     return BRICK_RE.findall(value or "")
 
@@ -838,12 +847,21 @@ def classify_lifecycle(process_path, ndarray_path, run_id, reports_dir, metadata
         "process", "person", "campaign", "protocol", "date_start",
         "date_end", "input_objects", "output_objects",
     ]
-    write_tsv(metadata_dir / f"process_update_data_{run_id}.tsv", inferred_process_rows, [
-        *process_import_fields,
-    ])
-    write_tsv(metadata_dir / f"process_withdraw_data_{run_id}.tsv", inferred_withdraw_rows, [
-        *process_import_fields,
-    ])
+    pending_process_import_files = []
+    update_path = write_tsv_if_rows(
+        metadata_dir / f"process_update_data_{run_id}.tsv",
+        inferred_process_rows,
+        process_import_fields,
+    )
+    if update_path:
+        pending_process_import_files.append(str(update_path))
+    withdraw_path = write_tsv_if_rows(
+        metadata_dir / f"process_withdraw_data_{run_id}.tsv",
+        inferred_withdraw_rows,
+        process_import_fields,
+    )
+    if withdraw_path:
+        pending_process_import_files.append(str(withdraw_path))
 
     obsolete_ids = sorted(explicit)
     (reports_dir / "obsolete_berdl_tables_to_drop.sql").write_text(
@@ -858,6 +876,7 @@ def classify_lifecycle(process_path, ndarray_path, run_id, reports_dir, metadata
         "explicit_lifecycle_rows": len(explicit_report),
         "inferred_update_candidates": len(inferred),
         "review_needed": sum(1 for row in explicit_report if row.get("review_status")) + len(review_rows),
+        "pending_process_import_files": pending_process_import_files,
     }
 
 
@@ -1324,16 +1343,34 @@ def main():
     ingest_dir = run_dir / "ingest"
 
     aggregate_sidecars(sidecar_dir, data_dir)
+    coral_metadata_stats = prepare_coral_metadata(run_dir, Path.cwd())
+    process_path = run_dir / "coral_export" / "static_tsv" / "Process.tsv"
+    if not process_path.exists():
+        process_path = data_dir / "Process.tsv"
     lifecycle_stats = classify_lifecycle(
-        data_dir / "Process.tsv",
+        process_path,
         data_dir / "ddt_ndarray.tsv",
         args.run_id,
         reports_dir,
         metadata_dir,
     )
+    if lifecycle_stats.get("pending_process_import_files"):
+        summary = {
+            **lifecycle_stats,
+            "coral_metadata": coral_metadata_stats,
+            "status": "coral_process_import_required",
+            "next_step": (
+                "Import the generated process TSV file(s) into CORAL, then rerun "
+                "the CORAL export so the updated Process table is reflected before "
+                "building or importing the BERDL package."
+            ),
+        }
+        reports_dir.mkdir(parents=True, exist_ok=True)
+        (reports_dir / "dry_run_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+        print(json.dumps(summary, indent=2))
+        raise SystemExit(2)
     typedef_filter_stats = filter_sys_ddt_typedef_to_current_bricks(data_dir, reports_dir)
-    cleanup_stats = process_cleanup(data_dir / "Process.tsv", reports_dir)
-    coral_metadata_stats = prepare_coral_metadata(run_dir, Path.cwd())
+    cleanup_stats = process_cleanup(process_path, reports_dir)
     build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir)
     build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanup_stats)
     summary = {

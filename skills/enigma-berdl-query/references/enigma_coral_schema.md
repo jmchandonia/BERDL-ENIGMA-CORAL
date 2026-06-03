@@ -28,7 +28,7 @@ Total Tables: 691
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1367
+**Total Rows:** 1368
 
 ### Sample Data (5 rows)
 
@@ -54,7 +54,7 @@ Total Tables: 691
 | berdl_column_name | string | Yes | {"description": "BERDL column name"} |
 | berdl_column_data_type | string | Yes | {"description": "BERDL column data type, variable or dimension_variable"} |
 | scalar_type | string | Yes | {"description": "Scalar type"} |
-| foreign_key | string | Yes | {"description": "foreign key"} |
+| foreign_key | string | Yes | {"description": "Foreign key reference"} |
 | comment | string | Yes | {"description": "Column comment"} |
 | unit_sys_oterm_id | string | Yes | {"description": "Unit, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | unit_sys_oterm_name | string | Yes | {"description": "Unit"} |
@@ -3658,34 +3658,6 @@ Total Tables: 691
 | FW104-12G02 | 1 | 0 | GCF_040276125.1 | FW104-12G02 | NULL |
 | FW104-7C03 | 1 | 0 | GCF_040276085.1 | FW104-7C03 | NULL |
 | GW247-6E4 | 1 | 0 | GCF_040276065.1 | GW247-6E4 | NULL |
-
----
-
-## Table: ddt_brick0000530
-
-**Table Description:** isolate_classification_gtdb_260225.ndarray - GTDB-Tk classification of each ENIGMA isolate strain with a genome, as of 2026-02-25
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-**Total Rows:** 8978
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|---|
-| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
-| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
-| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
-| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
-| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
 
 ---
 
@@ -23735,6 +23707,34 @@ Total Tables: 691
 
 ---
 
+## Table: ddt_brick0001600
+
+**Table Description:** isolate_classification_gtdb_260603.ndarray - GTDB-Tk 2.7.2 classification of each ENIGMA isolate strain with a genome, as of 2026-06-03
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 9039
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
+| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
+| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
+| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
+| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -24274,7 +24274,7 @@ Total Tables: 691
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 91780
+**Total Rows:** 91781
 
 ### Sample Data (5 rows)
 
