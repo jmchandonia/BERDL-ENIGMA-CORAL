@@ -4,6 +4,7 @@ import csv
 import hashlib
 import json
 import re
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -23,11 +24,9 @@ DATA_EXT_RE = re.compile(r"\.(h?ndarray|csv|tsv)$", re.IGNORECASE)
 HTCP_RE = re.compile(r"_HTCP_", re.IGNORECASE)
 RELOADS_RE = re.compile(r"_RELOADS_", re.IGNORECASE)
 RELOADS_V2_RE = re.compile(r"_RELOADS_.*_v2$", re.IGNORECASE)
-SCHEMA_FIELD_RE = re.compile(
-    r'StructField\("([^"]+)",\s*(\w+)\(\).*?metadata=\{"comment":\s*"((?:[^"\\]|\\.)*)"\}',
-    re.DOTALL,
-)
-SCHEMA_SIMPLE_FIELD_RE = re.compile(r'StructField\("([^"]+)",\s*(\w+)\(\)')
+SCHEMA_FIELD_RE = re.compile(r'StructField\(\s*"([^"]+)"\s*,\s*(\w+)\(\)([^\n]*)')
+SCHEMA_COMMENT_RE = re.compile(r'["\']comment["\']\s*:\s*"((?:[^"\\]|\\.)*)"')
+CONTEXT_LABEL_REF_RE = re.compile(r"^\s*(.*?)\s*<([^<>]+)>\s*$")
 TYPE_MAP = {
     "StringType": "STRING",
     "IntegerType": "INT",
@@ -345,6 +344,389 @@ def aggregate_sidecars(sidecar_dir, data_dir):
                         first = False
                     for row in reader:
                         writer.writerow(row)
+
+
+def _parse_label_ref(value):
+    text = str(value or "").strip()
+    match = CONTEXT_LABEL_REF_RE.match(text)
+    if match:
+        return match.group(1).strip(), match.group(2).strip()
+    return text, ""
+
+
+def _load_array_context_fk_map(typedef_path):
+    candidates = defaultdict(dict)
+    for row in read_tsv(typedef_path):
+        column = (row.get("berdl_column_name") or "").strip()
+        foreign_key = (row.get("foreign_key") or "").strip()
+        if not column or not foreign_key:
+            continue
+        scalar_type = (row.get("scalar_type") or "").strip().lower()
+        term_id = (row.get("variable_oterm_id") or "").strip()
+        term_name = (
+            row.get("variable_oterm_name")
+            or row.get("comment")
+            or ""
+        ).strip()
+        candidate = {
+            "column": column,
+            "foreign_key": foreign_key,
+            "scalar_type": scalar_type,
+            "term_id": term_id,
+            "term_name": term_name,
+            "comment": (row.get("comment") or term_name).strip(),
+        }
+        signature = (column, foreign_key, scalar_type)
+        if term_id:
+            candidates[("id", term_id)][signature] = candidate
+        if term_name:
+            candidates[("name", term_name.casefold())][signature] = candidate
+
+    resolved = {}
+    conflicts = []
+    for key, by_signature in candidates.items():
+        target_types = {
+            (foreign_key, scalar_type)
+            for _, foreign_key, scalar_type in by_signature
+        }
+        if len(target_types) != 1:
+            conflicts.append({
+                "lookup_type": key[0],
+                "lookup_value": key[1],
+                "candidate_mappings": "; ".join(
+                    f"{column}->{foreign_key} ({scalar_type or 'unknown'})"
+                    for column, foreign_key, scalar_type in sorted(by_signature)
+                ),
+            })
+            continue
+        foreign_key, scalar_type = next(iter(target_types))
+        candidate_rows = list(by_signature.values())
+        preferred = min(
+            candidate_rows,
+            key=lambda row: (len(row["column"]), row["column"]),
+        )
+        preferred = dict(preferred)
+        if scalar_type == "object_ref" and "." in foreign_key:
+            preferred["column"] = foreign_key.rsplit(".", 1)[1]
+        resolved[key] = preferred
+    return resolved, conflicts
+
+
+def _lookup_context_fk(fk_map, term_id, term_name):
+    if term_id and ("id", term_id) in fk_map:
+        return fk_map[("id", term_id)]
+    if term_name and ("name", term_name.casefold()) in fk_map:
+        return fk_map[("name", term_name.casefold())]
+    return None
+
+
+def _array_context_entries(metadata_text, fk_map):
+    try:
+        metadata = json.loads(metadata_text or "[]")
+    except (TypeError, json.JSONDecodeError):
+        return [], 0, [{"reason": "invalid_array_metadata"}]
+
+    if isinstance(metadata, dict):
+        raw_context = metadata.get("array_context") or []
+        metadata_format = "array_context"
+    elif isinstance(metadata, list):
+        raw_context = metadata
+        metadata_format = "legacy_array_metadata"
+    else:
+        return [], 0, [{"reason": "unsupported_array_metadata"}]
+
+    mapped = []
+    skipped_non_fk = 0
+    issues = []
+    for item in raw_context:
+        explicit_scalar_type = ""
+        if metadata_format == "array_context" and isinstance(item, dict):
+            value_type = item.get("value_type") or {}
+            value = item.get("value") or {}
+            term_id = str(value_type.get("oterm_ref") or "").strip()
+            term_name = str(
+                value_type.get("term_name")
+                or value_type.get("oterm_name")
+                or ""
+            ).strip()
+            explicit_scalar_type = str(value.get("scalar_type") or "").strip().lower()
+            context_value = (
+                value.get("object_ref")
+                or value.get("oterm_ref")
+                or value.get("string_value")
+                or ""
+            )
+        elif metadata_format == "legacy_array_metadata" and isinstance(item, list) and len(item) >= 2:
+            term_name, term_id = _parse_label_ref(item[0])
+            value_name, value_ref = _parse_label_ref(item[1])
+            context_value = value_ref or value_name
+        else:
+            skipped_non_fk += 1
+            continue
+
+        mapping = _lookup_context_fk(fk_map, term_id, term_name)
+        if not mapping:
+            skipped_non_fk += 1
+            continue
+        if (
+            explicit_scalar_type
+            and mapping.get("scalar_type")
+            and explicit_scalar_type != mapping["scalar_type"]
+        ):
+            issues.append({
+                "reason": "scalar_type_mismatch",
+                "term_id": term_id,
+                "term_name": term_name,
+                "value": str(context_value),
+            })
+            continue
+        context_value = str(context_value or "").strip()
+        if not context_value:
+            issues.append({
+                "reason": "missing_foreign_key_value",
+                "term_id": term_id,
+                "term_name": term_name,
+            })
+            continue
+        mapped.append({
+            **mapping,
+            "term_id": term_id or mapping.get("term_id", ""),
+            "term_name": term_name or mapping.get("term_name", ""),
+            "value": context_value,
+            "metadata_format": metadata_format,
+        })
+
+    by_column = defaultdict(list)
+    for entry in mapped:
+        by_column[entry["column"]].append(entry)
+    resolved = []
+    for column, entries in by_column.items():
+        values = {entry["value"] for entry in entries}
+        if len(values) != 1:
+            issues.append({
+                "reason": "conflicting_context_values",
+                "berdl_column_name": column,
+                "value": "; ".join(sorted(values)),
+            })
+            continue
+        resolved.append(entries[0])
+    return resolved, skipped_non_fk, issues
+
+
+def _append_tsv_constant_columns(path, columns):
+    with path.open(newline="", encoding="utf-8") as source:
+        reader = csv.DictReader(source, delimiter="\t")
+        fieldnames = list(reader.fieldnames or [])
+        additions = [entry for entry in columns if entry["column"] not in fieldnames]
+        if not additions:
+            return 0
+        with tempfile.NamedTemporaryFile(
+            "w",
+            newline="",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            delete=False,
+        ) as target:
+            temp_path = Path(target.name)
+            writer = csv.DictWriter(
+                target,
+                delimiter="\t",
+                fieldnames=fieldnames + [entry["column"] for entry in additions],
+            )
+            writer.writeheader()
+            row_count = 0
+            for row in reader:
+                for entry in additions:
+                    row[entry["column"]] = entry["value"]
+                writer.writerow(row)
+                row_count += 1
+    temp_path.replace(path)
+    return row_count
+
+
+def _append_schema_context_fields(path, columns):
+    text = path.read_text(encoding="utf-8")
+    additions = []
+    for entry in columns:
+        column_literal = re.escape(json.dumps(entry["column"]))
+        if re.search(rf"StructField\(\s*{column_literal}\s*,", text):
+            continue
+        comment = json.dumps({
+            "description": entry.get("comment") or entry.get("term_name") or entry["column"],
+            "type": "foreign_key",
+            "references": entry["foreign_key"],
+        })
+        additions.append(
+            f"    StructField({json.dumps(entry['column'])}, StringType(), True, "
+            f"metadata={{\"comment\": {json.dumps(comment)}}}),\n"
+        )
+    if not additions:
+        return 0
+    insert_at = text.rfind("])")
+    if insert_at < 0:
+        raise ValueError(f"Could not find schema terminator in {path}")
+    path.write_text(text[:insert_at] + "".join(additions) + text[insert_at:], encoding="utf-8")
+    return len(additions)
+
+
+def expand_array_context_foreign_keys(data_dir, schema_dir, reports_dir):
+    ndarray_path = data_dir / "ddt_ndarray.tsv"
+    typedef_path = data_dir / "sys_ddt_typedef.tsv"
+    if not ndarray_path.exists() or not typedef_path.exists():
+        return {
+            "array_context_fk_columns_expanded": 0,
+            "array_context_bricks_updated": 0,
+            "array_context_non_fk_entries_skipped": 0,
+            "array_context_issues": 0,
+            "array_context_mapping_conflicts": 0,
+        }
+
+    fk_map, mapping_conflicts = _load_array_context_fk_map(typedef_path)
+    with typedef_path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        typedef_fieldnames = list(reader.fieldnames or [])
+        typedef_rows = list(reader)
+    existing_typedef = {
+        (row.get("ddt_ndarray_id", ""), row.get("berdl_column_name", ""))
+        for row in typedef_rows
+    }
+
+    report_rows = []
+    additions = []
+    skipped_non_fk = 0
+    issue_count = 0
+    expanded_count = 0
+    bricks_updated = 0
+    present_count = 0
+    bricks_with_context = 0
+    for ndarray_row in read_tsv(ndarray_path):
+        brick_id = (ndarray_row.get("ddt_ndarray_id") or "").strip()
+        contexts, skipped, issues = _array_context_entries(
+            ndarray_row.get("ddt_ndarray_metadata", ""),
+            fk_map,
+        )
+        skipped_non_fk += skipped
+        issue_count += len(issues)
+        for issue in issues:
+            report_rows.append({
+                "ddt_ndarray_id": brick_id,
+                "action": "skipped",
+                **issue,
+            })
+        if not contexts:
+            continue
+
+        data_path = data_dir / f"{brick_id}.tsv"
+        schema_path = schema_dir / f"{brick_id}_schema.py"
+        if not data_path.exists() or not schema_path.exists():
+            reason = "missing_brick_data" if not data_path.exists() else "missing_brick_schema"
+            for entry in contexts:
+                report_rows.append({
+                    "ddt_ndarray_id": brick_id,
+                    "berdl_column_name": entry["column"],
+                    "value": entry["value"],
+                    "foreign_key": entry["foreign_key"],
+                    "term_id": entry["term_id"],
+                    "term_name": entry["term_name"],
+                    "action": "skipped",
+                    "reason": reason,
+                })
+            continue
+
+        with data_path.open(encoding="utf-8", errors="replace") as handle:
+            existing_columns = handle.readline().rstrip("\n\r").split("\t")
+        _append_schema_context_fields(schema_path, contexts)
+        new_contexts = []
+        for entry in contexts:
+            key = (brick_id, entry["column"])
+            if key not in existing_typedef:
+                additions.append({
+                    "ddt_ndarray_id": brick_id,
+                    "berdl_column_name": entry["column"],
+                    "berdl_column_data_type": "variable",
+                    "scalar_type": entry.get("scalar_type", ""),
+                    "foreign_key": entry["foreign_key"],
+                    "comment": entry.get("comment") or entry["term_name"],
+                    "unit_sys_oterm_id": "",
+                    "unit_sys_oterm_name": "",
+                    "dimension_number": "",
+                    "dimension_oterm_id": "",
+                    "dimension_oterm_name": "",
+                    "variable_number": "",
+                    "variable_oterm_id": entry["term_id"],
+                    "variable_oterm_name": entry["term_name"],
+                    "original_csv_string": (
+                        f"array_context,{entry['term_name']} <{entry['term_id']}>,{entry['value']}"
+                    ),
+                })
+                existing_typedef.add(key)
+            if entry["column"] in existing_columns:
+                present_count += 1
+                report_rows.append({
+                    "ddt_ndarray_id": brick_id,
+                    "berdl_column_name": entry["column"],
+                    "value": entry["value"],
+                    "foreign_key": entry["foreign_key"],
+                    "term_id": entry["term_id"],
+                    "term_name": entry["term_name"],
+                    "action": "skipped",
+                    "reason": "column_already_present",
+                })
+                continue
+            new_contexts.append(entry)
+        if not new_contexts:
+            bricks_with_context += 1
+            continue
+
+        _append_tsv_constant_columns(data_path, new_contexts)
+        expanded_count += len(new_contexts)
+        present_count += len(new_contexts)
+        bricks_updated += 1
+        bricks_with_context += 1
+        for entry in new_contexts:
+            report_rows.append({
+                "ddt_ndarray_id": brick_id,
+                "berdl_column_name": entry["column"],
+                "value": entry["value"],
+                "foreign_key": entry["foreign_key"],
+                "term_id": entry["term_id"],
+                "term_name": entry["term_name"],
+                "action": "expanded",
+                "reason": entry["metadata_format"],
+            })
+
+    if additions:
+        write_tsv(typedef_path, typedef_rows + additions, typedef_fieldnames)
+    report_fieldnames = [
+        "ddt_ndarray_id",
+        "berdl_column_name",
+        "value",
+        "foreign_key",
+        "term_id",
+        "term_name",
+        "action",
+        "reason",
+    ]
+    write_tsv_if_rows(
+        reports_dir / "array_context_fk_expansion.tsv",
+        report_rows,
+        report_fieldnames,
+    )
+    write_tsv_if_rows(
+        reports_dir / "array_context_fk_mapping_conflicts.tsv",
+        mapping_conflicts,
+        ["lookup_type", "lookup_value", "candidate_mappings"],
+    )
+    return {
+        "array_context_fk_columns_expanded": expanded_count,
+        "array_context_bricks_updated": bricks_updated,
+        "array_context_fk_columns_present": present_count,
+        "array_context_bricks_with_fk_context": bricks_with_context,
+        "array_context_non_fk_entries_skipped": skipped_non_fk,
+        "array_context_issues": issue_count,
+        "array_context_mapping_conflicts": len(mapping_conflicts),
+    }
 
 
 def filter_sys_ddt_typedef_to_current_bricks(data_dir, reports_dir):
@@ -1060,23 +1442,29 @@ def file_sha256(path):
     return digest.hexdigest()
 
 
+def json_sha256(value):
+    normalized = json.dumps(value, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
 def parse_schema_file(path):
     text = path.read_text(encoding="utf-8")
     by_name = {}
-    for name, py_type, comment in SCHEMA_FIELD_RE.findall(text):
+    for name, py_type, remainder in SCHEMA_FIELD_RE.findall(text):
+        comment_match = SCHEMA_COMMENT_RE.search(remainder)
+        comment = ""
+        if comment_match:
+            raw_comment = comment_match.group(1)
+            try:
+                comment = json.loads(f'"{raw_comment}"')
+            except json.JSONDecodeError:
+                comment = raw_comment.replace('\\"', '"')
         by_name[name] = {
-            "name": name,
+            "column": name,
             "type": TYPE_MAP.get(py_type, "STRING"),
             "nullable": True,
-            "comment": comment.replace('\\"', '"'),
+            "comment": comment,
         }
-    for name, py_type in SCHEMA_SIMPLE_FIELD_RE.findall(text):
-        by_name.setdefault(name, {
-            "name": name,
-            "type": TYPE_MAP.get(py_type, "STRING"),
-            "nullable": True,
-            "comment": "",
-        })
     return list(by_name.values())
 
 
@@ -1135,6 +1523,97 @@ def static_table_name(path):
         "TnSeq_Library": "sdt_tnseq_library",
     }
     return mapping.get(path.stem, path.stem.lower())
+
+
+def build_process_link_tables(data_dir, metadata_dir):
+    process_path = data_dir / "sys_process.tsv"
+    if not process_path.exists():
+        raise FileNotFoundError(f"Normalized CORAL process table is missing: {process_path}")
+
+    type_to_table = json.loads(
+        (metadata_dir / "coral_type_to_table.json").read_text(encoding="utf-8")
+    )
+    table_schemas_path = metadata_dir / "table_schemas.json"
+    table_comments_path = metadata_dir / "table_comments.json"
+    table_schemas = json.loads(table_schemas_path.read_text(encoding="utf-8"))
+    table_comments = json.loads(table_comments_path.read_text(encoding="utf-8"))
+
+    prefix_to_fk = {}
+    fk_references = {"ddt_ndarray_id": "ddt_ndarray.ddt_ndarray_id"}
+    for coral_type, table_name in sorted(type_to_table.items()):
+        if table_name == "sys_process":
+            continue
+        schema = table_schemas.get(table_name) or []
+        primary_column = next(
+            (col.get("column") or col.get("name") for col in schema
+             if (col.get("column") or col.get("name", "")).endswith("_id")),
+            None,
+        )
+        if not primary_column:
+            raise ValueError(f"No object ID column found for {coral_type} ({table_name})")
+        prefix_to_fk[coral_type] = primary_column
+        fk_references[primary_column] = f"{table_name}.{primary_column}"
+
+    object_columns = sorted(fk_references)
+    columns = ["sys_process_id", *object_columns]
+    schema = [{
+        "column": "sys_process_id",
+        "type": "STRING",
+        "nullable": False,
+        "comment": json.dumps({
+            "description": "Foreign key to the CORAL process",
+            "type": "foreign_key",
+            "references": "sys_process.sys_process_id",
+        }),
+    }]
+    schema.extend({
+        "column": column,
+        "type": "STRING",
+        "nullable": True,
+        "comment": json.dumps({
+            "description": f"Linked process object from {fk_references[column].split('.', 1)[0]}",
+            "type": "foreign_key",
+            "references": fk_references[column],
+        }),
+    } for column in object_columns)
+
+    process_rows = list(read_tsv(process_path))
+    stats = {}
+    for field, table_name, description in [
+        ("input_objects", "sys_process_input", "Normalized CORAL process input-object links"),
+        ("output_objects", "sys_process_output", "Normalized CORAL process output-object links"),
+    ]:
+        links = []
+        for process in process_rows:
+            process_id = process.get("sys_process_id") or ""
+            try:
+                object_refs = json.loads(process.get(field) or "[]")
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"Invalid {field} JSON for {process_id}: {exc}") from exc
+            for object_ref in object_refs:
+                prefix, separator, object_id = str(object_ref).partition(":")
+                if not separator or not object_id:
+                    raise ValueError(f"Invalid process object reference for {process_id}: {object_ref!r}")
+                if prefix.startswith("Brick-"):
+                    column = "ddt_ndarray_id"
+                else:
+                    column = prefix_to_fk.get(prefix)
+                if not column:
+                    raise ValueError(
+                        f"Unmapped CORAL object type {prefix!r} in {field} for {process_id}"
+                    )
+                link = {name: "" for name in columns}
+                link["sys_process_id"] = process_id
+                link[column] = object_id
+                links.append(link)
+        write_tsv(data_dir / f"{table_name}.tsv", links, columns)
+        table_schemas[table_name] = schema
+        table_comments[table_name] = description
+        stats[f"{table_name}_rows"] = len(links)
+
+    table_schemas_path.write_text(json.dumps(table_schemas, indent=2), encoding="utf-8")
+    table_comments_path.write_text(json.dumps(table_comments, indent=2), encoding="utf-8")
+    return stats
 
 
 def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
@@ -1248,6 +1727,7 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
 
 def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanup_stats):
     metadata_dir = reports_dir.parent / "metadata"
+    schema_dir = reports_dir.parent / "berdl_upload" / "schema"
     table_schemas_path = metadata_dir / "table_schemas.json"
     table_comments_path = metadata_dir / "table_comments.json"
     coral_metadata_path = metadata_dir / "coral_metadata_summary.json"
@@ -1256,6 +1736,7 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
     table_comments = json.loads(table_comments_path.read_text(encoding="utf-8")) if table_comments_path.exists() else {}
     coral_metadata = json.loads(coral_metadata_path.read_text(encoding="utf-8")) if coral_metadata_path.exists() else {}
     coral_type_to_table = json.loads(coral_type_to_table_path.read_text(encoding="utf-8")) if coral_type_to_table_path.exists() else {}
+    brick_table_comments = _brick_table_comments(data_dir / "ddt_ndarray.tsv")
     existing_manifest_path = manifests_dir / "current.json"
     previous_by_path = {}
     if existing_manifest_path.exists():
@@ -1277,7 +1758,9 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
         if previous and previous.get("byte_count") == byte_count:
             header = previous.get("columns", [])
             row_count = previous.get("row_count")
-            hashes = previous.get("hashes", {})
+            hashes = dict(previous.get("hashes", {}))
+            if not hashes.get("data_sha256"):
+                hashes["data_sha256"] = file_sha256(path)
         else:
             with path.open("r", encoding="utf-8", newline="") as handle:
                 reader = csv.reader(handle, delimiter="\t")
@@ -1296,6 +1779,46 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
             source_kind = "typedef"
         else:
             source_kind = "coral_static"
+        if source_kind == "brick":
+            schema_path = schema_dir / f"{path.stem}_schema.py"
+            schema = parse_schema_file(schema_path) if schema_path.exists() else []
+        elif target_table == "ddt_ndarray":
+            schema = table_schemas.get(target_table, []) or _schema_from_comments(path, DDT_NDARRAY_COMMENTS)
+        elif target_table == "sys_ddt_typedef":
+            schema = table_schemas.get(target_table, []) or _schema_from_comments(path, SYS_DDT_TYPEDEF_COMMENTS)
+        else:
+            schema = table_schemas.get(target_table, [])
+        table_comment = (
+            brick_table_comments.get(target_table)
+            or table_comments.get(target_table)
+            or (DDT_NDARRAY_TABLE_COMMENT if target_table == "ddt_ndarray" else "")
+            or (SYS_DDT_TYPEDEF_TABLE_COMMENT if target_table == "sys_ddt_typedef" else "")
+        )
+        hashes["schema_sha256"] = json_sha256([
+            {
+                "column": col.get("column") or col.get("name"),
+                "type": col.get("type", "STRING"),
+                "nullable": bool(col.get("nullable", True)),
+            }
+            for col in schema
+        ])
+        hashes["comments_sha256"] = json_sha256({
+            "columns": [
+                {
+                    "column": col.get("column") or col.get("name"),
+                    "comment": col.get("comment", ""),
+                }
+                for col in schema
+            ],
+            "table_comment": table_comment,
+        })
+        hashes["table_sha256"] = json_sha256({
+            "data_sha256": hashes["data_sha256"],
+            "schema_sha256": hashes["schema_sha256"],
+            "comments_sha256": hashes["comments_sha256"],
+            "format": "tsv",
+            "delimiter": "\\t",
+        })
         tables.append({
             "table": target_table,
             "source_kind": source_kind,
@@ -1306,8 +1829,8 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
             "byte_count": byte_count,
             "hashes": hashes,
             "columns": header,
-            "schema": table_schemas.get(target_table, []),
-            "table_comment": table_comments.get(target_table, ""),
+            "schema": schema,
+            "table_comment": table_comment,
             "change_status": "dry_run_not_compared",
         })
 
@@ -1344,6 +1867,7 @@ def main():
 
     aggregate_sidecars(sidecar_dir, data_dir)
     coral_metadata_stats = prepare_coral_metadata(run_dir, Path.cwd())
+    process_link_stats = build_process_link_tables(data_dir, metadata_dir)
     process_path = run_dir / "coral_export" / "static_tsv" / "Process.tsv"
     if not process_path.exists():
         process_path = data_dir / "Process.tsv"
@@ -1369,14 +1893,17 @@ def main():
         (reports_dir / "dry_run_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
         print(json.dumps(summary, indent=2))
         raise SystemExit(2)
+    array_context_stats = expand_array_context_foreign_keys(data_dir, schema_dir, reports_dir)
     typedef_filter_stats = filter_sys_ddt_typedef_to_current_bricks(data_dir, reports_dir)
     cleanup_stats = process_cleanup(process_path, reports_dir)
     build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir)
     build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanup_stats)
     summary = {
         **lifecycle_stats,
+        **array_context_stats,
         **typedef_filter_stats,
         **cleanup_stats,
+        **process_link_stats,
         "coral_metadata": coral_metadata_stats,
     }
     (reports_dir / "dry_run_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

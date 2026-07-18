@@ -22,6 +22,10 @@ MinIO copy plus notebook paste workflow.
   reviewed Lakehouse drop plan if the table already exists.
 - Only import tables whose data, schema, or comments changed.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
+- Expand array-level context into brick columns only when the context term has
+  an unambiguous foreign-key mapping in `sys_ddt_typedef`. Keep comments,
+  instrumentation, measurements, and other non-foreign-key context only in
+  `ddt_ndarray_metadata`.
 
 ## Workflow
 
@@ -73,22 +77,50 @@ MinIO copy plus notebook paste workflow.
      `source/upload_manifest.json`.
    - Put reports directly under `reports/` and generated metadata directly under `metadata/`.
    - Produce BERDL ingest config with structured per-column schema maps, not `schema_sql`, so ingest applies column comments.
+   - Materialize foreign-key-valued array context as a constant column in the
+     brick TSV, with the same foreign-key comment and a corresponding
+     `sys_ddt_typedef` variable row. Reconcile those three artifacts
+     independently so reruns restore derived typedef rows even when the brick
+     column already exists. Report and skip ambiguous mappings.
+   - Regenerate `sys_process_input` and `sys_process_output` from the current
+     normalized `sys_process` arrays on every run. Emit one process-object link
+     per row, use explicit FK columns for every CORAL static object type, and
+     map every `Brick-*` reference to `ddt_ndarray_id` in both directions.
+   - Use `scripts/prepare_brick_tables.py` when a prior complete run is
+     available. It hashes every freshly downloaded raw brick, copies converted
+     artifacts only for byte-identical inputs with complete sidecars, and
+     reconverts every new or changed brick.
    - Prefer TSV or Parquet-compatible output when CSV parsing risk is high.
 
 5. **Detect changed tables**
    - Compute a stable hash per table from data bytes, normalized schema, column comments, table comment, and source metadata.
    - Compare against the prior sync manifest from the previous run or Lakehouse/MinIO.
-   - Enable only changed data tables in the generated BERDL ingest config.
+   - Run `scripts/select_changed_tables.py` to compare by logical table name,
+     classify data/schema/comment-only changes, and write
+     `ingest/changed_tables.txt`.
+   - Preserve `enabled` as the lifecycle-current flag, and select only changed
+     data/schema tables for upload and import through
+     `ingest/changed_tables.txt`.
    - Treat comment-only changes as a comment sync path, avoiding unnecessary data upload.
 
 6. **Run BERDL ingest**
    - Follow the `berdl-ingest` skill for infrastructure, upload, chunking, ingest, and row-count verification.
    - Use the generated config and metadata files from this skill.
+   - Pass `--table-file ingest/changed_tables.txt` to `run_full_import.py` so
+     only data/schema-changed tables are uploaded and rewritten. Lifecycle-
+     disabled brick tables remain the reviewed obsolete-drop set.
 
 7. **Validate comments**
    - Inspect BERDL ingest `comments_report`.
    - Read table schema metadata back from Spark.
-   - If expected comments are missing, generate a fallback SQL file with only the missing `ALTER TABLE ... ALTER COLUMN ... COMMENT` statements.
+   - Require a non-empty table comment for every table in the namespace and a
+     non-empty column comment for every column of every table. Compare all
+     configured comments with read-back values and fail on missing or mismatched
+     metadata.
+   - If expected comments are missing or mismatched, apply only the required
+     `ALTER TABLE ... ALTER COLUMN ... COMMENT` statements after comparing
+     current metadata. Apply this repair to every enabled table that has
+     structured schema comments, including static and brick tables.
    - Apply table-level comments separately if the target Lakehouse supports them and they are required.
 
 8. **Report**
@@ -101,6 +133,11 @@ MinIO copy plus notebook paste workflow.
    - Copy the updated schema references into every dependent skill that vendors
      the ENIGMA CORAL schema, including `berdl-mcp` and
      `enigma-berdl-query`.
+   - Run `scripts/publish_schema_references.py` after BERDL read-back
+     verification. It regenerates repository schema markdown, refreshes both
+     dependent skills, and fails if copied files differ. Pass
+     `--installed-skills-root ~/.codex/skills` to refresh installed copies in
+     the same checked operation.
    - Commit and push the sync workflow changes plus schema reference updates to
      GitHub after BERDL verification.
 

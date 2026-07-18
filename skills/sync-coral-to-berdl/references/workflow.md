@@ -75,7 +75,23 @@ scratch disk.
 
 5. Normalize:
    - keep raw server TSV/CSV output separate from BERDL-ready upload files
+   - hash all current raw bricks against the prior complete raw snapshot; reuse
+     copied converted artifacts only for byte-identical inputs and reconvert
+     every new or changed brick with `prepare_brick_tables.py`
    - standardize table names to target BERDL names
+   - resolve each array-context ontology term against unambiguous
+     `sys_ddt_typedef` foreign-key mappings
+   - append resolved context values as constant brick columns and add matching
+     brick schema comments and `sys_ddt_typedef` variable rows
+   - reconcile context data, schema, and typedef artifacts independently so a
+     repeated run produces the same transformed package
+   - regenerate `sys_process_input` and `sys_process_output` from the current
+     `sys_process.input_objects` and `output_objects` arrays, including
+     `ddt_ndarray_id` for brick links in either direction
+   - leave non-foreign-key context, including comments, instrumentation, and
+     scalar measurements, only in `ddt_ndarray_metadata`
+   - write `reports/array_context_fk_expansion.tsv` and report ambiguous
+     mappings without expanding them
    - validate headers against schema
    - validate row widths with Python `csv`
    - rewrite risky CSV as TSV or Parquet when needed
@@ -95,6 +111,8 @@ scratch disk.
    - `unchanged`
    - `missing_from_current_export`
    - `obsolete_excluded`
+   - use `scripts/select_changed_tables.py` to write durable ingest,
+     comment-only, unchanged, obsolete, added, and removed table lists
 
 8. Generate BERDL ingest config:
    - structured `schema`, not `schema_sql`
@@ -105,11 +123,18 @@ scratch disk.
      BERDL upload step stages them to the run Bronze prefix before ingest
 
 9. Run BERDL ingest using the `berdl-ingest` workflow.
+   - pass the generated `ingest/changed_tables.txt` through
+     `run_full_import.py --table-file`
 
 10. Validate:
    - row counts
    - schema order and types
    - column comments from ingest `comments_report`
+   - non-empty table comments for every table and non-empty column comments for
+     every column, with expected-versus-read-back equality
+   - fallback column comments for all enabled static, DDT metadata, ontology,
+     typedef, and brick tables when validation finds missing or mismatched
+     comments; compare first and avoid rewriting comments already current
    - table comments where supported
    - obsolete brick tables are absent from the BERDL namespace
    - obsolete bricks remain represented in `ddt_ndarray`
@@ -119,3 +144,12 @@ scratch disk.
    - save sync report
    - record any fallback SQL statements generated or applied
    - record inferred lifecycle process TSVs that need CORAL import or were skipped because CORAL already had explicit provenance
+
+12. Publish verified schema references:
+   - run `scripts/publish_schema_references.py --run-dir <work_dir>` after
+     BERDL read-back validation
+   - regenerate repository `schema/`
+   - copy and verify the schema references used by `berdl-mcp` and
+     `enigma-berdl-query`
+   - pass `--installed-skills-root ~/.codex/skills` to refresh installed copies
+   - commit and push the verified workflow and schema changes

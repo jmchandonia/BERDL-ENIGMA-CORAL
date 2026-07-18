@@ -50,3 +50,7 @@ needed after validation:
 
 When generating SQL, escape single quotes by doubling them. Quote column names
 with backticks.
+
+The fallback comment application must iterate over structured schema entries
+for every enabled table. Do not restrict it to `ddt_ndarray` and
+`sys_ddt_typedef`; that leaves static-table and brick-table comments missing.

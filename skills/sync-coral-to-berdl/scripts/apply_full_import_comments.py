@@ -18,7 +18,11 @@ from dry_run_tools import (
     _brick_table_comments,
     _schema_from_comments,
 )
-from run_full_import import _patch_spark_connect_config_defaults, _sql_string
+from run_full_import import (
+    _patch_spark_connect_config_defaults,
+    _set_remote_connection_env_defaults,
+    _sql_string,
+)
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -30,6 +34,7 @@ def _save_json(path: Path, value: dict[str, Any]) -> None:
 
 
 def _make_spark(app_name: str):
+    _set_remote_connection_env_defaults()
     sys.path.insert(0, "/h/jmc/src/BERIL-research-observatory/scripts")
     import ingest_lib  # noqa: F401
     from spark_connect_remote import create_spark_session
@@ -70,6 +75,28 @@ def _apply_column_comment(spark, full_table: str, column: str, comment: str) -> 
     )
 
 
+def _describe_comments(spark, full_table: str) -> dict[str, Any]:
+    rows = [
+        row.asDict(recursive=True)
+        for row in spark.sql(f"DESCRIBE TABLE EXTENDED {full_table}").collect()
+    ]
+    columns = {}
+    table_comment = ""
+    in_schema = True
+    for row in rows:
+        column = (row.get("col_name") or "").strip()
+        if column.startswith("#"):
+            in_schema = False
+            continue
+        if not in_schema:
+            if column == "Comment":
+                table_comment = (row.get("data_type") or "").strip()
+            continue
+        if column:
+            columns[column] = (row.get("comment") or "").strip()
+    return {"table_comment": table_comment, "columns": columns}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
@@ -106,24 +133,33 @@ def main() -> int:
     spark = _make_spark("sync-coral-apply-comments")
     table_comment_count = 0
     column_comment_count = 0
-    for table in config["tables"]:
-        if not table.get("enabled"):
-            continue
+    table_comments_current = 0
+    column_comments_current = 0
+    enabled_tables = [table for table in config["tables"] if table.get("enabled")]
+    for index, table in enumerate(enabled_tables, start=1):
         full_table = f"{args.namespace}.{table['name']}"
+        print(f"[comments {index}/{len(enabled_tables)}] {full_table}", flush=True)
+        actual = _describe_comments(spark, full_table)
         table_comment = table.get("table_comment") or ""
-        if table_comment:
+        if table_comment and table_comment != actual["table_comment"]:
             _apply_table_comment(spark, full_table, table_comment)
             table_comment_count += 1
+        elif table_comment:
+            table_comments_current += 1
         for coldef in table.get("schema") or []:
             comment = coldef.get("comment") or ""
             column = coldef.get("column") or coldef.get("name")
-            if column and comment and table["name"] in {"ddt_ndarray", "sys_ddt_typedef"}:
+            if column and comment and comment != actual["columns"].get(column, ""):
                 _apply_column_comment(spark, full_table, column, comment)
                 column_comment_count += 1
+            elif column and comment:
+                column_comments_current += 1
 
     print(json.dumps({
         "table_comments_applied": table_comment_count,
-        "ddt_metadata_column_comments_applied": column_comment_count,
+        "column_comments_applied": column_comment_count,
+        "table_comments_already_current": table_comments_current,
+        "column_comments_already_current": column_comments_current,
         "config_updated": not args.no_update_config,
     }, indent=2))
     return 0

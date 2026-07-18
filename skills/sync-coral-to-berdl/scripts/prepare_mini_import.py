@@ -125,7 +125,7 @@ def _load_brick_schema(schema_path: Path) -> list[dict[str, object]]:
     schema = []
     for col in parse_schema_file(schema_path):
         schema.append({
-            "column": col["name"],
+            "column": col["column"],
             "type": _spark_type_from_schema_type(col["type"]),
             "nullable": bool(col.get("nullable", True)),
             "comment": col.get("comment", ""),

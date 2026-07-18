@@ -89,6 +89,13 @@ def _patch_spark_connect_config_defaults(spark) -> None:
     client._coral_config_defaults_patched = True
 
 
+def _set_remote_connection_env_defaults() -> None:
+    os.environ.setdefault("grpc_proxy", "http://127.0.0.1:8123")
+    os.environ.setdefault("https_proxy", "http://127.0.0.1:8123")
+    os.environ.setdefault("no_proxy", "localhost,127.0.0.1")
+    os.environ.setdefault("BERDL_NO_AUTO_SPAWN", "1")
+
+
 def _table_bronze_key(table: dict[str, Any]) -> str:
     return f"data/{table['name']}.tsv"
 
@@ -235,6 +242,11 @@ def main() -> int:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--limit", type=int)
     parser.add_argument("--table", action="append", help="Import only this table name; may be repeated.")
+    parser.add_argument(
+        "--table-file",
+        type=Path,
+        help="Import only enabled table names listed one per line in this file.",
+    )
     parser.add_argument("--mc", default="/h/jmc/bin/mc" if Path("/h/jmc/bin/mc").exists() else "mc")
     parser.add_argument("--report")
     args = parser.parse_args()
@@ -242,8 +254,14 @@ def main() -> int:
     run_dir = args.run_dir.resolve()
     config = _load_json(run_dir / "ingest" / "config.dry_run.json")
     enabled_tables = [table for table in config["tables"] if table.get("enabled")]
-    if args.table:
-        requested = set(args.table)
+    requested = set(args.table or [])
+    if args.table_file:
+        requested.update(
+            line.strip()
+            for line in args.table_file.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        )
+    if requested:
         enabled_tables = [table for table in enabled_tables if table["name"] in requested]
         missing = requested - {table["name"] for table in enabled_tables}
         if missing:
@@ -289,10 +307,7 @@ def main() -> int:
     token = os.environ.get("KBASE_AUTH_TOKEN") or os.environ.get("KB_AUTH_TOKEN")
     if not token:
         raise RuntimeError("KBASE_AUTH_TOKEN or KB_AUTH_TOKEN must be set")
-    os.environ.setdefault("grpc_proxy", "http://127.0.0.1:8123")
-    os.environ.setdefault("https_proxy", "http://127.0.0.1:8123")
-    os.environ.setdefault("no_proxy", "localhost,127.0.0.1")
-    os.environ.setdefault("BERDL_NO_AUTO_SPAWN", "1")
+    _set_remote_connection_env_defaults()
 
     sys.path.insert(0, "/h/jmc/src/BERIL-research-observatory/scripts")
     import ingest_lib  # noqa: F401
