@@ -571,3 +571,5 @@ Validation completed before live export:
 - Regenerated the three repository `schema/` references and copied/verified
   eight dependent references across source and installed `berdl-mcp` and
   `enigma-berdl-query` skills.
+- Refreshed the installed `sync-coral-to-berdl` skill from the verified
+  repository copy and confirmed the installed directory has no differences.
