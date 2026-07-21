@@ -121,6 +121,9 @@ scratch disk.
    - `obsolete_excluded`
    - use `scripts/select_changed_tables.py` to write durable ingest,
      comment-only, unchanged, obsolete, added, and removed table lists
+   - write `ingest/changed_tables_with_foreign_keys.txt` for reloaded tables
+     whose structured column comments declare a foreign key, plus FK-bearing
+     source tables whose declared target table is being reloaded
    - pass the prior ingest config so obsolete-to-current transitions are always
      selected for reload even when table bytes are unchanged
    - optionally compare a live table inventory to restore lifecycle-current
@@ -155,6 +158,11 @@ scratch disk.
    - table comments where supported
    - obsolete brick tables are absent from the BERDL namespace
    - obsolete bricks remain represented in `ddt_ndarray`
+   - when `ingest/changed_tables_with_foreign_keys.txt` is non-empty, invoke
+     the `check-berdl-foreign-keys` skill and require all declared relationships
+     in those selected source tables to pass
+   - skip foreign-key validation for unchanged, unrelated source tables;
+     reserve a full namespace audit for deliberate investigation
 
 11. Report and archive:
    - save current manifest

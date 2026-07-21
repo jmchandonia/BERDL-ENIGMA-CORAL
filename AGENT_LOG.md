@@ -573,3 +573,43 @@ Validation completed before live export:
   `enigma-berdl-query` skills.
 - Refreshed the installed `sync-coral-to-berdl` skill from the verified
   repository copy and confirmed the installed directory has no differences.
+
+## 2026-07-21 BERDL foreign-key validation skill
+
+- Added the independent `check-berdl-foreign-keys` skill. It reads structured
+  JSON column comments with `type: foreign_key`, validates the declared live
+  BERDL relationship, and writes bounded JSON/TSV reports. Checks cover missing
+  tables/columns, incompatible types, orphaned non-null values, duplicate
+  referenced keys, and malformed serialized collections. Native Spark arrays
+  and one- or two-level JSON arrays stored in string columns are exploded to
+  scalar keys before comparison.
+- Integrated a conditional sync handoff. `select_changed_tables.py` now writes
+  `ingest/changed_tables_with_foreign_keys.txt` for reloaded FK-bearing source
+  tables and for unchanged FK-bearing sources whose target table was reloaded.
+  An empty file skips the live check; unchanged unrelated tables are not
+  audited during routine syncs.
+- Reworked the first live implementation after per-relationship Spark actions
+  proved too slow. The final validator batches source coverage, target
+  uniqueness, duplicate samples, and serialized-collection parsing. Added 14
+  validator/selector tests; the repository suite now passes 24 tests.
+- Ran the new gate against the nine tables reloaded in
+  `sync-20260720-172424`: 60 declared relationships across nine source tables
+  and 27 total live tables. Forty-six passed and 14 failed; all three serialized
+  collection relationships parsed successfully and had no orphan values.
+- The stable failure set identifies four source problems:
+  `sys_oterm.sys_oterm_id` has 244 duplicate values/335 extra rows because the
+  same imported ontology IDs are emitted from multiple source OBOs; Bricks 12
+  and 16 use five taxonomic-rank terms present in the staged measurement OBO but
+  absent from `sys_oterm`; 259 process rows use four protocol names absent from
+  `sdt_protocol`; and one process output references absent `Strain0002998`.
+  Reports are in the run's `reports/foreign_key_validation.{json,tsv}`.
+- Confirmed the missing taxonomic-rank terms expose an existing exporter bug:
+  `collect_referenced_terms()` excludes brick TSVs, so terms used only as brick
+  data values are omitted. The duplicate ontology keys expose a separate
+  `write_sys_oterm()` issue: it emits every included ID once per ontology file
+  rather than selecting one authoritative row per CURIE. These data-generation
+  fixes are intentionally left as follow-up work because the new gate correctly
+  stops on the current live integrity failures.
+- Installed `check-berdl-foreign-keys` and refreshed the installed
+  `sync-coral-to-berdl` skill under `~/.codex/skills`; recursive diffs against
+  the repository source are empty.

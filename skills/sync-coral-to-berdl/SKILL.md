@@ -124,6 +124,10 @@ MinIO copy plus notebook paste workflow.
    - Preserve `enabled` as the lifecycle-current flag, and select only changed
      data/schema tables for upload and import through
      `ingest/changed_tables.txt`.
+   - Write `ingest/changed_tables_with_foreign_keys.txt` as the intersection of
+     the reload set and tables with JSON column comments declaring
+     `type: foreign_key`, plus unchanged source tables whose declared target
+     table is being reloaded.
    - Treat comment-only changes as a comment sync path, avoiding unnecessary data upload.
 
 6. **Run BERDL ingest**
@@ -148,11 +152,20 @@ MinIO copy plus notebook paste workflow.
      structured schema comments in the current reload/comment-update set.
    - Apply table-level comments separately if the target Lakehouse supports them and they are required.
 
-8. **Report**
+8. **Validate foreign keys when triggered**
+   - If `ingest/changed_tables_with_foreign_keys.txt` is non-empty, invoke the
+     `check-berdl-foreign-keys` skill after all selected tables are loaded.
+   - Fail the sync verification on orphaned non-null values, duplicate target
+     keys, missing target tables/columns, malformed declarations, or
+     incompatible source/target types.
+   - Do not recheck unchanged, unrelated tables and do not run a full namespace
+     foreign-key audit during routine syncs.
+
+9. **Report**
    - Write a sync report listing updated, skipped, comment-only, failed, and removed-from-export tables.
    - Include row counts, hashes, comment validation status, and any parser workarounds used.
 
-9. **Publish schema updates**
+10. **Publish schema updates**
    - Whenever the sync adds or drops Lakehouse tables, regenerate the
      repository `schema/` reference files from the completed sync package.
    - Copy the updated schema references into every dependent skill that vendors

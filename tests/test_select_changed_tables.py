@@ -33,6 +33,7 @@ class SelectChangedTablesTests(unittest.TestCase):
         prior_enabled: bool = True,
         force: bool = False,
         live: bool | None = None,
+        foreign_key: bool = False,
     ) -> dict:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -44,8 +45,19 @@ class SelectChangedTablesTests(unittest.TestCase):
             (run_dir / "manifests" / "current.json").write_text(
                 json.dumps({"run_id": "current", "tables": [table]})
             )
+            table_config = {"name": table["table"], "enabled": True}
+            if foreign_key:
+                table_config["schema"] = [{
+                    "column": "sdt_community_name",
+                    "type": "STRING",
+                    "comment": json.dumps({
+                        "description": "community ID",
+                        "type": "foreign_key",
+                        "references": "sdt_community.sdt_community_name",
+                    }),
+                }]
             (run_dir / "ingest" / "config.dry_run.json").write_text(
-                json.dumps({"tables": [{"name": table["table"], "enabled": True}]})
+                json.dumps({"tables": [table_config]})
             )
             previous_manifest = root / "previous.json"
             previous_manifest.write_text(
@@ -74,7 +86,13 @@ class SelectChangedTablesTests(unittest.TestCase):
                 live_file.write_text(f"{table['table']}\n" if live else "")
                 command.extend(["--live-tables-file", str(live_file)])
             subprocess.run(command, check=True, capture_output=True, text=True)
-            return json.loads((run_dir / "reports" / "manifest_diff.json").read_text())
+            report = json.loads(
+                (run_dir / "reports" / "manifest_diff.json").read_text()
+            )
+            report["foreign_key_table_file"] = (
+                run_dir / "ingest" / "changed_tables_with_foreign_keys.txt"
+            ).read_text().split()
+            return report
 
     def test_reactivates_prior_obsolete_table(self):
         report = self.run_selector(prior_enabled=False)
@@ -95,6 +113,73 @@ class SelectChangedTablesTests(unittest.TestCase):
         report = self.run_selector(live=False)
         self.assertEqual(report["missing_live_reload_tables"], ["ddt_brick0000012"])
         self.assertEqual(report["ingest_tables"], ["ddt_brick0000012"])
+
+    def test_reloaded_foreign_key_table_is_selected_for_validation(self):
+        report = self.run_selector(force=True, foreign_key=True)
+        self.assertEqual(report["foreign_key_check_tables"], ["ddt_brick0000012"])
+        self.assertEqual(report["foreign_key_table_file"], ["ddt_brick0000012"])
+
+    def test_unchanged_foreign_key_table_is_not_selected_for_validation(self):
+        report = self.run_selector(live=True, foreign_key=True)
+        self.assertEqual(report["foreign_key_check_tables"], [])
+        self.assertEqual(report["foreign_key_table_file"], [])
+
+    def test_unchanged_source_is_selected_when_target_is_reloaded(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            run_dir = root / "current"
+            (run_dir / "manifests").mkdir(parents=True)
+            (run_dir / "ingest").mkdir()
+            (run_dir / "reports").mkdir()
+            source = table_manifest("ddt_brick0000013")
+            target = table_manifest("sdt_community")
+            target["hashes"]["data_sha256"] = "new-data"
+            (run_dir / "manifests" / "current.json").write_text(json.dumps({
+                "run_id": "current",
+                "tables": [source, target],
+            }))
+            (run_dir / "ingest" / "config.dry_run.json").write_text(json.dumps({
+                "tables": [
+                    {
+                        "name": source["table"],
+                        "enabled": True,
+                        "schema": [{
+                            "column": "sdt_community_name",
+                            "comment": json.dumps({
+                                "type": "foreign_key",
+                                "references": "sdt_community.sdt_community_name",
+                            }),
+                        }],
+                    },
+                    {"name": target["table"], "enabled": True},
+                ],
+            }))
+            previous_manifest = root / "previous.json"
+            previous_manifest.write_text(json.dumps({
+                "run_id": "previous",
+                "tables": [table_manifest(source["table"]), table_manifest(target["table"])],
+            }))
+            subprocess.run([
+                sys.executable,
+                str(SCRIPT),
+                "--run-dir",
+                str(run_dir),
+                "--previous-manifest",
+                str(previous_manifest),
+            ], check=True, capture_output=True, text=True)
+            report = json.loads(
+                (run_dir / "reports" / "manifest_diff.json").read_text()
+            )
+            self.assertEqual(report["ingest_tables"], ["sdt_community"])
+            self.assertEqual(
+                report["target_impacted_foreign_key_check_tables"],
+                ["ddt_brick0000013"],
+            )
+            self.assertEqual(
+                (run_dir / "ingest" / "changed_tables_with_foreign_keys.txt")
+                .read_text().split(),
+                ["ddt_brick0000013"],
+            )
 
 
 if __name__ == "__main__":

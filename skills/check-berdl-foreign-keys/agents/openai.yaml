@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check BERDL Foreign Keys"
+  short_description: "Validate live BERDL relationship integrity"
+  default_prompt: "Use $check-berdl-foreign-keys to validate foreign keys in newly loaded BERDL tables."

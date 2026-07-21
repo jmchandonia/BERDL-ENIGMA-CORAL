@@ -17,6 +17,27 @@ def _write_lines(path: Path, values: list[str]) -> None:
     path.write_text("".join(f"{value}\n" for value in values), encoding="utf-8")
 
 
+def _foreign_key_targets(table: dict[str, Any]) -> tuple[bool, set[str]]:
+    declared = False
+    targets: set[str] = set()
+    for coldef in table.get("schema") or []:
+        comment = coldef.get("comment")
+        if isinstance(comment, str):
+            try:
+                comment = json.loads(comment)
+            except json.JSONDecodeError:
+                declared = declared or "foreign_key" in comment
+                continue
+        if isinstance(comment, dict) and comment.get("type") == "foreign_key":
+            declared = True
+            reference = comment.get("references")
+            if isinstance(reference, str):
+                reference = reference.removeprefix("[").removesuffix("]")
+                if reference.count(".") == 1:
+                    targets.add(reference.split(".", 1)[0])
+    return declared, targets
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
@@ -118,10 +139,29 @@ def main() -> int:
     comments_only = sorted(set(comments_only))
     unchanged = sorted(set(unchanged))
     obsolete_excluded = sorted(set(obsolete_excluded))
+    direct_foreign_key_tables = []
+    target_impacted_foreign_key_tables = []
+    for table_name, table_config in config_by_name.items():
+        if not table_config.get("enabled"):
+            continue
+        has_foreign_key, targets = _foreign_key_targets(table_config)
+        if not has_foreign_key:
+            continue
+        if table_name in ingest:
+            direct_foreign_key_tables.append(table_name)
+        elif targets & set(ingest):
+            target_impacted_foreign_key_tables.append(table_name)
+    foreign_key_tables = sorted(set(
+        direct_foreign_key_tables + target_impacted_foreign_key_tables
+    ))
 
     ingest_dir = run_dir / "ingest"
     reports_dir = run_dir / "reports"
     _write_lines(ingest_dir / "changed_tables.txt", ingest)
+    _write_lines(
+        ingest_dir / "changed_tables_with_foreign_keys.txt",
+        foreign_key_tables,
+    )
     _write_lines(ingest_dir / "comment_only_tables.txt", comments_only)
     _write_lines(ingest_dir / "unchanged_tables.txt", unchanged)
     _write_lines(ingest_dir / "obsolete_excluded_tables.txt", obsolete_excluded)
@@ -131,6 +171,11 @@ def main() -> int:
         "previous_run_id": previous.get("run_id"),
         "current_run_id": current.get("run_id"),
         "ingest_tables": ingest,
+        "foreign_key_check_tables": foreign_key_tables,
+        "direct_foreign_key_check_tables": sorted(direct_foreign_key_tables),
+        "target_impacted_foreign_key_check_tables": sorted(
+            target_impacted_foreign_key_tables
+        ),
         "comment_only_tables": comments_only,
         "unchanged_tables": unchanged,
         "obsolete_excluded_tables": obsolete_excluded,
@@ -149,6 +194,7 @@ def main() -> int:
     config_path.write_text(json.dumps(config, indent=2), encoding="utf-8")
     print(json.dumps({
         "ingest": len(ingest),
+        "foreign_key_check": len(foreign_key_tables),
         "comments_only": len(comments_only),
         "unchanged": len(unchanged),
         "obsolete_excluded": len(obsolete_excluded),
