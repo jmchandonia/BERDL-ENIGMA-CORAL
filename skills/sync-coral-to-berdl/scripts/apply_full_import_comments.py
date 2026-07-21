@@ -102,6 +102,7 @@ def main() -> int:
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--namespace", default="enigma_coral")
     parser.add_argument("--no-update-config", action="store_true")
+    parser.add_argument("--table-file", type=Path)
     args = parser.parse_args()
 
     run_dir = args.run_dir.resolve()
@@ -136,7 +137,19 @@ def main() -> int:
     table_comments_current = 0
     column_comments_current = 0
     enabled_tables = [table for table in config["tables"] if table.get("enabled")]
+    live_tables = {
+        row.asDict(recursive=True).get("tableName")
+        for row in spark.sql(f"SHOW TABLES IN {args.namespace}").collect()
+    }
+    missing_enabled_tables = sorted(
+        table["name"] for table in enabled_tables if table["name"] not in live_tables
+    )
+    if args.table_file:
+        selected = set(args.table_file.read_text(encoding="utf-8").split())
+        enabled_tables = [table for table in enabled_tables if table["name"] in selected]
     for index, table in enumerate(enabled_tables, start=1):
+        if table["name"] in missing_enabled_tables:
+            continue
         full_table = f"{args.namespace}.{table['name']}"
         print(f"[comments {index}/{len(enabled_tables)}] {full_table}", flush=True)
         actual = _describe_comments(spark, full_table)
@@ -160,9 +173,10 @@ def main() -> int:
         "column_comments_applied": column_comment_count,
         "table_comments_already_current": table_comments_current,
         "column_comments_already_current": column_comments_current,
+        "missing_enabled_tables": missing_enabled_tables,
         "config_updated": not args.no_update_config,
     }, indent=2))
-    return 0
+    return 1 if missing_enabled_tables else 0
 
 
 if __name__ == "__main__":

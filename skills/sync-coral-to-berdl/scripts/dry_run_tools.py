@@ -566,7 +566,17 @@ def _append_schema_context_fields(path, columns):
     insert_at = text.rfind("])")
     if insert_at < 0:
         raise ValueError(f"Could not find schema terminator in {path}")
-    path.write_text(text[:insert_at] + "".join(additions) + text[insert_at:], encoding="utf-8")
+    updated = text[:insert_at] + "".join(additions) + text[insert_at:]
+    with tempfile.NamedTemporaryFile(
+        "w",
+        encoding="utf-8",
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        delete=False,
+    ) as target:
+        temp_path = Path(target.name)
+        target.write(updated)
+    temp_path.replace(path)
     return len(additions)
 
 
@@ -1725,7 +1735,14 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
                 handle.write(table["name"] + "\n")
 
 
-def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanup_stats):
+def build_manifest(
+    data_dir,
+    reports_dir,
+    manifests_dir,
+    lifecycle_stats,
+    cleanup_stats,
+    previous_manifest_path=None,
+):
     metadata_dir = reports_dir.parent / "metadata"
     schema_dir = reports_dir.parent / "berdl_upload" / "schema"
     table_schemas_path = metadata_dir / "table_schemas.json"
@@ -1739,6 +1756,7 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
     brick_table_comments = _brick_table_comments(data_dir / "ddt_ndarray.tsv")
     existing_manifest_path = manifests_dir / "current.json"
     previous_by_path = {}
+    previous_by_table = {}
     if existing_manifest_path.exists():
         try:
             previous_manifest = json.loads(existing_manifest_path.read_text(encoding="utf-8"))
@@ -1749,24 +1767,22 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
             }
         except json.JSONDecodeError:
             previous_by_path = {}
+    if previous_manifest_path and previous_manifest_path.exists():
+        previous_manifest = json.loads(previous_manifest_path.read_text(encoding="utf-8"))
+        previous_by_table = {
+            row.get("table"): row
+            for row in previous_manifest.get("tables", [])
+            if row.get("table")
+        }
+    preparation_path = reports_dir / "brick_preparation.json"
+    reused_bricks = set()
+    if preparation_path.exists():
+        preparation = json.loads(preparation_path.read_text(encoding="utf-8"))
+        reused_bricks = set(preparation.get("reused_bricks", []))
     tables = []
     for path in sorted(data_dir.glob("*.tsv")):
         if path.stem in coral_type_to_table:
             continue
-        byte_count = path.stat().st_size
-        previous = previous_by_path.get(str(path))
-        if previous and previous.get("byte_count") == byte_count:
-            header = previous.get("columns", [])
-            row_count = previous.get("row_count")
-            hashes = dict(previous.get("hashes", {}))
-            if not hashes.get("data_sha256"):
-                hashes["data_sha256"] = file_sha256(path)
-        else:
-            with path.open("r", encoding="utf-8", newline="") as handle:
-                reader = csv.reader(handle, delimiter="\t")
-                header = next(reader, [])
-                row_count = sum(1 for _ in reader)
-            hashes = {"data_sha256": file_sha256(path)}
         target_table = path.stem
         if path.stem.startswith("Brick"):
             source_kind = "brick"
@@ -1779,6 +1795,22 @@ def build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanu
             source_kind = "typedef"
         else:
             source_kind = "coral_static"
+        byte_count = path.stat().st_size
+        previous = previous_by_path.get(str(path))
+        if source_kind == "brick" and path.stem in reused_bricks:
+            previous = previous or previous_by_table.get(target_table)
+        if previous and previous.get("byte_count") == byte_count:
+            header = previous.get("columns", [])
+            row_count = previous.get("row_count")
+            hashes = dict(previous.get("hashes", {}))
+            if not hashes.get("data_sha256"):
+                hashes["data_sha256"] = file_sha256(path)
+        else:
+            with path.open("r", encoding="utf-8", newline="") as handle:
+                reader = csv.reader(handle, delimiter="\t")
+                header = next(reader, [])
+                row_count = sum(1 for _ in reader)
+            hashes = {"data_sha256": file_sha256(path)}
         if source_kind == "brick":
             schema_path = schema_dir / f"{path.stem}_schema.py"
             schema = parse_schema_file(schema_path) if schema_path.exists() else []
@@ -1854,6 +1886,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument("--previous-manifest", type=Path)
     args = parser.parse_args()
 
     run_dir = Path(args.run_dir)
@@ -1897,7 +1930,14 @@ def main():
     typedef_filter_stats = filter_sys_ddt_typedef_to_current_bricks(data_dir, reports_dir)
     cleanup_stats = process_cleanup(process_path, reports_dir)
     build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir)
-    build_manifest(data_dir, reports_dir, manifests_dir, lifecycle_stats, cleanup_stats)
+    build_manifest(
+        data_dir,
+        reports_dir,
+        manifests_dir,
+        lifecycle_stats,
+        cleanup_stats,
+        args.previous_manifest,
+    )
     summary = {
         **lifecycle_stats,
         **array_context_stats,

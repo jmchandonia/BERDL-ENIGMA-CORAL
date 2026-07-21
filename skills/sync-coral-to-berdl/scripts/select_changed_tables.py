@@ -21,6 +21,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--previous-manifest", required=True, type=Path)
+    parser.add_argument("--previous-config", type=Path)
+    parser.add_argument("--force-reload-file", type=Path)
+    parser.add_argument("--live-tables-file", type=Path)
     args = parser.parse_args()
 
     run_dir = args.run_dir.resolve()
@@ -29,16 +32,31 @@ def main() -> int:
     current = _load_json(current_path)
     previous = _load_json(args.previous_manifest.resolve())
     config = _load_json(config_path)
+    previous_config = (
+        _load_json(args.previous_config.resolve()) if args.previous_config else {}
+    )
+    force_reload = set(
+        args.force_reload_file.read_text(encoding="utf-8").split()
+    ) if args.force_reload_file else set()
+    live_tables = set(
+        args.live_tables_file.read_text(encoding="utf-8").split()
+    ) if args.live_tables_file else None
 
     current_by_name = {row["table"]: row for row in current.get("tables", [])}
     previous_by_name = {row["table"]: row for row in previous.get("tables", [])}
     config_by_name = {table["name"]: table for table in config.get("tables", [])}
+    previous_config_by_name = {
+        table["name"]: table for table in previous_config.get("tables", [])
+    }
 
     ingest = []
     comments_only = []
     unchanged = []
     obsolete_excluded = []
     added = []
+    reactivated = []
+    forced = []
+    missing_live = []
     details = []
     for table_name, row in sorted(current_by_name.items()):
         table_config = config_by_name.get(table_name)
@@ -48,7 +66,23 @@ def main() -> int:
             changed_parts = []
         else:
             prior = previous_by_name.get(table_name)
-            if prior is None:
+            prior_table_config = previous_config_by_name.get(table_name)
+            if table_name in force_reload:
+                status = "strategy_reload"
+                forced.append(table_name)
+                ingest.append(table_name)
+                changed_parts = ["import_strategy"]
+            elif prior_table_config is not None and not prior_table_config.get("enabled"):
+                status = "lifecycle_reactivated"
+                reactivated.append(table_name)
+                ingest.append(table_name)
+                changed_parts = ["lifecycle"]
+            elif live_tables is not None and table_name not in live_tables:
+                status = "missing_live_reload"
+                missing_live.append(table_name)
+                ingest.append(table_name)
+                changed_parts = ["missing_live_table"]
+            elif prior is None:
                 status = "added"
                 added.append(table_name)
                 ingest.append(table_name)
@@ -101,6 +135,9 @@ def main() -> int:
         "unchanged_tables": unchanged,
         "obsolete_excluded_tables": obsolete_excluded,
         "added_tables": sorted(added),
+        "reactivated_tables": sorted(reactivated),
+        "forced_reload_tables": sorted(forced),
+        "missing_live_reload_tables": sorted(missing_live),
         "removed_from_export_tables": removed,
         "details": details,
     }
@@ -116,6 +153,9 @@ def main() -> int:
         "unchanged": len(unchanged),
         "obsolete_excluded": len(obsolete_excluded),
         "added": len(added),
+        "reactivated": len(reactivated),
+        "forced_reload": len(forced),
+        "missing_live_reload": len(missing_live),
         "removed_from_export": len(removed),
     }, indent=2))
     return 0

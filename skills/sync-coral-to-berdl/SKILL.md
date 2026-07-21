@@ -20,12 +20,20 @@ MinIO copy plus notebook paste workflow.
   provenance or reviewed lifecycle inference identifies a brick as withdrawn or
   superseded, exclude its `ddt_brick...` data table from ingest and generate a
   reviewed Lakehouse drop plan if the table already exists.
-- Only import tables whose data, schema, or comments changed.
+- Reload a table only when its data/schema changed, it transitioned from
+  lifecycle-obsolete to current, it is missing from the live namespace, or an
+  explicit import-strategy migration affects it. Apply comment-only changes as
+  metadata updates without rewriting table data.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
 - Expand array-level context into brick columns only when the context term has
   an unambiguous foreign-key mapping in `sys_ddt_typedef`. Keep comments,
   instrumentation, measurements, and other non-foreign-key context only in
   `ddt_ndarray_metadata`.
+- Normalize legacy ENIGMA repository URLs and filesystem paths to
+  `enigma-data-repository/...` in every BERDL-ready static, system, and dynamic
+  brick TSV. Reused immutable artifacts must already contain this normalization;
+  when the normalization or another import algorithm changes, force a scoped
+  rebuild and reload of every affected brick table.
 
 ## Workflow
 
@@ -43,6 +51,13 @@ MinIO copy plus notebook paste workflow.
      - `convert_bricks.py` for brick conversion and DDT metadata.
      - `convert_to_berdl_loader.py` for existing BERDL config/comment mapping ideas.
    - Write raw CORAL exports under `<work_dir>/coral_export/`, not inside the skill directory.
+   - Always re-export system/static types because records may be added, changed,
+     or deleted between runs.
+   - Treat an existing brick ID as immutable. Fetch the current brick catalog,
+     reuse prior raw CSVs only for IDs still in that catalog, and download full
+     brick data only for newly added IDs. Detect brick replacement or withdrawal
+     from current Process provenance rather than by expecting an existing brick
+     payload to change.
 
 3. **Classify brick lifecycle**
    - After all bricks are downloaded, classify current and obsolete bricks from
@@ -86,18 +101,26 @@ MinIO copy plus notebook paste workflow.
      normalized `sys_process` arrays on every run. Emit one process-object link
      per row, use explicit FK columns for every CORAL static object type, and
      map every `Brick-*` reference to `ddt_ndarray_id` in both directions.
+   - Use `scripts/download_coral_bricks.py` with the prior complete run to fetch
+     the current catalog, copy immutable prior brick CSVs for IDs still present,
+     and download only newly added brick IDs.
    - Use `scripts/prepare_brick_tables.py` when a prior complete run is
-     available. It hashes every freshly downloaded raw brick, copies converted
-     artifacts only for byte-identical inputs with complete sidecars, and
-     reconverts every new or changed brick.
+     available. It hard-links converted artifacts for reused immutable brick
+     inputs with complete sidecars and converts every new brick. Atomic
+     derived-column rewrites break the current-run link without mutating the
+     prior baseline.
    - Prefer TSV or Parquet-compatible output when CSV parsing risk is high.
 
 5. **Detect changed tables**
    - Compute a stable hash per table from data bytes, normalized schema, column comments, table comment, and source metadata.
    - Compare against the prior sync manifest from the previous run or Lakehouse/MinIO.
-   - Run `scripts/select_changed_tables.py` to compare by logical table name,
-     classify data/schema/comment-only changes, and write
+   - Run `scripts/select_changed_tables.py` with both the prior manifest and
+     prior ingest config to compare logical table names and lifecycle enabled
+     state, classify data/schema/comment-only changes, and write
      `ingest/changed_tables.txt`.
+   - Supply `--force-reload-file` only for tables affected by an import-strategy
+     change. Optionally supply a live table inventory with `--live-tables-file`
+     so lifecycle-current tables missing from BERDL are restored.
    - Preserve `enabled` as the lifecycle-current flag, and select only changed
      data/schema tables for upload and import through
      `ingest/changed_tables.txt`.
@@ -112,15 +135,17 @@ MinIO copy plus notebook paste workflow.
 
 7. **Validate comments**
    - Inspect BERDL ingest `comments_report`.
-   - Read table schema metadata back from Spark.
-   - Require a non-empty table comment for every table in the namespace and a
-     non-empty column comment for every column of every table. Compare all
-     configured comments with read-back values and fail on missing or mismatched
-     metadata.
+   - Read table schema metadata back from Spark for every table reloaded or
+     metadata-updated in this run. Require a non-empty table comment and a
+     non-empty comment for every column, compare configured values with
+     read-back values, and fail on missing or mismatched metadata.
+   - Trust the prior completed verification for unchanged tables. Run a full
+     namespace comment audit only when establishing a baseline or changing the
+     comment/import algorithm.
    - If expected comments are missing or mismatched, apply only the required
      `ALTER TABLE ... ALTER COLUMN ... COMMENT` statements after comparing
      current metadata. Apply this repair to every enabled table that has
-     structured schema comments, including static and brick tables.
+     structured schema comments in the current reload/comment-update set.
    - Apply table-level comments separately if the target Lakehouse supports them and they are required.
 
 8. **Report**

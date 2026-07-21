@@ -22,7 +22,7 @@
 | variable_oterm_name | string | Yes |
 | original_csv_string | string | Yes |
 
-**Total Rows:** 8751
+**Total Rows:** 8762
 
 ## Data
 
@@ -127,15 +127,21 @@
 | Brick0000011 | taxonomic_level_sys_oterm_id | dimension_variable | oterm_ref | sys_oterm.sys_oterm_id | taxonomic level, ontology term CURIE | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
 | Brick0000011 | taxonomic_level_sys_oterm_name | dimension_variable | oterm_ref | NULL | taxonomic level | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
 | Brick0000011 | algorithm_parameter_confidence_confidence_unit | dimension_variable | float | NULL | confidence | ME:0000380 | confidence unit | 3 | ME:0000008 | algorithm parameter | 1 | ME:0000160 | confidence | dmeta,3,Algorithm Parameter <ME:0000008>,Confidence <ME:0000160>,confidence unit <ME:0000380> |
-| Brick0000013 | count_count_unit | variable | int | NULL | count | UO:0000189 | count unit | NULL | NULL | NULL | 1 | ME:0000126 | count | values,Count <ME:0000126>,count unit <UO:0000189> |
-| Brick0000013 | sdt_sample_name | dimension_variable | object_ref | sdt_sample.sdt_sample_name | environmental sample ID | NULL | NULL | 1 | ME:0000100 | environmental sample | 1 | ME:0000102 | environmental sample ID | dmeta,1,Environmental Sample <ME:0000100>,Environmental Sample ID <ME:0000102> |
-| Brick0000013 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 2 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,2,OTU <ME:0000184>,OTU ID <ME:0000222> |
+| Brick0000012 | sdt_taxon_name | variable | object_ref | sdt_taxon.sdt_taxon_name | taxon ID | NULL | NULL | NULL | NULL | NULL | 1 | ME:0000047 | taxon ID | values,Taxon ID <ME:0000047> |
+| Brick0000012 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,OTU <ME:0000184>,OTU ID <ME:0000222> |
+| Brick0000012 | asv_confidence_confidence_unit | dimension_variable | float | NULL | confidence | ME:0000380 | confidence unit | 1 | ME:0000184 | ASV | 2 | ME:0000160 | confidence | dmeta,1,OTU <ME:0000184>,Confidence <ME:0000160>,confidence unit <ME:0000380> |
+| Brick0000012 | taxonomic_level_sys_oterm_id | dimension_variable | oterm_ref | sys_oterm.sys_oterm_id | taxonomic level, ontology term CURIE | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
+| Brick0000012 | taxonomic_level_sys_oterm_name | dimension_variable | oterm_ref | NULL | taxonomic level | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
 | Brick0000014 | count_count_unit | variable | int | NULL | count | UO:0000189 | count unit | NULL | NULL | NULL | 1 | ME:0000126 | count | values,Count <ME:0000126>,count unit <UO:0000189> |
 | Brick0000014 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,OTU <ME:0000184>,OTU ID <ME:0000222> |
 | Brick0000014 | sdt_community_name | dimension_variable | object_ref | sdt_community.sdt_community_name | community ID | NULL | NULL | 2 | ME:0000231 | community | 1 | ME:0000233 | community ID | dmeta,2,Community <ME:0000231>,Community ID <ME:0000233> |
 | Brick0000014 | replicate_series_experimental_context_technical_replicate_count_unit | dimension_variable | int | NULL | replicate series, Experimental Context=technical replicate | UO:0000189 | count unit | 3 | ME:0000005 | replicate series | 1 | ME:0000005 | replicate series | dmeta,3,Replicate Series <ME:0000005>,Replicate Series <ME:0000005>,Experimental Context <ME:0000002>,technical replicate <ME:0000287>,count unit <UO:0000189> |
 | Brick0000015 | sequence_sequence_type_16s_sequence | variable | string | NULL | sequence, Sequence Type=16S sequence | NULL | NULL | NULL | NULL | NULL | 1 | ME:0000282 | sequence | values,Sequence <ME:0000282>,Sequence Type <ME:0000189>,16S sequence <ME:0000190> |
 | Brick0000015 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,OTU <ME:0000184>,OTU ID <ME:0000222> |
+| Brick0000016 | sdt_taxon_name | variable | object_ref | sdt_taxon.sdt_taxon_name | taxon ID | NULL | NULL | NULL | NULL | NULL | 1 | ME:0000047 | taxon ID | values,Taxon ID <ME:0000047> |
+| Brick0000016 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,OTU <ME:0000184>,OTU ID <ME:0000222> |
+| Brick0000016 | taxonomic_level_sys_oterm_id | dimension_variable | oterm_ref | sys_oterm.sys_oterm_id | taxonomic level, ontology term CURIE | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
+| Brick0000016 | taxonomic_level_sys_oterm_name | dimension_variable | oterm_ref | NULL | taxonomic level | NULL | NULL | 2 | ME:0000090 | taxonomic level | 1 | ME:0000090 | taxonomic level | dmeta,2,Taxonomic Level <ME:0000090>,Taxonomic Level <ME:0000090> |
 | Brick0000017 | count_count_unit | variable | int | NULL | count | UO:0000189 | count unit | NULL | NULL | NULL | 1 | ME:0000126 | count | values,Count <ME:0000126>,count unit <UO:0000189> |
 | Brick0000017 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,OTU <ME:0000184>,OTU ID <ME:0000222> |
 | Brick0000017 | sdt_sample_name | dimension_variable | object_ref | sdt_sample.sdt_sample_name | environmental sample ID | NULL | NULL | 2 | ME:0000100 | environmental sample | 1 | ME:0000102 | environmental sample ID | dmeta,2,Environmental Sample <ME:0000100>,Environmental Sample ID <ME:0000102> |
@@ -8479,6 +8485,11 @@
 | Brick0001666 | temperature_degree_fahrenheit | variable | float | NULL | temperature | UO:0000195 | degree Fahrenheit | NULL | NULL | NULL | 8 | ME:0000123 | temperature | 8,temperature <ME:0000123>,degree Fahrenheit <UO:0000195> |
 | Brick0001666 | wind_direction_degree | variable | float | NULL | wind direction | UO:0000185 | degree | NULL | NULL | NULL | 9 | ME:0000320 | wind direction | 9,wind direction <ME:0000320>,degree <UO:0000185> |
 | Brick0001666 | time_series_datetime | dimension_variable | string | NULL | datetime | NULL | NULL | 1 | ME:0000004 | time series | 1 | ME:0000180 | datetime | dmeta,2,time series <ME:0000004>,datetime <ME:0000180> |
+| Brick0001667 | count_count_unit | variable | int | NULL | count | UO:0000189 | count unit | NULL | NULL | NULL | 1 | ME:0000126 | count | values,count <ME:0000126>,count unit <UO:0000189> |
+| Brick0001667 | sdt_community_name | dimension_variable | object_ref | sdt_community.sdt_community_name | community ID | NULL | NULL | 1 | ME:0000231 | community | 1 | ME:0000233 | community ID | dmeta,1,community <ME:0000231>,community ID <ME:0000233> |
+| Brick0001667 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 2 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,2,ASV <ME:0000184>,ASV ID <ME:0000222> |
+| Brick0001668 | sequence_sequence_type_16s_sequence | variable | string | NULL | sequence, sequence type=16S sequence | NULL | NULL | NULL | NULL | NULL | 1 | ME:0000282 | sequence | values,sequence <ME:0000282>,sequence type <ME:0000189>,16S sequence <ME:0000190> |
+| Brick0001668 | sdt_asv_name | dimension_variable | object_ref | sdt_asv.sdt_asv_name | ASV ID | NULL | NULL | 1 | ME:0000184 | ASV | 1 | ME:0000222 | ASV ID | dmeta,1,ASV <ME:0000184>,ASV ID <ME:0000222> |
 | Brick0000019 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,FW-024 |
 | Brick0000020 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,GP01-30 |
 | Brick0000021 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,FW-304 |

@@ -57,6 +57,9 @@ scratch disk.
    - dynamic bricks into normalized delimited files
    - DDT metadata tables: `ddt_ndarray` and `sys_ddt_typedef`
    - schema and comment metadata into machine-readable JSON
+   - always refresh system/static exports because their rows may be added or deleted
+   - fetch the current brick catalog, reuse prior raw CSVs for immutable brick
+     IDs still in the catalog, and download only newly added brick IDs
 
 4. Classify brick lifecycle:
    - read exported `Process.tsv`, brick metadata, and `ddt_ndarray`
@@ -75,9 +78,14 @@ scratch disk.
 
 5. Normalize:
    - keep raw server TSV/CSV output separate from BERDL-ready upload files
-   - hash all current raw bricks against the prior complete raw snapshot; reuse
-     copied converted artifacts only for byte-identical inputs and reconvert
-     every new or changed brick with `prepare_brick_tables.py`
+   - treat brick IDs as immutable; reuse hard-linked converted artifacts for prior
+     catalog IDs with complete sidecars and convert every newly added brick with
+     `prepare_brick_tables.py`
+   - rewrite `https://genomics.lbl.gov/enigma-data/` and
+     `/auto/sahara/namib/home/gtl/enigma-data-repository/` in all BERDL-ready
+     string cells to the MinIO-relative `enigma-data-repository/` prefix;
+     reused artifacts must already be normalized, and a normalization algorithm
+     change requires a scoped forced rebuild/reload of affected tables
    - standardize table names to target BERDL names
    - resolve each array-context ontology term against unambiguous
      `sys_ddt_typedef` foreign-key mappings
@@ -113,6 +121,12 @@ scratch disk.
    - `obsolete_excluded`
    - use `scripts/select_changed_tables.py` to write durable ingest,
      comment-only, unchanged, obsolete, added, and removed table lists
+   - pass the prior ingest config so obsolete-to-current transitions are always
+     selected for reload even when table bytes are unchanged
+   - optionally compare a live table inventory to restore lifecycle-current
+     tables missing from BERDL
+   - use an explicit force-reload file only when a changed import strategy
+     affects existing table structure or metadata
 
 8. Generate BERDL ingest config:
    - structured `schema`, not `schema_sql`
@@ -130,11 +144,14 @@ scratch disk.
    - row counts
    - schema order and types
    - column comments from ingest `comments_report`
-   - non-empty table comments for every table and non-empty column comments for
-     every column, with expected-versus-read-back equality
-   - fallback column comments for all enabled static, DDT metadata, ontology,
-     typedef, and brick tables when validation finds missing or mismatched
-     comments; compare first and avoid rewriting comments already current
+   - non-empty table comments and non-empty column comments for every table
+     reloaded or metadata-updated in this run, with expected-versus-read-back
+     equality
+   - trust the prior completed verification for unchanged tables; reserve a
+     full namespace audit for a new baseline or import/comment strategy change
+   - fallback column comments for the current reload/comment-update set when
+     validation finds missing or mismatched comments; compare first and avoid
+     rewriting comments already current
    - table comments where supported
    - obsolete brick tables are absent from the BERDL namespace
    - obsolete bricks remain represented in `ddt_ndarray`

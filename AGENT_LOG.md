@@ -276,3 +276,298 @@ Validation completed before live export:
   resets.
 - Regenerated root `schema/` and refreshed repository and installed copies for
   `berdl-mcp` and `enigma-berdl-query`; all dependent files were byte-identical.
+
+## 2026-07-20 repository-link normalization investigation
+
+- Traced Brick1618 from the raw CORAL CSV through `prepare_brick_tables.py`
+  and the upstream `convert_bricks.py` converter into the BERDL-ready TSV. The
+  absolute `/auto/sahara/namib/home/gtl/enigma-data-repository/` prefix is
+  preserved at every stage.
+- Confirmed that the existing path rewrite is only called while normalizing
+  static/system tables in `coral_metadata.py`. A duplicate rewrite in
+  `prepare_mini_import.py` also covers brick data, but only in disposable mini
+  validation bundles. The full brick conversion path never invokes either.
+- Found 24 generated brick TSVs containing the absolute prefix. Twenty-three
+  are obsolete and excluded from ingestion; Brick1618 is the sole active
+  affected table and was added by `sync-20260717-174244`. Its obsolete
+  predecessor Brick521 contains the same unnormalized links.
+- Root cause: the normalization was implemented separately for static-table
+  and mini-import workflows, while full dynamic brick conversion writes
+  extracted values directly. This is a pipeline coverage bug, not a failure to
+  match the Brick1618 prefix.
+
+## 2026-07-20 Brick13 representative-sequence investigation
+
+- Inspected published KBase Narrative `145709/1/13`, titled `Data of ENIGMA
+  100 Well Survey in Ning et al 2023`. The narrative stores no KBase data
+  objects but links its study files through OwnCloud and a public GitHub
+  mirror.
+- Located `Publication2/Data/100WSc.Rep_Seq.fasta` in the linked `iCAMP1`
+  repository and compared it with Brick13 identifiers.
+- The FASTA has 28,644 unique sequences, 240-254 bases long. Every FASTA ID is
+  present among Brick13's 49,904 legacy OTU IDs, but 21,260 Brick13 IDs are not
+  represented in this FASTA.
+- Confirmed that the linked `100WSc.OTUtable.csv` contains 91 samples and
+  exactly the same 28,644 OTU IDs as the FASTA. These files are therefore a
+  matched, filtered study dataset rather than a complete sequence companion
+  for Brick13's 212-sample by 49,904-OTU matrix.
+
+## 2026-07-20 taxonomy-brick namespace investigation
+
+- Compared taxonomy Bricks 11, 12, and 16. They share taxonomy column names
+  but represent different Zhou datasets and identifier namespaces:
+  100WS legacy OTUs, 27WS sequence-hash ASVs, and Core Pilot local OTUs.
+- Their `sdt_asv_name` sets are pairwise disjoint, and there are no shared
+  `(sdt_asv_name, taxonomic level, taxon)` assignments. A system selecting a
+  taxonomy table from column-name compatibility alone can therefore choose a
+  structurally compatible but semantically unrelated dataset.
+- Recorded the intended dataset pairings: Brick11 taxonomy with Brick13
+  counts; Brick12 taxonomy with Brick14 counts and Brick15 sequences; Brick16
+  taxonomy with Brick17 and Brick18 counts.
+- Brick12 and Brick16 have `withdrawn_date=2026-07-17` and their physical BERDL
+  tables are excluded. Current discovery must filter withdrawn ndarray records
+  before selecting a taxonomy brick.
+
+## 2026-07-20 repository-link fix and Brick12/16 un-withdraw preparation
+
+- Centralized legacy repository path rewriting in `repository_paths.py` and
+  reused it from static-table normalization, mini-import preparation, and full
+  brick preparation.
+- Full brick preparation now normalizes TSVs after both fresh conversion and
+  prior-artifact reuse, before manifest hashing. This makes unchanged raw
+  Brick1618 data acquire a changed BERDL data hash on the next sync.
+- Added six regression tests covering both legacy prefixes, atomic TSV
+  rewriting, unchanged-byte preservation, chunk-boundary detection, fresh
+  conversion, and reuse of prior converted artifacts. All tests pass.
+- Validated the transformation on a copy of Brick1618: 2,815 cells were
+  rewritten and no legacy repository prefixes remained.
+- Traced Brick12 and Brick16 withdrawals to `Process0213633` and
+  `Process0213634`, respectively. Both are single-input `Withdraw Data
+  <PROCESS:0000052>` records with no outputs. No other update/withdraw process
+  refers to either brick.
+- Confirmed the lifecycle inference rules classify both ndarray names as
+  non-versioned and will not recreate withdrawal candidates after those two
+  explicit lifecycle process records are removed from CORAL.
+- Refreshed the installed `sync-coral-to-berdl` skill and verified the core
+  normalization files are byte-identical to the repository copy.
+
+## 2026-07-20 ENIGMA data-asset bug report review
+
+- Reviewed `ENIGMA_DATA.md` and `DATA_ASSETS.md` against the current
+  `sync-20260717-174244` package and generated schema rather than accepting the
+  July 14 census as current state.
+- Confirmed several reported defects are already fixed: all 708 current tables
+  and 8,959 columns passed comment verification; `ddt_brick0001481` has its
+  expected FK comments; and normalized `sys_process_input` and
+  `sys_process_output` contain 103,064 and 103,588 rows, respectively.
+- Confirmed all 282 current bricks with a foreign-key-valued location array
+  context have an explicit `sdt_location_name` column; three other current
+  bricks carry the same FK as an ordinary variable. No current array-context
+  location is missing its materialized column.
+- Value-checked taxonomy Bricks 11, 12, and 16 against `sdt_asv`: each resolves
+  100% to the parent table. Their ASV sets are mutually disjoint dataset
+  namespaces, so the defect is ambiguous companion-table discovery rather than
+  invalid ASV foreign keys. CORAL process co-outputs explicitly identify the
+  intended sets: 11/13, 12/14/15, 16/17/18, and 1481/1482/1483.
+- Identified Brick13's `sdt_sample_name` declaration as a real integrity bug:
+  the values include filter labels and therefore do not directly resolve to
+  `sdt_sample`, despite being advertised as a foreign key. The source model
+  should split base sample object reference from filter context; the sync
+  should add FK value validation so this class of error is reported.
+- Recommended adding a generated, FK-commented `ddt_ndarray_companion` bridge
+  from explicit co-output provenance, plus a foreign-key value-integrity report.
+  Cross-tenant weather, GenomeDepot, and FitnessBrowser crosswalks should remain
+  separately owned integration tables rather than CORAL-sync heuristics.
+
+## 2026-07-20 Brick13 dimension correction
+
+- Retracted the proposed `ddt_ndarray_companion` bridge after confirming the
+  existing normalized process records already make companion bricks
+  discoverable. Also recorded that `sdt_sample.timezone` has been corrected at
+  the source.
+- Traced all 212 first-dimension values in Brick13. Zero are exact
+  `sdt_sample_name` values; all 212 are exact `sdt_community_name` values of
+  type `Environmental Community`. Those communities link cleanly to 109
+  distinct parent samples.
+- Verified the complete provenance chain for every dimension value:
+  `Sample -> Filter -> Community -> 16S Sequencing -> Reads -> Classify OTUs ->
+  Brick13`. All 212 Brick13 input reads resolve to one and only one of the 212
+  communities, and every community has a filtering process with a sample input.
+- Concluded that Brick13's values are correct but its CORAL first-dimension
+  metadata is wrong. Change it from `Environmental Sample <ME:0000100>` /
+  `Environmental Sample ID <ME:0000102>` to `Community <ME:0000231>` /
+  `Community ID <ME:0000233>`, matching the established Brick14 pattern. The
+  next sync should consequently emit `sdt_community_name` and reload Brick13.
+
+## 2026-07-20 Brick13 v2 CORAL import package
+
+- Used `/scratch/jmc/field_automated_measurements` as the reference for JSON
+  generation, `CheckGeneric` validation, Update Data TSVs, file manifests, and
+  `toolx` upload order.
+- Added `tools/build_brick13_v2_coral.py`. It starts from the current raw CORAL
+  Brick13 CSV, preserves all dimension and count values, and changes only the
+  name, description, and first-dimension metadata before invoking CORAL's
+  `ConvertGeneric` Java class.
+- Generated `coral_import/brick13_v2_20260720/` with replacement JSON
+  `zhou_otu_count_100ws_v2.json`, a one-row Update Data process TSV,
+  `files_to_import.txt`, `import_to_coral.py`, a validation transcript, and a
+  summary report.
+- The JSON name is `zhou_otu_count_100ws_v2.ndarray`; its description follows
+  the hydrology convention as `Zhou Lab OTU Counts from 100 Well Survey (v2)`.
+  Its SHA-256 is
+  `0522cbfb271f30eec11d936063c67e30f0a70358d8f624568cac7bf7c577d8ca`.
+- `CheckGeneric` passed for a 212-community by 49,904-OTU array with count-unit
+  values. The process replaces `zhou_otu_count_100ws.ndarray` with
+  `zhou_otu_count_100ws_v2.ndarray` under the 100 Well Survey campaign.
+
+## 2026-07-20 prioritized ENIGMA data-gap review
+
+- Reconciled the new P0/P1/P2 bug report with the current generated schema and
+  the earlier Brick13 investigation. The current tenant has BONCAT cell-count
+  bricks and active-fraction communities, but no BONCAT-seq or PMA-seq read
+  assets identified by the report.
+- Confirmed that the externally located `100WSc.Rep_Seq.fasta` is only a
+  28,644-OTU study subset of Brick13's 49,904 OTUs. A complete representative
+  set must be recovered from the original QIIME output or exact reference
+  release; the partial file must not be presented as a complete companion.
+- Recommended modeling field material in `sdt_sample` and derived bulk,
+  active, viable, filter, treatment, incubation, and well instances in
+  `sdt_community`. Sediment depth zone belongs on `sdt_sample`; BONCAT/PMA and
+  size-fraction attributes belong on the derived community.
+- Recommended a canonical marker-sequence registry keyed by normalized
+  sequence hash plus dataset-local membership and evidence-qualified
+  relationships. Exact identity, reverse-complement identity, containment,
+  alignment similarity, and shared phylogenetic placement must remain distinct;
+  different amplicon sequences cannot be asserted to be the same organism.
+- Recommended pinning one SILVA release and SEPP reference package for 16S
+  placement, while retaining GTDB for genome/MAG taxonomy. Metagenome MAG
+  abundance and read-classifier abundance should remain separate evidence
+  products even when exposed through a common taxonomic-abundance interface.
+- Classified location columns and the full table/column comment backfill as
+  resolved in the 2026-07-17 package. Timezone correction, Brick13 v2, restored
+  Brick12/16 tables, and repository-link normalization remain pending the next
+  CORAL-to-BERDL sync. NO3 validation, hydrograph logger-role labels, the
+  enrichment/geochemistry push, FW021 alias curation, and private RB-TnSeq
+  ingestion remain open workstreams.
+
+## 2026-07-20 Brick13 representative-sequence recovery audit
+
+- Confirmed that the public Ning OTU table is a rarefied 91-community subset:
+  every sample column sums to exactly 10,800 reads. It contains the same 28,644
+  identifiers as the public representative FASTA.
+- Of the 21,260 Brick13 identifiers missing from that FASTA, 12,510 have no
+  counts in the selected 91 communities and 8,750 have raw counts there but
+  disappeared during rarefaction. The missing OTUs account for 216,527 reads
+  across full Brick13; 81.4% have at most 10 reads and 91.1% at most 20 reads.
+- Found no evidence that contamination explains the missing half. Brick11
+  contains only 16 missing identifiers labeled `Cyanobacteria/Chloroplast`.
+  Smith et al.'s documented alignment/chimera filtering applies to a separate
+  26,943-OTU DBC/USEARCH product and cannot annotate Brick13 removals.
+- Verified that KBase workspace 26835 has only the narrative and 222 raw-read
+  objects; MG-RAST `mgp8190` and `/h/jmc/www/mg-rast` likewise provide raw or
+  per-sample pipeline data, not the cross-sample QIIME representative set.
+- Inspected the iCAMP repository history and found only the current 28,644-entry
+  publication file. The Smith narrative's Joe Zhou original-data Drive folder
+  (`0B62rJp3HQTPMbm5lamtFLTlDY1U`) and the Alm cluster folder both return HTTP
+  401 and require restored sharing or authenticated access.
+- Downloaded and tested the QIIME Greengenes 13_5 97% reference set. It covers
+  all 4,244 missing numeric IDs, but is not a valid representative-sequence
+  replacement: only 311 of 6,980 published numeric short representatives are
+  exact substrings of their corresponding Greengenes references.
+- Added
+  `coral_import/brick13_v2_20260720/reports/brick13_representative_sequence_audit.md`
+  and a missing-ID handoff TSV for recovery and validation.
+
+## 2026-07-20 Brick13 representative-sequence brick
+
+- Inspected the recovered root-level `rep_seq.fna`. It has 49,904 unique FASTA
+  identifiers and exactly covers Brick13's 49,904 OTU IDs, with no missing or
+  extra identifiers. All aligned records are 269 columns; ungapped sequences
+  are 240-254 bases and contain only A, C, G, T, and N.
+- Confirmed that all 28,644 records in the public Ning representative FASTA
+  match the recovered file after removing alignment gaps. This resolves the
+  prior gap as a publication-subset issue rather than absent source data or a
+  documented contamination filter.
+- Added `tools/build_brick13_repseq_coral.py`, which validates FASTA/Brick13 ID
+  coverage, removes alignment gaps, orders records by Brick13's OTU dimension,
+  generates a CORAL Generic JSON, runs `CheckGeneric`, and emits a validation
+  summary.
+- Generated `coral_import/brick13_repseq_20260720/`. The new brick is
+  `zhou_otu_repseq_100ws.ndarray`, described as `Zhou Lab 100 Well Survey OTU
+  16S Representative Sequences`, with the same microbial-sequence ontology
+  model as Brick15. `CheckGeneric` passed; the JSON SHA-256 is
+  `6971dde0fb7d03cfca6a3f11c8b34b5f779d4e54fe6e36566677f52e8c3e8661`.
+- Corrected the initial provenance plan after user review: this is not an
+  `Import Historic Data` operation. The package contains 212 corrected
+  `Classify OTUs <PROCESS:0000031>` rows, each retaining its original reads
+  input and recording the count, taxonomy, and representative-sequence bricks
+  as three co-outputs, matching the 27 Well Survey pattern.
+- Added separate AQL verification and cleanup files. They require all 212 new
+  representative-sequence producers before deleting the original two-output
+  `Process0013232` through `Process0013443` records and their input/output
+  edges; each query is run separately to comply with the ArangoDB editor's
+  single top-level query requirement.
+- Renamed the prior missing-ID handoff to
+  `brick13_previously_missing_recovered_ids.tsv` and updated the audit to state
+  that every listed identifier has been recovered.
+- Corrected an AQL handoff bug found during CORAL execution: `Brick-0000064`
+  is an exported typed-object label, not a live ArangoDB collection. After the
+  user supplied the authoritative collection name, updated all five package
+  queries and the builder to resolve the new ndarray from `DDT_Brick`. Also
+  replaced `LPAD` process-ID construction with the explicit `Process00`
+  prefix.
+
+## 2026-07-20 immutable-brick incremental export rule
+
+- User clarified that a CORAL brick ID is immutable: existing brick payloads
+  do not change. New brick IDs may be added, and existing bricks may become
+  superseded or withdrawn through Process records.
+- Static/system type records are not immutable and must be freshly exported on
+  every run because rows may be added or deleted.
+- Added `download_coral_bricks.py` with current-catalog discovery, immutable
+  prior-CSV reuse only for IDs still in the catalog, new-ID downloads, bounded
+  request timeouts, retry/backoff, atomic writes, and a completion manifest.
+- Updated the sync skill and workflow so Process provenance, not brick payload
+  mutation, controls lifecycle classification.
+
+## 2026-07-20 CORAL-to-BERDL sync completion
+
+- Completed run `sync-20260720-172424` from a fresh static/system export and a
+  1,436-brick current catalog. Reused 1,434 immutable brick artifacts and
+  converted only new Brick1667 and Brick1668. The current Process export has
+  93,090 rows.
+- The lifecycle gate produced no non-empty `process_*.tsv` handoff file, so the
+  BERDL phase proceeded. Lifecycle classification retained all 1,436 records in
+  `ddt_ndarray`, with 749 obsolete physical brick tables excluded and dropped.
+- Fixed incremental selection to compare the prior ingest config as well as
+  table hashes. This correctly selected Brick12 and Brick16 as
+  `lifecycle_reactivated`; both physical tables were restored. The final reload
+  set was nine tables: Brick12, Brick16, Brick1667, Brick1668, `ddt_ndarray`,
+  `sys_ddt_typedef`, `sys_process`, `sys_process_input`, and
+  `sys_process_output`.
+- Verified 711 lifecycle-current tables exist, all 749 obsolete tables are
+  absent, and every obsolete brick has withdrawal or supersession annotation.
+  Scoped read-back verification passed for all nine reloaded tables: nine of
+  nine table comments and all 94 column comments are non-empty and exactly
+  match configured values.
+- Verified Brick1668 has 49,904 rows, 49,904 distinct ASVs, and no null IDs or
+  sequences; ungapped sequences are 240-254 bases. Brick1667 has 10,579,648
+  rows, 212 communities, 49,904 ASVs, and no null community/ASV keys. All 212
+  `Classify OTUs` processes link to Brick1668.
+- Verified Brick13 is withdrawn on 2026-07-20 and superseded by Brick1667;
+  Brick12, Brick16, Brick1667, and Brick1668 are current. Brick13's physical
+  table is absent while its `ddt_ndarray` record remains.
+- Updated the workflow contract so unchanged tables inherit prior verification.
+  A table is reloaded only for data/schema change, obsolete-to-current
+  transition, missing live state, or an explicit scoped import-strategy
+  migration. Comment verification follows the actual reload/metadata-update
+  set; full namespace audits are reserved for baselines or algorithm changes.
+- Improved preparation with immutable-ID reuse, atomic hard links, resumable
+  artifact detection, prior manifest hash reuse, and a normalization fallback
+  for legacy baselines that cannot prove repository-path normalization.
+- Added selector regression coverage for lifecycle reactivation, forced
+  strategy reloads, missing-live recovery, and unchanged tables. All 10 sync
+  tests pass.
+- Regenerated the three repository `schema/` references and copied/verified
+  eight dependent references across source and installed `berdl-mcp` and
+  `enigma-berdl-query` skills.

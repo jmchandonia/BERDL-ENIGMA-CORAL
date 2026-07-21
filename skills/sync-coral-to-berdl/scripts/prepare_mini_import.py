@@ -16,6 +16,7 @@ import shutil
 from pathlib import Path
 
 from dry_run_tools import parse_schema_file
+from repository_paths import normalize_repository_text
 
 
 ASV_TABLE_COMMENT = (
@@ -41,20 +42,13 @@ ASV_SCHEMA = [
         }),
     },
 ]
-TEXT_REWRITES = (
-    ("https://genomics.lbl.gov/enigma-data/", "enigma-data-repository/"),
-    ("/auto/sahara/namib/home/gtl/enigma-data-repository/", "enigma-data-repository/"),
-)
 SYS_OTERM_PROPERTIES_COMMENT = json.dumps({
     "description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"
 })
 
 
 def _normalize_text(value: str) -> str:
-    normalized = value or ""
-    for old, new in TEXT_REWRITES:
-        normalized = normalized.replace(old, new)
-    return normalized
+    return normalize_repository_text(value)
 
 
 def _load_table_metadata(run_dir: Path) -> tuple[dict[str, list[dict[str, object]]], dict[str, str]]:

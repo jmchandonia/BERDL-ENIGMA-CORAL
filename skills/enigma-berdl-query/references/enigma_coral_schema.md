@@ -1,6 +1,6 @@
 # Database Schema: enigma_coral
 
-Total Tables: 708
+Total Tables: 711
 
 ---
 
@@ -28,7 +28,7 @@ Total Tables: 708
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1434
+**Total Rows:** 1436
 
 ### Sample Data (5 rows)
 
@@ -66,7 +66,7 @@ Total Tables: 708
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 8751
+**Total Rows:** 8762
 
 ### Sample Data (5 rows)
 
@@ -317,29 +317,31 @@ Total Tables: 708
 
 ---
 
-## Table: ddt_brick0000013
+## Table: ddt_brick0000012
 
-**Table Description:** zhou_otu_count_100ws.ndarray - Zhou Lab OTU Counts from 100 Well Survey
+**Table Description:** zhou_otu_id_27ws.ndarray - Zhou Lab OTU Classification from 27 Well Survey
 
 ### Schema
 
 | Column Name | Data Type | Nullable | Comment |
 |-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| asv_confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 10579648
+**Total Rows:** 52846
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | sdt_asv_name | count_count_unit |
-|---|---|---|
-| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU109082 | 0 |
-| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU233954 | 0 |
-| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU68559 | 0 |
-| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU239638 | 0 |
-| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU258180 | 0 |
+| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| 0001d123420b59585627edf5a1292ae8 | 0.9996330692278669 | ME:0000351 | taxonomic domain | Bacteria |
+| 0001d123420b59585627edf5a1292ae8 | 0.9996330692278669 | ME:0000252 | phylum | Proteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | 0.9996330692278669 | ME:0000253 | class | Alphaproteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | 0.9996330692278669 | ME:0000254 | order | Rhizobiales |
+| 0001d123420b59585627edf5a1292ae8 | 0.9996330692278669 | ME:0000255 | family | Beijerinckiaceae |
 
 ---
 
@@ -392,6 +394,33 @@ Total Tables: 708
 | 00080fb58fb904142ae481f7d7770259 | TACGGAGGGTGCAAGCGTTGTTCGGAATTATTGGGCGTAAAGCGCGTGTAGGCGGTTGATTAAGTCTGATGTGAAAGCCCAGGGCTTAACCCTGGAAGTGCATTGGATACTGGTCGACTAGAGGACGAGAGAGGAAAGTGGAATTAATGGTGTAGGGGTGAAATCCGTAGATATCATTAGGAACATCTGTGGCGAAGGCGGCTTTCTGGCTCGTTTCTGACGCTGAGACGCGAAAGCGTGGGGAGCAAACAGG |
 | 000b67fd460465b2285c0932b352aee2 | TACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGAGCACGTAGGTGGTTAGGTGAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGATACTGCCTGGCTAGAGTTTGGTAGAGGGAAGTGGAATTCCACATGTAGCGGTGAAATGCGTAGAGATGTGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCAAAACTGACACTGAGGTGCGAAAGCGTGGGTAGCAAACAGG |
 | 002597380ec40da68af2362f47542f89 | TACAGAGACCTCAAGCATTATCCGGATTCATTGGGCGTAAAGGGTCCGCAGGTGGCCGTTCACGTCACTGGTTAAATTTCGGGGCTCAACCCTGAAACCGCCAGCGATACGGTTCGGCTCGAGCATGGGAGAGGCAAGCGGAATTACCGGTGTAGTAGTAAAATGCGTTAATATCGGTAAGAACACCAAATGCGAAGGCAGCTTGCTGGAACATTGCTGACACTCAGGGACGAAAGCGTGGGTAGCGAAAGGG |
+
+---
+
+## Table: ddt_brick0000016
+
+**Table Description:** zhou_otu_id_corepilot.ndarray - Zhou Lab OTU Classification from Core Pilot
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 85202
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|
+| OTU_1000 | ME:0000351 | taxonomic domain | Bacteria |
+| OTU_1000 | ME:0000252 | phylum | Bacteroidetes |
+| OTU_1000 | ME:0000253 | class | Sphingobacteriia |
+| OTU_1000 | ME:0000254 | order | Sphingobacteriales |
+| OTU_1000 | ME:0000255 | family | Chitinophagaceae |
 
 ---
 
@@ -24561,6 +24590,57 @@ Total Tables: 708
 
 ---
 
+## Table: ddt_brick0001667
+
+**Table Description:** zhou_otu_count_100ws_v2.ndarray - Zhou Lab OTU Counts from 100 Well Survey (v2)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+
+**Total Rows:** 10579648
+
+### Sample Data (5 rows)
+
+| sdt_community_name | sdt_asv_name | count_count_unit |
+|---|---|---|
+| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU109082 | 0 |
+| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU233954 | 0 |
+| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU68559 | 0 |
+| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU239638 | 0 |
+| DP16D-67-11-27-12 0.2 micron filter | New.ReferenceOTU258180 | 0 |
+
+---
+
+## Table: ddt_brick0001668
+
+**Table Description:** zhou_otu_repseq_100ws.ndarray - Zhou Lab 100 Well Survey OTU 16S Representative Sequences
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+
+**Total Rows:** 49904
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| New.ReferenceOTU109082 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGTCAGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTTGAGACTGCAAGGCTAGAATCTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCAATGGCGAAGGCAGCCCCCTGGGTCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| New.ReferenceOTU233954 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGCTTTTTAAGCCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGGAACTGCAAGGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCAATGGCGAAGGCAGCCCCCTGGGTCGATACTGACGCTCATGCACGAAAGCGTGGGTAGCAAACAGG |
+| New.ReferenceOTU68559 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGCCAGATGTGAAATCCCCGGGCTCAACCTGGGAATGGCATTTGGGACTGCAAGGCTGGAGTACGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCAATGGCGAAGGCAGCCCCCTGGGTCGATACTGACGCTCATGCACGAAAGCGTGGGTAGCAAACAGG |
+| New.ReferenceOTU239638 | TACGTAGGGTCCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGCCAGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATTTGGGACTGCAAGGCTAGAGTACGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGTCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| New.ReferenceOTU258180 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGTGGTTTTGAAAGCCAGACGTGAAATCCCCGGGCTTAACCTGGGAACTGCGTTTGGGACTTCAAGGCTAGAGTACGGCAGAGGGAGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGTTAACACTGACGCTCATGTACGAAAGCGTGGGGAGCAAACAGG |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -25100,7 +25180,7 @@ Total Tables: 708
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 93091
+**Total Rows:** 93090
 
 ### Sample Data (5 rows)
 
@@ -25142,7 +25222,7 @@ Total Tables: 708
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103064
+**Total Rows:** 103063
 
 ### Sample Data (5 rows)
 
@@ -25184,7 +25264,7 @@ Total Tables: 708
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103588
+**Total Rows:** 103801
 
 ### Sample Data (5 rows)
 

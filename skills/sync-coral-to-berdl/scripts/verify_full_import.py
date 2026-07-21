@@ -57,6 +57,7 @@ def main() -> int:
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--namespace", default="enigma_coral")
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--table-file", type=Path)
     args = parser.parse_args()
 
     config = _load_json(args.run_dir / "ingest" / "config.dry_run.json")
@@ -90,6 +91,13 @@ def main() -> int:
 
     missing_enabled = sorted(enabled - imported)
     present_disabled = sorted(disabled & imported)
+    requested_comment_tables = imported
+    if args.table_file:
+        requested = set(args.table_file.read_text(encoding="utf-8").split())
+        requested_comment_tables = imported & requested
+        requested_comment_tables_missing = sorted(requested - imported)
+    else:
+        requested_comment_tables_missing = []
 
     config_by_name = {table["name"]: table for table in config["tables"]}
     expected_table_comments_missing = []
@@ -99,10 +107,19 @@ def main() -> int:
     table_comment_mismatches = []
     column_comment_mismatches = []
     comment_counts = {"tables": 0, "columns": 0}
-    for index, table_name in enumerate(sorted(imported), start=1):
+    described = []
+    for index, table_name in enumerate(sorted(requested_comment_tables), start=1):
         full_table = f"{args.namespace}.{table_name}"
-        print(f"[verify comments {index}/{len(imported)}] {full_table}", flush=True)
-        actual = _describe_comments(collect_sql(f"DESCRIBE TABLE EXTENDED {full_table}"))
+        print(
+            f"[verify comments {index}/{len(requested_comment_tables)}] {full_table}",
+            flush=True,
+        )
+        actual = _describe_comments(
+            collect_sql(f"DESCRIBE TABLE EXTENDED {full_table}")
+        )
+        described.append((table_name, actual))
+
+    for table_name, actual in sorted(described):
         comment_counts["tables"] += 1
         comment_counts["columns"] += len(actual["columns"])
         if not actual["table_comment"]:
@@ -186,6 +203,8 @@ def main() -> int:
     result = {
         "enabled_tables_expected": len(enabled),
         "enabled_tables_missing": missing_enabled,
+        "comment_tables_requested": len(requested_comment_tables),
+        "comment_tables_requested_missing": requested_comment_tables_missing,
         "disabled_tables_expected_absent": len(disabled),
         "disabled_tables_present": present_disabled,
         "disabled_bricks_missing_lifecycle": missing_lifecycle,
@@ -212,7 +231,14 @@ def main() -> int:
         table_comment_mismatches,
         column_comment_mismatches,
     ])
-    return 1 if missing_enabled or present_disabled or missing_lifecycle or go_terms or comment_failures else 0
+    return 1 if (
+        missing_enabled
+        or requested_comment_tables_missing
+        or present_disabled
+        or missing_lifecycle
+        or go_terms
+        or comment_failures
+    ) else 0
 
 
 if __name__ == "__main__":

@@ -18,13 +18,8 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+from repository_paths import normalize_repository_text
 
-URL_REWRITE_FROM = "https://genomics.lbl.gov/enigma-data/"
-URL_REWRITE_TO = "enigma-data-repository/"
-TEXT_REWRITES = (
-    (URL_REWRITE_FROM, URL_REWRITE_TO),
-    ("/auto/sahara/namib/home/gtl/enigma-data-repository/", URL_REWRITE_TO),
-)
 CURIE_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9_.-]+\b")
 
 SYS_OTERM_SCHEMA = [
@@ -532,10 +527,7 @@ def normalize_static_row(row: dict[str, str], tdef: dict[str, Any], table_name: 
                          preferred_name: dict[str, str], units_lookup: dict[str, str]) -> dict[str, str]:
     working = {}
     for key, value in row.items():
-        normalized = value or ""
-        for old, new in TEXT_REWRITES:
-            normalized = normalized.replace(old, new)
-        working[key] = normalized
+        working[key] = normalize_repository_text(value)
     final: dict[str, str] = {}
     schema_cols = {col["column"]: col for col in schema}
 
