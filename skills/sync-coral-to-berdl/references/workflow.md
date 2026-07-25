@@ -50,6 +50,9 @@ scratch disk.
    - stage all OBO source files under `coral_export/ontologies/` and
      `berdl_upload/source/ontologies/`
    - parse staged OBO files into `berdl_upload/data/sys_oterm.tsv`
+   - include terms found in brick `*_sys_oterm_id` columns and select one
+     canonical source row per CURIE, preferring the CURIE's native ontology to
+     copies embedded in imported, standalone, or stub modules
    - parse staged `typedef.json` into `metadata/table_schemas.json`,
      `metadata/table_comments.json`, `berdl_upload/data/sys_typedef.tsv`,
      and normalized `sdt_*`/`sys_*` static table TSVs
@@ -86,6 +89,12 @@ scratch disk.
      string cells to the MinIO-relative `enigma-data-repository/` prefix;
      reused artifacts must already be normalized, and a normalization algorithm
      change requires a scoped forced rebuild/reload of affected tables
+   - constrain known source-value corrections to exact brick ID, exact column,
+     and exact complete source value; report each changed cell and never use a
+     prefix or substring match
+   - do not rewrite a declared foreign-key target type in the importer; replace
+     a brick whose CORAL dimension or variable declares the wrong object type
+     with a corrected superseding brick and explicit update-data provenance
    - standardize table names to target BERDL names
    - resolve each array-context ontology term against unambiguous
      `sys_ddt_typedef` foreign-key mappings
@@ -120,10 +129,13 @@ scratch disk.
    - `missing_from_current_export`
    - `obsolete_excluded`
    - use `scripts/select_changed_tables.py` to write durable ingest,
-     comment-only, unchanged, obsolete, added, and removed table lists
+     comment-only, unchanged, obsolete, newly obsolete, live obsolete, added,
+     and removed table lists
    - write `ingest/changed_tables_with_foreign_keys.txt` for reloaded tables
-     whose structured column comments declare a foreign key, plus FK-bearing
-     source tables whose declared target table is being reloaded
+     whose structured column comments declare a foreign key, plus unchanged
+     FK-bearing source tables only when a reloaded target lost referenced key
+     values; target-only additions do not require source rescans, while an
+     unavailable key comparison falls back to conservative inclusion
    - pass the prior ingest config so obsolete-to-current transitions are always
      selected for reload even when table bytes are unchanged
    - optionally compare a live table inventory to restore lifecycle-current
@@ -142,6 +154,10 @@ scratch disk.
 9. Run BERDL ingest using the `berdl-ingest` workflow.
    - pass the generated `ingest/changed_tables.txt` through
      `run_full_import.py --table-file`
+   - pass `ingest/live_obsolete_tables.txt` through
+     `run_full_import.py --drop-table-file` when a live inventory was supplied;
+     otherwise use `ingest/newly_obsolete_tables.txt`. This recovers interrupted
+     cleanup without redundantly submitting all historical obsolete tables.
 
 10. Validate:
    - row counts
@@ -176,5 +192,7 @@ scratch disk.
    - regenerate repository `schema/`
    - copy and verify the schema references used by `berdl-mcp` and
      `enigma-berdl-query`
+   - use manifest row counts and bounded data samples; do not count rows by
+     rescanning complete table files
    - pass `--installed-skills-root ~/.codex/skills` to refresh installed copies
    - commit and push the verified workflow and schema changes

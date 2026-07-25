@@ -1,0 +1,180 @@
+/* global ARGUMENTS, print */
+"use strict";
+
+const fs = require("fs");
+const db = require("@arangodb").db;
+
+const COLLECTION = "SYS_Process";
+const PROTOCOL_COLLECTION = "SDT_Protocol";
+const DELETED_PROCESS_ID = "Process0068062";
+const EXPECTED_LIVE_COUNT = 93089;
+const BATCH_SIZE = 500;
+
+// Generated from the verified pre-damage Process.tsv snapshot. Null removes
+// the protocol attribute; non-null restores the exact reviewed protocol name.
+const patches = __PROCESS_PROTOCOL_PATCHES_JSON__;
+
+const args = typeof ARGUMENTS === "undefined" ? [] : ARGUMENTS;
+const apply = args.indexOf("--apply") !== -1;
+
+function fail(message) {
+  throw new Error(message);
+}
+
+function batches(values, callback) {
+  for (let offset = 0; offset < values.length; offset += BATCH_SIZE) {
+    callback(values.slice(offset, offset + BATCH_SIZE));
+  }
+}
+
+function compareCurrent() {
+  const missing = [];
+  const differences = [];
+  const query = `
+    FOR patch IN @patches
+      LET doc = DOCUMENT(CONCAT(@collection, "/", patch.id))
+      RETURN {
+        id: patch.id,
+        exists: doc != null,
+        current: doc == null ? null : (HAS(doc, "protocol") ? doc.protocol : null),
+        expected: patch.protocol
+      }
+  `;
+
+  batches(patches, (batch) => {
+    db._query(query, { patches: batch, collection: COLLECTION })
+      .toArray()
+      .forEach((row) => {
+        if (!row.exists) {
+          missing.push(row.id);
+        } else if (row.current !== row.expected) {
+          differences.push(row);
+        }
+      });
+  });
+  return { missing: missing, differences: differences };
+}
+
+function validateProtocolTargets() {
+  const desired = Object.create(null);
+  patches.forEach((patch) => {
+    if (patch.protocol !== null) {
+      desired[patch.protocol] = true;
+    }
+  });
+  const names = Object.keys(desired);
+  const found = db
+    ._query(
+      `FOR protocol IN @@collection
+         FILTER protocol.name IN @names
+         RETURN protocol.name`,
+      { "@collection": PROTOCOL_COLLECTION, names: names }
+    )
+    .toArray();
+  const foundSet = Object.create(null);
+  found.forEach((name) => {
+    foundSet[name] = true;
+  });
+  const missing = names.filter((name) => !foundSet[name]);
+  if (missing.length) {
+    fail("Desired protocols absent from SDT_Protocol: " + JSON.stringify(missing));
+  }
+  return names.length;
+}
+
+function applyDifferences(differences) {
+  const query = `
+    FOR patch IN @patches
+      LET doc = DOCUMENT(CONCAT(@collectionName, "/", patch.id))
+      FILTER doc != null
+      UPDATE doc WITH { protocol: patch.expected } IN @@collection
+        OPTIONS { keepNull: false }
+      RETURN NEW._key
+  `;
+  let updated = 0;
+  batches(differences, (batch) => {
+    const result = db
+      ._query(query, {
+        "@collection": COLLECTION,
+        collectionName: COLLECTION,
+        patches: batch,
+      })
+      .toArray();
+    updated += result.length;
+    print("updated " + updated + " of " + differences.length);
+  });
+  return updated;
+}
+
+if (patches.length !== EXPECTED_LIVE_COUNT + 1) {
+  fail("Embedded snapshot size is inconsistent with EXPECTED_LIVE_COUNT");
+}
+const liveCount = db._collection(COLLECTION).count();
+if (liveCount !== EXPECTED_LIVE_COUNT) {
+  fail(
+    "SYS_Process count mismatch: expected " +
+      EXPECTED_LIVE_COUNT +
+      ", found " +
+      liveCount
+  );
+}
+
+const protocolCount = validateProtocolTargets();
+const before = compareCurrent();
+if (
+  before.missing.length !== 1 ||
+  before.missing[0] !== DELETED_PROCESS_ID
+) {
+  fail("Unexpected missing process IDs: " + JSON.stringify(before.missing));
+}
+
+print("embedded snapshot processes: " + patches.length);
+print("live processes: " + liveCount);
+print("validated protocol names: " + protocolCount);
+print("protocol differences: " + before.differences.length);
+print("expected missing process: " + before.missing[0]);
+
+if (!apply) {
+  print("Dry run only. Re-run with --apply to restore exact protocol values.");
+} else {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const backupPath = "process_protocol_restore_backup_" + timestamp + ".json";
+  fs.write(
+    backupPath,
+    JSON.stringify(
+      {
+        created_at: new Date().toISOString(),
+        differences: before.differences,
+      },
+      null,
+      2
+    )
+  );
+  print("before-state backup: " + backupPath);
+
+  const updated = applyDifferences(before.differences);
+  if (updated !== before.differences.length) {
+    fail(
+      "Update count mismatch: expected " +
+        before.differences.length +
+        ", updated " +
+        updated
+    );
+  }
+
+  const after = compareCurrent();
+  if (
+    after.differences.length !== 0 ||
+    after.missing.length !== 1 ||
+    after.missing[0] !== DELETED_PROCESS_ID
+  ) {
+    fail(
+      "Post-update verification failed: " +
+        JSON.stringify({
+          differences: after.differences.length,
+          missing: after.missing,
+        })
+    );
+  }
+  print("verification passed: all live Process.protocol values restored");
+}

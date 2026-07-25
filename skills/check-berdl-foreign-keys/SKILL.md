@@ -38,9 +38,15 @@ in string columns. The validator explodes one- and two-level collections to
 their scalar keys and fails on non-null serialized collections that cannot be
 parsed.
 
-The sync selector also includes unchanged FK-bearing source tables when one of
-their referenced target tables was reloaded. This catches key deletions in
-mutable static/type tables without turning routine syncs into full audits.
+The validator reuses one Spark connection while submitting bounded groups of
+relationship checks. Lower the default group size of 25 with
+`--relationship-batch-size` if a group contains especially large source tables.
+
+The sync selector also includes unchanged FK-bearing source tables when a
+reloaded target lost values from the exact referenced key column. It skips that
+extra source scan when the target only gained keys, and includes sources
+conservatively when key comparison is unavailable. This catches key deletions
+in mutable static/type tables without turning routine syncs into full audits.
 
 ## Other Modes
 
@@ -49,6 +55,11 @@ mutable static/type tables without turning routine syncs into full audits.
 - Omit `--table-file` only for a deliberate audit of every enabled table in the
   config. Do not make full audits part of routine CORAL syncs.
 - Use `--sample-limit` to control the bounded orphan examples stored in reports.
+- Use `--relationship-batch-size` to control how many relationships are included
+  in each Spark SQL statement.
+- Use `--local-package` only as a transport-failure fallback after ingest and
+  live read-back verification. It streams the exact staged files and emits the
+  normal reports, but does not replace live schema verification.
 
 The validator checks the declared target exactly. Do not silently retarget a
 failed relationship to another table even when values happen to match there;

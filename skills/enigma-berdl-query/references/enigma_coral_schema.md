@@ -28,7 +28,7 @@ Total Tables: 711
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1436
+**Total Rows:** 1441
 
 ### Sample Data (5 rows)
 
@@ -2827,47 +2827,6 @@ Total Tables: 711
 
 ---
 
-## Table: ddt_brick0000364
-
-**Table Description:** isolate_image_data_221011.hndarray - Walian Lab isolate image data, as of 2022-10-11
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| date | string | Yes | {"description": "date"} |
-| sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
-| cell_shape_sys_oterm_id | string | Yes | {"description": "cell shape, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| cell_shape_sys_oterm_name | string | Yes | {"description": "cell shape"} |
-| width_context_cell_shape_micrometer | double | Yes | {"description": "width, Context=cell shape", "unit": "micrometer"} |
-| height_context_cell_shape_micrometer | double | Yes | {"description": "height, Context=cell shape", "unit": "micrometer"} |
-| description_context_cell_membrane | string | Yes | {"description": "description, Context=cell membrane"} |
-| observed_context_s_layer | boolean | Yes | {"description": "observed, Context=S-layer"} |
-| observed_context_flagella | boolean | Yes | {"description": "observed, Context=flagella"} |
-| flagellar_arrangement_sys_oterm_id | string | Yes | {"description": "flagellar arrangement, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| flagellar_arrangement_sys_oterm_name | string | Yes | {"description": "flagellar arrangement"} |
-| diameter_context_flagella_nanometer | double | Yes | {"description": "diameter, Context=flagella", "unit": "nanometer"} |
-| observed_context_cellular_appendage | boolean | Yes | {"description": "observed, Context=cellular appendage"} |
-| diameter_context_cellular_appendage_category_other_appendage_1_nanometer | double | Yes | {"description": "diameter, Context=cellular appendage, Category=Other Appendage 1", "unit": "nanometer"} |
-| diameter_context_cellular_appendage_category_other_appendage_2_nanometer | double | Yes | {"description": "diameter, Context=cellular appendage, Category=Other Appendage 2", "unit": "nanometer"} |
-| observed_context_vessicle | boolean | Yes | {"description": "observed, Context=vessicle"} |
-| description_context_vessicle | string | Yes | {"description": "description, Context=vessicle"} |
-
-**Total Rows:** 94
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | date | sdt_image_name | cell_shape_sys_oterm_id | cell_shape_sys_oterm_name | width_context_cell_shape_micrometer | height_context_cell_shape_micrometer | description_context_cell_membrane | observed_context_s_layer | observed_context_flagella | flagellar_arrangement_sys_oterm_id | flagellar_arrangement_sys_oterm_name | diameter_context_flagella_nanometer | observed_context_cellular_appendage | diameter_context_cellular_appendage_category_other_appendage_1_nanometer | diameter_context_cellular_appendage_category_other_appendage_2_nanometer | observed_context_vessicle | description_context_vessicle |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| GW821-FHT04D09 | 2019-10-25 | GW821-FHT04D09_Cupriavidus | ME:0000456 | rod | 2.0 | 1.0 | Wrinkled-smooth | 0 | 1 | ME:0000448 | monotrichous | 1.0 | 0 | NULL | NULL | 1 | Micro-scale |
-| GW821-FHT04C08 | 2020-01-07 | GW821-FHT04C08_Delftia_acidovorans | ME:0000456 | rod | 2.0 | 0.8 | Wrinkled | 0 | 1 | ME:0000448 | monotrichous | 0.8 | 1 | 7.0 | NULL | 0 | NULL |
-| GW822-FHT04H04 | 2020-01-07 | GW822-FHT04H04_Janthinobacterium_lividum | ME:0000456 | rod | 2.0 | 0.8 | Wrinkled | 0 | 1 | ME:0000448 | monotrichous | 0.8 | 0 | NULL | NULL | 1 | Micro-scale |
-| GW823-FHT04A11 | 2020-01-07 | GW823-FHT04A11_Flavobacterium_plurextorum | ME:0000456 | rod | 1.8 | 0.5 | Wrinkled | 0 | 0 | NULL | NULL | 0.5 | 0 | NULL | NULL | 1 | Mid-scale, tubes |
-| GW823-FHT04B07 | 2020-01-07 | GW823-FHT04B07_Pseudomonas_tolaasii | NULL | NULL | 1.6 | 0.7000000000000001 | Wrinkled-smooth | 0 | 0 | NULL | NULL | 0.7000000000000001 | 0 | NULL | NULL | 1 | Large-scale |
-
----
-
 ## Table: ddt_brick0000433
 
 **Table Description:** isolate_comments_240613.hndarray - Comments for ENIGMA isolate strains, as of 2024-06-13
@@ -2996,33 +2955,6 @@ Total Tables: 711
 
 ---
 
-## Table: ddt_brick0000454
-
-**Table Description:** zhou_lab_100ws_spring19_corepilot_27ws_cpt_ASV_taxonomy.ndarray - Zhou Lab 100WS Spring19 CorePilot 27WS CPT ASV Taxonomy
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-**Total Rows:** 627241
-
-### Sample Data (5 rows)
-
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|
-| 0000672cf37091ed24be6595ac42659c | ME:0000351 | taxonomic domain | Bacteria |
-| 0000672cf37091ed24be6595ac42659c | ME:0000252 | phylum | Elusimicrobiota |
-| 0000672cf37091ed24be6595ac42659c | ME:0000253 | class | Elusimicrobia |
-| 0000672cf37091ed24be6595ac42659c | ME:0000254 | order | Lineage_IV |
-| 0000672cf37091ed24be6595ac42659c | ME:0000255 | family | Lineage_IV |
-
----
-
 ## Table: ddt_brick0000457
 
 **Table Description:** zhou_lab_sso_sediment_ASV_16S.ndarray - Zhou Lab SSO Sediment ASV 16S Sequences
@@ -3045,33 +2977,6 @@ Total Tables: 711
 | 000d07f2a82557601686d86686203205 | AACGTAGGGGGCGAGCGTTGTCCGGAATTACTGGGCGTAAAGGGCGTGTAGGTGGCCTGTGAAGTCGAGAGTGAAAACCTGGGGCTCAACCCCGGGCCTGCTTTCGAAACCAGCAGGCTTGAGGACAGGAGAGGGAAGCGGAATTCCCAGTGTAGCGGTGAAATGCGTAGATATTGGGAGGAACACCAGTGGCGAAAGCGGCTTTCTGGCCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
 | 000dd512be8bcd3ee3f14a5996fa08ed | TACGTAGGGAGCTAGCGTTGTTCGGAATCACTGGGCGTAAAGGGAGTGTAGGCGGATAGATAAGTTAGGAGTGAAATGTACAGGCTTAACCTGTGACCTGCTTCTAATACTGTCAGTCTGGAGTATGGGAGAGGAAGATGGAATTCCAGGTGTAGTGGTAAAATACGTAGATATCTGGAAGAACACCAGTTGCGAAGGCGGTCTTCTGGCCCAATACTGACGCTGAGGCTCGAAAGCTAGGGGAGCAAACAGG |
 | 00110df9ef266a6900a52bc9ab3b9692 | CACCAGCGCCACAAGTGGTGACCACAATTATTGGGCCTAAAGCGTCCGTAGCCGGTCTAATAAATCTTTTGTGAAATCGTTGTGCTTAACTCAACGACGTGCAGAAGAGACTGTTAGACTTGGAACCGGGAGGAGTCAGAGGTATTCCGTGGGGAGCGGTAAAATGTTATAATCCTCGGAGGACCACCTGTGGCGAAGGCGTCTGACTATAACGGTTTCGACGGTGAGGGACGAAAGCTAGGGGAGCAATCCGG |
-
----
-
-## Table: ddt_brick0000458
-
-**Table Description:** zhou_lab_sso_sediment_ASV_taxonomy.ndarray - Zhou Lab SSO Sediment ASV Taxonomy
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-**Total Rows:** 108842
-
-### Sample Data (5 rows)
-
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|
-| 0001d123420b59585627edf5a1292ae8 | ME:0000351 | taxonomic domain | Bacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000252 | phylum | Proteobacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000253 | class | Alphaproteobacteria |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000254 | order | Rhizobiales |
-| 0001d123420b59585627edf5a1292ae8 | ME:0000255 | family | Beijerinckiaceae |
 
 ---
 
@@ -3123,34 +3028,6 @@ Total Tables: 711
 | d12833fed8673a8d32d1adc368a01538 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTGTTTAAGTCTGTCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGATGGATACTGGGCAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG |
 | 5525695dd844200b911fec57dbf4a5d6 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGCGACATAAGACAGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCGTTTGTGACTGTGTTGCTAGAGTGTAGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGTTAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
 | f34cdcd73e535507d29c29b19d01f658 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTATATAAGACAGATGTGAAATCCCCGGGCTCAACCTGGGACCTGCATTTGTGACTGTATAGCTAGAGTACGGTAGAGGGGGATGGAATTCCGCGTGTAGCAGTGAAATGCGTAGATATGCGGAGGAACACCGATGGCGAAGGCAATCCCCTGGACCTGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
-
----
-
-## Table: ddt_brick0000461
-
-**Table Description:** zhou_lab_sso_pump_test_ASV_taxonomy.ndarray - Zhou Lab SSO Pump Test ASV Taxonomy
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
-
-**Total Rows:** 56696
-
-### Sample Data (5 rows)
-
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
-|---|---|---|---|---|
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000351 | taxonomic domain | Archaea | 1.0 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000252 | phylum | Crenarchaeota | 1.0 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000253 | class | Nitrososphaeria | 1.0 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000254 | order | Nitrosotaleales | 1.0 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000255 | family | Nitrosotaleaceae | 1.0 |
 
 ---
 
@@ -3256,34 +3133,6 @@ Total Tables: 711
 | 001f37e240ec76cca0576c56ac384c2b | GACAGAGGGTGCAAACGTTGTTCGGAATTACTGGGCGTAAAGCGCGTGTAGGCGGCGATGCAAGTCGGATGTGAAAGCCCTCGGCTCAACCCAGAGAGGCCACCCGATACTGCCGTGACTGGAGTGCGGTAGGGGAGTGGGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCAGTGGCGAAGGCGCCACTCTGGGCCGTAACTGACGCTGAGGCACGAAGGCCAGGGGAGCAAACGGG |
 | 0023af8d2bea3fe12ceb48d32a172e20 | TACGAAGGCCCCAAGCGTTATCCGGATTTATTGGGCGTAAAGCGTGCGTAGGAGGTTTAGTAAGTCTGTTGTTAAATTTCGCTGCTTAACGGCGGAGCCGCAACAGATACTACTAGACTAGAGTGTGTGAGAGGCTAATAGAACTCACGGTGTAGGGGTGAAATCCGTTGATATCGTGGGGAATACCAAAGGCGAAGGCATTTAGCTAGCGCATTACTGACTCTAAGGCACGAAAGCGTGGGGAGCAAAAAGG |
 | 002a1665d74eb41002fde4fa32f51d93 | TACAGAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGCACGTAGGCGGCTTCGTAAGTCGGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTCGAGACTGCGATGCTCGAGTATGGGAGAGGACAGCGGAATTCCGGGTGTAGCGGTGAAATGCGTAGATATCCGGAGGAACATCAGTGGCGAAGGCGGCTGTCTGGCCCAATACTGACGCTCAGGTGCGAAAGCGTGGGGAGCAAACAGG |
-
----
-
-## Table: ddt_brick0000478
-
-**Table Description:** zhou_lab_sso_pilot_time_series_ASV_taxonomy.ndarray - Zhou Lab SSO Pilot Time Series ASV Taxonomy
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
-
-**Total Rows:** 56497
-
-### Sample Data (5 rows)
-
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
-|---|---|---|---|---|
-| 000b67fd460465b2285c0932b352aee2 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000252 | phylum | Proteobacteria | 1.0 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000253 | class | Gammaproteobacteria | 1.0 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000254 | order | Acidiferrobacterales | 0.9 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000255 | family | Acidiferrobacteraceae | 0.9 |
 
 ---
 
@@ -3476,7 +3325,7 @@ Total Tables: 711
 
 | sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|
-| FW305-130 | anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW305-130 | Anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
 | FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
 | FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
 | FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
@@ -24641,6 +24490,157 @@ Total Tables: 711
 
 ---
 
+## Table: ddt_brick0001669
+
+**Table Description:** isolate_image_data_221011_v2.hndarray - Walian Lab isolate image data, as of 2022-10-11_v2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| date | string | Yes | {"description": "date"} |
+| sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
+| cell_shape_sys_oterm_id | string | Yes | {"description": "cell shape, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| cell_shape_sys_oterm_name | string | Yes | {"description": "cell shape"} |
+| width_context_cell_shape_micrometer | double | Yes | {"description": "width, context=cell shape", "unit": "micrometer"} |
+| height_context_cell_shape_micrometer | double | Yes | {"description": "height, context=cell shape", "unit": "micrometer"} |
+| description_context_cell_membrane | string | Yes | {"description": "description, context=cell membrane"} |
+| observed_context_s_layer | boolean | Yes | {"description": "observed, context=S-layer"} |
+| observed_context_flagella | boolean | Yes | {"description": "observed, context=flagella"} |
+| flagellar_arrangement_sys_oterm_id | string | Yes | {"description": "flagellar arrangement, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| flagellar_arrangement_sys_oterm_name | string | Yes | {"description": "flagellar arrangement"} |
+| diameter_context_flagella_nanometer | double | Yes | {"description": "diameter, context=flagella", "unit": "nanometer"} |
+| observed_context_cellular_appendage | boolean | Yes | {"description": "observed, context=cellular appendage"} |
+| diameter_context_cellular_appendage_category_other_appendage_1_nanometer | double | Yes | {"description": "diameter, context=cellular appendage, category=Other Appendage 1", "unit": "nanometer"} |
+| diameter_context_cellular_appendage_category_other_appendage_2_nanometer | double | Yes | {"description": "diameter, context=cellular appendage, category=Other Appendage 2", "unit": "nanometer"} |
+| observed_context_vessicle | boolean | Yes | {"description": "observed, context=vessicle"} |
+| description_context_vessicle | string | Yes | {"description": "description, context=vessicle"} |
+
+**Total Rows:** 94
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | date | sdt_image_name | cell_shape_sys_oterm_id | cell_shape_sys_oterm_name | width_context_cell_shape_micrometer | height_context_cell_shape_micrometer | description_context_cell_membrane | observed_context_s_layer | observed_context_flagella | flagellar_arrangement_sys_oterm_id | flagellar_arrangement_sys_oterm_name | diameter_context_flagella_nanometer | observed_context_cellular_appendage | diameter_context_cellular_appendage_category_other_appendage_1_nanometer | diameter_context_cellular_appendage_category_other_appendage_2_nanometer | observed_context_vessicle | description_context_vessicle |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW821-FHT04D09 | 2019-10-25 | GW821-FHT04D09_Cupriavidus.tif | ME:0000456 | rod | 2.0 | 1.0 | Wrinkled-smooth | 0 | 1 | ME:0000448 | monotrichous | 15.0 | 0 | NULL | NULL | 1 | Micro-scale |
+| GW821-FHT04C08 | 2020-01-07 | GW821-FHT04C08_Delftia_acidovorans.tif | ME:0000456 | rod | 2.0 | 0.8 | Wrinkled | 0 | 1 | ME:0000448 | monotrichous | 15.0 | 1 | 7.0 | NULL | 0 | NULL |
+| GW822-FHT04H04 | 2020-01-07 | GW822-FHT04H04_Janthinobacterium_lividum.tif | ME:0000456 | rod | 2.0 | 0.8 | Wrinkled | 0 | 1 | ME:0000448 | monotrichous | NULL | 0 | NULL | NULL | 1 | Micro-scale |
+| GW823-FHT04A11 | 2020-01-07 | GW823-FHT04A11_Flavobacterium_plurextorum.tif | ME:0000456 | rod | 1.8 | 0.5 | Wrinkled | 0 | 0 | NULL | NULL | NULL | 0 | NULL | NULL | 1 | Mid-scale, tubes |
+| GW823-FHT04B07 | 2020-01-07 | GW823-FHT04B07_Pseudomonas_tolaasii.tif | NULL | NULL | 1.6 | 0.7000000000000001 | Wrinkled-smooth | 0 | 0 | NULL | NULL | NULL | 0 | NULL | NULL | 1 | Large-scale |
+
+---
+
+## Table: ddt_brick0001670
+
+**Table Description:** zhou_lab_100ws_spring19_corepilot_27ws_cpt_ASV_taxonomy_v2.ndarray - Zhou Lab 100WS Spring19 CorePilot 27WS CPT ASV Taxonomy_v2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 627241
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|
+| 0000672cf37091ed24be6595ac42659c | ME:0000351 | taxonomic domain | Bacteria |
+| 0000672cf37091ed24be6595ac42659c | ME:0000252 | phylum | Elusimicrobiota |
+| 0000672cf37091ed24be6595ac42659c | ME:0000253 | class | Elusimicrobia |
+| 0000672cf37091ed24be6595ac42659c | ME:0000254 | order | Lineage_IV |
+| 0000672cf37091ed24be6595ac42659c | ME:0000255 | family | Lineage_IV |
+
+---
+
+## Table: ddt_brick0001671
+
+**Table Description:** zhou_lab_sso_sediment_ASV_taxonomy_v2.ndarray - Zhou Lab SSO Sediment ASV Taxonomy_v2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 108842
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|
+| 0001d123420b59585627edf5a1292ae8 | ME:0000351 | taxonomic domain | Bacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000252 | phylum | Proteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000253 | class | Alphaproteobacteria |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000254 | order | Rhizobiales |
+| 0001d123420b59585627edf5a1292ae8 | ME:0000255 | family | Beijerinckiaceae |
+
+---
+
+## Table: ddt_brick0001672
+
+**Table Description:** zhou_lab_sso_pump_test_ASV_taxonomy_v2.ndarray - Zhou Lab SSO Pump Test ASV Taxonomy_v2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+
+**Total Rows:** 56696
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
+|---|---|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000351 | taxonomic domain | Archaea | 1.0 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000252 | phylum | Crenarchaeota | 1.0 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000253 | class | Nitrososphaeria | 1.0 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000254 | order | Nitrosotaleales | 1.0 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000255 | family | Nitrosotaleaceae | 1.0 |
+
+---
+
+## Table: ddt_brick0001673
+
+**Table Description:** zhou_lab_sso_pilot_time_series_ASV_taxonomy_v2.ndarray - Zhou Lab SSO Pilot Time Series ASV Taxonomy_v2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+
+**Total Rows:** 56497
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
+|---|---|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000252 | phylum | Proteobacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000253 | class | Gammaproteobacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000254 | order | Acidiferrobacterales | 0.9 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000255 | family | Acidiferrobacteraceae | 0.9 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -24739,7 +24739,7 @@ Total Tables: 711
 | defined_sdt_strain_names | array<string> | Yes | {"description": "List of strains that comprise the community, if the community is defined", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
 | sdt_community_description | string | Yes | {"description": "Free-text field providing additional details or notes about the community"} |
 
-**Total Rows:** 4654
+**Total Rows:** 4680
 
 ### Sample Data (5 rows)
 
@@ -25085,7 +25085,7 @@ Total Tables: 711
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 3667
+**Total Rows:** 5490
 
 ### Sample Data (5 rows)
 
@@ -25145,17 +25145,17 @@ Total Tables: 711
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 3910
+**Total Rows:** 5332
 
 ### Sample Data (5 rows)
 
 | sys_oterm_id | parent_sys_oterm_id | sys_oterm_ontology | sys_oterm_name | sys_oterm_synonyms | sys_oterm_definition | sys_oterm_links | sys_oterm_properties |
 |---|---|---|---|---|---|---|---|
-| CHEBI:24431 | NULL | chebi | chemical entity | ["chemical entity"] | A chemical entity is a physical entity of interest in chemistry including molecular entities, parts thereof, and chemical substances. | [] | NULL |
-| CHEBI:23367 | CHEBI:24431 | chebi | molecular entity | ["entite moleculaire", "entidad molecular", "entidades moleculares", "molecular entity", "molekulare Entitaet", "molecular entities"] | Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity. | [] | NULL |
-| CHEBI:24870 | CHEBI:23367 | chebi | ion | ["ion", "Ionen", "ions", "Ion", "ion", "iones"] | A molecular entity having a net electric charge. | [] | NULL |
-| CHEBI:52334 | CHEBI:37929 | chebi | rhodamine B | ["Basic Rose Extract", "N-[9-(2-carboxyphenyl)-6-(diethylamino)-3H-xanthen-3-ylidene]-N-ethylethanaminium chloride", "Basic Violet 10", "Tetraethylrhodamine", "Symulex Magenta F", "C.I. 45170", "Acid Brilliant Pink B", "Edicol Suppa Rose BS", "Violet zasadita 10", "Basic Rose Red", "Rheonine B", "Calcozine Red BX", "Basonyl Red 545", "Brilliant Pink B"] | An organic chloride salt having N-[9-(2-carboxyphenyl)-6-(diethylamino)-3H-xanthen-3-ylidene]-N-ethylethanaminium as the counterion. An amphoteric dye commonly used as a fluorochrome. | ["PMID:12038137", "PMID:25383763", "PMID:25633643", "PMID:26369164", "CAS:81-88-9", "CAS:81-88-9", "PMID:26179418", "PMID:8648087", "PMID:25702995", "Reaxys:22746909", "PMID:16857766", "PMID:25839973", "PMID:25308672", "PMID:26196932", "KEGG:C19517", "PMID:25240956", "PMID:26041175"] | {"http://purl.obolibrary.org/obo/chebi/charge": "0", "http://purl.obolibrary.org/obo/chebi/formula": "C28H31ClN2O3", "http://purl.obolibrary.org/obo/chebi/inchi": "InChI=1S/C28H30N2O3.ClH/c1-5-29(6-2)19-13-15-23-25(17-19)33-26-18-20(30(7-3)8-4)14-16-24(26)27(23)21-11-9-10-12-22(21)28(31)32;/h9-18H,5-8H2,1-4H3;1H", "http://purl.obolibrary.org/obo/chebi/inchikey": "PYWVYCXTNDRMGF-UHFFFAOYSA-N", "http://purl.obolibrary.org/obo/chebi/mass": "479.01000", "http://purl.obolibrary.org/obo/chebi/monoisotopicmass": "478.20232", "http://purl.obolibrary.org/obo/chebi/smiles": "[Cl-].CCN(CC)c1ccc2c(-c3ccccc3C(O)=O)c3ccc(cc3oc2c1)=[N+](CC)CC"} |
-| CHEBI:23906 | CHEBI:36916 | chebi | monoatomic cation | ["monoatomic cations"] | NULL | [] | NULL |
+| BFO:0000001 | NULL | envo | entity | [] | NULL | [] | NULL |
+| BFO:0000002 | BFO:0000001 | envo | continuant | [] | An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts. | [] | NULL |
+| BFO:0000004 | BFO:0000002 | envo | independent continuant | [] | b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002]) | [] | NULL |
+| BFO:0000040 | BFO:0000004 | envo | material entity | [] | An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time. | [] | NULL |
+| CHEBI:113449 | CHEBI:38700 | chebi | sodium 4-hydroxybenzoate | ["Sodium p-hydroxybenzoate", "sodium 4-hydroxybenzoate", "4-Hydroxybenzoic acid sodium salt", "Monosodium 4-hydroxybenzoate", "Monosodium p-hydroxybenzoate", "p-Hydroxybenzoic acid sodium salt"] | An organic sodium salt resulting from the replacement of the proton from the carboxy group of 4-hydroxybenzoic acid by a sodium ion. | ["Reaxys:4163553", "CAS:114-63-6"] | {"http://purl.obolibrary.org/obo/chebi/charge": "0", "http://purl.obolibrary.org/obo/chebi/formula": "C7H5NaO3", "http://purl.obolibrary.org/obo/chebi/inchi": "InChI=1S/C7H6O3.Na/c8-6-3-1-5(2-4-6)7(9)10;/h1-4,8H,(H,9,10);/q;+1/p-1", "http://purl.obolibrary.org/obo/chebi/inchikey": "ZLVSYODPTJZFMK-UHFFFAOYSA-M", "http://purl.obolibrary.org/obo/chebi/mass": "160.103", "http://purl.obolibrary.org/obo/chebi/monoisotopicmass": "160.01364", "http://purl.obolibrary.org/obo/chebi/smiles": "C(C=1C=CC(=CC1)O)([O-])=O.[Na+]"} |
 
 ---
 
@@ -25180,7 +25180,7 @@ Total Tables: 711
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 93090
+**Total Rows:** 93094
 
 ### Sample Data (5 rows)
 
@@ -25222,7 +25222,7 @@ Total Tables: 711
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103063
+**Total Rows:** 103067
 
 ### Sample Data (5 rows)
 
@@ -25264,7 +25264,7 @@ Total Tables: 711
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103801
+**Total Rows:** 103842
 
 ### Sample Data (5 rows)
 

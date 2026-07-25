@@ -15,6 +15,10 @@ MinIO copy plus notebook paste workflow.
 - Do not run the actual CORAL export until the user confirms the working disk.
 - Default runtime work directory: `sync-coral-to-berdl/exports/<run_id>/`.
 - Keep generated TSV/CSV/manifest output out of git.
+- Include an unambiguous creation date in every generated CORAL correction or
+  addition filename, including static-type TSVs and process TSVs. Use
+  `YYYYMMDD` in this workflow, for example
+  `Community_additions_20260724.tsv`.
 - Never drop Lakehouse tables just because they disappeared from the current CORAL export; report removals for review.
 - Obsolete brick tables are the exception: after explicit CORAL lifecycle
   provenance or reviewed lifecycle inference identifies a brick as withdrawn or
@@ -34,6 +38,19 @@ MinIO copy plus notebook paste workflow.
   brick TSV. Reused immutable artifacts must already contain this normalization;
   when the normalization or another import algorithm changes, force a scoped
   rebuild and reload of every affected brick table.
+- Apply any importer-side source-value correction only through an exact
+  brick-ID, column-name, and complete-value mapping. Never use prefix or
+  substring matching, and report every changed cell. Use this only for a known,
+  bounded representation defect such as capitalization; prefer a superseding
+  CORAL brick for substantive data corrections.
+- Never change a declared foreign-key target type in the BERDL importer to make
+  values pass validation. When CORAL declares the wrong object type, require a
+  corrected superseding brick and update-data provenance in CORAL.
+- Build `sys_oterm` from terms referenced by static/system data, schemas, and
+  ontology-ID columns in brick TSVs. Emit each CURIE exactly once, preferring
+  its native ontology over copies bundled in imported or stub OBO modules.
+  Materialize referenced OBO `alt_id` values with canonical term metadata so
+  legacy secondary CURIEs remain valid foreign-key targets.
 
 ## Workflow
 
@@ -90,6 +107,10 @@ MinIO copy plus notebook paste workflow.
    - Put source metadata files to upload under `berdl_upload/source/`:
      `source/data/typedef.json`, `source/ontologies/*.obo`, and
      `source/upload_manifest.json`.
+   - Scan only `*_sys_oterm_id` columns when collecting brick-valued ontology
+     references so large bricks without ontology values are skipped after their
+     header. Deduplicate selected ontology terms by CURIE before writing
+     `sys_oterm`, using deterministic native-ontology precedence.
    - Put reports directly under `reports/` and generated metadata directly under `metadata/`.
    - Produce BERDL ingest config with structured per-column schema maps, not `schema_sql`, so ingest applies column comments.
    - Materialize foreign-key-valued array context as a constant column in the
@@ -109,6 +130,12 @@ MinIO copy plus notebook paste workflow.
      inputs with complete sidecars and converts every new brick. Atomic
      derived-column rewrites break the current-run link without mutating the
      prior baseline.
+   - Keep bounded importer-side source-value corrections keyed by exact brick
+     ID, exact column, and exact full source value. Include changed-cell counts
+     in `reports/brick_preparation.json`; a broad match is a failed preflight.
+   - Treat a wrong CORAL relationship type as source metadata corruption, not a
+     value-normalization case. Stop before ingest and request a superseding
+     brick plus update-data process record.
    - Prefer TSV or Parquet-compatible output when CSV parsing risk is high.
 
 5. **Detect changed tables**
@@ -118,6 +145,12 @@ MinIO copy plus notebook paste workflow.
      prior ingest config to compare logical table names and lifecycle enabled
      state, classify data/schema/comment-only changes, and write
      `ingest/changed_tables.txt`.
+   - When a live table inventory is available, use
+     `ingest/live_obsolete_tables.txt` as the reviewed drop scope for
+     `run_full_import.py --drop-table-file`. It includes newly obsolete tables
+     plus cleanup left by an interrupted prior sync. Otherwise use
+     `ingest/newly_obsolete_tables.txt`. Do not resubmit every historical
+     obsolete table for deletion during each sync.
    - Supply `--force-reload-file` only for tables affected by an import-strategy
      change. Optionally supply a live table inventory with `--live-tables-file`
      so lifecycle-current tables missing from BERDL are restored.
@@ -126,8 +159,11 @@ MinIO copy plus notebook paste workflow.
      `ingest/changed_tables.txt`.
    - Write `ingest/changed_tables_with_foreign_keys.txt` as the intersection of
      the reload set and tables with JSON column comments declaring
-     `type: foreign_key`, plus unchanged source tables whose declared target
-     table is being reloaded.
+     `type: foreign_key`. Also include unchanged source tables when a reloaded
+     target lost values from a referenced key column. Do not rescan unchanged
+     sources when the target only gained keys. If current-versus-previous
+     target-key comparison is unavailable or fails, include affected sources
+     conservatively.
    - Treat comment-only changes as a comment sync path, avoiding unnecessary data upload.
 
 6. **Run BERDL ingest**
@@ -136,6 +172,13 @@ MinIO copy plus notebook paste workflow.
    - Pass `--table-file ingest/changed_tables.txt` to `run_full_import.py` so
      only data/schema-changed tables are uploaded and rewritten. Lifecycle-
      disabled brick tables remain the reviewed obsolete-drop set.
+   - Pass `--drop-table-file ingest/live_obsolete_tables.txt` when live
+     inventory was supplied, or `ingest/newly_obsolete_tables.txt` otherwise,
+     so only reviewed obsolete brick tables that require a drop are submitted.
+   - Prefer `spark_connect_remote` when installed. The sync scripts must also
+     support standard PySpark Connect with the authenticated BERDL remote URI so
+     an unavailable private wrapper package does not block an otherwise valid
+     connection.
 
 7. **Validate comments**
    - Inspect BERDL ingest `comments_report`.
@@ -176,6 +219,9 @@ MinIO copy plus notebook paste workflow.
      dependent skills, and fails if copied files differ. Pass
      `--installed-skills-root ~/.codex/skills` to refresh installed copies in
      the same checked operation.
+   - Take schema row counts from `manifests/current.json` and read only the
+     configured sample rows from data files. Never rescan complete brick tables
+     while generating schema markdown.
    - Commit and push the sync workflow changes plus schema reference updates to
      GitHub after BERDL verification.
 

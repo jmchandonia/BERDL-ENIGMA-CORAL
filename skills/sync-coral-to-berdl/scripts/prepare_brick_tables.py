@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import importlib.util
 import json
@@ -17,6 +18,21 @@ from repository_paths import normalize_repository_links_in_tsv
 
 
 CONVERTER = Path("/h/jmc/src/CORAL/convert/spark-minio/convert_bricks.py")
+KNOWN_CORAL_VALUE_CORRECTIONS = {
+    "Brick0000510": {
+        "sdt_condition_name": {
+            (
+                "anaerobic = 0; media name = LB, concentration = 25.0 "
+                "(fold dilution); media name = Sediment Extract; "
+                "temperature = 30.0 (degree Celsius)"
+            ): (
+                "Anaerobic = 0; media name = LB, concentration = 25.0 "
+                "(fold dilution); media name = Sediment Extract; "
+                "temperature = 30.0 (degree Celsius)"
+            ),
+        },
+    },
+}
 
 
 def _sha256(path: Path) -> str:
@@ -56,6 +72,55 @@ def _copy_atomic(source: Path, target: Path) -> None:
             check=True,
         )
     temporary.replace(target)
+
+
+def normalize_known_coral_values_in_tsv(
+    path: Path, brick_id: str
+) -> dict[str, Any]:
+    corrections = KNOWN_CORAL_VALUE_CORRECTIONS.get(brick_id)
+    if not corrections:
+        return {"rows": 0, "cells_changed": 0, "by_column": {}}
+
+    with path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.reader(handle, delimiter="\t")
+        header = next(reader)
+        rows = list(reader)
+
+    indexes = {
+        column: header.index(column)
+        for column in corrections
+        if column in header
+    }
+    missing_columns = sorted(set(corrections) - set(indexes))
+    if missing_columns:
+        raise ValueError(
+            f"{brick_id} is missing correction column(s): "
+            f"{', '.join(missing_columns)}"
+        )
+
+    by_column = {column: 0 for column in corrections}
+    for row in rows:
+        for column, replacements in corrections.items():
+            index = indexes[column]
+            replacement = replacements.get(row[index])
+            if replacement is not None:
+                row[index] = replacement
+                by_column[column] += 1
+
+    cells_changed = sum(by_column.values())
+    if cells_changed:
+        temporary = path.with_name(f".{path.name}.value-normalizing")
+        with temporary.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+            writer.writerow(header)
+            writer.writerows(rows)
+        temporary.replace(path)
+
+    return {
+        "rows": len(rows),
+        "cells_changed": cells_changed,
+        "by_column": by_column,
+    }
 
 
 def _reuse_artifacts(
@@ -120,6 +185,9 @@ def _convert_one(
             brick_id,
         )
         normalization = normalize_repository_links_in_tsv(stage_data)
+        value_normalization = normalize_known_coral_values_in_tsv(
+            stage_data, brick_id
+        )
     except Exception:
         return {
             "brick_id": brick_id,
@@ -149,6 +217,7 @@ def _convert_one(
         "brick_id": brick_id,
         "status": "converted",
         "repository_path_normalization": normalization,
+        "coral_value_normalization": value_normalization,
     }
 
 
@@ -174,6 +243,7 @@ def main() -> int:
     reused = []
     resumed = []
     reused_normalization = {}
+    reused_value_normalization = {}
     to_convert = []
     raw_hashes = {}
     previous_hashes = _previous_raw_hashes(previous_run)
@@ -195,10 +265,20 @@ def main() -> int:
                 brick_id,
                 normalization_complete=brick_id in previous_normalized,
             )
+            reused_value_normalization[brick_id] = (
+                normalize_known_coral_values_in_tsv(
+                    current_artifacts["data"], brick_id
+                )
+            )
             reused.append(brick_id)
         elif all(path.is_file() and path.stat().st_size > 0 for path in current_artifacts.values()):
             raw_hashes[brick_id] = _sha256(raw_path)
             reused_normalization[brick_id] = {"cells_changed": 0, "replacements": 0}
+            reused_value_normalization[brick_id] = (
+                normalize_known_coral_values_in_tsv(
+                    current_artifacts["data"], brick_id
+                )
+            )
             resumed.append(brick_id)
         else:
             raw_hashes[brick_id] = _sha256(raw_path)
@@ -212,6 +292,7 @@ def main() -> int:
             "status": "converted",
             "resumed": True,
             "repository_path_normalization": {"cells_changed": 0, "replacements": 0},
+            "coral_value_normalization": reused_value_normalization[brick_id],
         }
         for brick_id in resumed
     ]
@@ -242,6 +323,24 @@ def main() -> int:
         for brick_id, stats in normalization_by_brick.items()
         if stats["cells_changed"]
     )
+    value_normalization_by_brick = {
+        **reused_value_normalization,
+        **{
+            row["brick_id"]: row["coral_value_normalization"]
+            for row in results
+            if row["status"] == "converted"
+        },
+    }
+    corrected_value_bricks = sorted(
+        brick_id
+        for brick_id, stats in value_normalization_by_brick.items()
+        if stats["cells_changed"]
+    )
+    changed_value_normalization = {
+        brick_id: stats
+        for brick_id, stats in value_normalization_by_brick.items()
+        if stats["cells_changed"]
+    }
     report = {
         "raw_bricks": len(raw_paths),
         "reused": len(reused),
@@ -255,6 +354,14 @@ def main() -> int:
             "cells_changed": sum(stats["cells_changed"] for stats in normalization_by_brick.values()),
             "replacements": sum(stats["replacements"] for stats in normalization_by_brick.values()),
             "by_brick": normalization_by_brick,
+        },
+        "coral_value_normalization": {
+            "bricks_changed": corrected_value_bricks,
+            "cells_changed": sum(
+                stats["cells_changed"]
+                for stats in value_normalization_by_brick.values()
+            ),
+            "by_brick": changed_value_normalization,
         },
         "raw_sha256": raw_hashes,
         "converter": str(CONVERTER),

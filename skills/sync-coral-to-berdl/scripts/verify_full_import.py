@@ -16,17 +16,14 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 def _make_spark(app_name: str):
     from run_full_import import (
+        _create_spark_session,
         _patch_spark_connect_config_defaults,
         _set_remote_connection_env_defaults,
     )
-    from spark_connect_remote.session import create_spark_session
 
     _set_remote_connection_env_defaults()
-    spark = create_spark_session(
-        host_template="metrics.berdl.kbase.us",
-        port=443,
-        use_ssl=True,
-        kbase_token=os.environ["KBASE_AUTH_TOKEN"],
+    spark = _create_spark_session(
+        token=os.environ["KBASE_AUTH_TOKEN"],
         app_name=app_name,
     )
     _patch_spark_connect_config_defaults(spark)

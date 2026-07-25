@@ -35,6 +35,11 @@ def _copy_and_verify(source: Path, target: Path) -> None:
 
 def _generate(run_dir: Path, schema_dir: Path, sample_rows: int) -> None:
     config = _load_json(run_dir / "ingest" / "config.dry_run.json")
+    manifest = _load_json(run_dir / "manifests" / "current.json")
+    row_counts = {
+        table["table"]: table["row_count"]
+        for table in manifest.get("tables", [])
+    }
     schema_dir.mkdir(parents=True, exist_ok=True)
     export_table_to_markdown(
         config,
@@ -50,6 +55,7 @@ def _generate(run_dir: Path, schema_dir: Path, sample_rows: int) -> None:
         config,
         schema_dir / "enigma_coral_schema.md",
         sample_rows,
+        row_counts,
     )
 
 

@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +18,7 @@ from dry_run_tools import (
     _schema_from_comments,
 )
 from run_full_import import (
+    _create_spark_session,
     _patch_spark_connect_config_defaults,
     _set_remote_connection_env_defaults,
     _sql_string,
@@ -35,15 +35,8 @@ def _save_json(path: Path, value: dict[str, Any]) -> None:
 
 def _make_spark(app_name: str):
     _set_remote_connection_env_defaults()
-    sys.path.insert(0, "/h/jmc/src/BERIL-research-observatory/scripts")
-    import ingest_lib  # noqa: F401
-    from spark_connect_remote import create_spark_session
-
-    spark = create_spark_session(
-        host_template="metrics.berdl.kbase.us",
-        port=443,
-        use_ssl=True,
-        kbase_token=os.environ["KBASE_AUTH_TOKEN"],
+    spark = _create_spark_session(
+        token=os.environ["KBASE_AUTH_TOKEN"],
         app_name=app_name,
     )
     _patch_spark_connect_config_defaults(spark)

@@ -22,6 +22,15 @@ from repository_paths import normalize_repository_text
 
 CURIE_RE = re.compile(r"\b[A-Za-z][A-Za-z0-9_]*:[A-Za-z0-9_.-]+\b")
 
+CANONICAL_ONTOLOGY_BY_PREFIX = {
+    "CHEBI": "chebi",
+    "ENVO": "envo",
+    "ME": "context_measurement_ontology",
+    "NCBITAXON": "ncbitaxon",
+    "PROCESS": "process_ontology",
+    "UO": "uo",
+}
+
 SYS_OTERM_SCHEMA = [
     {
         "column": "sys_oterm_id",
@@ -245,7 +254,12 @@ def parse_obo_file(path: Path) -> dict[str, dict[str, Any]]:
             if line == "[Term]":
                 if in_term and "id" in current:
                     terms[current["id"]] = current
-                current = {"synonyms": [], "xrefs": [], "property_values": {}}
+                current = {
+                    "synonyms": [],
+                    "xrefs": [],
+                    "alt_ids": [],
+                    "property_values": {},
+                }
                 in_term = True
                 continue
             if line.startswith("["):
@@ -261,6 +275,8 @@ def parse_obo_file(path: Path) -> dict[str, dict[str, Any]]:
             value = value.strip()
             if key == "id":
                 current["id"] = value
+            elif key == "alt_id":
+                current["alt_ids"].append(value)
             elif key == "name":
                 current["name"] = value
             elif key == "def":
@@ -281,11 +297,35 @@ def parse_obo_file(path: Path) -> dict[str, dict[str, Any]]:
                     current["property_values"].setdefault(match.group(1), []).append(match.group(2))
     if in_term and "id" in current:
         terms[current["id"]] = current
+    aliases: dict[str, dict[str, Any]] = {}
+    for canonical_id, term in terms.items():
+        for alternate_id in term.get("alt_ids", []):
+            properties = {
+                key: list(values)
+                for key, values in term.get("property_values", {}).items()
+            }
+            properties.setdefault("canonical_term_id", []).append(canonical_id)
+            aliases[alternate_id] = {
+                **term,
+                "id": alternate_id,
+                "property_values": properties,
+            }
+    terms.update(aliases)
     return terms
 
 
 def ontology_paths(ontology_dir: Path) -> list[Path]:
     return sorted(path for path in ontology_dir.iterdir() if path.is_file() and path.suffix.lower() == ".obo")
+
+
+def ontology_source_priority(term_id: str, ontology_name: str) -> tuple[int, int, str]:
+    """Prefer a term's native ontology over copies bundled in imported modules."""
+    prefix = term_id.split(":", 1)[0].upper()
+    canonical_name = CANONICAL_ONTOLOGY_BY_PREFIX.get(prefix, prefix.lower())
+    normalized_name = ontology_name.lower()
+    canonical_rank = 0 if normalized_name == canonical_name else 1
+    module_rank = 1 if any(token in normalized_name for token in ("stub", "module", "standalone")) else 0
+    return canonical_rank, module_rank, normalized_name
 
 
 def load_ontology_terms(ontology_dir: Path) -> tuple[dict[str, dict[str, dict[str, Any]]], dict[str, tuple[str, dict[str, Any]]], dict[str, str], dict[str, int]]:
@@ -299,9 +339,13 @@ def load_ontology_terms(ontology_dir: Path) -> tuple[dict[str, dict[str, dict[st
         ontology_terms[ontology_name] = terms
         stats[ontology_name] = len(terms)
         for term_id, term in terms.items():
-            term_lookup[term_id] = (ontology_name, term)
+            existing = term_lookup.get(term_id)
+            if existing is None or ontology_source_priority(term_id, ontology_name) < ontology_source_priority(term_id, existing[0]):
+                term_lookup[term_id] = (ontology_name, term)
             name = term.get("name", "")
             if name:
+                # Preserve CORAL's staged unit labels for stable column names;
+                # canonical precedence applies to sys_oterm rows, not schemas.
                 units_lookup.setdefault(term_id, name)
     return ontology_terms, term_lookup, units_lookup, stats
 
@@ -318,7 +362,53 @@ def iter_reference_sources(data_dir: Path, schema_dir: Path) -> list[Path]:
     return sources
 
 
-def collect_referenced_terms(data_dir: Path, schema_dir: Path, term_ids: set[str], extra_terms: list[dict[str, Any]]) -> set[str]:
+def collect_brick_referenced_terms(
+    path: Path,
+    term_ids: set[str],
+    fallback_names: dict[str, str] | None = None,
+) -> set[str]:
+    """Read only ontology-ID columns from a potentially large brick TSV."""
+    referenced: set[str] = set()
+    with path.open(newline="", encoding="utf-8", errors="replace") as handle:
+        reader = csv.reader(handle, delimiter="\t")
+        header = next(reader, [])
+        term_indexes = [
+            index
+            for index, column in enumerate(header)
+            if column.endswith("_sys_oterm_id")
+        ]
+        name_indexes = {
+            index: header.index(column.removesuffix("_id") + "_name")
+            for index in term_indexes
+            for column in [header[index]]
+            if column.removesuffix("_id") + "_name" in header
+        }
+        if not term_indexes:
+            return referenced
+        for row in reader:
+            for index in term_indexes:
+                if index >= len(row):
+                    continue
+                for value in CURIE_RE.findall(row[index].replace("ORef:", "")):
+                    referenced.add(value)
+                    name_index = name_indexes.get(index)
+                    if (
+                        fallback_names is not None
+                        and name_index is not None
+                        and name_index < len(row)
+                        and row[name_index].strip().lower() not in {"null", "none"}
+                    ):
+                        fallback_names.setdefault(value, row[name_index].strip())
+    return referenced
+
+
+def collect_referenced_terms(
+    data_dir: Path,
+    schema_dir: Path,
+    term_ids: set[str],
+    extra_terms: list[dict[str, Any]],
+    fallback_names: dict[str, str] | None = None,
+) -> set[str]:
     referenced: set[str] = set()
     for row in extra_terms:
         for key in ["units_sys_oterm_id", "type_sys_oterm_id"]:
@@ -334,7 +424,35 @@ def collect_referenced_terms(data_dir: Path, schema_dir: Path, term_ids: set[str
                 for value in CURIE_RE.findall(line):
                     if value in term_ids:
                         referenced.add(value)
+    for path in sorted(data_dir.glob("Brick*.tsv")):
+        referenced.update(
+            collect_brick_referenced_terms(path, term_ids, fallback_names)
+        )
     return referenced
+
+
+def add_unresolved_terms(
+    ontology_terms: dict[str, dict[str, dict[str, Any]]],
+    term_lookup: dict[str, tuple[str, dict[str, Any]]],
+    referenced_terms: set[str],
+    fallback_names: dict[str, str],
+) -> list[str]:
+    unresolved = sorted(referenced_terms - set(term_lookup))
+    for term_id in unresolved:
+        prefix = term_id.split(":", 1)[0].upper()
+        ontology_name = CANONICAL_ONTOLOGY_BY_PREFIX.get(
+            prefix, prefix.lower()
+        )
+        term = {
+            "id": term_id,
+            "name": fallback_names.get(term_id, term_id),
+            "synonyms": [],
+            "xrefs": [],
+            "property_values": {},
+        }
+        ontology_terms.setdefault(ontology_name, {})[term_id] = term
+        term_lookup[term_id] = (ontology_name, term)
+    return unresolved
 
 
 def expand_with_ancestors(referenced: set[str], term_lookup: dict[str, tuple[str, dict[str, Any]]]) -> set[str]:
@@ -354,31 +472,38 @@ def expand_with_ancestors(referenced: set[str], term_lookup: dict[str, tuple[str
 
 def write_sys_oterm(ontology_terms: dict[str, dict[str, dict[str, Any]]], included_terms: set[str], out_path: Path) -> dict[str, dict[str, int]]:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    rows = []
-    stats: dict[str, dict[str, int]] = {}
+    selected_terms: dict[str, tuple[str, dict[str, Any]]] = {}
     for ontology_name, terms in ontology_terms.items():
-        included_count = 0
         for term_id, term in terms.items():
             if term_id not in included_terms:
                 continue
-            included_count += 1
-            name = term.get("name", "")
-            properties = None
-            if term.get("property_values"):
-                properties = {k: ";".join(v) for k, v in term["property_values"].items()}
-            rows.append({
-                "sys_oterm_id": term_id,
-                "parent_sys_oterm_id": term.get("parent", ""),
-                "sys_oterm_ontology": ontology_name,
-                "sys_oterm_name": name,
-                "sys_oterm_synonyms": json.dumps(term.get("synonyms") or []),
-                "sys_oterm_definition": term.get("definition", ""),
-                "sys_oterm_links": json.dumps(term.get("xrefs") or []),
-                "sys_oterm_properties": json.dumps(properties, sort_keys=True) if properties else "",
-            })
+            existing = selected_terms.get(term_id)
+            if existing is None or ontology_source_priority(term_id, ontology_name) < ontology_source_priority(term_id, existing[0]):
+                selected_terms[term_id] = (ontology_name, term)
+
+    rows = []
+    selected_counts: dict[str, int] = {}
+    for term_id, (ontology_name, term) in sorted(selected_terms.items()):
+        selected_counts[ontology_name] = selected_counts.get(ontology_name, 0) + 1
+        properties = None
+        if term.get("property_values"):
+            properties = {k: ";".join(v) for k, v in term["property_values"].items()}
+        rows.append({
+            "sys_oterm_id": term_id,
+            "parent_sys_oterm_id": term.get("parent", ""),
+            "sys_oterm_ontology": ontology_name,
+            "sys_oterm_name": term.get("name", ""),
+            "sys_oterm_synonyms": json.dumps(term.get("synonyms") or []),
+            "sys_oterm_definition": term.get("definition", ""),
+            "sys_oterm_links": json.dumps(term.get("xrefs") or []),
+            "sys_oterm_properties": json.dumps(properties, sort_keys=True) if properties else "",
+        })
+
+    stats: dict[str, dict[str, int]] = {}
+    for ontology_name, terms in ontology_terms.items():
         stats[ontology_name] = {
             "available_terms": len(terms),
-            "included_terms": included_count,
+            "included_terms": selected_counts.get(ontology_name, 0),
         }
 
     with out_path.open("w", newline="", encoding="utf-8") as handle:
@@ -693,11 +818,16 @@ def prepare_coral_metadata(run_dir: Path, repo_root: Path | None = None) -> dict
     table_comments["sys_typedef"] = "CORAL type definitions"
     write_sys_typedef(all_typedef_rows, data_dir / "sys_typedef.tsv")
 
+    fallback_term_names: dict[str, str] = {}
     referenced_terms = collect_referenced_terms(
         run_dir / "berdl_upload" / "data",
         run_dir / "berdl_upload" / "schema",
         set(term_lookup),
         all_typedef_rows,
+        fallback_term_names,
+    )
+    stubbed_terms = add_unresolved_terms(
+        ontology_terms, term_lookup, referenced_terms, fallback_term_names
     )
     included_terms = expand_with_ancestors(referenced_terms, term_lookup)
     ontology_stats = write_sys_oterm(ontology_terms, included_terms, data_dir / "sys_oterm.tsv")
@@ -713,6 +843,7 @@ def prepare_coral_metadata(run_dir: Path, repo_root: Path | None = None) -> dict
         "raw_ontology_stats": raw_ontology_stats,
         "referenced_ontology_terms": len(referenced_terms),
         "included_ontology_terms": len(included_terms),
+        "stubbed_ontology_terms": stubbed_terms,
         "tables_with_schemas": len(table_schemas),
         "static_tables_normalized": sorted(type_to_table_json.values()),
     }

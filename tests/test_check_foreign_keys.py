@@ -1,6 +1,7 @@
 import importlib.util
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -130,6 +131,77 @@ class CheckForeignKeysTests(unittest.TestCase):
         )
         self.assertIn("PARTITION BY target_key", sql)
         self.assertIn("WHERE sample_rank <= 7", sql)
+
+    def test_batches_relationships_without_dropping_remainder(self):
+        self.assertEqual(
+            list(MODULE._batches(list(range(7)), 3)),
+            [[0, 1, 2], [3, 4, 5], [6]],
+        )
+
+    def test_unique_target_relations_deduplicates_shared_targets(self):
+        relation = MODULE.extract_foreign_keys(config_with_fk(), None)[0][0]
+        self.assertEqual(
+            MODULE._unique_target_relations([relation, relation]), [relation]
+        )
+
+    def test_local_package_validation_finds_orphans(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            source = root / "source.tsv"
+            target = root / "target.tsv"
+            source.write_text("sample\nknown\nmissing\n", encoding="utf-8")
+            target.write_text("name\nknown\n", encoding="utf-8")
+            config = {
+                "namespace": "test",
+                "tables": [
+                    {
+                        "name": "source",
+                        "enabled": True,
+                        "local_path": str(source),
+                        "csv": {"delimiter": "\t", "quote": "\u0000"},
+                        "schema": [{
+                            "column": "sample",
+                            "type": "STRING",
+                            "comment": json.dumps({
+                                "type": "foreign_key",
+                                "references": "target.name",
+                            }),
+                        }],
+                    },
+                    {
+                        "name": "target",
+                        "enabled": True,
+                        "local_path": str(target),
+                        "csv": {"delimiter": "\t", "quote": "\u0000"},
+                        "schema": [{
+                            "column": "name",
+                            "type": "STRING",
+                            "comment": "target name",
+                        }],
+                    },
+                ],
+            }
+            relations, errors = MODULE.extract_foreign_keys(config)
+            result = MODULE.validate_local(
+                config, "test", relations, errors, sample_limit=5
+            )
+        self.assertEqual(result["summary"]["failed"], 1)
+        self.assertEqual(result["checks"][0]["orphan_values"], 1)
+        self.assertEqual(result["checks"][0]["orphan_samples"], ["missing"])
+
+    def test_local_values_flattens_array(self):
+        values, parse_error = MODULE._local_values(
+            '[["a"], ["b", null]]', "array<array<string>>"
+        )
+        self.assertEqual(values, ["a", "b"])
+        self.assertFalse(parse_error)
+
+    def test_local_values_parses_bracket_declared_string_collection(self):
+        values, parse_error = MODULE._local_values(
+            '["a", "b"]', "string", source_is_collection=True
+        )
+        self.assertEqual(values, ["a", "b"])
+        self.assertFalse(parse_error)
 
 
 if __name__ == "__main__":

@@ -121,16 +121,29 @@ def _set_remote_connection_env_defaults() -> None:
 
 
 def _make_spark(app_name: str):
-    from spark_connect_remote.session import create_spark_session
-
     _set_remote_connection_env_defaults()
-    spark = create_spark_session(
-        host_template="metrics.berdl.kbase.us",
-        port=443,
-        use_ssl=True,
-        kbase_token=os.environ["KBASE_AUTH_TOKEN"],
-        app_name=app_name,
-    )
+    try:
+        from spark_connect_remote.session import create_spark_session
+    except ModuleNotFoundError:
+        from pyspark.sql import SparkSession
+
+        remote = (
+            "sc://metrics.berdl.kbase.us:443/;"
+            f"use_ssl=true;x-kbase-token={os.environ['KBASE_AUTH_TOKEN']}"
+        )
+        spark = (
+            SparkSession.builder.remote(remote)
+            .appName(app_name)
+            .getOrCreate()
+        )
+    else:
+        spark = create_spark_session(
+            host_template="metrics.berdl.kbase.us",
+            port=443,
+            use_ssl=True,
+            kbase_token=os.environ["KBASE_AUTH_TOKEN"],
+            app_name=app_name,
+        )
     client = getattr(spark, "_client", None)
     if client is not None and not getattr(client, "_fk_config_defaults_patched", False):
         original = client.get_config_dict
@@ -299,6 +312,20 @@ def _sql_literal(value: str) -> str:
 
 def _relation_key(relation: ForeignKey) -> str:
     return f"{relation.source_table}.{relation.source_column}"
+
+
+def _batches(items: list[Any], batch_size: int):
+    for start in range(0, len(items), batch_size):
+        yield items[start:start + batch_size]
+
+
+def _unique_target_relations(relations: list[ForeignKey]) -> list[ForeignKey]:
+    by_target: dict[tuple[str, str], ForeignKey] = {}
+    for relation in relations:
+        by_target.setdefault(
+            (relation.target_table, relation.target_column), relation
+        )
+    return [by_target[key] for key in sorted(by_target)]
 
 
 def _stack_branch(
@@ -488,6 +515,268 @@ def _row_dict(row: Any) -> dict[str, Any]:
     return row.asDict(recursive=True)
 
 
+def _new_check(relation: ForeignKey) -> dict[str, Any]:
+    return {
+        **asdict(relation),
+        "status": "pass",
+        "source_type": "",
+        "target_type": "",
+        "source_non_null_rows": 0,
+        "source_distinct_values": 0,
+        "orphan_rows": 0,
+        "orphan_values": 0,
+        "duplicate_target_values": 0,
+        "duplicate_target_rows": 0,
+        "duplicate_target_samples": [],
+        "collection_parse_error_rows": 0,
+        "orphan_samples": [],
+        "errors": [],
+    }
+
+
+def _configured_schema(table: dict[str, Any]) -> dict[str, str]:
+    return {
+        str(column.get("column") or column.get("name")): str(column.get("type") or "")
+        for column in table.get("schema") or []
+    }
+
+
+def _iter_local_rows(table: dict[str, Any]):
+    path = Path(table.get("local_path") or "")
+    if not path.is_file():
+        raise FileNotFoundError(f"Missing staged table file: {path}")
+    options = table.get("csv") or {}
+    delimiter = options.get("delimiter", "\t")
+    quotechar = options.get("quote", '"')
+    # Staged TSVs are emitted by an RFC-style CSV writer even when the Spark
+    # config disables quote handling downstream.
+    if quotechar == "\x00":
+        quotechar = '"'
+    escapechar = options.get("escape", "\\")
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(
+            handle,
+            delimiter=delimiter,
+            quotechar=quotechar,
+            escapechar=escapechar,
+        )
+        yield from reader
+
+
+def _local_values(
+    raw: str | None, source_type: str, source_is_collection: bool = False
+) -> tuple[list[str], bool]:
+    if raw in (None, "", "\\N"):
+        return [], False
+    if not source_is_collection and not source_type.upper().startswith("ARRAY<"):
+        return [raw], False
+    try:
+        parsed = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+        return [], True
+    if not isinstance(parsed, list):
+        return [], True
+    values: list[str] = []
+    for value in parsed:
+        nested = value if isinstance(value, list) else [value]
+        for item in nested:
+            if item is not None:
+                values.append(str(item))
+    return values, False
+
+
+def validate_local(
+    config: dict[str, Any],
+    namespace: str,
+    relations: list[ForeignKey],
+    declaration_errors: list[str],
+    sample_limit: int,
+) -> dict[str, Any]:
+    tables = {table.get("name"): table for table in config.get("tables", [])}
+    schemas = {name: _configured_schema(table) for name, table in tables.items()}
+    checks = [_new_check(relation) for relation in relations]
+    checks_by_key = {
+        _relation_key(relation): check
+        for relation, check in zip(relations, checks)
+    }
+
+    for relation, check in zip(relations, checks):
+        source_schema = schemas.get(relation.source_table)
+        target_schema = schemas.get(relation.target_table)
+        if source_schema is None:
+            check["errors"].append(
+                f"Missing configured source table: {relation.source_table}"
+            )
+        elif relation.source_column not in source_schema:
+            check["errors"].append(
+                f"Missing configured source column: {relation.source_table}."
+                f"{relation.source_column}"
+            )
+        else:
+            check["source_type"] = source_schema[relation.source_column].lower()
+        if target_schema is None:
+            check["errors"].append(
+                f"Missing configured target table: {relation.target_table}"
+            )
+        elif relation.target_column not in target_schema:
+            check["errors"].append(
+                f"Missing configured target column: {relation.target_table}."
+                f"{relation.target_column}"
+            )
+        else:
+            check["target_type"] = target_schema[relation.target_column].lower()
+        effective_source_type = check["source_type"]
+        while effective_source_type.startswith("array<"):
+            effective_source_type = effective_source_type[6:-1]
+        if (
+            check["source_type"]
+            and check["target_type"]
+            and effective_source_type != check["target_type"]
+        ):
+            check["errors"].append(
+                f"Incompatible configured types: {check['source_type']} and "
+                f"{check['target_type']}"
+            )
+
+    target_values: dict[str, set[str]] = {}
+    target_relations = _unique_target_relations([
+        relation for relation, check in zip(relations, checks)
+        if not check["errors"]
+    ])
+    targets_by_table: dict[str, list[ForeignKey]] = {}
+    for relation in target_relations:
+        targets_by_table.setdefault(relation.target_table, []).append(relation)
+    for table_number, (table_name, table_relations) in enumerate(
+        sorted(targets_by_table.items()), start=1
+    ):
+        print(
+            f"[foreign keys local] target table {table_number}/"
+            f"{len(targets_by_table)}: {table_name}",
+            flush=True,
+        )
+        seen = {
+            f"{relation.target_table}.{relation.target_column}": set()
+            for relation in table_relations
+        }
+        duplicate_counts = {key: {} for key in seen}
+        try:
+            for row in _iter_local_rows(tables[table_name]):
+                for relation in table_relations:
+                    target_key = (
+                        f"{relation.target_table}.{relation.target_column}"
+                    )
+                    value = row.get(relation.target_column)
+                    if value in (None, "", "\\N"):
+                        continue
+                    if value in seen[target_key]:
+                        counts = duplicate_counts[target_key]
+                        counts[value] = counts.get(value, 1) + 1
+                    else:
+                        seen[target_key].add(value)
+        except (FileNotFoundError, csv.Error) as exc:
+            for relation in table_relations:
+                checks_by_key[_relation_key(relation)]["errors"].append(str(exc))
+            continue
+        for relation in table_relations:
+            target_key = f"{relation.target_table}.{relation.target_column}"
+            target_values[target_key] = seen[target_key]
+            duplicates = duplicate_counts[target_key]
+            for check, candidate in zip(checks, relations):
+                if (
+                    candidate.target_table,
+                    candidate.target_column,
+                ) != (relation.target_table, relation.target_column):
+                    continue
+                check["duplicate_target_values"] = len(duplicates)
+                check["duplicate_target_rows"] = sum(
+                    count - 1 for count in duplicates.values()
+                )
+                check["duplicate_target_samples"] = [
+                    {"target_value": value, "duplicate_count": count}
+                    for value, count in sorted(duplicates.items())[:sample_limit]
+                ]
+
+    sources_by_table: dict[str, list[ForeignKey]] = {}
+    for relation, check in zip(relations, checks):
+        if not check["errors"]:
+            sources_by_table.setdefault(relation.source_table, []).append(relation)
+    distinct_values = {_relation_key(relation): set() for relation in relations}
+    orphan_values = {_relation_key(relation): set() for relation in relations}
+    for table_number, (table_name, table_relations) in enumerate(
+        sorted(sources_by_table.items()), start=1
+    ):
+        print(
+            f"[foreign keys local] source table {table_number}/"
+            f"{len(sources_by_table)}: {table_name}",
+            flush=True,
+        )
+        try:
+            for row in _iter_local_rows(tables[table_name]):
+                for relation in table_relations:
+                    key = _relation_key(relation)
+                    check = checks_by_key[key]
+                    values, parse_error = _local_values(
+                        row.get(relation.source_column),
+                        check["source_type"],
+                        relation.source_is_collection,
+                    )
+                    if parse_error:
+                        check["collection_parse_error_rows"] += 1
+                        continue
+                    target_key = (
+                        f"{relation.target_table}.{relation.target_column}"
+                    )
+                    valid_targets = target_values.get(target_key, set())
+                    for value in values:
+                        check["source_non_null_rows"] += 1
+                        distinct_values[key].add(value)
+                        if value not in valid_targets:
+                            check["orphan_rows"] += 1
+                            orphan_values[key].add(value)
+        except (FileNotFoundError, csv.Error) as exc:
+            for relation in table_relations:
+                checks_by_key[_relation_key(relation)]["errors"].append(str(exc))
+
+    for relation, check in zip(relations, checks):
+        key = _relation_key(relation)
+        check["source_distinct_values"] = len(distinct_values[key])
+        check["orphan_values"] = len(orphan_values[key])
+        check["orphan_samples"] = sorted(orphan_values[key])[:sample_limit]
+        if check["collection_parse_error_rows"]:
+            check["errors"].append(
+                f"{check['collection_parse_error_rows']} source rows contain "
+                "invalid JSON arrays"
+            )
+        if check["orphan_values"]:
+            check["errors"].append(
+                f"{check['orphan_values']} distinct source values are orphaned"
+            )
+        if check["duplicate_target_values"]:
+            check["errors"].append(
+                f"{check['duplicate_target_values']} referenced target values "
+                "are duplicated"
+            )
+        if check["errors"]:
+            check["status"] = "fail"
+
+    failed = [check for check in checks if check["status"] != "pass"]
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "namespace": namespace,
+        "config_namespace": config.get("namespace"),
+        "validation_mode": "local_package",
+        "declaration_errors": declaration_errors,
+        "checks": checks,
+        "summary": {
+            "relationships_checked": len(checks),
+            "passed": len(checks) - len(failed),
+            "failed": len(failed),
+            "declaration_errors": len(declaration_errors),
+            "source_tables_checked": len({r.source_table for r in relations}),
+        },
+    }
+
+
 def _write_reports(report_dir: Path, result: dict[str, Any]) -> None:
     report_dir.mkdir(parents=True, exist_ok=True)
     (report_dir / "foreign_key_validation.json").write_text(
@@ -533,6 +822,7 @@ def validate(
     relations: list[ForeignKey],
     declaration_errors: list[str],
     sample_limit: int,
+    relationship_batch_size: int,
 ) -> dict[str, Any]:
     reader = SparkReader("check-berdl-foreign-keys")
     checks: list[dict[str, Any]] = []
@@ -546,23 +836,7 @@ def validate(
             if not _row_dict(row).get("isTemporary")
         }
         for relation in relations:
-            check: dict[str, Any] = {
-                **asdict(relation),
-                "status": "pass",
-                "source_type": "",
-                "target_type": "",
-                "source_non_null_rows": 0,
-                "source_distinct_values": 0,
-                "orphan_rows": 0,
-                "orphan_values": 0,
-                "duplicate_target_values": 0,
-                "duplicate_target_rows": 0,
-                "duplicate_target_samples": [],
-                "collection_parse_error_rows": 0,
-                "orphan_samples": [],
-                "errors": [],
-            }
-            checks.append(check)
+            checks.append(_new_check(relation))
 
         print(f"[foreign keys] inspecting {len(set(
             table for relation in relations
@@ -623,20 +897,37 @@ def validate(
                 f"[foreign keys] checking values for {len(valid_relations)} relationships",
                 flush=True,
             )
-            for row in reader.collect(build_batched_metrics_sql(
-                namespace, valid_relations, source_types
-            )):
-                metrics = _row_dict(row)
-                key = metrics.pop("relationship_key")
-                checks_by_key[key].update(metrics)
+            metric_batches = list(_batches(valid_relations, relationship_batch_size))
+            for batch_number, batch in enumerate(metric_batches, start=1):
+                print(
+                    f"[foreign keys] value batch {batch_number}/"
+                    f"{len(metric_batches)} ({len(batch)} relationships)",
+                    flush=True,
+                )
+                for row in reader.collect(build_batched_metrics_sql(
+                    namespace, batch, source_types
+                )):
+                    metrics = _row_dict(row)
+                    key = metrics.pop("relationship_key")
+                    checks_by_key[key].update(metrics)
 
             print("[foreign keys] checking referenced-key uniqueness", flush=True)
             duplicate_by_target = {}
-            for row in reader.collect(build_batched_duplicate_sql(
-                namespace, valid_relations
-            )):
-                duplicate = _row_dict(row)
-                duplicate_by_target[duplicate.pop("target_key")] = duplicate
+            target_relations = _unique_target_relations(valid_relations)
+            target_batches = list(_batches(
+                target_relations, relationship_batch_size
+            ))
+            for batch_number, batch in enumerate(target_batches, start=1):
+                print(
+                    f"[foreign keys] uniqueness batch {batch_number}/"
+                    f"{len(target_batches)} ({len(batch)} targets)",
+                    flush=True,
+                )
+                for row in reader.collect(build_batched_duplicate_sql(
+                    namespace, batch
+                )):
+                    duplicate = _row_dict(row)
+                    duplicate_by_target[duplicate.pop("target_key")] = duplicate
             for check, relation in zip(checks, relations):
                 target_key = f"{relation.target_table}.{relation.target_column}"
                 check.update(duplicate_by_target.get(target_key, {
@@ -647,27 +938,44 @@ def validate(
             duplicate_samples_by_target: dict[str, list[dict[str, Any]]] = {}
             if duplicate_by_target:
                 print("[foreign keys] sampling duplicate target keys", flush=True)
-                for row in reader.collect(build_batched_duplicate_sample_sql(
-                    namespace, valid_relations, sample_limit
-                )):
-                    sample = _row_dict(row)
-                    target_key = sample.pop("target_key")
-                    duplicate_samples_by_target.setdefault(target_key, []).append(sample)
+                duplicate_relations = [
+                    relation for relation in target_relations
+                    if f"{relation.target_table}.{relation.target_column}"
+                    in duplicate_by_target
+                ]
+                duplicate_batches = list(_batches(
+                    duplicate_relations, relationship_batch_size
+                ))
+                for batch_number, batch in enumerate(duplicate_batches, start=1):
+                    print(
+                        f"[foreign keys] duplicate sample batch {batch_number}/"
+                        f"{len(duplicate_batches)} ({len(batch)} targets)",
+                        flush=True,
+                    )
+                    for row in reader.collect(build_batched_duplicate_sample_sql(
+                        namespace, batch, sample_limit
+                    )):
+                        sample = _row_dict(row)
+                        target_key = sample.pop("target_key")
+                        duplicate_samples_by_target.setdefault(
+                            target_key, []
+                        ).append(sample)
                 for check, relation in zip(checks, relations):
                     target_key = f"{relation.target_table}.{relation.target_column}"
                     check["duplicate_target_samples"] = (
                         duplicate_samples_by_target.get(target_key, [])
                     )
 
-            parse_sql = build_batched_collection_parse_sql(
-                namespace, valid_relations, source_types
-            )
-            if parse_sql:
-                print("[foreign keys] checking serialized collections", flush=True)
-                for row in reader.collect(parse_sql):
-                    parsed = _row_dict(row)
-                    key = parsed.pop("relationship_key")
-                    checks_by_key[key].update(parsed)
+            print("[foreign keys] checking serialized collections", flush=True)
+            for batch in _batches(valid_relations, relationship_batch_size):
+                parse_sql = build_batched_collection_parse_sql(
+                    namespace, batch, source_types
+                )
+                if parse_sql:
+                    for row in reader.collect(parse_sql):
+                        parsed = _row_dict(row)
+                        key = parsed.pop("relationship_key")
+                        checks_by_key[key].update(parsed)
 
         for check, relation in zip(checks, relations):
             if check["collection_parse_error_rows"]:
@@ -721,11 +1029,19 @@ def main() -> int:
     parser.add_argument("--table-file", type=Path)
     parser.add_argument("--report-dir", type=Path)
     parser.add_argument("--sample-limit", type=int, default=20)
+    parser.add_argument("--relationship-batch-size", type=int, default=25)
+    parser.add_argument(
+        "--local-package",
+        action="store_true",
+        help="validate the exact staged files instead of querying live Spark",
+    )
     parser.add_argument("--plan-only", action="store_true")
     args = parser.parse_args()
 
     if args.sample_limit < 1:
         parser.error("--sample-limit must be at least 1")
+    if args.relationship_batch_size < 1:
+        parser.error("--relationship-batch-size must be at least 1")
     run_dir = args.run_dir.resolve() if args.run_dir else None
     config_path = (
         args.config.resolve()
@@ -772,9 +1088,23 @@ def main() -> int:
             },
         }
     else:
-        result = validate(
-            config, namespace, relations, declaration_errors, args.sample_limit
-        )
+        if args.local_package:
+            result = validate_local(
+                config,
+                namespace,
+                relations,
+                declaration_errors,
+                args.sample_limit,
+            )
+        else:
+            result = validate(
+                config,
+                namespace,
+                relations,
+                declaration_errors,
+                args.sample_limit,
+                args.relationship_batch_size,
+            )
         result["config"] = str(config_path)
         result["selected_tables"] = plan["selected_tables"]
     _write_reports(report_dir, result)

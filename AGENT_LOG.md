@@ -613,3 +613,317 @@ Validation completed before live export:
 - Installed `check-berdl-foreign-keys` and refreshed the installed
   `sync-coral-to-berdl` skill under `~/.codex/skills`; recursive diffs against
   the repository source are empty.
+
+## 2026-07-21 Process protocol correction recovery
+
+- The first protocol-correction handoff incorrectly treated the exported
+  `protocol_id` TSV header as the only live Arango field. A later cleanup also
+  removed that property broadly. A subsequent prefix-based repair was unsafe:
+  its prefixes matched valid protocol families beyond the 259 intended rows,
+  and pasted replacement values acquired embedded newlines.
+- Stopped the BERDL reload after the fresh Process export exposed the damage.
+  The pre-damage authority is
+  `sync-coral-to-berdl/exports/sync-20260720-172424/coral_export/static_tsv/Process.tsv`:
+  93,090 records with well-formed nine-column physical TSV rows.
+- Added
+  `coral_import/process_protocol_restore_20260721/restore_process_protocols.js`.
+  The guarded arangosh script restores `Process.protocol` by exact process ID,
+  applies only the four reviewed typo mappings, validates all 51 desired names
+  against `SDT_Protocol`, requires the live count to be 93,089, permits only
+  missing `Process0068062`, writes a before-state backup, updates differences
+  in batches, and verifies zero remaining differences.
+- Syntax-checked the script with `node --check`. The restore has not yet been
+  executed; the CORAL-to-BERDL run remains paused until the user completes the
+  dry run and apply run and a new Process export passes comparison.
+- Rebuilt the recovery artifact as a fully self-contained 4,265,260-byte
+  arangosh script so it can be copied to another server without the TSV
+  snapshot. It embeds all 93,090 exact-ID desired protocol states, including
+  nulls, and therefore can detect or remove unexpected protocol assignments as
+  well as restore non-null values. SHA-256:
+  `f07083a97728fff9c2db18604f1872630a533692a9167503472055efbfb38b7c`.
+- Added `tools/build_process_protocol_restore_script.py` and its JavaScript
+  template so the standalone artifact can be regenerated deterministically
+  from the pre-damage Process and Protocol exports. The generated correction
+  counts are 90, 51, 117, and 1 for the four reviewed typo mappings.
+
+## 2026-07-22 Process reload, ontology repair, and relationship audit
+
+- The user ran the exact-ID recovery successfully: 12,004 protocol differences
+  were updated and post-write verification found zero remaining differences.
+  A fresh CORAL export contained 93,089 Process records and exactly matched the
+  pre-damage snapshot plus the four reviewed typo corrections, excluding only
+  the intentionally deleted `Process0068062`.
+- Fixed the OBO loader to scan only brick `*_sys_oterm_id` values, select one
+  canonical ontology row per CURIE, and preserve historic CORAL unit labels for
+  stable generated column names. The first corrected `sys_oterm` had 4,329
+  unique IDs and restored the five rank terms needed by Bricks 12 and 16.
+- Reloaded `sys_oterm`, `sys_process`, `sys_process_input`, and
+  `sys_process_output` from run `sync-20260721-170409`. All four imports
+  completed. Live read-back found all 711 current tables, none of the 749
+  obsolete tables, all four table comments, and all 58 column comments, with no
+  missing or mismatched metadata.
+- The live foreign-key audit exposed a Spark transport limit: one SQL statement
+  containing 1,451 relationships repeatedly ended with `RST_STREAM`, and the
+  remote Spark endpoint became unhealthy. Added bounded relationship batches
+  and a documented `--local-package` fallback that streams the exact imported
+  package once by table. The repository suite now passes 36 tests.
+- The corrected staged-package audit checked 1,451 relationships across 359
+  source tables. It found nine failures. Eight are CORAL source-data defects:
+  Brick364 uses isolate-like values as image links; Bricks454/458/461/478 and
+  Brick1600 contain taxon values absent from `sdt_taxon`; Brick510 contains an
+  unregistered serialized condition; and one `sdt_community` condition field
+  contains an embargo/curation note. The updated process tables have no invalid
+  foreign keys.
+- The ninth failure, Brick68's `CHEBI:48505`, exposed a remaining importer bug:
+  the OBO parser ignored `alt_id`. Added alternate-ID expansion so secondary
+  IDs inherit canonical metadata. `CHEBI:48505` is now emitted as ribitol with
+  canonical ID `CHEBI:15963`; no unresolved ontology stubs remain.
+- Reloaded only `sys_oterm` after the alternate-ID fix. It now has 4,339 unique
+  rows. Live read-back verified its table comment and all eight column comments,
+  and a scoped staged-package recheck passed all three Brick68 relationships.
+
+## 2026-07-23 Foreign-key correction draft
+
+- Expanded the five taxon relationship failures into their complete distinct
+  value set. The 2,704 per-table orphan counts collapse to 1,831 unique taxon
+  names because many labels occur in multiple taxonomy bricks.
+- Created `coral_import/taxon_fk_update_20260723/Taxon_additions.tsv` with
+  1,823 unambiguous additions using the CORAL static-type import shape:
+  `name` and `ncbi_taxid`, with no caller-assigned Taxon IDs. CORAL assigns
+  static-type IDs during import.
+- Streamed the staged 408 MB `ncbitaxon.obo` snapshot and keyword-matched
+  normalized taxon names against primary names and synonyms. Assigned 985
+  unambiguous primary-name and 45 unambiguous synonym mappings; left four
+  ambiguous synonyms and 789 unmatched names as `null`.
+- Held out eight values that should be corrected in superseding bricks instead:
+  four spreadsheet-converted date strings and four capitalization-only
+  duplicates of existing Taxon names. Added a provenance TSV covering every
+  proposed addition and a review TSV documenting each held-out correction.
+- Expanded the three non-taxon failures into review artifacts. Brick364's 94
+  Image records are not missing: all are linked by `Process0031771` through
+  `Process0031864`, and each brick value differs from the valid Image name only
+  by a missing `.tif` extension. Brick510 has one condition that differs from
+  `Condition0000685` only by initial capitalization and can be corrected in
+  place. Eleven Community records contain the same embargo/curation note in the
+  condition field.
+- Traced Brick364 to Walian Lab's `DumpIsolateImageData.java` generator and
+  protocol `walian-2022-isolate-image`; its companion process generator added
+  `.tif` while the brick generator did not. Also noticed that the same source
+  generator fills flagellar diameter from `heights` instead of
+  `flagellaDiams`, an independent value-generation bug to address when the
+  brick is replaced.
+- Traced the Community records to `communities_isolates.tsv`, generated by
+  `DumpIsolates5.java` from `190919_ENIGMA_Isolates.tsv`. The source embargo
+  note was in `Isolation conditions/description` and was treated as a
+  condition. All 11 defined strains came from sample `FW305-033116` via
+  Chakraborty Lab isolation processes in the Natural Organic Matter campaign
+  on 2019-03-20; the Community objects themselves have no direct process links.
+- Added a deterministic scratch-local `uv` build script and README. The package
+  warns that the live Taxon ID range must be checked immediately before import
+  because static CORAL records can be added or deleted between exports.
+
+## 2026-07-23 Brick364 replacement and Community deletion audit
+
+- Audited the 11 malformed FW305 isolate Communities against the complete
+  static/process TSV export and all 20 bricks whose generated sidecars declare
+  a foreign key to `sdt_community`. The only occurrences are the 11 Community
+  definitions themselves; there are no external brick, parent-Community, or
+  process references in the 2026-07-21 snapshot.
+- Added a reproducible bounded audit and reports under
+  `coral_import/brick364_v2_20260723/`. The audit stops after brick dimension
+  metadata, avoiding scans of multi-gigabyte value matrices that cannot contain
+  Community dimension references.
+- Corrected the authoritative
+  `/h/jmc/src/java/classes/gov/lbl/enigma/app/DumpIsolateImageData.java` and
+  recompiled it. Image object references now include the `.tif` suffix,
+  flagellar diameters use `flagellaDiams` instead of cell `heights`, and an
+  optional fourth argument supplies immutable version suffixes such as `_v2`.
+  A portable copy and patch are included in the package.
+- Regenerated the Walian source into the historical raw HNDArray form, converted
+  it with `ConvertHNDArray` to CORAL's valid one-dimensional heterogeneous
+  representation, and created
+  `json/isolate_image_data_221011_v2.json`. `CheckGeneric` ends with
+  `Generic is OK!`.
+- Compared the v2 brick against the original Brick364 source JSON. All 94 Image
+  references now exactly match `Image.tsv`; all 61 non-null source flagellar
+  diameters are represented correctly; the original diameter vector exactly
+  duplicated cell heights; and no semantic differences remain after accounting
+  for the `_v2` name/description and the two intended corrections.
+- Added a one-row `Update Data <PROCESS:0000053>` process TSV linking
+  `isolate_image_data_221011.hndarray` to
+  `isolate_image_data_221011_v2.hndarray`, plus ordered CORAL import helpers.
+- Added a self-contained, dry-run-by-default arangosh deletion script for the
+  11 malformed Communities. It validates exact IDs and names, checks live
+  Community and process-edge references, refuses deletion on any match, and
+  writes a before-state backup before an `--apply` deletion.
+- Corrected the deletion script after its first remote dry run showed that
+  `quit()` is unavailable in that arangosh execution context. Dry-run and apply
+  behavior now use explicit branches, so a dry run exits naturally without
+  falling through into deletion; `node --check` passes.
+
+## 2026-07-23 CORAL re-poll after Brick364 replacement
+
+- Created fresh run `sync-coral-to-berdl/exports/sync-20260723-145923` and
+  re-exported all 18 system/static tables from CORAL.
+- Refreshed the 1,437-brick catalog, reused 1,436 immutable prior raw brick
+  files, and downloaded new `Brick0001669`
+  (`isolate_image_data_221011_v2.hndarray`).
+- Confirmed CORAL `Process0213897` is an explicit
+  `Update Data <PROCESS:0000053>` relationship from Brick364 to Brick1669.
+  Brick364 is lifecycle-obsolete but remains annotated in `ddt_ndarray`;
+  Brick1669 is current.
+- Confirmed all 11 malformed Community records are absent. The fresh static
+  exports contain 4,643 Communities, 5,490 Taxa, and 93,090 Processes.
+- Confirmed lifecycle generation produced no non-empty pending process TSVs.
+- Added an exact importer-side correction for Brick510's one lowercase
+  `sdt_condition_name`. The mapping is restricted to the complete brick ID,
+  column, and source value; it changed one staged cell and the relationship now
+  passes. Added focused tests.
+- Built the package and selected 10 data/schema tables for ingest:
+  `ddt_brick0000510`, `ddt_brick0001669`, `ddt_ndarray`, `sdt_community`,
+  `sdt_taxon`, `sys_ddt_typedef`, `sys_oterm`, `sys_process`,
+  `sys_process_input`, and `sys_process_output`.
+- Ran the required pre-upload local-package foreign-key audit across all
+  affected sources. Of 1,475 relationships, 1,470 passed and five failed.
+- The remaining failures are taxon aliases in bricks 454, 458, 461, and 478,
+  plus Brick459 declaring 37 Sample names as Communities. Details are in
+  `reports/remaining_foreign_key_problems.md`.
+- Stopped before BERDL upload because the skill requires zero foreign-key
+  failures. No Lakehouse tables, repository schema references, dependent skill
+  schemas, or GitHub state were changed by this run.
+- Documented that bounded value corrections must use exact brick/column/value
+  mappings and that a wrong CORAL foreign-key target type requires a
+  superseding source brick rather than importer relabeling.
+
+## 2026-07-24 Brick459 Community-model comparison
+
+- Revisited the initial recommendation to replace Brick459 after comparing it
+  with every current taxonomic-abundance brick declaring an
+  `sdt_community_name` foreign key.
+- Confirmed the closely related Zhou Lab ASV-count bricks consistently model
+  the abundance dimension as Community. Same-name Sample and Environmental
+  Community objects are established: 191 of 405 values in Brick451, all 14 in
+  Brick462, 223 of 587 in Bricks464/476, and all 40 in Brick479.
+- Confirmed filtered fractions use distinct Community names and `Filter`
+  provenance, while same-name environmental Communities link directly through
+  `Community.sample_id`. Brick479 provides the closest precedent because all
+  40 names equal Sample names and none has a Community-producing process row.
+- Revised the correction recommendation: preserve immutable Brick459 and add
+  37 missing `Environmental Community <ME:0000326>` records whose names and
+  `sample_id` values equal the existing Sample names. No update-data process or
+  importer relationship relabeling is needed.
+
+## 2026-07-24 Community and taxonomy CORAL correction package
+
+- Added reproducible builder
+  `tools/build_community_taxonomy_corrections.py` and generated
+  `coral_import/community_taxonomy_corrections_20260724/` from the fresh
+  `sync-20260723-145923` CORAL export.
+- Generated 37 ID-free Community additions. Every row is an
+  `Environmental Community <ME:0000326>` whose name and `sample_id` both equal
+  one of Brick459's existing Sample names.
+- Generated 37 replacement Sampling process rows preserving each original
+  process term, Hazen Lab person, Subsurface Observatory campaign, dates, and
+  Location input while producing both the existing Sample and the new
+  same-named Community.
+- Generated a self-contained, dry-run-by-default arangosh script embedding the
+  exact 37 old Sampling process IDs, expected Sampling term, dates, Location
+  input edges, and Sample output edges. It writes a complete backup before
+  removing the old process documents and 74 edges.
+- Generated four immutable taxonomy replacement JSON bricks with `_v2`
+  appended to both name and description, correcting 935 cells:
+  Brick454 (817), Brick458 (70), Brick461 (19), and Brick478 (29).
+- Generated four `Update Data <PROCESS:0000053>` rows connecting each original
+  taxonomy brick to its replacement.
+- Ran `CheckGeneric` on all four JSON files; every transcript ends with
+  `Generic is OK!`. Also converted each original source brick independently,
+  applied only the intended metadata and taxon substitutions to that JSON, and
+  confirmed byte-for-byte equality with the generated replacement.
+- Validated the arangosh helper with `node --check` and recorded hashes,
+  correction counts, old process mappings, import order, and remote execution
+  instructions in the package reports and README.
+- Corrected the Community additions after the first `toolx.update_core` attempt
+  rejected export-side fields such as `sample_id`. CORAL static imports require
+  the typedef property names `sample`, `parent_community`, `condition`, and
+  `defined_strains`; the failed first row was not persisted.
+- Added `toolx.update_core('Community_additions_20260724.tsv', 'Community')` as
+  the first command in `import_to_coral.py`, dated the Community and sampling
+  audit TSV filenames, updated the reproducible builder, and documented the
+  `YYYYMMDD` requirement for future correction/addition files in the sync
+  skill.
+
+## 2026-07-24 Community/taxonomy sync completion
+
+- Confirmed the corrected Community static import uses CORAL typedef property
+  names (`sample`, `parent_community`, `condition`, and `defined_strains`) rather
+  than export-side `sample_id`. Confirmed generated Community and process TSVs
+  are dated `20260724`.
+- Re-polled all 18 CORAL static/system types. The live export contains 4,680
+  Communities and 93,094 Processes, matching 37 Community additions, 37
+  replacement Sampling records, and four Update Data records.
+- Refreshed the immutable brick catalog: 1,441 total bricks, 1,437 reused from
+  the prior poll, and four new downloads. Converted `Brick0001670` through
+  `Brick0001673`; lifecycle classification found 754 explicit obsolete bricks
+  and generated no non-empty process TSVs requiring another CORAL round trip.
+- Compared against the last completed BERDL baseline
+  `sync-20260721-170409`, not the blocked 2026-07-23 package. Selected 14 table
+  reloads: Brick510, Brick1669, Bricks1670-1673, `ddt_ndarray`,
+  `sdt_community`, `sdt_taxon`, `sys_ddt_typedef`, `sys_oterm`, `sys_process`,
+  `sys_process_input`, and `sys_process_output`.
+- Selected and dropped the five newly obsolete live tables for Brick364,
+  Brick454, Brick458, Brick461, and Brick478. Their CORAL records remain in
+  `ddt_ndarray` with lifecycle annotations; all 754 lifecycle-obsolete brick
+  tables are absent from BERDL.
+- Added referenced-target key differencing to foreign-key scope selection.
+  Reloaded FK-bearing tables are always checked. Unchanged sources are now
+  checked only when a reloaded target lost exact referenced keys, or when key
+  comparison is unavailable. This reduced this run's audit scope from 369 to
+  31 source tables while retaining checks for the 11 deleted Community keys and
+  37 deleted Process keys.
+- Pre-upload package validation passed 79 of 79 relationships across the 13
+  directly reloaded FK-bearing tables. Final live Spark validation passed 150
+  of 150 relationships across all 31 direct/deletion-affected source tables,
+  with zero orphaned values, duplicate target keys, declaration errors, or type
+  failures.
+- Uploaded 12 source metadata files and 14 changed table files, then completed
+  all 14 BERDL imports. The first Spark attempt stopped before any DDL because
+  the JupyterHub server had shut down; resumed cleanly from the completed upload
+  report after respawning the server.
+- Added a standard PySpark Connect fallback for import, verification, comment
+  repair, and foreign-key validation because the maintained public bootstrap
+  references private `spark_connect_remote` and `berdl_remote` repositories
+  that were unavailable. A live `SELECT 1` probe and the complete sync passed
+  through the fallback.
+- Verified all 711 lifecycle-current BERDL tables are present and all 754
+  obsolete tables are absent. For this run's 14 reloaded tables, every table
+  comment and all 146 column comments are non-empty and exactly match the
+  generated configuration.
+- Fixed schema publication so it obtains exact row counts from
+  `manifests/current.json` and reads only five sample rows per table. The old
+  implementation unnecessarily rescanned every row of all 711 enabled tables.
+- Regenerated `schema/` and byte-verified copies in repository and installed
+  `berdl-mcp` and `enigma-berdl-query` skills. The query skill therefore
+  contains the current table set, including Bricks1669-1673 and excluding the
+  five superseded brick tables.
+
+### Critical process review
+
+- Improved foreign-key selection during this run. Reloaded FK-bearing tables
+  are still mandatory checks, while unchanged sources are rechecked only when
+  an updated target lost referenced keys or a safe key comparison cannot be
+  completed. This preserves coverage without repeatedly scanning every large
+  brick that points at an append-only static table.
+- Improved schema publication during this run. Exact row counts now come from
+  the current manifest and schema examples read at most five rows, eliminating
+  an accidental full scan of every enabled brick.
+- The next reliability improvement should make the comparison baseline an
+  explicit successfully imported and verified run. This run selected that
+  baseline manually because the most recent generated package was intentionally
+  blocked before upload.
+- The remote Spark client should gain a supported JupyterHub readiness/spawn
+  step that does not depend on private helper repositories. The plain PySpark
+  fallback connects correctly once the user server is running, but it does not
+  currently start a stopped server.
+- Source metadata and ontology uploads are repeated on every import. Content
+  addressing or reuse by digest would reduce transfer work while retaining the
+  exact source snapshot in each run report.

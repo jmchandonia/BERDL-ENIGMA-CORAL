@@ -51,20 +51,19 @@ def _read_rows(path: Path) -> tuple[list[str], list[list[str]]]:
         return header, list(reader)
 
 
-def _iter_sample(path: Path, limit: int) -> tuple[list[str], list[list[str]], int]:
+def _read_sample(path: Path, limit: int) -> tuple[list[str], list[list[str]]]:
     with path.open(newline="", encoding="utf-8", errors="replace") as handle:
         reader = csv.reader(handle, delimiter="\t")
         try:
             header = next(reader)
         except StopIteration:
-            return [], [], 0
+            return [], []
         rows = []
-        count = 0
         for row in reader:
-            count += 1
-            if len(rows) < limit:
-                rows.append(row)
-        return header, rows, count
+            rows.append(row)
+            if len(rows) >= limit:
+                break
+        return header, rows
 
 
 def _schema_from_header(header: Iterable[str]) -> list[dict[str, Any]]:
@@ -156,8 +155,14 @@ def export_table_to_markdown(config: dict[str, Any], table_name: str, output_fil
         _write_rows(handle, header, rows)
 
 
-def export_database_schema(config: dict[str, Any], output_file: Path, sample_rows: int) -> None:
+def export_database_schema(
+    config: dict[str, Any],
+    output_file: Path,
+    sample_rows: int,
+    row_counts: dict[str, int] | None = None,
+) -> None:
     tables = _ordered_enabled_tables(config)
+    row_counts = row_counts or {}
     with output_file.open("w", encoding="utf-8", newline="") as handle:
         handle.write("# Database Schema: enigma_coral\n\n")
         handle.write(f"Total Tables: {len(tables)}\n\n")
@@ -165,7 +170,8 @@ def export_database_schema(config: dict[str, Any], output_file: Path, sample_row
         for table in tables:
             table_name = table["name"]
             data_path = Path(table["local_path"])
-            header, samples, row_count = _iter_sample(data_path, sample_rows)
+            header, samples = _read_sample(data_path, sample_rows)
+            row_count: int | str = row_counts.get(table_name, "unknown")
             schema = table.get("schema") or _schema_from_header(header)
 
             handle.write(f"## Table: {table_name}\n\n")
@@ -193,10 +199,20 @@ def main() -> int:
     args = parser.parse_args()
 
     config = _load_json(args.run_dir / "ingest" / "config.dry_run.json")
+    manifest = _load_json(args.run_dir / "manifests" / "current.json")
+    row_counts = {
+        table["table"]: table["row_count"]
+        for table in manifest.get("tables", [])
+    }
     args.schema_dir.mkdir(parents=True, exist_ok=True)
     export_table_to_markdown(config, "ddt_ndarray", args.schema_dir / "ddt_ndarray_table.md")
     export_table_to_markdown(config, "sys_ddt_typedef", args.schema_dir / "sys_ddt_typedef_table.md")
-    export_database_schema(config, args.schema_dir / "enigma_coral_schema.md", args.sample_rows)
+    export_database_schema(
+        config,
+        args.schema_dir / "enigma_coral_schema.md",
+        args.sample_rows,
+        row_counts,
+    )
     print(f"Wrote schema markdown to {args.schema_dir}")
     return 0
 

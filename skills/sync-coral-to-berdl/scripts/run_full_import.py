@@ -13,7 +13,6 @@ import argparse
 import json
 import os
 import subprocess
-import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -94,6 +93,30 @@ def _set_remote_connection_env_defaults() -> None:
     os.environ.setdefault("https_proxy", "http://127.0.0.1:8123")
     os.environ.setdefault("no_proxy", "localhost,127.0.0.1")
     os.environ.setdefault("BERDL_NO_AUTO_SPAWN", "1")
+
+
+def _create_spark_session(*, token: str, app_name: str):
+    try:
+        from spark_connect_remote import create_spark_session
+    except ModuleNotFoundError:
+        from pyspark.sql import SparkSession
+
+        remote = (
+            "sc://metrics.berdl.kbase.us:443/;"
+            f"use_ssl=true;x-kbase-token={token}"
+        )
+        return (
+            SparkSession.builder.remote(remote)
+            .appName(app_name)
+            .getOrCreate()
+        )
+    return create_spark_session(
+        host_template="metrics.berdl.kbase.us",
+        port=443,
+        use_ssl=True,
+        kbase_token=token,
+        app_name=app_name,
+    )
 
 
 def _table_bronze_key(table: dict[str, Any]) -> str:
@@ -247,6 +270,11 @@ def main() -> int:
         type=Path,
         help="Import only enabled table names listed one per line in this file.",
     )
+    parser.add_argument(
+        "--drop-table-file",
+        type=Path,
+        help="Drop only disabled brick table names listed one per line in this file.",
+    )
     parser.add_argument("--mc", default="/h/jmc/bin/mc" if Path("/h/jmc/bin/mc").exists() else "mc")
     parser.add_argument("--report")
     args = parser.parse_args()
@@ -272,6 +300,19 @@ def main() -> int:
         table["name"] for table in config["tables"]
         if table.get("source_kind") == "brick" and not table.get("enabled")
     ]
+    if args.drop_table_file:
+        requested_drops = {
+            line.strip()
+            for line in args.drop_table_file.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        }
+        invalid_drops = requested_drops - set(disabled_bricks)
+        if invalid_drops:
+            raise RuntimeError(
+                "Requested drop table(s) are not disabled brick tables in config: "
+                f"{sorted(invalid_drops)}"
+            )
+        disabled_bricks = sorted(requested_drops)
 
     bronze_mc_prefix = f"berdl-minio/cdm-lake/tenant-general-warehouse/enigma/datasets/coral/{args.run_id}"
     bronze_s3_base = f"s3a://cdm-lake/tenant-general-warehouse/enigma/datasets/coral/{args.run_id}"
@@ -309,16 +350,9 @@ def main() -> int:
         raise RuntimeError("KBASE_AUTH_TOKEN or KB_AUTH_TOKEN must be set")
     _set_remote_connection_env_defaults()
 
-    sys.path.insert(0, "/h/jmc/src/BERIL-research-observatory/scripts")
-    import ingest_lib  # noqa: F401
-    from spark_connect_remote import create_spark_session
-
     def make_spark():
-        new_spark = create_spark_session(
-            host_template="metrics.berdl.kbase.us",
-            port=443,
-            use_ssl=True,
-            kbase_token=token,
+        new_spark = _create_spark_session(
+            token=token,
             app_name=f"sync-coral-full-import-{args.run_id}",
         )
         _patch_spark_connect_config_defaults(new_spark)

@@ -142,6 +142,57 @@ class RepositoryPathTests(unittest.TestCase):
             self.assertIn("enigma-data-repository/genome/", output)
             self.assertNotIn("/auto/sahara/", output)
 
+    def test_known_brick_value_correction_is_exact_and_column_scoped(self):
+        spec = importlib.util.spec_from_file_location(
+            "prepare_brick_tables_values", SCRIPTS / "prepare_brick_tables.py"
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        bad = (
+            "anaerobic = 0; media name = LB, concentration = 25.0 "
+            "(fold dilution); media name = Sediment Extract; "
+            "temperature = 30.0 (degree Celsius)"
+        )
+        good = "A" + bad[1:]
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "Brick0000510.tsv"
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.writer(handle, delimiter="\t")
+                writer.writerow(["sdt_condition_name", "description"])
+                writer.writerow([bad, bad])
+                writer.writerow([good, "unchanged"])
+
+            result = module.normalize_known_coral_values_in_tsv(
+                path, "Brick0000510"
+            )
+
+            self.assertEqual(result["cells_changed"], 1)
+            self.assertEqual(result["by_column"], {"sdt_condition_name": 1})
+            with path.open(newline="", encoding="utf-8") as handle:
+                rows = list(csv.reader(handle, delimiter="\t"))
+            self.assertEqual(rows[1], [good, bad])
+            self.assertEqual(rows[2], [good, "unchanged"])
+
+    def test_known_value_correction_ignores_other_bricks(self):
+        spec = importlib.util.spec_from_file_location(
+            "prepare_brick_tables_other", SCRIPTS / "prepare_brick_tables.py"
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "Brick0000511.tsv"
+            original = b"sdt_condition_name\nanaerobic = 0\n"
+            path.write_bytes(original)
+
+            result = module.normalize_known_coral_values_in_tsv(
+                path, "Brick0000511"
+            )
+
+            self.assertEqual(result["cells_changed"], 0)
+            self.assertEqual(path.read_bytes(), original)
+
 
 if __name__ == "__main__":
     unittest.main()
