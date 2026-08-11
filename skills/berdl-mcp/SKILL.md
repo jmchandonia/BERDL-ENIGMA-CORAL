@@ -30,6 +30,8 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
 - Use `select` for joins, filters, aggregations, and pagination.
 - Use table names as `table_alias` values in `columns` when joins are present.
 - Keep filter column names unambiguous across joined tables (filters do not accept table aliases).
+- In every `order_by` entry, use uppercase `"ASC"` or `"DESC"` for
+  `direction`; lowercase values such as `"asc"` fail request validation.
 - Keep `limit <= 1000` (API constraint).
 - For ENIGMA, verify table and column names against the generated schema reference or the live schema endpoint before querying.
 - For provenance/object links, `sys_process` has `input_objects` and `output_objects`, while `sys_process_input` and `sys_process_output` expose normalized link rows.

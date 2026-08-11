@@ -52,6 +52,8 @@ Common endpoints:
 
 - Use table names as `table_alias` values in `columns` when joins are present.
 - Keep filter column names unambiguous across joined tables (filters do not accept table aliases).
+- In every `order_by` entry, use uppercase `"ASC"` or `"DESC"` for
+  `direction`; lowercase values such as `"asc"` fail request validation.
 - Supported filter operators: `=`, `!=`, `<`, `>`, `<=`, `>=`, `IN`, `NOT IN`, `LIKE`, `NOT LIKE`, `IS NULL`, `IS NOT NULL`, `BETWEEN`.
 
 ## Brick (ndarray) guidance
