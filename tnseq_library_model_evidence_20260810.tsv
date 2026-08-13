@@ -1,0 +1,47 @@
+org_id	source_mutant_library	base_library_lineage	primers_model	transposon	evidence_status	evidence_source	notes
+Brev2	Brev2_ML6a	Brev2_ML6	model_pTGG39_NN1	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC5768790/	FEBa suffix variant; timeZeroSet names use Brev2_ML6; Magic Pools Table 1 identifies Brev2_ML6 as pTGG39_NN1.
+Btheta	Btheta_ML6	Btheta_ML6	model_pTGG46_NN1	mariner	exact	https://pmc.ncbi.nlm.nih.gov/articles/PMC8121099/	Methods identify the Btheta_ML6 donor as E. coli WM3064 carrying pTGG46_NN1.
+Btheta	Btheta_ML6a	Btheta_ML6	model_pTGG46_NN1	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC8121099/	FEBa suffix variant; timeZeroSet names use Btheta_ML6.
+Btheta	Btheta_ML6b	Btheta_ML6	model_pTGG46_NN1	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC8121099/	FEBa suffix variant; timeZeroSet names use Btheta_ML6.
+Castellaniella_MT123	Castellaniella_MT123_ML3	Castellaniella_MT123_ML3			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Collimonas_GW821-FHT01A05	Collimonas_GW821-FHT01A05_ML4	Collimonas_GW821-FHT01A05_ML4			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Cup4G11	cupriavidus_4G11_ML11	cupriavidus_4G11_ML11	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies the library as mariner; its table note maps non-exception mariner libraries to pKMW3.
+Cup4G11	cupriavidus_4G11_ML11_FieldsLab	cupriavidus_4G11_ML11	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	Collaborating-site label; timeZeroSet names use cupriavidus_4G11_ML11.
+Cup4G11	cupriavidus_4G11_ML11_JBEI	cupriavidus_4G11_ML11	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	Collaborating-site label; timeZeroSet names use cupriavidus_4G11_ML11.
+Cup4G11	cupriavidus_4G11_ML11a	cupriavidus_4G11_ML11	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use cupriavidus_4G11_ML11.
+Enterobacter_XG201	Enterobacter_XG201_ML2	Enterobacter_XG201_ML2			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Janthino_FHT05C05	Janthino_FHT05C05_ML1	Janthino_FHT05C05_ML1			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Janthinobacterium_agari	Janthinobacterium_agari_ML9	Janthinobacterium_agari_ML9			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Keio	KEIO_ML9a	Keio_ML9	model_pKMW7	Tn5	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa case/suffix variant; timeZeroSet names use Keio_ML9; Price 2018 Supplementary Table S20 maps the Keio Tn5 library to pKMW7.
+Keio	Keio_ML9	Keio_ML9	model_pKMW7	Tn5	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies KEIO_ML9 as Tn5 and maps Tn5 to pKMW7.
+Keio	Keio_ML9a	Keio_ML9	model_pKMW7	Tn5	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use Keio_ML9.
+Keio	Keio_ML9a_ucsf	Keio_ML9	model_pKMW7	Tn5	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	Collaborating-site label; timeZeroSet names use Keio_ML9.
+MT049	MT049_ML3	MT049_ML3			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+MT058	MT058_ML2	MT058_ML2			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Pedo557	Pedo557_ML3	Pedo557_ML3	model_pTGG43_NN2	mariner	exact	https://pmc.ncbi.nlm.nih.gov/articles/PMC5768790/	Magic Pools Table 1 identifies Pedo557_ML3 as pTGG43_NN2.
+Phaga5	Phaga5_ML11	Phaga5_ML11			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+PseudoFW215-L2	PseudoFW215-L2_ML1	PseudoFW215-L2_ML1			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+Putida	Putida_ML5	Putida_ML5	model_pKMW3	mariner	exact	https://pmc.ncbi.nlm.nih.gov/articles/PMC6509195/	Published Putida_ML5 methods identify the barcoded mariner delivery vector as pKMW3.
+Putida	Putida_ML5_JBEI	Putida_ML5	model_pKMW3	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC6509195/	Collaborating-site label; timeZeroSet names use Putida_ML5.
+Putida	Putida_ML5_PNNL	Putida_ML5	model_pKMW3	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC6509195/	Collaborating-site label; timeZeroSet names use Putida_ML5.
+Putida	Putida_ML5a	Putida_ML5	model_pKMW3	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC6509195/	FEBa suffix variant; timeZeroSet names use Putida_ML5.
+Putida	putida_ML5	Putida_ML5	model_pKMW3	mariner	exact_alias	https://pmc.ncbi.nlm.nih.gov/articles/PMC6509195/	FEBa case variant; timeZeroSet names use Putida_ML5.
+Rhodanobacter_MT42	Rhodanobacter_MT42_ML2	Rhodanobacter_MT42_ML2			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+acidovorax_3H11	acidovorax_3H11_ML3a	acidovorax_3H11_ML3a	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3.
+pseudo13_GW456_L13	pseudo13_ML2	pseudo13_ML2	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3.
+pseudo13_GW456_L13	pseudo13_ML2a	pseudo13_ML2	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo13_ML2.
+pseudo1_N1B4	PsfN1B4_ML1	pseudo1_N1B4_ML1	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa alias; timeZeroSet names use pseudo1_N1B4_ML1.
+pseudo1_N1B4	pseudo1_N1B4_ML1	pseudo1_N1B4_ML1	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3.
+pseudo3_N2E3	pseudo3_N2E3_ML2	pseudo3_N2E3_ML2	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3.
+pseudo3_N2E3	pseudo3_N2E3_ML2a	pseudo3_N2E3_ML2	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo3_N2E3_ML2.
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3.
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2B	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo5_N2-C3_1_ML2.
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2a	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo5_N2-C3_1_ML2.
+pseudo6_N2E2	pseudo6_N2E2_ML5	pseudo6_N2E2_ML5	model_pKMW3	mariner	exact	https://www.nature.com/articles/s41586-018-0124-0	Price 2018 Supplementary Table S20 identifies this as a non-exception mariner library, which maps to pKMW3; existing CORAL model_pKMW7 is incorrect.
+pseudo6_N2E2	pseudo6_N2E2_ML5a	pseudo6_N2E2_ML5	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo6_N2E2_ML5.
+pseudo6_N2E2	pseudo6_N2E2_ML5b	pseudo6_N2E2_ML5	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo6_N2E2_ML5.
+pseudo6_N2E2	pseudo6_N2E2_ML5c	pseudo6_N2E2_ML5	model_pKMW3	mariner	exact_alias	https://www.nature.com/articles/s41586-018-0124-0	FEBa suffix variant; timeZeroSet names use pseudo6_N2E2_ML5.
+rhodanobacter_10B01	Rhodanobacter sp. FW104-10B01	rhodanobacter_10B01_ML12		mariner	class_only	https://academic.oup.com/ismej/article/18/1/wrae151/7729366	FEBa display-name alias; timeZeroSet names use rhodanobacter_10B01_ML12; publication confirms a DNA-barcoded mariner vector but does not name the plasmid.
+rhodanobacter_10B01	rhodanobacter_10B01_ML12	rhodanobacter_10B01_ML12		mariner	class_only	https://academic.oup.com/ismej/article/18/1/wrae151/7729366	Publication confirms a DNA-barcoded mariner vector but does not name the plasmid.
+rhodanobacter_R12	rhodanobacter_R12_ML3	rhodanobacter_R12_ML3			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.
+rhodanobacter_T8	rhodanobacter_T8_ML1	rhodanobacter_T8_ML1			unresolved		No vector or transposon field in feba.db and no source page/publication found with an exact model.

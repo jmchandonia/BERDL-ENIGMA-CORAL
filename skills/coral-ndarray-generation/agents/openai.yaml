@@ -1,0 +1,3 @@
+display_name: Coral Ndarray Generation
+short_description: Build typedef-correct CORAL static TSVs, ndarray JSON, and BERVO metadata.
+default_prompt: Generate or review CORAL static-object TSVs, generic ndarray JSON, or CORAL-style BERVO metadata using current typedef field names, stable unique-name references, ontology-correct structure, units, and pre-import validation.

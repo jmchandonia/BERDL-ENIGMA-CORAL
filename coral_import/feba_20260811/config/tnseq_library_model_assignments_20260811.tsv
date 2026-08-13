@@ -1,0 +1,47 @@
+fitprivate_orgId	source_mutant_library	base_library_lineage	primers_model	transposon	assignment_basis	source_value	notes
+acidovorax_3H11	acidovorax_3H11_ML3a	acidovorax_3H11_ML3a	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Btheta	Btheta_ML6	Btheta_ML6	model_pTGG46_NN1	mariner	project_override	pTGG45_NN1	Approved project override retains pTGG46_NN1 despite conflicting mastersheet cell.
+Btheta	Btheta_ML6a	Btheta_ML6	model_pTGG46_NN1	mariner	approved_base_lineage		No named mastersheet row; approved inheritance from Btheta_ML6.
+Btheta	Btheta_ML6b	Btheta_ML6	model_pTGG46_NN1	mariner	approved_base_lineage		No named mastersheet row; approved inheritance from Btheta_ML6.
+Brev2	Brev2_ML6a	Brev2_ML6	model_pTGG39_NN1	mariner	prior_row_inheritance		Blank cell inherited from immediately preceding same-organism Brev2_ML6 row.
+Castellaniella_MT123	Castellaniella_MT123_ML3	Castellaniella_MT123_ML3	model_AMD290		direct_mastersheet	AMD290	
+Collimonas_GW821-FHT01A05	Collimonas_GW821-FHT01A05_ML4	Collimonas_GW821-FHT01A05_ML4	model_AMD289		direct_mastersheet	AMD289	
+Cup4G11	cupriavidus_4G11_ML11	cupriavidus_4G11_ML11	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Cup4G11	cupriavidus_4G11_ML11_FieldsLab	cupriavidus_4G11_ML11	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved collaborating-site inheritance.
+Cup4G11	cupriavidus_4G11_ML11_JBEI	cupriavidus_4G11_ML11	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved collaborating-site inheritance.
+Cup4G11	cupriavidus_4G11_ML11a	cupriavidus_4G11_ML11	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Enterobacter_XG201	Enterobacter_XG201_ML2	Enterobacter_XG201_ML1	model_AMD289		prior_row_inheritance	?	Question-mark cell inherited from immediately preceding same-organism row.
+Janthino_FHT05C05	Janthino_FHT05C05_ML1	Janthino_FHT05C05_ML1	model_AMD3737		direct_mastersheet	AMD3737	
+Janthinobacterium_agari	Janthinobacterium_agari_ML9	Janthinobacterium_agari_ML9	model_AMD3737		direct_mastersheet	AMD3737	
+Keio	KEIO_ML9a	Keio_ML9	model_pKMW7	Tn5	case_variant	EZ random barcode TN5	Normalized descriptive Tn5 value to pKMW7.
+Keio	Keio_ML9	Keio_ML9	model_pKMW7	Tn5	direct_mastersheet	EZ random barcode TN5	Normalized descriptive Tn5 value to pKMW7.
+Keio	Keio_ML9a	Keio_ML9	model_pKMW7	Tn5	direct_mastersheet	EZ random barcode TN5	Normalized descriptive Tn5 value to pKMW7.
+Keio	Keio_ML9a_ucsf	Keio_ML9	model_pKMW7	Tn5	approved_base_lineage		No named mastersheet row; approved collaborating-site inheritance.
+MT049	MT049_ML3	MT049_ML3	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+MT058	MT058_ML2	MT058_ML2	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+Pedo557	Pedo557_ML3	Pedo557_ML3	model_pTGG43_NN2	mariner	direct_mastersheet	pTGG43_NN2	
+Phaga5	Phaga5_ML11	Phaga5_ML11	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+PseudoFW215-L2	PseudoFW215-L2_ML1	PseudoFW215-L2_ML1	model_AMD290		direct_mastersheet	AMD290	
+Putida	Putida_ML5	Putida_ML5	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Putida	Putida_ML5_JBEI	Putida_ML5	model_pKMW3	mariner	prior_row_inheritance		Blank cell inherited from same-organism Putida_ML5 lineage.
+Putida	Putida_ML5_PNNL	Putida_ML5	model_pKMW3	mariner	prior_row_inheritance		Blank cell inherited from same-organism Putida_ML5 lineage.
+Putida	Putida_ML5a	Putida_ML5	model_pKMW3	mariner	prior_row_inheritance		Blank cell inherited from same-organism Putida_ML5 lineage.
+Putida	putida_ML5	Putida_ML5	model_pKMW3	mariner	case_variant	pKMW3	
+Rhodanobacter_MT42	Rhodanobacter_MT42_ML2	Rhodanobacter_MT42_ML2	model_AMD1385		direct_mastersheet	AMD1385	
+pseudo13_GW456_L13	pseudo13_ML2	pseudo13_ML2	model_pKMW3	mariner	normalized_same_organism_lineage	Conjugation	Misplaced descriptive value normalized to surrounding pKMW3 lineage.
+pseudo13_GW456_L13	pseudo13_ML2a	pseudo13_ML2	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo1_N1B4	PsfN1B4_ML1	pseudo1_N1B4_ML1	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved FEBa alias inheritance.
+pseudo1_N1B4	pseudo1_N1B4_ML1	pseudo1_N1B4_ML1	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+pseudo3_N2E3	pseudo3_N2E3_ML2	pseudo3_N2E3_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+pseudo3_N2E3	pseudo3_N2E3_ML2a	pseudo3_N2E3_ML2	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	Mastersheet organism spelling is pseudo5_N2-C3_1.
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2B	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	Mastersheet organism spelling is pseudo5_N2-C3_1.
+pseudo5_N2C3_1	pseudo5_N2-C3_1_ML2a	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	case_variant	pKMW3	Mastersheet row uses uppercase ML2A.
+pseudo6_N2E2	pseudo6_N2E2_ML5	pseudo6_N2E2_ML5	model_pKMW3	mariner	direct_mastersheet	pKMW3	Existing CORAL model_pKMW7 is not reused.
+pseudo6_N2E2	pseudo6_N2E2_ML5a	pseudo6_N2E2_ML5	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo6_N2E2	pseudo6_N2E2_ML5b	pseudo6_N2E2_ML5	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo6_N2E2	pseudo6_N2E2_ML5c	pseudo6_N2E2_ML5	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved suffix inheritance.
+rhodanobacter_10B01	Rhodanobacter sp. FW104-10B01	rhodanobacter_10B01_ML12	model_pTKO49_NN1	mariner	approved_base_lineage		Approved display-name alias of the ML12 lineage.
+rhodanobacter_10B01	rhodanobacter_10B01_ML12	rhodanobacter_10B01_ML12	model_pTKO49_NN1	mariner	direct_mastersheet	pTKO49_NN1	
+rhodanobacter_R12	rhodanobacter_R12_ML3	rhodanobacter_R12_ML3	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+rhodanobacter_T8	rhodanobacter_T8_ML1	rhodanobacter_T8_ML1	model_AMD1385		direct_mastersheet	AMD1385	

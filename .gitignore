@@ -1,3 +1,8 @@
 .env
 genome_upload/
 sync-coral-to-berdl/exports/
+__pycache__/
+coral_import/feba_20260811/phase1/edr_candidates/
+coral_import/feba_20260811/phase1/exports/
+coral_import/feba_20260811/production_checkout_20260812/
+coral_import/feba_20260811/coral_package_20260813/

@@ -1,0 +1,104 @@
+{
+  "assembly_matching_organisms": 1,
+  "details": [
+    {
+      "candidates": [
+        {
+          "assembly_fingerprint": "7f3a73bdc3489ccf55296862d6bee3a435de6ebd6a3dbc7464a378b3930397c0",
+          "candidate_features": 3436,
+          "exact_annotation_match": false,
+          "extra_candidate_feature_ids": [
+            "OKGIIKCNKL_3435",
+            "OKGIIKCNKL_64",
+            "OKGIIKCNKL_65",
+            "OKGIIKCNKL_66",
+            "OKGIIKCNKL_67",
+            "OKGIIKCNKL_68",
+            "OKGIIKCNKL_69",
+            "OKGIIKCNKL_70",
+            "OKGIIKCNKL_71",
+            "OKGIIKCNKL_72",
+            "OKGIIKCNKL_73",
+            "OKGIIKCNKL_74",
+            "OKGIIKCNKL_75",
+            "OKGIIK_04125",
+            "OKGIIK_05640",
+            "OKGIIK_07380",
+            "OKGIIK_10135",
+            "OKGIIK_11730",
+            "OKGIIK_12220",
+            "contig_1_polypolish"
+          ],
+          "fasta_sha256": "cb7411c028f4ad581cd14a12a2dd4911c45e911543117006ecf18c629f8523a0",
+          "matches_source_assembly": true,
+          "metadata_mismatches": [
+            {
+              "differences": {
+                "description": {
+                  "candidate": "UDP-N-acetyl-alpha-D-muramoyl-L-alanyl-L-glutamate epimerase",
+                  "source": "UDP-N-acetyl-alpha-D-muramoyl-L-alanyl-L-glutamat e epimerase"
+                }
+              },
+              "feature_id": "OKGIIK_02130"
+            },
+            {
+              "differences": {
+                "description": {
+                  "candidate": "1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)methylideneamino]imidazole-4-carboxamide isomerase",
+                  "source": "1-(5-phosphoribosyl)-5-[(5-phosphoribosylamino)me thylideneamino]imidazole-4-carboxamide isomerase"
+                }
+              },
+              "feature_id": "OKGIIK_04970"
+            },
+            {
+              "differences": {
+                "description": {
+                  "candidate": "phospho-N-acetylmuramoyl-pentapeptide-transferase",
+                  "source": "phospho-N-acetylmuramoyl-pentapeptide-transferase "
+                }
+              },
+              "feature_id": "OKGIIK_11695"
+            },
+            {
+              "differences": {
+                "description": {
+                  "candidate": "UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine ligase",
+                  "source": "UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alani ne ligase"
+                }
+              },
+              "feature_id": "OKGIIK_11700"
+            },
+            {
+              "differences": {
+                "description": {
+                  "candidate": "UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate ligase",
+                  "source": "UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-di aminopimelate ligase"
+                }
+              },
+              "feature_id": "OKGIIK_11705"
+            },
+            {
+              "differences": {
+                "description": {
+                  "candidate": "UDP-N-acetylmuramate--L-alanyl-gamma-D-glutamyl-meso-2,6-diaminoheptandioate ligase",
+                  "source": "UDP-N-acetylmuramate--L-alanyl-gamma-D-glutamyl-m eso-2,6-diaminoheptandioate ligase"
+                }
+              },
+              "feature_id": "OKGIIK_17020"
+            }
+          ],
+          "missing_source_feature_ids": [],
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-T8/FW510-T8.3/FW510-T8_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "source_features": 3416,
+          "structural_mismatches": [],
+          "total_bases": 3752333,
+          "version": "FW510-T8.3"
+        }
+      ],
+      "fitprivate_orgId": "rhodanobacter_T8"
+    }
+  ],
+  "exact_annotation_matches": 0
+}

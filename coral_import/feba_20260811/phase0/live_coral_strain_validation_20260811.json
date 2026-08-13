@@ -1,0 +1,1724 @@
+{
+  "checked_at": "2026-08-11T23:09:15.247878+00:00",
+  "comparisons": [
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000324"
+      ],
+      "expected_sdt_strain_id": "Strain0000324",
+      "fitprivate_orgId": "Brev2",
+      "sdt_strain_name": "GW460-12-10-14-LB2",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000672"
+      ],
+      "expected_sdt_strain_id": "Strain0000672",
+      "fitprivate_orgId": "Castellaniella_MT123",
+      "sdt_strain_name": "MT123",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0001267"
+      ],
+      "expected_sdt_strain_id": "Strain0001267",
+      "fitprivate_orgId": "Collimonas_GW821-FHT01A05",
+      "sdt_strain_name": "GW821-FHT01A05",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000132"
+      ],
+      "expected_sdt_strain_id": "Strain0000132",
+      "fitprivate_orgId": "Cup4G11",
+      "sdt_strain_name": "FW507-4G11",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000834"
+      ],
+      "expected_sdt_strain_id": "Strain0000834",
+      "fitprivate_orgId": "Enterobacter_XG201",
+      "sdt_strain_name": "EB106-05-01-XG201",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0001343"
+      ],
+      "expected_sdt_strain_id": "Strain0001343",
+      "fitprivate_orgId": "Janthino_FHT05C05",
+      "sdt_strain_name": "GW822-FHT05C05",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0001203"
+      ],
+      "expected_sdt_strain_id": "Strain0001203",
+      "fitprivate_orgId": "Janthinobacterium_agari",
+      "sdt_strain_name": "GW823-FHT01H08",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000667"
+      ],
+      "expected_sdt_strain_id": "Strain0000667",
+      "fitprivate_orgId": "MT049",
+      "sdt_strain_name": "MT49",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000666"
+      ],
+      "expected_sdt_strain_id": "Strain0000666",
+      "fitprivate_orgId": "MT058",
+      "sdt_strain_name": "MT58",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000621"
+      ],
+      "expected_sdt_strain_id": "Strain0000621",
+      "fitprivate_orgId": "Pedo557",
+      "sdt_strain_name": "GW460-11-11-14-LB5",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000213"
+      ],
+      "expected_sdt_strain_id": "Strain0000213",
+      "fitprivate_orgId": "Phaga5",
+      "sdt_strain_name": "GW460-11-11-14-LB1",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000580"
+      ],
+      "expected_sdt_strain_id": "Strain0000580",
+      "fitprivate_orgId": "PseudoFW215-L2",
+      "sdt_strain_name": "FW215-L2",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000683"
+      ],
+      "expected_sdt_strain_id": "Strain0000683",
+      "fitprivate_orgId": "Rhodanobacter_MT42",
+      "sdt_strain_name": "MT42",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000061"
+      ],
+      "expected_sdt_strain_id": "Strain0000061",
+      "fitprivate_orgId": "acidovorax_3H11",
+      "sdt_strain_name": "GW101-3H11",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000481"
+      ],
+      "expected_sdt_strain_id": "Strain0000481",
+      "fitprivate_orgId": "pseudo13_GW456_L13",
+      "sdt_strain_name": "GW456-L13",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000456"
+      ],
+      "expected_sdt_strain_id": "Strain0000456",
+      "fitprivate_orgId": "pseudo1_N1B4",
+      "sdt_strain_name": "FW300-N1B4",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000458"
+      ],
+      "expected_sdt_strain_id": "Strain0000458",
+      "fitprivate_orgId": "pseudo3_N2E3",
+      "sdt_strain_name": "FW300-N2E3",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000477"
+      ],
+      "expected_sdt_strain_id": "Strain0000477",
+      "fitprivate_orgId": "pseudo5_N2C3_1",
+      "sdt_strain_name": "FW300-N2C3",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000457"
+      ],
+      "expected_sdt_strain_id": "Strain0000457",
+      "fitprivate_orgId": "pseudo6_N2E2",
+      "sdt_strain_name": "FW300-N2E2",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000653"
+      ],
+      "expected_sdt_strain_id": "Strain0000653",
+      "fitprivate_orgId": "rhodanobacter_10B01",
+      "sdt_strain_name": "FW104-10B01",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000663"
+      ],
+      "expected_sdt_strain_id": "Strain0000663",
+      "fitprivate_orgId": "rhodanobacter_R12",
+      "sdt_strain_name": "FW510-R12",
+      "status": "verified"
+    },
+    {
+      "actual_sdt_strain_ids": [
+        "Strain0000660"
+      ],
+      "expected_sdt_strain_id": "Strain0000660",
+      "fitprivate_orgId": "rhodanobacter_T8",
+      "sdt_strain_name": "FW510-T8",
+      "status": "verified"
+    }
+  ],
+  "database": "enigma_coral",
+  "failures": [],
+  "live_genomes": [
+    {
+      "link": "https://narrative.kbase.us/#dataview/125041/FW510-T8.genome",
+      "n_contigs_count_unit": 42,
+      "n_features_count_unit": 3321,
+      "sdt_genome_id": "Genome0004641",
+      "sdt_genome_name": "125041/FW510-T8.genome",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW104-10B01.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3517,
+      "sdt_genome_id": "Genome0001689",
+      "sdt_genome_name": "131815/FW104-10B01.2.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW300-N1B4.2.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6093,
+      "sdt_genome_id": "Genome0001753",
+      "sdt_genome_name": "131815/FW300-N1B4.2.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW300-N2C3.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6074,
+      "sdt_genome_id": "Genome0001757",
+      "sdt_genome_name": "131815/FW300-N2C3.2.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW300-N2E2.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 7303,
+      "sdt_genome_id": "Genome0001693",
+      "sdt_genome_name": "131815/FW300-N2E2.2.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW300-N2E3.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5895,
+      "sdt_genome_id": "Genome0001697",
+      "sdt_genome_name": "131815/FW300-N2E3.2.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW507-4G11.2.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 7584,
+      "sdt_genome_id": "Genome0001778",
+      "sdt_genome_name": "131815/FW507-4G11.2.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/FW510-R12.2.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 3753,
+      "sdt_genome_id": "Genome0001741",
+      "sdt_genome_name": "131815/FW510-R12.2.genome",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW101-3H11.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4956,
+      "sdt_genome_id": "Genome0001772",
+      "sdt_genome_name": "131815/GW101-3H11.2.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW456-L13.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5141,
+      "sdt_genome_id": "Genome0001759",
+      "sdt_genome_name": "131815/GW456-L13.2.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW460-11-11-14-LB1.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5799,
+      "sdt_genome_id": "Genome0001729",
+      "sdt_genome_name": "131815/GW460-11-11-14-LB1.2.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW460-11-11-14-LB5.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5045,
+      "sdt_genome_id": "Genome0001694",
+      "sdt_genome_name": "131815/GW460-11-11-14-LB5.2.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW822-FHT05C05.2.genome",
+      "n_contigs_count_unit": 12,
+      "n_features_count_unit": 5502,
+      "sdt_genome_id": "Genome0001715",
+      "sdt_genome_name": "131815/GW822-FHT05C05.2.genome",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/GW823-FHT01H08.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5341,
+      "sdt_genome_id": "Genome0001736",
+      "sdt_genome_name": "131815/GW823-FHT01H08.2.genome",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/MT123.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3116,
+      "sdt_genome_id": "Genome0001749",
+      "sdt_genome_name": "131815/MT123.2.genome",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/MT42.2.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 3861,
+      "sdt_genome_id": "Genome0001720",
+      "sdt_genome_name": "131815/MT42.2.genome",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/MT49.2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4950,
+      "sdt_genome_id": "Genome0001737",
+      "sdt_genome_name": "131815/MT49.2.genome",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/131815/MT58.2.genome",
+      "n_contigs_count_unit": 4,
+      "n_features_count_unit": 4333,
+      "sdt_genome_id": "Genome0001686",
+      "sdt_genome_name": "131815/MT58.2.genome",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/169423/GW101-3H11.genome",
+      "n_contigs_count_unit": 72,
+      "n_features_count_unit": 4304,
+      "sdt_genome_id": "Genome0004324",
+      "sdt_genome_name": "169423/GW101-3H11.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/169423/GW101-3H11.genome/1",
+      "n_contigs_count_unit": 19,
+      "n_features_count_unit": 6128,
+      "sdt_genome_id": "Genome0000843",
+      "sdt_genome_name": "169423/GW101-3H11.genome/1",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/EB106-05-01-XG201.genome",
+      "n_contigs_count_unit": 55,
+      "n_features_count_unit": 4462,
+      "sdt_genome_id": "Genome0001330",
+      "sdt_genome_name": "39899/EB106-05-01-XG201.genome",
+      "sdt_strain_name": "EB106-05-01-XG201"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW104-10B01.genome",
+      "n_contigs_count_unit": 5,
+      "n_features_count_unit": 3544,
+      "sdt_genome_id": "Genome0001368",
+      "sdt_genome_name": "39899/FW104-10B01.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW215-L2-reassembled.genome",
+      "n_contigs_count_unit": 206,
+      "n_features_count_unit": 6616,
+      "sdt_genome_id": "Genome0001204",
+      "sdt_genome_name": "39899/FW215-L2-reassembled.genome",
+      "sdt_strain_name": "FW215-L2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW300-N1B4.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6341,
+      "sdt_genome_id": "Genome0001352",
+      "sdt_genome_name": "39899/FW300-N1B4.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW300-N2C3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6345,
+      "sdt_genome_id": "Genome0001354",
+      "sdt_genome_name": "39899/FW300-N2C3.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW300-N2E2-reassembled.genome",
+      "n_contigs_count_unit": 68,
+      "n_features_count_unit": 6057,
+      "sdt_genome_id": "Genome0001093",
+      "sdt_genome_name": "39899/FW300-N2E2-reassembled.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW300-N2E3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6038,
+      "sdt_genome_id": "Genome0001353",
+      "sdt_genome_name": "39899/FW300-N2E3.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW507-4G11-reassembled.genome",
+      "n_contigs_count_unit": 63,
+      "n_features_count_unit": 7556,
+      "sdt_genome_id": "Genome0001219",
+      "sdt_genome_name": "39899/FW507-4G11-reassembled.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW510-R12.genome",
+      "n_contigs_count_unit": 2065,
+      "n_features_count_unit": 8144,
+      "sdt_genome_id": "Genome0001361",
+      "sdt_genome_name": "39899/FW510-R12.genome",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/FW510-T8.genome",
+      "n_contigs_count_unit": 113,
+      "n_features_count_unit": 3340,
+      "sdt_genome_id": "Genome0001358",
+      "sdt_genome_name": "39899/FW510-T8.genome",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/GW101-3H11.genome",
+      "n_contigs_count_unit": 39,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0001350",
+      "sdt_genome_name": "39899/GW101-3H11.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/GW456-L13.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 5308,
+      "sdt_genome_id": "Genome0001371",
+      "sdt_genome_name": "39899/GW456-L13.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/GW460-11-11-14-LB1.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5805,
+      "sdt_genome_id": "Genome0001370",
+      "sdt_genome_name": "39899/GW460-11-11-14-LB1.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/GW460-11-11-14-LB5.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5020,
+      "sdt_genome_id": "Genome0001348",
+      "sdt_genome_name": "39899/GW460-11-11-14-LB5.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/GW460-12-10-14-LB2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3190,
+      "sdt_genome_id": "Genome0001347",
+      "sdt_genome_name": "39899/GW460-12-10-14-LB2.genome",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/MT123-reassembled.genome",
+      "n_contigs_count_unit": 95,
+      "n_features_count_unit": 3145,
+      "sdt_genome_id": "Genome0001090",
+      "sdt_genome_name": "39899/MT123-reassembled.genome",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/MT42-reassembled.genome",
+      "n_contigs_count_unit": 856,
+      "n_features_count_unit": 4958,
+      "sdt_genome_id": "Genome0001085",
+      "sdt_genome_name": "39899/MT42-reassembled.genome",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/MT49-reassembled.genome",
+      "n_contigs_count_unit": 24,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0001086",
+      "sdt_genome_name": "39899/MT49-reassembled.genome",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/39899/MT58-reassembled.genome",
+      "n_contigs_count_unit": 31,
+      "n_features_count_unit": 4323,
+      "sdt_genome_id": "Genome0001087",
+      "sdt_genome_name": "39899/MT58-reassembled.genome",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/EB106-05-01-XG201.genome",
+      "n_contigs_count_unit": 55,
+      "n_features_count_unit": 4462,
+      "sdt_genome_id": "Genome0002007",
+      "sdt_genome_name": "41372/EB106-05-01-XG201.genome",
+      "sdt_strain_name": "EB106-05-01-XG201"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW104-10B01.2020-03-27.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3499,
+      "sdt_genome_id": "Genome0002527",
+      "sdt_genome_name": "41372/FW104-10B01.2020-03-27.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW104-10B01.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3517,
+      "sdt_genome_id": "Genome0002541",
+      "sdt_genome_name": "41372/FW104-10B01.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N1B4.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6093,
+      "sdt_genome_id": "Genome0002029",
+      "sdt_genome_name": "41372/FW300-N1B4.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2C3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6074,
+      "sdt_genome_id": "Genome0002031",
+      "sdt_genome_name": "41372/FW300-N2C3.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2E2-reassembled.genome",
+      "n_contigs_count_unit": 68,
+      "n_features_count_unit": 6057,
+      "sdt_genome_id": "Genome0001793",
+      "sdt_genome_name": "41372/FW300-N2E2-reassembled.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2E2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 7303,
+      "sdt_genome_id": "Genome0002543",
+      "sdt_genome_name": "41372/FW300-N2E2.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2E3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5895,
+      "sdt_genome_id": "Genome0002030",
+      "sdt_genome_name": "41372/FW300-N2E3.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW507-4G11-reassembled.genome",
+      "n_contigs_count_unit": 63,
+      "n_features_count_unit": 7556,
+      "sdt_genome_id": "Genome0001906",
+      "sdt_genome_name": "41372/FW507-4G11-reassembled.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW507-4G11.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 7584,
+      "sdt_genome_id": "Genome0002590",
+      "sdt_genome_name": "41372/FW507-4G11.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW510-R12.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 3753,
+      "sdt_genome_id": "Genome0002529",
+      "sdt_genome_name": "41372/FW510-R12.genome",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW510-T8.genome",
+      "n_contigs_count_unit": 42,
+      "n_features_count_unit": 3321,
+      "sdt_genome_id": "Genome0002035",
+      "sdt_genome_name": "41372/FW510-T8.genome",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW101-3H11.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4956,
+      "sdt_genome_id": "Genome0002027",
+      "sdt_genome_name": "41372/GW101-3H11.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW456-L13.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5141,
+      "sdt_genome_id": "Genome0002044",
+      "sdt_genome_name": "41372/GW456-L13.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-11-11-14-LB1.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5799,
+      "sdt_genome_id": "Genome0002043",
+      "sdt_genome_name": "41372/GW460-11-11-14-LB1.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-11-11-14-LB5.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5045,
+      "sdt_genome_id": "Genome0002025",
+      "sdt_genome_name": "41372/GW460-11-11-14-LB5.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-12-10-14-LB2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3190,
+      "sdt_genome_id": "Genome0002024",
+      "sdt_genome_name": "41372/GW460-12-10-14-LB2.genome",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW821-FHT01A05.genome",
+      "n_contigs_count_unit": 974,
+      "n_features_count_unit": 5199,
+      "sdt_genome_id": "Genome0002078",
+      "sdt_genome_name": "41372/GW821-FHT01A05.genome",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW822-FHT05C05.genome",
+      "n_contigs_count_unit": 773,
+      "n_features_count_unit": 5557,
+      "sdt_genome_id": "Genome0002190",
+      "sdt_genome_name": "41372/GW822-FHT05C05.genome",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW823-FHT01H08.genome",
+      "n_contigs_count_unit": 949,
+      "n_features_count_unit": 5433,
+      "sdt_genome_id": "Genome0002206",
+      "sdt_genome_name": "41372/GW823-FHT01H08.genome",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT123-reassembled.genome",
+      "n_contigs_count_unit": 95,
+      "n_features_count_unit": 3145,
+      "sdt_genome_id": "Genome0001790",
+      "sdt_genome_name": "41372/MT123-reassembled.genome",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT123.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3116,
+      "sdt_genome_id": "Genome0002571",
+      "sdt_genome_name": "41372/MT123.genome",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT42.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 3861,
+      "sdt_genome_id": "Genome0002530",
+      "sdt_genome_name": "41372/MT42.genome",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT49-reassembled.genome",
+      "n_contigs_count_unit": 24,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0001786",
+      "sdt_genome_name": "41372/MT49-reassembled.genome",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT49.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4950,
+      "sdt_genome_id": "Genome0002563",
+      "sdt_genome_name": "41372/MT49.genome",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT58-reassembled.genome",
+      "n_contigs_count_unit": 31,
+      "n_features_count_unit": 4323,
+      "sdt_genome_id": "Genome0001787",
+      "sdt_genome_name": "41372/MT58-reassembled.genome",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT58.genome",
+      "n_contigs_count_unit": 4,
+      "n_features_count_unit": 4333,
+      "sdt_genome_id": "Genome0002538",
+      "sdt_genome_name": "41372/MT58.genome",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW104-10B01-orig.genome",
+      "n_contigs_count_unit": 5,
+      "n_features_count_unit": 3606,
+      "sdt_genome_id": "Genome0003014",
+      "sdt_genome_name": "43884/FW104-10B01-orig.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW104-10B01.genome",
+      "n_contigs_count_unit": 5,
+      "n_features_count_unit": 3544,
+      "sdt_genome_id": "Genome0003027",
+      "sdt_genome_name": "43884/FW104-10B01.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N1B4-prodigal.genome",
+      "n_contigs_count_unit": 6,
+      "n_features_count_unit": 6131,
+      "sdt_genome_id": "Genome0003001",
+      "sdt_genome_name": "43884/FW300-N1B4-prodigal.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N1B4.genome",
+      "n_contigs_count_unit": 6,
+      "n_features_count_unit": 6116,
+      "sdt_genome_id": "Genome0003002",
+      "sdt_genome_name": "43884/FW300-N1B4.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2C3-prodigal.genome",
+      "n_contigs_count_unit": 9,
+      "n_features_count_unit": 6102,
+      "sdt_genome_id": "Genome0003006",
+      "sdt_genome_name": "43884/FW300-N2C3-prodigal.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2C3.genome",
+      "n_contigs_count_unit": 9,
+      "n_features_count_unit": 6093,
+      "sdt_genome_id": "Genome0003019",
+      "sdt_genome_name": "43884/FW300-N2C3.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2E2-prodigal.genome",
+      "n_contigs_count_unit": 17,
+      "n_features_count_unit": 6064,
+      "sdt_genome_id": "Genome0003007",
+      "sdt_genome_name": "43884/FW300-N2E2-prodigal.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2E2.genome",
+      "n_contigs_count_unit": 17,
+      "n_features_count_unit": 6056,
+      "sdt_genome_id": "Genome0003020",
+      "sdt_genome_name": "43884/FW300-N2E2.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2E3-prodigal.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5897,
+      "sdt_genome_id": "Genome0003003",
+      "sdt_genome_name": "43884/FW300-N2E3-prodigal.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/FW300-N2E3.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5886,
+      "sdt_genome_id": "Genome0003016",
+      "sdt_genome_name": "43884/FW300-N2E3.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/GW456-L13-prodigal.genome",
+      "n_contigs_count_unit": 13,
+      "n_features_count_unit": 5310,
+      "sdt_genome_id": "Genome0003012",
+      "sdt_genome_name": "43884/GW456-L13-prodigal.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/GW456-L13.genome",
+      "n_contigs_count_unit": 13,
+      "n_features_count_unit": 5302,
+      "sdt_genome_id": "Genome0003026",
+      "sdt_genome_name": "43884/GW456-L13.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/GW460-11-11-14-LB1-orig.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5808,
+      "sdt_genome_id": "Genome0003015",
+      "sdt_genome_name": "43884/GW460-11-11-14-LB1-orig.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/43884/GW460-11-11-14-LB1.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5805,
+      "sdt_genome_id": "Genome0003029",
+      "sdt_genome_name": "43884/GW460-11-11-14-LB1.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW821-FHT01A05.genome",
+      "n_contigs_count_unit": 974,
+      "n_features_count_unit": 5199,
+      "sdt_genome_id": "Genome0003089",
+      "sdt_genome_name": "54002/GW821-FHT01A05.genome",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW822-FHT05C05.genome",
+      "n_contigs_count_unit": 773,
+      "n_features_count_unit": 5557,
+      "sdt_genome_id": "Genome0003123",
+      "sdt_genome_name": "54002/GW822-FHT05C05.genome",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW823-FHT01H08.genome",
+      "n_contigs_count_unit": 949,
+      "n_features_count_unit": 5433,
+      "sdt_genome_id": "Genome0003143",
+      "sdt_genome_name": "54002/GW823-FHT01H08.genome",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW104-10B01.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3517,
+      "sdt_genome_id": "Genome0001434",
+      "sdt_genome_name": "55476/FW104-10B01.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW300-N1B4.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6341,
+      "sdt_genome_id": "Genome0001408",
+      "sdt_genome_name": "55476/FW300-N1B4.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW300-N2C3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6345,
+      "sdt_genome_id": "Genome0001410",
+      "sdt_genome_name": "55476/FW300-N2C3.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW300-N2E2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6294,
+      "sdt_genome_id": "Genome0001411",
+      "sdt_genome_name": "55476/FW300-N2E2.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW300-N2E3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6038,
+      "sdt_genome_id": "Genome0001409",
+      "sdt_genome_name": "55476/FW300-N2E3.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW507-4G11.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 7584,
+      "sdt_genome_id": "Genome0001456",
+      "sdt_genome_name": "55476/FW507-4G11.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW510-R12.genome",
+      "n_contigs_count_unit": 2065,
+      "n_features_count_unit": 8144,
+      "sdt_genome_id": "Genome0001420",
+      "sdt_genome_name": "55476/FW510-R12.genome",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/FW510-T8.genome",
+      "n_contigs_count_unit": 113,
+      "n_features_count_unit": 3340,
+      "sdt_genome_id": "Genome0001417",
+      "sdt_genome_name": "55476/FW510-T8.genome",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/GW101-3H11.genome",
+      "n_contigs_count_unit": 39,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0001397",
+      "sdt_genome_name": "55476/GW101-3H11.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/GW456-L13.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 5308,
+      "sdt_genome_id": "Genome0001421",
+      "sdt_genome_name": "55476/GW456-L13.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/GW460-11-11-14-LB5.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5020,
+      "sdt_genome_id": "Genome0001394",
+      "sdt_genome_name": "55476/GW460-11-11-14-LB5.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/55476/GW460-12-10-14-LB2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3190,
+      "sdt_genome_id": "Genome0001384",
+      "sdt_genome_name": "55476/GW460-12-10-14-LB2.genome",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/57606/Rhodanobacter_sp_FW104-10B01",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3517,
+      "sdt_genome_id": "Genome0001625",
+      "sdt_genome_name": "57606/Rhodanobacter_sp_FW104-10B01",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/57606/Rhodanobacter_sp_FW104-10B01-2020-03-27",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3499,
+      "sdt_genome_id": "Genome0001631",
+      "sdt_genome_name": "57606/Rhodanobacter_sp_FW104-10B01-2020-03-27",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/57606/Rhodanobacter_sp_FW510-R12",
+      "n_contigs_count_unit": 4,
+      "n_features_count_unit": 3759,
+      "sdt_genome_id": "Genome0001627",
+      "sdt_genome_name": "57606/Rhodanobacter_sp_FW510-R12",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/57606/Rhodanobacter_sp_MT042",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 3891,
+      "sdt_genome_id": "Genome0001626",
+      "sdt_genome_name": "57606/Rhodanobacter_sp_MT042",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/80531/GW821-FHT01A05.genome",
+      "n_contigs_count_unit": 147,
+      "n_features_count_unit": 4958,
+      "sdt_genome_id": "Genome0001657",
+      "sdt_genome_name": "80531/GW821-FHT01A05.genome",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.1",
+      "n_contigs_count_unit": 55,
+      "n_features_count_unit": 4462,
+      "sdt_genome_id": "Genome0005061",
+      "sdt_genome_name": "EB106-05-01-XG201.1",
+      "sdt_strain_name": "EB106-05-01-XG201"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 4471,
+      "sdt_genome_id": "Genome0006282",
+      "sdt_genome_name": "EB106-05-01-XG201.3",
+      "sdt_strain_name": "EB106-05-01-XG201"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/EB106-05-01-XG201.genome",
+      "n_contigs_count_unit": 55,
+      "n_features_count_unit": 4462,
+      "sdt_genome_id": "Genome0000227",
+      "sdt_genome_name": "EB106-05-01-XG201.genome",
+      "sdt_strain_name": "EB106-05-01-XG201"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.1",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3499,
+      "sdt_genome_id": "Genome0004965",
+      "sdt_genome_name": "FW104-10B01.1",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3517,
+      "sdt_genome_id": "Genome0005380",
+      "sdt_genome_name": "FW104-10B01.2",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3528,
+      "sdt_genome_id": "Genome0006623",
+      "sdt_genome_name": "FW104-10B01.3",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW104-10B01.genome",
+      "n_contigs_count_unit": 5,
+      "n_features_count_unit": 3544,
+      "sdt_genome_id": "Genome0000265",
+      "sdt_genome_name": "FW104-10B01.genome",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW215-L2/assembliesAndAnnotations/FW215-L2.1",
+      "n_contigs_count_unit": 206,
+      "n_features_count_unit": 6616,
+      "sdt_genome_id": "Genome0006297",
+      "sdt_genome_name": "FW215-L2.1",
+      "sdt_strain_name": "FW215-L2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N1B4/assembliesAndAnnotations/FW300-N1B4.1",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 5948,
+      "sdt_genome_id": "Genome0005171",
+      "sdt_genome_name": "FW300-N1B4.1",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N1B4/assembliesAndAnnotations/FW300-N1B4.2",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6093,
+      "sdt_genome_id": "Genome0005446",
+      "sdt_genome_name": "FW300-N1B4.2",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N1B4.genome",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6341,
+      "sdt_genome_id": "Genome0000249",
+      "sdt_genome_name": "FW300-N1B4.genome",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2C3/assembliesAndAnnotations/FW300-N2C3.1",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6135,
+      "sdt_genome_id": "Genome0004720",
+      "sdt_genome_name": "FW300-N2C3.1",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2C3/assembliesAndAnnotations/FW300-N2C3.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6074,
+      "sdt_genome_id": "Genome0005450",
+      "sdt_genome_name": "FW300-N2C3.2",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2C3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6345,
+      "sdt_genome_id": "Genome0000251",
+      "sdt_genome_name": "FW300-N2C3.genome",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2E2-reassembled.genome",
+      "n_contigs_count_unit": 68,
+      "n_features_count_unit": 6057,
+      "sdt_genome_id": "Genome0000013",
+      "sdt_genome_name": "FW300-N2E2-reassembled.genome",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2E2/assembliesAndAnnotations/FW300-N2E2.1",
+      "n_contigs_count_unit": 68,
+      "n_features_count_unit": 6057,
+      "sdt_genome_id": "Genome0005212",
+      "sdt_genome_name": "FW300-N2E2.1",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2E2/assembliesAndAnnotations/FW300-N2E2.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 7303,
+      "sdt_genome_id": "Genome0005388",
+      "sdt_genome_name": "FW300-N2E2.2",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2E3/assembliesAndAnnotations/FW300-N2E3.1",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5816,
+      "sdt_genome_id": "Genome0005304",
+      "sdt_genome_name": "FW300-N2E3.1",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW300-N2E3/assembliesAndAnnotations/FW300-N2E3.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5895,
+      "sdt_genome_id": "Genome0005390",
+      "sdt_genome_name": "FW300-N2E3.2",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW300-N2E3.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6038,
+      "sdt_genome_id": "Genome0000250",
+      "sdt_genome_name": "FW300-N2E3.genome",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW507-4G11-reassembled.genome",
+      "n_contigs_count_unit": 63,
+      "n_features_count_unit": 7556,
+      "sdt_genome_id": "Genome0000126",
+      "sdt_genome_name": "FW507-4G11-reassembled.genome",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.1",
+      "n_contigs_count_unit": 63,
+      "n_features_count_unit": 7556,
+      "sdt_genome_id": "Genome0004914",
+      "sdt_genome_name": "FW507-4G11.1",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.2",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 7584,
+      "sdt_genome_id": "Genome0005471",
+      "sdt_genome_name": "FW507-4G11.2",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.3",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 7586,
+      "sdt_genome_id": "Genome0006291",
+      "sdt_genome_name": "FW507-4G11.3",
+      "sdt_strain_name": "FW507-4G11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.1",
+      "n_contigs_count_unit": 4,
+      "n_features_count_unit": 3759,
+      "sdt_genome_id": "Genome0004968",
+      "sdt_genome_name": "FW510-R12.1",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.2",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 3753,
+      "sdt_genome_id": "Genome0005434",
+      "sdt_genome_name": "FW510-R12.2",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.3",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 3669,
+      "sdt_genome_id": "Genome0006628",
+      "sdt_genome_name": "FW510-R12.3",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW510-R12.genome",
+      "n_contigs_count_unit": 2065,
+      "n_features_count_unit": 8144,
+      "sdt_genome_id": "Genome0000258",
+      "sdt_genome_name": "FW510-R12.genome",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW510-T8/assembliesAndAnnotations/FW510-T8.1",
+      "n_contigs_count_unit": 42,
+      "n_features_count_unit": 3321,
+      "sdt_genome_id": "Genome0005366",
+      "sdt_genome_name": "FW510-T8.1",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/FW510-T8/assembliesAndAnnotations/FW510-T8.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3359,
+      "sdt_genome_id": "Genome0006057",
+      "sdt_genome_name": "FW510-T8.3",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/FW510-T8.genome",
+      "n_contigs_count_unit": 113,
+      "n_features_count_unit": 3340,
+      "sdt_genome_id": "Genome0000255",
+      "sdt_genome_name": "FW510-T8.genome",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001617425.1/",
+      "n_contigs_count_unit": 2065,
+      "n_features_count_unit": 8144,
+      "sdt_genome_id": "Genome0006647",
+      "sdt_genome_name": "GCA_001617425.1",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_002151545.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4969,
+      "sdt_genome_id": "Genome0006635",
+      "sdt_genome_name": "GCA_002151545.1",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001307155.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6021,
+      "sdt_genome_id": "Genome0006640",
+      "sdt_genome_name": "GCF_001307155.1",
+      "sdt_strain_name": "FW300-N2E3"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001307275.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6212,
+      "sdt_genome_id": "Genome0006680",
+      "sdt_genome_name": "GCF_001307275.1",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001440325.1/",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 5255,
+      "sdt_genome_id": "Genome0006649",
+      "sdt_genome_name": "GCF_001440325.1",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001617375.1/",
+      "n_contigs_count_unit": 113,
+      "n_features_count_unit": 3452,
+      "sdt_genome_id": "Genome0006644",
+      "sdt_genome_name": "GCF_001617375.1",
+      "sdt_strain_name": "FW510-T8"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001623525.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 6240,
+      "sdt_genome_id": "Genome0006641",
+      "sdt_genome_name": "GCF_001623525.1",
+      "sdt_strain_name": "FW300-N2E2"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001625455.1/",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 6161,
+      "sdt_genome_id": "Genome0006639",
+      "sdt_genome_name": "GCF_001625455.1",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001633105.1/",
+      "n_contigs_count_unit": 39,
+      "n_features_count_unit": 5021,
+      "sdt_genome_id": "Genome0006636",
+      "sdt_genome_name": "GCF_001633105.1",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_001636925.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3281,
+      "sdt_genome_id": "Genome0006629",
+      "sdt_genome_name": "GCF_001636925.1",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002151545.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4969,
+      "sdt_genome_id": "Genome0006681",
+      "sdt_genome_name": "GCF_002151545.1",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_014495865.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5072,
+      "sdt_genome_id": "Genome0006683",
+      "sdt_genome_name": "GCF_014495865.1",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_017350115.1/",
+      "n_contigs_count_unit": 10,
+      "n_features_count_unit": 5248,
+      "sdt_genome_id": "Genome0006648",
+      "sdt_genome_name": "GCF_017350115.1",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_017351715.1/",
+      "n_contigs_count_unit": 9,
+      "n_features_count_unit": 6212,
+      "sdt_genome_id": "Genome0006642",
+      "sdt_genome_name": "GCF_017351715.1",
+      "sdt_strain_name": "FW300-N2C3"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_017351775.1/",
+      "n_contigs_count_unit": 6,
+      "n_features_count_unit": 6170,
+      "sdt_genome_id": "Genome0006638",
+      "sdt_genome_name": "GCF_017351775.1",
+      "sdt_strain_name": "FW300-N1B4"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021545845.1/",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 3857,
+      "sdt_genome_id": "Genome0006688",
+      "sdt_genome_name": "GCF_021545845.1",
+      "sdt_strain_name": "FW510-R12"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_021560695.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3637,
+      "sdt_genome_id": "Genome0006686",
+      "sdt_genome_name": "GCF_021560695.1",
+      "sdt_strain_name": "FW104-10B01"
+    },
+    {
+      "link": "https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_039614765.1/",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3184,
+      "sdt_genome_id": "Genome0006685",
+      "sdt_genome_name": "GCF_039614765.1",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW101-3H11/assembliesAndAnnotations/GW101-3H11.1",
+      "n_contigs_count_unit": 39,
+      "n_features_count_unit": 4802,
+      "sdt_genome_id": "Genome0005000",
+      "sdt_genome_name": "GW101-3H11.1",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW101-3H11/assembliesAndAnnotations/GW101-3H11.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4956,
+      "sdt_genome_id": "Genome0005465",
+      "sdt_genome_name": "GW101-3H11.2",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW101-3H11.genome",
+      "n_contigs_count_unit": 39,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0000247",
+      "sdt_genome_name": "GW101-3H11.genome",
+      "sdt_strain_name": "GW101-3H11"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW456-L13/assembliesAndAnnotations/GW456-L13.1",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 5138,
+      "sdt_genome_id": "Genome0004719",
+      "sdt_genome_name": "GW456-L13.1",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW456-L13/assembliesAndAnnotations/GW456-L13.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5141,
+      "sdt_genome_id": "Genome0005449",
+      "sdt_genome_name": "GW456-L13.2",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW456-L13.genome",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 5308,
+      "sdt_genome_id": "Genome0000268",
+      "sdt_genome_name": "GW456-L13.genome",
+      "sdt_strain_name": "GW456-L13"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-11-11-14-LB1/assembliesAndAnnotations/GW460-11-11-14-LB1.1",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5805,
+      "sdt_genome_id": "Genome0005318",
+      "sdt_genome_name": "GW460-11-11-14-LB1.1",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-11-11-14-LB1/assembliesAndAnnotations/GW460-11-11-14-LB1.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5799,
+      "sdt_genome_id": "Genome0005421",
+      "sdt_genome_name": "GW460-11-11-14-LB1.2",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-11-11-14-LB1.genome",
+      "n_contigs_count_unit": 11,
+      "n_features_count_unit": 5805,
+      "sdt_genome_id": "Genome0000267",
+      "sdt_genome_name": "GW460-11-11-14-LB1.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB1"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-11-11-14-LB5/assembliesAndAnnotations/GW460-11-11-14-LB5.1",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4964,
+      "sdt_genome_id": "Genome0004927",
+      "sdt_genome_name": "GW460-11-11-14-LB5.1",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-11-11-14-LB5/assembliesAndAnnotations/GW460-11-11-14-LB5.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5045,
+      "sdt_genome_id": "Genome0005385",
+      "sdt_genome_name": "GW460-11-11-14-LB5.2",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-11-11-14-LB5.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5020,
+      "sdt_genome_id": "Genome0000245",
+      "sdt_genome_name": "GW460-11-11-14-LB5.genome",
+      "sdt_strain_name": "GW460-11-11-14-LB5"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-12-10-14-LB2/assembliesAndAnnotations/GW460-12-10-14-LB2.1",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3140,
+      "sdt_genome_id": "Genome0005149",
+      "sdt_genome_name": "GW460-12-10-14-LB2.1",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW460-12-10-14-LB2/assembliesAndAnnotations/GW460-12-10-14-LB2.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3190,
+      "sdt_genome_id": "Genome0006624",
+      "sdt_genome_name": "GW460-12-10-14-LB2.3",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/GW460-12-10-14-LB2.genome",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3190,
+      "sdt_genome_id": "Genome0000244",
+      "sdt_genome_name": "GW460-12-10-14-LB2.genome",
+      "sdt_strain_name": "GW460-12-10-14-LB2"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW821-FHT01A05/assembliesAndAnnotations/GW821-FHT01A05.1",
+      "n_contigs_count_unit": 147,
+      "n_features_count_unit": 4958,
+      "sdt_genome_id": "Genome0005188",
+      "sdt_genome_name": "GW821-FHT01A05.1",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW821-FHT01A05/assembliesAndAnnotations/GW821-FHT01A05.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4992,
+      "sdt_genome_id": "Genome0006070",
+      "sdt_genome_name": "GW821-FHT01A05.3",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW821-FHT01A05.genome",
+      "n_contigs_count_unit": 974,
+      "n_features_count_unit": 5199,
+      "sdt_genome_id": "Genome0000341",
+      "sdt_genome_name": "GW821-FHT01A05.genome",
+      "sdt_strain_name": "GW821-FHT01A05"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW822-FHT05C05/assembliesAndAnnotations/GW822-FHT05C05.1",
+      "n_contigs_count_unit": 773,
+      "n_features_count_unit": 5557,
+      "sdt_genome_id": "Genome0004681",
+      "sdt_genome_name": "GW822-FHT05C05.1",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW822-FHT05C05/assembliesAndAnnotations/GW822-FHT05C05.2",
+      "n_contigs_count_unit": 12,
+      "n_features_count_unit": 5502,
+      "sdt_genome_id": "Genome0005408",
+      "sdt_genome_name": "GW822-FHT05C05.2",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW822-FHT05C05.genome",
+      "n_contigs_count_unit": 773,
+      "n_features_count_unit": 5557,
+      "sdt_genome_id": "Genome0000376",
+      "sdt_genome_name": "GW822-FHT05C05.genome",
+      "sdt_strain_name": "GW822-FHT05C05"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.1",
+      "n_contigs_count_unit": 949,
+      "n_features_count_unit": 5433,
+      "sdt_genome_id": "Genome0005062",
+      "sdt_genome_name": "GW823-FHT01H08.1",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5341,
+      "sdt_genome_id": "Genome0005424",
+      "sdt_genome_name": "GW823-FHT01H08.2",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 5327,
+      "sdt_genome_id": "Genome0006279",
+      "sdt_genome_name": "GW823-FHT01H08.3",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/54002/GW823-FHT01H08.genome",
+      "n_contigs_count_unit": 949,
+      "n_features_count_unit": 5433,
+      "sdt_genome_id": "Genome0000396",
+      "sdt_genome_name": "GW823-FHT01H08.genome",
+      "sdt_strain_name": "GW823-FHT01H08"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT123-reassembled.genome",
+      "n_contigs_count_unit": 95,
+      "n_features_count_unit": 3145,
+      "sdt_genome_id": "Genome0000010",
+      "sdt_genome_name": "MT123-reassembled.genome",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT123/assembliesAndAnnotations/MT123.1",
+      "n_contigs_count_unit": 95,
+      "n_features_count_unit": 3145,
+      "sdt_genome_id": "Genome0005336",
+      "sdt_genome_name": "MT123.1",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT123/assembliesAndAnnotations/MT123.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3116,
+      "sdt_genome_id": "Genome0005442",
+      "sdt_genome_name": "MT123.2",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT123/assembliesAndAnnotations/MT123.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3111,
+      "sdt_genome_id": "Genome0006275",
+      "sdt_genome_name": "MT123.3",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT123/assembliesAndAnnotations/MT123.4",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 3075,
+      "sdt_genome_id": "Genome0006622",
+      "sdt_genome_name": "MT123.4",
+      "sdt_strain_name": "MT123"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT42-reassembled.genome",
+      "n_contigs_count_unit": 856,
+      "n_features_count_unit": 4958,
+      "sdt_genome_id": "Genome0000005",
+      "sdt_genome_name": "MT42-reassembled.genome",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT42/assembliesAndAnnotations/MT42.1",
+      "n_contigs_count_unit": 3,
+      "n_features_count_unit": 3891,
+      "sdt_genome_id": "Genome0004769",
+      "sdt_genome_name": "MT42.1",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT42/assembliesAndAnnotations/MT42.2",
+      "n_contigs_count_unit": 2,
+      "n_features_count_unit": 3861,
+      "sdt_genome_id": "Genome0005411",
+      "sdt_genome_name": "MT42.2",
+      "sdt_strain_name": "MT42"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT49-reassembled.genome",
+      "n_contigs_count_unit": 24,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0000006",
+      "sdt_genome_name": "MT49-reassembled.genome",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT49/assembliesAndAnnotations/MT49.1",
+      "n_contigs_count_unit": 24,
+      "n_features_count_unit": 4935,
+      "sdt_genome_id": "Genome0004962",
+      "sdt_genome_name": "MT49.1",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT49/assembliesAndAnnotations/MT49.2",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4950,
+      "sdt_genome_id": "Genome0005429",
+      "sdt_genome_name": "MT49.2",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT49/assembliesAndAnnotations/MT49.3",
+      "n_contigs_count_unit": 1,
+      "n_features_count_unit": 4912,
+      "sdt_genome_id": "Genome0006620",
+      "sdt_genome_name": "MT49.3",
+      "sdt_strain_name": "MT49"
+    },
+    {
+      "link": "https://narrative.kbase.us/#dataview/41372/MT58-reassembled.genome",
+      "n_contigs_count_unit": 31,
+      "n_features_count_unit": 4323,
+      "sdt_genome_id": "Genome0000007",
+      "sdt_genome_name": "MT58-reassembled.genome",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT58/assembliesAndAnnotations/MT58.1",
+      "n_contigs_count_unit": 31,
+      "n_features_count_unit": 4323,
+      "sdt_genome_id": "Genome0005300",
+      "sdt_genome_name": "MT58.1",
+      "sdt_strain_name": "MT58"
+    },
+    {
+      "link": "enigma-data-repository/genome_processing/MT58/assembliesAndAnnotations/MT58.2",
+      "n_contigs_count_unit": 4,
+      "n_features_count_unit": 4333,
+      "sdt_genome_id": "Genome0005383",
+      "sdt_genome_name": "MT58.2",
+      "sdt_strain_name": "MT58"
+    }
+  ],
+  "requested_names": 22,
+  "returned_genomes": 189,
+  "returned_rows": 22,
+  "table": "sdt_strain",
+  "verified": 22
+}

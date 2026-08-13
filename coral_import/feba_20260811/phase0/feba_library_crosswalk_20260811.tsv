@@ -1,0 +1,35 @@
+fitprivate_orgId	sdt_strain_name	source_mutant_library	experiment_count	base_library_lineage	primers_model	transposon	assignment_basis	source_value	notes
+Brev2	GW460-12-10-14-LB2	Brev2_ML6a	38	Brev2_ML6	model_pTGG39_NN1	mariner	prior_row_inheritance		Blank cell inherited from immediately preceding same-organism Brev2_ML6 row.
+Castellaniella_MT123	MT123	Castellaniella_MT123_ML3	199	Castellaniella_MT123_ML3	model_AMD290		direct_mastersheet	AMD290	
+Collimonas_GW821-FHT01A05	GW821-FHT01A05	Collimonas_GW821-FHT01A05_ML4	115	Collimonas_GW821-FHT01A05_ML4	model_AMD289		direct_mastersheet	AMD289	
+Cup4G11	FW507-4G11	cupriavidus_4G11_ML11	122	cupriavidus_4G11_ML11	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Cup4G11	FW507-4G11	cupriavidus_4G11_ML11_FieldsLab	4	cupriavidus_4G11_ML11	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved collaborating-site inheritance.
+Cup4G11	FW507-4G11	cupriavidus_4G11_ML11_JBEI	26	cupriavidus_4G11_ML11	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved collaborating-site inheritance.
+Cup4G11	FW507-4G11	cupriavidus_4G11_ML11a	91	cupriavidus_4G11_ML11	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+Enterobacter_XG201	EB106-05-01-XG201	Enterobacter_XG201_ML2	31	Enterobacter_XG201_ML1	model_AMD289		prior_row_inheritance	?	Question-mark cell inherited from immediately preceding same-organism row.
+Janthino_FHT05C05	GW822-FHT05C05	Janthino_FHT05C05_ML1	12	Janthino_FHT05C05_ML1	model_AMD3737		direct_mastersheet	AMD3737	
+Janthinobacterium_agari	GW823-FHT01H08	Janthinobacterium_agari_ML9	12	Janthinobacterium_agari_ML9	model_AMD3737		direct_mastersheet	AMD3737	
+MT049	MT49	MT049_ML3	112	MT049_ML3	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+MT058	MT58	MT058_ML2	377	MT058_ML2	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+Pedo557	GW460-11-11-14-LB5	Pedo557_ML3	185	Pedo557_ML3	model_pTGG43_NN2	mariner	direct_mastersheet	pTGG43_NN2	
+Phaga5	GW460-11-11-14-LB1	Phaga5_ML11	146	Phaga5_ML11	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+PseudoFW215-L2	FW215-L2	PseudoFW215-L2_ML1	185	PseudoFW215-L2_ML1	model_AMD290		direct_mastersheet	AMD290	
+Rhodanobacter_MT42	MT42	Rhodanobacter_MT42_ML2	73	Rhodanobacter_MT42_ML2	model_AMD1385		direct_mastersheet	AMD1385	
+acidovorax_3H11	GW101-3H11	acidovorax_3H11_ML3a	196	acidovorax_3H11_ML3a	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+pseudo13_GW456_L13	GW456-L13	pseudo13_ML2	106	pseudo13_ML2	model_pKMW3	mariner	normalized_same_organism_lineage	Conjugation	Misplaced descriptive value normalized to surrounding pKMW3 lineage.
+pseudo13_GW456_L13	GW456-L13	pseudo13_ML2a	10	pseudo13_ML2	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo1_N1B4	FW300-N1B4	PsfN1B4_ML1	11	pseudo1_N1B4_ML1	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved FEBa alias inheritance.
+pseudo1_N1B4	FW300-N1B4	pseudo1_N1B4_ML1	186	pseudo1_N1B4_ML1	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+pseudo3_N2E3	FW300-N2E3	pseudo3_N2E3_ML2	205	pseudo3_N2E3_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	
+pseudo3_N2E3	FW300-N2E3	pseudo3_N2E3_ML2a	102	pseudo3_N2E3_ML2	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo5_N2C3_1	FW300-N2C3	pseudo5_N2-C3_1_ML2	174	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	Mastersheet organism spelling is pseudo5_N2-C3_1.
+pseudo5_N2C3_1	FW300-N2C3	pseudo5_N2-C3_1_ML2B	7	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	direct_mastersheet	pKMW3	Mastersheet organism spelling is pseudo5_N2-C3_1.
+pseudo5_N2C3_1	FW300-N2C3	pseudo5_N2-C3_1_ML2a	17	pseudo5_N2-C3_1_ML2	model_pKMW3	mariner	case_variant	pKMW3	Mastersheet row uses uppercase ML2A.
+pseudo6_N2E2	FW300-N2E2	pseudo6_N2E2_ML5	277	pseudo6_N2E2_ML5	model_pKMW3	mariner	direct_mastersheet	pKMW3	Existing CORAL model_pKMW7 is not reused.
+pseudo6_N2E2	FW300-N2E2	pseudo6_N2E2_ML5a	2	pseudo6_N2E2_ML5	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo6_N2E2	FW300-N2E2	pseudo6_N2E2_ML5b	102	pseudo6_N2E2_ML5	model_pKMW3	mariner	case_variant	pKMW3	
+pseudo6_N2E2	FW300-N2E2	pseudo6_N2E2_ML5c	7	pseudo6_N2E2_ML5	model_pKMW3	mariner	approved_base_lineage		No named mastersheet row; approved suffix inheritance.
+rhodanobacter_10B01	FW104-10B01	Rhodanobacter sp. FW104-10B01	32	rhodanobacter_10B01_ML12	model_pTKO49_NN1	mariner	approved_base_lineage		Approved display-name alias of the ML12 lineage.
+rhodanobacter_10B01	FW104-10B01	rhodanobacter_10B01_ML12	483	rhodanobacter_10B01_ML12	model_pTKO49_NN1	mariner	direct_mastersheet	pTKO49_NN1	
+rhodanobacter_R12	FW510-R12	rhodanobacter_R12_ML3	103	rhodanobacter_R12_ML3	model_AMD290	mariner	direct_mastersheet	AMD290 (mariner)	Preserve mariner as separate transposon evidence.
+rhodanobacter_T8	FW510-T8	rhodanobacter_T8_ML1	98	rhodanobacter_T8_ML1	model_AMD1385		direct_mastersheet	AMD1385	

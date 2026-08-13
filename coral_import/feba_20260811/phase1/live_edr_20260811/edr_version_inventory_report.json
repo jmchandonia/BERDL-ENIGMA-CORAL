@@ -1,0 +1,460 @@
+{
+  "active_manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/live_edr_20260811/genome_processing_manifest.tsv",
+  "active_object_keys": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/live_edr_20260811/edr_candidate_prefix_listings.jsonl",
+  "checked_at": "2026-08-11T23:11:04.502267+00:00",
+  "details": [
+    {
+      "active_manifest_versions": [
+        1,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        3
+      ],
+      "active_versions": [
+        1,
+        3
+      ],
+      "fitprivate_orgId": "Brev2",
+      "sdt_strain_name": "GW460-12-10-14-LB2",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "active_versions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "fitprivate_orgId": "Castellaniella_MT123",
+      "sdt_strain_name": "MT123",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        3
+      ],
+      "active_versions": [
+        1,
+        3
+      ],
+      "fitprivate_orgId": "Collimonas_GW821-FHT01A05",
+      "sdt_strain_name": "GW821-FHT01A05",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_versions": [
+        1,
+        2,
+        3
+      ],
+      "fitprivate_orgId": "Cup4G11",
+      "sdt_strain_name": "FW507-4G11",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        3
+      ],
+      "active_versions": [
+        1,
+        3
+      ],
+      "fitprivate_orgId": "Enterobacter_XG201",
+      "sdt_strain_name": "EB106-05-01-XG201",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "Janthino_FHT05C05",
+      "sdt_strain_name": "GW822-FHT05C05",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_versions": [
+        1,
+        2,
+        3
+      ],
+      "fitprivate_orgId": "Janthinobacterium_agari",
+      "sdt_strain_name": "GW823-FHT01H08",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_versions": [
+        1,
+        2,
+        3
+      ],
+      "fitprivate_orgId": "MT049",
+      "sdt_strain_name": "MT49",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "MT058",
+      "sdt_strain_name": "MT58",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "Pedo557",
+      "sdt_strain_name": "GW460-11-11-14-LB5",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "Phaga5",
+      "sdt_strain_name": "GW460-11-11-14-LB1",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1
+      ],
+      "active_object_versions": [
+        1
+      ],
+      "active_versions": [
+        1
+      ],
+      "fitprivate_orgId": "PseudoFW215-L2",
+      "sdt_strain_name": "FW215-L2",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "Rhodanobacter_MT42",
+      "sdt_strain_name": "MT42",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        4
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2,
+        4
+      ],
+      "fitprivate_orgId": "acidovorax_3H11",
+      "sdt_strain_name": "GW101-3H11",
+      "withdrawn_manifest_versions": [
+        3,
+        4,
+        5
+      ],
+      "withdrawn_object_versions": [
+        3,
+        4,
+        5
+      ],
+      "withdrawn_versions": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "pseudo13_GW456_L13",
+      "sdt_strain_name": "GW456-L13",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "pseudo1_N1B4",
+      "sdt_strain_name": "FW300-N1B4",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "pseudo3_N2E3",
+      "sdt_strain_name": "FW300-N2E3",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "pseudo5_N2C3_1",
+      "sdt_strain_name": "FW300-N2C3",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2
+      ],
+      "active_object_versions": [
+        1,
+        2
+      ],
+      "active_versions": [
+        1,
+        2
+      ],
+      "fitprivate_orgId": "pseudo6_N2E2",
+      "sdt_strain_name": "FW300-N2E2",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_versions": [
+        1,
+        2,
+        3
+      ],
+      "fitprivate_orgId": "rhodanobacter_10B01",
+      "sdt_strain_name": "FW104-10B01",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        2,
+        3
+      ],
+      "active_versions": [
+        1,
+        2,
+        3
+      ],
+      "fitprivate_orgId": "rhodanobacter_R12",
+      "sdt_strain_name": "FW510-R12",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    },
+    {
+      "active_manifest_versions": [
+        1,
+        3
+      ],
+      "active_object_versions": [
+        1,
+        3
+      ],
+      "active_versions": [
+        1,
+        3
+      ],
+      "fitprivate_orgId": "rhodanobacter_T8",
+      "sdt_strain_name": "FW510-T8",
+      "withdrawn_manifest_versions": [],
+      "withdrawn_object_versions": [],
+      "withdrawn_versions": []
+    }
+  ],
+  "organisms": 22,
+  "withdrawn_manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/live_edr_20260811/genome_processing_withdrawn_manifest.tsv",
+  "withdrawn_object_keys": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/live_edr_20260811/edr_candidate_prefix_listings.jsonl"
+}

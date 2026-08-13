@@ -17,6 +17,13 @@ This manifest summarizes the Codex skills available in this repo.
   references:
     - skills/cleanup-coral-process-data/references/process_cleanup.md
 
+- name: coral-ndarray-generation
+  description: Generate or review CORAL generic ndarray JSON, static-object import TSVs, and CORAL-style BERVO metadata with typedef-aware validation.
+  path: skills/coral-ndarray-generation/SKILL.md
+  references:
+    - skills/coral-ndarray-generation/references/model.md
+    - skills/coral-ndarray-generation/references/static-imports.md
+
 - name: enigma-berdl-query
   description: Query ENIGMA (enigma_coral) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the enigma_coral table/column list.
   path: skills/enigma-berdl-query/SKILL.md

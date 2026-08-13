@@ -1,0 +1,50 @@
+{
+  "crosswalk": "/scratch/jmc/fitprivate-rbtnseq/config/matched_organisms.tsv",
+  "excluded_organisms": [
+    {
+      "decision_reason": "Bacteroides thetaiotaomicron VPI-5482 is not an ENIGMA isolate strain",
+      "fitprivate_orgId": "Btheta",
+      "scope_class": "reference_or_laboratory_strain"
+    },
+    {
+      "decision_reason": "Escherichia coli BW25113 is not an ENIGMA isolate strain",
+      "fitprivate_orgId": "Keio",
+      "scope_class": "reference_or_laboratory_strain"
+    },
+    {
+      "decision_reason": "Pseudomonas putida KT2440 is not an ENIGMA isolate strain",
+      "fitprivate_orgId": "Putida",
+      "scope_class": "reference_or_laboratory_strain"
+    }
+  ],
+  "library_models": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/config/tnseq_library_model_assignments_20260811.tsv",
+  "live_coral_validation": "complete",
+  "live_coral_validation_checked_at": "2026-08-11T23:09:15.247878+00:00",
+  "live_coral_validation_report": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase0/live_coral_strain_validation_20260811.json",
+  "live_edr_inventory": "complete",
+  "live_edr_inventory_checked_at": "2026-08-12T18:01:02.210375+00:00",
+  "live_edr_inventory_report": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/preflight_20260812/edr_version_inventory_report.json",
+  "outputs": {
+    "library_crosswalk": "feba_library_crosswalk_20260811.tsv",
+    "organism_manifest": "feba_organism_work_manifest_20260811.tsv",
+    "strain_rollup": "feba_strain_rollup_20260811.tsv"
+  },
+  "reviewed_organisms": 25,
+  "run_date": "20260811",
+  "scope": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/config/feba_enigma_isolate_scope_20260811.tsv",
+  "source_database": "/scratch/jmc/fitprivate-rbtnseq/source/feba.db",
+  "source_database_bytes": 30529265664,
+  "source_database_sha256": "6b9e4edce230b2f82bff90242fe9ca46219598905d2eb775ab4f16ea446a1f11",
+  "source_namespace": "enigma.fitprivate",
+  "totals": {
+    "experiments": 3846,
+    "gene_fitness_rows": 16292891,
+    "genes": 110899,
+    "libraries": 34,
+    "organisms": 22,
+    "scaffolds": 411,
+    "strains": 22,
+    "total_bases": 122466056,
+    "xrefs": 55261
+  }
+}

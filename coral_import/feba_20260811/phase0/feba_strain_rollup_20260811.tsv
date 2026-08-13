@@ -1,0 +1,23 @@
+sdt_strain_id	sdt_strain_name	fitprivate_organism_count	fitprivate_orgIds_json	fitprivate_organisms_json	scaffold_count	total_bases	gene_count	xref_count	experiment_count	gene_fitness_count	distinct_mutant_library_count	mutant_libraries_json	coral_match_live_status	genome_barrier_status	notes
+Strain0000834	EB106-05-01-XG201	1	"[""Enterobacter_XG201""]"	"[""Enterobacter wanjuensis EB106-05-01-XG201""]"	3	4972118	4581	0	31	121985	1	"[""Enterobacter_XG201_ML2""]"	verified	pending	
+Strain0000653	FW104-10B01	1	"[""rhodanobacter_10B01""]"	"[""Rhodanobacter denitrificans FW104-10B01""]"	1	3959115	3624	3321	515	1510495	2	"[""Rhodanobacter sp. FW104-10B01"", ""rhodanobacter_10B01_ML12""]"	verified	pending	
+Strain0000580	FW215-L2	1	"[""PseudoFW215-L2""]"	"[""Pseudomonas sp. FW215-L2""]"	320	7314884	6622	0	185	1028415	1	"[""PseudoFW215-L2_ML1""]"	verified	pending	
+Strain0000456	FW300-N1B4	1	"[""pseudo1_N1B4""]"	"[""Pseudomonas fluorescens FW300-N1B4""]"	3	6623530	6058	5246	197	854192	2	"[""PsfN1B4_ML1"", ""pseudo1_N1B4_ML1""]"	verified	pending	
+Strain0000477	FW300-N2C3	1	"[""pseudo5_N2C3_1""]"	"[""Pseudomonas fluorescens FW300-N2C3""]"	1	7119102	6082	5968	198	1028214	3	"[""pseudo5_N2-C3_1_ML2"", ""pseudo5_N2-C3_1_ML2B"", ""pseudo5_N2-C3_1_ML2a""]"	verified	pending	
+Strain0000457	FW300-N2E2	1	"[""pseudo6_N2E2""]"	"[""Pseudomonas fluorescens FW300-N2E2""]"	1	6919098	6175	11112	388	1991604	4	"[""pseudo6_N2E2_ML5"", ""pseudo6_N2E2_ML5a"", ""pseudo6_N2E2_ML5b"", ""pseudo6_N2E2_ML5c""]"	verified	pending	
+Strain0000458	FW300-N2E3	1	"[""pseudo3_N2E3""]"	"[""Pseudomonas fluorescens FW300-N2E3""]"	1	6391871	5854	5729	307	1543596	2	"[""pseudo3_N2E3_ML2"", ""pseudo3_N2E3_ML2a""]"	verified	pending	
+Strain0000132	FW507-4G11	1	"[""Cup4G11""]"	"[""Cupriavidus basilensis FW507-4G11""]"	2	8421483	7449	6716	243	1551312	4	"[""cupriavidus_4G11_ML11"", ""cupriavidus_4G11_ML11_FieldsLab"", ""cupriavidus_4G11_ML11_JBEI"", ""cupriavidus_4G11_ML11a""]"	verified	pending	
+Strain0000663	FW510-R12	1	"[""rhodanobacter_R12""]"	"[""Rhodanobacter sp000427505 FW510-R12""]"	2	4203948	3832	0	103	303438	1	"[""rhodanobacter_R12_ML3""]"	verified	pending	
+Strain0000660	FW510-T8	1	"[""rhodanobacter_T8""]"	"[""Rhodanobacter sp. FW510-T8""]"	1	3752333	3416	0	98	260386	1	"[""rhodanobacter_T8_ML1""]"	verified	pending	
+Strain0000061	GW101-3H11	1	"[""acidovorax_3H11""]"	"[""Acidovorax sp. GW101-3H11""]"	39	5442520	5019	4426	196	771260	1	"[""acidovorax_3H11_ML3a""]"	verified	pending	
+Strain0000481	GW456-L13	1	"[""pseudo13_GW456_L13""]"	"[""Pseudomonas fluorescens GW456-L13""]"	2	5757432	5243	4771	116	504600	2	"[""pseudo13_ML2"", ""pseudo13_ML2a""]"	verified	pending	
+Strain0000213	GW460-11-11-14-LB1	1	"[""Phaga5""]"	"[""Hydrogenophaga sp. GW460-11-11-14-LB1""]"	11	6135295	5854	0	146	671746	1	"[""Phaga5_ML11""]"	verified	pending	
+Strain0000621	GW460-11-11-14-LB5	1	"[""Pedo557""]"	"[""Pedobacter sp. GW460-11-11-14-LB5""]"	1	6182066	5089	4938	185	818255	1	"[""Pedo557_ML3""]"	verified	pending	
+Strain0000324	GW460-12-10-14-LB2	1	"[""Brev2""]"	"[""Brevundimonas sp. GW460-12-10-14-LB2""]"	1	3263775	3274	3034	38	90972	1	"[""Brev2_ML6a""]"	verified	pending	
+Strain0001267	GW821-FHT01A05	1	"[""Collimonas_GW821-FHT01A05""]"	"[""Collimonas humicola GW821-FHT01A05""]"	1	5792590	5057	0	115	499790	1	"[""Collimonas_GW821-FHT01A05_ML4""]"	verified	pending	
+Strain0001343	GW822-FHT05C05	1	"[""Janthino_FHT05C05""]"	"[""Janthinobacterium sp. GW822-FHT05C05""]"	12	6406724	5707	0	12	54828	1	"[""Janthino_FHT05C05_ML1""]"	verified	pending	
+Strain0001203	GW823-FHT01H08	1	"[""Janthinobacterium_agari""]"	"[""Janthinobacterium sp. GW823-FHT01H08""]"	1	6133315	5441	0	12	53664	1	"[""Janthinobacterium_agari_ML9""]"	verified	pending	
+Strain0000672	MT123	1	"[""Castellaniella_MT123""]"	"[""Castellaniella sp019104865 MT123""]"	1	3366678	3179	0	199	480983	1	"[""Castellaniella_MT123_ML3""]"	verified	pending	
+Strain0000683	MT42	1	"[""Rhodanobacter_MT42""]"	"[""Rhodanobacter denitrificans MT42""]"	2	4236788	3930	0	73	229512	1	"[""Rhodanobacter_MT42_ML2""]"	verified	pending	
+Strain0000667	MT49	1	"[""MT049""]"	"[""Serratia liquefaciens MT49""]"	1	5395544	5043	0	112	483504	1	"[""MT049_ML3""]"	verified	pending	
+Strain0000666	MT58	1	"[""MT058""]"	"[""Pantoea sp. MT58""]"	4	4675847	4370	0	377	1440140	1	"[""MT058_ML2""]"	verified	pending	

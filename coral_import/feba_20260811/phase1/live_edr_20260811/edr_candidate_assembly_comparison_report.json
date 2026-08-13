@@ -1,0 +1,736 @@
+{
+  "candidate_assemblies": 53,
+  "checked_at": "2026-08-11T23:17:06.973484+00:00",
+  "details": [
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "5ee6d6b4bc897c64516818ddcc0a905c54318d49b213b44c9a00e67d597e774b",
+          "fasta_sha256": "c6f72afdfca085c7892f26a3da9e12872259d7e2be23a0aae19992eb13ffbd90",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-12-10-14-LB2/GW460-12-10-14-LB2.1/GW460-12-10-14-LB2_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3263775,
+          "version": "GW460-12-10-14-LB2.1"
+        },
+        {
+          "assembly_fingerprint": "5ee6d6b4bc897c64516818ddcc0a905c54318d49b213b44c9a00e67d597e774b",
+          "fasta_sha256": "7706f9fdfc6bdf1e61a0bd2ceb37c263a8846d22b557f3d84210f00aa21ade55",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-12-10-14-LB2/GW460-12-10-14-LB2.3/GW460-12-10-14-LB2_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3263775,
+          "version": "GW460-12-10-14-LB2.3"
+        }
+      ],
+      "fitprivate_orgId": "Brev2",
+      "sdt_strain_name": "GW460-12-10-14-LB2",
+      "source_assembly_fingerprint": "2d8ca07018db594b28cc9acf9bb004d5c17fbf1b8f32366617afe1e3a0c297fb"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 4,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "cdadcffa1ddccf9de863f62a10689bf36664264b8e9d3627cd73f0221368a29d",
+          "fasta_sha256": "0d9e96a26577890be955d5e87b77171557d44d24889f66131ac326afb3e74301",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT123/MT123.1/MT123_contigs.fasta",
+          "scaffold_count": 95,
+          "scope": "genome_processing",
+          "total_bases": 3412102,
+          "version": "MT123.1"
+        },
+        {
+          "assembly_fingerprint": "156be9868e405392be3056e00b93767be18d5e4fdc9f6fa5b7d42623e3c7d181",
+          "fasta_sha256": "9c5bd1ced2a644ec6aa36fc280c86deb1e79415ffca87554b26036f7b3a9da54",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT123/MT123.2/MT123_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3366678,
+          "version": "MT123.2"
+        },
+        {
+          "assembly_fingerprint": "244dc55e03949614866e85f1be090e92cd0b158e498f6a2f38cbe16ab6e6c515",
+          "fasta_sha256": "88868c8bb4a563e4e3bec1aa0de72b06c3eb77051c2601db858d11e4c03095b8",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT123/MT123.3/MT123_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3366678,
+          "version": "MT123.3"
+        },
+        {
+          "assembly_fingerprint": "ed950b3abd889e0235a83b7ef017aaa30fcd52782144b8fb14620bc267b61d37",
+          "fasta_sha256": "9f350f725c4ca9cf84b8f60363ac93b875d99274515fbf178183cf0bede29357",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT123/MT123.4/MT123_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3366678,
+          "version": "MT123.4"
+        }
+      ],
+      "fitprivate_orgId": "Castellaniella_MT123",
+      "sdt_strain_name": "MT123",
+      "source_assembly_fingerprint": "c7a218dd86b0bee01e8b37afc6cf11665775e86e0c296d02553b795a5810c81a"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "0075da035b8a55732ef5178e989993b6b63b8a6e44fa0b7e18bf7162c8ea666c",
+          "fasta_sha256": "70022a4144ef932ed3adfbf05ae8fa946ce1548380248d69b12769dead12c23f",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW821-FHT01A05/GW821-FHT01A05.1/GW821-FHT01A05_contigs.fasta",
+          "scaffold_count": 147,
+          "scope": "genome_processing",
+          "total_bases": 5735221,
+          "version": "GW821-FHT01A05.1"
+        },
+        {
+          "assembly_fingerprint": "f595cacc02912cf5b29daeefcad1adecf4846620e8908cdf79fb1af870da8bc4",
+          "fasta_sha256": "18e5f0712aaa3485fd4a8b8d00d3e310e8036fc7f11b2355cb8e01dec7cf080b",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW821-FHT01A05/GW821-FHT01A05.3/GW821-FHT01A05_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 5792590,
+          "version": "GW821-FHT01A05.3"
+        }
+      ],
+      "fitprivate_orgId": "Collimonas_GW821-FHT01A05",
+      "sdt_strain_name": "GW821-FHT01A05",
+      "source_assembly_fingerprint": "dcf9853ed330ce49ff272611a9871c56fccbc147a468058b9efd3bc7a71ae09f"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 3,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "67262a7b7f633d4ece01d2bdb9cb0e856249ac95fa0eb43ea625891607ddcf88",
+          "fasta_sha256": "8a7b87d15814b9551eced220f2c13500043bce9b66ac51d7da56d7fd923f4767",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW507-4G11/FW507-4G11.1/FW507-4G11_contigs.fasta",
+          "scaffold_count": 63,
+          "scope": "genome_processing",
+          "total_bases": 8382093,
+          "version": "FW507-4G11.1"
+        },
+        {
+          "assembly_fingerprint": "af7d78f04f2e0b7321416961d94361df196d9fac2cf07d47d5862cbb33c502de",
+          "fasta_sha256": "f99522f769b9b5c396062b6672a9a2441b3a85ce477f7342cbb9e3de88107433",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW507-4G11/FW507-4G11.2/FW507-4G11_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing",
+          "total_bases": 8421254,
+          "version": "FW507-4G11.2"
+        },
+        {
+          "assembly_fingerprint": "5d7a2c47c57dbf752ea1b92e85b19a755da870e80efb3bcbbdb32db140ae258f",
+          "fasta_sha256": "4e4862453b9e7074b9f8ae0b960c51059b95ece4b2fe89463953e1ed1fd23040",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW507-4G11/FW507-4G11.3/FW507-4G11_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing",
+          "total_bases": 8421443,
+          "version": "FW507-4G11.3"
+        }
+      ],
+      "fitprivate_orgId": "Cup4G11",
+      "sdt_strain_name": "FW507-4G11",
+      "source_assembly_fingerprint": "0478c329e4b5f165bb728efe869591b6886f5f4f7800226a102421d15e163ec3"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "3a6d8f30c0fbde3cc5b453188f94b53a7cbd8a19295414a7a6ae2c63d136303b",
+          "fasta_sha256": "1b173aeb218b8d02d395860685758ead1497bd0b12e937b698574448c8ce4530",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/EB106-05-01-XG201/EB106-05-01-XG201.1/EB106-05-01-XG201_contigs.fasta",
+          "scaffold_count": 55,
+          "scope": "genome_processing",
+          "total_bases": 4930054,
+          "version": "EB106-05-01-XG201.1"
+        },
+        {
+          "assembly_fingerprint": "6a57104199d0a456993d9ad6362e352bb7ea14cb85ac3ef57d7a6bb93a533890",
+          "fasta_sha256": "ada16ce7e70a9d39b8dd98cdbe2c30b8f3a3d0c3f32d5ee251c4039be222bb2a",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/EB106-05-01-XG201/EB106-05-01-XG201.3/EB106-05-01-XG201_contigs.fasta",
+          "scaffold_count": 3,
+          "scope": "genome_processing",
+          "total_bases": 4972118,
+          "version": "EB106-05-01-XG201.3"
+        }
+      ],
+      "fitprivate_orgId": "Enterobacter_XG201",
+      "sdt_strain_name": "EB106-05-01-XG201",
+      "source_assembly_fingerprint": "25910c502ef06074a61dd3070c3e615299eaf50b8985bed7cb5eb23fc35a8aa0"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "f055e9ea77ae15bc5443988e088f8dc40d23ab60f92b099a1c45ec93abd9b8df",
+          "fasta_sha256": "c619c70445efa24b26a56a4211a28aff282df3463ff044a76656c7bad4fa0d13",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW822-FHT05C05/GW822-FHT05C05.1/GW822-FHT05C05_contigs.fasta",
+          "scaffold_count": 773,
+          "scope": "genome_processing",
+          "total_bases": 6208794,
+          "version": "GW822-FHT05C05.1"
+        },
+        {
+          "assembly_fingerprint": "f45c4c303bcc50bad4d66a43361309a30fdb22eaf622ad5f8b206ae3dea34dfe",
+          "fasta_sha256": "a95fb014596e7e013f3ee8be189cbc67f503d2e4df3ed5f529562fec2cef602d",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW822-FHT05C05/GW822-FHT05C05.2/GW822-FHT05C05_contigs.fasta",
+          "scaffold_count": 12,
+          "scope": "genome_processing",
+          "total_bases": 6406724,
+          "version": "GW822-FHT05C05.2"
+        }
+      ],
+      "fitprivate_orgId": "Janthino_FHT05C05",
+      "sdt_strain_name": "GW822-FHT05C05",
+      "source_assembly_fingerprint": "eda8070d9ebc4a703ae5de819e67f23873a31a35a5b40f816a2b408953a6fbbe"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 3,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "d6b07b6680a4de755ce058b17c93d99cc32c8727aac604012638d0e4687a8c58",
+          "fasta_sha256": "c91b80d60b838a397d56dd769931c1e2cb622cea35df7af1de8ee181c6f0c1e1",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW823-FHT01H08/GW823-FHT01H08.1/GW823-FHT01H08_contigs.fasta",
+          "scaffold_count": 949,
+          "scope": "genome_processing",
+          "total_bases": 5942831,
+          "version": "GW823-FHT01H08.1"
+        },
+        {
+          "assembly_fingerprint": "b4fe8f5f1b8c3f578e8552957d115b6b0e0da30dc2685494d3a169087c965d1e",
+          "fasta_sha256": "93929e1d617488bfe625a1d0e0effca3893aa9136cab694dfce199afa1b337b8",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW823-FHT01H08/GW823-FHT01H08.2/GW823-FHT01H08_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6132736,
+          "version": "GW823-FHT01H08.2"
+        },
+        {
+          "assembly_fingerprint": "e11a87304648a9b0438fa4cf0ed7c9ba28625701f997cf55e85af8966d933e16",
+          "fasta_sha256": "771f903be86ea5281a8891426a063754fabe324ea13c0b774266e7035967a713",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW823-FHT01H08/GW823-FHT01H08.3/GW823-FHT01H08_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6133315,
+          "version": "GW823-FHT01H08.3"
+        }
+      ],
+      "fitprivate_orgId": "Janthinobacterium_agari",
+      "sdt_strain_name": "GW823-FHT01H08",
+      "source_assembly_fingerprint": "4a5417dd83a74a9aaa469f341427b639456f9ab1cffc7f2f150ba2abbc954529"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 3,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "56599a1445fd3e5b809eb120ad68a4258c218a2d33b8b886a32efcb96d6f9a52",
+          "fasta_sha256": "b9297daa5a920d2cb36c237b16eaa0d41b0a56e924179546961dd8047c0ebc55",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT49/MT49.1/MT49_contigs.fasta",
+          "scaffold_count": 24,
+          "scope": "genome_processing",
+          "total_bases": 5361910,
+          "version": "MT49.1"
+        },
+        {
+          "assembly_fingerprint": "d9b341cce02781faf3a3d9c526cc0e0e08d496ccf5443d56a2e58f5bb34410dc",
+          "fasta_sha256": "683d68bb2b6c458e4d534a669c3f55115c00a12780a256e11d9282e012c989a3",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT49/MT49.2/MT49_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 5395544,
+          "version": "MT49.2"
+        },
+        {
+          "assembly_fingerprint": "a8d7021234c0ad15ea08e51b76567f06c3fa0e9b82ce68a529d829cc738d558b",
+          "fasta_sha256": "38eee0e46f517cbc630438e69316c5fc073dc41a260b06ae848aade45319454f",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT49/MT49.3/MT49_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 5395544,
+          "version": "MT49.3"
+        }
+      ],
+      "fitprivate_orgId": "MT049",
+      "sdt_strain_name": "MT49",
+      "source_assembly_fingerprint": "9ff6e82e8accfa3571b0ee03441ed2a57277b65c93d0aa328cd33f73ee7724d6"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "ac5643dec195025fd1e8b4ae159295f082f02fbace11f450e58aea6190ab7a09",
+          "fasta_sha256": "616d1cf556893503d1188e8782be0dfae8fcea490d513877e58ffac63ad2be52",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT58/MT58.1/MT58_contigs.fasta",
+          "scaffold_count": 31,
+          "scope": "genome_processing",
+          "total_bases": 4639086,
+          "version": "MT58.1"
+        },
+        {
+          "assembly_fingerprint": "a41298701c840029a22634ba53929804f9da83007a1a36eb4075d0d0e4e8e308",
+          "fasta_sha256": "f2603cf8bdbbac0df88d7fb30f5cf4fcac294a674db54a140fd8383ba912a2cf",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT58/MT58.2/MT58_contigs.fasta",
+          "scaffold_count": 4,
+          "scope": "genome_processing",
+          "total_bases": 4675686,
+          "version": "MT58.2"
+        }
+      ],
+      "fitprivate_orgId": "MT058",
+      "sdt_strain_name": "MT58",
+      "source_assembly_fingerprint": "a23cec4e59b81d43c8f6b93cbc5a803fed0dea3feb3db854191116851c8c7940"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "f1fbdda6cc52cf5257867ae998fb85040c166de6963a412f32e1519eb58b7e40",
+          "fasta_sha256": "76a0e2c5e0070450f66be0abb33a3d7050c9e6df958e44d5d997297dfb979a57",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-11-11-14-LB5/GW460-11-11-14-LB5.1/GW460-11-11-14-LB5_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6182066,
+          "version": "GW460-11-11-14-LB5.1"
+        },
+        {
+          "assembly_fingerprint": "1ae4ebc0958be191ccff5fb3938fe00f9b2be30441e6e1eeda2d7c26a9446562",
+          "fasta_sha256": "0ab16529778bcd8c894789ffd27ed41fbbe60930bf9bca3252cfefb660b76670",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-11-11-14-LB5/GW460-11-11-14-LB5.2/GW460-11-11-14-LB5_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6181979,
+          "version": "GW460-11-11-14-LB5.2"
+        }
+      ],
+      "fitprivate_orgId": "Pedo557",
+      "sdt_strain_name": "GW460-11-11-14-LB5",
+      "source_assembly_fingerprint": "e2a63c2ba4f589eb81bbb492ceaf3735460c5e02232f9db9cc8bcbd5ab94f619"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "5d2be35ddf96d937e006bcda74dc0d12498e6932bd4fc813756973887dda543a",
+          "fasta_sha256": "70cbf47b1197b1729a4bfa4aa49195a62c757fc711949b6191cd50292a63ccb2",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-11-11-14-LB1/GW460-11-11-14-LB1.1/GW460-11-11-14-LB1_contigs.fasta",
+          "scaffold_count": 11,
+          "scope": "genome_processing",
+          "total_bases": 6135295,
+          "version": "GW460-11-11-14-LB1.1"
+        },
+        {
+          "assembly_fingerprint": "4926d840a64f8902396cd4ec9801b29c1ce20b2f258d4202e84168931cb8c844",
+          "fasta_sha256": "6ac150b68f0f3f92d709ace55063a304790b62e50489b624dbcd3b3c84c8fb38",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW460-11-11-14-LB1/GW460-11-11-14-LB1.2/GW460-11-11-14-LB1_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6144169,
+          "version": "GW460-11-11-14-LB1.2"
+        }
+      ],
+      "fitprivate_orgId": "Phaga5",
+      "sdt_strain_name": "GW460-11-11-14-LB1",
+      "source_assembly_fingerprint": "07242c50adaa8629083e42c1b3b31a180a2fbf2c7e01e83c630573698ec5a8f3"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 1,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "7a36d3555d0edccd09002037078e74660bad4ab752f21589ebdebc607341b836",
+          "fasta_sha256": "4d03ac9785b15b78bba0dd6fa1cb16a1388c685c6cf69ded7c8fbd5d1ac57e9b",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW215-L2/FW215-L2.1/FW215-L2_contigs.fasta",
+          "scaffold_count": 206,
+          "scope": "genome_processing",
+          "total_bases": 7286480,
+          "version": "FW215-L2.1"
+        }
+      ],
+      "fitprivate_orgId": "PseudoFW215-L2",
+      "sdt_strain_name": "FW215-L2",
+      "source_assembly_fingerprint": "2e003d62af6e92f75e0f42335b0436d74cefc32e67106887adbb444a2491cf79"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "68612217c36cb77c1636621266359a1072f1e4a9c270cb390e4208e785b6006f",
+          "fasta_sha256": "da08b5b1cbc86ffd515d3dcd111573501596a990489912fde17044ff40c202e5",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT42/MT42.1/MT42_contigs.fasta",
+          "scaffold_count": 3,
+          "scope": "genome_processing",
+          "total_bases": 4304610,
+          "version": "MT42.1"
+        },
+        {
+          "assembly_fingerprint": "d157da2e4520188f291e28fbf186f891f4934192924da8101f4d406a4cb0fde8",
+          "fasta_sha256": "57917c8e9286b36ac42dd64d2e606802d24b45d33116f96dd3ea3cbb03b08d0d",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/MT42/MT42.2/MT42_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing",
+          "total_bases": 4258246,
+          "version": "MT42.2"
+        }
+      ],
+      "fitprivate_orgId": "Rhodanobacter_MT42",
+      "sdt_strain_name": "MT42",
+      "source_assembly_fingerprint": "46ba78ddd844d82fa6be33d737489443134b4d7e7eeabcb65544d867d38ee877"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 5,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "4dbb4cca757ed5029aa0e04375ad417bb8582364592fb38ac169e1b6f562d005",
+          "fasta_sha256": "975ff388be2f039f23d90a543e9dbbc9619792a02cf2385a0af4bfce1604a992",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW101-3H11/GW101-3H11.1/GW101-3H11_contigs.fasta",
+          "scaffold_count": 39,
+          "scope": "genome_processing",
+          "total_bases": 5442520,
+          "version": "GW101-3H11.1"
+        },
+        {
+          "assembly_fingerprint": "3cbf8545619d36f4739e8dab9943fc8fce2629c48bc044ca9b3aaa43149b2f2e",
+          "fasta_sha256": "87ab4b34dc0c58a9920cae1a1571988e11b5cada96c5acb041a7fbaf6b080d17",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW101-3H11/GW101-3H11.2/GW101-3H11_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 5475592,
+          "version": "GW101-3H11.2"
+        },
+        {
+          "assembly_fingerprint": "fa87ab0974f236de2c3115c99a47d26c1c38b2d265e9438eab11e9fddc5f2b95",
+          "fasta_sha256": "16fc02d7ba4c92404710130ff9c74f6367ffd8ed3232873d99bda5560920275f",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing_withdrawn/GW101-3H11/GW101-3H11.3/GW101-3H11_contigs.fasta",
+          "scaffold_count": 19,
+          "scope": "genome_processing_withdrawn",
+          "total_bases": 6558794,
+          "version": "GW101-3H11.3"
+        },
+        {
+          "assembly_fingerprint": "7724fb7a103d8b6cbc7119efc5515e45baae13e9678e179c4cb112ce69486bdb",
+          "fasta_sha256": "058f0c33d601216bac5ddca8496f6f3ac7ed5c22fa520d51d8195c1ab12b4b95",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing_withdrawn/GW101-3H11/GW101-3H11.4/GW101-3H11_contigs.fasta",
+          "scaffold_count": 72,
+          "scope": "genome_processing_withdrawn",
+          "total_bases": 4684429,
+          "version": "GW101-3H11.4"
+        },
+        {
+          "assembly_fingerprint": "f58227ec1d8c1c5f8f9cf757eac43d3ab7d1a2e4e0c6dc4d6f172d4170e58960",
+          "fasta_sha256": "7ad3c721fe9cd6432ec282d6d587270a52808b4f66e9396dbbe11915d8f8e9d8",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing_withdrawn/GW101-3H11/GW101-3H11.5/GW101-3H11_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing_withdrawn",
+          "total_bases": 8179377,
+          "version": "GW101-3H11.5"
+        }
+      ],
+      "fitprivate_orgId": "acidovorax_3H11",
+      "sdt_strain_name": "GW101-3H11",
+      "source_assembly_fingerprint": "c6c75fa9b68dba4336406459ebc4f832104eb4c34f37edae9eeefc21f6fdfe57"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "18b24d13cee07b60cd47584e77d9fe54e34211a5958a7024ad34576cc76f1891",
+          "fasta_sha256": "48c31bca52cdb09f459657d4a13515a2cd707708a120f9b052a831ef1182e8e0",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW456-L13/GW456-L13.1/GW456-L13_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing",
+          "total_bases": 5757432,
+          "version": "GW456-L13.1"
+        },
+        {
+          "assembly_fingerprint": "d2719718879d9da88a3300d950b0a16856cbbb11985c88a15ecf05e7fc0c499e",
+          "fasta_sha256": "c9eb864bf2247e233361f3c2a6d76bbcd1172d3d302e904d58b4c4c1ff07aa54",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/GW456-L13/GW456-L13.2/GW456-L13_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 5753586,
+          "version": "GW456-L13.2"
+        }
+      ],
+      "fitprivate_orgId": "pseudo13_GW456_L13",
+      "sdt_strain_name": "GW456-L13",
+      "source_assembly_fingerprint": "4e387ffb21d8a2049eace1de58c9d2b3e240b2e0e0420b845f29af8dbe01148c"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "2ea54c324f8658c3767e365cdac61c81bae4d157672659cf1f39ae397bdebea9",
+          "fasta_sha256": "d5a0107a18b3cf038356b305a3909aa5fcbe05fa91cf9ec2221855d4e37fa0e2",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N1B4/FW300-N1B4.1/FW300-N1B4_contigs.fasta",
+          "scaffold_count": 3,
+          "scope": "genome_processing",
+          "total_bases": 6623530,
+          "version": "FW300-N1B4.1"
+        },
+        {
+          "assembly_fingerprint": "b0a7871441a236052ef709527d9a38455101cb6cfd58aead9cfd7debb3420026",
+          "fasta_sha256": "36c498dcd7e46b4837bf7bb29e4ea5cfdeca5ad114b4db4576b94e4d78a4fb4f",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N1B4/FW300-N1B4.2/FW300-N1B4_contigs.fasta",
+          "scaffold_count": 3,
+          "scope": "genome_processing",
+          "total_bases": 6643592,
+          "version": "FW300-N1B4.2"
+        }
+      ],
+      "fitprivate_orgId": "pseudo1_N1B4",
+      "sdt_strain_name": "FW300-N1B4",
+      "source_assembly_fingerprint": "18d63871d36e54753681164887168937fc4c5c284dd509b0f15c8e35014f4123"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "3c1a04c9b7a2bf1bef0818f86a5b350082f46e51ff0c71e459e8517c77598c74",
+          "fasta_sha256": "d441ebf12eb95fce932035703bb0174d5176f9b7ff9e64eab94451b8e408cda8",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2E3/FW300-N2E3.1/FW300-N2E3_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6391871,
+          "version": "FW300-N2E3.1"
+        },
+        {
+          "assembly_fingerprint": "814ec496ad69fcef74445e9532908d24b492e7bdefcd5ec6ae1ddd6c5caab399",
+          "fasta_sha256": "7e59bbf65bbae778ccd1a82cb4c0cf03b3efd3388f71a66fee49e503d730436f",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2E3/FW300-N2E3.2/FW300-N2E3_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6387023,
+          "version": "FW300-N2E3.2"
+        }
+      ],
+      "fitprivate_orgId": "pseudo3_N2E3",
+      "sdt_strain_name": "FW300-N2E3",
+      "source_assembly_fingerprint": "365d1ea5c56955a9453c74f25b6968e90057f701c64e710742b997fde6ddc110"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "1d8330d0ab0ef4a41cabd479ea26d034833208bf01af50050ed92818e73a8e12",
+          "fasta_sha256": "3ef27764cd4c012c666f8b5c43945ad1239926c612413b94767bf52e0ba02a8e",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2C3/FW300-N2C3.1/FW300-N2C3_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 7119102,
+          "version": "FW300-N2C3.1"
+        },
+        {
+          "assembly_fingerprint": "bf32ba6f74fd367d6d5cb42c2ce118f9015ec764089ac6beffba74d720d941bc",
+          "fasta_sha256": "2aa36e67a4ebe9e9d860a167af43191af0b0a859f4e0120a7d07e42c57d6f230",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2C3/FW300-N2C3.2/FW300-N2C3_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 7112005,
+          "version": "FW300-N2C3.2"
+        }
+      ],
+      "fitprivate_orgId": "pseudo5_N2C3_1",
+      "sdt_strain_name": "FW300-N2C3",
+      "source_assembly_fingerprint": "74edf8c240390bf365e01a4e2825ba4d2b1d2ed382499811f5e8c58573d189fb"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "fa142f1f0fda8125ed0ae4dc1d2523dd4043813a44f8b2fa6a7e8263f2e265ad",
+          "fasta_sha256": "dc43600f8be2a596f7863e184751f7446555cad8649f1e8003e59d3b58c76080",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2E2/FW300-N2E2.1/FW300-N2E2_contigs.fasta",
+          "scaffold_count": 68,
+          "scope": "genome_processing",
+          "total_bases": 6865507,
+          "version": "FW300-N2E2.1"
+        },
+        {
+          "assembly_fingerprint": "0c4352513569ba6d8fcda51d2bb8df91c715417c553c252bd38b1c94f16177d1",
+          "fasta_sha256": "39f01ecea096fed693afc5095877b06a427d0de195df3b77ce050f7ef92238d3",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW300-N2E2/FW300-N2E2.2/FW300-N2E2_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 6916500,
+          "version": "FW300-N2E2.2"
+        }
+      ],
+      "fitprivate_orgId": "pseudo6_N2E2",
+      "sdt_strain_name": "FW300-N2E2",
+      "source_assembly_fingerprint": "030294948e9ad4d70167650f1ad6ecc84788ea9082b0b91b59e7a960463dbb0f"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 3,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "5cd2ca374ae1fae549324ae3a8488c516a646142b4236a10439f9787fa3e37c0",
+          "fasta_sha256": "1626e08502d9184752d0572ea1d3abc254313d4a2763cbd51aca67971c50c052",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW104-10B01/FW104-10B01.1/FW104-10B01_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3944885,
+          "version": "FW104-10B01.1"
+        },
+        {
+          "assembly_fingerprint": "5cd2ca374ae1fae549324ae3a8488c516a646142b4236a10439f9787fa3e37c0",
+          "fasta_sha256": "755eddf0633b1a972a88d5e17e9ac6a3b44fdc0c86ecf0f4059a9d1c86ec7653",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW104-10B01/FW104-10B01.2/FW104-10B01_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3944885,
+          "version": "FW104-10B01.2"
+        },
+        {
+          "assembly_fingerprint": "6c7e5d285f8faacb6a259fb1089e0cd3863179cb11c62157dcac91cf94f9e39c",
+          "fasta_sha256": "3393057fadea98f1c4258e832c0cb5561799a2e2f612bce0997c897450e8cae0",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW104-10B01/FW104-10B01.3/FW104-10B01_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3959115,
+          "version": "FW104-10B01.3"
+        }
+      ],
+      "fitprivate_orgId": "rhodanobacter_10B01",
+      "sdt_strain_name": "FW104-10B01",
+      "source_assembly_fingerprint": "bbf96997754ca1c54dd978d38411cf55c3b1fcbaac9a7bb704b77169be258a08"
+    },
+    {
+      "assembly_match_count": 0,
+      "candidate_count": 3,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "fb04d73342be3d0d8b8a83101e5895874b9288a19322e43ef5b696415e94f15b",
+          "fasta_sha256": "b485a2aa18af4491ac54b8c59a5519533284781cbef02806becbfa0b1f179d64",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-R12/FW510-R12.1/FW510-R12_contigs.fasta",
+          "scaffold_count": 4,
+          "scope": "genome_processing",
+          "total_bases": 4204225,
+          "version": "FW510-R12.1"
+        },
+        {
+          "assembly_fingerprint": "5d429a5847d5164bc07f2c72fbe0c61d6e6dbbd2f226ebc4d8b37ba8a6424102",
+          "fasta_sha256": "a955c38d169d547c0c2b2089b95f68e1aba897dbd4a0c077a6bc886c168088c1",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-R12/FW510-R12.2/FW510-R12_contigs.fasta",
+          "scaffold_count": 3,
+          "scope": "genome_processing",
+          "total_bases": 4175437,
+          "version": "FW510-R12.2"
+        },
+        {
+          "assembly_fingerprint": "e9ba7ec1e4e248ed88e62e69620b11759778f6ecc0d9c45583c122e8fd91c90d",
+          "fasta_sha256": "537ebf6423c0d752019d793fdab5486731012d2b7f71fe202f0bf8bff1e409a5",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-R12/FW510-R12.3/FW510-R12_contigs.fasta",
+          "scaffold_count": 2,
+          "scope": "genome_processing",
+          "total_bases": 4203948,
+          "version": "FW510-R12.3"
+        }
+      ],
+      "fitprivate_orgId": "rhodanobacter_R12",
+      "sdt_strain_name": "FW510-R12",
+      "source_assembly_fingerprint": "bd1e783bd989c0f1454b26c330d6047761cba675b3f04bac8b27f6fe79966447"
+    },
+    {
+      "assembly_match_count": 1,
+      "candidate_count": 2,
+      "comparisons": [
+        {
+          "assembly_fingerprint": "467820c01e66f735032fb5580875138657b4cc8b2718470f9e21cc6cca3bd8e2",
+          "fasta_sha256": "20e9a916531b26bb8d87b368db189657282d90c8783f223db62a97b10026d6f2",
+          "matches_source_assembly": false,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-T8/FW510-T8.1/FW510-T8_contigs.fasta",
+          "scaffold_count": 42,
+          "scope": "genome_processing",
+          "total_bases": 3718321,
+          "version": "FW510-T8.1"
+        },
+        {
+          "assembly_fingerprint": "7f3a73bdc3489ccf55296862d6bee3a435de6ebd6a3dbc7464a378b3930397c0",
+          "fasta_sha256": "cb7411c028f4ad581cd14a12a2dd4911c45e911543117006ecf18c629f8523a0",
+          "matches_source_assembly": true,
+          "path": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/edr_candidates/genome_processing/FW510-T8/FW510-T8.3/FW510-T8_contigs.fasta",
+          "scaffold_count": 1,
+          "scope": "genome_processing",
+          "total_bases": 3752333,
+          "version": "FW510-T8.3"
+        }
+      ],
+      "fitprivate_orgId": "rhodanobacter_T8",
+      "sdt_strain_name": "FW510-T8",
+      "source_assembly_fingerprint": "7f3a73bdc3489ccf55296862d6bee3a435de6ebd6a3dbc7464a378b3930397c0"
+    }
+  ],
+  "organisms": 22,
+  "organisms_with_assembly_match": 1
+}

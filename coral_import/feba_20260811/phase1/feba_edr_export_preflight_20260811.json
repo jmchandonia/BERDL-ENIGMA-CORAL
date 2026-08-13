@@ -1,0 +1,602 @@
+{
+  "exports": [
+    {
+      "files": {
+        "GW460-12-10-14-LB2_Prodigal.gff": {
+          "bytes": 1335281,
+          "sha256": "3da942ce984d086976cd9fd08b7a027cf90fcb2ef87c3c31c386c5813f34ad89"
+        },
+        "GW460-12-10-14-LB2_contigs.fasta": {
+          "bytes": 3318185,
+          "sha256": "7d1fe64a6b229822015142f7b967d767bf1dac66b6282dd0469dc52cc4260ce9"
+        }
+      },
+      "fitprivate_orgId": "Brev2",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-12-10-14-LB2/assembliesAndAnnotations/GW460-12-10-14-LB2.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-12-10-14-LB2/assembliesAndAnnotations/GW460-12-10-14-LB2.4/GW460-12-10-14-LB2.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "GW460-12-10-14-LB2",
+      "source_gene_rows": 3274,
+      "target_genome_name": "GW460-12-10-14-LB2.4",
+      "target_repository_directory": "genome_processing/GW460-12-10-14-LB2/assembliesAndAnnotations/GW460-12-10-14-LB2.4/",
+      "total_bases": 3263775,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 3274,
+        "gff_gene_features": 3274,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "MT123_Prodigal.gff": {
+          "bytes": 1182933,
+          "sha256": "2ef62a1d0885f19e035c268bf6260b819834433aa42a88da3d3c3ce5cfa3d90f"
+        },
+        "MT123_contigs.fasta": {
+          "bytes": 3422803,
+          "sha256": "5b441fe05064f3d7a0d3b6d558af8c33a110bd8df00ac6bd970842f7caefc588"
+        }
+      },
+      "fitprivate_orgId": "Castellaniella_MT123",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT123/assembliesAndAnnotations/MT123.5",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT123/assembliesAndAnnotations/MT123.5/MT123.5_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "MT123",
+      "source_gene_rows": 3179,
+      "target_genome_name": "MT123.5",
+      "target_repository_directory": "genome_processing/MT123/assembliesAndAnnotations/MT123.5/",
+      "total_bases": 3366678,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 3179,
+        "gff_gene_features": 3179,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW821-FHT01A05_Prodigal.gff": {
+          "bytes": 1707981,
+          "sha256": "25facc7ec7c429676d80c9526bd99b1eca589c7b12eac992bf6d0deaf0214a68"
+        },
+        "GW821-FHT01A05_contigs.fasta": {
+          "bytes": 5889144,
+          "sha256": "50237c4802d7b147b29e7a4db432e4902942d61d8561fff396842d549da35826"
+        }
+      },
+      "fitprivate_orgId": "Collimonas_GW821-FHT01A05",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW821-FHT01A05/assembliesAndAnnotations/GW821-FHT01A05.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW821-FHT01A05/assembliesAndAnnotations/GW821-FHT01A05.4/GW821-FHT01A05.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "GW821-FHT01A05",
+      "source_gene_rows": 5057,
+      "target_genome_name": "GW821-FHT01A05.4",
+      "target_repository_directory": "genome_processing/GW821-FHT01A05/assembliesAndAnnotations/GW821-FHT01A05.4/",
+      "total_bases": 5792590,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 5057,
+        "gff_gene_features": 5057,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW507-4G11_Prodigal.gff": {
+          "bytes": 2873961,
+          "sha256": "0bcc2e6b5ba8ab67e94259467a7f5b9e703a996db681e177f0dd3de523559883"
+        },
+        "FW507-4G11_contigs.fasta": {
+          "bytes": 8561868,
+          "sha256": "553f8d7bfda410f6823c7cbf6358a41aa0a5547783e91ab8d2d2a508b074bf82"
+        }
+      },
+      "fitprivate_orgId": "Cup4G11",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.4/FW507-4G11.4_export_manifest.json",
+      "scaffolds": 2,
+      "sdt_strain_name": "FW507-4G11",
+      "source_gene_rows": 7449,
+      "target_genome_name": "FW507-4G11.4",
+      "target_repository_directory": "genome_processing/FW507-4G11/assembliesAndAnnotations/FW507-4G11.4/",
+      "total_bases": 8421483,
+      "validation": {
+        "fasta_records": 2,
+        "gff_child_features": 7449,
+        "gff_gene_features": 7449,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "EB106-05-01-XG201_Prodigal.gff": {
+          "bytes": 1570947,
+          "sha256": "8700464ddf79095e7e05370841027c461c64a7617c4c5b21ad2c9600763131ca"
+        },
+        "EB106-05-01-XG201_contigs.fasta": {
+          "bytes": 5055018,
+          "sha256": "fc6e727ffde0eea22a501b37d96e6015b100f562dcd231994bf16eefb4daf8fa"
+        }
+      },
+      "fitprivate_orgId": "Enterobacter_XG201",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.4/EB106-05-01-XG201.4_export_manifest.json",
+      "scaffolds": 3,
+      "sdt_strain_name": "EB106-05-01-XG201",
+      "source_gene_rows": 4581,
+      "target_genome_name": "EB106-05-01-XG201.4",
+      "target_repository_directory": "genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.4/",
+      "total_bases": 4972118,
+      "validation": {
+        "fasta_records": 3,
+        "gff_child_features": 4581,
+        "gff_gene_features": 4581,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW822-FHT05C05_Prodigal.gff": {
+          "bytes": 2205497,
+          "sha256": "687864d1cf8022be178eb77e054415d2e7e31dade869bcc0a4ae4bd743e0056d"
+        },
+        "GW822-FHT05C05_contigs.fasta": {
+          "bytes": 6513748,
+          "sha256": "a6d4c8c5353c927e05c6ac009f484f88b1c352d93965ab5c2da1d26dc4b5d794"
+        }
+      },
+      "fitprivate_orgId": "Janthino_FHT05C05",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW822-FHT05C05/assembliesAndAnnotations/GW822-FHT05C05.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW822-FHT05C05/assembliesAndAnnotations/GW822-FHT05C05.3/GW822-FHT05C05.3_export_manifest.json",
+      "scaffolds": 12,
+      "sdt_strain_name": "GW822-FHT05C05",
+      "source_gene_rows": 5707,
+      "target_genome_name": "GW822-FHT05C05.3",
+      "target_repository_directory": "genome_processing/GW822-FHT05C05/assembliesAndAnnotations/GW822-FHT05C05.3/",
+      "total_bases": 6406724,
+      "validation": {
+        "fasta_records": 12,
+        "gff_child_features": 5707,
+        "gff_gene_features": 5707,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW823-FHT01H08_Prodigal.gff": {
+          "bytes": 1829337,
+          "sha256": "b4577bec4d7612fa7bbd4cf2cef74699ed4142f706298fa32c928956b7cad7cc"
+        },
+        "GW823-FHT01H08_contigs.fasta": {
+          "bytes": 6235547,
+          "sha256": "530b5a6b30c34a4f984b9722d3069e3f20d5d94e9d484387bb051423a5d24a0e"
+        }
+      },
+      "fitprivate_orgId": "Janthinobacterium_agari",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.4/GW823-FHT01H08.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "GW823-FHT01H08",
+      "source_gene_rows": 5441,
+      "target_genome_name": "GW823-FHT01H08.4",
+      "target_repository_directory": "genome_processing/GW823-FHT01H08/assembliesAndAnnotations/GW823-FHT01H08.4/",
+      "total_bases": 6133315,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 5441,
+        "gff_gene_features": 5441,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "MT49_Prodigal.gff": {
+          "bytes": 1726468,
+          "sha256": "7edda90c34dddff74e0c9baf17460bb6dfd362fe73f3d662b1550395bb0516a3"
+        },
+        "MT49_contigs.fasta": {
+          "bytes": 5485480,
+          "sha256": "cb355db81c027da43fa8a2cd3a5aa5a0a1fba73b0874b25f2f831c506d603b56"
+        }
+      },
+      "fitprivate_orgId": "MT049",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT49/assembliesAndAnnotations/MT49.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT49/assembliesAndAnnotations/MT49.4/MT49.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "MT49",
+      "source_gene_rows": 5043,
+      "target_genome_name": "MT49.4",
+      "target_repository_directory": "genome_processing/MT49/assembliesAndAnnotations/MT49.4/",
+      "total_bases": 5395544,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 5043,
+        "gff_gene_features": 5043,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "MT58_Prodigal.gff": {
+          "bytes": 1489610,
+          "sha256": "ab3923dbf8d591f5d1cdb19e7dbc2d778eb066e0130036a43cf2c6b5d396505f"
+        },
+        "MT58_contigs.fasta": {
+          "bytes": 4753820,
+          "sha256": "1b3052c00f0e2efb051c3273a8bb49e854d2ac7408b08b227fbf7aba15461f82"
+        }
+      },
+      "fitprivate_orgId": "MT058",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT58/assembliesAndAnnotations/MT58.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT58/assembliesAndAnnotations/MT58.3/MT58.3_export_manifest.json",
+      "scaffolds": 4,
+      "sdt_strain_name": "MT58",
+      "source_gene_rows": 4370,
+      "target_genome_name": "MT58.3",
+      "target_repository_directory": "genome_processing/MT58/assembliesAndAnnotations/MT58.3/",
+      "total_bases": 4675847,
+      "validation": {
+        "fasta_records": 4,
+        "gff_child_features": 4370,
+        "gff_gene_features": 4370,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW460-11-11-14-LB5_Prodigal.gff": {
+          "bytes": 2014978,
+          "sha256": "83747c70c8253f20476acb56fa9be607ad84e9e80a5ffb5a6531167af6895e58"
+        },
+        "GW460-11-11-14-LB5_contigs.fasta": {
+          "bytes": 6285114,
+          "sha256": "3fe87f9a5d56cc63c09766335a6e70b63064b62723e755a1f8308338fdf4594d"
+        }
+      },
+      "fitprivate_orgId": "Pedo557",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-11-11-14-LB5/assembliesAndAnnotations/GW460-11-11-14-LB5.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-11-11-14-LB5/assembliesAndAnnotations/GW460-11-11-14-LB5.3/GW460-11-11-14-LB5.3_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "GW460-11-11-14-LB5",
+      "source_gene_rows": 5089,
+      "target_genome_name": "GW460-11-11-14-LB5.3",
+      "target_repository_directory": "genome_processing/GW460-11-11-14-LB5/assembliesAndAnnotations/GW460-11-11-14-LB5.3/",
+      "total_bases": 6182066,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 5089,
+        "gff_gene_features": 5089,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW460-11-11-14-LB1_Prodigal.gff": {
+          "bytes": 2000886,
+          "sha256": "a0076e108a964e44967a5720aaf9cc0d7014609d8a3a72592a8716b574b0c3c3"
+        },
+        "GW460-11-11-14-LB1_contigs.fasta": {
+          "bytes": 6237702,
+          "sha256": "657e758bac84d54070ee23ba6b0efbe42cc268e61389dcac0f289f772bce7c79"
+        }
+      },
+      "fitprivate_orgId": "Phaga5",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-11-11-14-LB1/assembliesAndAnnotations/GW460-11-11-14-LB1.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW460-11-11-14-LB1/assembliesAndAnnotations/GW460-11-11-14-LB1.3/GW460-11-11-14-LB1.3_export_manifest.json",
+      "scaffolds": 11,
+      "sdt_strain_name": "GW460-11-11-14-LB1",
+      "source_gene_rows": 5854,
+      "target_genome_name": "GW460-11-11-14-LB1.3",
+      "target_repository_directory": "genome_processing/GW460-11-11-14-LB1/assembliesAndAnnotations/GW460-11-11-14-LB1.3/",
+      "total_bases": 6135295,
+      "validation": {
+        "fasta_records": 11,
+        "gff_child_features": 5854,
+        "gff_gene_features": 5854,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW215-L2_Prodigal.gff": {
+          "bytes": 2095471,
+          "sha256": "f66d6f522be78bfffaf1a3691cb28ac4a80bec779c62bd54aea9d96fd74551ee"
+        },
+        "FW215-L2_contigs.fasta": {
+          "bytes": 7442724,
+          "sha256": "aa643656fb6def8d96420f10d0be962d7f349826d9ff2e27f5cd5417cedfe94c"
+        }
+      },
+      "fitprivate_orgId": "PseudoFW215-L2",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW215-L2/assembliesAndAnnotations/FW215-L2.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW215-L2/assembliesAndAnnotations/FW215-L2.3/FW215-L2.3_export_manifest.json",
+      "scaffolds": 320,
+      "sdt_strain_name": "FW215-L2",
+      "source_gene_rows": 6622,
+      "target_genome_name": "FW215-L2.3",
+      "target_repository_directory": "genome_processing/FW215-L2/assembliesAndAnnotations/FW215-L2.3/",
+      "total_bases": 7314884,
+      "validation": {
+        "fasta_records": 320,
+        "gff_child_features": 6622,
+        "gff_gene_features": 6622,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "MT42_Prodigal.gff": {
+          "bytes": 1405769,
+          "sha256": "619cfd91ad3687211e889287d04c677178a25ebfc99bea51be19a14f19a6235b"
+        },
+        "MT42_contigs.fasta": {
+          "bytes": 4307428,
+          "sha256": "2366a32e420e8eece857743d73b6d59a51c1d5ac66b758da9d501d9c136b103e"
+        }
+      },
+      "fitprivate_orgId": "Rhodanobacter_MT42",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT42/assembliesAndAnnotations/MT42.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/MT42/assembliesAndAnnotations/MT42.3/MT42.3_export_manifest.json",
+      "scaffolds": 2,
+      "sdt_strain_name": "MT42",
+      "source_gene_rows": 3930,
+      "target_genome_name": "MT42.3",
+      "target_repository_directory": "genome_processing/MT42/assembliesAndAnnotations/MT42.3/",
+      "total_bases": 4236788,
+      "validation": {
+        "fasta_records": 2,
+        "gff_child_features": 3930,
+        "gff_gene_features": 3930,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW101-3H11_Prodigal.gff": {
+          "bytes": 2096524,
+          "sha256": "917d8cc84c272a6da0f14aa9ee2b9ba035d4a81c4075ca55c60aa01b1f6917b7"
+        },
+        "GW101-3H11_contigs.fasta": {
+          "bytes": 5533786,
+          "sha256": "1784a16cdd5441706eae2f042b4e6858972dfa2e23c2911cc4e881d64ec83038"
+        }
+      },
+      "fitprivate_orgId": "acidovorax_3H11",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW101-3H11/assembliesAndAnnotations/GW101-3H11.6",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW101-3H11/assembliesAndAnnotations/GW101-3H11.6/GW101-3H11.6_export_manifest.json",
+      "scaffolds": 39,
+      "sdt_strain_name": "GW101-3H11",
+      "source_gene_rows": 5019,
+      "target_genome_name": "GW101-3H11.6",
+      "target_repository_directory": "genome_processing/GW101-3H11/assembliesAndAnnotations/GW101-3H11.6/",
+      "total_bases": 5442520,
+      "validation": {
+        "fasta_records": 39,
+        "gff_child_features": 5019,
+        "gff_gene_features": 5019,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "GW456-L13_Prodigal.gff": {
+          "bytes": 2517209,
+          "sha256": "ea80a29194814fdf43c3cabd07c60247e988a1cddd96cf47def89f1564c2f5b9"
+        },
+        "GW456-L13_contigs.fasta": {
+          "bytes": 5853442,
+          "sha256": "e4750adc5f8ab187d618a79abe2bf0d65a11f2aa45de47e9751c1f9481d9c715"
+        }
+      },
+      "fitprivate_orgId": "pseudo13_GW456_L13",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW456-L13/assembliesAndAnnotations/GW456-L13.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/GW456-L13/assembliesAndAnnotations/GW456-L13.3/GW456-L13.3_export_manifest.json",
+      "scaffolds": 2,
+      "sdt_strain_name": "GW456-L13",
+      "source_gene_rows": 5243,
+      "target_genome_name": "GW456-L13.3",
+      "target_repository_directory": "genome_processing/GW456-L13/assembliesAndAnnotations/GW456-L13.3/",
+      "total_bases": 5757432,
+      "validation": {
+        "fasta_records": 2,
+        "gff_child_features": 5243,
+        "gff_gene_features": 5243,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW300-N1B4_Prodigal.gff": {
+          "bytes": 3036333,
+          "sha256": "91d3b45baa3cc5472d4b55522d4f2d2184b3d64cd87a32f25b6e76f43f411d04"
+        },
+        "FW300-N1B4_contigs.fasta": {
+          "bytes": 6734025,
+          "sha256": "e1f94876e64e13a97838b001829f739ee21885470dd9adcace3eb999e23c2cd2"
+        }
+      },
+      "fitprivate_orgId": "pseudo1_N1B4",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N1B4/assembliesAndAnnotations/FW300-N1B4.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N1B4/assembliesAndAnnotations/FW300-N1B4.3/FW300-N1B4.3_export_manifest.json",
+      "scaffolds": 3,
+      "sdt_strain_name": "FW300-N1B4",
+      "source_gene_rows": 6058,
+      "target_genome_name": "FW300-N1B4.3",
+      "target_repository_directory": "genome_processing/FW300-N1B4/assembliesAndAnnotations/FW300-N1B4.3/",
+      "total_bases": 6623530,
+      "validation": {
+        "fasta_records": 3,
+        "gff_child_features": 6058,
+        "gff_gene_features": 6058,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW300-N2E3_Prodigal.gff": {
+          "bytes": 2217891,
+          "sha256": "0827e8f61857121bbd01132b5d0d6c40d3cd8e09156d7a56a759d1e240eb7449"
+        },
+        "FW300-N2E3_contigs.fasta": {
+          "bytes": 6498413,
+          "sha256": "fe53877f2672562a85ae7e3c3271cc409c89bb509f28adf137fb81d216c4f31c"
+        }
+      },
+      "fitprivate_orgId": "pseudo3_N2E3",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2E3/assembliesAndAnnotations/FW300-N2E3.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2E3/assembliesAndAnnotations/FW300-N2E3.3/FW300-N2E3.3_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "FW300-N2E3",
+      "source_gene_rows": 5854,
+      "target_genome_name": "FW300-N2E3.3",
+      "target_repository_directory": "genome_processing/FW300-N2E3/assembliesAndAnnotations/FW300-N2E3.3/",
+      "total_bases": 6391871,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 5854,
+        "gff_gene_features": 5854,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW300-N2C3_Prodigal.gff": {
+          "bytes": 2307841,
+          "sha256": "069a0624f9c08bbba32714463adb4a8871794cc60cceec1247445472737f6d39"
+        },
+        "FW300-N2C3_contigs.fasta": {
+          "bytes": 7237764,
+          "sha256": "9a85bacf09483c5eddc32309f6ae1c30d71fa5e25f7c3c8cc845ecd278714e29"
+        }
+      },
+      "fitprivate_orgId": "pseudo5_N2C3_1",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2C3/assembliesAndAnnotations/FW300-N2C3.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2C3/assembliesAndAnnotations/FW300-N2C3.3/FW300-N2C3.3_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "FW300-N2C3",
+      "source_gene_rows": 6082,
+      "target_genome_name": "FW300-N2C3.3",
+      "target_repository_directory": "genome_processing/FW300-N2C3/assembliesAndAnnotations/FW300-N2C3.3/",
+      "total_bases": 7119102,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 6082,
+        "gff_gene_features": 6082,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW300-N2E2_Prodigal.gff": {
+          "bytes": 3210400,
+          "sha256": "e2abc298c4d96512be1bc6f958d6b7db6c167234e65c9c6e9aa2711ca161b0db"
+        },
+        "FW300-N2E2_contigs.fasta": {
+          "bytes": 7034456,
+          "sha256": "89a9ec551e976451318ce49a8642711ea8f02e90463791c93e663ca35e8eb137"
+        }
+      },
+      "fitprivate_orgId": "pseudo6_N2E2",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2E2/assembliesAndAnnotations/FW300-N2E2.3",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW300-N2E2/assembliesAndAnnotations/FW300-N2E2.3/FW300-N2E2.3_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "FW300-N2E2",
+      "source_gene_rows": 6175,
+      "target_genome_name": "FW300-N2E2.3",
+      "target_repository_directory": "genome_processing/FW300-N2E2/assembliesAndAnnotations/FW300-N2E2.3/",
+      "total_bases": 6919098,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 6175,
+        "gff_gene_features": 6175,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW104-10B01_Prodigal.gff": {
+          "bytes": 1483806,
+          "sha256": "2a2d61f3d4fb35607ef43e76cc4ca3f12ced5c44a3311e865414945d52c4f945"
+        },
+        "FW104-10B01_contigs.fasta": {
+          "bytes": 4025114,
+          "sha256": "aa11cce86ae06bf9d82f71dcdcb748811cd9a737e2fa4806b0de7692a632704a"
+        }
+      },
+      "fitprivate_orgId": "rhodanobacter_10B01",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.4/FW104-10B01.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "FW104-10B01",
+      "source_gene_rows": 3624,
+      "target_genome_name": "FW104-10B01.4",
+      "target_repository_directory": "genome_processing/FW104-10B01/assembliesAndAnnotations/FW104-10B01.4/",
+      "total_bases": 3959115,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 3624,
+        "gff_gene_features": 3624,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW510-R12_Prodigal.gff": {
+          "bytes": 1369387,
+          "sha256": "9f1b371b7f24dbb9a233eeb21ca75aaf53bb061617848155e6bc82a19b4d7ed1"
+        },
+        "FW510-R12_contigs.fasta": {
+          "bytes": 4274041,
+          "sha256": "0877061f196cd0300cbfb40700e71dfd17cb87b4c0b9b013884dd5d18c356969"
+        }
+      },
+      "fitprivate_orgId": "rhodanobacter_R12",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.4/FW510-R12.4_export_manifest.json",
+      "scaffolds": 2,
+      "sdt_strain_name": "FW510-R12",
+      "source_gene_rows": 3832,
+      "target_genome_name": "FW510-R12.4",
+      "target_repository_directory": "genome_processing/FW510-R12/assembliesAndAnnotations/FW510-R12.4/",
+      "total_bases": 4203948,
+      "validation": {
+        "fasta_records": 2,
+        "gff_child_features": 3832,
+        "gff_gene_features": 3832,
+        "status": "passed"
+      }
+    },
+    {
+      "files": {
+        "FW510-T8_Prodigal.gff": {
+          "bytes": 1270672,
+          "sha256": "95409f43db75815b6a9602133a28d047ef943f330356fb75b8d0d25c85aba5a7"
+        },
+        "FW510-T8_contigs.fasta": {
+          "bytes": 3814893,
+          "sha256": "ca4a761caa6571e0344644aaebd7d6effaa0b06e8943acc3bdc90c71970ab7dd"
+        }
+      },
+      "fitprivate_orgId": "rhodanobacter_T8",
+      "local_directory": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW510-T8/assembliesAndAnnotations/FW510-T8.4",
+      "manifest": "/scratch/jmc/BERDL-ENIGMA-CORAL/coral_import/feba_20260811/phase1/exports/genome_processing/FW510-T8/assembliesAndAnnotations/FW510-T8.4/FW510-T8.4_export_manifest.json",
+      "scaffolds": 1,
+      "sdt_strain_name": "FW510-T8",
+      "source_gene_rows": 3416,
+      "target_genome_name": "FW510-T8.4",
+      "target_repository_directory": "genome_processing/FW510-T8/assembliesAndAnnotations/FW510-T8.4/",
+      "total_bases": 3752333,
+      "validation": {
+        "fasta_records": 1,
+        "gff_child_features": 3416,
+        "gff_gene_features": 3416,
+        "status": "passed"
+      }
+    }
+  ],
+  "generated_at": "2026-08-11T23:22:46.015967+00:00",
+  "source_database": "/scratch/jmc/fitprivate-rbtnseq/source/feba.db",
+  "source_database_sha256": "6b9e4edce230b2f82bff90242fe9ca46219598905d2eb775ab4f16ea446a1f11",
+  "status": "local_exports_complete_not_published"
+}

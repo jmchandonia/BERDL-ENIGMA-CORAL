@@ -927,3 +927,185 @@ Validation completed before live export:
 - Source metadata and ontology uploads are repeated on every import. Content
   addressing or reuse by digest would reduce transfer work while retaining the
   exact source snapshot in each run report.
+
+## 2026-08-10 FW300-N2E2 FEBa genome reconstruction
+
+- Confirmed that `feba.db` contains no `ODPJKPKL_*` identifiers in the N2E2
+  `Gene`, `LocusXref`, `GeneFitness`, or `FitByExp_pseudo6_N2E2` records. The
+  source organism is `pseudo6_N2E2`; all 6,175 source features use
+  `Pf6N2E2_*`, and 5,133 of those loci occur in the fitness tables.
+- Retrieved the EDR `FW300-N2E2_Prodigal.gff` for a bounded format comparison.
+  Added `tools/export_feba_genome.py`, which exports an organism directly from
+  FEBa `ScaffoldSeq`, `Gene`, and `LocusXref` into matching FASTA and GFF3
+  files while preserving source identifiers, coordinates, annotations, GC
+  fractions, and RefSeq/UniProt cross-references.
+- Generated `tnseq_genome_sources/FW300-N2E2_feba/` with a one-scaffold,
+  6,919,098 bp FASTA and a GFF3 containing 6,175 genes, 6,094 CDS features, 16
+  rRNAs, and 65 tRNAs. The manifest records file sizes and SHA-256 digests.
+- Re-read and validated the generated files. The FASTA sequence exactly equals
+  the `ScaffoldSeq` value (normalized sequence SHA-256
+  `762bb6d15f840efc2dd11e68875f0f6475955701b87f8f2cca6041b917b4916a`);
+  all 12,350 GFF rows have valid scaffold coordinates and unique IDs, all
+  6,175 child features resolve to gene parents, and no `ODPJKPKL_*` identifier
+  appears in the export.
+
+## 2026-08-10 FEBa-to-CORAL project planning
+
+- Read the live active and withdrawn EDR `manifest.tsv` files and established
+  that version allocation must use the union of both histories, skip reserved
+  `.2`, and verify actual object directories because withdrawn provenance rows
+  can mention former active paths.
+- Scoped the reviewed import to 25 FEBa organisms, 415 contigs, 139,581,003 bp,
+  126,072 source features, 46 mutant libraries, 7,329 experiments, and
+  30,756,839 fitness rows, pending confirmation that all 25 reviewed strain
+  matches remain in scope.
+- Identified two schema-critical namespace collisions: 5,854 FEBa locus IDs are
+  reused between selected organisms, while `sdt_gene_name` is globally unique;
+  1,132 experiment names are reused across organisms and can represent
+  different conditions, while `sdt_condition_name` is globally unique.
+- Confirmed FEBa has no primer/barcode field that can populate CORAL's required
+  `TnSeq_Library.primers_model`, and that the 25 organisms contain 46 distinct
+  `mutantLibrary` values. Per-experiment mapped-read counts cannot be treated as
+  library-level metrics without an additional aggregation definition.
+- Wrote `FEBA_CORAL_IMPORT_PLAN.md` with gated phases for EDR fingerprinting,
+  deduplication and version allocation; paired FASTA/GFF publication; CORAL
+  Genome/Gene/Condition/TnSeq Library imports; one fitness brick per strain;
+  process provenance; and final BERDL sync and foreign-key validation.
+- Corrected the source scope after the user required both public and private
+  RB-TnSeq data. Queried live `kescience.fitnessbrowser.organism` (48 rows),
+  `enigma.fitprivate.organism` (25 rows), and `enigma.coral.sdt_strain` (3,154
+  rows). Exact current-name/full-organism matching yielded 11 public matches and
+  25 private matches with no ambiguity; all 11 public matches overlap the
+  private set, leaving 25 unique CORAL strains represented by 36
+  source-organism datasets.
+- Reviewed all 37 unmatched public organisms for normalized or substring
+  candidates in `sdt_strain`; none had a defensible current-strain match. The
+  scope therefore has 14 private-only organisms, 11 dual-source organisms, and
+  no public-only organism.
+- Verified that both result sources matter. The 11 matched public
+  `fitbyexp_*` tables contain 10,264,888 rows, while their private counterparts
+  contain 23,526,981 rows; every pair has a different row count. Updated the
+  plan to compare genomes, genes, experiments, libraries, and exact
+  `(locusId, expName, fit, t)` rows, deduplicate only identical records, retain
+  both source provenances, and stop rather than silently prefer one source when
+  same-key values conflict.
+
+## 2026-08-10 public/private N2E2 comparison
+
+- Compared live public `kescience.fitnessbrowser` and private
+  `enigma.fitprivate` data for `pseudo6_N2E2`. Both sources contain the exact
+  same 6,919,098 bp scaffold sequence (SHA-256
+  `762bb6d15f840efc2dd11e68875f0f6475955701b87f8f2cca6041b917b4916a`)
+  and the same 6,175 source gene features, including coordinates, types,
+  strands, names, descriptions, and GC values.
+- The public result has 188 experiments and 965,004 fitness rows; private has
+  388 experiments and 1,991,604 rows. Both use the same 5,133 fitness loci.
+  All 188 public experiments occur in private, and all 965,004 shared
+  `(expName, locusId)` rows have numerically identical `fit` and `t` values.
+- The 200 private-only experiments add 99 `ML5`, 92 `ML5b`, 7 `ML5c`, and 2
+  `ML5a` experiments. By experiment group these comprise 109 stress, 43 carbon
+  source, 18 LB, 12 nitrogen source, 9 denitrifying, 7 resistance, and 2
+  anaerobic experiments.
+- Semantically normalized metadata for the 188 shared experiments is identical
+  except for publication provenance: public supplies `pubId` for every shared
+  experiment (`Price18` 178, `Price21b` 6, `Price17` 4), while private leaves
+  `pubId` blank. The import should deduplicate shared measurements, retain the
+  200 private-only experiments, and preserve the public publication links.
+
+## 2026-08-10 private-only source decision
+
+- The user selected `enigma.fitprivate` as the sole import source for all 25
+  matched ENIGMA strains. Public `kescience.fitnessbrowser` organisms and
+  measurements will be ignored even when they overlap private organisms.
+- Updated `FEBA_CORAL_IMPORT_PLAN.md` to remove the 11-organism cross-source
+  reconciliation gate, scope the work manifest and genome fingerprints to 25
+  private organisms, generate bricks only from private fitness data, and record
+  only private source provenance.
+- This intentionally omits public-only publication metadata. For N2E2, that
+  means the `Price18`, `Price21b`, and `Price17` `pubId` annotations will not be
+  carried into CORAL unless separately requested.
+
+## 2026-08-10 FEBa identifier collision examples
+
+- Rechecked the 25 selected private organisms directly against the immutable
+  `feba.db`. All 5,854 reused gene locus IDs are generic `GFF<number>` names
+  shared by `Phaga5` and `PseudoFW215-L2`; they identify different coordinates
+  and functions. Examples include `GFF1` (phenylacetate-CoA ligase versus
+  tyrosyl-tRNA ligase), `GFF100` (hypothetical protein versus CreB), and
+  `GFF1369` (p-aminobenzoyl-glutamate cleavage subunit A versus OccM).
+- Rechecked all 1,132 experiment names used by more than one selected organism.
+  Every reused `expName` has multiple condition signatures when comparing
+  description, media, temperature, pH, vessel, atmosphere, shaking, and all
+  treatment/concentration fields. For example, `set1IT012` denotes sodium
+  pyruvate for N2E2, D-xylose for Keio, and 200 mM sodium nitrate stress for
+  Cup4G11; `set1IT081` includes anaerobic L-rhamnose for Btheta, aerobic glycine
+  nitrogen source for Keio, and anaerobic potassium dichromate stress for
+  MT049.
+- Resolved the naming policy: qualify `Gene.gene_id` values as
+  `<genome-identifier>:<FEBa-locusId>` and condition names as
+  `<strain-name>:<expName>`. Pipe characters must not be used to compose
+  identifiers. The gene qualifier is the version-specific CORAL `Genome.name`
+  unique key, not the strain name or auto-assigned internal `Genome000...` ID.
+- Audited the current exported CORAL `typedef.json`, backend validation code,
+  and all static `name` values from the 2026-07-24 snapshot. Every static UPK,
+  including `Gene.gene_id`, is unconstrained required unique text with no
+  character regex or length limit. Live names already contain spaces, hyphens,
+  underscores, periods, slashes, equals signs, semicolons, parentheses, commas,
+  plus signs, percent signs, apostrophes, brackets, a degree symbol, and one
+  colon; no control characters or edge whitespace were present.
+- Added import-level restrictions stronger than CORAL's schema: a non-empty,
+  globally unique identifier with one colon as the qualifier; no pipes,
+  control characters, or edge whitespace; and a stop if either source
+  component already contains a colon. Current FEBa `locusId` and `expName`
+  values have zero colons, pipes, edge whitespace, tabs, or newlines.
+
+## 2026-08-10 TnSeq library model investigation
+
+- Audited the immutable private `/scratch/jmc/fitprivate-rbtnseq/source/feba.db`
+  schema and confirmed it stores only `Experiment.mutantLibrary`; it contains
+  no primer, transposon, delivery-vector, plasmid, or library-construction
+  field, and private `pubId` values are blank.
+- Enumerated all 46 raw `mutantLibrary` strings and their `timeZeroSet` values.
+  Many strings are case, suffix, display-name, or collaborating-site variants
+  of one apparent base-library lineage per organism. Shared `timeZeroSet`
+  prefixes do not prove that these are the same physical pool, so the import
+  plan continues to preserve all 46 CORAL library records.
+- Parsed Price et al. 2018 Supplementary Table S20 and its plasmid notes. It
+  resolves the selected Acidovorax, Cupriavidus, N1B4, N2C3, N2E2, N2E3, and
+  GW456-L13 libraries to mariner vector pKMW3 and the Keio library to Tn5
+  vector pKMW7.
+- Parsed the open-access Magic Pools article XML. Table 1 resolves Brev2_ML6
+  to pTGG39_NN1 and Pedo557_ML3 to pTGG43_NN2. Reviewed the Btheta methods,
+  which resolve Btheta_ML6 to pTGG46_NN1, and Putida sources, which resolve
+  Putida_ML5 to pKMW3.
+- Found that the FW104-10B01 publication confirms a DNA-barcoded mariner
+  delivery vector but does not publish its plasmid name. No exact model was
+  found in source data or public pages for the remaining 12 newer/private
+  physical libraries.
+- Created `tnseq_library_model_evidence_20260810.tsv` with all 46 raw labels,
+  their apparent base-library lineages, model/transposon evidence, URLs, and
+  confidence. Twelve base lineages have exact models, one has only a
+  transposon-class assignment, and twelve labels remain unresolved. Model
+  inheritance for suffix/site variants remains an inference to confirm.
+- Identified a legacy CORAL metadata error: `pseudo6_N2E2_ML5` is a mariner
+  pKMW3 library, not pKMW7. Updated the plan to correct the static
+  `TnSeq_Library.primers_model` value before reuse; immutable brick data remain
+  unchanged.
+
+## 2026-08-13 CORAL import handoff
+
+- Corrected the static import headers to use literal CORAL typedef field names:
+  `Genome.strain`, `Gene.gene_id`, `Gene.genome`, and
+  `TnSeq_Library.genome`.
+- Added generator preflight checks that reject undeclared headers and blank,
+  `null`, or `nan` required properties; the focused FEBa suite passes 30 tests.
+- Rebuilt and checksum-validated the 22-isolate package with 22 genomes,
+  110,899 genes, 3,846 conditions, 34 TnSeq libraries, 22 fitness bricks, and
+  one shared experiment-metadata brick.
+- Added the deferred N2E2 `Update Data` process to `files_to_import.txt` and a
+  runnable `import_n2e2_obsoletion_to_coral.py` helper.
+- The project owner reports all package files imported into CORAL. Live
+  post-import verification remains the next gate; specifically confirm the
+  static and brick counts, object references, producing processes, and the
+  obsolete/replacement relationship from `tnseq_n2e2.ndarray` to
+  `feba_tnseq_fitness_FW300-N2E2.3.ndarray`.

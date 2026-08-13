@@ -1,0 +1,357 @@
+Isolate ID	Date	Data Type	File Name	Method	Inputs
+GW821-FHT12D02	2023-09-12	Genome	GW821-FHT12D02/assembliesAndAnnotations/GW821-FHT12D02.1/GW821-FHT12D02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/562/1
+GW821-FHT12D02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D02/assembliesAndAnnotations/GW821-FHT12D02.1/GW821-FHT12D02.gbff
+GW821-FHT10F03	2023-09-11	Genome	GW821-FHT10F03/assembliesAndAnnotations/GW821-FHT10F03.1/GW821-FHT10F03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/332/1
+GW821-FHT10F03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F03/assembliesAndAnnotations/GW821-FHT10F03.1/GW821-FHT10F03.gbff
+GW821-FHT12F02	2023-09-12	Genome	GW821-FHT12F02/assembliesAndAnnotations/GW821-FHT12F02.1/GW821-FHT12F02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/566/1
+GW821-FHT12F02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F02/assembliesAndAnnotations/GW821-FHT12F02.1/GW821-FHT12F02.gbff
+GW821-FHT10B12	2023-09-11	Genome	GW821-FHT10B12/assembliesAndAnnotations/GW821-FHT10B12.1/GW821-FHT10B12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/420/1
+GW821-FHT10B12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B12/assembliesAndAnnotations/GW821-FHT10B12.1/GW821-FHT10B12.gbff
+GW821-FHT12C07	2023-09-12	Genome	GW821-FHT12C07/assembliesAndAnnotations/GW821-FHT12C07.1/GW821-FHT12C07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/602/1
+GW821-FHT12C07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C07/assembliesAndAnnotations/GW821-FHT12C07.1/GW821-FHT12C07.gbff
+GW821-FHT10E05	2023-09-11	Genome	GW821-FHT10E05/assembliesAndAnnotations/GW821-FHT10E05.1/GW821-FHT10E05.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/352/1
+GW821-FHT10E05	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E05/assembliesAndAnnotations/GW821-FHT10E05.1/GW821-FHT10E05.gbff
+GW821-FHT12C10	2023-09-12	Genome	GW821-FHT12C10/assembliesAndAnnotations/GW821-FHT12C10.1/GW821-FHT12C10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/626/1
+GW821-FHT12C10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C10/assembliesAndAnnotations/GW821-FHT12C10.1/GW821-FHT12C10.gbff
+GW821-FHT12B03	2023-09-12	Genome	GW821-FHT12B03/assembliesAndAnnotations/GW821-FHT12B03.1/GW821-FHT12B03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/574/1
+GW821-FHT12B03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12B03/assembliesAndAnnotations/GW821-FHT12B03.1/GW821-FHT12B03.gbff
+FW305-107	2023-09-11	Genome	FW305-107/assembliesAndAnnotations/FW305-107.1/FW305-107.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/384/1
+FW305-107	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW305-107/assembliesAndAnnotations/FW305-107.1/FW305-107.gbff
+GW821-FHT12D01	2023-09-12	Genome	GW821-FHT12D01/assembliesAndAnnotations/GW821-FHT12D01.1/GW821-FHT12D01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/548/1
+GW821-FHT12D01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D01/assembliesAndAnnotations/GW821-FHT12D01.1/GW821-FHT12D01.gbff
+FW301-JW63	2023-09-11	Genome	FW301-JW63/assembliesAndAnnotations/FW301-JW63.3/FW301-JW63.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/410/1
+FW301-JW63	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW301-JW63/assembliesAndAnnotations/FW301-JW63.3/FW301-JW63.gbff
+GW821-FHT10C01	2023-09-11	Genome	GW821-FHT10C01/assembliesAndAnnotations/GW821-FHT10C01.1/GW821-FHT10C01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/300/1
+GW821-FHT10C01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10C01/assembliesAndAnnotations/GW821-FHT10C01.1/GW821-FHT10C01.gbff
+GW821-FHT12G09	2023-09-12	Genome	GW821-FHT12G09/assembliesAndAnnotations/GW821-FHT12G09.1/GW821-FHT12G09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/616/1
+GW821-FHT12G09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12G09/assembliesAndAnnotations/GW821-FHT12G09.1/GW821-FHT12G09.gbff
+GW821-FHT10F11	2023-09-11	Genome	GW821-FHT10F11/assembliesAndAnnotations/GW821-FHT10F11.1/GW821-FHT10F11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/416/1
+GW821-FHT10F11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F11/assembliesAndAnnotations/GW821-FHT10F11.1/GW821-FHT10F11.gbff
+GW821-FHT10E01	2023-09-11	Genome	GW821-FHT10E01/assembliesAndAnnotations/GW821-FHT10E01.1/GW821-FHT10E01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/302/1
+GW821-FHT10E01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E01/assembliesAndAnnotations/GW821-FHT10E01.1/GW821-FHT10E01.gbff
+GW821-FHT10A02	2023-09-11	Genome	GW821-FHT10A02/assembliesAndAnnotations/GW821-FHT10A02.1/GW821-FHT10A02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/308/1
+GW821-FHT10A02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A02/assembliesAndAnnotations/GW821-FHT10A02.1/GW821-FHT10A02.gbff
+GW821-FHT12D05	2023-09-12	Genome	GW821-FHT12D05/assembliesAndAnnotations/GW821-FHT12D05.1/GW821-FHT12D05.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/592/1
+GW821-FHT12D05	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D05/assembliesAndAnnotations/GW821-FHT12D05.1/GW821-FHT12D05.gbff
+GW821-FHT12G04	2023-09-12	Genome	GW821-FHT12G04/assembliesAndAnnotations/GW821-FHT12G04.1/GW821-FHT12G04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/588/1
+GW821-FHT12G04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12G04/assembliesAndAnnotations/GW821-FHT12G04.1/GW821-FHT12G04.gbff
+GW821-FHT12C01	2023-09-12	Genome	GW821-FHT12C01/assembliesAndAnnotations/GW821-FHT12C01.1/GW821-FHT12C01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/546/1
+GW821-FHT12C01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C01/assembliesAndAnnotations/GW821-FHT12C01.1/GW821-FHT12C01.gbff
+GW821-FHT10E12	2023-09-11	Genome	GW821-FHT10E12/assembliesAndAnnotations/GW821-FHT10E12.1/GW821-FHT10E12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/424/1
+GW821-FHT10E12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E12/assembliesAndAnnotations/GW821-FHT10E12.1/GW821-FHT10E12.gbff
+FW101-FHT12H10	2023-09-12	Genome	FW101-FHT12H10/assembliesAndAnnotations/FW101-FHT12H10.1/FW101-FHT12H10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/630/1
+FW101-FHT12H10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW101-FHT12H10/assembliesAndAnnotations/FW101-FHT12H10.1/FW101-FHT12H10.gbff
+GW821-FHT12A04	2023-09-12	Genome	GW821-FHT12A04/assembliesAndAnnotations/GW821-FHT12A04.1/GW821-FHT12A04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/584/1
+GW821-FHT12A04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A04/assembliesAndAnnotations/GW821-FHT12A04.1/GW821-FHT12A04.gbff
+GW821-FHT10D02	2023-09-11	Genome	GW821-FHT10D02/assembliesAndAnnotations/GW821-FHT10D02.1/GW821-FHT10D02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/314/1
+GW821-FHT10D02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10D02/assembliesAndAnnotations/GW821-FHT10D02.1/GW821-FHT10D02.gbff
+GW821-FHT10F04	2023-09-11	Genome	GW821-FHT10F04/assembliesAndAnnotations/GW821-FHT10F04.1/GW821-FHT10F04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/344/1
+GW821-FHT10F04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F04/assembliesAndAnnotations/GW821-FHT10F04.1/GW821-FHT10F04.gbff
+GW821-FHT12C12	2023-09-12	Genome	GW821-FHT12C12/assembliesAndAnnotations/GW821-FHT12C12.1/GW821-FHT12C12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/644/1
+GW821-FHT12C12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C12/assembliesAndAnnotations/GW821-FHT12C12.1/GW821-FHT12C12.gbff
+GW821-FHT12B10	2023-09-12	Genome	GW821-FHT12B10/assembliesAndAnnotations/GW821-FHT12B10.1/GW821-FHT12B10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/622/1
+GW821-FHT12B10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12B10/assembliesAndAnnotations/GW821-FHT12B10.1/GW821-FHT12B10.gbff
+GW821-FHT12A10	2023-09-12	Genome	GW821-FHT12A10/assembliesAndAnnotations/GW821-FHT12A10.1/GW821-FHT12A10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/620/1
+GW821-FHT12A10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A10/assembliesAndAnnotations/GW821-FHT12A10.1/GW821-FHT12A10.gbff
+GW821-FHT10A04	2023-09-11	Genome	GW821-FHT10A04/assembliesAndAnnotations/GW821-FHT10A04.1/GW821-FHT10A04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/336/1
+GW821-FHT10A04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A04/assembliesAndAnnotations/GW821-FHT10A04.1/GW821-FHT10A04.gbff
+GW821-FHT10A11	2023-09-11	Genome	GW821-FHT10A11/assembliesAndAnnotations/GW821-FHT10A11.1/GW821-FHT10A11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/412/1
+GW821-FHT10A11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A11/assembliesAndAnnotations/GW821-FHT10A11.1/GW821-FHT10A11.gbff
+GW821-FHT12A05	2023-09-12	Genome	GW821-FHT12A05/assembliesAndAnnotations/GW821-FHT12A05.1/GW821-FHT12A05.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/590/1
+GW821-FHT12A05	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A05/assembliesAndAnnotations/GW821-FHT12A05.1/GW821-FHT12A05.gbff
+GW821-FHT12E01	2023-09-12	Genome	GW821-FHT12E01/assembliesAndAnnotations/GW821-FHT12E01.1/GW821-FHT12E01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/552/1
+GW821-FHT12E01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E01/assembliesAndAnnotations/GW821-FHT12E01.1/GW821-FHT12E01.gbff
+GW821-FHT10D09	2023-09-11	Genome	GW821-FHT10D09/assembliesAndAnnotations/GW821-FHT10D09.1/GW821-FHT10D09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/394/1
+GW821-FHT10D09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10D09/assembliesAndAnnotations/GW821-FHT10D09.1/GW821-FHT10D09.gbff
+GW821-FHT10E03	2023-09-11	Genome	GW821-FHT10E03/assembliesAndAnnotations/GW821-FHT10E03.1/GW821-FHT10E03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/330/1
+GW821-FHT10E03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E03/assembliesAndAnnotations/GW821-FHT10E03.1/GW821-FHT10E03.gbff
+GW821-FHT10E07	2023-09-11	Genome	GW821-FHT10E07/assembliesAndAnnotations/GW821-FHT10E07.1/GW821-FHT10E07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/370/1
+GW821-FHT10E07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E07/assembliesAndAnnotations/GW821-FHT10E07.1/GW821-FHT10E07.gbff
+FW106-PBR-R2A-1-10	2023-09-11	Genome	FW106-PBR-R2A-1-10/assembliesAndAnnotations/FW106-PBR-R2A-1-10.1/FW106-PBR-R2A-1-10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/418/1
+FW106-PBR-R2A-1-10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW106-PBR-R2A-1-10/assembliesAndAnnotations/FW106-PBR-R2A-1-10.1/FW106-PBR-R2A-1-10.gbff
+GW821-FHT10B07	2023-09-11	Genome	GW821-FHT10B07/assembliesAndAnnotations/GW821-FHT10B07.1/GW821-FHT10B07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/366/1
+GW821-FHT10B07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B07/assembliesAndAnnotations/GW821-FHT10B07.1/GW821-FHT10B07.gbff
+GW821-FHT12F04	2023-09-12	Genome	GW821-FHT12F04/assembliesAndAnnotations/GW821-FHT12F04.1/GW821-FHT12F04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/586/1
+GW821-FHT12F04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F04/assembliesAndAnnotations/GW821-FHT12F04.1/GW821-FHT12F04.gbff
+GW821-FHT10B10	2023-09-11	Genome	GW821-FHT10B10/assembliesAndAnnotations/GW821-FHT10B10.1/GW821-FHT10B10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/404/1
+GW821-FHT10B10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B10/assembliesAndAnnotations/GW821-FHT10B10.1/GW821-FHT10B10.gbff
+GW821-FHT12A07	2023-09-12	Genome	GW821-FHT12A07/assembliesAndAnnotations/GW821-FHT12A07.1/GW821-FHT12A07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/600/1
+GW821-FHT12A07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A07/assembliesAndAnnotations/GW821-FHT12A07.1/GW821-FHT12A07.gbff
+GW821-FHT10F02	2023-09-11	Genome	GW821-FHT10F02/assembliesAndAnnotations/GW821-FHT10F02.1/GW821-FHT10F02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/318/1
+GW821-FHT10F02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F02/assembliesAndAnnotations/GW821-FHT10F02.1/GW821-FHT10F02.gbff
+FW305-3-2-15-E-LB1	2023-09-12	Genome	FW305-3-2-15-E-LB1/assembliesAndAnnotations/FW305-3-2-15-E-LB1.3/FW305-3-2-15-E-LB1.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/654/1
+FW305-3-2-15-E-LB1	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW305-3-2-15-E-LB1/assembliesAndAnnotations/FW305-3-2-15-E-LB1.3/FW305-3-2-15-E-LB1.gbff
+GW821-FHT10D12	2023-09-11	Genome	GW821-FHT10D12/assembliesAndAnnotations/GW821-FHT10D12.1/GW821-FHT10D12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/428/1
+GW821-FHT10D12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10D12/assembliesAndAnnotations/GW821-FHT10D12.1/GW821-FHT10D12.gbff
+GW821-FHT10C09	2023-09-11	Genome	GW821-FHT10C09/assembliesAndAnnotations/GW821-FHT10C09.1/GW821-FHT10C09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/390/1
+GW821-FHT10C09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10C09/assembliesAndAnnotations/GW821-FHT10C09.1/GW821-FHT10C09.gbff
+GW821-FHT10B03	2023-09-11	Genome	GW821-FHT10B03/assembliesAndAnnotations/GW821-FHT10B03.1/GW821-FHT10B03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/326/1
+GW821-FHT10B03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B03/assembliesAndAnnotations/GW821-FHT10B03.1/GW821-FHT10B03.gbff
+FW306-1C-G01B	2023-09-12	Genome	FW306-1C-G01B/assembliesAndAnnotations/FW306-1C-G01B.3/FW306-1C-G01B.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/660/1
+FW306-1C-G01B	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW306-1C-G01B/assembliesAndAnnotations/FW306-1C-G01B.3/FW306-1C-G01B.gbff
+GW821-FHT12G02	2023-09-12	Genome	GW821-FHT12G02/assembliesAndAnnotations/GW821-FHT12G02.1/GW821-FHT12G02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/568/1
+GW821-FHT12G02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12G02/assembliesAndAnnotations/GW821-FHT12G02.1/GW821-FHT12G02.gbff
+GW821-FHT12F09	2023-09-12	Genome	GW821-FHT12F09/assembliesAndAnnotations/GW821-FHT12F09.1/GW821-FHT12F09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/614/1
+GW821-FHT12F09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F09/assembliesAndAnnotations/GW821-FHT12F09.1/GW821-FHT12F09.gbff
+FW507-F4	2023-09-12	Genome	FW507-F4/assembliesAndAnnotations/FW507-F4.1/FW507-F4.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/658/1
+FW507-F4	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW507-F4/assembliesAndAnnotations/FW507-F4.1/FW507-F4.gbff
+GW456-E5	2023-09-12	Genome	GW456-E5/assembliesAndAnnotations/GW456-E5.3/GW456-E5.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/662/1
+GW456-E5	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW456-E5/assembliesAndAnnotations/GW456-E5.3/GW456-E5.gbff
+GW821-FHT10C12	2023-09-11	Genome	GW821-FHT10C12/assembliesAndAnnotations/GW821-FHT10C12.1/GW821-FHT10C12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/422/1
+GW821-FHT10C12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10C12/assembliesAndAnnotations/GW821-FHT10C12.1/GW821-FHT10C12.gbff
+FW101-FHT12H11	2023-09-12	Genome	FW101-FHT12H11/assembliesAndAnnotations/FW101-FHT12H11.1/FW101-FHT12H11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/640/1
+FW101-FHT12H11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW101-FHT12H11/assembliesAndAnnotations/FW101-FHT12H11.1/FW101-FHT12H11.gbff
+GW821-FHT10B04	2023-09-11	Genome	GW821-FHT10B04/assembliesAndAnnotations/GW821-FHT10B04.1/GW821-FHT10B04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/338/1
+GW821-FHT10B04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B04/assembliesAndAnnotations/GW821-FHT10B04.1/GW821-FHT10B04.gbff
+GW821-FHT10A10	2023-09-11	Genome	GW821-FHT10A10/assembliesAndAnnotations/GW821-FHT10A10.1/GW821-FHT10A10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/402/1
+GW821-FHT10A10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A10/assembliesAndAnnotations/GW821-FHT10A10.1/GW821-FHT10A10.gbff
+GW101-3F08	2023-09-12	Genome	GW101-3F08/assembliesAndAnnotations/GW101-3F08.1/GW101-3F08.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/664/1
+GW101-3F08	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW101-3F08/assembliesAndAnnotations/GW101-3F08.1/GW101-3F08.gbff
+GW821-FHT12C02	2023-09-12	Genome	GW821-FHT12C02/assembliesAndAnnotations/GW821-FHT12C02.1/GW821-FHT12C02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/560/1
+GW821-FHT12C02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C02/assembliesAndAnnotations/GW821-FHT12C02.1/GW821-FHT12C02.gbff
+GW821-FHT12F01	2023-09-12	Genome	GW821-FHT12F01/assembliesAndAnnotations/GW821-FHT12F01.1/GW821-FHT12F01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/554/1
+GW821-FHT12F01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F01/assembliesAndAnnotations/GW821-FHT12F01.1/GW821-FHT12F01.gbff
+GW821-FHT12D12	2023-09-12	Genome	GW821-FHT12D12/assembliesAndAnnotations/GW821-FHT12D12.1/GW821-FHT12D12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/646/1
+GW821-FHT12D12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D12/assembliesAndAnnotations/GW821-FHT12D12.1/GW821-FHT12D12.gbff
+EB106-04-02-XG92	2023-09-11	Genome	EB106-04-02-XG92/assembliesAndAnnotations/EB106-04-02-XG92.1/EB106-04-02-XG92.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/374/1
+EB106-04-02-XG92	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	EB106-04-02-XG92/assembliesAndAnnotations/EB106-04-02-XG92.1/EB106-04-02-XG92.gbff
+GW821-FHT12D10	2023-09-12	Genome	GW821-FHT12D10/assembliesAndAnnotations/GW821-FHT12D10.1/GW821-FHT12D10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/624/1
+GW821-FHT12D10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D10/assembliesAndAnnotations/GW821-FHT12D10.1/GW821-FHT12D10.gbff
+GW821-FHT10F09	2023-09-11	Genome	GW821-FHT10F09/assembliesAndAnnotations/GW821-FHT10F09.1/GW821-FHT10F09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/398/1
+GW821-FHT10F09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F09/assembliesAndAnnotations/GW821-FHT10F09.1/GW821-FHT10F09.gbff
+GW821-FHT10E02	2023-09-11	Genome	GW821-FHT10E02/assembliesAndAnnotations/GW821-FHT10E02.1/GW821-FHT10E02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/316/1
+GW821-FHT10E02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E02/assembliesAndAnnotations/GW821-FHT10E02.1/GW821-FHT10E02.gbff
+GW821-FHT12A03	2023-09-12	Genome	GW821-FHT12A03/assembliesAndAnnotations/GW821-FHT12A03.1/GW821-FHT12A03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/570/1
+GW821-FHT12A03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A03/assembliesAndAnnotations/GW821-FHT12A03.1/GW821-FHT12A03.gbff
+GW821-FHT12D03	2023-09-12	Genome	GW821-FHT12D03/assembliesAndAnnotations/GW821-FHT12D03.1/GW821-FHT12D03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/674/1
+GW821-FHT12D03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D03/assembliesAndAnnotations/GW821-FHT12D03.1/GW821-FHT12D03.gbff
+GW821-FHT12C09	2023-09-12	Genome	GW821-FHT12C09/assembliesAndAnnotations/GW821-FHT12C09.1/GW821-FHT12C09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/610/1
+GW821-FHT12C09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C09/assembliesAndAnnotations/GW821-FHT12C09.1/GW821-FHT12C09.gbff
+GW821-FHT10E04	2023-09-11	Genome	GW821-FHT10E04/assembliesAndAnnotations/GW821-FHT10E04.1/GW821-FHT10E04.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/342/1
+GW821-FHT10E04	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E04/assembliesAndAnnotations/GW821-FHT10E04.1/GW821-FHT10E04.gbff
+GW821-FHT10A05	2023-09-11	Genome	GW821-FHT10A05/assembliesAndAnnotations/GW821-FHT10A05.1/GW821-FHT10A05.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/346/1
+GW821-FHT10A05	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A05/assembliesAndAnnotations/GW821-FHT10A05.1/GW821-FHT10A05.gbff
+GW821-FHT12C11	2023-09-12	Genome	GW821-FHT12C11/assembliesAndAnnotations/GW821-FHT12C11.1/GW821-FHT12C11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/676/1
+GW821-FHT12C11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12C11/assembliesAndAnnotations/GW821-FHT12C11.1/GW821-FHT12C11.gbff
+GW821-FHT12F08	2023-09-12	Genome	GW821-FHT12F08/assembliesAndAnnotations/GW821-FHT12F08.1/GW821-FHT12F08.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/608/1
+GW821-FHT12F08	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F08/assembliesAndAnnotations/GW821-FHT12F08.1/GW821-FHT12F08.gbff
+GW821-FHT12E02	2023-09-12	Genome	GW821-FHT12E02/assembliesAndAnnotations/GW821-FHT12E02.1/GW821-FHT12E02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/564/1
+GW821-FHT12E02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E02/assembliesAndAnnotations/GW821-FHT12E02.1/GW821-FHT12E02.gbff
+GW821-FHT12D07	2023-09-12	Genome	GW821-FHT12D07/assembliesAndAnnotations/GW821-FHT12D07.1/GW821-FHT12D07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/604/1
+GW821-FHT12D07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D07/assembliesAndAnnotations/GW821-FHT12D07.1/GW821-FHT12D07.gbff
+GW821-FHT12F06	2023-09-12	Genome	GW821-FHT12F06/assembliesAndAnnotations/GW821-FHT12F06.1/GW821-FHT12F06.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/598/1
+GW821-FHT12F06	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F06/assembliesAndAnnotations/GW821-FHT12F06.1/GW821-FHT12F06.gbff
+GW821-FHT12F11	2023-09-12	Genome	GW821-FHT12F11/assembliesAndAnnotations/GW821-FHT12F11.1/GW821-FHT12F11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/638/1
+GW821-FHT12F11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F11/assembliesAndAnnotations/GW821-FHT12F11.1/GW821-FHT12F11.gbff
+GW821-FHT12B02	2023-09-12	Genome	GW821-FHT12B02/assembliesAndAnnotations/GW821-FHT12B02.1/GW821-FHT12B02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/558/1
+GW821-FHT12B02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12B02/assembliesAndAnnotations/GW821-FHT12B02.1/GW821-FHT12B02.gbff
+GW821-FHT10A03	2023-09-11	Genome	GW821-FHT10A03/assembliesAndAnnotations/GW821-FHT10A03.1/GW821-FHT10A03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/324/1
+GW821-FHT10A03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A03/assembliesAndAnnotations/GW821-FHT10A03.1/GW821-FHT10A03.gbff
+GW821-FHT10C02	2023-09-11	Genome	GW821-FHT10C02/assembliesAndAnnotations/GW821-FHT10C02.1/GW821-FHT10C02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/312/1
+GW821-FHT10C02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10C02/assembliesAndAnnotations/GW821-FHT10C02.1/GW821-FHT10C02.gbff
+GW821-FHT10F06	2023-09-11	Genome	GW821-FHT10F06/assembliesAndAnnotations/GW821-FHT10F06.1/GW821-FHT10F06.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/362/1
+GW821-FHT10F06	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F06/assembliesAndAnnotations/GW821-FHT10F06.1/GW821-FHT10F06.gbff
+GW821-FHT12A06	2023-09-12	Genome	GW821-FHT12A06/assembliesAndAnnotations/GW821-FHT12A06.1/GW821-FHT12A06.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/596/1
+GW821-FHT12A06	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A06/assembliesAndAnnotations/GW821-FHT12A06.1/GW821-FHT12A06.gbff
+GW821-FHT12G03	2023-09-12	Genome	GW821-FHT12G03/assembliesAndAnnotations/GW821-FHT12G03.1/GW821-FHT12G03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/582/1
+GW821-FHT12G03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12G03/assembliesAndAnnotations/GW821-FHT12G03.1/GW821-FHT12G03.gbff
+EU05-FHT12H12	2023-09-12	Genome	EU05-FHT12H12/assembliesAndAnnotations/EU05-FHT12H12.1/EU05-FHT12H12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/650/1
+EU05-FHT12H12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	EU05-FHT12H12/assembliesAndAnnotations/EU05-FHT12H12.1/EU05-FHT12H12.gbff
+GW821-FHT10A07	2023-09-11	Genome	GW821-FHT10A07/assembliesAndAnnotations/GW821-FHT10A07.1/GW821-FHT10A07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/364/1
+GW821-FHT10A07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A07/assembliesAndAnnotations/GW821-FHT10A07.1/GW821-FHT10A07.gbff
+GW821-FHT12E10	2023-09-12	Genome	GW821-FHT12E10/assembliesAndAnnotations/GW821-FHT12E10.1/GW821-FHT12E10.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/628/1
+GW821-FHT12E10	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E10/assembliesAndAnnotations/GW821-FHT12E10.1/GW821-FHT12E10.gbff
+GW821-FHT12E07	2023-09-12	Genome	GW821-FHT12E07/assembliesAndAnnotations/GW821-FHT12E07.1/GW821-FHT12E07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/606/1
+GW821-FHT12E07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E07/assembliesAndAnnotations/GW821-FHT12E07.1/GW821-FHT12E07.gbff
+GW821-FHT12E03	2023-09-12	Genome	GW821-FHT12E03/assembliesAndAnnotations/GW821-FHT12E03.1/GW821-FHT12E03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/578/1
+GW821-FHT12E03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E03/assembliesAndAnnotations/GW821-FHT12E03.1/GW821-FHT12E03.gbff
+GW821-FHT10A09	2023-09-11	Genome	GW821-FHT10A09/assembliesAndAnnotations/GW821-FHT10A09.1/GW821-FHT10A09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/386/1
+GW821-FHT10A09	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10A09/assembliesAndAnnotations/GW821-FHT10A09.1/GW821-FHT10A09.gbff
+GW821-FHT12E12	2023-09-12	Genome	GW821-FHT12E12/assembliesAndAnnotations/GW821-FHT12E12.1/GW821-FHT12E12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/648/1
+GW821-FHT12E12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12E12/assembliesAndAnnotations/GW821-FHT12E12.1/GW821-FHT12E12.gbff
+GW821-FHT12A12	2023-09-12	Genome	GW821-FHT12A12/assembliesAndAnnotations/GW821-FHT12A12.1/GW821-FHT12A12.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/642/1
+GW821-FHT12A12	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12A12/assembliesAndAnnotations/GW821-FHT12A12.1/GW821-FHT12A12.gbff
+GW821-FHT12D11	2023-09-12	Genome	GW821-FHT12D11/assembliesAndAnnotations/GW821-FHT12D11.1/GW821-FHT12D11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/636/1
+GW821-FHT12D11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12D11/assembliesAndAnnotations/GW821-FHT12D11.1/GW821-FHT12D11.gbff
+GW821-FHT12G01	2023-09-12	Genome	GW821-FHT12G01/assembliesAndAnnotations/GW821-FHT12G01.1/GW821-FHT12G01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/556/1
+GW821-FHT12G01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12G01/assembliesAndAnnotations/GW821-FHT12G01.1/GW821-FHT12G01.gbff
+GW821-FHT12F03	2023-09-12	Genome	GW821-FHT12F03/assembliesAndAnnotations/GW821-FHT12F03.1/GW821-FHT12F03.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/580/1
+GW821-FHT12F03	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT12F03/assembliesAndAnnotations/GW821-FHT12F03.1/GW821-FHT12F03.gbff
+GW821-FHT10B11	2023-09-11	Genome	GW821-FHT10B11/assembliesAndAnnotations/GW821-FHT10B11.1/GW821-FHT10B11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/414/1
+GW821-FHT10B11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B11/assembliesAndAnnotations/GW821-FHT10B11.1/GW821-FHT10B11.gbff
+GW821-FHT10B02	2023-09-11	Genome	GW821-FHT10B02/assembliesAndAnnotations/GW821-FHT10B02.1/GW821-FHT10B02.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/310/1
+GW821-FHT10B02	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B02/assembliesAndAnnotations/GW821-FHT10B02.1/GW821-FHT10B02.gbff
+GW821-FHT10B08	2023-09-11	Genome	GW821-FHT10B08/assembliesAndAnnotations/GW821-FHT10B08.1/GW821-FHT10B08.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/376/1
+GW821-FHT10B08	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B08/assembliesAndAnnotations/GW821-FHT10B08.1/GW821-FHT10B08.gbff
+GW821-FHT10F08	2023-09-11	Genome	GW821-FHT10F08/assembliesAndAnnotations/GW821-FHT10F08.1/GW821-FHT10F08.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/382/1
+GW821-FHT10F08	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F08/assembliesAndAnnotations/GW821-FHT10F08.1/GW821-FHT10F08.gbff
+GW101-3H11	2023-09-11	Genome	GW101-3H11/assembliesAndAnnotations/GW101-3H11.3/GW101-3H11.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/334/1
+GW101-3H11	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW101-3H11/assembliesAndAnnotations/GW101-3H11.3/GW101-3H11.gbff
+GW821-FHT10E08	2023-09-11	Genome	GW821-FHT10E08/assembliesAndAnnotations/GW821-FHT10E08.1/GW821-FHT10E08.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/380/1
+GW821-FHT10E08	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10E08/assembliesAndAnnotations/GW821-FHT10E08.1/GW821-FHT10E08.gbff
+GW821-FHT10D07	2023-09-11	Genome	GW821-FHT10D07/assembliesAndAnnotations/GW821-FHT10D07.1/GW821-FHT10D07.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/368/1
+GW821-FHT10D07	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10D07/assembliesAndAnnotations/GW821-FHT10D07.1/GW821-FHT10D07.gbff
+GW821-FHT10D05	2023-09-11	Genome	GW821-FHT10D05/assembliesAndAnnotations/GW821-FHT10D05.1/GW821-FHT10D05.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/350/1
+GW821-FHT10D05	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10D05/assembliesAndAnnotations/GW821-FHT10D05.1/GW821-FHT10D05.gbff
+FW306-07-L	2023-09-12	Genome	FW306-07-L/assembliesAndAnnotations/FW306-07-L.3/FW306-07-L.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/656/1
+FW306-07-L	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	FW306-07-L/assembliesAndAnnotations/FW306-07-L.3/FW306-07-L.gbff
+GW821-FHT10B06	2023-09-11	Genome	GW821-FHT10B06/assembliesAndAnnotations/GW821-FHT10B06.1/GW821-FHT10B06.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/358/1
+GW821-FHT10B06	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10B06/assembliesAndAnnotations/GW821-FHT10B06.1/GW821-FHT10B06.gbff
+GW821-FHT10F01	2023-09-11	Genome	GW821-FHT10F01/assembliesAndAnnotations/GW821-FHT10F01.1/GW821-FHT10F01.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/306/1
+GW821-FHT10F01	2024-02-09	Genome	WITHDRAWN	kbase_genome_downloads/withdraw_swapped_kbase_genomes_240208.pl	GW821-FHT10F01/assembliesAndAnnotations/GW821-FHT10F01.1/GW821-FHT10F01.gbff
+GW101-3H11	2024-02-16	Genome	GW101-3H11/assembliesAndAnnotations/GW101-3H11.5/GW101-3H11.gbff	genomes_from_bradley/copy_bradley_plasmidsaurus_genomes_240308.pl	Genome_Assemblies/M8L_10_polish_GW101-3H11-AA/M8L_10_polished_annotation/GW101-3H11-AA_Plasmidsaurus.gbff
+GW101-3H11	2024-07-01	Genome	WITHDRAWN	scripts/withdraw.pl GW101-3H11.5 FHTAMBA	GW101-3H11/assembliesAndAnnotations/GW101-3H11.5/GW101-3H11.gbff
+GW101-3H11	2024-02-16	Reads	GW101-3H11/reads/illumina/GW101-3H11_2024-02-16_raw_unpaired_R1.fastq.gz	genomes_from_bradley/copy_bradley_plasmidsaurus_genomes_240308.pl	Genome_Assemblies/M8L_10_polish_GW101-3H11-AA/M8L_10_S18_R1_001.fastq.gz
+GW101-3H11	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl GW101-3H11_2024-02-16_raw_unpaired_R1.fastq.gz FHTAMBA	GW101-3H11/reads/illumina/GW101-3H11_2024-02-16_raw_unpaired_R1.fastq.gz
+GW101-3H11	2024-02-16	Reads	GW101-3H11/reads/illumina/GW101-3H11_2024-02-16_raw_unpaired_R2.fastq.gz	genomes_from_bradley/copy_bradley_plasmidsaurus_genomes_240308.pl	Genome_Assemblies/M8L_10_polish_GW101-3H11-AA/M8L_10_S18_R2_001.fastq.gz
+GW101-3H11	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl GW101-3H11_2024-02-16_raw_unpaired_R2.fastq.gz FHTAMBA	GW101-3H11/reads/illumina/GW101-3H11_2024-02-16_raw_unpaired_R2.fastq.gz
+FW104-16D08	2024-02-05	Genome	FW104-16D08/assembliesAndAnnotations/FW104-16D08.3/FW104-16D08.gbff	kbase_genome_downloads/copy_kbase_genomes_240209.pl	KBase: 156527/762/2
+FW104-16D08	2024-07-01	Genome	WITHDRAWN	scripts/withdraw.pl FW104-16D08.3 GW458-11-26-14-TSB5	FW104-16D08/assembliesAndAnnotations/FW104-16D08.3/FW104-16D08.gbff
+FW104-16D08	2023-05-22	Reads	FW104-16D08/reads/illumina/FW104-16D08_2023-05-22_raw_unpaired_R1.fastq.gz	raw_sequencing_archive_files/scripts/copy_reads_20230522.pl	raw_sequencing_archive_files/from_Jen_2023_05_22_gb3_hiseq/FHT12G11_S411_L001_R1_001.fastq.gz
+FW104-16D08	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl FW104-16D08_2023-05-22_raw_unpaired_R1.fastq.gz GW458-11-26-14-TSB5	FW104-16D08/reads/illumina/FW104-16D08_2023-05-22_raw_unpaired_R1.fastq.gz
+FW104-16D08	2023-05-22	Reads	FW104-16D08/reads/illumina/FW104-16D08_2023-05-22_raw_unpaired_R2.fastq.gz	raw_sequencing_archive_files/scripts/copy_reads_20230522.pl	raw_sequencing_archive_files/from_Jen_2023_05_22_gb3_hiseq/FHT12G11_S411_L001_R2_001.fastq.gz
+FW104-16D08	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl FW104-16D08_2023-05-22_raw_unpaired_R2.fastq.gz GW458-11-26-14-TSB5	FW104-16D08/reads/illumina/FW104-16D08_2023-05-22_raw_unpaired_R2.fastq.gz
+GW458-11-26-14-TSB5	2024-02-05	Genome	GW458-11-26-14-TSB5/assembliesAndAnnotations/GW458-11-26-14-TSB5.1/GW458-11-26-14-TSB5.gbff	kbase_genome_downloads/copy_kbase_genomes_240209.pl	KBase: 156527/757/2
+GW458-11-26-14-TSB5	2024-07-01	Genome	WITHDRAWN	scripts/withdraw.pl GW458-11-26-14-TSB5.1 FW104-16D08	GW458-11-26-14-TSB5/assembliesAndAnnotations/GW458-11-26-14-TSB5.1/GW458-11-26-14-TSB5.gbff
+GW458-11-26-14-TSB5	2023-05-22	Reads	GW458-11-26-14-TSB5/reads/illumina/GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R1.fastq.gz	raw_sequencing_archive_files/scripts/copy_reads_20230522.pl	raw_sequencing_archive_files/from_Jen_2023_05_22_gb3_hiseq/FHT12G05_S363_L001_R1_001.fastq.gz
+GW458-11-26-14-TSB5	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R1.fastq.gz FW104-16D08	GW458-11-26-14-TSB5/reads/illumina/GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R1.fastq.gz
+GW458-11-26-14-TSB5	2023-05-22	Reads	GW458-11-26-14-TSB5/reads/illumina/GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R2.fastq.gz	raw_sequencing_archive_files/scripts/copy_reads_20230522.pl	raw_sequencing_archive_files/from_Jen_2023_05_22_gb3_hiseq/FHT12G05_S363_L001_R2_001.fastq.gz
+GW458-11-26-14-TSB5	2024-07-01	Reads	WITHDRAWN	scripts/withdraw.pl GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R2.fastq.gz FW104-16D08	GW458-11-26-14-TSB5/reads/illumina/GW458-11-26-14-TSB5_2023-05-22_raw_unpaired_R2.fastq.gz
+MT94	2021-11-19	Genome	MT94/assembliesAndAnnotations/MT94.2/MT94_Prodigal.gff	kbase_genome_downloads/record_lauren_genomes.pl	still working on how to record provenance of Lauren's genomes
+MT94	2024-08-23	Genome	WITHDRAWN	scripts/withdraw.pl MT94.2	MT94/assembliesAndAnnotations/MT94.2/MT94_Prodigal.gff
+FHTAMBA	2024-07-01	Genome	FHTAMBA/assembliesAndAnnotations/FHTAMBA.1/FHTAMBA.gbff	scripts/withdraw.pl GW101-3H11.5 FHTAMBA	GW101-3H11/assembliesAndAnnotations/GW101-3H11.5/GW101-3H11.gbff
+FHTAMBA	2024-10-29	Genome	WITHDRAWN	scripts/withdraw.pl FHTAMBA.1	FHTAMBA/assembliesAndAnnotations/FHTAMBA.1/FHTAMBA.gbff
+FW101-FHT12H09	2023-09-12	Genome	FW101-FHT12H09/assembliesAndAnnotations/FW101-FHT12H09.1/FW101-FHT12H09.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/618/1
+FW101-FHT12H09	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl FW101-FHT12H09.1	FW101-FHT12H09/assembliesAndAnnotations/FW101-FHT12H09.1/FW101-FHT12H09.gbff
+FW301-JW81	2023-09-11	Genome	FW301-JW81/assembliesAndAnnotations/FW301-JW81.1/FW301-JW81.gbff	kbase_genome_downloads/copy_kbase_genomes_230914.pl	KBase: 156527/400/1
+FW301-JW81	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl FW301-JW81.1	FW301-JW81/assembliesAndAnnotations/FW301-JW81.1/FW301-JW81.gbff
+GW101-20D03	2023-01-17	Genome	GW101-20D03/assembliesAndAnnotations/GW101-20D03.3/GW101-20D03.gbff	kbase_genome_downloads/copy_kbase_genomes_230124.pl	KBase: 135703/118/1
+GW101-20D03	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW101-20D03.3	GW101-20D03/assembliesAndAnnotations/GW101-20D03.3/GW101-20D03.gbff
+GW821-FHT05F08	2023-01-17	Genome	GW821-FHT05F08/assembliesAndAnnotations/GW821-FHT05F08.3/GW821-FHT05F08.gbff	kbase_genome_downloads/copy_kbase_genomes_230124.pl	KBase: 135703/142/1
+GW821-FHT05F08	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05F08.3	GW821-FHT05F08/assembliesAndAnnotations/GW821-FHT05F08.3/GW821-FHT05F08.gbff
+GW821-FHT05G03	2021-04-23	Genome	GW821-FHT05G03/assembliesAndAnnotations/GW821-FHT05G03.1/GW821-FHT05G03.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/553/1
+GW821-FHT05G03	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05G03.1	GW821-FHT05G03/assembliesAndAnnotations/GW821-FHT05G03.1/GW821-FHT05G03.gbff
+GW823-FHT01E01	2021-04-23	Genome	GW823-FHT01E01/assembliesAndAnnotations/GW823-FHT01E01.1/GW823-FHT01E01.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/527/1
+GW823-FHT01E01	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW823-FHT01E01.1	GW823-FHT01E01/assembliesAndAnnotations/GW823-FHT01E01.1/GW823-FHT01E01.gbff
+GW821-FHT05H10	2021-04-23	Genome	GW821-FHT05H10/assembliesAndAnnotations/GW821-FHT05H10.1/GW821-FHT05H10.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/639/1
+GW821-FHT05H10	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05H10.1	GW821-FHT05H10/assembliesAndAnnotations/GW821-FHT05H10.1/GW821-FHT05H10.gbff
+GW821-FHT01G11	2021-04-23	Genome	GW821-FHT01G11/assembliesAndAnnotations/GW821-FHT01G11.1/GW821-FHT01G11.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/733/1
+GW821-FHT01G11	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01G11.1	GW821-FHT01G11/assembliesAndAnnotations/GW821-FHT01G11.1/GW821-FHT01G11.gbff
+GW821-FHT01H09	2021-04-23	Genome	GW821-FHT01H09/assembliesAndAnnotations/GW821-FHT01H09.1/GW821-FHT01H09.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/545/1
+GW821-FHT01H09	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01H09.1	GW821-FHT01H09/assembliesAndAnnotations/GW821-FHT01H09.1/GW821-FHT01H09.gbff
+GW822-FHT01C09	2021-04-23	Genome	GW822-FHT01C09/assembliesAndAnnotations/GW822-FHT01C09.1/GW822-FHT01C09.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/667/1
+GW822-FHT01C09	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01C09.1	GW822-FHT01C09/assembliesAndAnnotations/GW822-FHT01C09.1/GW822-FHT01C09.gbff
+GW821-FHT05E09	2021-04-23	Genome	GW821-FHT05E09/assembliesAndAnnotations/GW821-FHT05E09.1/GW821-FHT05E09.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/741/1
+GW821-FHT05E09	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05E09.1	GW821-FHT05E09/assembliesAndAnnotations/GW821-FHT05E09.1/GW821-FHT05E09.gbff
+GW821-FHT05A01	2021-04-23	Genome	GW821-FHT05A01/assembliesAndAnnotations/GW821-FHT05A01.1/GW821-FHT05A01.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/671/1
+GW821-FHT05A01	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05A01.1	GW821-FHT05A01/assembliesAndAnnotations/GW821-FHT05A01.1/GW821-FHT05A01.gbff
+GW821-FHT01G09	2021-04-23	Genome	GW821-FHT01G09/assembliesAndAnnotations/GW821-FHT01G09.1/GW821-FHT01G09.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/588/1
+GW821-FHT01G09	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01G09.1	GW821-FHT01G09/assembliesAndAnnotations/GW821-FHT01G09.1/GW821-FHT01G09.gbff
+GW821-FHT01F12	2021-04-23	Genome	GW821-FHT01F12/assembliesAndAnnotations/GW821-FHT01F12.1/GW821-FHT01F12.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/826/1
+GW821-FHT01F12	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01F12.1	GW821-FHT01F12/assembliesAndAnnotations/GW821-FHT01F12.1/GW821-FHT01F12.gbff
+GW823-FHT02B07	2021-04-23	Genome	GW823-FHT02B07/assembliesAndAnnotations/GW823-FHT02B07.1/GW823-FHT02B07.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/758/1
+GW823-FHT02B07	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW823-FHT02B07.1	GW823-FHT02B07/assembliesAndAnnotations/GW823-FHT02B07.1/GW823-FHT02B07.gbff
+GW821-FHT05H01	2021-04-23	Genome	GW821-FHT05H01/assembliesAndAnnotations/GW821-FHT05H01.1/GW821-FHT05H01.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/813/1
+GW821-FHT05H01	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05H01.1	GW821-FHT05H01/assembliesAndAnnotations/GW821-FHT05H01.1/GW821-FHT05H01.gbff
+GW821-FHT01G05	2021-04-23	Genome	GW821-FHT01G05/assembliesAndAnnotations/GW821-FHT01G05.1/GW821-FHT01G05.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/587/1
+GW821-FHT01G05	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01G05.1	GW821-FHT01G05/assembliesAndAnnotations/GW821-FHT01G05.1/GW821-FHT01G05.gbff
+GW822-FHT01C11	2021-04-23	Genome	GW822-FHT01C11/assembliesAndAnnotations/GW822-FHT01C11.1/GW822-FHT01C11.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/811/1
+GW822-FHT01C11	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01C11.1	GW822-FHT01C11/assembliesAndAnnotations/GW822-FHT01C11.1/GW822-FHT01C11.gbff
+GW822-FHT01G01	2021-04-23	Genome	GW822-FHT01G01/assembliesAndAnnotations/GW822-FHT01G01.1/GW822-FHT01G01.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/457/1
+GW822-FHT01G01	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01G01.1	GW822-FHT01G01/assembliesAndAnnotations/GW822-FHT01G01.1/GW822-FHT01G01.gbff
+GW822-FHT01A12	2021-04-23	Genome	GW822-FHT01A12/assembliesAndAnnotations/GW822-FHT01A12.1/GW822-FHT01A12.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/765/1
+GW822-FHT01A12	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01A12.1	GW822-FHT01A12/assembliesAndAnnotations/GW822-FHT01A12.1/GW822-FHT01A12.gbff
+GW821-FHT01A03	2021-04-23	Genome	GW821-FHT01A03/assembliesAndAnnotations/GW821-FHT01A03.1/GW821-FHT01A03.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/465/1
+GW821-FHT01A03	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01A03.1	GW821-FHT01A03/assembliesAndAnnotations/GW821-FHT01A03.1/GW821-FHT01A03.gbff
+GW822-FHT01C10	2021-04-23	Genome	GW822-FHT01C10/assembliesAndAnnotations/GW822-FHT01C10.1/GW822-FHT01C10.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/750/1
+GW822-FHT01C10	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01C10.1	GW822-FHT01C10/assembliesAndAnnotations/GW822-FHT01C10.1/GW822-FHT01C10.gbff
+GW821-FHT02C07	2021-04-23	Genome	GW821-FHT02C07/assembliesAndAnnotations/GW821-FHT02C07.1/GW821-FHT02C07.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/466/1
+GW821-FHT02C07	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT02C07.1	GW821-FHT02C07/assembliesAndAnnotations/GW821-FHT02C07.1/GW821-FHT02C07.gbff
+GW822-FHT05D03	2021-04-23	Genome	GW822-FHT05D03/assembliesAndAnnotations/GW822-FHT05D03.1/GW822-FHT05D03.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/792/1
+GW822-FHT05D03	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT05D03.1	GW822-FHT05D03/assembliesAndAnnotations/GW822-FHT05D03.1/GW822-FHT05D03.gbff
+GW823-FHT01E02	2021-04-23	Genome	GW823-FHT01E02/assembliesAndAnnotations/GW823-FHT01E02.1/GW823-FHT01E02.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/526/1
+GW823-FHT01E02	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW823-FHT01E02.1	GW823-FHT01E02/assembliesAndAnnotations/GW823-FHT01E02.1/GW823-FHT01E02.gbff
+GW821-FHT05H06	2021-04-23	Genome	GW821-FHT05H06/assembliesAndAnnotations/GW821-FHT05H06.1/GW821-FHT05H06.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/704/1
+GW821-FHT05H06	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05H06.1	GW821-FHT05H06/assembliesAndAnnotations/GW821-FHT05H06.1/GW821-FHT05H06.gbff
+GW821-FHT05H02	2021-04-23	Genome	GW821-FHT05H02/assembliesAndAnnotations/GW821-FHT05H02.1/GW821-FHT05H02.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/731/1
+GW821-FHT05H02	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05H02.1	GW821-FHT05H02/assembliesAndAnnotations/GW821-FHT05H02.1/GW821-FHT05H02.gbff
+GW822-FHT05D07	2021-04-23	Genome	GW822-FHT05D07/assembliesAndAnnotations/GW822-FHT05D07.1/GW822-FHT05D07.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/785/1
+GW822-FHT05D07	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT05D07.1	GW822-FHT05D07/assembliesAndAnnotations/GW822-FHT05D07.1/GW822-FHT05D07.gbff
+GW821-FHT05E04	2021-04-23	Genome	GW821-FHT05E04/assembliesAndAnnotations/GW821-FHT05E04.1/GW821-FHT05E04.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/800/1
+GW821-FHT05E04	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05E04.1	GW821-FHT05E04/assembliesAndAnnotations/GW821-FHT05E04.1/GW821-FHT05E04.gbff
+GW821-FHT01B10	2021-04-23	Genome	GW821-FHT01B10/assembliesAndAnnotations/GW821-FHT01B10.1/GW821-FHT01B10.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/446/1
+GW821-FHT01B10	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01B10.1	GW821-FHT01B10/assembliesAndAnnotations/GW821-FHT01B10.1/GW821-FHT01B10.gbff
+GW821-FHT04F11	2021-04-23	Genome	GW821-FHT04F11/assembliesAndAnnotations/GW821-FHT04F11.1/GW821-FHT04F11.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/761/1
+GW821-FHT04F11	2024-11-07	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT04F11.1	GW821-FHT04F11/assembliesAndAnnotations/GW821-FHT04F11.1/GW821-FHT04F11.gbff
+FW507-11TSA	2021-04-23	Genome	FW507-11TSA/assembliesAndAnnotations/FW507-11TSA.1/FW507-11TSA.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/508/1
+FW507-11TSA	2024-11-08	Genome	WITHDRAWN	scripts/withdraw.pl FW507-11TSA.1 FW507-12TSA	FW507-11TSA/assembliesAndAnnotations/FW507-11TSA.1/FW507-11TSA.gbff
+FW305-C-112	2019-03-21	Genome	FW305-C-112/assembliesAndAnnotations/FW305-C-112.1/FW305-C-112.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/318/1
+FW305-C-112	2024-11-08	Genome	WITHDRAWN	scripts/withdraw.pl FW305-C-112.1 FW305-C-125	FW305-C-112/assembliesAndAnnotations/FW305-C-112.1/FW305-C-112.gbff
+GW247-C5	2021-08-24	Genome	GW247-C5/assembliesAndAnnotations/GW247-C5.2/GW247-C5_Prodigal.gff	kbase_genome_downloads/record_lauren_genomes.pl	still working on how to record provenance of Lauren's genomes
+GW247-C5	2024-11-08	Genome	WITHDRAWN	scripts/withdraw.pl GW247-C5.2 FW507-4G11	GW247-C5/assembliesAndAnnotations/GW247-C5.2/GW247-C5_Prodigal.gff
+GW101-3H11	2024-02-05	Genome	GW101-3H11/assembliesAndAnnotations/GW101-3H11.4/GW101-3H11.gbff	kbase_genome_downloads/copy_kbase_genomes_240209.pl	KBase: 156527/334/3
+GW101-3H11	2024-12-12	Genome	WITHDRAWN	scripts/withdraw.pl GW101-3H11.4 FHTAMBA	GW101-3H11/assembliesAndAnnotations/GW101-3H11.4/GW101-3H11.gbff
+GW460-C2	2019-03-07	Genome	GW460-C2/assembliesAndAnnotations/GW460-C2.1/GW460-C2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/67/1
+GW460-C2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW460-C2.1	GW460-C2/assembliesAndAnnotations/GW460-C2.1/GW460-C2.gbff
+FW305-72	2019-03-07	Genome	FW305-72/assembliesAndAnnotations/FW305-72.1/FW305-72.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/79/1
+FW305-72	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-72.1	FW305-72/assembliesAndAnnotations/FW305-72.1/FW305-72.gbff
+GW458-11-17-14-R2A1	2019-03-07	Genome	GW458-11-17-14-R2A1/assembliesAndAnnotations/GW458-11-17-14-R2A1.1/GW458-11-17-14-R2A1.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/82/1
+GW458-11-17-14-R2A1	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW458-11-17-14-R2A1.1	GW458-11-17-14-R2A1/assembliesAndAnnotations/GW458-11-17-14-R2A1.1/GW458-11-17-14-R2A1.gbff
+GW123-5C08	2019-03-07	Genome	GW123-5C08/assembliesAndAnnotations/GW123-5C08.1/GW123-5C08.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/159/1
+GW123-5C08	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW123-5C08.1	GW123-5C08/assembliesAndAnnotations/GW123-5C08.1/GW123-5C08.gbff
+GW101-20A5	2019-03-07	Genome	GW101-20A5/assembliesAndAnnotations/GW101-20A5.1/GW101-20A5.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/160/1
+GW101-20A5	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW101-20A5.1	GW101-20A5/assembliesAndAnnotations/GW101-20A5.1/GW101-20A5.gbff
+FW300-E2	2019-03-07	Genome	FW300-E2/assembliesAndAnnotations/FW300-E2.1/FW300-E2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/169/1
+FW300-E2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW300-E2.1	FW300-E2/assembliesAndAnnotations/FW300-E2.1/FW300-E2.gbff
+FW303-C2	2019-03-07	Genome	FW303-C2/assembliesAndAnnotations/FW303-C2.1/FW303-C2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/170/1
+FW303-C2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW303-C2.1	FW303-C2/assembliesAndAnnotations/FW303-C2.1/FW303-C2.gbff
+GW456-A1B	2019-03-07	Genome	GW456-A1B/assembliesAndAnnotations/GW456-A1B.1/GW456-A1B.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/175/1
+GW456-A1B	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW456-A1B.1	GW456-A1B/assembliesAndAnnotations/GW456-A1B.1/GW456-A1B.gbff
+GW456-A2	2019-03-07	Genome	GW456-A2/assembliesAndAnnotations/GW456-A2.1/GW456-A2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/176/1
+GW456-A2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW456-A2.1	GW456-A2/assembliesAndAnnotations/GW456-A2.1/GW456-A2.gbff
+GW123-5C08	2019-03-07	Genome	GW123-5C08/assembliesAndAnnotations/GW123-5C08.3/GW123-5C08.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/177/1
+GW123-5C08	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW123-5C08.3	GW123-5C08/assembliesAndAnnotations/GW123-5C08.3/GW123-5C08.gbff
+GW458-11-26-14-LB2	2019-03-07	Genome	GW458-11-26-14-LB2/assembliesAndAnnotations/GW458-11-26-14-LB2.1/GW458-11-26-14-LB2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/180/1
+GW458-11-26-14-LB2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW458-11-26-14-LB2.1	GW458-11-26-14-LB2/assembliesAndAnnotations/GW458-11-26-14-LB2.1/GW458-11-26-14-LB2.gbff
+FW305-58	2019-03-07	Genome	FW305-58/assembliesAndAnnotations/FW305-58.1/FW305-58.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/186/1
+FW305-58	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-58.1	FW305-58/assembliesAndAnnotations/FW305-58.1/FW305-58.gbff
+GW458-11-17-14-LB1	2019-03-07	Genome	GW458-11-17-14-LB1/assembliesAndAnnotations/GW458-11-17-14-LB1.1/GW458-11-17-14-LB1.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/188/1
+GW458-11-17-14-LB1	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW458-11-17-14-LB1.1	GW458-11-17-14-LB1/assembliesAndAnnotations/GW458-11-17-14-LB1.1/GW458-11-17-14-LB1.gbff
+GW458-11-17-14-LB2	2019-03-07	Genome	GW458-11-17-14-LB2/assembliesAndAnnotations/GW458-11-17-14-LB2.1/GW458-11-17-14-LB2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/189/1
+GW458-11-17-14-LB2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl GW458-11-17-14-LB2.1	GW458-11-17-14-LB2/assembliesAndAnnotations/GW458-11-17-14-LB2.1/GW458-11-17-14-LB2.gbff
+FW305-38	2019-03-07	Genome	FW305-38/assembliesAndAnnotations/FW305-38.1/FW305-38.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/190/1
+FW305-38	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-38.1	FW305-38/assembliesAndAnnotations/FW305-38.1/FW305-38.gbff
+FW306-4A-A06C	2019-03-07	Genome	FW306-4A-A06C/assembliesAndAnnotations/FW306-4A-A06C.1/FW306-4A-A06C.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/192/1
+FW306-4A-A06C	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW306-4A-A06C.1	FW306-4A-A06C/assembliesAndAnnotations/FW306-4A-A06C.1/FW306-4A-A06C.gbff
+FW507-AN13LB	2019-03-07	Genome	FW507-AN13LB/assembliesAndAnnotations/FW507-AN13LB.1/FW507-AN13LB.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/193/1
+FW507-AN13LB	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW507-AN13LB.1	FW507-AN13LB/assembliesAndAnnotations/FW507-AN13LB.1/FW507-AN13LB.gbff
+FW104-12A02	2019-03-07	Genome	FW104-12A02/assembliesAndAnnotations/FW104-12A02.1/FW104-12A02.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/195/1
+FW104-12A02	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW104-12A02.1	FW104-12A02/assembliesAndAnnotations/FW104-12A02.1/FW104-12A02.gbff
+FW305-6	2019-03-07	Genome	FW305-6/assembliesAndAnnotations/FW305-6.1/FW305-6.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/196/1
+FW305-6	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-6.1	FW305-6/assembliesAndAnnotations/FW305-6.1/FW305-6.gbff
+FW305-3-2-15-A-TSA2	2019-03-07	Genome	FW305-3-2-15-A-TSA2/assembliesAndAnnotations/FW305-3-2-15-A-TSA2.1/FW305-3-2-15-A-TSA2.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/198/1
+FW305-3-2-15-A-TSA2	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-3-2-15-A-TSA2.1	FW305-3-2-15-A-TSA2/assembliesAndAnnotations/FW305-3-2-15-A-TSA2.1/FW305-3-2-15-A-TSA2.gbff
+FW305-6	2019-03-07	Genome	FW305-6/assembliesAndAnnotations/FW305-6.3/FW305-6.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/271/1
+FW305-6	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW305-6.3	FW305-6/assembliesAndAnnotations/FW305-6.3/FW305-6.gbff
+FW104-R4	2019-03-07	Genome	FW104-R4/assembliesAndAnnotations/FW104-R4.1/FW104-R4.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/167/1
+FW104-R4	2025-01-17	Genome	WITHDRAWN	scripts/withdraw.pl FW104-R4.1	FW104-R4/assembliesAndAnnotations/FW104-R4.1/FW104-R4.gbff
+FW305-146	2021-04-23	Genome	FW305-146/assembliesAndAnnotations/FW305-146.1/FW305-146.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/424/1
+FW305-146	2025-03-07	Genome	WITHDRAWN	scripts/withdraw.pl FW305-146.1	FW305-146/assembliesAndAnnotations/FW305-146.1/FW305-146.gbff
+GW823-FHT05F07	2025-02-05	Genome	GW823-FHT05F07/assembliesAndAnnotations/GW823-FHT05F07.3/GW823-FHT05F07.gbff	kbase_genome_downloads/copy_kbase_genomes_250212.pl	KBase: 202353/621/2
+GW823-FHT05F07	2025-03-07	Genome	WITHDRAWN	scripts/withdraw.pl GW823-FHT05F07.3	GW823-FHT05F07/assembliesAndAnnotations/GW823-FHT05F07.3/GW823-FHT05F07.gbff
+FW305-BF15	2019-03-07	Genome	FW305-BF15/assembliesAndAnnotations/FW305-BF15.1/FW305-BF15.gbff	kbase_genome_downloads/copy_kbase_genomes_241125.pl	KBase: 41372/163/1
+FW305-BF15	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl FW305-BF15.1	FW305-BF15/assembliesAndAnnotations/FW305-BF15.1/FW305-BF15.gbff
+GW821-FHT05A03	2021-04-23	Genome	GW821-FHT05A03/assembliesAndAnnotations/GW821-FHT05A03.1/GW821-FHT05A03.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/683/1
+GW821-FHT05A03	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT05A03.1	GW821-FHT05A03/assembliesAndAnnotations/GW821-FHT05A03.1/GW821-FHT05A03.gbff
+GW822-FHT01B02	2021-04-23	Genome	GW822-FHT01B02/assembliesAndAnnotations/GW822-FHT01B02.1/GW822-FHT01B02.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/482/1
+GW822-FHT01B02	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT01B02.1	GW822-FHT01B02/assembliesAndAnnotations/GW822-FHT01B02.1/GW822-FHT01B02.gbff
+GW822-FHT05A02	2021-04-23	Genome	GW822-FHT05A02/assembliesAndAnnotations/GW822-FHT05A02.1/GW822-FHT05A02.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/781/1
+GW822-FHT05A02	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW822-FHT05A02.1	GW822-FHT05A02/assembliesAndAnnotations/GW822-FHT05A02.1/GW822-FHT05A02.gbff
+GW821-FHT03D04	2021-04-23	Genome	GW821-FHT03D04/assembliesAndAnnotations/GW821-FHT03D04.1/GW821-FHT03D04.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/747/1
+GW821-FHT03D04	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT03D04.1	GW821-FHT03D04/assembliesAndAnnotations/GW821-FHT03D04.1/GW821-FHT03D04.gbff
+GW821-FHT01B11	2021-04-23	Genome	GW821-FHT01B11/assembliesAndAnnotations/GW821-FHT01B11.1/GW821-FHT01B11.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/649/1
+GW821-FHT01B11	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01B11.1	GW821-FHT01B11/assembliesAndAnnotations/GW821-FHT01B11.1/GW821-FHT01B11.gbff
+GW821-FHT01C12	2021-04-23	Genome	GW821-FHT01C12/assembliesAndAnnotations/GW821-FHT01C12.1/GW821-FHT01C12.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/652/1
+GW821-FHT01C12	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01C12.1	GW821-FHT01C12/assembliesAndAnnotations/GW821-FHT01C12.1/GW821-FHT01C12.gbff
+GW821-FHT01D01	2021-04-23	Genome	GW821-FHT01D01/assembliesAndAnnotations/GW821-FHT01D01.1/GW821-FHT01D01.gbff	kbase_genome_downloads/copy_kbase_genomes.pl	KBase: 41372/662/1
+GW821-FHT01D01	2025-07-29	Genome	WITHDRAWN	scripts/withdraw.pl GW821-FHT01D01.1	GW821-FHT01D01/assembliesAndAnnotations/GW821-FHT01D01.1/GW821-FHT01D01.gbff
