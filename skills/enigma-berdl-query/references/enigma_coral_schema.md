@@ -1,6 +1,6 @@
 # Database Schema: enigma_coral
 
-Total Tables: 711
+Total Tables: 733
 
 ---
 
@@ -28,7 +28,7 @@ Total Tables: 711
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1441
+**Total Rows:** 1464
 
 ### Sample Data (5 rows)
 
@@ -66,43 +66,17 @@ Total Tables: 711
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 8762
+**Total Rows:** 8944
 
 ### Sample Data (5 rows)
 
 | ddt_ndarray_id | berdl_column_name | berdl_column_data_type | scalar_type | foreign_key | comment | unit_sys_oterm_id | unit_sys_oterm_name | dimension_number | dimension_oterm_id | dimension_oterm_name | variable_number | variable_oterm_id | variable_oterm_name | original_csv_string |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Brick0000006 | fitness_score_log_ratio_unit | variable | float | NULL | fitness score | ME:0000379 | log ratio unit | NULL | NULL | NULL | 1 | ME:0000137 | fitness score | values,Fitness Score <ME:0000137>,log ratio unit <ME:0000379> |
-| Brick0000006 | sdt_gene_gene_id | dimension_variable | object_ref | sdt_gene.sdt_gene_gene_id | gene ID | NULL | NULL | 1 | ME:0000059 | gene | 1 | ME:0000224 | gene ID | dmeta,1,Gene <ME:0000059>,Gene ID <ME:0000224> |
-| Brick0000006 | sdt_condition_name | dimension_variable | object_ref | sdt_condition.sdt_condition_name | condition ID | NULL | NULL | 2 | ME:0000006 | condition | 1 | ME:0000200 | condition ID | dmeta,2,Condition <ME:0000006>,Condition ID <ME:0000200> |
 | Brick0000007 | ph_ph | variable | float | NULL | pH | UO:0000196 | pH | NULL | NULL | NULL | 1 | ME:0000121 | pH | 1,pH <ME:0000121>,pH <UO:0000196> |
 | Brick0000007 | specific_conductivity_temperature_20_0_microsiemen_per_centimeter | variable | float | NULL | specific conductivity, Temperature=20.0 | ME:0000295 | microsiemen per centimeter | NULL | NULL | NULL | 2 | ME:0000301 | specific conductivity | 2,Specific Conductivity <ME:0000301>,Temperature <ME:0000123>,20.0,microsiemen per centimeter <ME:0000295> |
-
----
-
-## Table: ddt_brick0000006
-
-**Table Description:** tnseq_n2e2.ndarray - TnSeq data for Pseudomonas N2E2
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_gene_gene_id | string | Yes | {"description": "gene ID", "type": "foreign_key", "references": "sdt_gene.sdt_gene_gene_id"} |
-| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| fitness_score_log_ratio_unit | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
-
-**Total Rows:** 918896
-
-### Sample Data (5 rows)
-
-| sdt_gene_gene_id | sdt_condition_name | fitness_score_log_ratio_unit |
-|---|---|---|
-| ODPJKPKL_00001 | set12IT085 | -0.186 |
-| ODPJKPKL_00001 | set12IT086 | -0.185 |
-| ODPJKPKL_00001 | set12IT087 | -0.40800000000000003 |
-| ODPJKPKL_00001 | set12IT088 | -0.132 |
-| ODPJKPKL_00001 | set1IT001 | -0.496 |
+| Brick0000007 | temperature_degree_celsius | variable | float | NULL | temperature | UO:0000027 | degree Celsius | NULL | NULL | NULL | 3 | ME:0000123 | temperature | 3,Temperature <ME:0000123>,degree Celsius <UO:0000027> |
+| Brick0000007 | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | variable | float | NULL | concentration, Molecule from list=oxygen atom, State=dissolved | UO:0000273 | milligram per liter | NULL | NULL | NULL | 4 | ME:0000129 | concentration | 4,Concentration <ME:0000129>,Molecule from list <ME:0000381>,oxygen atom <CHEBI:25805>,State <ME:0000037>,dissolved,milligram per liter <UO:0000273> |
+| Brick0000007 | redox_potential_millivolt | variable | float | NULL | redox potential | UO:0000247 | millivolt | NULL | NULL | NULL | 5 | ME:0000125 | redox potential | 5,Redox Potential <ME:0000125>,millivolt <UO:0000247> |
 
 ---
 
@@ -24641,6 +24615,720 @@ Total Tables: 711
 
 ---
 
+## Table: ddt_brick0001674
+
+**Table Description:** feba_tnseq_condition_metadata_20260813.ndarray - FEBa TnSeq experimental conditions and quality metadata for the approved ENIGMA isolate import
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| description_comment_source_column_orgid_composite_source_key_part_1 | string | Yes | {"description": "description, comment=source column: orgId; Composite source key part 1"} |
+| description_comment_source_column_expname_composite_source_key_part_2 | string | Yes | {"description": "description, comment=source column: expName; Composite source key part 2"} |
+| description_comment_source_column_expdesc | string | Yes | {"description": "description, comment=source column: expDesc"} |
+| description_comment_source_column_timezeroset | string | Yes | {"description": "description, comment=source column: timeZeroSet"} |
+| count_comment_source_column_num_count_unit | int | Yes | {"description": "count, comment=source column: num", "unit": "count unit"} |
+| count_comment_source_column_nmapped_count_unit | int | Yes | {"description": "count, comment=source column: nMapped", "unit": "count unit"} |
+| count_comment_source_column_npastend_count_unit | int | Yes | {"description": "count, comment=source column: nPastEnd", "unit": "count unit"} |
+| count_comment_source_column_ngenic_count_unit | int | Yes | {"description": "count, comment=source column: nGenic", "unit": "count unit"} |
+| count_comment_source_column_nused_count_unit | int | Yes | {"description": "count, comment=source column: nUsed", "unit": "count unit"} |
+| count_comment_source_column_gmed_count_unit | int | Yes | {"description": "count, comment=source column: gMed", "unit": "count unit"} |
+| count_comment_source_column_gmedt0_count_unit | int | Yes | {"description": "count, comment=source column: gMedt0", "unit": "count unit"} |
+| average_comment_source_column_gmean_dimensionless_unit | double | Yes | {"description": "average, comment=source column: gMean", "unit": "dimensionless unit"} |
+| average_comment_source_column_cor12_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | double | Yes | {"description": "average, comment=source column: cor12; Source metric is correlation; exact source column retained because CheckGeneric rejects the correlation data-variable term", "unit": "dimensionless unit"} |
+| standard_deviation_comment_source_column_mad12_dimensionless_unit | double | Yes | {"description": "standard deviation, comment=source column: mad12", "unit": "dimensionless unit"} |
+| standard_deviation_comment_source_column_mad12c_dimensionless_unit | double | Yes | {"description": "standard deviation, comment=source column: mad12c", "unit": "dimensionless unit"} |
+| standard_deviation_comment_source_column_mad12c_t0_dimensionless_unit | double | Yes | {"description": "standard deviation, comment=source column: mad12c_t0", "unit": "dimensionless unit"} |
+| average_comment_source_column_opcor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | double | Yes | {"description": "average, comment=source column: opcor; Source metric is correlation; exact source column retained because CheckGeneric rejects the correlation data-variable term", "unit": "dimensionless unit"} |
+| average_comment_source_column_adjcor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | double | Yes | {"description": "average, comment=source column: adjcor; Source metric is correlation; exact source column retained because CheckGeneric rejects the correlation data-variable term", "unit": "dimensionless unit"} |
+| average_comment_source_column_gccor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | double | Yes | {"description": "average, comment=source column: gccor; Source metric is correlation; exact source column retained because CheckGeneric rejects the correlation data-variable term", "unit": "dimensionless unit"} |
+| fitness_score_comment_source_column_maxfit_log_ratio_unit | double | Yes | {"description": "fitness score, comment=source column: maxFit", "unit": "log ratio unit"} |
+| description_comment_source_column_expgroup | string | Yes | {"description": "description, comment=source column: expGroup"} |
+| description_comment_source_column_expdesclong | string | Yes | {"description": "description, comment=source column: expDescLong"} |
+| description_comment_source_column_mutantlibrary_raw_feba_library_label_named_coral_library_is_also_an_object_ref | string | Yes | {"description": "description, comment=source column: mutantLibrary; Raw FEBa library label; named CORAL library is also an object_ref"} |
+| description_comment_source_column_person_source_semantic_is_person_exact_source_column_retained_because_checkgeneric_rejects_the_person_data_variable_term | string | Yes | {"description": "description, comment=source column: person; Source semantic is person; exact source column retained because CheckGeneric rejects the person data-variable term"} |
+| date_comment_source_column_datestarted | string | Yes | {"description": "date, comment=source column: dateStarted"} |
+| description_comment_source_column_setname | string | Yes | {"description": "description, comment=source column: setName"} |
+| description_comment_source_column_seqindex | string | Yes | {"description": "description, comment=source column: seqindex"} |
+| media_name_comment_source_column_media | string | Yes | {"description": "media name, comment=source column: media"} |
+| description_comment_source_column_mediastrength_preserved_without_asserting_an_unvalidated_unit | double | Yes | {"description": "description, comment=source column: mediaStrength; Preserved without asserting an unvalidated unit"} |
+| temperature_comment_source_column_temperature_degree_celsius | double | Yes | {"description": "temperature, comment=source column: temperature", "unit": "degree Celsius"} |
+| ph_comment_source_column_ph_ph | double | Yes | {"description": "pH, comment=source column: pH", "unit": "pH"} |
+| culture_vessel_comment_source_column_vessel | string | Yes | {"description": "culture vessel, comment=source column: vessel"} |
+| anaerobic_comment_source_column_aerobic_stored_as_the_logically_inverted_anaerobic_flag_whose_coral_term_is_validator_compatible | boolean | Yes | {"description": "anaerobic, comment=source column: aerobic; Stored as the logically inverted anaerobic flag, whose CORAL term is validator-compatible"} |
+| physiochemical_state_comment_source_column_liquid | string | Yes | {"description": "physiochemical state, comment=source column: liquid"} |
+| description_comment_source_column_shaking | string | Yes | {"description": "description, comment=source column: shaking"} |
+| description_comment_source_column_condition_1_raw_treatment_slot_paired_raw_concentration_unit_retained_separately | string | Yes | {"description": "description, comment=source column: condition_1; Raw treatment slot; paired raw concentration/unit retained separately"} |
+| description_comment_source_column_units_1_raw_treatment_unit | string | Yes | {"description": "description, comment=source column: units_1; Raw treatment unit"} |
+| description_comment_source_column_concentration_1_raw_treatment_concentration | string | Yes | {"description": "description, comment=source column: concentration_1; Raw treatment concentration"} |
+| description_comment_source_column_condition_2_raw_treatment_slot | string | Yes | {"description": "description, comment=source column: condition_2; Raw treatment slot"} |
+| description_comment_source_column_units_2_raw_treatment_unit | string | Yes | {"description": "description, comment=source column: units_2; Raw treatment unit"} |
+| description_comment_source_column_concentration_2_raw_treatment_concentration | string | Yes | {"description": "description, comment=source column: concentration_2; Raw treatment concentration"} |
+| description_comment_source_column_condition_3_raw_treatment_slot | string | Yes | {"description": "description, comment=source column: condition_3; Raw treatment slot"} |
+| description_comment_source_column_units_3_raw_treatment_unit | string | Yes | {"description": "description, comment=source column: units_3; Raw treatment unit"} |
+| description_comment_source_column_concentration_3_raw_treatment_concentration | string | Yes | {"description": "description, comment=source column: concentration_3; Raw treatment concentration"} |
+| description_comment_source_column_condition_4_raw_treatment_slot | string | Yes | {"description": "description, comment=source column: condition_4; Raw treatment slot"} |
+| description_comment_source_column_units_4_raw_treatment_unit | string | Yes | {"description": "description, comment=source column: units_4; Raw treatment unit"} |
+| description_comment_source_column_concentration_4_raw_treatment_concentration | string | Yes | {"description": "description, comment=source column: concentration_4; Raw treatment concentration"} |
+| microplate_name_comment_source_column_growthplate | string | Yes | {"description": "microplate name, comment=source column: growthPlate"} |
+| microplate_well_name_comment_source_column_growthwells | string | Yes | {"description": "microplate well name, comment=source column: growthWells"} |
+| average_comment_source_column_ngenerations_can_be_fractional_exact_source_column_retained_because_count_only_permits_integer_dimensionless_unit | double | Yes | {"description": "average, comment=source column: nGenerations; Can be fractional; exact source column retained because count only permits integer", "unit": "dimensionless unit"} |
+
+**Total Rows:** 3846
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | sdt_genome_name | description_comment_source_column_orgid_composite_source_key_part_1 | description_comment_source_column_expname_composite_source_key_part_2 | description_comment_source_column_expdesc | description_comment_source_column_timezeroset | count_comment_source_column_num_count_unit | count_comment_source_column_nmapped_count_unit | count_comment_source_column_npastend_count_unit | count_comment_source_column_ngenic_count_unit | count_comment_source_column_nused_count_unit | count_comment_source_column_gmed_count_unit | count_comment_source_column_gmedt0_count_unit | average_comment_source_column_gmean_dimensionless_unit | average_comment_source_column_cor12_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | standard_deviation_comment_source_column_mad12_dimensionless_unit | standard_deviation_comment_source_column_mad12c_dimensionless_unit | standard_deviation_comment_source_column_mad12c_t0_dimensionless_unit | average_comment_source_column_opcor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | average_comment_source_column_adjcor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | average_comment_source_column_gccor_source_metric_is_correlation_exact_source_column_retained_because_checkgeneric_rejects_the_correlation_data_variable_term_dimensionless_unit | fitness_score_comment_source_column_maxfit_log_ratio_unit | description_comment_source_column_expgroup | description_comment_source_column_expdesclong | description_comment_source_column_mutantlibrary_raw_feba_library_label_named_coral_library_is_also_an_object_ref | description_comment_source_column_person_source_semantic_is_person_exact_source_column_retained_because_checkgeneric_rejects_the_person_data_variable_term | date_comment_source_column_datestarted | description_comment_source_column_setname | description_comment_source_column_seqindex | media_name_comment_source_column_media | description_comment_source_column_mediastrength_preserved_without_asserting_an_unvalidated_unit | temperature_comment_source_column_temperature_degree_celsius | ph_comment_source_column_ph_ph | culture_vessel_comment_source_column_vessel | anaerobic_comment_source_column_aerobic_stored_as_the_logically_inverted_anaerobic_flag_whose_coral_term_is_validator_compatible | physiochemical_state_comment_source_column_liquid | description_comment_source_column_shaking | description_comment_source_column_condition_1_raw_treatment_slot_paired_raw_concentration_unit_retained_separately | description_comment_source_column_units_1_raw_treatment_unit | description_comment_source_column_concentration_1_raw_treatment_concentration | description_comment_source_column_condition_2_raw_treatment_slot | description_comment_source_column_units_2_raw_treatment_unit | description_comment_source_column_concentration_2_raw_treatment_concentration | description_comment_source_column_condition_3_raw_treatment_slot | description_comment_source_column_units_3_raw_treatment_unit | description_comment_source_column_concentration_3_raw_treatment_concentration | description_comment_source_column_condition_4_raw_treatment_slot | description_comment_source_column_units_4_raw_treatment_unit | description_comment_source_column_concentration_4_raw_treatment_concentration | microplate_name_comment_source_column_growthplate | microplate_well_name_comment_source_column_growthwells | average_comment_source_column_ngenerations_can_be_fractional_exact_source_column_retained_because_count_only_permits_integer_dimensionless_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW460-12-10-14-LB2:set1S88 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | Brev2 | set1S88 | D-Glucose (C); 20C | 01-Mar-23 Brev2_ML6_set1 | 2 | 3452539 | 26 | 2427765 | 2424082 | 330 | 476 | 1012.56558061821 | 0.332806897803026 | 0.206963403914092 | 1.11024864588741 | 1.09301265064974 | 0.270329346454866 | -0.0145029091315918 | -0.0399841064877948 | 2.1234333435189 | carbon source | D-Glucose carbon source; 20C | Brev2_ML6a | Hira | 01-Mar-23 | Brev2_ML6_set1 | S88 | RCH2_defined_noCarbon | 1.0 | 20.0 | NULL | tube | 0 | Liquid | 200 rpm | D-Glucose | mM | 20 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| GW460-12-10-14-LB2:set1S89 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | Brev2 | set1S89 | Tween 20 (C), 20C | 01-Mar-23 Brev2_ML6_set1 | 3 | 3949120 | 25 | 2638170 | 2633843 | 434 | 476 | 1100.1850459482 | 0.392480841534941 | 0.192000235588877 | 1.12267037715526 | 1.09301265064974 | 0.255975690737474 | 0.00738990872139305 | -0.0327453369637862 | 1.45383471077398 | carbon source | Tween 20 carbon source, 20C | Brev2_ML6a | Hira | 01-Mar-23 | Brev2_ML6_set1 | S89 | RCH2_defined_noCarbon | 1.0 | 20.0 | NULL | tube | 0 | Liquid | 200 rpm | Tween 20 | vol% | 0.5 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| GW460-12-10-14-LB2:set1S90 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | Brev2 | set1S90 | D-Glucose (C); 30C | 01-Mar-23 Brev2_ML6_set1 | 4 | 4040198 | 13 | 2751555 | 2746746 | 360 | 476 | 1147.34586466165 | 0.41714180014877 | 0.234816127090293 | 1.14637643682262 | 1.09301265064974 | 0.253019877557789 | 0.0703793863392612 | -0.0960325454247186 | 3.70235520697585 | carbon source | D-Glucose carbon source; 30C | Brev2_ML6a | Hira | 01-Mar-23 | Brev2_ML6_set1 | S90 | RCH2_defined_noCarbon | 1.0 | 30.0 | NULL | tube | 0 | Liquid | 200 rpm | D-Glucose | mM | 20 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| GW460-12-10-14-LB2:set1S91 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | Brev2 | set1S91 | Tween 20 (C), 30C | 01-Mar-23 Brev2_ML6_set1 | 5 | 2869624 | 8 | 1827331 | 1823813 | 342 | 476 | 761.826649958229 | 0.409881218488365 | 0.210029163954413 | 1.07185152339043 | 1.09301265064974 | 0.293185701222212 | 0.0452378557154172 | -0.0593900982823793 | 1.6235537056001 | carbon source | Tween 20 carbon source, 30C | Brev2_ML6a | Hira | 01-Mar-23 | Brev2_ML6_set1 | S91 | RCH2_defined_noCarbon | 1.0 | 30.0 | NULL | tube | 0 | Liquid | 200 rpm | Tween 20 | vol% | 0.5 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| GW460-12-10-14-LB2:set2S1 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | Brev2 | set2S1 | Adenine 0.74 mM (C) | 09/16/24 Brev2_ML6_set2 | 6 | 2130566 | 20 | 1492998 | 1488188 | 309 | 1525 | 621.632414369256 | 0.134503601369405 | 0.136084802642684 | 1.09743766665343 | 1.0832552187421 | 0.163463183902149 | 0.0601318717119371 | 0.0136724085958361 | 1.07534083460993 | carbon source | Adenine 0.74 mM carbon source | Brev2_ML6a | Bri Finley | 09/16/24 | Brev2_ML6_set2 | S1 | Chakraborty_Basal | 1.0 | 29.0 | 7.0 | tube | 0 | Liquid | 200 rpm | Adenine | mM | 0.74 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+
+---
+
+## Table: ddt_brick0001675
+
+**Table Description:** feba_tnseq_fitness_GW460-12-10-14-LB2.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW460-12-10-14-LB2 using genome GW460-12-10-14-LB2.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 38
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW460-12-10-14-LB2:set1S88 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | NULL | NULL | -4.54716027036688 | -3.13814076653389 |
+| GW460-12-10-14-LB2:set1S89 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | NULL | NULL | -3.7225222704055 | -9.11201408778695 |
+| GW460-12-10-14-LB2:set1S90 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | NULL | NULL | -4.24108752758404 | -5.02611281475122 |
+| GW460-12-10-14-LB2:set1S91 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | NULL | NULL | -4.38330864800742 | -5.97284681179064 |
+| GW460-12-10-14-LB2:set2S1 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | NULL | NULL | 0.0639232710068609 | 0.39221649347328 |
+
+---
+
+## Table: ddt_brick0001676
+
+**Table Description:** feba_tnseq_fitness_MT123.5.ndarray - FEBa TnSeq gene fitness scores and t statistics for MT123 using genome MT123.5
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 199
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| MT123:set1S60 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | NULL | NULL | 0.045344862267366 | 0.264359288455713 |
+| MT123:set1S61 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | NULL | NULL | -0.0685964836110777 | -0.301397059924399 |
+| MT123:set1S62 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | NULL | NULL | 0.0534936985498633 | 0.273827241979757 |
+| MT123:set1S63 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | NULL | NULL | -0.046421595789131 | -0.210750784649919 |
+| MT123:set1S64 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | NULL | NULL | 0.0685210114171877 | 0.343628439755335 |
+
+---
+
+## Table: ddt_brick0001677
+
+**Table Description:** feba_tnseq_fitness_GW821-FHT01A05.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW821-FHT01A05 using genome GW821-FHT01A05.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 115
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW821-FHT01A05:set1S673 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | NULL | NULL | -0.0221534045671539 | -0.216358556305441 |
+| GW821-FHT01A05:set1S674 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | NULL | NULL | -0.093039521261757 | -0.91373795707588 |
+| GW821-FHT01A05:set1S675 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | NULL | NULL | -0.0695456542889978 | -0.682743589212582 |
+| GW821-FHT01A05:set1S676 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | NULL | NULL | -0.074510370858627 | -0.731646717912741 |
+| GW821-FHT01A05:set1S677 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | NULL | NULL | -0.109139741895733 | -1.068764969029 |
+
+---
+
+## Table: ddt_brick0001678
+
+**Table Description:** feba_tnseq_fitness_FW507-4G11.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW507-4G11 using genome FW507-4G11.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 243
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW507-4G11:set10IT048 | FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library | NULL | NULL | -0.164079226231586 | -0.669161464334101 |
+| FW507-4G11:set10IT049 | FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library | NULL | NULL | -0.15018094052414 | -0.493024108381107 |
+| FW507-4G11:set10IT050 | FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library | NULL | NULL | 0.135958066438542 | 0.445793798789864 |
+| FW507-4G11:set10IT051 | FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library | NULL | NULL | -0.312468520277273 | -1.19703738594796 |
+| FW507-4G11:set10IT055 | FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library | NULL | NULL | 0.12684323368061 | 0.572554218689893 |
+
+---
+
+## Table: ddt_brick0001679
+
+**Table Description:** feba_tnseq_fitness_EB106-05-01-XG201.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for EB106-05-01-XG201 using genome EB106-05-01-XG201.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 31
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| EB106-05-01-XG201:set1IT065 | EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library | NULL | NULL | -0.0582204293531539 | -0.468735075780732 |
+| EB106-05-01-XG201:set1IT066 | EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library | NULL | NULL | -0.0558855496966348 | -0.474783382539715 |
+| EB106-05-01-XG201:set1IT067 | EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library | NULL | NULL | 0.0997163890198078 | 0.857401234506792 |
+| EB106-05-01-XG201:set1IT068 | EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library | NULL | NULL | 2.34689121476617E-4 | 0.00196041652691777 |
+| EB106-05-01-XG201:set1IT069 | EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library | NULL | NULL | -0.00626082187507615 | -0.0536527903944098 |
+
+---
+
+## Table: ddt_brick0001680
+
+**Table Description:** feba_tnseq_fitness_GW822-FHT05C05.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW822-FHT05C05 using genome GW822-FHT05C05.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 12
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW822-FHT05C05:set1S1060 | GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library | NULL | NULL | 0.0956405411137562 | 0.776846530729745 |
+| GW822-FHT05C05:set1S1061 | GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library | NULL | NULL | 0.0740946789965478 | 0.615075856396507 |
+| GW822-FHT05C05:set1S1062 | GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library | NULL | NULL | 0.257003830675673 | 2.05858009582453 |
+| GW822-FHT05C05:set1S1063 | GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library | NULL | NULL | 0.15825687954824 | 1.32033382636122 |
+| GW822-FHT05C05:set1S1064 | GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library | NULL | NULL | -0.0134413604521495 | -0.107199725217304 |
+
+---
+
+## Table: ddt_brick0001681
+
+**Table Description:** feba_tnseq_fitness_GW823-FHT01H08.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW823-FHT01H08 using genome GW823-FHT01H08.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 12
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW823-FHT01H08:set1S1092 | GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library | NULL | NULL | 0.0232870328480566 | 0.21962186515008 |
+| GW823-FHT01H08:set1S1093 | GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library | NULL | NULL | 0.0404657107449506 | 0.385393444126393 |
+| GW823-FHT01H08:set1S1094 | GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library | NULL | NULL | -0.0689935346851913 | -0.653653573292926 |
+| GW823-FHT01H08:set1S1095 | GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library | NULL | NULL | 0.015760292110917 | 0.14936207219971 |
+| GW823-FHT01H08:set1S1096 | GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library | NULL | NULL | -0.0585323337917867 | -0.5556147420595829 |
+
+---
+
+## Table: ddt_brick0001682
+
+**Table Description:** feba_tnseq_fitness_MT49.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for MT49 using genome MT49.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 112
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| MT49:set1IT043 | MT49.4.MT049_ML3.tnseq_library | NULL | NULL | -0.388516716992398 | -2.50218002868925 |
+| MT49:set1IT044 | MT49.4.MT049_ML3.tnseq_library | NULL | NULL | -0.469730444663527 | -3.25884055923595 |
+| MT49:set1IT045 | MT49.4.MT049_ML3.tnseq_library | NULL | NULL | -0.390994057742267 | -2.58518621977893 |
+| MT49:set1IT046 | MT49.4.MT049_ML3.tnseq_library | NULL | NULL | -0.270439795108822 | -1.71712562874784 |
+| MT49:set1IT047 | MT49.4.MT049_ML3.tnseq_library | NULL | NULL | -0.351047095096012 | -2.30562330093392 |
+
+---
+
+## Table: ddt_brick0001683
+
+**Table Description:** feba_tnseq_fitness_MT58.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for MT58 using genome MT58.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 377
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| MT58:set10S421 | MT58.3.MT058_ML2.tnseq_library | NULL | NULL | 0.267792401161834 | 2.08278929822999 |
+| MT58:set10S422 | MT58.3.MT058_ML2.tnseq_library | NULL | NULL | 0.106787717066619 | 0.885220737734574 |
+| MT58:set10S423 | MT58.3.MT058_ML2.tnseq_library | NULL | NULL | 0.140711625657017 | 1.1050166698831 |
+| MT58:set10S424 | MT58.3.MT058_ML2.tnseq_library | NULL | NULL | 0.187610824718459 | 1.51769774430265 |
+| MT58:set10S425 | MT58.3.MT058_ML2.tnseq_library | NULL | NULL | 0.0943133170764606 | 0.787281713517492 |
+
+---
+
+## Table: ddt_brick0001684
+
+**Table Description:** feba_tnseq_fitness_GW460-11-11-14-LB5.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW460-11-11-14-LB5 using genome GW460-11-11-14-LB5.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 185
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW460-11-11-14-LB5:set1IT001 | GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library | NULL | NULL | 0.170977357741649 | 1.08942106691856 |
+| GW460-11-11-14-LB5:set1IT002 | GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library | NULL | NULL | 0.148465098166143 | 1.01162145728917 |
+| GW460-11-11-14-LB5:set1IT003 | GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library | NULL | NULL | 0.0224596155712138 | 0.151132210989445 |
+| GW460-11-11-14-LB5:set1IT005 | GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library | NULL | NULL | 0.0770706656091182 | 0.342100887674818 |
+| GW460-11-11-14-LB5:set1IT007 | GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library | NULL | NULL | 0.0596116973923335 | 0.371742738992061 |
+
+---
+
+## Table: ddt_brick0001685
+
+**Table Description:** feba_tnseq_fitness_GW460-11-11-14-LB1.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW460-11-11-14-LB1 using genome GW460-11-11-14-LB1.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 146
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW460-11-11-14-LB1:set1S289 | GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library | NULL | NULL | -0.390929031091712 | -1.29752506081171 |
+| GW460-11-11-14-LB1:set1S290 | GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library | NULL | NULL | -0.0845316445156628 | -0.248228195601068 |
+| GW460-11-11-14-LB1:set1S291 | GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library | NULL | NULL | -0.249577379178339 | -0.956604937126811 |
+| GW460-11-11-14-LB1:set1S292 | GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library | NULL | NULL | -0.423027732656322 | -0.972162999012653 |
+| GW460-11-11-14-LB1:set1S293 | GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library | NULL | NULL | 0.25426030065773 | 1.01102509746271 |
+
+---
+
+## Table: ddt_brick0001686
+
+**Table Description:** feba_tnseq_fitness_FW215-L2.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW215-L2 using genome FW215-L2.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 185
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW215-L2:set1S1 | FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library | NULL | NULL | -0.106836846456609 | -0.638728965969871 |
+| FW215-L2:set1S10 | FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library | NULL | NULL | -0.199368751827425 | -1.11357644968547 |
+| FW215-L2:set1S100 | FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library | NULL | NULL | -0.495509989539478 | -2.72594639245567 |
+| FW215-L2:set1S101 | FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library | NULL | NULL | -0.0697024987538353 | -0.385078901642761 |
+| FW215-L2:set1S102 | FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library | NULL | NULL | -0.305025355826888 | -1.32984572132234 |
+
+---
+
+## Table: ddt_brick0001687
+
+**Table Description:** feba_tnseq_fitness_MT42.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for MT42 using genome MT42.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 73
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| MT42:set1S81 | MT42.3.Rhodanobacter_MT42_ML2.tnseq_library | NULL | NULL | 0.0154182924427764 | 0.110191238746408 |
+| MT42:set1S83 | MT42.3.Rhodanobacter_MT42_ML2.tnseq_library | NULL | NULL | -0.0500177507194295 | -0.340704480710496 |
+| MT42:set1S84 | MT42.3.Rhodanobacter_MT42_ML2.tnseq_library | NULL | NULL | 0.0622461033570694 | 0.427808987907416 |
+| MT42:set1S85 | MT42.3.Rhodanobacter_MT42_ML2.tnseq_library | NULL | NULL | 0.0296261218544842 | 0.171029231201251 |
+| MT42:set1S86 | MT42.3.Rhodanobacter_MT42_ML2.tnseq_library | NULL | NULL | -0.0166798324246331 | -0.0950162484236498 |
+
+---
+
+## Table: ddt_brick0001688
+
+**Table Description:** feba_tnseq_fitness_GW101-3H11.6.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW101-3H11 using genome GW101-3H11.6
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 196
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW101-3H11:set10S848 | GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library | NULL | NULL | 0.270339421951203 | 1.3219360454635 |
+| GW101-3H11:set10S849 | GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library | NULL | NULL | 0.123352326546883 | 0.712900217174147 |
+| GW101-3H11:set10S850 | GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library | NULL | NULL | 0.194849001822622 | 0.753473652897317 |
+| GW101-3H11:set10S851 | GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library | NULL | NULL | 0.327145172478357 | 1.37764729890329 |
+| GW101-3H11:set10S852 | GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library | NULL | NULL | 0.305058057679044 | 1.4035681553499 |
+
+---
+
+## Table: ddt_brick0001689
+
+**Table Description:** feba_tnseq_fitness_GW456-L13.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for GW456-L13 using genome GW456-L13.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 116
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| GW456-L13:set1IT002 | GW456-L13.3.pseudo13_ML2.tnseq_library | NULL | NULL | 0.0627995432407142 | 0.150225822310272 |
+| GW456-L13:set1IT004 | GW456-L13.3.pseudo13_ML2.tnseq_library | NULL | NULL | -0.723539375814076 | -1.73361283214439 |
+| GW456-L13:set1IT005 | GW456-L13.3.pseudo13_ML2.tnseq_library | NULL | NULL | 0.0976041800360563 | 0.334954530643401 |
+| GW456-L13:set1IT006 | GW456-L13.3.pseudo13_ML2.tnseq_library | NULL | NULL | -0.616487587319652 | -1.64709270686008 |
+| GW456-L13:set1IT007 | GW456-L13.3.pseudo13_ML2.tnseq_library | NULL | NULL | 0.47183168072295 | 1.54598862237589 |
+
+---
+
+## Table: ddt_brick0001690
+
+**Table Description:** feba_tnseq_fitness_FW300-N1B4.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW300-N1B4 using genome FW300-N1B4.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 197
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW300-N1B4:set10IT004 | FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library | NULL | NULL | -0.758657188938664 | -0.997705059076071 |
+| FW300-N1B4:set10IT008 | FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library | NULL | NULL | -1.10818374447591 | -2.0910452408996 |
+| FW300-N1B4:set10IT009 | FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library | NULL | NULL | -1.29479336198065 | -3.29885553493186 |
+| FW300-N1B4:set10IT010 | FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library | NULL | NULL | -1.17225211380202 | -2.03011355365248 |
+| FW300-N1B4:set10IT011 | FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library | NULL | NULL | -0.891782649131787 | -1.17208366680785 |
+
+---
+
+## Table: ddt_brick0001691
+
+**Table Description:** feba_tnseq_fitness_FW300-N2E3.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW300-N2E3 using genome FW300-N2E3.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 307
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW300-N2E3:set11IT024 | FW300-N2E3.3.pseudo3_N2E3_ML2.tnseq_library | NULL | NULL | 0.0897703173718334 | 0.366203885776104 |
+| FW300-N2E3:set11IT025 | FW300-N2E3.3.pseudo3_N2E3_ML2.tnseq_library | NULL | NULL | -0.370500297522379 | -1.43609798021577 |
+| FW300-N2E3:set15IT087 | FW300-N2E3.3.pseudo3_N2E3_ML2a.tnseq_library | NULL | NULL | -0.181152635301992 | -0.850025740004093 |
+| FW300-N2E3:set15IT088 | FW300-N2E3.3.pseudo3_N2E3_ML2a.tnseq_library | NULL | NULL | 0.322221295837612 | 1.32553295933611 |
+| FW300-N2E3:set15IT089 | FW300-N2E3.3.pseudo3_N2E3_ML2a.tnseq_library | NULL | NULL | 0.539421299219027 | 2.12538805406924 |
+
+---
+
+## Table: ddt_brick0001692
+
+**Table Description:** feba_tnseq_fitness_FW300-N2C3.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW300-N2C3 using genome FW300-N2C3.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 198
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW300-N2C3:set13IT004 | FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library | NULL | NULL | 0.164531855515917 | 0.920754789924933 |
+| FW300-N2C3:set13IT005 | FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library | NULL | NULL | 0.154851468423342 | 0.924746174040054 |
+| FW300-N2C3:set13IT006 | FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library | NULL | NULL | 0.182209154927506 | 1.1944741742931 |
+| FW300-N2C3:set13IT007 | FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library | NULL | NULL | -0.332667498698654 | -1.59430131073583 |
+| FW300-N2C3:set13IT008 | FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library | NULL | NULL | -0.0359763215117106 | -0.206756390131661 |
+
+---
+
+## Table: ddt_brick0001693
+
+**Table Description:** feba_tnseq_fitness_FW300-N2E2.3.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW300-N2E2 using genome FW300-N2E2.3
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 388
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW300-N2E2:set11IT006 | FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library | NULL | NULL | 0.260484155509396 | 1.28905340741656 |
+| FW300-N2E2:set11IT007 | FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library | NULL | NULL | -0.111080574872871 | -0.631948527564571 |
+| FW300-N2E2:set11IT008 | FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library | NULL | NULL | -0.394212293733461 | -1.9653530419801 |
+| FW300-N2E2:set11IT009 | FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library | NULL | NULL | 0.0936175498566676 | 0.447041008223512 |
+| FW300-N2E2:set11IT010 | FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library | NULL | NULL | -0.300883173734275 | -1.25848899958134 |
+
+---
+
+## Table: ddt_brick0001694
+
+**Table Description:** feba_tnseq_fitness_FW104-10B01.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW104-10B01 using genome FW104-10B01.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 515
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW104-10B01:set10S125 | FW104-10B01.4.rhodanobacter_10B01_ML12.tnseq_library | NULL | NULL | -0.0662496083189898 | -0.346272281523727 |
+| FW104-10B01:set10S169 | FW104-10B01.4.rhodanobacter_10B01_ML12.tnseq_library | NULL | NULL | 0.265032436984562 | 1.77989751078824 |
+| FW104-10B01:set11S415 | FW104-10B01.4.rhodanobacter_10B01_ML12.tnseq_library | NULL | NULL | -0.124749115056394 | -0.771435878373939 |
+| FW104-10B01:set12S637 | FW104-10B01.4.Rhodanobacter sp. FW104-10B01.tnseq_library | NULL | NULL | -0.251062785235941 | -1.51792181372337 |
+| FW104-10B01:set12S638 | FW104-10B01.4.Rhodanobacter sp. FW104-10B01.tnseq_library | NULL | NULL | -0.240959199196163 | -1.55813292924079 |
+
+---
+
+## Table: ddt_brick0001695
+
+**Table Description:** feba_tnseq_fitness_FW510-R12.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW510-R12 using genome FW510-R12.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 103
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW510-R12:set1S484 | FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library | NULL | NULL | -0.370215440281184 | -1.45821892989893 |
+| FW510-R12:set1S486 | FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library | NULL | NULL | -0.541515316826276 | -2.37836158246064 |
+| FW510-R12:set1S490 | FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library | NULL | NULL | -0.396217542299818 | -1.71045962372346 |
+| FW510-R12:set1S498 | FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library | NULL | NULL | -0.619705104179433 | -2.32954741184434 |
+| FW510-R12:set1S510 | FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library | NULL | NULL | -0.317310518564957 | -1.297936562845 |
+
+---
+
+## Table: ddt_brick0001696
+
+**Table Description:** feba_tnseq_fitness_FW510-T8.4.ndarray - FEBa TnSeq gene fitness scores and t statistics for FW510-T8 using genome FW510-T8.4
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| sdt_tnseq_library_name | string | Yes | {"description": "Tn-Seq library name", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_name"} |
+| fitness_score_log_ratio_unit | string | Yes | {} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | string | Yes | {} |
+| fitness_score_log_ratio_unit_2 | double | Yes | {"description": "fitness score", "unit": "log ratio unit"} |
+| average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 | double | Yes | {"description": "average, statistic=T score, comment=source column: t; FEBa t statistic", "unit": "dimensionless unit"} |
+
+**Total Rows:** 98
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | sdt_tnseq_library_name | fitness_score_log_ratio_unit | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit | fitness_score_log_ratio_unit_2 | average_statistic_t_score_comment_source_column_t_feba_t_statistic_dimensionless_unit_2 |
+|---|---|---|---|---|---|
+| FW510-T8:set1S10 | FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library | NULL | NULL | -0.089514621507814 | -0.606797601105439 |
+| FW510-T8:set1S11 | FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library | NULL | NULL | 0.161233577322028 | 1.23761208873224 |
+| FW510-T8:set1S12 | FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library | NULL | NULL | 0.0492549510917828 | 0.357743527349621 |
+| FW510-T8:set1S13 | FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library | NULL | NULL | 0.076486028142257 | 0.539039343182086 |
+| FW510-T8:set1S14 | FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library | NULL | NULL | 0.121885565436731 | 0.873841369640939 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -24764,7 +25452,7 @@ Total Tables: 711
 | sdt_condition_id | string | No | {"description": "Unique identifier for the condition (Primary key)", "type": "primary_key"} |
 | sdt_condition_name | string | No | {"description": "Unique text name describing the condition", "type": "unique_key"} |
 
-**Total Rows:** 1575
+**Total Rows:** 5421
 
 ### Sample Data (5 rows)
 
@@ -24841,7 +25529,7 @@ Total Tables: 711
 | stop_base_pair | int | No | {"description": "Genomic stop coordinate in base pairs", "unit": "base pair"} |
 | function | string | Yes | {"description": "Annotated biological function of the gene"} |
 
-**Total Rows:** 15015
+**Total Rows:** 125914
 
 ### Sample Data (5 rows)
 
@@ -24870,7 +25558,7 @@ Total Tables: 711
 | n_features_count_unit | int | No | {"description": "Number of annotated features (e.g., genes) in the genome", "unit": "count unit"} |
 | link | string | No | {"description": "Link to where the genome itself is actually stored"} |
 
-**Total Rows:** 6705
+**Total Rows:** 6727
 
 ### Sample Data (5 rows)
 
@@ -25118,13 +25806,17 @@ Total Tables: 711
 | hit_rate_essential_ratio | double | Yes | {"description": "Proportion of essential genes with at least one transposon insertion", "unit": "ratio"} |
 | hit_rate_other_ratio | double | Yes | {"description": "Proportion of non-essential (other) genes with at least one transposon insertion", "unit": "ratio"} |
 
-**Total Rows:** 1
+**Total Rows:** 35
 
 ### Sample Data (5 rows)
 
 | sdt_tnseq_library_id | sdt_tnseq_library_name | sdt_genome_name | primers_model | n_mapped_reads_count_unit | n_barcodes_count_unit | n_usable_barcodes_count_unit | n_insertion_locations_count_unit | hit_rate_essential_ratio | hit_rate_other_ratio |
 |---|---|---|---|---|---|---|---|---|---|
 | TnSeq_Library0000001 | FW300-N2E2.tnseq_library | FW300-N2E2-reassembled.genome | model_pKMW7 | NULL | NULL | NULL | NULL | NULL | NULL |
+| TnSeq_Library0000036 | GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library | GW460-12-10-14-LB2.4 | model_pTGG39_NN1 | NULL | NULL | NULL | NULL | NULL | NULL |
+| TnSeq_Library0000037 | MT123.5.Castellaniella_MT123_ML3.tnseq_library | MT123.5 | model_AMD290 | NULL | NULL | NULL | NULL | NULL | NULL |
+| TnSeq_Library0000038 | GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library | GW821-FHT01A05.4 | model_AMD289 | NULL | NULL | NULL | NULL | NULL | NULL |
+| TnSeq_Library0000039 | FW507-4G11.4.cupriavidus_4G11_ML11.tnseq_library | FW507-4G11.4 | model_pKMW3 | NULL | NULL | NULL | NULL | NULL | NULL |
 
 ---
 
@@ -25145,7 +25837,7 @@ Total Tables: 711
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 5332
+**Total Rows:** 5334
 
 ### Sample Data (5 rows)
 
@@ -25180,7 +25872,7 @@ Total Tables: 711
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 93094
+**Total Rows:** 93117
 
 ### Sample Data (5 rows)
 
@@ -25222,7 +25914,7 @@ Total Tables: 711
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103067
+**Total Rows:** 103102
 
 ### Sample Data (5 rows)
 
@@ -25264,7 +25956,7 @@ Total Tables: 711
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103842
+**Total Rows:** 103865
 
 ### Sample Data (5 rows)
 

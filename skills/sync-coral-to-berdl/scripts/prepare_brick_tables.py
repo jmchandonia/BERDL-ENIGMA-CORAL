@@ -34,6 +34,15 @@ KNOWN_CORAL_VALUE_CORRECTIONS = {
     },
 }
 
+KNOWN_CORAL_REFERENCE_CORRECTIONS = {
+    # CORAL's generic brick converter derives this target from the display
+    # label "Tn-Seq library" and truncates the static type name. The exported
+    # typedef/static table is TnSeq_Library -> sdt_tnseq_library.
+    "sdt_tnseq.sdt_tnseq_library_name": (
+        "sdt_tnseq_library.sdt_tnseq_library_name"
+    ),
+}
+
 
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -120,6 +129,31 @@ def normalize_known_coral_values_in_tsv(
         "rows": len(rows),
         "cells_changed": cells_changed,
         "by_column": by_column,
+    }
+
+
+def normalize_known_coral_references(artifacts: dict[str, Path]) -> dict[str, Any]:
+    """Correct converter-derived foreign-key targets to exported table names."""
+
+    replacements = 0
+    files_changed = []
+    for artifact_name in ("schema", "sys_ddt_typedef"):
+        path = artifacts[artifact_name]
+        text = path.read_text(encoding="utf-8")
+        updated = text
+        for source, target in KNOWN_CORAL_REFERENCE_CORRECTIONS.items():
+            count = updated.count(source)
+            if count:
+                updated = updated.replace(source, target)
+                replacements += count
+        if updated != text:
+            temporary = path.with_name(f".{path.name}.reference-normalizing")
+            temporary.write_text(updated, encoding="utf-8")
+            temporary.replace(path)
+            files_changed.append(artifact_name)
+    return {
+        "replacements": replacements,
+        "files_changed": files_changed,
     }
 
 
@@ -310,6 +344,16 @@ def main() -> int:
             )
 
     failures = [row for row in results if row["status"] != "converted"]
+    reference_normalization_by_brick = {
+        raw_path.stem: normalize_known_coral_references(
+            _artifacts(run_dir, raw_path.stem)
+        )
+        for raw_path in raw_paths
+        if all(
+            path.is_file() and path.stat().st_size > 0
+            for path in _artifacts(run_dir, raw_path.stem).values()
+        )
+    }
     normalization_by_brick = {
         **reused_normalization,
         **{
@@ -362,6 +406,22 @@ def main() -> int:
                 for stats in value_normalization_by_brick.values()
             ),
             "by_brick": changed_value_normalization,
+        },
+        "coral_reference_normalization": {
+            "bricks_changed": sorted(
+                brick_id
+                for brick_id, stats in reference_normalization_by_brick.items()
+                if stats["replacements"]
+            ),
+            "replacements": sum(
+                stats["replacements"]
+                for stats in reference_normalization_by_brick.values()
+            ),
+            "by_brick": {
+                brick_id: stats
+                for brick_id, stats in reference_normalization_by_brick.items()
+                if stats["replacements"]
+            },
         },
         "raw_sha256": raw_hashes,
         "converter": str(CONVERTER),

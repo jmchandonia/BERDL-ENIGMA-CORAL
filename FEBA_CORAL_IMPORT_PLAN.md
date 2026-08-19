@@ -755,6 +755,56 @@ selected FEBa genome. Do not reuse the legacy library object linked to
 genome link. Verify the new brick and all of its object references before
 executing the obsoletion step.
 
+### 2026-08-18/19 BERDL publication completion
+
+The interrupted Lakehouse publication was audited and resumed from
+`sync-coral-to-berdl/exports/sync-20260813-165014/`. Before resumption, the
+live namespace still ended at `ddt_brick0001673`, contained the legacy
+`ddt_brick0000006`, and contained none of the 23 new FEBA brick tables. The
+resumed run uploaded all 45 staged objects (739,357,078 bytes), imported the
+33 selected changed tables, and dropped `ddt_brick0000006`. The durable import
+record is
+`reports/full_import_sync-20260813-165014.json`: all 45 uploads are
+`uploaded`, all 33 tables are `imported`, the obsolete table is `dropped`, and
+the error list is empty.
+
+Independent live verification then confirmed:
+
+- all 733 expected active tables are present and all 755 configured obsolete
+  tables are absent;
+- all 33 imported tables have exact staged/live row-count parity (461,615
+  rows in total, zero mismatches), including 3,846 condition-metadata rows,
+  125,914 genes, 6,727 genomes, 35 TnSeq libraries, and all 23 brick tables;
+- all 33 requested table comments and all 300 checked column comments are
+  present and byte-for-byte equal to the generated configuration;
+- all 3,846 distinct `(orgId, expName)` pairs in `ddt_brick0001674` resolve to
+  exactly one row in `enigma.fitprivate.experiment` (zero missing and zero
+  ambiguous target pairs);
+- `Brick0000006` has `withdrawn_date=2026-08-13` and
+  `superceded_by_ddt_ndarray_id=Brick0001693`; `Brick0001693` is current and
+  has no successor;
+- the complete live FK audit checked 102 relationships. All FEBA additions
+  pass. Its only two failures are unchanged legacy defects already present in
+  the 2026-07-24 baseline: 11,965 pre-existing gene rows refer to the absent
+  aliases `FW300-N2A2.genome`/`FW300-N2E2.genome`, and one pre-existing genome
+  row refers to absent strain `MT66-resequenced`. The 110,899 newly added gene
+  rows and 22 newly added genome rows contribute zero orphans.
+
+The CORAL converter-derived TnSeq reference defect was corrected during this
+run: all affected brick schema and typedef references now target
+`sdt_tnseq_library.sdt_tnseq_library_name`, not the nonexistent
+`sdt_tnseq.sdt_tnseq_library_name`. A regression test protects this
+normalization. The refreshed schema references were generated, copied to all
+eight dependent locations, and synchronized to the installed local BERDL
+skills.
+
+The final repeat of the EDR MinIO prefix check is still pending because the
+off-cluster route to `login1.berkeley.kbase.us:22` became unavailable after
+the overnight proxy/tunnel loss. This does not affect the completed Lakehouse
+load or its live Spark verification. The 22 exact EDR paths and checksums were
+already validated during staging; repeat their live prefix listing when that
+route returns.
+
 ## Remaining contingency
 
 No exact active or withdrawn annotation-pair match was found in the current
