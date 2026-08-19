@@ -44,8 +44,9 @@ Use this skill when interacting with the BERDL MCP API to explore or query CORAL
 - For request/response schemas, supported operators, and pagination details, load:
   - `references/berdl_mcp_openapi.json` (if available in the project using this skill)
 
-The ENIGMA schema reference is large. Prefer targeted lookup:
+The ENIGMA schema reference is large. Prefer targeted lookup. Installed skills
+may live on NFS under `/h`, so do not use recursive `rg` there:
 
-- `rg -n "^## Table:" references/enigma_coral_schema.md`
-- `rg -n "^## Table: <table>$|<column_or_term>" references/enigma_coral_schema.md`
+- `grep -n "^## Table:" references/enigma_coral_schema.md`
+- `grep -n -E "^## Table: <table>$|<column_or_term>" references/enigma_coral_schema.md`
 - Read only the table section needed for the task.

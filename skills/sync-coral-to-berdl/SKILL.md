@@ -54,6 +54,28 @@ MinIO copy plus notebook paste workflow.
 
 ## Workflow
 
+For a prepared run package, prefer the stable end-to-end driver:
+
+```bash
+/h/jmc/src/BERIL-research-observatory/.venv-berdl/bin/python \
+  skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py \
+  --run-dir sync-coral-to-berdl/exports/<run_id> \
+  --resume
+```
+
+The driver loads the repository `.env`, normalizes `KB_AUTH_TOKEN` to
+`KBASE_AUTH_TOKEN`, checks/starts the local BERDL proxy path, provisions the
+remote Spark session when a live stage remains, imports only changed tables,
+verifies row counts and comments, runs scoped foreign-key checks, publishes
+schema references, and refreshes the installed skill. It records every stage
+in `reports/sync_pipeline_<run_id>.json`; `--resume` skips stages already marked
+passed. Use `--plan-only` for a local, no-write/no-network preflight.
+
+Obsolete Lakehouse table drops are disabled by default. Add
+`--apply-obsolete-drops` only after reviewing the generated obsolete-table
+list. Do not replace this stable command with a run-specific compound shell
+command or require the user to source `.env` manually.
+
 1. **Preflight**
    - Confirm the target tenant/dataset/namespace and the work directory.
    - Check available disk space before export.
@@ -207,6 +229,8 @@ MinIO copy plus notebook paste workflow.
 9. **Report**
    - Write a sync report listing updated, skipped, comment-only, failed, and removed-from-export tables.
    - Include row counts, hashes, comment validation status, and any parser workarounds used.
+   - Keep the pipeline stage report as the authoritative resumability record;
+     never infer completion from a terminal session or process lifetime.
 
 10. **Publish schema updates**
    - Whenever the sync adds or drops Lakehouse tables, regenerate the

@@ -1,5 +1,38 @@
 # Workflow
 
+## One-command publication
+
+After preparation has produced `ingest/config.dry_run.json`,
+`manifests/current.json`, and the changed-table lists, run:
+
+```bash
+/h/jmc/src/BERIL-research-observatory/.venv-berdl/bin/python \
+  skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py \
+  --run-dir sync-coral-to-berdl/exports/<run_id> \
+  --resume
+```
+
+This command owns environment loading, proxy checks, remote Spark
+provisioning, changed-table import, read-back verification, scoped foreign-key
+validation, schema publication, and installed-skill synchronization. It is
+safe to rerun with `--resume` because each completed stage is recorded in
+`reports/sync_pipeline_<run_id>.json`, while the importer retains its own
+per-table resume report.
+
+Run with `--plan-only` to validate paths and see the exact stage commands
+without making network calls or writing reports. Add
+`--apply-obsolete-drops` only when the reviewed drop list should be applied;
+the default never drops Lakehouse tables. If a generated lifecycle process TSV
+contains payload rows, the driver stops before BERDL ingest so CORAL remains
+the lifecycle source of truth.
+
+For Codex, persist approval for only this stable argument prefix (the Python
+interpreter plus `skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py`).
+Do not approve Python generally. Run IDs and optional flags then vary without
+creating a new run-specific shell-command rule, while the driver retains its
+own data and lifecycle guardrails. A managed Codex policy can still override
+local approval settings.
+
 ## Planned Runtime Layout
 
 Default work root:
@@ -160,7 +193,7 @@ scratch disk.
      cleanup without redundantly submitting all historical obsolete tables.
 
 10. Validate:
-   - row counts
+   - row counts against `manifests/current.json` for every selected table
    - schema order and types
    - column comments from ingest `comments_report`
    - non-empty table comments and non-empty column comments for every table

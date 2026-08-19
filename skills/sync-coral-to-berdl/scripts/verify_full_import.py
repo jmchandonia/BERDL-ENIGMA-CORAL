@@ -6,8 +6,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
+
+
+IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -49,6 +53,33 @@ def _describe_comments(rows) -> dict[str, Any]:
     return {"table_comment": table_comment, "columns": columns}
 
 
+def _expected_row_counts(manifest: dict[str, Any]) -> dict[str, int]:
+    return {
+        row["table"]: int(row["row_count"])
+        for row in manifest.get("tables", [])
+        if row.get("table") and row.get("row_count") is not None
+    }
+
+
+def _count_sql(namespace: str, tables: list[str]) -> str:
+    if not IDENTIFIER.fullmatch(namespace):
+        raise ValueError(f"Invalid namespace: {namespace!r}")
+    branches = []
+    for table in tables:
+        if not IDENTIFIER.fullmatch(table):
+            raise ValueError(f"Invalid table name: {table!r}")
+        branches.append(
+            f"SELECT '{table}' AS table_name, COUNT(*) AS row_count "
+            f"FROM `{namespace}`.`{table}`"
+        )
+    return " UNION ALL ".join(branches)
+
+
+def _batches(items: list[str], size: int):
+    for start in range(0, len(items), size):
+        yield items[start:start + size]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
@@ -58,6 +89,7 @@ def main() -> int:
     args = parser.parse_args()
 
     config = _load_json(args.run_dir / "ingest" / "config.dry_run.json")
+    manifest = _load_json(args.run_dir / "manifests" / "current.json")
     enabled = {table["name"] for table in config["tables"] if table.get("enabled")}
     disabled = {table["name"] for table in config["tables"] if not table.get("enabled")}
 
@@ -95,6 +127,23 @@ def main() -> int:
         requested_comment_tables_missing = sorted(requested - imported)
     else:
         requested_comment_tables_missing = []
+
+    expected_counts = _expected_row_counts(manifest)
+    count_tables = sorted(requested_comment_tables)
+    row_count_missing_manifest = sorted(set(count_tables) - set(expected_counts))
+    live_counts: dict[str, int] = {}
+    for batch_number, batch in enumerate(_batches(count_tables, 40), start=1):
+        print(
+            f"[verify row counts {batch_number}] {len(batch)} tables",
+            flush=True,
+        )
+        for row in collect_sql(_count_sql(args.namespace, batch)):
+            live_counts[row.table_name] = int(row.row_count)
+    row_count_mismatches = [
+        {"table": table, "expected": expected_counts[table], "actual": live_counts.get(table)}
+        for table in count_tables
+        if table in expected_counts and live_counts.get(table) != expected_counts[table]
+    ]
 
     config_by_name = {table["name"]: table for table in config["tables"]}
     expected_table_comments_missing = []
@@ -205,6 +254,9 @@ def main() -> int:
         "disabled_tables_expected_absent": len(disabled),
         "disabled_tables_present": present_disabled,
         "disabled_bricks_missing_lifecycle": missing_lifecycle,
+        "row_counts_checked": len(live_counts),
+        "row_count_missing_manifest": row_count_missing_manifest,
+        "row_count_mismatches": row_count_mismatches,
         "comment_counts_checked": comment_counts,
         "expected_table_comments_missing": expected_table_comments_missing,
         "expected_column_comments_missing": expected_column_comments_missing,
@@ -233,6 +285,8 @@ def main() -> int:
         or requested_comment_tables_missing
         or present_disabled
         or missing_lifecycle
+        or row_count_missing_manifest
+        or row_count_mismatches
         or go_terms
         or comment_failures
     ) else 0

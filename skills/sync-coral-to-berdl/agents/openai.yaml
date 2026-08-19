@@ -1,3 +1,4 @@
-display_name: Sync CORAL to BERDL
-short_description: Export CORAL data and sync changed tables into BERDL.
-default_prompt: Sync CORAL exports into BERDL, importing only changed tables and preserving comments.
+interface:
+  display_name: "Sync CORAL to BERDL"
+  short_description: "Run a verified, resumable CORAL-to-BERDL sync."
+  default_prompt: "Use $sync-coral-to-berdl to run or resume a CORAL export sync, validate it, and publish the resulting schema references."

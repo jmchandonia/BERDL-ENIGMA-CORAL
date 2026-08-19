@@ -16,13 +16,16 @@ The schema reference is large. Search it and read only the table sections needed
 - `references/enigma_coral_schema.md` for the allowed table/column list and sample rows. This is the complete generated schema.
 - `references/ddt_ndarray_table.md` for the full `ddt_ndarray` extract when locating arrays/bricks.
 - `references/sys_ddt_typedef_table.md` for the full `sys_ddt_typedef` extract when mapping brick columns, dimensions, variables, units, and foreign keys.
+- `references/feba_tnseq_examples.md` for the imported FEBA condition,
+  fitness/t-statistic, TnSeq-library, genome, and N2E2 supersession examples.
 
 ## Finding schema details
 
-- List table sections with `rg -n "^## Table:" references/enigma_coral_schema.md`.
-- Find a specific table with `rg -n "^## Table: <table>$" references/enigma_coral_schema.md`, then read from that line to the next `## Table:`.
-- Search by column or term with `rg -n "<column_or_term>" references/enigma_coral_schema.md`.
-- For bricks, search the ndarray and typedef extracts by Brick ID or dataset name, for example `rg -n "Brick0000529|isolate_genbank" references/ddt_ndarray_table.md references/sys_ddt_typedef_table.md`.
+- List table sections with `grep -n "^## Table:" references/enigma_coral_schema.md`.
+- Find a specific table with `grep -n "^## Table: <table>$" references/enigma_coral_schema.md`, then read from that line to the next `## Table:`.
+- Search by column or term with `grep -n "<column_or_term>" references/enigma_coral_schema.md`.
+- For bricks, search the ndarray and typedef extracts by Brick ID or dataset name, for example `grep -n -E "Brick0000529|isolate_genbank" references/ddt_ndarray_table.md references/sys_ddt_typedef_table.md`.
+- Do not run recursive `rg` searches under `/h`; installed skills are on NFS.
 
 ## Workflow
 
