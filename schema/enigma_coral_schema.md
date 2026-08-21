@@ -28,7 +28,7 @@ Total Tables: 733
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1464
+**Total Rows:** 1466
 
 ### Sample Data (5 rows)
 
@@ -1529,70 +1529,6 @@ Total Tables: 733
 | 2018-07-30T13:40:00.000-04:00 | 1.6920000000000002 | 5.64 | 231.51 | 85.59374 | 29.7743 | 57.11 | 29.020880000000002 | 982.7630803200001 | 14.25372129552 | 0.0 | 0.0 | NULL | NULL | WS1 |
 | 2018-07-30T13:50:00.000-04:00 | 2.142 | 6.76 | 258.89 | 86.20790000000001 | 30.1155 | 54.83 | 29.01762 | 982.6526836799999 | 14.25212013348 | 0.0 | 0.0 | NULL | NULL | WS1 |
 | 2018-07-30T14:00:00.000-04:00 | 3.154 | 9.01 | 264.36 | 84.90578 | 29.3921 | 56.71 | 29.016750000000002 | 982.6232219999999 | 14.251692829500001 | 0.0 | 0.0 | NULL | NULL | WS1 |
-
----
-
-## Table: ddt_brick0000048
-
-**Table Description:** hazen_oak_ridge_well_construction_data.hndarray - Oak Ridge Well Construction Data
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| availability | boolean | Yes | {"description": "availability"} |
-| location_comment_area | string | Yes | {"description": "location, Comment=area"} |
-| easting_state_plane_zone_4100_tennessee_meter | double | Yes | {"description": "easting, State Plane Zone=4100 - Tennessee", "unit": "meter"} |
-| northing_state_plane_zone_4100_tennessee_meter | double | Yes | {"description": "northing, State Plane Zone=4100 - Tennessee", "unit": "meter"} |
-| latitude_degree | double | Yes | {"description": "latitude", "unit": "degree"} |
-| longitude_degree | double | Yes | {"description": "longitude", "unit": "degree"} |
-| category_instrument_whole_well | string | Yes | {"description": "category, Instrument=whole well"} |
-| elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | double | Yes | {"description": "elevation, Instrument=casing, Top=casing top, Bottom=ground surface", "unit": "foot"} |
-| elevation_instrument_casing_top_casing_top_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, Instrument=casing, Top=casing top, Bottom=mean sea level", "unit": "foot"} |
-| elevation_top_ground_surface_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, Top=ground surface, Bottom=mean sea level", "unit": "foot"} |
-| method_category_installation | string | Yes | {"description": "method, Category=installation"} |
-| depth_top_ground_surface_bottom_boring_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=boring end", "unit": "foot"} |
-| presence_category_boring_refusal | boolean | Yes | {"description": "presence, Category=boring refusal"} |
-| diameter_category_boring_inch | double | Yes | {"description": "diameter, Category=boring", "unit": "inch"} |
-| category_instrument_well_casing | string | Yes | {"description": "category, Instrument=well casing"} |
-| outer_diameter_instrument_well_casing_inch | double | Yes | {"description": "outer diameter, Instrument=well casing", "unit": "inch"} |
-| inner_diameter_instrument_well_casing_inch | double | Yes | {"description": "inner diameter, Instrument=well casing", "unit": "inch"} |
-| depth_top_ground_surface_bottom_well_casing_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=well casing end", "unit": "foot"} |
-| category_instrument_drive_casing | string | Yes | {"description": "category, Instrument=drive casing"} |
-| inner_diameter_instrument_drive_casing_inch | double | Yes | {"description": "inner diameter, Instrument=drive casing", "unit": "inch"} |
-| outer_diameter_instrument_drive_casing_inch | double | Yes | {"description": "outer diameter, Instrument=drive casing", "unit": "inch"} |
-| depth_top_ground_surface_bottom_drive_casing_start_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=drive casing start", "unit": "foot"} |
-| depth_top_ground_surface_bottom_drive_casing_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=drive casing end", "unit": "foot"} |
-| category_instrument_packing | string | Yes | {"description": "category, Instrument=packing"} |
-| depth_top_ground_surface_bottom_packing_start_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=packing start", "unit": "foot"} |
-| depth_top_ground_surface_bottom_packing_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=packing end", "unit": "foot"} |
-| category_instrument_screen | string | Yes | {"description": "category, Instrument=screen"} |
-| depth_top_screen_start_bottom_screen_end_foot | double | Yes | {"description": "depth, Top=screen start, Bottom=screen end", "unit": "foot"} |
-| depth_top_ground_surface_bottom_screen_start_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=screen start", "unit": "foot"} |
-| depth_top_ground_surface_bottom_screen_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=screen end", "unit": "foot"} |
-| elevation_top_screen_start_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, Top=screen start, Bottom=mean sea level", "unit": "foot"} |
-| elevation_top_screen_end_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, Top=screen end, Bottom=mean sea level", "unit": "foot"} |
-| category_instrument_seal_position_upper | string | Yes | {"description": "category, Instrument=seal, Position=upper"} |
-| depth_top_ground_surface_bottom_seal_upper_start_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=seal upper start", "unit": "foot"} |
-| depth_top_ground_surface_bottom_seal_upper_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=seal upper end", "unit": "foot"} |
-| category_instrument_seal_position_lower | string | Yes | {"description": "category, Instrument=seal, Position=lower"} |
-| depth_top_ground_surface_bottom_seal_lower_start_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=seal lower start", "unit": "foot"} |
-| depth_top_ground_surface_bottom_seal_lower_end_foot | double | Yes | {"description": "depth, Top=ground surface, Bottom=seal lower end", "unit": "foot"} |
-| comment | string | Yes | {"description": "comment"} |
-| date_comment_completed | string | Yes | {"description": "date, Comment=completed"} |
-
-**Total Rows:** 492
-
-### Sample Data (5 rows)
-
-| sdt_location_name | availability | location_comment_area | easting_state_plane_zone_4100_tennessee_meter | northing_state_plane_zone_4100_tennessee_meter | latitude_degree | longitude_degree | category_instrument_whole_well | elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | elevation_instrument_casing_top_casing_top_bottom_mean_sea_level_foot | elevation_top_ground_surface_bottom_mean_sea_level_foot | method_category_installation | depth_top_ground_surface_bottom_boring_end_foot | presence_category_boring_refusal | diameter_category_boring_inch | category_instrument_well_casing | outer_diameter_instrument_well_casing_inch | inner_diameter_instrument_well_casing_inch | depth_top_ground_surface_bottom_well_casing_end_foot | category_instrument_drive_casing | inner_diameter_instrument_drive_casing_inch | outer_diameter_instrument_drive_casing_inch | depth_top_ground_surface_bottom_drive_casing_start_foot | depth_top_ground_surface_bottom_drive_casing_end_foot | category_instrument_packing | depth_top_ground_surface_bottom_packing_start_foot | depth_top_ground_surface_bottom_packing_end_foot | category_instrument_screen | depth_top_screen_start_bottom_screen_end_foot | depth_top_ground_surface_bottom_screen_start_foot | depth_top_ground_surface_bottom_screen_end_foot | elevation_top_screen_start_bottom_mean_sea_level_foot | elevation_top_screen_end_bottom_mean_sea_level_foot | category_instrument_seal_position_upper | depth_top_ground_surface_bottom_seal_upper_start_foot | depth_top_ground_surface_bottom_seal_upper_end_foot | category_instrument_seal_position_lower | depth_top_ground_surface_bottom_seal_lower_start_foot | depth_top_ground_surface_bottom_seal_lower_end_foot | comment | date_comment_completed |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| DP01 | 1 | Area 2 | 51454.39 | 29927.0 | 35.97583846 | 84.27431229999999 | SP | 2.03 | 1000.8 | 998.7700000000001 | DRIVE POINT | 22.8 | NULL | NULL | SP | 1.6600000000000001 | 1.36 | 22.8 | NONE | NULL | NULL | NULL | NULL | SAND | 16.3 | 22.8 | PVC | 4.7 | 17.3 | 22.0 | 981.47 | 976.7700000000001 | BENT | 0.0 | 16.3 | NONE | NULL | NULL | Outside trench | 1997-09-30 |
-| DP02 | 1 | Area 2 | 51379.43 | 29949.82 | 35.9757745 | 84.27456514 | SP | 1.5 | 1000.6 | 999.1 | DRIVE POINT | 18.9 | NULL | NULL | SP | 1.6600000000000001 | 1.36 | 18.9 | NONE | NULL | NULL | NULL | NULL | SAND | 12.4 | 18.9 | PVC | 4.7 | 13.4 | 18.1 | 985.7 | 981.0 | BENT | 0.0 | 12.4 | NONE | NULL | NULL | Outside trench | 1997-10-01 |
-| DP04 | 1 | Area 2 | 51390.15 | 30023.67 | 35.97595880000001 | 84.27467553 | SP | 1.83 | 1001.8 | 999.97 | DRIVE POINT | 25.0 | NULL | NULL | SP | 1.6600000000000001 | 1.36 | 25.0 | NONE | NULL | NULL | NULL | NULL | SAND | 18.5 | 25.0 | PVC | 4.7 | 19.5 | 24.2 | 980.47 | 975.7700000000001 | BENT | 0.0 | 18.5 | NONE | NULL | NULL | Outside trench | 1997-10-02 |
-| DP05 | 1 | Area 2 | 51318.17 | 30006.23 | 35.975808 | 84.27484352 | SP | 2.1 | 1001.59 | 999.49 | DRIVE POINT | 23.8 | NULL | NULL | SP | 1.6600000000000001 | 1.36 | 23.8 | NONE | NULL | NULL | NULL | NULL | SAND | 17.3 | 23.8 | PVC | 4.7 | 18.3 | 23.0 | 981.19 | 976.49 | BENT | 0.0 | 17.3 | NONE | NULL | NULL | Outside trench | 1997-10-06 |
-| DP06 | 1 | Area 2 | 51259.15 | 29954.3 | 35.97559888000001 | 84.27490976000001 | SP | 1.07 | 999.09 | 998.02 | DRIVE POINT | 24.8 | NULL | NULL | SP | 1.6600000000000001 | 1.36 | 24.8 | NONE | NULL | NULL | NULL | NULL | SAND | 18.1 | 24.8 | PVC | 4.7 | 19.1 | 23.8 | 978.92 | 974.22 | BENT | 0.0 | 18.1 | NONE | NULL | NULL | Outside trench | 1997-10-07 |
 
 ---
 
@@ -25329,6 +25265,70 @@ Total Tables: 733
 
 ---
 
+## Table: ddt_brick0001698
+
+**Table Description:** hazen_oak_ridge_well_construction_data_v3.ndarray - Oak Ridge Well Construction Data (v3; deduplicated and reconciled with canonical CORAL locations and regions)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| availability | boolean | Yes | {"description": "availability"} |
+| location_comment_area | string | Yes | {"description": "location, comment=area"} |
+| easting_state_plane_zone_oak_ridge_y_12_plant_y_12_grid_publication_ornl_tm_11779_doi_10_2172_814090_foot | double | Yes | {"description": "easting, state plane zone=Oak Ridge Y-12 Plant (Y-12) Grid, publication=ORNL/TM-11779; DOI:10.2172/814090", "unit": "foot"} |
+| northing_state_plane_zone_oak_ridge_y_12_plant_y_12_grid_publication_ornl_tm_11779_doi_10_2172_814090_foot | double | Yes | {"description": "northing, state plane zone=Oak Ridge Y-12 Plant (Y-12) Grid, publication=ORNL/TM-11779; DOI:10.2172/814090", "unit": "foot"} |
+| latitude_degree | double | Yes | {"description": "latitude", "unit": "degree"} |
+| longitude_degree | double | Yes | {"description": "longitude", "unit": "degree"} |
+| category_instrument_whole_well | string | Yes | {"description": "category, instrument=whole well"} |
+| elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | double | Yes | {"description": "elevation, instrument=casing, top=casing top, bottom=ground surface", "unit": "foot"} |
+| elevation_instrument_casing_top_casing_top_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, instrument=casing, top=casing top, bottom=mean sea level", "unit": "foot"} |
+| elevation_top_ground_surface_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, top=ground surface, bottom=mean sea level", "unit": "foot"} |
+| method_category_installation | string | Yes | {"description": "method, category=installation"} |
+| depth_top_ground_surface_bottom_boring_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=boring end", "unit": "foot"} |
+| presence_category_boring_refusal | boolean | Yes | {"description": "presence, category=boring refusal"} |
+| diameter_category_boring_inch | double | Yes | {"description": "diameter, category=boring", "unit": "inch"} |
+| category_instrument_well_casing | string | Yes | {"description": "category, instrument=well casing"} |
+| outer_diameter_instrument_well_casing_inch | double | Yes | {"description": "outer diameter, instrument=well casing", "unit": "inch"} |
+| inner_diameter_instrument_well_casing_inch | double | Yes | {"description": "inner diameter, instrument=well casing", "unit": "inch"} |
+| depth_top_ground_surface_bottom_well_casing_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=well casing end", "unit": "foot"} |
+| category_instrument_drive_casing | string | Yes | {"description": "category, instrument=drive casing"} |
+| inner_diameter_instrument_drive_casing_inch | double | Yes | {"description": "inner diameter, instrument=drive casing", "unit": "inch"} |
+| outer_diameter_instrument_drive_casing_inch | double | Yes | {"description": "outer diameter, instrument=drive casing", "unit": "inch"} |
+| depth_top_ground_surface_bottom_drive_casing_start_foot | double | Yes | {"description": "depth, top=ground surface, bottom=drive casing start", "unit": "foot"} |
+| depth_top_ground_surface_bottom_drive_casing_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=drive casing end", "unit": "foot"} |
+| category_instrument_packing | string | Yes | {"description": "category, instrument=packing"} |
+| depth_top_ground_surface_bottom_packing_start_foot | double | Yes | {"description": "depth, top=ground surface, bottom=packing start", "unit": "foot"} |
+| depth_top_ground_surface_bottom_packing_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=packing end", "unit": "foot"} |
+| category_instrument_screen | string | Yes | {"description": "category, instrument=screen"} |
+| depth_top_screen_start_bottom_screen_end_foot | double | Yes | {"description": "depth, top=screen start, bottom=screen end", "unit": "foot"} |
+| depth_top_ground_surface_bottom_screen_start_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen start", "unit": "foot"} |
+| depth_top_ground_surface_bottom_screen_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen end", "unit": "foot"} |
+| elevation_top_screen_start_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, top=screen start, bottom=mean sea level", "unit": "foot"} |
+| elevation_top_screen_end_bottom_mean_sea_level_foot | double | Yes | {"description": "elevation, top=screen end, bottom=mean sea level", "unit": "foot"} |
+| category_instrument_seal_position_upper | string | Yes | {"description": "category, instrument=seal, position=upper"} |
+| depth_top_ground_surface_bottom_seal_upper_start_foot | double | Yes | {"description": "depth, top=ground surface, bottom=seal upper start", "unit": "foot"} |
+| depth_top_ground_surface_bottom_seal_upper_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=seal upper end", "unit": "foot"} |
+| category_instrument_seal_position_lower | string | Yes | {"description": "category, instrument=seal, position=lower"} |
+| depth_top_ground_surface_bottom_seal_lower_start_foot | double | Yes | {"description": "depth, top=ground surface, bottom=seal lower start", "unit": "foot"} |
+| depth_top_ground_surface_bottom_seal_lower_end_foot | double | Yes | {"description": "depth, top=ground surface, bottom=seal lower end", "unit": "foot"} |
+| comment | string | Yes | {"description": "comment"} |
+| date_comment_completed | string | Yes | {"description": "date, comment=completed"} |
+
+**Total Rows:** 465
+
+### Sample Data (5 rows)
+
+| sdt_location_name | availability | location_comment_area | easting_state_plane_zone_oak_ridge_y_12_plant_y_12_grid_publication_ornl_tm_11779_doi_10_2172_814090_foot | northing_state_plane_zone_oak_ridge_y_12_plant_y_12_grid_publication_ornl_tm_11779_doi_10_2172_814090_foot | latitude_degree | longitude_degree | category_instrument_whole_well | elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | elevation_instrument_casing_top_casing_top_bottom_mean_sea_level_foot | elevation_top_ground_surface_bottom_mean_sea_level_foot | method_category_installation | depth_top_ground_surface_bottom_boring_end_foot | presence_category_boring_refusal | diameter_category_boring_inch | category_instrument_well_casing | outer_diameter_instrument_well_casing_inch | inner_diameter_instrument_well_casing_inch | depth_top_ground_surface_bottom_well_casing_end_foot | category_instrument_drive_casing | inner_diameter_instrument_drive_casing_inch | outer_diameter_instrument_drive_casing_inch | depth_top_ground_surface_bottom_drive_casing_start_foot | depth_top_ground_surface_bottom_drive_casing_end_foot | category_instrument_packing | depth_top_ground_surface_bottom_packing_start_foot | depth_top_ground_surface_bottom_packing_end_foot | category_instrument_screen | depth_top_screen_start_bottom_screen_end_foot | depth_top_ground_surface_bottom_screen_start_foot | depth_top_ground_surface_bottom_screen_end_foot | elevation_top_screen_start_bottom_mean_sea_level_foot | elevation_top_screen_end_bottom_mean_sea_level_foot | category_instrument_seal_position_upper | depth_top_ground_surface_bottom_seal_upper_start_foot | depth_top_ground_surface_bottom_seal_upper_end_foot | category_instrument_seal_position_lower | depth_top_ground_surface_bottom_seal_lower_start_foot | depth_top_ground_surface_bottom_seal_lower_end_foot | comment | date_comment_completed |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FW-301 | 1 | Field Research Center (FRC), Background A | 29194.26105 | 29764.77198 | 35.941069 | -84.336181 | SP | 2.3 | 843.82 | 841.52 | Auger/Core | 21.9 | 0 | NULL | SP | 2.0 | 1.7 | 21.4 | None | NULL | NULL | NULL | NULL | Sand | 4.0 | NULL | PVC/SL/.01 | 15.2 | 6.7 | 21.9 | 834.8199999999999 | 819.62 | BENT-PEL | 1.0 | 4.0 | None | NULL | NULL | LT400 data April 2019-June 2019 | 2000-12-07 |
+| FW-300 | 1 | Field Research Center (FRC), Background A | 29200.21 | 29770.87 | 35.941092 | -84.336176 | SP | 2.1666999999999916 | 843.4667 | 841.3 | Auger/Core | 25.5 | NULL | NULL | SP | 2.0 | 1.7 | 25.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 20.0 | 5.0 | 25.0 | 836.3 | 816.3 | None | NULL | NULL | None | NULL | NULL | AT600 data June 2018-June 2019 | 2000-11-30 |
+| FW-021 | 1 | Field Research Center (FRC), Area 1 | 52402.91 | 30122.23 | 35.977747 | -84.272033 | SP | 1.14 | 1005.76 | 1004.62 | Core | 22.0 | 0 | NULL | SP | NULL | NULL | 22.0 | None | NULL | NULL | NULL | NULL | None | NULL | NULL | NULL | 4.77 | 17.23 | 22.0 | 987.39 | 982.62 | None | NULL | NULL | None | NULL | NULL | LT400 data starting June 2019 | 2001-01-08 |
+| TPB16 | 1 | Field Research Center (FRC), Area 2 | 51322.64 | 29930.58 | 35.975643 | -84.274687 | SP | 0.92 | 999.13 | 998.21 | Push-Probe | 15.29 | 1 | NULL | SP | 1.0 | 0.5 | 15.29 | NULL | NULL | NULL | NULL | NULL | Sand | NULL | NULL | PVC | 2.0 | 13.29 | 15.29 | 984.9200000000001 | 982.9200000000001 | BENT | NULL | NULL | NULL | NULL | NULL | Outside trench | 1996-06-01 |
+| FW-511 | 1 | Field Research Center (FRC), Area 5 | 52556.69 | 30349.77 | 35.978501 | -84.272035 | SP | 1.95 | 1008.62 | 1006.67 | Manual | 22.5 | NULL | NULL | SP | 1.05 | 0.824 | 22.5 | NULL | NULL | NULL | NULL | NULL | Sand-2 | 16.33 | 21.75 | PVC/SL/.02 | 4.87 | 17.44 | 22.31 | 989.2299999999999 | 984.36 | BENT | 0.0 | 16.33 | None | NULL | NULL | NULL | 2005-04-06 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -25630,11 +25630,11 @@ Total Tables: 733
 
 | sdt_location_id | sdt_location_name | latitude_degree | longitude_degree | continent_sys_oterm_id | continent_sys_oterm_name | country_sys_oterm_id | country_sys_oterm_name | region | biome_sys_oterm_id | biome_sys_oterm_name | feature_sys_oterm_id | feature_sys_oterm_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Location0000001 | CPT1 | 35.9781191944 | -84.2742077222 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
-| Location0000002 | CPT2 | 35.9780786389 | -84.2742687778 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
-| Location0000003 | CPT3 | 35.9780356111 | -84.2743169722 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
-| Location0000004 | CPT4 | 35.9780438611 | -84.2741839722 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
-| Location0000005 | CPT5 | 35.9780081111 | -84.2742193889 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR), Area Background | ENVO:01000221 | temperate woodland biome | ENVO:00002226 | borehole |
+| Location0000537 | TPB12 | 35.97373723 | -84.27958302 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000538 | TPB13 | 35.97318506 | -84.28003094 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000539 | TPB14 | 35.97293865 | -84.28012531 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000543 | TPB20 | 35.9735053 | -84.27968178 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
+| Location0000544 | TPB21 | 35.97342396 | -84.27941159 | CONTINENT:0000007 | North America | COUNTRY:0000263 | USA | Tennessee (TN), Oak Ridge Reservation (ORR) | ENVO:01000221 | temperate woodland biome | ENVO:01000002 | water well |
 
 ---
 
@@ -25872,7 +25872,7 @@ Total Tables: 733
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 93117
+**Total Rows:** 93119
 
 ### Sample Data (5 rows)
 
@@ -25914,7 +25914,7 @@ Total Tables: 733
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103102
+**Total Rows:** 103104
 
 ### Sample Data (5 rows)
 
@@ -25956,7 +25956,7 @@ Total Tables: 733
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103865
+**Total Rows:** 103867
 
 ### Sample Data (5 rows)
 
