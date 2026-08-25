@@ -21,7 +21,9 @@ TSVs, also read `references/static-imports.md` before editing data.
 3. Verify every ontology ID and label in the current OBO files.
 4. Give every numeric field a unit.
 5. Use only legitimate imported identifiers in ID/reference fields.
-6. Validate every JSON with `gov.lbl.enigma.app.CheckGeneric`, overwriting stale
+6. For multiple measured variables, add the canonical `data variables type
+   <ME:0000293>` array-context property described in `references/model.md`.
+7. Validate every JSON with `gov.lbl.enigma.app.CheckGeneric`, overwriting stale
    `.check` files.
 
 ## CORAL static-object TSV workflow
@@ -77,6 +79,9 @@ TSVs, also read `references/static-imports.md` before editing data.
   `string_values`.
 - Keep stable unique names synchronized across static TSVs, bricks, process
   files, and audit artifacts.
+- Do not treat a passing `CheckGeneric` result as proof that a heterogeneous
+  brick will export losslessly; separately enforce the data-variable-axis
+  marker and validate the post-load CSV shape.
 - Preserve timestamp offsets and source null/suppression semantics.
 - For single-location time series, keep location in `array_context`; represent
   row-level provenance as a dimension variable.
@@ -85,5 +90,7 @@ TSVs, also read `references/static-imports.md` before editing data.
 
 For static TSVs, validate headers and required values against the current
 typedef and resolve every FK by unique name. For ndarrays, run `CheckGeneric`
-on every JSON. After load, re-poll CORAL and verify counts, names, relationships,
-array shapes, and sampled source values.
+on every JSON. For a heterogeneous ndarray with `V` measured variables and
+declared dimension sizes `D1...Dn`, also verify that CORAL exports the shape
+`[V,D1,...,Dn]`, not merely `[D1,...,Dn]`. After load, re-poll CORAL and verify
+counts, names, relationships, array shapes, and sampled source values.

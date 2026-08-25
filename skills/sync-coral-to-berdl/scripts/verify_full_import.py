@@ -12,6 +12,7 @@ from typing import Any
 
 
 IDENTIFIER = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
+REPO_ROOT = Path(__file__).resolve().parents[3]
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -84,9 +85,19 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--namespace", default="enigma_coral")
+    parser.add_argument("--env-file", type=Path, default=REPO_ROOT / ".env")
+    parser.add_argument("--prefer-env-file", action="store_true")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--table-file", type=Path)
     args = parser.parse_args()
+
+    from run_sync_pipeline import _load_dotenv
+
+    _load_dotenv(
+        args.env_file.expanduser().resolve(), prefer_file=args.prefer_env_file
+    )
+    if not os.environ.get("KBASE_AUTH_TOKEN"):
+        raise RuntimeError("KBASE_AUTH_TOKEN is absent from the environment and env file")
 
     config = _load_json(args.run_dir / "ingest" / "config.dry_run.json")
     manifest = _load_json(args.run_dir / "manifests" / "current.json")

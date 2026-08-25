@@ -88,6 +88,31 @@ def test_static_import_preflight_rejects_missing_required_values(tmp_path: Path)
         MODULE.validate_static_import_tsv(bad, "Gene")
 
 
+def test_multi_variable_ndarray_requires_matching_data_variables_context() -> None:
+    document = {
+        "data_type": MODULE.term("fitness_data"),
+        "array_context": [
+            MODULE.scalar_property(
+                "data_variables_type", "oterm_ref", MODULE.TERMS["fitness_data"].ref
+            )
+        ],
+        "typed_values": [{"value_type": {}}, {"value_type": {}}],
+    }
+    MODULE.validate_data_variables_context(document)
+
+    document["array_context"] = []
+    with pytest.raises(ValueError, match="exactly one data variables type"):
+        MODULE.validate_data_variables_context(document)
+
+    document["array_context"] = [
+        MODULE.scalar_property(
+            "data_variables_type", "oterm_ref", MODULE.TERMS["metadata_data"].ref
+        )
+    ]
+    with pytest.raises(ValueError, match="matching the ndarray data_type"):
+        MODULE.validate_data_variables_context(document)
+
+
 def test_n2e2_obsoletion_is_in_import_manifest_and_has_helper(tmp_path: Path) -> None:
     MODULE.write_import_helpers(
         tmp_path,

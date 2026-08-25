@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shlex
 import shutil
 import subprocess
@@ -15,12 +16,34 @@ from pathlib import Path
 def _load_dotenv(path: Path) -> None:
     if not path.exists():
         return
+    file_values: dict[str, str] = {}
     for raw_line in path.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
         key, value = line.split("=", 1)
-        os.environ.setdefault(key.strip(), value.strip().strip("'").strip('"'))
+        file_values[key.strip()] = value.strip().strip("'").strip('"')
+
+    variable = re.compile(r"^\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))$")
+
+    def resolve(value: str, stack: tuple[str, ...] = ()) -> str:
+        match = variable.fullmatch(value)
+        if not match:
+            return value
+        referenced = match.group(1) or match.group(2)
+        if referenced in stack:
+            raise ValueError(
+                "Cyclic dotenv variable reference: " + " -> ".join((*stack, referenced))
+            )
+        if referenced in os.environ:
+            return os.environ[referenced]
+        if referenced in file_values:
+            return resolve(file_values[referenced], (*stack, referenced))
+        raise ValueError(f"Unresolved dotenv variable reference: {value}")
+
+    for key, value in file_values.items():
+        if key:
+            os.environ.setdefault(key, resolve(value, (key,)))
 
 
 def _valid(creds: dict[str, str | None]) -> bool:

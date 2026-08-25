@@ -250,6 +250,35 @@ def scalar_property(term_key: str, scalar_type: str, value: Any) -> dict[str, An
     return {"value_type": term(term_key), "value": {"scalar_type": scalar_type, key: value}}
 
 
+def validate_data_variables_context(document: dict[str, Any]) -> None:
+    """Require CORAL's heterogeneous-array marker for multi-variable bricks.
+
+    CORAL's CSV exporter uses this array-context property to distinguish the
+    leading data-variable axis from the declared dimensions. CheckGeneric does
+    not currently reject a missing marker, so enforce the export contract here.
+    """
+    variables = document.get("typed_values", [])
+    if len(variables) <= 1:
+        return
+    markers = [
+        prop
+        for prop in document.get("array_context", [])
+        if prop.get("value_type", {}).get("oterm_ref") == TERMS["data_variables_type"].ref
+    ]
+    if len(markers) != 1:
+        raise ValueError(
+            "A multi-variable CORAL ndarray must have exactly one "
+            "data variables type <ME:0000293> array-context property"
+        )
+    marker_value = markers[0].get("value", {})
+    expected_data_type = document.get("data_type", {}).get("oterm_ref")
+    if marker_value.get("scalar_type") != "oterm_ref" or marker_value.get("oterm_ref") != expected_data_type:
+        raise ValueError(
+            "The data variables type array-context value must be an oterm_ref "
+            "matching the ndarray data_type"
+        )
+
+
 def source_context(source: str, extra: str = "") -> list[dict[str, Any]]:
     value = f"source column: {source}"
     if extra:
@@ -643,6 +672,7 @@ def build_metadata_brick(
         "dim_context": [{"data_type": term("condition"), "size": len(experiments), "typed_values": dim_variables}],
         "typed_values": variables,
     }
+    validate_data_variables_context(document)
     ref_audit = validate_object_refs(document, allowed_refs)
     json_dir = stage / "json"
     check_dir = stage / "check"
@@ -727,7 +757,9 @@ def build_fitness_bricks(
             "name": name,
             "description": f"FEBa TnSeq gene fitness scores and t statistics for {strain} using genome {genome}",
             "data_type": term("fitness_data"),
-            "array_context": [],
+            "array_context": [
+                scalar_property("data_variables_type", "oterm_ref", TERMS["fitness_data"].ref),
+            ],
             "n_dimensions": 2,
             "dim_context": [
                 {
@@ -758,6 +790,7 @@ def build_fitness_bricks(
                 ),
             ],
         }
+        validate_data_variables_context(document)
         ref_audit = validate_object_refs(document, allowed_refs)
         json_path = stage / "json" / name.replace(".ndarray", ".json")
         with json_path.open("w") as handle:

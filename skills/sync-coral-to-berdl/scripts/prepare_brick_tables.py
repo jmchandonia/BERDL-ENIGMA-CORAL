@@ -41,6 +41,10 @@ KNOWN_CORAL_REFERENCE_CORRECTIONS = {
     "sdt_tnseq.sdt_tnseq_library_name": (
         "sdt_tnseq_library.sdt_tnseq_library_name"
     ),
+    # CORAL's converter combines the referenced static type with the ontology
+    # label "gene ID". BERDL exports the CORAL Gene unique external identifier
+    # as sdt_gene_name; sdt_gene_id is the internal Gene00000x identifier.
+    "sdt_gene.sdt_gene_gene_id": "sdt_gene.sdt_gene_name",
 }
 
 

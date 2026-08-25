@@ -812,3 +812,118 @@ No exact active or withdrawn annotation-pair match was found in the current
 pre-publication refresh discovers an exact match only under
 `genome_processing_withdrawn`, stop for an explicit reuse-versus-new-version
 decision rather than linking to it silently.
+
+### 2026-08-25 heterogeneous fitness export correction
+
+The 22 imported FEBa fitness JSON bricks contain complete fit and t arrays, but
+their empty `array_context` omits CORAL's heterogeneous-array discriminator.
+The legacy CORAL CSV exporter therefore emits only `2 * condition_count` rows
+and loses every gene except the first before BERDL conversion. This affects
+Brick0001675 through Brick0001696; it is not a Spark truncation.
+
+The staged repair is
+`coral_import/feba_20260811/fitness_brick_v2_20260825/`. It contains 22 new
+immutable `_v2.ndarray` bricks with exactly one added array-context property:
+
+`data variables type <ME:0000293> = Gene Knockout Fitness <DA:0000010>`
+
+The scientific payload is otherwise unchanged. The generator verified all
+gene and condition dimensions and all 16,292,891 fit plus 16,292,891 t values,
+compared canonical scientific-payload hashes before and after transformation,
+round-tripped every JSON, ran `CheckGeneric` successfully on all 22 bricks, and
+verified the complete package checksum manifest. The package also contains 22
+one-to-one `Update Data <PROCESS:0000053>` rows from each current FEBa fitness
+brick to its v2 replacement. For N2E2 this extends, rather than rewrites, the
+existing lifecycle chain from `tnseq_n2e2.ndarray` to the 2026-08-13 FEBa brick
+and then to its v2 brick.
+
+This was the required import gate. Import all 22 replacement bricks first.
+Before importing the Update Data process, require each CORAL CSV export to have
+shape `[2, gene_count, condition_count]` and each converted table to contain
+exactly `gene_count * condition_count` rows with nonblank gene, genome,
+condition, and TnSeq-library references plus both fit and t values. Only after
+all 22 pass should the one-to-one Update Data process be imported and the
+changed CORAL tables synchronized to BERDL.
+
+The primary FEBa generator now rejects multi-variable ndarrays without exactly
+one matching `data variables type` marker. Regression tests cover missing and
+mismatched markers and preservation of correction payloads. The repository and
+live installed copies of the `coral-ndarray-generation` skill now document the
+same guardrail, the limitation of `CheckGeneric`, and the required post-import
+export-shape validation.
+
+### 2026-08-25 v2 CORAL export validation and resumable BERDL sync
+
+CORAL now contains the 22 v2 replacements (Brick0001699 through
+Brick0001720), their Update Data lifecycle processes, and the updated COMO
+ontology. Fresh sync run `sync-20260825-113646` downloaded exactly those 22
+new bricks and reused the 1,466 previously verified immutable exports.
+
+`tools/validate_feba_v2_coral_exports.py` exhaustively compared both the raw
+CORAL CSV exports and the BERDL-ready TSVs against the staged v2 JSON sources.
+All checks passed: 22/22 brick identities, reported shapes
+`[2, gene_count, condition_count]`, 16,292,891 matrix rows, 32,585,782 raw
+value rows, 16,292,891 exact fit comparisons, 16,292,891 exact t comparisons,
+and 189,476 dimension-reference comparisons. Every converted row has the exact
+gene, genome, condition, TnSeq-library, fit, and t values. The durable report
+is
+`sync-coral-to-berdl/exports/sync-20260825-113646/reports/feba_v2_coral_export_validation.json`.
+
+The reviewed publication set has 28 changed tables: the 22 v2 brick tables,
+`ddt_ndarray`, `sys_ddt_typedef`, `sys_oterm`, `sys_process`,
+`sys_process_input`, and `sys_process_output`. The reviewed drop set is exactly
+the 22 superseded tables `ddt_brick0001675` through `ddt_brick0001696`.
+Lifecycle audit confirmed 22 one-to-one old-to-new successors and retained the
+N2E2 chain `Brick0000006 -> Brick0001693 -> Brick0001717`.
+
+At that checkpoint, the live publication had not started. Both initial attempts stopped during
+`berdl-remote login`, before Spark or MinIO mutation, because the current KBase
+token is expired; a direct `SELECT 1 AS ready` probe through the healthy local
+tunnels independently returned the same token-expired result. After refreshing
+`KBASE_AUTH_TOKEN` in `.env`, the resumable command was:
+
+```bash
+/h/jmc/src/BERIL-research-observatory/.venv-berdl/bin/python \
+  skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py \
+  --run-dir sync-coral-to-berdl/exports/sync-20260825-113646 \
+  --resume --apply-obsolete-drops --prefer-env-file
+```
+
+The driver now resolves exact dotenv aliases such as
+`KBASE_AUTH_TOKEN=$KB_AUTH_TOKEN` and rejects unresolved aliases; regression
+tests cover both cases. A successful resume must still pass live row-count and
+comment parity, absence of all 22 superseded tables, scoped FK validation, and
+schema publication before this correction is complete.
+
+### 2026-08-25 v2 BERDL publication completion
+
+Run `sync-20260825-113646` completed successfully. It uploaded all 40 staged
+artifacts, imported all 28 selected changed tables, and dropped exactly the 22
+superseded tables `ddt_brick0001675` through `ddt_brick0001696`; the durable
+import report contains no errors. Fresh live read-back confirmed all 733
+expected active tables are present, all 779 obsolete tables are absent, all 28
+changed-table row counts match, and all 28 table plus 220 column comments match
+the corrected config.
+
+The CORAL converter initially declared each v2 gene column against nonexistent
+`sdt_gene.sdt_gene_gene_id`. The values were already the required external gene
+names; the correct unique-key target is `sdt_gene.sdt_gene_name`, not the
+internal `Gene00000x` identifier in `sdt_gene_id`. The preparation workflow now
+normalizes this converter-derived reference and has regression coverage. After
+the 22 live comments were corrected, the scoped audit passed all 140 declared
+relationships with zero failures or declaration errors.
+
+`tools/verify_feba_v2_live.py` independently verified the final live state:
+22 tables and 16,292,891 rows, zero null rows across gene, genome, condition,
+TnSeq library, fit, and t, exact parity for all 45 relevant lifecycle rows, and
+exact parity for updated COMO terms ME:0000335 through ME:0000338. Its durable
+report is
+`sync-coral-to-berdl/exports/sync-20260825-113646/reports/feba_v2_live_validation.json`.
+The final N2E2 chain is
+`Brick0000006 -> Brick0001693 -> Brick0001717`.
+
+The sync driver was hardened during this run to support explicit `.env`
+precedence and to require a real `SELECT 1 AS ready` Spark probe with bounded
+retry after JupyterHub spawn. Schema references were regenerated in all eight
+dependent repository locations, and the repository sync skill was copied and
+diff-verified against its installed local copy.

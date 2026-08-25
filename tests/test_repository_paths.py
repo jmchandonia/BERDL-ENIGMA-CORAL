@@ -222,6 +222,34 @@ class RepositoryPathTests(unittest.TestCase):
             self.assertNotIn(old_reference, schema.read_text(encoding="utf-8"))
             self.assertNotIn(old_reference, typedef.read_text(encoding="utf-8"))
 
+    def test_prepare_brick_tables_targets_gene_external_name(self):
+        spec = importlib.util.spec_from_file_location(
+            "prepare_brick_tables_gene_reference", SCRIPTS / "prepare_brick_tables.py"
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            schema = root / "Brick_schema.py"
+            typedef = root / "Brick_sys_ddt_typedef.tsv"
+            old_reference = "sdt_gene.sdt_gene_gene_id"
+            new_reference = "sdt_gene.sdt_gene_name"
+            schema.write_text(f'comment="{old_reference}"\n', encoding="utf-8")
+            typedef.write_text(
+                f"column\tobject_ref\ngene\t{old_reference}\n", encoding="utf-8"
+            )
+
+            result = module.normalize_known_coral_references(
+                {"schema": schema, "sys_ddt_typedef": typedef}
+            )
+
+            self.assertEqual(result["replacements"], 2)
+            self.assertIn(new_reference, schema.read_text(encoding="utf-8"))
+            self.assertIn(new_reference, typedef.read_text(encoding="utf-8"))
+            self.assertNotIn(old_reference, schema.read_text(encoding="utf-8"))
+            self.assertNotIn(old_reference, typedef.read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

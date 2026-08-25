@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import socket
 import subprocess
@@ -34,11 +35,12 @@ def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _load_dotenv(path: Path) -> list[str]:
-    """Load simple KEY=VALUE entries without overriding the caller's env."""
+def _load_dotenv(path: Path, *, prefer_file: bool = False) -> list[str]:
+    """Load simple KEY=VALUE entries, optionally overriding inherited values."""
     loaded: list[str] = []
     if not path.is_file():
         return loaded
+    file_values: dict[str, str] = {}
     for raw in path.read_text(encoding="utf-8").splitlines():
         line = raw.strip()
         if not line or line.startswith("#") or "=" not in line:
@@ -48,8 +50,31 @@ def _load_dotenv(path: Path) -> list[str]:
         value = value.strip()
         if value[:1] == value[-1:] and value[:1] in {'"', "'"}:
             value = value[1:-1]
-        if key and key not in os.environ:
-            os.environ[key] = value
+        if key:
+            file_values[key] = value
+
+    variable = re.compile(r"^\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))$")
+
+    def resolve(value: str, stack: tuple[str, ...] = ()) -> str:
+        match = variable.fullmatch(value)
+        if not match:
+            return value
+        referenced = match.group(1) or match.group(2)
+        if referenced in stack:
+            raise ValueError(
+                "Cyclic dotenv variable reference: " + " -> ".join((*stack, referenced))
+            )
+        if prefer_file and referenced in file_values:
+            return resolve(file_values[referenced], (*stack, referenced))
+        if referenced in os.environ:
+            return os.environ[referenced]
+        if referenced in file_values:
+            return resolve(file_values[referenced], (*stack, referenced))
+        raise ValueError(f"Unresolved dotenv variable reference: {value}")
+
+    for key, value in file_values.items():
+        if key and (prefer_file or key not in os.environ):
+            os.environ[key] = resolve(value, (key,))
             loaded.append(key)
     if "KBASE_AUTH_TOKEN" not in os.environ and os.environ.get("KB_AUTH_TOKEN"):
         os.environ["KBASE_AUTH_TOKEN"] = os.environ["KB_AUTH_TOKEN"]
@@ -169,10 +194,53 @@ def _bootstrap_remote(run_dir: Path) -> list[dict[str, Any]]:
     results = []
     for action in ("login", "spawn", "status"):
         results.append(_run([executable, action]))
-    # Spawn is asynchronous. Wait for Spark Connect to become usable, while
-    # keeping the local HTTP proxy check as the deterministic local preflight.
-    time.sleep(10)
+    results.append(_wait_for_spark_readiness())
     return results
+
+
+def _wait_for_spark_readiness(
+    *, attempts: int = 12, interval_seconds: float = 10
+) -> dict[str, Any]:
+    """Require a successful Spark SQL probe after the asynchronous hub spawn."""
+    runner = DEFAULT_REMOTE_ROOT / "scripts" / "run_sql.py"
+    if not runner.is_file():
+        raise FileNotFoundError(f"BERDL Spark probe script is absent: {runner}")
+    command = [
+        sys.executable,
+        str(runner),
+        "--berdl-proxy",
+        "--query",
+        "SELECT 1 AS ready",
+        "--limit",
+        "1",
+    ]
+    started = time.monotonic()
+    last_error = ""
+    for attempt in range(1, attempts + 1):
+        print(f"[spark-readiness {attempt}/{attempts}] SELECT 1 AS ready", flush=True)
+        completed = subprocess.run(
+            command,
+            env=os.environ.copy(),
+            capture_output=True,
+            text=True,
+            timeout=45,
+        )
+        if completed.returncode == 0:
+            print("[spark-readiness] passed", flush=True)
+            return {
+                "command": command,
+                "returncode": 0,
+                "attempts": attempt,
+                "seconds": round(time.monotonic() - started, 3),
+            }
+        last_error = (completed.stderr or completed.stdout).strip().splitlines()[-1:]
+        last_error = last_error[0] if last_error else "unknown Spark readiness failure"
+        print(f"[spark-readiness] not ready: {last_error}", flush=True)
+        if attempt < attempts:
+            time.sleep(interval_seconds)
+    raise RuntimeError(
+        f"Spark Connect did not pass SELECT 1 after {attempts} attempts: {last_error}"
+    )
 
 
 def _stage_command(
@@ -277,6 +345,11 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--run-id")
     parser.add_argument("--namespace", default="enigma_coral")
     parser.add_argument("--env-file", type=Path, default=REPO_ROOT / ".env")
+    parser.add_argument(
+        "--prefer-env-file",
+        action="store_true",
+        help="override inherited environment values with entries from --env-file",
+    )
     parser.add_argument("--table-file", type=Path)
     parser.add_argument("--fk-table-file", type=Path)
     parser.add_argument("--drop-table-file", type=Path)
@@ -379,7 +452,7 @@ def main() -> int:
         }, indent=2))
         return 0
 
-    loaded = _load_dotenv(args.env_file)
+    loaded = _load_dotenv(args.env_file, prefer_file=args.prefer_env_file)
     _set_connection_defaults()
     live_stages = {"import", "verify", "foreign_keys"} & set(stages)
     if live_stages and not os.environ.get("KBASE_AUTH_TOKEN"):
@@ -398,6 +471,7 @@ def main() -> int:
             "steps": {},
         }
     report["env_file"] = str(args.env_file)
+    report["prefer_env_file"] = args.prefer_env_file
     report["env_keys_loaded"] = loaded
     report["obsolete_drops_enabled"] = args.apply_obsolete_drops
     _save_report(report_path, report)

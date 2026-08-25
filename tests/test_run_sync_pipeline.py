@@ -3,6 +3,7 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +43,58 @@ class SyncPipelineTests(unittest.TestCase):
                 os.environ.clear()
                 os.environ.update(before)
 
+    def test_dotenv_resolves_token_aliases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            env_file = Path(tmp) / ".env"
+            env_file.write_text(
+                "KB_AUTH_TOKEN=actual-token\nKBASE_AUTH_TOKEN=$KB_AUTH_TOKEN\n",
+                encoding="utf-8",
+            )
+            before = dict(os.environ)
+            try:
+                os.environ.pop("KB_AUTH_TOKEN", None)
+                os.environ.pop("KBASE_AUTH_TOKEN", None)
+                pipeline._load_dotenv(env_file)
+                self.assertEqual(os.environ["KB_AUTH_TOKEN"], "actual-token")
+                self.assertEqual(os.environ["KBASE_AUTH_TOKEN"], "actual-token")
+            finally:
+                os.environ.clear()
+                os.environ.update(before)
+
+    def test_dotenv_rejects_unresolved_token_alias(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            env_file = Path(tmp) / ".env"
+            env_file.write_text("KBASE_AUTH_TOKEN=$MISSING_TOKEN\n", encoding="utf-8")
+            before = dict(os.environ)
+            try:
+                os.environ.pop("KBASE_AUTH_TOKEN", None)
+                os.environ.pop("MISSING_TOKEN", None)
+                with self.assertRaisesRegex(ValueError, "Unresolved dotenv"):
+                    pipeline._load_dotenv(env_file)
+            finally:
+                os.environ.clear()
+                os.environ.update(before)
+
+    def test_dotenv_can_prefer_refreshed_file_token_over_inherited_token(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            env_file = Path(tmp) / ".env"
+            env_file.write_text(
+                "KB_AUTH_TOKEN=fresh-token\nKBASE_AUTH_TOKEN=$KB_AUTH_TOKEN\n",
+                encoding="utf-8",
+            )
+            before = dict(os.environ)
+            try:
+                os.environ["KB_AUTH_TOKEN"] = "stale-token"
+                os.environ["KBASE_AUTH_TOKEN"] = "stale-token"
+                loaded = pipeline._load_dotenv(env_file, prefer_file=True)
+                self.assertEqual(os.environ["KB_AUTH_TOKEN"], "fresh-token")
+                self.assertEqual(os.environ["KBASE_AUTH_TOKEN"], "fresh-token")
+                self.assertIn("KB_AUTH_TOKEN", loaded)
+                self.assertIn("KBASE_AUTH_TOKEN", loaded)
+            finally:
+                os.environ.clear()
+                os.environ.update(before)
+
     def test_pending_process_files_ignore_header_only(self):
         with tempfile.TemporaryDirectory() as tmp:
             run_dir = Path(tmp)
@@ -61,6 +114,19 @@ class SyncPipelineTests(unittest.TestCase):
             path = Path(tmp) / "tables.txt"
             path.write_text("# generated\n\na\n b \n", encoding="utf-8")
             self.assertEqual(pipeline._read_names(path), ["a", "b"])
+
+    def test_spark_readiness_retries_until_query_passes(self):
+        failed = mock.Mock(returncode=1, stdout="", stderr="sidecar unavailable\n")
+        passed = mock.Mock(returncode=0, stdout='[{"ready": 1}]\n', stderr="")
+        with mock.patch.object(pipeline.Path, "is_file", return_value=True), mock.patch.object(
+            pipeline.subprocess, "run", side_effect=[failed, passed]
+        ) as run, mock.patch.object(pipeline.time, "sleep") as sleep:
+            result = pipeline._wait_for_spark_readiness(
+                attempts=3, interval_seconds=0.01
+            )
+        self.assertEqual(result["attempts"], 2)
+        self.assertEqual(run.call_count, 2)
+        sleep.assert_called_once_with(0.01)
 
 
 class FullImportVerificationTests(unittest.TestCase):
