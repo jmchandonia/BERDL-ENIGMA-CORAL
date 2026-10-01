@@ -13,6 +13,8 @@ the durable sync location for the next run.
   "tenant": "enigma",
   "dataset": "coral",
   "namespace": "enigma_coral",
+  "iceberg_namespace": "enigma.coral",
+  "delta_compat_namespace": "enigma_coral",
   "coral_source": {
     "typedef": "/path/to/typedef.json",
     "obo_dir": "/path/to/ontologies",
@@ -21,6 +23,11 @@ the durable sync location for the next run.
   "tables": []
 }
 ```
+
+`namespace` is retained for compatibility with older sync manifests and names
+the legacy Delta database. New code must use `iceberg_namespace` as the
+canonical publication target and `delta_compat_namespace` only for the
+temporary dual-write period.
 
 ## Table Fields
 

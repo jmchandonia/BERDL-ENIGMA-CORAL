@@ -160,6 +160,17 @@ def _resolve_berdl_remote() -> str:
     raise FileNotFoundError("berdl-remote is not installed or on PATH")
 
 
+def _resolve_worker_python() -> str:
+    configured = os.environ.get("BERDL_INGEST_PYTHON")
+    if configured:
+        candidate = Path(configured).expanduser()
+        if not candidate.is_file():
+            raise FileNotFoundError(f"BERDL_INGEST_PYTHON is not a file: {candidate}")
+        return str(candidate)
+    candidate = DEFAULT_REMOTE_ROOT / ".venv-berdl" / "bin" / "python"
+    return str(candidate) if candidate.is_file() else sys.executable
+
+
 def _start_pproxy(run_dir: Path) -> None:
     if _port_open(8123):
         return
@@ -206,7 +217,7 @@ def _wait_for_spark_readiness(
     if not runner.is_file():
         raise FileNotFoundError(f"BERDL Spark probe script is absent: {runner}")
     command = [
-        sys.executable,
+        _resolve_worker_python(),
         str(runner),
         "--berdl-proxy",
         "--query",
@@ -250,7 +261,7 @@ def _stage_command(
     fk_table_file: Path,
     drop_table_file: Path | None,
 ) -> list[str]:
-    python = sys.executable
+    python = _resolve_worker_python()
     if stage == "import":
         command = [
             python,
@@ -259,8 +270,10 @@ def _stage_command(
             str(args.run_dir),
             "--run-id",
             args.run_id,
-            "--namespace",
-            args.namespace,
+            "--delta-namespace",
+            args.delta_namespace,
+            "--iceberg-namespace",
+            args.iceberg_namespace,
             "--table-file",
             str(table_file),
             "--report",
@@ -272,11 +285,8 @@ def _stage_command(
             command.append("--skip-upload")
         if args.skip_import:
             command.append("--skip-import")
-        if not _read_names(table_file):
-            if "--skip-upload" not in command:
-                command.append("--skip-upload")
-            if "--skip-import" not in command:
-                command.append("--skip-import")
+        if args.skip_delta_compat:
+            command.append("--skip-delta-compat")
         if args.apply_obsolete_drops:
             if not drop_table_file:
                 raise FileNotFoundError("No reviewed obsolete-table list was found")
@@ -284,16 +294,25 @@ def _stage_command(
         else:
             command.append("--skip-drop-obsolete")
         return command
-    if stage == "verify":
+    if stage in {"verify_iceberg", "verify_delta"}:
+        is_iceberg = stage == "verify_iceberg"
+        namespace = args.iceberg_namespace if is_iceberg else args.delta_namespace
+        provider = "iceberg" if is_iceberg else "delta"
         return [
             python,
             str(SCRIPT_DIR / "verify_full_import.py"),
             "--run-dir",
             str(args.run_dir),
             "--namespace",
-            args.namespace,
+            namespace,
+            "--expected-provider",
+            provider,
             "--table-file",
             str(table_file),
+            "--report",
+            str(args.run_dir / "reports" / f"full_import_verification_{provider}.json"),
+            "--import-report",
+            str(args.run_dir / "reports" / f"full_import_{args.run_id}.json"),
         ]
     if stage == "foreign_keys":
         return [
@@ -302,11 +321,13 @@ def _stage_command(
             "--run-dir",
             str(args.run_dir),
             "--namespace",
-            args.namespace,
+            args.iceberg_namespace,
             "--table-file",
             str(fk_table_file),
             "--report-dir",
             str(args.run_dir / "reports"),
+            "--import-report",
+            str(args.run_dir / "reports" / f"full_import_{args.run_id}.json"),
         ]
     if stage == "publish":
         command = [
@@ -343,7 +364,19 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--run-id")
-    parser.add_argument("--namespace", default="enigma_coral")
+    parser.add_argument(
+        "--namespace",
+        dest="delta_namespace",
+        default=argparse.SUPPRESS,
+        help="deprecated alias for --delta-namespace",
+    )
+    parser.add_argument("--delta-namespace", default="enigma_coral")
+    parser.add_argument("--iceberg-namespace", default="enigma.coral")
+    parser.add_argument(
+        "--skip-delta-compat",
+        action="store_true",
+        help="omit the transitional Delta write and verification after KBase retires Delta",
+    )
     parser.add_argument("--env-file", type=Path, default=REPO_ROOT / ".env")
     parser.add_argument(
         "--prefer-env-file",
@@ -425,7 +458,9 @@ def main() -> int:
 
     stages = ["import"]
     if not args.skip_verify:
-        stages.append("verify")
+        stages.append("verify_iceberg")
+        if not args.skip_delta_compat:
+            stages.append("verify_delta")
     if not args.skip_foreign_keys and _read_names(fk_table_file):
         stages.append("foreign_keys")
     if not args.skip_publish:
@@ -442,7 +477,11 @@ def main() -> int:
     if args.plan_only:
         print(json.dumps({
             "run_id": args.run_id,
-            "namespace": args.namespace,
+            "iceberg_namespace": args.iceberg_namespace,
+            "delta_namespace": None if args.skip_delta_compat else args.delta_namespace,
+            "write_policy": (
+                "iceberg_only" if args.skip_delta_compat else "iceberg_plus_delta_compat"
+            ),
             "env_file": str(args.env_file),
             "changed_tables": _read_names(table_file),
             "foreign_key_tables": _read_names(fk_table_file),
@@ -454,7 +493,7 @@ def main() -> int:
 
     loaded = _load_dotenv(args.env_file, prefer_file=args.prefer_env_file)
     _set_connection_defaults()
-    live_stages = {"import", "verify", "foreign_keys"} & set(stages)
+    live_stages = {"import", "verify_iceberg", "verify_delta", "foreign_keys"} & set(stages)
     if live_stages and not os.environ.get("KBASE_AUTH_TOKEN"):
         raise RuntimeError(
             f"KBASE_AUTH_TOKEN or KB_AUTH_TOKEN is absent from the environment and {args.env_file}"
@@ -466,7 +505,11 @@ def main() -> int:
     else:
         report = {
             "run_id": args.run_id,
-            "namespace": args.namespace,
+            "iceberg_namespace": args.iceberg_namespace,
+            "delta_namespace": None if args.skip_delta_compat else args.delta_namespace,
+            "write_policy": (
+                "iceberg_only" if args.skip_delta_compat else "iceberg_plus_delta_compat"
+            ),
             "started_at": _utc_now(),
             "steps": {},
         }

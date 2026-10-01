@@ -1714,6 +1714,8 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
         "tenant": "enigma",
         "dataset": "coral",
         "namespace": "enigma_coral",
+        "iceberg_namespace": "enigma.coral",
+        "delta_compat_namespace": "enigma_coral",
         "mode": "overwrite",
         "dry_run": True,
         "source_files": json.loads(
@@ -1724,6 +1726,7 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
             "TSV is used instead of CSV to avoid quoted comma/newline parser failures.",
             "Obsolete brick tables are disabled; review brick_lifecycle.tsv before applying.",
             "source_files must be uploaded to the same Bronze run prefix before creating sys_oterm/sys_typedef-derived tables.",
+            "Canonical tables are written to Iceberg enigma.coral with KBase data_lakehouse_ingest; enigma_coral is transitional Delta compatibility.",
         ],
         "tables": tables,
     }
@@ -1872,6 +1875,8 @@ def build_manifest(
         "tenant": "enigma",
         "dataset": "coral",
         "namespace": "enigma_coral",
+        "iceberg_namespace": "enigma.coral",
+        "delta_compat_namespace": "enigma_coral",
         "dry_run": True,
         "tables": tables,
         "source_metadata": coral_metadata.get("source", {}),

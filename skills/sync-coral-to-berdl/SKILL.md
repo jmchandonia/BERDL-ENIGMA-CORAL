@@ -1,6 +1,6 @@
 ---
 name: sync-coral-to-berdl
-description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using the BERDL ingest workflow. Use when updating enigma_coral or another CORAL-backed BERDL namespace from CORAL typedef/static tables or dynamic data bricks, especially when only changed tables should be imported and table/column comments must be preserved.
+description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using the supported BERDL ingest workflow. Use when updating the canonical Iceberg enigma.coral tables and transitional enigma_coral Delta tables from CORAL typedef/static tables or dynamic data bricks, especially when comments and relationship metadata must be preserved.
 ---
 
 # Sync CORAL To BERDL
@@ -9,6 +9,13 @@ Use this skill to prepare and run a CORAL-to-BERDL sync. It reuses the CORAL
 export framework from `/h/jmc/src/CORAL/convert/spark-minio/`, but routes
 upload and table creation through BERDL ingest instead of the legacy manual
 MinIO copy plus notebook paste workflow.
+
+The canonical target is the Iceberg namespace `enigma.coral`, written through
+KBase's supported `data_lakehouse_ingest` package. During the Delta transition,
+the same changed data is also written to the legacy `enigma_coral` namespace
+with the Delta provider. Validate the two targets independently. Keep this
+dual-write policy until KBase formally deprecates Delta, then use
+`--skip-delta-compat` to remove only the compatibility write and check.
 
 ## Guardrails
 
@@ -28,6 +35,13 @@ MinIO copy plus notebook paste workflow.
   lifecycle-obsolete to current, it is missing from the live namespace, or an
   explicit import-strategy migration affects it. Apply comment-only changes as
   metadata updates without rewriting table data.
+- Before each import, inventory the canonical Iceberg namespace and
+  automatically backfill any enabled table absent from `enigma.coral`. This
+  makes the first Iceberg migration and an interrupted backfill resumable while
+  keeping routine Delta writes restricted to `ingest/changed_tables.txt`.
+- Treat a successful Iceberg write as mandatory. A successful compatibility
+  Delta write must never mask an Iceberg failure. Record per-table status for
+  both providers and verify provider identity, row counts, and comments in each.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
 - Expand array-level context into brick columns only when the context term has
   an unambiguous foreign-key mapping in `sys_ddt_typedef`. Keep comments,
@@ -66,7 +80,8 @@ For a prepared run package, prefer the stable end-to-end driver:
 The driver loads the repository `.env`, normalizes `KB_AUTH_TOKEN` to
 `KBASE_AUTH_TOKEN`, checks/starts the local BERDL proxy path, provisions the
 remote Spark session when a live stage remains, imports only changed tables,
-verifies row counts and comments, runs scoped foreign-key checks, publishes
+backfills canonical Iceberg tables that are missing, verifies both providers'
+row counts and comments, runs scoped foreign-key checks against Iceberg, publishes
 schema references, and refreshes the installed skill. It records every stage
 in `reports/sync_pipeline_<run_id>.json`; `--resume` skips stages already marked
 passed. Use `--plan-only` for a local, no-write/no-network preflight.
@@ -77,7 +92,8 @@ list. Do not replace this stable command with a run-specific compound shell
 command or require the user to source `.env` manually.
 
 1. **Preflight**
-   - Confirm the target tenant/dataset/namespace and the work directory.
+   - Confirm the target tenant/dataset and both namespaces: canonical Iceberg
+     `enigma.coral` and transitional Delta `enigma_coral`.
    - Check available disk space before export.
    - Confirm `.env` has `CORAL_TYPEDEF` and `CORAL_ONTOLOGIES`; these are
      the canonical sources for static table schemas/comments and `sys_oterm`.
@@ -189,11 +205,22 @@ command or require the user to source `.env` manually.
    - Treat comment-only changes as a comment sync path, avoiding unnecessary data upload.
 
 6. **Run BERDL ingest**
-   - Follow the `berdl-ingest` skill for infrastructure, upload, chunking, ingest, and row-count verification.
+   - Follow the `berdl-ingest` skill for infrastructure, upload, supported
+     Iceberg ingest, and row-count verification.
+   - Invoke the installed `data_lakehouse_ingest` package for the canonical
+     `enigma.coral` table. The supported importer owns namespace creation,
+     governed schema application, Iceberg `writeTo(...).createOrReplace()`, and
+     table/column comment application.
+   - After each successful canonical write, write the same staged TSV and
+     governed schema to `enigma_coral` as transitional Delta compatibility.
+     Keep the compatibility implementation isolated so it can be removed when
+     KBase deprecates Delta.
    - Use the generated config and metadata files from this skill.
    - Pass `--table-file ingest/changed_tables.txt` to `run_full_import.py` so
-     only data/schema-changed tables are uploaded and rewritten. Lifecycle-
-     disabled brick tables remain the reviewed obsolete-drop set.
+     changed tables are rewritten in both providers. The importer also detects
+     and stages any enabled table absent from canonical Iceberg, without adding
+     those backfill-only tables to the Delta rewrite set. Lifecycle-disabled
+     brick tables remain the reviewed obsolete-drop set.
    - Pass `--drop-table-file ingest/live_obsolete_tables.txt` when live
      inventory was supplied, or `ingest/newly_obsolete_tables.txt` otherwise,
      so only reviewed obsolete brick tables that require a drop are submitted.
@@ -203,7 +230,13 @@ command or require the user to source `.env` manually.
      connection.
 
 7. **Validate comments**
-   - Inspect BERDL ingest `comments_report`.
+   - Inspect the supported ingest `table_comment_report` and
+     `column_comments_report` for the Iceberg write.
+   - Run separate read-back verification for `enigma.coral` with expected
+     provider `iceberg` and `enigma_coral` with expected provider `delta`.
+   - For Iceberg, union the changed-table list with the import report's
+     automatically backfilled table list so every first-migration table gets
+     row-count and comment read-back validation.
    - Read table schema metadata back from Spark for every table reloaded or
      metadata-updated in this run. Require a non-empty table comment and a
      non-empty comment for every column, compare configured values with
@@ -220,6 +253,8 @@ command or require the user to source `.env` manually.
 8. **Validate foreign keys when triggered**
    - If `ingest/changed_tables_with_foreign_keys.txt` is non-empty, invoke the
      `check-berdl-foreign-keys` skill after all selected tables are loaded.
+   - Pass the full-import report so FK-bearing tables added by automatic
+     Iceberg backfill are included in the canonical relationship audit.
    - Fail the sync verification on orphaned non-null values, duplicate target
      keys, missing target tables/columns, malformed declarations, or
      incompatible source/target types.

@@ -19,8 +19,17 @@ ingest config are the relationship contract; Iceberg does not enforce them.
 ```bash
 python skills/check-berdl-foreign-keys/scripts/check_foreign_keys.py \
   --run-dir <run_dir> \
-  --table-file <run_dir>/ingest/changed_tables_with_foreign_keys.txt
+  --namespace enigma.coral \
+  --table-file <run_dir>/ingest/changed_tables_with_foreign_keys.txt \
+  --import-report <run_dir>/reports/full_import_<run_id>.json
 ```
+
+`--import-report` adds FK-bearing tables that the sync automatically backfilled
+because they were missing from canonical Iceberg. This makes the initial
+Iceberg migration a complete relationship audit without expanding routine
+subsequent checks beyond changed tables. Catalog-qualified namespaces such as
+`enigma.coral` are supported and each identifier component is quoted
+independently.
 
 5. Require exit status zero before declaring the updated tables verified.
 6. Inspect `reports/foreign_key_validation.json` and

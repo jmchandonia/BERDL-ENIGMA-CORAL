@@ -41,6 +41,13 @@ def _quoted(value: str, label: str) -> str:
     return f"`{_identifier(value, label)}`"
 
 
+def _quoted_namespace(namespace: str) -> str:
+    parts = namespace.split(".")
+    if not parts:
+        raise ValueError(f"Invalid namespace: {namespace!r}")
+    return ".".join(_quoted(part, "namespace") for part in parts)
+
+
 def _parse_comment(raw: Any, location: str) -> dict[str, Any] | None:
     if isinstance(raw, dict):
         return raw
@@ -203,7 +210,7 @@ class SparkReader:
 
 
 def _full_table(namespace: str, table: str) -> str:
-    return f"{_quoted(namespace, 'namespace')}.{_quoted(table, 'table')}"
+    return f"{_quoted_namespace(namespace)}.{_quoted(table, 'table')}"
 
 
 def _source_values_sql(
@@ -831,7 +838,7 @@ def validate(
         live_tables = {
             _row_dict(row).get("tableName")
             for row in reader.collect(
-                f"SHOW TABLES IN {_quoted(namespace, 'namespace')}"
+                f"SHOW TABLES IN {_quoted_namespace(namespace)}"
             )
             if not _row_dict(row).get("isTemporary")
         }
@@ -1027,6 +1034,11 @@ def main() -> int:
     source.add_argument("--config", type=Path)
     parser.add_argument("--namespace")
     parser.add_argument("--table-file", type=Path)
+    parser.add_argument(
+        "--import-report",
+        type=Path,
+        help="also validate FK-bearing tables automatically backfilled to canonical Iceberg",
+    )
     parser.add_argument("--report-dir", type=Path)
     parser.add_argument("--sample-limit", type=int, default=20)
     parser.add_argument("--relationship-batch-size", type=int, default=25)
@@ -1057,6 +1069,12 @@ def main() -> int:
         if args.table_file
         else None
     )
+    if args.import_report and args.import_report.is_file():
+        selected_tables = selected_tables or set()
+        import_report = _load_json(args.import_report)
+        selected_tables.update(
+            import_report.get("iceberg_backfill", {}).get("missing_enabled_tables", [])
+        )
     relations, declaration_errors = extract_foreign_keys(config, selected_tables)
     plan = {
         "namespace": namespace,

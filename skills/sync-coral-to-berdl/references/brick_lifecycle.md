@@ -137,8 +137,9 @@ taking precedence over inferred candidates.
 
 ## BERDL Exposure Policy
 
-Current bricks can be exposed as `ddt_brick...` tables in the `enigma_coral`
-namespace.
+Current bricks can be exposed as `ddt_brick...` tables in canonical Iceberg
+`enigma.coral` and, during the transition, compatibility Delta
+`enigma_coral`.
 
 Obsolete bricks must not be exposed as `ddt_brick...` tables. Exclude them from
 the ingest config. If an obsolete table already exists in BERDL, generate a

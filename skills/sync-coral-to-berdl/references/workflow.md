@@ -26,6 +26,21 @@ the default never drops Lakehouse tables. If a generated lifecycle process TSV
 contains payload rows, the driver stops before BERDL ingest so CORAL remains
 the lifecycle source of truth.
 
+The publication policy is deliberately dual-provider during KBase's
+transition:
+
+- canonical: `enigma.coral.<table>`, Iceberg, written by the supported
+  `data_lakehouse_ingest` package;
+- compatibility: `enigma_coral.<table>`, Delta, written only after the
+  corresponding canonical write succeeds.
+
+The driver verifies both namespaces independently, including their provider.
+On the first run, or after an interrupted import, it inventories
+`enigma.coral` and automatically adds every missing enabled table to the
+Iceberg work set. The Delta work set remains the changed-table list. Once
+KBase deprecates Delta, pass `--skip-delta-compat`; the canonical supported
+path and its verification are unchanged.
+
 For Codex, persist approval for only this stable argument prefix (the Python
 interpreter plus `skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py`).
 Do not approve Python generally. Run IDs and optional flags then vary without
@@ -66,7 +81,8 @@ scratch disk.
 1. Confirm destination:
    - tenant
    - dataset
-   - namespace
+   - canonical Iceberg namespace (`enigma.coral` for ENIGMA CORAL)
+   - transitional Delta namespace (`enigma_coral`)
    - work directory
    - mode, normally `overwrite` for changed CORAL snapshot tables
 
@@ -185,6 +201,16 @@ scratch disk.
      BERDL upload step stages them to the run Bronze prefix before ingest
 
 9. Run BERDL ingest using the `berdl-ingest` workflow.
+   - route canonical writes through KBase's supported
+     `data_lakehouse_ingest` package; do not reproduce its Iceberg write path
+     with direct Spark SQL or `saveAsTable`
+   - preserve each table's generated structured schema, parser options, table
+     comment, and column comments in the supported one-table ingest config
+   - publish the same selected changed tables to transitional Delta only after
+     their canonical Iceberg write succeeds
+   - inventory canonical Iceberg first and backfill all enabled tables missing
+     there; upload those additional TSVs automatically and do not rewrite
+     unchanged Delta tables merely because Iceberg needed a bootstrap
    - pass the generated `ingest/changed_tables.txt` through
      `run_full_import.py --table-file`
    - pass `ingest/live_obsolete_tables.txt` through
@@ -193,9 +219,15 @@ scratch disk.
      cleanup without redundantly submitting all historical obsolete tables.
 
 10. Validate:
+   - run the verifier once for `enigma.coral` with expected provider `iceberg`
+     and once for `enigma_coral` with expected provider `delta`
+   - include the import report's Iceberg backfill list in canonical row-count,
+     comment, and foreign-key validation; keep Delta verification scoped to the
+     changed-table list
    - row counts against `manifests/current.json` for every selected table
    - schema order and types
-   - column comments from ingest `comments_report`
+   - table and column comments from ingest `table_comment_report` and
+     `column_comments_report`
    - non-empty table comments and non-empty column comments for every table
      reloaded or metadata-updated in this run, with expected-versus-read-back
      equality
@@ -208,8 +240,8 @@ scratch disk.
    - obsolete brick tables are absent from the BERDL namespace
    - obsolete bricks remain represented in `ddt_ndarray`
    - when `ingest/changed_tables_with_foreign_keys.txt` is non-empty, invoke
-     the `check-berdl-foreign-keys` skill and require all declared relationships
-     in those selected source tables to pass
+     the `check-berdl-foreign-keys` skill against canonical `enigma.coral` and
+     require all declared relationships in those selected source tables to pass
    - skip foreign-key validation for unchanged, unrelated source tables;
      reserve a full namespace audit for deliberate investigation
 

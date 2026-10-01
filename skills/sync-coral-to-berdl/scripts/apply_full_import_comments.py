@@ -19,7 +19,9 @@ from dry_run_tools import (
 )
 from run_full_import import (
     _create_spark_session,
+    _full_table,
     _patch_spark_connect_config_defaults,
+    _quoted_namespace,
     _set_remote_connection_env_defaults,
     _sql_string,
 )
@@ -97,7 +99,7 @@ def _describe_comments(spark, full_table: str) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
-    parser.add_argument("--namespace", default="enigma_coral")
+    parser.add_argument("--namespace", default="enigma.coral")
     parser.add_argument("--env-file", type=Path, default=REPO_ROOT / ".env")
     parser.add_argument("--prefer-env-file", action="store_true")
     parser.add_argument("--no-update-config", action="store_true")
@@ -144,7 +146,7 @@ def main() -> int:
     enabled_tables = [table for table in config["tables"] if table.get("enabled")]
     live_tables = {
         row.asDict(recursive=True).get("tableName")
-        for row in spark.sql(f"SHOW TABLES IN {args.namespace}").collect()
+        for row in spark.sql(f"SHOW TABLES IN {_quoted_namespace(args.namespace)}").collect()
     }
     missing_enabled_tables = sorted(
         table["name"] for table in enabled_tables if table["name"] not in live_tables
@@ -155,7 +157,7 @@ def main() -> int:
     for index, table in enumerate(enabled_tables, start=1):
         if table["name"] in missing_enabled_tables:
             continue
-        full_table = f"{args.namespace}.{table['name']}"
+        full_table = _full_table(args.namespace, table["name"])
         print(f"[comments {index}/{len(enabled_tables)}] {full_table}", flush=True)
         actual = _describe_comments(spark, full_table)
         table_comment = table.get("table_comment") or ""

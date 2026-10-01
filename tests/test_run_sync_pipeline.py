@@ -2,6 +2,7 @@ import importlib.util
 import os
 import tempfile
 import unittest
+from argparse import Namespace
 from pathlib import Path
 from unittest import mock
 
@@ -19,6 +20,7 @@ def _load(name, filename):
 
 pipeline = _load("run_sync_pipeline_test", "run_sync_pipeline.py")
 verify = _load("verify_full_import_test", "verify_full_import.py")
+full_import = _load("run_full_import_test", "run_full_import.py")
 
 
 class SyncPipelineTests(unittest.TestCase):
@@ -128,6 +130,74 @@ class SyncPipelineTests(unittest.TestCase):
         self.assertEqual(run.call_count, 2)
         sleep.assert_called_once_with(0.01)
 
+    def test_dual_write_stage_commands_use_separate_namespaces_and_providers(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            table_file = run_dir / "tables.txt"
+            fk_file = run_dir / "fk.txt"
+            table_file.write_text("sdt_genome\n", encoding="utf-8")
+            fk_file.write_text("sdt_genome\n", encoding="utf-8")
+            args = Namespace(
+                run_dir=run_dir,
+                run_id="sync-test",
+                delta_namespace="enigma_coral",
+                iceberg_namespace="enigma.coral",
+                resume=False,
+                skip_upload=False,
+                skip_import=False,
+                skip_delta_compat=False,
+                apply_obsolete_drops=False,
+                installed_skills_root=None,
+            )
+            with mock.patch.object(pipeline, "_resolve_worker_python", return_value="python"):
+                import_cmd = pipeline._stage_command(
+                    args, "import", table_file, fk_file, None
+                )
+                iceberg_cmd = pipeline._stage_command(
+                    args, "verify_iceberg", table_file, fk_file, None
+                )
+                delta_cmd = pipeline._stage_command(
+                    args, "verify_delta", table_file, fk_file, None
+                )
+                fk_cmd = pipeline._stage_command(
+                    args, "foreign_keys", table_file, fk_file, None
+                )
+        self.assertIn("enigma.coral", import_cmd)
+        self.assertIn("enigma_coral", import_cmd)
+        self.assertEqual(iceberg_cmd[iceberg_cmd.index("--expected-provider") + 1], "iceberg")
+        self.assertEqual(iceberg_cmd[iceberg_cmd.index("--namespace") + 1], "enigma.coral")
+        self.assertEqual(delta_cmd[delta_cmd.index("--expected-provider") + 1], "delta")
+        self.assertEqual(delta_cmd[delta_cmd.index("--namespace") + 1], "enigma_coral")
+        self.assertEqual(fk_cmd[fk_cmd.index("--namespace") + 1], "enigma.coral")
+        self.assertIn("--import-report", iceberg_cmd)
+        self.assertIn("--import-report", fk_cmd)
+
+    def test_empty_change_list_still_allows_automatic_iceberg_backfill(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp)
+            table_file = run_dir / "tables.txt"
+            fk_file = run_dir / "fk.txt"
+            table_file.write_text("", encoding="utf-8")
+            fk_file.write_text("", encoding="utf-8")
+            args = Namespace(
+                run_dir=run_dir,
+                run_id="sync-test",
+                delta_namespace="enigma_coral",
+                iceberg_namespace="enigma.coral",
+                resume=False,
+                skip_upload=False,
+                skip_import=False,
+                skip_delta_compat=False,
+                apply_obsolete_drops=False,
+                installed_skills_root=None,
+            )
+            with mock.patch.object(pipeline, "_resolve_worker_python", return_value="python"):
+                command = pipeline._stage_command(
+                    args, "import", table_file, fk_file, None
+                )
+        self.assertNotIn("--skip-import", command)
+        self.assertNotIn("--skip-upload", command)
+
 
 class FullImportVerificationTests(unittest.TestCase):
     def test_expected_row_counts_use_manifest_values(self):
@@ -141,11 +211,88 @@ class FullImportVerificationTests(unittest.TestCase):
         self.assertEqual(verify._expected_row_counts(manifest), {"one": 2, "two": 3})
 
     def test_count_sql_quotes_valid_identifiers(self):
-        sql = verify._count_sql("enigma_coral", ["sdt_genome", "ddt_brick0001693"])
-        self.assertIn("FROM `enigma_coral`.`sdt_genome`", sql)
+        sql = verify._count_sql("enigma.coral", ["sdt_genome", "ddt_brick0001693"])
+        self.assertIn("FROM `enigma`.`coral`.`sdt_genome`", sql)
         self.assertIn("UNION ALL", sql)
         with self.assertRaises(ValueError):
             verify._count_sql("enigma_coral", ["bad-name"])
+
+    def test_iceberg_verification_includes_automatic_backfill(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            table_file = root / "changed.txt"
+            import_report = root / "import.json"
+            table_file.write_text("changed_table\n", encoding="utf-8")
+            import_report.write_text(
+                '{"iceberg_backfill":{"missing_enabled_tables":["missing_table"]}}',
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                verify._requested_verification_tables(
+                    table_file, "iceberg", import_report
+                ),
+                {"changed_table", "missing_table"},
+            )
+            self.assertEqual(
+                verify._requested_verification_tables(
+                    table_file, "delta", import_report
+                ),
+                {"changed_table"},
+            )
+
+
+class SupportedFullImportTests(unittest.TestCase):
+    def setUp(self):
+        self.config = {"tenant": "enigma", "dataset": "coral"}
+        self.table = {
+            "name": "sdt_genome",
+            "local_path": "/tmp/sdt_genome.tsv",
+            "csv": {"quote": "\u0000", "escape": "\\", "multiLine": False},
+            "table_comment": "genomes",
+            "schema": [{"column": "name", "type": "STRING", "comment": "genome name"}],
+        }
+
+    def test_supported_config_targets_canonical_iceberg_namespace(self):
+        config = full_import._supported_ingest_config(
+            self.config, "s3a://bucket/run", self.table
+        )
+        self.assertEqual(config["tenant"], "enigma")
+        self.assertEqual(config["dataset"], "coral")
+        self.assertEqual(config["tables"][0]["bronze_path"], "s3a://bucket/run/data/sdt_genome.tsv")
+        self.assertEqual(config["tables"][0]["comment"], "genomes")
+        self.assertEqual(config["tables"][0]["schema"], self.table["schema"])
+        self.assertEqual(config["defaults"]["tsv"]["quote"], "\u0000")
+        self.assertFalse(config["defaults"]["tsv"]["multiLine"])
+
+    def test_supported_writer_requires_successful_table_report(self):
+        def ingest(config, **kwargs):
+            return {"success": True, "tables": [{"name": "sdt_genome", "status": "success"}]}
+
+        result = full_import._write_supported_iceberg_table(
+            ingest, object(), object(), self.config, "s3a://bucket/run", self.table
+        )
+        self.assertEqual(result["provider"], "iceberg")
+        self.assertEqual(result["namespace"], "enigma.coral")
+
+        with self.assertRaisesRegex(RuntimeError, "failed"):
+            full_import._write_supported_iceberg_table(
+                lambda *args, **kwargs: {"success": False, "tables": [], "errors": ["failed"]},
+                object(), object(), self.config, "s3a://bucket/run", self.table,
+            )
+
+    def test_full_table_quotes_catalog_namespace_and_table(self):
+        self.assertEqual(
+            full_import._full_table("enigma.coral", "sdt_genome"),
+            "`enigma`.`coral`.`sdt_genome`",
+        )
+
+    def test_live_tables_supports_dotted_namespace(self):
+        row = mock.Mock()
+        row.asDict.return_value = {"tableName": "sdt_genome", "isTemporary": False}
+        spark = mock.Mock()
+        spark.sql.return_value.collect.return_value = [row]
+        self.assertEqual(full_import._live_tables(spark, "enigma.coral"), {"sdt_genome"})
+        spark.sql.assert_called_once_with("SHOW TABLES IN `enigma`.`coral`")
 
 
 if __name__ == "__main__":

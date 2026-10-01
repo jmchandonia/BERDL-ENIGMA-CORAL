@@ -65,11 +65,19 @@ class CheckForeignKeysTests(unittest.TestCase):
 
     def test_builds_anti_orphan_metrics_query(self):
         relation = MODULE.extract_foreign_keys(config_with_fk(), None)[0][0]
-        sql = MODULE.build_metrics_sql("enigma_coral", relation)
-        self.assertIn("`enigma_coral`.`ddt_brick0000013`", sql)
-        self.assertIn("`enigma_coral`.`sdt_community`", sql)
+        sql = MODULE.build_metrics_sql("enigma.coral", relation)
+        self.assertIn("`enigma`.`coral`.`ddt_brick0000013`", sql)
+        self.assertIn("`enigma`.`coral`.`sdt_community`", sql)
         self.assertIn("COUNT(DISTINCT s.fk_value)", sql)
         self.assertIn("LEFT JOIN target_values", sql)
+
+    def test_dotted_namespace_components_are_validated_independently(self):
+        self.assertEqual(
+            MODULE._full_table("enigma.coral", "sdt_genome"),
+            "`enigma`.`coral`.`sdt_genome`",
+        )
+        with self.assertRaises(ValueError):
+            MODULE._full_table("enigma.bad-name", "sdt_genome")
 
     def test_duplicate_check_targets_declared_column(self):
         relation = MODULE.extract_foreign_keys(config_with_fk(), None)[0][0]

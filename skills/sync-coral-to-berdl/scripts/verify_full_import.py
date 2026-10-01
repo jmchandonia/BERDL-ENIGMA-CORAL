@@ -19,6 +19,19 @@ def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _quoted_namespace(namespace: str) -> str:
+    parts = namespace.split(".")
+    if not parts or any(not IDENTIFIER.fullmatch(part) for part in parts):
+        raise ValueError(f"Invalid namespace: {namespace!r}")
+    return ".".join(f"`{part}`" for part in parts)
+
+
+def _full_table(namespace: str, table: str) -> str:
+    if not IDENTIFIER.fullmatch(table):
+        raise ValueError(f"Invalid table name: {table!r}")
+    return f"{_quoted_namespace(namespace)}.`{table}`"
+
+
 def _make_spark(app_name: str):
     from run_full_import import (
         _create_spark_session,
@@ -39,6 +52,7 @@ def _describe_comments(rows) -> dict[str, Any]:
     rows = [row.asDict(recursive=True) for row in rows]
     columns = {}
     table_comment = ""
+    provider = ""
     in_schema = True
     for row in rows:
         column = (row.get("col_name") or "").strip()
@@ -48,10 +62,12 @@ def _describe_comments(rows) -> dict[str, Any]:
         if not in_schema:
             if column == "Comment":
                 table_comment = (row.get("data_type") or "").strip()
+            elif column == "Provider":
+                provider = (row.get("data_type") or "").strip().lower()
             continue
         if column:
             columns[column] = (row.get("comment") or "").strip()
-    return {"table_comment": table_comment, "columns": columns}
+    return {"table_comment": table_comment, "provider": provider, "columns": columns}
 
 
 def _expected_row_counts(manifest: dict[str, Any]) -> dict[str, int]:
@@ -63,15 +79,13 @@ def _expected_row_counts(manifest: dict[str, Any]) -> dict[str, int]:
 
 
 def _count_sql(namespace: str, tables: list[str]) -> str:
-    if not IDENTIFIER.fullmatch(namespace):
-        raise ValueError(f"Invalid namespace: {namespace!r}")
     branches = []
     for table in tables:
         if not IDENTIFIER.fullmatch(table):
             raise ValueError(f"Invalid table name: {table!r}")
         branches.append(
             f"SELECT '{table}' AS table_name, COUNT(*) AS row_count "
-            f"FROM `{namespace}`.`{table}`"
+            f"FROM {_full_table(namespace, table)}"
         )
     return " UNION ALL ".join(branches)
 
@@ -81,14 +95,30 @@ def _batches(items: list[str], size: int):
         yield items[start:start + size]
 
 
+def _requested_verification_tables(
+    table_file: Path | None,
+    expected_provider: str | None,
+    import_report: Path | None,
+) -> set[str] | None:
+    requested = set(table_file.read_text(encoding="utf-8").split()) if table_file else None
+    if expected_provider != "iceberg" or not import_report or not import_report.is_file():
+        return requested
+    requested = requested or set()
+    report = _load_json(import_report)
+    requested.update(report.get("iceberg_backfill", {}).get("missing_enabled_tables", []))
+    return requested
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--namespace", default="enigma_coral")
+    parser.add_argument("--expected-provider", choices=("iceberg", "delta"))
     parser.add_argument("--env-file", type=Path, default=REPO_ROOT / ".env")
     parser.add_argument("--prefer-env-file", action="store_true")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--table-file", type=Path)
+    parser.add_argument("--import-report", type=Path)
     args = parser.parse_args()
 
     from run_sync_pipeline import _load_dotenv
@@ -125,15 +155,17 @@ def main() -> int:
 
     imported = {
         row.tableName
-        for row in collect_sql(f"SHOW TABLES IN {args.namespace}")
+        for row in collect_sql(f"SHOW TABLES IN {_quoted_namespace(args.namespace)}")
         if not row.isTemporary
     }
 
     missing_enabled = sorted(enabled - imported)
     present_disabled = sorted(disabled & imported)
+    requested = _requested_verification_tables(
+        args.table_file, args.expected_provider, args.import_report
+    )
     requested_comment_tables = imported
-    if args.table_file:
-        requested = set(args.table_file.read_text(encoding="utf-8").split())
+    if requested is not None:
         requested_comment_tables = imported & requested
         requested_comment_tables_missing = sorted(requested - imported)
     else:
@@ -163,10 +195,11 @@ def main() -> int:
     actual_column_comments_missing = []
     table_comment_mismatches = []
     column_comment_mismatches = []
+    provider_mismatches = []
     comment_counts = {"tables": 0, "columns": 0}
     described = []
     for index, table_name in enumerate(sorted(requested_comment_tables), start=1):
-        full_table = f"{args.namespace}.{table_name}"
+        full_table = _full_table(args.namespace, table_name)
         print(
             f"[verify comments {index}/{len(requested_comment_tables)}] {full_table}",
             flush=True,
@@ -179,6 +212,12 @@ def main() -> int:
     for table_name, actual in sorted(described):
         comment_counts["tables"] += 1
         comment_counts["columns"] += len(actual["columns"])
+        if args.expected_provider and actual["provider"] != args.expected_provider:
+            provider_mismatches.append({
+                "table": table_name,
+                "expected": args.expected_provider,
+                "actual": actual["provider"],
+            })
         if not actual["table_comment"]:
             actual_table_comments_missing.append(table_name)
         for column, comment in actual["columns"].items():
@@ -215,7 +254,7 @@ def main() -> int:
     ndarray_rows = collect_sql(
         f"""
         SELECT ddt_ndarray_id, withdrawn_date, superceded_by_ddt_ndarray_id
-        FROM {args.namespace}.ddt_ndarray
+        FROM {_full_table(args.namespace, 'ddt_ndarray')}
         """
     )
     ndarray = {row.ddt_ndarray_id: row.asDict() for row in ndarray_rows}
@@ -238,7 +277,7 @@ def main() -> int:
     go_terms = collect_sql(
         f"""
         SELECT COUNT(*) AS c
-        FROM {args.namespace}.sys_oterm
+        FROM {_full_table(args.namespace, 'sys_oterm')}
         WHERE upper(sys_oterm_id) LIKE 'GO:%'
            OR lower(sys_oterm_ontology) LIKE '%gene ontology%'
            OR lower(sys_oterm_ontology) = 'go'
@@ -247,7 +286,7 @@ def main() -> int:
     ncbitaxon_terms = collect_sql(
         f"""
         SELECT COUNT(*) AS c
-        FROM {args.namespace}.sys_oterm
+        FROM {_full_table(args.namespace, 'sys_oterm')}
         WHERE upper(sys_oterm_id) LIKE 'NCBITAXON:%'
            OR lower(sys_oterm_ontology) LIKE '%ncbitaxon%'
            OR lower(sys_oterm_ontology) LIKE '%ncbi taxon%'
@@ -258,6 +297,10 @@ def main() -> int:
     samples = {brick_id: ndarray.get(brick_id) for brick_id in sample_ids}
 
     result = {
+        "namespace": args.namespace,
+        "expected_provider": args.expected_provider,
+        "verification_tables_selected": sorted(requested_comment_tables),
+        "provider_mismatches": provider_mismatches,
         "enabled_tables_expected": len(enabled),
         "enabled_tables_missing": missing_enabled,
         "comment_tables_requested": len(requested_comment_tables),
@@ -299,6 +342,7 @@ def main() -> int:
         or row_count_missing_manifest
         or row_count_mismatches
         or go_terms
+        or provider_mismatches
         or comment_failures
     ) else 0
 
