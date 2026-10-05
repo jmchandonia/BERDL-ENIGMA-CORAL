@@ -1694,11 +1694,13 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
             "local_path": str(path),
             "format": "tsv",
             "csv": {
+                # Staged TSVs are written by Python csv with minimal quoting,
+                # so the reader must honour double-quoted, multi-line fields.
                 "header": True,
                 "delimiter": "\t",
-                "quote": "\u0000",
-                "escape": "\\",
-                "multiLine": False,
+                "quote": '"',
+                "escape": '"',
+                "multiLine": True,
                 "inferSchema": False,
             },
             "schema": schema,
@@ -1723,7 +1725,7 @@ def build_ingest_preview(data_dir, schema_dir, ingest_dir, reports_dir):
         ).get("source", {}).get("upload_files", []) if (metadata_dir / "coral_metadata_summary.json").exists() else [],
         "notes": [
             "Preview only. Do not upload, ingest, or delete from this config without review.",
-            "TSV is used instead of CSV to avoid quoted comma/newline parser failures.",
+            "TSV is written by Python csv with minimal quoting; ingest reads it with quote and escape set to the double quote and multiLine enabled.",
             "Obsolete brick tables are disabled; review brick_lifecycle.tsv before applying.",
             "source_files must be uploaded to the same Bronze run prefix before creating sys_oterm/sys_typedef-derived tables.",
             "Canonical tables are written to Iceberg enigma.coral with KBase data_lakehouse_ingest; enigma_coral is transitional Delta compatibility.",

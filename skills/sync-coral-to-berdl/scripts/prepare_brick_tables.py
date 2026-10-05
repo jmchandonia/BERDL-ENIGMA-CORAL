@@ -19,6 +19,14 @@ from repository_paths import normalize_repository_links_in_tsv
 
 CONVERTER = Path("/h/jmc/src/CORAL/convert/spark-minio/convert_bricks.py")
 KNOWN_CORAL_VALUE_CORRECTIONS = {
+    # isolate_sequence_and_quality_arkin_260921: one strain row (FHTAMBA) carries
+    # the Python literal "None" where the sample and location links are absent.
+    # A stringified null is a representation defect, not a sample named None;
+    # map that exact value to an empty cell so the foreign keys stay null.
+    "Brick0001722": {
+        "sdt_sample_name": {"None": ""},
+        "sdt_location_name": {"None": ""},
+    },
     "Brick0000510": {
         "sdt_condition_name": {
             (

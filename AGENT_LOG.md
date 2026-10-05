@@ -1109,3 +1109,349 @@ Validation completed before live export:
   static and brick counts, object references, producing processes, and the
   obsolete/replacement relationship from `tnseq_n2e2.ndarray` to
   `feba_tnseq_fitness_FW300-N2E2.3.ndarray`.
+
+## 2026-08-19 to 2026-09-30 work recorded elsewhere
+
+- This log was not updated between the 2026-08-13 FEBA handoff and
+  2026-10-01. The Brick48 v2/v3, location-region, NCBI genome, and phenotype
+  prediction work from that period is documented in the package READMEs under
+  `coral_import/`, in `phenotype_predictions/CORAL_IMPORT_PLAN.md`
+  (implementation status section), and in
+  `phenotype_predictions/BRICK_DESIGN_CHANGELOG.md`.
+
+## 2026-10-01 skill installation and ME:0000505 install
+
+- Reviewed the repository and this log at the start of a Claude Code session
+  used for phenotype-prediction brick review.
+- Installed the project skills for Claude Code as symlinks in
+  `~/.claude/skills/`: the seven repository skills under `skills/` plus the
+  Codex-home `berdl`, `berdl-ingest`, `berdl-ingest-remote`, `berdl-query`,
+  and `berdl-minio` prerequisites. A `.claude/skills/` directory briefly
+  created inside the repository was removed at the user's request. The Codex
+  copies of `sync-coral-to-berdl` and `check-berdl-foreign-keys` still match
+  git HEAD before the commit below and need a manual refresh.
+- Committed the 2026-09-22 skill and test edits as `ab0a1e4` ("Write canonical
+  Iceberg enigma.coral tables in the BERDL sync").
+- Found that both antiSMASH `.check` files in
+  `coral_import/phenotype_predictions_20260924/check/` predated the 2026-09-30
+  18:00 rebuild of their JSON bricks; the region-evidence check still described
+  the pre-review design.
+- Determined that every prior ontology "install" was a file copy into
+  `/home/coral/prod/data_import/ontologies/` on this host, verified by hash;
+  no session has run `coral.toolx.upload_ontologies` against the live
+  database. The package production ME files differed from the live files only
+  by the `ME:0000505` stanza and its `.txt` hierarchy line.
+- The assistant's write into the production ontology directory was denied by
+  the Claude Code auto-mode permission classifier. The assistant wrote
+  `phenotype_predictions/ontology_update_20260903/install_me0000505.sh`
+  (pre-install hash check, backup to `baseline/*.pre-ME0000505.*`, install,
+  post-install hash check, production `CheckGeneric` rerun) and validated both
+  antiSMASH bricks against a staged copy of the ontology in a scratch
+  directory; both passed.
+- The user ran the install script. Live
+  `context_measurement_ontology.obo` is now SHA-256 `635d538a…505ad` and
+  `.txt` is `9679d4dd…c1f1`; both antiSMASH `.check` files were regenerated at
+  12:50 and end with `Generic is OK!`. All ten phenotype bricks now pass the
+  production validator.
+- Updated `installation_report.json` (status
+  `installed_through_ME_0000505`), the ontology-update README, the package
+  README, the plan's implementation status, and the design changelog to record
+  the install.
+
+## 2026-10-01 FAMA brick review findings
+
+- Audited `fama_genome_taxon_function_profile_20221021.json` (22 genomes x 68
+  taxa x 32 functions, 1,839 non-null cells, identical null pattern for both
+  variables, `CheckGeneric` passing). Object references mirror correctly; the
+  `Unknown` row is the only null Taxon reference.
+- Traced the source `Identity` column in upstream FamaProfiling
+  (`taxonomy_profile.py`): it is the hit-count-weighted mean percent identity
+  of the hits assigned to that taxon node and function, and it is left at 0.0
+  when no identity attribute exists for that node/function. Eight cells have
+  protein count 1 with identity 0.0; in both affected genomes the protein is a
+  composite multi-function hit (`UreB,UreC` at 96.9% in GW821-FHT04B06,
+  `NasB,NirB,NirD` in GW821-FHT02C03), so the 0.0 is an undefined value, not
+  a measured identity. Review item: store null identity for those cells.
+- Traced FAMA's `Unclassified <taxon>` rows to the same code: they are
+  synthetic remainder nodes created when a parent's count exceeds the sum of
+  its children, ranked one level below the parent. The brick maps 21 of them
+  to real NCBI taxa (`unclassified Proteobacteria <NCBITaxon:32045>` and
+  similar) and stages those as Taxon additions. Review item: whether a
+  remainder bucket should be linked to an NCBI taxon or kept as a null Taxon
+  reference with the exact label, like `Unknown`.
+- Remaining explicit sign-off item from the plan: FamaProfiling 1.1.1 and
+  nitrogen reference data 1.5 are inferred from the upstream commit, not
+  embedded in the preserved KBase report.
+
+## 2026-10-01 FAMA brick rebuild
+
+- The project owner accepted all three FAMA review items and asked that the
+  array version not carry an "(inferred)" suffix.
+- `tools/build_fama_taxon_dependencies.py` now treats the 21 FAMA
+  `Unclassified <taxon>` rows as null Taxon object references with the basis
+  "FAMA remainder bucket"; `static/Taxon_fama_additions.tsv` dropped from 26
+  rows to 5 (Bacillus azotoformans, Chelatococcaceae, Janthinobacterium sp.
+  HH01, Ochrobactrum anthropi, root).
+- `tools/build_fama_coral_import.py` now records version `1.1.1`, nulls
+  sequence identity in the 8 cells where the workbook wrote 0 with a positive
+  protein count (asserted), adds comments to taxon ID, count, and sequence
+  identity, keeps `source_identity` and `identity_undefined` columns in the
+  normalized TSV, and reports status `built` with the version inference marked
+  as accepted on 2026-10-01.
+- Rebuilt the crosswalk, Taxon additions, and brick. Production `CheckGeneric`
+  passes; the three FAMA/package test modules pass (12 tests). Package README,
+  plan section 7, plan implementation status, and the design changelog were
+  updated.
+
+## 2026-10-01 GapMind re-run audit
+
+- The owner re-ran GapMind across the EDR on 2026-09-29. There are now 3,047
+  current `*_gapmind_summary.tsv` files (1,617 at the 2026-09-24 inventory),
+  all with 80 rows; the 33 runs that previously had 0, 18, or 62 rows now have
+  80.
+- All 1,564 summaries written on 2026-09-29 are contaminated: every `Compound`
+  value contains raw HTML from the gapView results page, ending in the real
+  compound name (`... title="L-arginine`). The 1,483 older summaries are clean.
+  The `Pathway Summary` values pair correctly with the compound inside each
+  title attribute, and the recovered (category, compound) set equals the clean
+  80-pathway axis exactly.
+- Cause: `genome_processing/scripts/summarize_gapmind.pl`, rewritten on
+  2026-09-29 16:34, matches ` title="(.*?) biosynthesis - (.*?)"` with `.*?`,
+  which spans across quote characters and neighbouring HTML attributes. The
+  gapView HTML did not change: the same regex contaminates the 2024 result
+  pages too, so the clean 2024 summaries came from the earlier extraction.
+  Replacing `.*?` with `[^"]*?` in both captures yields clean 18 + 62 rows on
+  the new HTML and reproduces the 2024 clean summaries byte for byte. Because
+  the contaminated files have 80 rows and are newer than their HTML, the
+  script's "needs update" test will not regenerate them without a forced
+  rerun.
+- The GapMind brick was not rebuilt from the contaminated summaries.
+
+## 2026-10-01 GapMind summarizer fix
+
+- At the owner's request, patched
+  `genome_processing/scripts/summarize_gapmind.pl` in the EDR (backup at
+  `summarize_gapmind.pl.bak-20261001`): both pathway regexes now use `[^"]*?`
+  captures; a new `summary_is_contaminated` check forces regeneration of any
+  summary whose data rows contain `<`, `>`, or `"` and refuses to install a
+  regenerated summary that still contains markup.
+- Tested on a scratch copy of one contaminated genome (EB271-A4-5A.1) and one
+  clean genome (CPT15-335-S11.1): the contaminated summary was regenerated
+  with 80 clean rows matching the clean 80-pathway axis, the clean summary was
+  left byte-identical, and a second run was a no-op. No EDR summary was
+  modified by the test. The owner will run the script over the EDR.
+
+## 2026-10-01 GapMind rebuild
+
+- After the owner re-ran the corrected summarizer, all 3,047 current GapMind
+  summaries are clean, have 80 rows, share one (category, compound) axis, and
+  use only the three allowed states (1,564 regenerated today, 1,483 older).
+- Reran `tools/catalog_edr_phenotype_predictions.py` into the scratchpad and
+  diffed it against the 2026-09-24 inventory: same 3,054 rows and columns; only
+  `gapmind_summary` and `gapmind_current_summary` (1,430 rows, 1,617 to 3,047
+  current summaries), `virsorter2_predictions` (471 rows, excluded family),
+  and the two batch-driver columns (202 rows) changed. Installed the refreshed
+  inventory files into `phenotype_predictions/`.
+- Regenerated the cross-family source manifest; GapMind is now 3,047 available
+  and included with 0 completed zero-hit runs. Other families unchanged.
+- `tools/build_gapmind_coral_import.py` now expects 3,047 genomes, requires
+  both gapView result pages per genome, records their dates in the manifest,
+  and derives the Process date range from them (2024-07-11 to 2026-09-30)
+  because the summary TSV dates reflect regeneration. The runner still uses
+  the pinned `gapmind-2024-07-11/PaperBLAST` checkout, so the Protocol is
+  unchanged.
+- Rebuilt the brick: 3,047 x 80, 243,760 populated cells, no nulls, production
+  `CheckGeneric` passes. Updated tests, plan, package README, and design
+  changelog. All phenotype package and FAMA tests pass (12).
+- Note for the owner: `run_gapmind.pl` still uses the `.*?` form of the
+  pathway-title regex in its count-only completeness check; it counts
+  correctly, so it was left unchanged.
+
+## 2026-10-01 pre-import live dependency check
+
+- Took a fresh read-only CORAL static export with the CORAL
+  `download_typedef_tsvs.py` script (run through `uv run --with pycryptodome
+  --with requests --with pyjwt` because no local Python has those modules)
+  into `sync-coral-to-berdl/exports/phenotype-preflight-20261001/`.
+- Genome, Strain, Taxon, Protocol, and Process are byte-identical to the
+  2026-09-24 export (7,767 Genomes, 3,154 Strains, 5,492 Taxa, 58 Protocols,
+  97,251 Processes).
+- Rebuilt the FAMA Taxon crosswalk and additions against the fresh Taxon export:
+  still the same 5 additions, no name or NCBI taxid collisions. Rebuilt the FAMA
+  brick against the fresh export; the build report now records the live
+  dependency snapshot and has no remaining review items.
+- Resolved every package reference against the fresh export: all Genome object
+  references in the ten bricks, all FAMA Taxon references (live plus staged),
+  all seven staged Protocol names (none already live), and all Process input
+  and output objects. Zero unresolved references.
+
+## 2026-10-01 notebook import script and CORAL loader dependency
+
+- Rewrote `coral_import/phenotype_predictions_20260924/import_to_coral.py` as a
+  notebook-paste script in the style of the earlier import directories: Cell 0
+  reloads `dtype`, `context_measurement`, `aro`, and `mibig` through
+  `services.ontology._upload_ontology` (the same per-ontology path that
+  `toolx.upload_ontologies` uses, without re-reading ChEBI and NCBI Taxonomy)
+  and prints the new terms; Cells 1 to 3 are the `toolx.update_core`,
+  `toolx.upload_brick`, and `toolx.upload_process` calls in
+  `files_to_import.txt` order. The argparse version is retained only in the
+  session scratchpad.
+- Found that CORAL's `ontology.py` identifier patterns (`\\w+:\\d+`) reject the
+  record-versioned MIBiG CURIEs: offline, the unpatched loader keeps only the
+  MIBiG root term of 3,014. Wrote `coral_ontology_curie.patch` (local part
+  `[\\w.]+` for `_TERM_ID`, `_TERM_ID_PATTERN`, `_TERM_PATTERN`); offline the
+  patched loader reads all 3,014 MIBiG terms with correct parents, and ARO,
+  ME, DA, and `Label <CURIE>` parsing are unchanged. The assistant's attempt to
+  apply it in `~/src/CORAL` was denied by the permission classifier, so the
+  owner applies and deploys it.
+- The server's `upload_config.json` must also register `aro` and `mibig`.
+- Package README and the plan's implementation status record both
+  prerequisites.
+
+## 2026-10-01 Lakehouse sync run sync-20261001-151414 (in progress)
+
+- Started the first dual-provider sync (Iceberg `enigma.coral` canonical plus
+  Delta `enigma_coral` compatibility) after the phenotype package was loaded
+  into CORAL. Work directory `sync-coral-to-berdl/exports/sync-20261001-151414/`
+  on `/scratch` (1.2 TB free; the prior run used 46 GB).
+- Exported all 18 static types with the CORAL `download_typedef_tsvs.py`
+  script using the CORAL `convert/spark-minio/.venv` interpreter (the only
+  local Python with `jwt` and `Crypto`): Process 97,258, Protocol 65, Taxon
+  5,497, Genome 7,767. Staged `typedef.json` and 13 OBO files, including
+  `aro.obo` and `mibig.obo`, which the new bricks reference.
+- Brick catalog is 1,502: reused 1,488 immutable prior CSVs and downloaded the
+  14 new bricks (Brick0001721 to Brick0001734: four isolate bricks dated
+  260917/260921 plus the ten phenotype bricks). `prepare_brick_tables.py`
+  converted all 14 with no failures; `sys_oterm` now includes 307 ARO and 455
+  MIBiG terms with no stubs.
+- `dry_run_tools.py` stopped at the lifecycle gate (exit 2): it inferred four
+  `Update Data` relationships for the September isolate bricks
+  (Brick0000520→1724, Brick0001600→1721, Brick0000529→1723,
+  Brick0001618→1722), none of which have explicit CORAL provenance. Bricks
+  1721 to 1723 have no producing process in CORAL at all. The generated file
+  used the legacy constant date 2026-05-27; the reviewed copy at
+  `metadata/process_update_data_sync-20261001-151414.tsv` sets each date to
+  the successor brick's name date (2026-09-17 or 2026-09-21), with the
+  generated original kept as `.generated`.
+- Blocked pending: the owner imports that process file into CORAL and
+  refreshes `KBASE_AUTH_TOKEN` (the token in `.env` dated 2026-08-25 is
+  rejected by KBase auth, and the BERDL hub session returns 424). Then
+  re-export Process, rerun the dry run and table selection, and run
+  `run_sync_pipeline.py --resume`.
+
+## 2026-10-01 sync run: Delta retirement and Iceberg quoting defect
+
+- The owner imported the four `Update Data` rows into CORAL and refreshed the
+  KBase token. Re-exported static tables (Process 97,262); the dry run passed
+  with 783 explicit obsolete bricks and no pending lifecycle files; selection
+  chose 23 changed tables and 4 newly obsolete brick tables.
+- First pipeline attempt failed at `berdl-remote login` because `~/.cshrc`
+  exports a stale `KBASE_AUTH_TOKEN`; the driver keeps inherited values unless
+  `--prefer-env-file` is passed. Relaunched with that flag.
+- Second attempt: Iceberg write of `ddt_brick0001721` succeeded, then the
+  Delta compatibility write failed with `Unsupported format in USING: delta`
+  on the BERDL Spark 4.1.3 cluster. Existing Delta tables remain readable, but
+  the platform no longer creates Delta tables, which is the retirement
+  condition the skill anticipated. Continued with `--skip-delta-compat`
+  (Iceberg only); `enigma_coral` now lags `enigma.coral` and consumers should
+  move to the canonical namespace.
+- `enigma.coral` already held 791 tables from the earlier Iceberg migration,
+  so only the 14 new bricks were backfilled. The four superseded isolate
+  tables were dropped in both namespaces.
+- Third attempt loaded all 23 tables but Iceberg verification failed:
+  `sdt_protocol` had 189 rows instead of 65, and the live inventory showed 58
+  lifecycle-obsolete brick tables still present in `enigma.coral`.
+- Root cause of the row-count failure: the supported ingest path passes the
+  per-table `csv` block from `ingest/config.dry_run.json` (quote NUL, escape
+  backslash, multiLine false, originally preview-only options that the old
+  Delta importer ignored) as `defaults.tsv`. Every staged TSV is written by
+  Python `csv` with minimal quoting, so quoted fields were stored with literal
+  wrapping and doubled quotes (for example `"[""ME:0000045""]"` in
+  `ddt_ndarray`) and multi-line protocol descriptions split into extra rows.
+  The Delta tables written by the old hard-coded reader are correct. Live
+  read-back confirmed the defect in `enigma.coral` for `ddt_ndarray` rows
+  loaded by the September migration as well.
+- Scope: 12 enabled tables contain quoted fields (`ddt_ndarray`, `sdt_bin`,
+  `sdt_community`, `sdt_enigma`, `sdt_gene`, `sdt_protocol`, `sdt_sample`,
+  `sys_oterm`, `sys_process`, and three bricks).
+- Fixes: `run_full_import._table_csv_options` now enforces quote `"`, escape
+  `"`, multiLine true, and tab delimiter regardless of a stale config;
+  `dry_run_tools` emits those options; `verify_full_import` adds a
+  `quote_mangled_values` check (any string value both starting and ending
+  with a double quote fails verification); the test, SKILL.md, and
+  workflow.md record the contract. 25 sync tests pass.
+- Regenerated the config, reran selection with the live Iceberg inventory
+  (58 live obsolete tables to drop) and a forced reload of the 12 quoted
+  tables (30 tables selected), and relaunched the Iceberg-only pipeline
+  without `--resume`. Codex installed-skill refresh was skipped because the
+  classifier blocks writes into the Codex home; the owner refreshes those
+  copies.
+
+## 2026-10-01 sync run: corrected reload, foreign-key gate
+
+- The corrected Iceberg-only run reloaded all 30 selected tables (including
+  the 12 quoted-field tables) and dropped the 58 lifecycle-obsolete brick
+  tables; Iceberg read-back verification passed, including the new
+  quote-mangling check. The Lakehouse `enigma.coral` namespace now holds the
+  14 new bricks and corrected static/system tables.
+- The scoped foreign-key audit (91 relationships, 27 source tables) failed 4:
+  - `ddt_brick0001722` (isolate_sequence_and_quality_arkin_260921): strain
+    FHTAMBA carries the literal string `None` for sample and location. The
+    predecessor Brick0001618 had the same value. Registered a bounded
+    exact-value correction in `prepare_brick_tables.py` (`"None"` → empty for
+    those two columns of that brick only), rebuilt and reloaded the brick with
+    a one-table driver run; its 26 relationships pass. The CORAL brick should
+    carry a null in its next version.
+  - `sdt_gene.sdt_genome_name` → `sdt_genome`: 11,965 legacy Gene rows
+    (Gene0000001–Gene0011965) reference `FW300-N2A2.genome` and
+    `FW300-N2E2.genome`, names that do not exist in CORAL.
+  - `sdt_genome.sdt_strain_name` → `sdt_strain`: Genome0000241 references the
+    non-existent Strain `MT66-resequenced` (its sibling copies use `MT66`).
+- Prepared `coral_import/static_fk_corrections_20261001/` with guarded AQL
+  preflight, update, and verify scripts for the two CORAL defects; the gene
+  target genomes need the owner's choice.
+- The driver refuses to publish schema references while the scoped
+  foreign-key list is non-empty, so publication waits for the CORAL fixes,
+  a static re-export, and a resumed run.
+
+## 2026-10-05 legacy gene provenance resolved
+
+- The owner confirmed Genome0000241 should reference Strain `MT66`.
+- Traced the 11,965 legacy Gene rows (`MEPIHFMG_`, `ODPJKPKL_`). No EDR
+  annotation version or CORAL-copied KBase object carries those locus tags,
+  and the N2A2 set spans 166 contigs, which no CORAL Genome has. Scanning
+  every KBase genome object named for the two strains across all 284
+  accessible workspaces found exact matches in the original CORAL development
+  narrative (workspace 24918, `psnovichkov:narrative_1506204990338`): objects
+  24918/1451 (`FW300-N2A2.genome`, 2018 PROKKA, 166 contigs, 5,797 features,
+  6,309,868 bp) and 24918/1414 (`FW300-N2E2.genome`, 2018 PROKKA, 1 contig,
+  6,168 features, 6,919,098 bp), both saved by jmc. Feature-id sets are
+  identical to the CORAL gene ids and all coordinates, strands, and contig
+  indices match; function text matches except for punctuation/encoding on 32
+  and 29 genes. The N2E2 object is the same 6,919,098 bp assembly as the
+  FEBA `pseudo6_N2E2` genome (`FW300-N2E2.3`) under a different annotation.
+- Updated `coral_import/static_fk_corrections_20261001/`: staged
+  `static/Genome_legacy_kbase_additions_20261005.tsv` (two Genome records
+  named with CORAL's `<workspace>/<object>` convention), set the AQL update
+  targets to those names, extended the preflight to confirm the records, and
+  rewrote the README with the evidence and the five-step order.
+
+## 2026-10-05 sync-20261001-151414 completed
+
+- After the owner ran the correction package, the fresh static export shows
+  Genome0000241 on Strain `MT66`, the two new Genome records
+  (`24918/FW300-N2A2.genome` = Genome0007790, `24918/FW300-N2E2.genome` =
+  Genome0007791), and zero gene-to-genome or genome-to-strain orphans
+  (Genome 7,769 rows).
+- Rebuilt the package (dry run clean, 30 tables selected including the 12
+  forced quoting reloads) and ran the full Iceberg-only pipeline without
+  resume: 30 tables imported, 62 obsolete brick tables confirmed dropped,
+  Iceberg read-back verified 30 row counts and 302 column comments with no
+  quote-mangled values, the foreign-key audit passed all 91 relationships
+  across 27 source tables, and `publish_schema_references.py` regenerated the
+  three repository schema files and verified the 8 dependent skill copies.
+- Final Lakehouse state: `enigma.coral` holds all 743 enabled tables with the
+  14 new bricks and no lifecycle-obsolete tables. `enigma_coral` (Delta) was
+  not updated because the cluster rejects Delta writes; it still carries the
+  pre-sync tables and lacks the new bricks and the 62 drops.
+- Committed the sync workflow fixes and schema references.

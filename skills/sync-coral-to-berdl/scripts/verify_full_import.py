@@ -251,6 +251,32 @@ def main() -> int:
                     "actual": actual["columns"].get(column, ""),
                 })
 
+    quote_mangled_values: dict[str, dict[str, int]] = {}
+    for index, table_name in enumerate(sorted(requested_comment_tables), start=1):
+        expected_table = config_by_name.get(table_name)
+        if not expected_table or not expected_table.get("enabled"):
+            continue
+        string_columns = [
+            coldef.get("column") or coldef.get("name")
+            for coldef in expected_table.get("schema") or []
+            if (coldef.get("column") or coldef.get("name"))
+            and str(coldef.get("type") or "").lower().startswith("string")
+        ]
+        if not string_columns:
+            continue
+        print(
+            f"[verify quoting {index}/{len(requested_comment_tables)}] {_full_table(args.namespace, table_name)}",
+            flush=True,
+        )
+        selects = ", ".join(
+            f"SUM(CASE WHEN `{column}` LIKE '\"%' AND `{column}` LIKE '%\"' THEN 1 ELSE 0 END) AS `{column}`"
+            for column in string_columns
+        )
+        row = collect_sql(f"SELECT {selects} FROM {_full_table(args.namespace, table_name)}")[0].asDict()
+        mangled = {column: int(count) for column, count in row.items() if count}
+        if mangled:
+            quote_mangled_values[table_name] = mangled
+
     ndarray_rows = collect_sql(
         f"""
         SELECT ddt_ndarray_id, withdrawn_date, superceded_by_ddt_ndarray_id
@@ -318,6 +344,7 @@ def main() -> int:
         "actual_column_comments_missing": actual_column_comments_missing,
         "table_comment_mismatches": table_comment_mismatches,
         "column_comment_mismatches": column_comment_mismatches,
+        "quote_mangled_values": quote_mangled_values,
         "sample_lifecycle": samples,
         "go_terms": go_terms,
         "ncbitaxon_terms": ncbitaxon_terms,
@@ -341,6 +368,7 @@ def main() -> int:
         or missing_lifecycle
         or row_count_missing_manifest
         or row_count_mismatches
+        or quote_mangled_values
         or go_terms
         or provider_mismatches
         or comment_failures

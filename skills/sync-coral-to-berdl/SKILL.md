@@ -42,6 +42,11 @@ dual-write policy until KBase formally deprecates Delta, then use
 - Treat a successful Iceberg write as mandatory. A successful compatibility
   Delta write must never mask an Iceberg failure. Record per-table status for
   both providers and verify provider identity, row counts, and comments in each.
+- Every staged TSV is written by Python `csv` with minimal quoting, so every
+  reader of it, including the supported ingest `defaults.tsv` options, must
+  use quote `"`, escape `"`, and `multiLine` true. Reading with quoting
+  disabled stores literal quote characters and splits multi-line fields into
+  extra rows; the verifier fails on any string value wrapped in quotes.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
 - Expand array-level context into brick columns only when the context term has
   an unambiguous foreign-key mapping in `sys_ddt_typedef`. Keep comments,

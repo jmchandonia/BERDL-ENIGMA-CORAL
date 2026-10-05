@@ -1,6 +1,6 @@
 # Database Schema: enigma_coral
 
-Total Tables: 733
+Total Tables: 743
 
 ---
 
@@ -28,7 +28,7 @@ Total Tables: 733
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1488
+**Total Rows:** 1502
 
 ### Sample Data (5 rows)
 
@@ -66,7 +66,7 @@ Total Tables: 733
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 8944
+**Total Rows:** 9034
 
 ### Sample Data (5 rows)
 
@@ -3272,35 +3272,6 @@ Total Tables: 733
 
 ---
 
-## Table: ddt_brick0000520
-
-**Table Description:** isolate_16S_sanger_260121.ndarray - Isolate 16S Sequences from Sanger sequencing, as of 2026-01-21
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
-| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
-| sequence | string | Yes | {"description": "sequence"} |
-
-**Total Rows:** 3090
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
-|---|---|---|---|---|---|
-| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
-| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
-| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
-| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
-| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
-
----
-
 ## Table: ddt_brick0000523
 
 **Table Description:** isolate_availability_260205.hndarray - Availability of ENIGMA isolate strains, as of 2026-02-05
@@ -3376,35 +3347,6 @@ Total Tables: 733
 | FW510-T9 | 34184913 |
 | FW301-21C12A | 34184913 |
 | FW306-2-1A-C05A | 34184913 |
-
----
-
-## Table: ddt_brick0000529
-
-**Table Description:** isolate_genbank_links_260218.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-02-18
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| availability_sequence_type_genome_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=genome sequence, database=GenBank"} |
-| availability_sequence_type_16s_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=16S sequence, database=GenBank"} |
-| link_sequence_type_genome_sequence_database_genbank | string | Yes | {"description": "link, sequence type=genome sequence, database=GenBank"} |
-| strain_name_database_genbank | string | Yes | {"description": "strain name, database=GenBank"} |
-| link_sequence_type_16s_sequence_database_genbank | string | Yes | {"description": "link, sequence type=16S sequence, database=GenBank"} |
-
-**Total Rows:** 398
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | availability_sequence_type_genome_sequence_database_genbank | availability_sequence_type_16s_sequence_database_genbank | link_sequence_type_genome_sequence_database_genbank | strain_name_database_genbank | link_sequence_type_16s_sequence_database_genbank |
-|---|---|---|---|---|---|
-| GW101-3H11 | 1 | 0 | GCF_001633105.1 | GW101-3H11 | NULL |
-| FHTAMBA | 1 | 0 | GCF_038958875.1 | FHTAMBA | NULL |
-| FW104-12G02 | 1 | 0 | GCF_040276125.1 | FW104-12G02 | NULL |
-| FW104-7C03 | 1 | 0 | GCF_040276085.1 | FW104-7C03 | NULL |
-| GW247-6E4 | 1 | 0 | GCF_040276065.1 | GW247-6E4 | NULL |
 
 ---
 
@@ -22201,34 +22143,6 @@ Total Tables: 733
 
 ---
 
-## Table: ddt_brick0001600
-
-**Table Description:** isolate_classification_gtdb_260603.ndarray - GTDB-Tk 2.7.2 classification of each ENIGMA isolate strain with a genome, as of 2026-06-03
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-**Total Rows:** 9039
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|---|
-| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
-| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
-| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
-| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
-| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
-
----
-
 ## Table: ddt_brick0001601
 
 **Table Description:** sso_pump_test_2024_environmental_measurements.hndarray - 2024 SSO pump-test sample environmental and geochemical measurements from the metadata workbook
@@ -22760,42 +22674,6 @@ Total Tables: 733
 | 329994d40c79da27bd32e1a3153b3b20 | ME:0000253 | class | Cytophagia |
 | 329994d40c79da27bd32e1a3153b3b20 | ME:0000254 | order | Cytophagales |
 | 329994d40c79da27bd32e1a3153b3b20 | ME:0000255 | family | Cytophagaceae |
-
----
-
-## Table: ddt_brick0001618
-
-**Table Description:** isolate_sequence_and_quality_arkin_260716.hndarray - Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-07-16
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
-| link_context_genome | string | Yes | {"description": "link, context=genome"} |
-| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
-| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
-| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
-| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
-| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
-| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
-| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
-
-**Total Rows:** 1499
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | link_context_read_set | link_context_genome | sdt_genome_name | sdt_sample_name | sdt_location_name | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| DP16D-L5 | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | DP16D-L5.1 | DP16D-06-17-14 | DP16D | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
-| DP16D-R1 | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.1/ | DP16D-R1.1 | DP16D-06-17-14 | DP16D | 125 | 6645 | 100.0 | 1.17 | 125507 | 27.971576692981095 | 0.001443 |
-| DP16D-T1 | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | DP16D-T1.1 | DP16D-06-17-14 | DP16D | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
-| EB106-05-01-XG146 | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/illumina/ | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | EB106-05-01-XG146.2 | EB106-05-01 | EB-106 | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
-| EB106-05-01-XG201 | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/illumina/ | /auto/sahara/namib/home/gtl/enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | EB106-05-01-XG201.3 | EB106-05-01 | EB-106 | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
 
 ---
 
@@ -25329,6 +25207,448 @@ Total Tables: 733
 
 ---
 
+## Table: ddt_brick0001721
+
+**Table Description:** isolate_classification_gtdb_260921.ndarray - GTDB-Tk 2.7.2 classification of each ENIGMA isolate strain with a genome, as of 2026-09-21
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 9046
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
+| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
+| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
+| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
+| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
+
+---
+
+## Table: ddt_brick0001722
+
+**Table Description:** isolate_sequence_and_quality_arkin_260921.hndarray - Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-09-21
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
+| link_context_genome | string | Yes | {"description": "link, context=genome"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
+| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
+| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
+| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
+| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
+| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
+| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
+
+**Total Rows:** 1499
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | link_context_read_set | link_context_genome | sdt_genome_name | sdt_sample_name | sdt_location_name | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | DP16D-L5.1 | DP16D-06-17-14 | DP16D | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
+| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.3/ | DP16D-R1.3 | DP16D-06-17-14 | DP16D | 124 | 6688 | 100.0 | 1.17 | 125507 | NULL | 0.001443 |
+| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | DP16D-T1.1 | DP16D-06-17-14 | DP16D | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
+| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | EB106-05-01-XG146.2 | EB106-05-01 | EB-106 | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
+| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | EB106-05-01-XG201.3 | EB106-05-01 | EB-106 | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
+
+---
+
+## Table: ddt_brick0001723
+
+**Table Description:** isolate_genbank_links_260921.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-09-21
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| availability_sequence_type_genome_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=genome sequence, database=GenBank"} |
+| availability_sequence_type_16s_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=16S sequence, database=GenBank"} |
+| link_sequence_type_genome_sequence_database_genbank | string | Yes | {"description": "link, sequence type=genome sequence, database=GenBank"} |
+| strain_name_database_genbank | string | Yes | {"description": "strain name, database=GenBank"} |
+| link_sequence_type_16s_sequence_database_genbank | string | Yes | {"description": "link, sequence type=16S sequence, database=GenBank"} |
+
+**Total Rows:** 1438
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | availability_sequence_type_genome_sequence_database_genbank | availability_sequence_type_16s_sequence_database_genbank | link_sequence_type_genome_sequence_database_genbank | strain_name_database_genbank | link_sequence_type_16s_sequence_database_genbank |
+|---|---|---|---|---|---|
+| FW305-130 | 1 | 0 | GCF_058788335.1 | FW305-130 | NULL |
+| FW507-14D1A | 1 | 0 | GCF_058781295.1 | FW507-14D1A | NULL |
+| FW507-14D01 | 1 | 0 | GCF_058781345.1 | FW507-14D01 | NULL |
+| FW510-T9 | 1 | 0 | GCF_058781025.1 | FW510-T9 | NULL |
+| FW301-21C12A | 1 | 0 | GCF_058788915.1 | FW301-21C12A | NULL |
+
+---
+
+## Table: ddt_brick0001724
+
+**Table Description:** isolate_16S_sanger_260917.ndarray - Isolate 16S Sequences from Sanger sequencing, as of 2026-09-17
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
+| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
+| sequence | string | Yes | {"description": "sequence"} |
+
+**Total Rows:** 3090
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
+|---|---|---|---|---|---|
+| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
+| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
+| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
+| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
+| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
+
+---
+
+## Table: ddt_brick0001725
+
+**Table Description:** dram_distill_genome_pathway_completeness_20260924.ndarray - DRAM-distill metabolic pathway completeness fractions for 1,929 ENIGMA isolate genomes
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| pathway | string | Yes | {"description": "pathway"} |
+| pathway_category_comment_exact_prefix_before_the_first_colon_when_the_dram_product_header_contains_one_otherwise_null | string | Yes | {"description": "category, comment=Exact prefix before the first colon when the DRAM product header contains one; otherwise null"} |
+| completeness_comment_native_dram_fraction_not_rescaled_fraction | double | Yes | {"description": "completeness, comment=Native DRAM fraction, not rescaled", "unit": "fraction"} |
+
+**Total Rows:** 61728
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | pathway | pathway_category_comment_exact_prefix_before_the_first_colon_when_the_dram_product_header_contains_one_otherwise_null | completeness_comment_native_dram_fraction_not_rescaled_fraction |
+|---|---|---|---|
+| CPT15-335-S11.1 | 3-Hydroxypropionate bi-cycle | NULL | 0.0 |
+| CPT15-335-S11.1 | Acetyl-CoA pathway, CO2 => acetyl-CoA | NULL | 0.0 |
+| CPT15-335-S11.1 | Citrate cycle (TCA cycle, Krebs cycle) | NULL | 1.0 |
+| CPT15-335-S11.1 | Dicarboxylate-hydroxybutyrate cycle | NULL | 0.38461538461538464 |
+| CPT15-335-S11.1 | Entner-Doudoroff pathway, glucose-6P => glyceraldehyde-3P + pyruvate | NULL | 0.75 |
+
+---
+
+## Table: ddt_brick0001726
+
+**Table Description:** dram_distill_genome_pathway_presence_20260924.ndarray - DRAM-distill Boolean metabolic pathway predictions for 1,929 ENIGMA isolate genomes
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| pathway | string | Yes | {"description": "pathway"} |
+| pathway_category_comment_exact_prefix_before_the_first_colon_when_the_dram_product_header_contains_one_otherwise_null | string | Yes | {"description": "category, comment=Exact prefix before the first colon when the DRAM product header contains one; otherwise null"} |
+| presence_comment_native_dram_boolean_pathway_prediction | boolean | Yes | {"description": "presence, comment=Native DRAM Boolean pathway prediction"} |
+
+**Total Rows:** 127314
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | pathway | pathway_category_comment_exact_prefix_before_the_first_colon_when_the_dram_product_header_contains_one_otherwise_null | presence_comment_native_dram_boolean_pathway_prediction |
+|---|---|---|---|
+| CPT15-335-S11.1 | CAZy: Alpha-galactans | CAZy | 0 |
+| CPT15-335-S11.1 | CAZy: Alpha-mannan | CAZy | 0 |
+| CPT15-335-S11.1 | CAZy: Amorphous Cellulose | CAZy | 1 |
+| CPT15-335-S11.1 | CAZy: Arabinan | CAZy | 1 |
+| CPT15-335-S11.1 | CAZy: Arabinose cleavage | CAZy | 0 |
+
+---
+
+## Table: ddt_brick0001727
+
+**Table Description:** microtraits_genome_trait_asserted_rule_count_production_20260924.ndarray - MicroTraits asserted-rule counts for count-valued traits at all three source granularities for 1,985 ENIGMA isolate genomes
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| trait | string | Yes | {"description": "trait"} |
+| trait_description_comment_microtraits_source_field_microtrait_trait_displaynameshort | string | Yes | {"description": "description, comment=MicroTraits source field microtrait_trait-displaynameshort"} |
+| trait_description_comment_microtraits_source_field_microtrait_trait_displaynamelong | string | Yes | {"description": "description, comment=MicroTraits source field microtrait_trait-displaynamelong"} |
+| trait_category_comment_microtraits_source_field_microtrait_trait_strategy | string | Yes | {"description": "category, comment=MicroTraits source field microtrait_trait-strategy"} |
+| trait_index_comment_microtraits_source_field_microtrait_trait_granularity_count_unit | int | Yes | {"description": "index, comment=MicroTraits source field microtrait_trait-granularity", "unit": "count unit"} |
+| count_comment_number_of_asserted_microtraits_rules_mapped_to_this_trait_count_unit | int | Yes | {"description": "count, comment=Number of asserted MicroTraits rules mapped to this trait", "unit": "count unit"} |
+
+**Total Rows:** 333480
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | trait | trait_description_comment_microtraits_source_field_microtrait_trait_displaynameshort | trait_description_comment_microtraits_source_field_microtrait_trait_displaynamelong | trait_category_comment_microtraits_source_field_microtrait_trait_strategy | trait_index_comment_microtraits_source_field_microtrait_trait_granularity_count_unit | count_comment_number_of_asserted_microtraits_rules_mapped_to_this_trait_count_unit |
+|---|---|---|---|---|---|---|
+| CPT15-335-S11.1 | Resource Acquisition:Substrate uptake:aromatic acid transport | Aromatic acid transport | Resource Acquisition:Substrate uptake:aromatic acid transport | Resource Acquisition | 1 | 0 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate uptake:biopolymer transport | Biopolymer transport | Resource Acquisition:Substrate uptake:biopolymer transport | Resource Acquisition | 1 | 2 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate uptake:carbohydrate transport | Carbohydrate transport | Resource Acquisition:Substrate uptake:carbohydrate transport | Resource Acquisition | 1 | 3 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate uptake:carboxylate transport | Carboxylate transport | Resource Acquisition:Substrate uptake:carboxylate transport | Resource Acquisition | 1 | 1 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate uptake:free amino acids transport | Free amino acids transport | Resource Acquisition:Substrate uptake:free amino acids transport | Resource Acquisition | 1 | 8 |
+
+---
+
+## Table: ddt_brick0001728
+
+**Table Description:** microtraits_genome_trait_presence_production_20260924.ndarray - MicroTraits binary phenotype predictions at all three source granularities for 1,985 ENIGMA isolate genomes
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| trait | string | Yes | {"description": "trait"} |
+| trait_description_comment_microtraits_source_field_microtrait_trait_displaynameshort | string | Yes | {"description": "description, comment=MicroTraits source field microtrait_trait-displaynameshort"} |
+| trait_description_comment_microtraits_source_field_microtrait_trait_displaynamelong | string | Yes | {"description": "description, comment=MicroTraits source field microtrait_trait-displaynamelong"} |
+| trait_category_comment_microtraits_source_field_microtrait_trait_strategy | string | Yes | {"description": "category, comment=MicroTraits source field microtrait_trait-strategy"} |
+| trait_index_comment_microtraits_source_field_microtrait_trait_granularity_count_unit | int | Yes | {"description": "index, comment=MicroTraits source field microtrait_trait-granularity", "unit": "count unit"} |
+| presence_comment_microtraits_binary_trait_call_false_means_zero_asserted_mapped_rules_and_true_means_at_least_one_asserted_mapped_rule | boolean | Yes | {"description": "presence, comment=MicroTraits binary trait call; false means zero asserted mapped rules and true means at least one asserted mapped rule"} |
+
+**Total Rows:** 313630
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | trait | trait_description_comment_microtraits_source_field_microtrait_trait_displaynameshort | trait_description_comment_microtraits_source_field_microtrait_trait_displaynamelong | trait_category_comment_microtraits_source_field_microtrait_trait_strategy | trait_index_comment_microtraits_source_field_microtrait_trait_granularity_count_unit | presence_comment_microtraits_binary_trait_call_false_means_zero_asserted_mapped_rules_and_true_means_at_least_one_asserted_mapped_rule |
+|---|---|---|---|---|---|---|
+| CPT15-335-S11.1 | Resource Acquisition:Substrate degradation:simple compound degradation | Simple compound degradation | Resource Acquisition:Substrate degradation:simple compound degradation | Resource Acquisition | 1 | 1 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate assimilation:C1 compounds | Assimilation of C1 compounds | Resource Acquisition:Substrate assimilation:C1 compounds | Resource Acquisition | 1 | 1 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate assimilation:N compounds | Assimilation of N compounds | Resource Acquisition:Substrate assimilation:N compounds | Resource Acquisition | 1 | 1 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate assimilation:S compounds | Assimilation of S compounds | Resource Acquisition:Substrate assimilation:S compounds | Resource Acquisition | 1 | 1 |
+| CPT15-335-S11.1 | Resource Acquisition:Substrate assimilation:P compounds | Assimilation of P compounds | Resource Acquisition:Substrate assimilation:P compounds | Resource Acquisition | 1 | 0 |
+
+---
+
+## Table: ddt_brick0001729
+
+**Table Description:** gapmind_genome_pathway_completeness_20260924.ndarray - GapMind amino-acid biosynthesis and carbon-catabolism pathway completeness categories for 3,047 ENIGMA isolate genomes
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| pathway | string | Yes | {"description": "pathway"} |
+| pathway_category_comment_exact_gapmind_source_category | string | Yes | {"description": "category, comment=Exact GapMind source Category"} |
+| gapmind_pathway_completeness_category_comment_exact_gapmind_source_pathway_summary | string | Yes | {"description": "GapMind pathway completeness category, comment=Exact GapMind source Pathway Summary"} |
+
+**Total Rows:** 243760
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | pathway | pathway_category_comment_exact_gapmind_source_category | gapmind_pathway_completeness_category_comment_exact_gapmind_source_pathway_summary |
+|---|---|---|---|
+| CPT15-335-S11.1 | L-arginine | Amino acid biosynthesis | all steps were found |
+| CPT15-335-S11.1 | L-asparagine | Amino acid biosynthesis | all steps were found |
+| CPT15-335-S11.1 | L-cysteine | Amino acid biosynthesis | may have a gap |
+| CPT15-335-S11.1 | L-glutamine | Amino acid biosynthesis | all steps were found |
+| CPT15-335-S11.1 | L-histidine | Amino acid biosynthesis | all steps were found |
+
+---
+
+## Table: ddt_brick0001730
+
+**Table Description:** rgi_card_resistance_determinants_aro_3_2_5_20260924.ndarray - RGI antimicrobial-resistance determinant calls for 3,047 ENIGMA isolate genomes, including explicit zero-hit placeholders
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| gene_comment_comment_rgi_source_orf_id_not_asserted_as_a_coral_gene_foreign_key | string | Yes | {"description": "comment, comment=RGI source ORF_ID; not asserted as a CORAL Gene foreign key"} |
+| gene_contig | string | Yes | {"description": "contig"} |
+| gene_sequence_start_comment_native_rgi_1_based_inclusive_coding_sequence_coordinate_base_pairs | int | Yes | {"description": "sequence start, comment=Native RGI 1-based inclusive coding-sequence coordinate", "unit": "base pairs"} |
+| gene_sequence_stop_comment_native_rgi_1_based_inclusive_coding_sequence_coordinate_base_pairs | int | Yes | {"description": "sequence stop, comment=Native RGI 1-based inclusive coding-sequence coordinate", "unit": "base pairs"} |
+| gene_category_comment_rgi_source_orientation | string | Yes | {"description": "category, comment=RGI source Orientation"} |
+| aro_accession_sys_oterm_id | string | Yes | {"description": "ARO accession, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| aro_accession_sys_oterm_name | string | Yes | {"description": "ARO accession"} |
+| gene_function_comment_rgi_source_best_hit_aro_label | string | Yes | {"description": "function, comment=RGI source Best_Hit_ARO label"} |
+| gene_rgi_model_match_category | string | Yes | {"description": "RGI model match category"} |
+| gene_category_comment_rgi_source_model_type | string | Yes | {"description": "category, comment=RGI source Model_type"} |
+| gene_category_comment_rgi_source_drug_class | string | Yes | {"description": "category, comment=RGI source Drug Class"} |
+| gene_category_comment_rgi_source_resistance_mechanism | string | Yes | {"description": "category, comment=RGI source Resistance Mechanism"} |
+| gene_category_comment_rgi_source_amr_gene_family | string | Yes | {"description": "category, comment=RGI source AMR Gene Family"} |
+| gene_category_comment_rgi_source_model_id_identifier_retained_as_string | int | Yes | {"description": "category, comment=RGI source Model_ID; identifier retained as string"} |
+| gene_description_comment_rgi_source_note | string | Yes | {"description": "description, comment=RGI source Note"} |
+| bit_score_comment_rgi_source_pass_bitscore_bit | double | Yes | {"description": "bit score, comment=RGI source Pass_Bitscore", "unit": "bit"} |
+| bit_score_comment_rgi_source_best_hit_bitscore_bit | double | Yes | {"description": "bit score, comment=RGI source Best_Hit_Bitscore", "unit": "bit"} |
+| sequence_identity_percent | double | Yes | {"description": "sequence identity", "unit": "percent"} |
+| sequence_length_ratio_comment_rgi_percentage_length_of_reference_sequence_values_may_exceed_100_percent_when_a_predicted_sequence_is_longer_than_its_reference_percent | double | Yes | {"description": "sequence length ratio, comment=RGI Percentage Length of Reference Sequence; values may exceed 100 percent when a predicted sequence is longer than its reference", "unit": "percent"} |
+| presence_comment_false_only_for_a_completed_zero_hit_placeholder_record | boolean | Yes | {"description": "presence, comment=False only for a completed zero-hit placeholder record"} |
+
+**Total Rows:** 14408
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | gene_comment_comment_rgi_source_orf_id_not_asserted_as_a_coral_gene_foreign_key | gene_contig | gene_sequence_start_comment_native_rgi_1_based_inclusive_coding_sequence_coordinate_base_pairs | gene_sequence_stop_comment_native_rgi_1_based_inclusive_coding_sequence_coordinate_base_pairs | gene_category_comment_rgi_source_orientation | aro_accession_sys_oterm_id | aro_accession_sys_oterm_name | gene_function_comment_rgi_source_best_hit_aro_label | gene_rgi_model_match_category | gene_category_comment_rgi_source_model_type | gene_category_comment_rgi_source_drug_class | gene_category_comment_rgi_source_resistance_mechanism | gene_category_comment_rgi_source_amr_gene_family | gene_category_comment_rgi_source_model_id_identifier_retained_as_string | gene_description_comment_rgi_source_note | bit_score_comment_rgi_source_pass_bitscore_bit | bit_score_comment_rgi_source_best_hit_bitscore_bit | sequence_identity_percent | sequence_length_ratio_comment_rgi_percentage_length_of_reference_sequence_values_may_exceed_100_percent_when_a_predicted_sequence_is_longer_than_its_reference_percent | presence_comment_false_only_for_a_completed_zero_hit_placeholder_record |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| CPT15-335-S11.1 | NODE_1_length_1628488_cov_154.661489_319 # 373316 # 375787 # -1 # ID=1_319;partial=00;start_type=GTG;rbs_motif=TAAA;rbs_spacer=13bp;gc_cont=0.496 | NODE_1_length_1628488_cov_154.661489_319 | 373316 | 375787 | - | ARO:3002972 | null | vanT gene in vanG cluster | Strict | protein homolog model | glycopeptide antibiotic | antibiotic target alteration | glycopeptide resistance gene cluster; vanT | 1561 | NULL | 175.0 | 200.675 | 32.7 | 115.59 | 1 |
+| CPT15-335-S11.3 | NZ_JBYTEI010000001.1_319 # 373316 # 375787 # -1 # ID=1_319;partial=00;start_type=GTG;rbs_motif=TAAA;rbs_spacer=13bp;gc_cont=0.496 | NZ_JBYTEI010000001.1_319 | 373316 | 375787 | - | ARO:3002972 | null | vanT gene in vanG cluster | Strict | protein homolog model | glycopeptide antibiotic | antibiotic target alteration | glycopeptide resistance gene cluster; vanT | 1561 | NULL | 175.0 | 200.675 | 32.7 | 115.59 | 1 |
+| CPT15-335-S12.1 | NODE_1_length_1628652_cov_146.362893_1007 # 1252866 # 1255337 # 1 # ID=1_1007;partial=00;start_type=GTG;rbs_motif=TAAA;rbs_spacer=13bp;gc_cont=0.496 | NODE_1_length_1628652_cov_146.362893_1007 | 1252866 | 1255337 | + | ARO:3002972 | null | vanT gene in vanG cluster | Strict | protein homolog model | glycopeptide antibiotic | antibiotic target alteration | glycopeptide resistance gene cluster; vanT | 1561 | NULL | 175.0 | 200.675 | 32.7 | 115.59 | 1 |
+| CPT15-335-S12.3 | NZ_JBYTEH010000001.1_1007 # 1252866 # 1255337 # 1 # ID=1_1007;partial=00;start_type=GTG;rbs_motif=TAAA;rbs_spacer=13bp;gc_cont=0.496 | NZ_JBYTEH010000001.1_1007 | 1252866 | 1255337 | + | ARO:3002972 | null | vanT gene in vanG cluster | Strict | protein homolog model | glycopeptide antibiotic | antibiotic target alteration | glycopeptide resistance gene cluster; vanT | 1561 | NULL | 175.0 | 200.675 | 32.7 | 115.59 | 1 |
+| CPT15-335-S13.1 | NODE_1_length_1628488_cov_197.320051_319 # 373316 # 375787 # -1 # ID=1_319;partial=00;start_type=GTG;rbs_motif=TAAA;rbs_spacer=13bp;gc_cont=0.496 | NODE_1_length_1628488_cov_197.320051_319 | 373316 | 375787 | - | ARO:3002972 | null | vanT gene in vanG cluster | Strict | protein homolog model | glycopeptide antibiotic | antibiotic target alteration | glycopeptide resistance gene cluster; vanT | 1561 | NULL | 175.0 | 200.675 | 32.7 | 115.59 | 1 |
+
+---
+
+## Table: ddt_brick0001731
+
+**Table Description:** bacant_amr_predictions_20260924.ndarray - BacAnt confirmed and possible ResDB sequence matches with resistance, stress-response, and virulence annotations for 3,047 ENIGMA isolate genomes, including explicit zero-hit placeholders
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| gene_bacant_antimicrobial_resistance_prediction_category | string | Yes | {"description": "BacAnt antimicrobial resistance prediction category"} |
+| gene_contig | string | Yes | {"description": "contig"} |
+| gene_sequence_start_comment_bacant_query_genome_interval_source_start_coordinate_base_pairs | int | Yes | {"description": "sequence start, comment=BacAnt query-genome interval; source START coordinate", "unit": "base pairs"} |
+| gene_sequence_stop_comment_bacant_query_genome_interval_source_end_coordinate_base_pairs | int | Yes | {"description": "sequence stop, comment=BacAnt query-genome interval; source END coordinate", "unit": "base pairs"} |
+| strand_comment_bacant_source_strand_mapped_from_plus_minus_sys_oterm_id | string | Yes | {"description": "strand, comment=BacAnt source STRAND mapped from plus/minus, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| strand_comment_bacant_source_strand_mapped_from_plus_minus_sys_oterm_name | string | Yes | {"description": "strand, comment=BacAnt source STRAND mapped from plus/minus"} |
+| gene_description_comment_bacant_resdb_reference_gene_name_not_asserted_as_a_coral_gene_foreign_key | string | Yes | {"description": "description, comment=BacAnt ResDB reference gene name; not asserted as a CORAL Gene foreign key"} |
+| gene_description_comment_bacant_resdb_reference_nucleotide_accession_retained_as_a_source_string_and_not_asserted_as_an_aro_term | string | Yes | {"description": "description, comment=BacAnt ResDB reference nucleotide accession; retained as a source string and not asserted as an ARO term"} |
+| gene_category_comment_predicted_phenotype_category_associated_with_the_bacant_resdb_sequence_match_for_antimicrobial_biocide_and_metal_entries_the_value_normally_names_the_compound_or_compound_class_to_which_resistance_is_predicted_efflux_names_a_resistance_mechanism_and_intimin_labels_name_the_predicted_virulence_subtype_labels_were_recovered_from_full_resdb_fasta_headers_lowercased_expanded_where_the_bacant_blast_parser_had_truncated_words_at_whitespace_and_corrected_for_reviewed_spelling_errors_null_means_the_resdb_header_supplied_no_category | string | Yes | {"description": "category, comment=Predicted phenotype category associated with the BacAnt ResDB sequence match. For antimicrobial, biocide, and metal entries, the value normally names the compound or compound class to which resistance is predicted; efflux names a resistance mechanism; and intimin labels name the predicted virulence subtype. Labels were recovered from full ResDB FASTA headers, lowercased, expanded where the BacAnt BLAST parser had truncated words at whitespace, and corrected for reviewed spelling errors. Null means the ResDB header supplied no category."} |
+| gene_sequence_start_comment_inclusive_alignment_start_on_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | int | Yes | {"description": "sequence start, comment=Inclusive alignment start on the BacAnt ResDB reference sequence; parsed from source COVERAGE", "unit": "base pairs"} |
+| gene_sequence_stop_comment_inclusive_alignment_stop_on_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | int | Yes | {"description": "sequence stop, comment=Inclusive alignment stop on the BacAnt ResDB reference sequence; parsed from source COVERAGE", "unit": "base pairs"} |
+| gene_sequence_length_comment_length_of_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | int | Yes | {"description": "sequence length, comment=Length of the BacAnt ResDB reference sequence; parsed from source COVERAGE", "unit": "base pairs"} |
+| count_comment_bacant_source_gaps_count_unit | int | Yes | {"description": "count, comment=BacAnt source GAPS", "unit": "count unit"} |
+| completeness_comment_bacant_source_coverage_percent | double | Yes | {"description": "completeness, comment=BacAnt source %COVERAGE", "unit": "percent"} |
+| sequence_identity_percent | double | Yes | {"description": "sequence identity", "unit": "percent"} |
+| presence_comment_false_only_for_a_completed_zero_hit_placeholder_record | boolean | Yes | {"description": "presence, comment=False only for a completed zero-hit placeholder record"} |
+
+**Total Rows:** 296004
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | gene_bacant_antimicrobial_resistance_prediction_category | gene_contig | gene_sequence_start_comment_bacant_query_genome_interval_source_start_coordinate_base_pairs | gene_sequence_stop_comment_bacant_query_genome_interval_source_end_coordinate_base_pairs | strand_comment_bacant_source_strand_mapped_from_plus_minus_sys_oterm_id | strand_comment_bacant_source_strand_mapped_from_plus_minus_sys_oterm_name | gene_description_comment_bacant_resdb_reference_gene_name_not_asserted_as_a_coral_gene_foreign_key | gene_description_comment_bacant_resdb_reference_nucleotide_accession_retained_as_a_source_string_and_not_asserted_as_an_aro_term | gene_category_comment_predicted_phenotype_category_associated_with_the_bacant_resdb_sequence_match_for_antimicrobial_biocide_and_metal_entries_the_value_normally_names_the_compound_or_compound_class_to_which_resistance_is_predicted_efflux_names_a_resistance_mechanism_and_intimin_labels_name_the_predicted_virulence_subtype_labels_were_recovered_from_full_resdb_fasta_headers_lowercased_expanded_where_the_bacant_blast_parser_had_truncated_words_at_whitespace_and_corrected_for_reviewed_spelling_errors_null_means_the_resdb_header_supplied_no_category | gene_sequence_start_comment_inclusive_alignment_start_on_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | gene_sequence_stop_comment_inclusive_alignment_stop_on_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | gene_sequence_length_comment_length_of_the_bacant_resdb_reference_sequence_parsed_from_source_coverage_base_pairs | count_comment_bacant_source_gaps_count_unit | completeness_comment_bacant_source_coverage_percent | sequence_identity_percent | presence_comment_false_only_for_a_completed_zero_hit_placeholder_record |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| CPT15-335-S11.1 | possible | NODE_1_length_1628488_cov_154.661489 | 669678 | 671067 | ME:0000187 | forward | merA | HQ231764.1 | mercury | 313 | 1705 | 1707 | 11 | 81.84 | 69.29 | 1 |
+| CPT15-335-S11.1 | possible | NODE_1_length_1628488_cov_154.661489 | 386991 | 387088 | ME:0000188 | reverse complement | mupB | NG_048009.1 | mupirocin | 190 | 287 | 3102 | 0 | 3.16 | 75.51 | 1 |
+| CPT15-335-S11.1 | possible | NODE_1_length_1628488_cov_154.661489 | 782484 | 782579 | ME:0000188 | reverse complement | iha | AF399919.3 | NULL | 397 | 494 | 2088 | 2 | 4.69 | 75.51 | 1 |
+| CPT15-335-S11.1 | possible | NODE_2_length_1139147_cov_130.112164 | 390023 | 390186 | ME:0000188 | reverse complement | golT | AE006468.2 | copper/gold | 1069 | 1232 | 2289 | 8 | 7.34 | 70.83 | 1 |
+| CPT15-335-S11.1 | possible | NODE_2_length_1139147_cov_130.112164 | 526899 | 527013 | ME:0000188 | reverse complement | cnrA | CP000355.2 | nickel | 3005 | 3119 | 3231 | 0 | 3.56 | 73.91 | 1 |
+
+---
+
+## Table: ddt_brick0001732
+
+**Table Description:** antismash_8_0_1_genome_biosynthetic_product_capability_20260924.ndarray - antiSMASH 8.0.1 biosynthetic-region counts by exact genome and predictor-native product class
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| biosynthetic_product_class | string | Yes | {"description": "biosynthetic product class"} |
+| biosynthetic_product_class_description_context_biosynthetic_product_class | string | Yes | {"description": "description, context=biosynthetic product class"} |
+| biosynthetic_product_class_category_comment_official_antismash_detection_strictness | string | Yes | {"description": "category, comment=Official antiSMASH detection strictness"} |
+| biosynthetic_product_class_category_comment_normalized_antismash_8_0_1_cluster_rule_category_original_codes_and_deterministic_expansions_are_retained_in_the_audit_crosswalk | string | Yes | {"description": "category, comment=Normalized antiSMASH 8.0.1 cluster-rule CATEGORY; original codes and deterministic expansions are retained in the audit crosswalk"} |
+| count_comment_number_of_called_antismash_regions_containing_the_product_class_a_multi_product_region_contributes_once_to_each_distinct_class_count_unit | int | Yes | {"description": "count, comment=Number of called antiSMASH regions containing the product class; a multi-product region contributes once to each distinct class", "unit": "count unit"} |
+
+**Total Rows:** 218197
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | biosynthetic_product_class | biosynthetic_product_class_description_context_biosynthetic_product_class | biosynthetic_product_class_category_comment_official_antismash_detection_strictness | biosynthetic_product_class_category_comment_normalized_antismash_8_0_1_cluster_rule_category_original_codes_and_deterministic_expansions_are_retained_in_the_audit_crosswalk | count_comment_number_of_called_antismash_regions_containing_the_product_class_a_multi_product_region_contributes_once_to_each_distinct_class_count_unit |
+|---|---|---|---|---|---|
+| CPT15-335-S11.1 | 2dos | 2-deoxy-streptamine aminoglycoside | strict | other | 0 |
+| CPT15-335-S11.1 | CDPS | tRNA-dependent cyclodipeptide synthases | strict | nonribosomal peptide | 0 |
+| CPT15-335-S11.1 | HR-T2PKS | Highly reducing PKS type II | strict | polyketide | 0 |
+| CPT15-335-S11.1 | NAGGN | N-acetylglutaminylglutamine amide | strict | other | 0 |
+| CPT15-335-S11.1 | NAPAA | non-alpha poly-amino acids | strict | nonribosomal peptide | 1 |
+
+---
+
+## Table: ddt_brick0001733
+
+**Table Description:** antismash_8_0_1_biosynthetic_region_evidence_mibig_4_0_20260924.ndarray - One record per antiSMASH 8.0.1 called biosynthetic region with its top-ranked KnownClusterBlast MIBiG 4.0 match
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| biosynthetic_gene_cluster_comment_deterministic_genome_contig_region_number_identifier_that_preserves_the_native_antismash_region_label_for_source_traceability_not_a_static_object_foreign_key | string | Yes | {"description": "biosynthetic gene cluster, comment=Deterministic genome\|contig\|region_number identifier that preserves the native antiSMASH region label for source traceability; not a static-object foreign key"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| biosynthetic_gene_cluster_contig | string | Yes | {"description": "contig"} |
+| biosynthetic_gene_cluster_sequence_start_comment_native_antismash_zero_based_inclusive_region_start_base_pairs | int | Yes | {"description": "sequence start, comment=Native antiSMASH zero-based inclusive region start", "unit": "base pairs"} |
+| biosynthetic_gene_cluster_sequence_stop_comment_native_antismash_zero_based_end_exclusive_region_stop_base_pairs | int | Yes | {"description": "sequence stop, comment=Native antiSMASH zero-based end-exclusive region stop", "unit": "base pairs"} |
+| biosynthetic_gene_cluster_sequence_length_base_pairs | int | Yes | {"description": "sequence length", "unit": "base pairs"} |
+| biosynthetic_gene_cluster_biosynthetic_product_class_comment_exact_ordered_json_array_of_antismash_product_classes_json_is_retained_because_one_region_can_have_multiple_product_classes | string | Yes | {"description": "biosynthetic product class, comment=Exact ordered JSON array of antiSMASH product classes; JSON is retained because one region can have multiple product classes"} |
+| biosynthetic_gene_cluster_presence_comment_antismash_contig_edge_flag | boolean | Yes | {"description": "presence, comment=antiSMASH contig_edge flag"} |
+| biosynthetic_gene_cluster_presence_comment_true_when_the_called_region_crosses_the_origin_of_a_circular_sequence_native_start_and_stop_are_retained | boolean | Yes | {"description": "presence, comment=True when the called region crosses the origin of a circular sequence; native start and stop are retained"} |
+| comment_top_ranked_knownclusterblast_mibig_4_0_accession_null_when_no_match_this_is_a_similarity_search_result_not_an_assertion_that_the_region_produces_the_mibig_compound_sys_oterm_id | string | Yes | {"description": "MIBiG accession, comment=Top-ranked KnownClusterBlast MIBiG 4.0 accession; null when no match. This is a similarity-search result, not an assertion that the region produces the MIBiG compound., ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| comment_top_ranked_knownclusterblast_mibig_4_0_accession_null_when_no_match_this_is_a_similarity_search_result_not_an_assertion_that_the_region_produces_the_mibig_compound_sys_oterm_name | string | Yes | {"description": "MIBiG accession, comment=Top-ranked KnownClusterBlast MIBiG 4.0 accession; null when no match. This is a similarity-search result, not an assertion that the region produces the MIBiG compound."} |
+| presence_comment_true_for_every_called_region_record_zero_region_genomes_remain_represented_by_all_zero_capability_rows_and_process_inputs | boolean | Yes | {"description": "presence, comment=True for every called region record; zero-region genomes remain represented by all-zero capability rows and Process inputs"} |
+
+**Total Rows:** 32180
+
+### Sample Data (5 rows)
+
+| biosynthetic_gene_cluster_comment_deterministic_genome_contig_region_number_identifier_that_preserves_the_native_antismash_region_label_for_source_traceability_not_a_static_object_foreign_key | sdt_genome_name | biosynthetic_gene_cluster_contig | biosynthetic_gene_cluster_sequence_start_comment_native_antismash_zero_based_inclusive_region_start_base_pairs | biosynthetic_gene_cluster_sequence_stop_comment_native_antismash_zero_based_end_exclusive_region_stop_base_pairs | biosynthetic_gene_cluster_sequence_length_base_pairs | biosynthetic_gene_cluster_biosynthetic_product_class_comment_exact_ordered_json_array_of_antismash_product_classes_json_is_retained_because_one_region_can_have_multiple_product_classes | biosynthetic_gene_cluster_presence_comment_antismash_contig_edge_flag | biosynthetic_gene_cluster_presence_comment_true_when_the_called_region_crosses_the_origin_of_a_circular_sequence_native_start_and_stop_are_retained | comment_top_ranked_knownclusterblast_mibig_4_0_accession_null_when_no_match_this_is_a_similarity_search_result_not_an_assertion_that_the_region_produces_the_mibig_compound_sys_oterm_id | comment_top_ranked_knownclusterblast_mibig_4_0_accession_null_when_no_match_this_is_a_similarity_search_result_not_an_assertion_that_the_region_produces_the_mibig_compound_sys_oterm_name | presence_comment_true_for_every_called_region_record_zero_region_genomes_remain_represented_by_all_zero_capability_rows_and_process_inputs |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| CPT15-335-S11.1\|NODE_1_length_1628488_cov_154.661489\|region_1 | CPT15-335-S11.1 | NODE_1_length_1628488_cov_154.661489 | 220738 | 261923 | 41185 | ["arylpolyene"] | 0 | 0 | NULL | NULL | 1 |
+| CPT15-335-S11.1\|NODE_1_length_1628488_cov_154.661489\|region_2 | CPT15-335-S11.1 | NODE_1_length_1628488_cov_154.661489 | 672787 | 722958 | 50171 | ["arylpolyene"] | 0 | 0 | mibig:BGC0000838.3 | null | 1 |
+| CPT15-335-S11.1\|NODE_1_length_1628488_cov_154.661489\|region_3 | CPT15-335-S11.1 | NODE_1_length_1628488_cov_154.661489 | 987327 | 1028476 | 41149 | ["resorcinol"] | 0 | 0 | mibig:BGC0000838.3 | null | 1 |
+| CPT15-335-S11.1\|NODE_2_length_1139147_cov_130.112164\|region_1 | CPT15-335-S11.1 | NODE_2_length_1139147_cov_130.112164 | 16420 | 50371 | 33951 | ["NAPAA"] | 0 | 0 | NULL | NULL | 1 |
+| CPT15-335-S11.1\|NODE_3_length_400129_cov_122.205236\|region_1 | CPT15-335-S11.1 | NODE_3_length_400129_cov_122.205236 | 381949 | 392786 | 10837 | ["RiPP-like"] | 1 | 0 | NULL | NULL | 1 |
+
+---
+
+## Table: ddt_brick0001734
+
+**Table Description:** fama_genome_taxon_function_profile_20221021.ndarray - KBase Fama-predicted taxonomically resolved protein-function counts and sequence identities for 22 ENIGMA isolate genomes, including 2 completed zero-hit inputs
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| comment_canonical_coral_taxon_name_null_for_the_fama_unknown_row_and_for_fama_unclassified_taxon_rows_which_are_remainder_buckets_of_proteins_assigned_to_the_parent_taxon_and_no_deeper_rather_than_ncbi_unclassified_taxa_the_exact_fama_label_is_in_taxon_name_sdt_taxon_name | string | Yes | {"description": "taxon ID, comment=Canonical CORAL Taxon.name; null for the FAMA Unknown row and for FAMA 'Unclassified <taxon>' rows, which are remainder buckets of proteins assigned to the parent taxon and no deeper rather than NCBI unclassified taxa. The exact FAMA label is in taxon name", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| taxon_name | string | Yes | {"description": "taxon name"} |
+| function | string | Yes | {"description": "function"} |
+| count_context_protein_comment_source_columns_score_and_raw_count_equality_verified_for_every_non_null_cell_counts_at_each_taxonomic_level_are_hierarchical_aggregates_select_one_level_rather_than_summing_across_levels_count_unit | int | Yes | {"description": "count, context=protein, comment=source columns Score and Raw count; equality verified for every non-null cell. Counts at each taxonomic level are hierarchical aggregates; select one level rather than summing across levels", "unit": "count unit"} |
+| sequence_identity_comment_source_column_identity_hit_count_weighted_mean_percent_identity_of_the_fama_hits_assigned_to_the_taxon_and_function_native_0_100_percent_scale_null_where_the_source_wrote_0_with_a_positive_protein_count_which_fama_emits_for_composite_multi_function_hits_and_is_undefined_rather_than_measured_percent | double | Yes | {"description": "sequence identity, comment=source column Identity: hit-count-weighted mean percent identity of the FAMA hits assigned to the taxon and function; native 0-100 percent scale. Null where the source wrote 0 with a positive protein count, which FAMA emits for composite multi-function hits and is undefined rather than measured", "unit": "percent"} |
+
+**Total Rows:** 1839
+
+### Sample Data (5 rows)
+
+| sdt_genome_name | comment_canonical_coral_taxon_name_null_for_the_fama_unknown_row_and_for_fama_unclassified_taxon_rows_which_are_remainder_buckets_of_proteins_assigned_to_the_parent_taxon_and_no_deeper_rather_than_ncbi_unclassified_taxa_the_exact_fama_label_is_in_taxon_name_sdt_taxon_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | taxon_name | function | count_context_protein_comment_source_columns_score_and_raw_count_equality_verified_for_every_non_null_cell_counts_at_each_taxonomic_level_are_hierarchical_aggregates_select_one_level_rather_than_summing_across_levels_count_unit | sequence_identity_comment_source_column_identity_hit_count_weighted_mean_percent_identity_of_the_fama_hits_assigned_to_the_taxon_and_function_native_0_100_percent_scale_null_where_the_source_wrote_0_with_a_positive_protein_count_which_fama_emits_for_composite_multi_function_hits_and_is_undefined_rather_than_measured_percent |
+|---|---|---|---|---|---|---|---|
+| CPT15-335-S11.1 | root | ME:0000503 | unranked | root | NirK | 1 | 73.8 |
+| CPT15-335-S11.1 | root | ME:0000503 | unranked | root | NosZ2 | 1 | 80.1 |
+| CPT15-335-S11.1 | Bacteria | ME:0000351 | taxonomic domain | Bacteria | NirK | 1 | 73.8 |
+| CPT15-335-S11.1 | Bacteria | ME:0000351 | taxonomic domain | Bacteria | NosZ2 | 1 | 80.1 |
+| CPT15-335-S11.1 | Bacteroidetes | ME:0000252 | phylum | Bacteroidetes | NirK | 1 | 73.8 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -25535,11 +25855,11 @@ Total Tables: 733
 
 | sdt_gene_id | sdt_gene_name | sdt_genome_name | aliases | contig_number_count_unit | strand | start_base_pair | stop_base_pair | function |
 |---|---|---|---|---|---|---|---|---|
-| Gene0000001 | MEPIHFMG_04711 | FW300-N2A2.genome | [] | 91 | + | 12032 | 13033 | Glyceraldehyde-3-phosphate dehydrogenase 1 |
-| Gene0000002 | MEPIHFMG_04712 | FW300-N2A2.genome | [] | 91 | + | 13173 | 13637 | Methylglyoxal synthase |
-| Gene0000003 | MEPIHFMG_04713 | FW300-N2A2.genome | [] | 91 | + | 13715 | 14233 | ECF RNA polymerase sigma factor SigE |
-| Gene0000004 | MEPIHFMG_04714 | FW300-N2A2.genome | [] | 91 | + | 14315 | 15280 | hypothetical protein |
-| Gene0000005 | MEPIHFMG_04715 | FW300-N2A2.genome | [] | 91 | + | 15403 | 17994 | Hemin receptor |
+| Gene0011966 | BW25113_0001 | Escherichia-coli-BW25113.genome | [] | 0 | + | 190 | 255 | leader; Amino acid biosynthesis: Threonine |
+| Gene0011967 | BW25113_0002 | Escherichia-coli-BW25113.genome | [] | 0 | + | 337 | 2799 | enzyme; Amino acid biosynthesis: Threonine |
+| Gene0011968 | BW25113_0003 | Escherichia-coli-BW25113.genome | [] | 0 | + | 2801 | 3733 | enzyme; Amino acid biosynthesis: Threonine |
+| Gene0011969 | BW25113_0004 | Escherichia-coli-BW25113.genome | [] | 0 | + | 3734 | 5020 | enzyme; Amino acid biosynthesis: Threonine |
+| Gene0011970 | BW25113_0007 | Escherichia-coli-BW25113.genome | [] | 0 | - | 6529 | 7959 | putative transport; Transport of small molecules: Amino acids, amines |
 
 ---
 
@@ -25558,7 +25878,7 @@ Total Tables: 733
 | n_features_count_unit | int | No | {"description": "Number of annotated features (e.g., genes) in the genome", "unit": "count unit"} |
 | link | string | No | {"description": "Link to where the genome itself is actually stored"} |
 
-**Total Rows:** 6727
+**Total Rows:** 7769
 
 ### Sample Data (5 rows)
 
@@ -25651,7 +25971,7 @@ Total Tables: 733
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 57
+**Total Rows:** 65
 
 ### Sample Data (5 rows)
 
@@ -25773,7 +26093,7 @@ Total Tables: 733
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 5490
+**Total Rows:** 5497
 
 ### Sample Data (5 rows)
 
@@ -25837,17 +26157,17 @@ Total Tables: 733
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 5334
+**Total Rows:** 6127
 
 ### Sample Data (5 rows)
 
 | sys_oterm_id | parent_sys_oterm_id | sys_oterm_ontology | sys_oterm_name | sys_oterm_synonyms | sys_oterm_definition | sys_oterm_links | sys_oterm_properties |
 |---|---|---|---|---|---|---|---|
-| BFO:0000001 | NULL | envo | entity | [] | NULL | [] | NULL |
-| BFO:0000002 | BFO:0000001 | envo | continuant | [] | An entity that exists in full at any time in which it exists at all, persists through time while maintaining its identity and has no temporal parts. | [] | NULL |
-| BFO:0000004 | BFO:0000002 | envo | independent continuant | [] | b is an independent continuant = Def. b is a continuant which is such that there is no c and no t such that b s-depends_on c at t. (axiom label in BFO2 Reference: [017-002]) | [] | NULL |
-| BFO:0000040 | BFO:0000004 | envo | material entity | [] | An independent continuant that is spatially extended whose identity is independent of that of other entities and can be maintained through time. | [] | NULL |
-| CHEBI:113449 | CHEBI:38700 | chebi | sodium 4-hydroxybenzoate | ["Sodium p-hydroxybenzoate", "sodium 4-hydroxybenzoate", "4-Hydroxybenzoic acid sodium salt", "Monosodium 4-hydroxybenzoate", "Monosodium p-hydroxybenzoate", "p-Hydroxybenzoic acid sodium salt"] | An organic sodium salt resulting from the replacement of the proton from the carboxy group of 4-hydroxybenzoic acid by a sodium ion. | ["Reaxys:4163553", "CAS:114-63-6"] | {"http://purl.obolibrary.org/obo/chebi/charge": "0", "http://purl.obolibrary.org/obo/chebi/formula": "C7H5NaO3", "http://purl.obolibrary.org/obo/chebi/inchi": "InChI=1S/C7H6O3.Na/c8-6-3-1-5(2-4-6)7(9)10;/h1-4,8H,(H,9,10);/q;+1/p-1", "http://purl.obolibrary.org/obo/chebi/inchikey": "ZLVSYODPTJZFMK-UHFFFAOYSA-M", "http://purl.obolibrary.org/obo/chebi/mass": "160.103", "http://purl.obolibrary.org/obo/chebi/monoisotopicmass": "160.01364", "http://purl.obolibrary.org/obo/chebi/smiles": "C(C=1C=CC(=CC1)O)([O-])=O.[Na+]"} |
+| ARO:0000002 | ARO:3000185 | aro | tetracycline-resistant ribosomal protection protein | [] | A family of proteins known to bind to the 30S ribosomal subunit. This interaction prevents tetracycline and tetracycline derivatives from inhibiting ribosomal function. Thus, these proteins confer elevated resistance to tetracycline derivatives as a ribosomal protection protein. | [] | NULL |
+| ARO:0000031 | ARO:3000000 | aro | antibiotic resistant gene variant or mutant | [] | Resistance to antibiotics is often conferred by single nucleotide polymorphisms (SNPs) and other mutations in target genes. | [] | NULL |
+| ARO:0010001 | ARO:3000159 | aro | ATP-binding cassette (ABC) antibiotic efflux pump | ["ABC type drug efflux"] | Directed pumping of antibiotic out of a cell to confer resistance. ATP-binding cassette (ABC) transporters are present in all cells of all organisms and use the energy of ATP binding/hydrolysis to transport substrates across cell membranes. | [] | NULL |
+| ARO:0010002 | ARO:3000159 | aro | major facilitator superfamily (MFS) antibiotic efflux pump | ["MFS type drug efflux"] | Directed pumping of antibiotic out of a cell to confer resistance. Major facilitator superfamily (MFS) transporters and ABC transporters comprise the two largest and most functionally diverse of the transporter superfamilies. However, MFS transporters are distinct from ABC transporters in both their primary sequence and structure and in the mechanism of energy coupling. As secondary transporters they are, like RND and SMR transporters, energized by the electrochemical proton gradient. | [] | NULL |
+| ARO:0010003 | ARO:3000159 | aro | small multidrug resistance (SMR) antibiotic efflux pump | ["SMR type drug efflux"] | Directed pumping of antibiotic out of a cell to confer resistance. Small multidrug resistance (SMR) proteins are a relatively small family of transporters, restricted to prokaryotic cells. They are also the smallest multidrug transporters, with only four transmembrane alpha-helices and no significant extramembrane domain. | [] | NULL |
 
 ---
 
@@ -25872,7 +26192,7 @@ Total Tables: 733
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 93141
+**Total Rows:** 97262
 
 ### Sample Data (5 rows)
 
@@ -25914,7 +26234,7 @@ Total Tables: 733
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103126
+**Total Rows:** 123306
 
 ### Sample Data (5 rows)
 
@@ -25956,7 +26276,7 @@ Total Tables: 733
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 103889
+**Total Rows:** 108013
 
 ### Sample Data (5 rows)
 

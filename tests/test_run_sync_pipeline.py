@@ -261,8 +261,13 @@ class SupportedFullImportTests(unittest.TestCase):
         self.assertEqual(config["tables"][0]["bronze_path"], "s3a://bucket/run/data/sdt_genome.tsv")
         self.assertEqual(config["tables"][0]["comment"], "genomes")
         self.assertEqual(config["tables"][0]["schema"], self.table["schema"])
-        self.assertEqual(config["defaults"]["tsv"]["quote"], "\u0000")
-        self.assertFalse(config["defaults"]["tsv"]["multiLine"])
+        # Legacy per-table preview options must not disable quoting: staged
+        # TSVs are Python-csv quoted, so the reader needs quote/escape '"' and
+        # multiLine, or quoted values keep literal quotes and split rows.
+        self.assertEqual(config["defaults"]["tsv"]["quote"], '"')
+        self.assertEqual(config["defaults"]["tsv"]["escape"], '"')
+        self.assertTrue(config["defaults"]["tsv"]["multiLine"])
+        self.assertEqual(config["defaults"]["tsv"]["delimiter"], "\t")
 
     def test_supported_writer_requires_successful_table_report(self):
         def ingest(config, **kwargs):

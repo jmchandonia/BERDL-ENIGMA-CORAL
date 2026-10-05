@@ -193,6 +193,9 @@ scratch disk.
      affects existing table structure or metadata
 
 8. Generate BERDL ingest config:
+   - csv options quote `"`, escape `"`, `multiLine` true, delimiter tab: the
+     staged TSVs are Python-csv quoted, and the importer enforces the same
+     contract even on a stale config
    - structured `schema`, not `schema_sql`
    - only changed data/schema tables enabled
    - no obsolete `ddt_brick...` tables enabled
@@ -225,6 +228,8 @@ scratch disk.
      comment, and foreign-key validation; keep Delta verification scoped to the
      changed-table list
    - row counts against `manifests/current.json` for every selected table
+   - no string value in a selected table that both starts and ends with a
+     double quote (a Python-csv quoted field read with quoting disabled)
    - schema order and types
    - table and column comments from ingest `table_comment_report` and
      `column_comments_report`
