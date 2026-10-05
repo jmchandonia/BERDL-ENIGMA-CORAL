@@ -1,4 +1,4 @@
-# Table: enigma_coral.ddt_ndarray
+# Table: enigma.coral.ddt_ndarray
 
 **Description:** Metadata for CORAL dynamic data type n-dimensional arrays
 

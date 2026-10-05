@@ -1,4 +1,4 @@
-# Table: enigma_coral.sys_ddt_typedef
+# Table: enigma.coral.sys_ddt_typedef
 
 **Description:** Column definitions for CORAL dynamic data type tables
 

@@ -40,7 +40,7 @@ Python CLI tools for querying BERDL/ENIGMA data and generating exports.
 - `allocate_feba_edr_versions.py`: Allocate proposed non-gap-filling versions
   across active and withdrawn history after exact-match decisions are complete.
 - `validate_feba_coral_strains.py`: Recheck only the selected strain
-  name/ID pairs against live `enigma_coral.sdt_strain`.
+  name/ID pairs against live `enigma.coral.sdt_strain`.
 - `generate_ncbi_submission.py`: Build NCBI submission spreadsheets and staging assets.
 - `list_databases.py`: List BERDL MCP databases.
 

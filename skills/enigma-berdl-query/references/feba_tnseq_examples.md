@@ -3,7 +3,7 @@
 These examples describe the FEBA import completed on 2026-08-13. Confirm the
 current brick IDs in `ddt_ndarray_table.md` before adapting them to a later
 sync. Requests go to `POST /delta/tables/select` with database
-`enigma_coral`; keep `limit <= 1000` and use uppercase order directions.
+`enigma.coral`; keep `limit <= 1000` and use uppercase order directions.
 
 ## Current N2E2 fitness brick
 
@@ -15,7 +15,7 @@ Query the current N2E2 condition-level fitness and FEBa t statistic with:
 
 ```json
 {
-  "database": "enigma_coral",
+  "database": "enigma.coral",
   "table": "ddt_brick0001693",
   "columns": [
     {"column": "sdt_condition_name"},
@@ -43,7 +43,7 @@ metadata for one N2E2 experiment as a separate bounded query:
 
 ```json
 {
-  "database": "enigma_coral",
+  "database": "enigma.coral",
   "table": "ddt_brick0001674",
   "columns": [
     {"column": "sdt_condition_name"},
@@ -94,12 +94,12 @@ generated IDs:
 
 ```json
 {
-  "database": "enigma_coral",
+  "database": "enigma.coral",
   "table": "sdt_tnseq_library",
   "joins": [
     {
       "join_type": "INNER",
-      "database": "enigma_coral",
+      "database": "enigma.coral",
       "table": "sdt_genome",
       "on_left_column": "sdt_genome_name",
       "on_right_column": "sdt_genome_name"

@@ -9,7 +9,7 @@ import requests
 
 DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
 BASE_URL = os.environ.get("BERDL_BASE_URL", DEFAULT_BASE_URL)
-DB_NAME = "enigma_coral"
+DB_NAME = os.environ.get("BERDL_DATABASE", "enigma.coral")
 OUTPUT_PATH = os.path.join("schema", "enigma_coral_schema.md")
 REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3

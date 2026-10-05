@@ -9,7 +9,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 import requests
 
 BASE_URL = os.environ.get("BERDL_BASE_URL", "https://hub.berdl.kbase.us/apis/mcp")
-DB_NAME = os.environ.get("BERDL_DATABASE", "enigma_coral")
+DB_NAME = os.environ.get("BERDL_DATABASE", "enigma.coral")
 REQUEST_TIMEOUT = 120
 REQUEST_RETRIES = 3
 REQUEST_RETRY_DELAY = 2

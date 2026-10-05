@@ -1,4 +1,6 @@
-# Database Schema: enigma_coral
+# Database Schema: enigma.coral
+
+Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
 Total Tables: 743
 

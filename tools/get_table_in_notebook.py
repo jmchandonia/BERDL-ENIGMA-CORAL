@@ -82,7 +82,7 @@ def export_table_to_markdown(database_name, table_name, output_file):
 
 # Usage:
 export_table_to_markdown(
-    database_name="enigma_coral",
+    database_name="enigma.coral",
     table_name="sdt_protocol",
     output_file="sdt_protocol_table.md"
 )

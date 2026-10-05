@@ -1,6 +1,6 @@
 ---
 name: enigma-object-relationships
-description: Find and explain relationships/provenance between ENIGMA objects using tools/walk_provenance.py. Use when asked to trace upstream inputs, producing processes, coassemblies, normalized process/object links, or object-to-object lineage in the enigma_coral database.
+description: Find and explain relationships/provenance between ENIGMA objects using tools/walk_provenance.py. Use when asked to trace upstream inputs, producing processes, coassemblies, normalized process/object links, or object-to-object lineage in the enigma.coral database.
 ---
 
 # Enigma Object Relationships
@@ -13,7 +13,7 @@ The current ENIGMA schema represents provenance in `sys_process` with `input_obj
 
 ## Quick start (CLI)
 
-- Ensure `KB_AUTH_TOKEN` is set; optionally set `BERDL_BASE_URL` and `BERDL_DATABASE`.
+- Ensure `KB_AUTH_TOKEN` is set; optionally set `BERDL_BASE_URL` and `BERDL_DATABASE` (default `enigma.coral`, the canonical Iceberg namespace).
 - Discover tables and name mappings:
 
 ```bash

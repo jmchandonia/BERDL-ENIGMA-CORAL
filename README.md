@@ -35,6 +35,13 @@ When you're logged in to BERDL, and in a Jupyter notebook, run:
 BERDLSettings().KBASE_AUTH_TOKEN and paste the token that comes back
 (without quotes) into your .env file.
 
+## Lakehouse namespace
+
+ENIGMA CORAL data lives in the BERDL Iceberg namespace `enigma.coral`. Use
+`enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in
+Spark SQL. The former Delta namespace `enigma_coral` was retired in October
+2026. The published schema is in `schema/enigma_coral_schema.md`.
+
 ## Database Access
 
 After doing the authentication steps, click **Request Tenant Access** for any

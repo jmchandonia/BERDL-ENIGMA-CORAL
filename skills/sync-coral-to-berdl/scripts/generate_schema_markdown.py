@@ -78,6 +78,14 @@ def _schema_from_header(header: Iterable[str]) -> list[dict[str, Any]]:
     ]
 
 
+DEFAULT_NAMESPACE = "enigma.coral"
+
+
+def _namespace(config: dict[str, Any], override: str | None = None) -> str:
+    """Canonical Lakehouse namespace: the Iceberg namespace, also the MCP database name."""
+    return override or config.get("iceberg_namespace") or DEFAULT_NAMESPACE
+
+
 def _table_lookup(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {table["name"]: table for table in config.get("tables", []) if table.get("enabled")}
 
@@ -136,14 +144,20 @@ def _write_rows(handle, header: list[str], rows: list[list[str]]) -> None:
         handle.write("| " + " | ".join(_markdown_cell(value) for value in padded) + " |\n")
 
 
-def export_table_to_markdown(config: dict[str, Any], table_name: str, output_file: Path) -> None:
+def export_table_to_markdown(
+    config: dict[str, Any],
+    table_name: str,
+    output_file: Path,
+    namespace: str | None = None,
+) -> None:
     table = _table_lookup(config)[table_name]
+    namespace = _namespace(config, namespace)
     data_path = Path(table["local_path"])
     header, rows = _read_rows(data_path)
     schema = table.get("schema") or _schema_from_header(header)
 
     with output_file.open("w", encoding="utf-8", newline="") as handle:
-        handle.write(f"# Table: enigma_coral.{table_name}\n\n")
+        handle.write(f"# Table: {namespace}.{table_name}\n\n")
         table_comment = table.get("table_comment") or ""
         if table_comment:
             handle.write(f"**Description:** {_markdown_cell(table_comment)}\n\n")
@@ -160,11 +174,17 @@ def export_database_schema(
     output_file: Path,
     sample_rows: int,
     row_counts: dict[str, int] | None = None,
+    namespace: str | None = None,
 ) -> None:
     tables = _ordered_enabled_tables(config)
+    namespace = _namespace(config, namespace)
     row_counts = row_counts or {}
     with output_file.open("w", encoding="utf-8", newline="") as handle:
-        handle.write("# Database Schema: enigma_coral\n\n")
+        handle.write(f"# Database Schema: {namespace}\n\n")
+        handle.write(
+            f"Lakehouse namespace `{namespace}` (Iceberg). Use `{namespace}` as the "
+            f"BERDL MCP `database` value and `{namespace}.<table>` in Spark SQL.\n\n"
+        )
         handle.write(f"Total Tables: {len(tables)}\n\n")
         handle.write("---\n\n")
         for table in tables:
@@ -196,6 +216,10 @@ def main() -> int:
     )
     parser.add_argument("--schema-dir", type=Path, default=Path("schema"))
     parser.add_argument("--sample-rows", type=int, default=5)
+    parser.add_argument(
+        "--namespace",
+        help="Lakehouse namespace to document (default: the run's iceberg_namespace, enigma.coral)",
+    )
     args = parser.parse_args()
 
     config = _load_json(args.run_dir / "ingest" / "config.dry_run.json")
@@ -205,13 +229,14 @@ def main() -> int:
         for table in manifest.get("tables", [])
     }
     args.schema_dir.mkdir(parents=True, exist_ok=True)
-    export_table_to_markdown(config, "ddt_ndarray", args.schema_dir / "ddt_ndarray_table.md")
-    export_table_to_markdown(config, "sys_ddt_typedef", args.schema_dir / "sys_ddt_typedef_table.md")
+    export_table_to_markdown(config, "ddt_ndarray", args.schema_dir / "ddt_ndarray_table.md", args.namespace)
+    export_table_to_markdown(config, "sys_ddt_typedef", args.schema_dir / "sys_ddt_typedef_table.md", args.namespace)
     export_database_schema(
         config,
         args.schema_dir / "enigma_coral_schema.md",
         args.sample_rows,
         row_counts,
+        args.namespace,
     )
     print(f"Wrote schema markdown to {args.schema_dir}")
     return 0

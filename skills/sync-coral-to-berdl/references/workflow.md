@@ -9,7 +9,7 @@ After preparation has produced `ingest/config.dry_run.json`,
 /h/jmc/src/BERIL-research-observatory/.venv-berdl/bin/python \
   skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py \
   --run-dir sync-coral-to-berdl/exports/<run_id> \
-  --resume
+  --prefer-env-file --skip-delta-compat --resume
 ```
 
 This command owns environment loading, proxy checks, remote Spark
@@ -32,7 +32,8 @@ transition:
 - canonical: `enigma.coral.<table>`, Iceberg, written by the supported
   `data_lakehouse_ingest` package;
 - compatibility: `enigma_coral.<table>`, Delta, written only after the
-  corresponding canonical write succeeds.
+  corresponding canonical write succeeds. Retired in October 2026: the cluster
+  rejects Delta table creation, so pass `--skip-delta-compat`.
 
 The driver verifies both namespaces independently, including their provider.
 On the first run, or after an interrupted import, it inventories

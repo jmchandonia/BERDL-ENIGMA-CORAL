@@ -183,14 +183,14 @@ def export_spark_database_schema_json(database_name, output_file, sample_rows=5)
 if __name__ == "__main__":
     # Recommended: Export as Markdown (best for LLM consumption)
     export_spark_database_schema(
-        database_name="enigma_coral",
+        database_name="enigma.coral",
         output_file="enigma_coral_schema.md",
         sample_rows=5
     )
     
     # Alternative: Export as JSON
     # export_spark_database_schema_json(
-    #     database_name="enigma_coral",
+    #     database_name="enigma.coral",
     #     output_file="enigma_coral_schema.json",
     #     sample_rows=5
     # )

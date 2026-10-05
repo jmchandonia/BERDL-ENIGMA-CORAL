@@ -1,13 +1,13 @@
 ---
 name: enigma-berdl-query
-description: Query ENIGMA (enigma_coral) data using the BERDL MCP API with generated schema references; use when answering questions about ENIGMA tables, brick/ndarray data, provenance/object tables, or when composing BERDL queries that must adhere strictly to the current enigma_coral table/column list.
+description: Query ENIGMA (enigma.coral) data using the BERDL MCP API with generated schema references; use when answering questions about ENIGMA tables, brick/ndarray data, provenance/object tables, or when composing BERDL queries that must adhere strictly to the current enigma.coral table/column list.
 ---
 
 # Enigma BERDL Query
 
 ## Overview
 
-Use this skill to answer ENIGMA data questions by composing BERDL MCP API queries against the `enigma_coral` database using only the generated schema references bundled with this skill. Do not use any other data source for ENIGMA data.
+Use this skill to answer ENIGMA data questions by composing BERDL MCP API queries against the `enigma.coral` database (the canonical Iceberg namespace; the former Delta namespace `enigma_coral` was retired in October 2026) using only the generated schema references bundled with this skill. Do not use any other data source for ENIGMA data.
 
 The schema reference is large. Search it and read only the table sections needed for the request; do not load the whole file into context unless the user explicitly asks for a full schema review.
 
@@ -43,7 +43,7 @@ The schema reference is large. Search it and read only the table sections needed
 
 - Base URL: `https://hub.berdl.kbase.us/apis/mcp`
 - Auth: `Authorization: Bearer $KB_AUTH_TOKEN`
-- Database: `enigma_coral`
+- Database: `enigma.coral`
 
 Common endpoints:
 - List tables: `POST /delta/databases/tables/list`

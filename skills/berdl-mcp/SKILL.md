@@ -1,29 +1,29 @@
 ---
 name: berdl-mcp
-description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Delta Lake data, including the current generated ENIGMA CORAL schema in enigma_coral.
+description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Lakehouse tables, including the current generated ENIGMA CORAL schema in the enigma.coral namespace.
 ---
 
 # BERDL MCP API
 
-Use this skill when interacting with the BERDL MCP API to explore or query CORAL data in the `enigma_coral` database.
+Use this skill when interacting with the BERDL MCP API to explore or query CORAL data in the `enigma.coral` database (the canonical Iceberg namespace; the former Delta namespace `enigma_coral` was retired in October 2026 and no longer exists on the server).
 
 ## Quick start
 
 - Base URL: `https://hub.berdl.kbase.us/apis/mcp`
 - Auth: `Authorization: Bearer $KB_AUTH_TOKEN`
-- Default database for CORAL work: `enigma_coral`
+- Default database for CORAL work: `enigma.coral`
 
 ## Workflow
 
 1. **Confirm service health** (optional): `GET /health`.
 2. **List databases**: `POST /delta/databases/list` with `{"use_hms": true, "filter_by_namespace": true}`.
-3. **List tables in a database**: `POST /delta/databases/tables/list` with `{"database": "enigma_coral", "use_hms": true}`.
-4. **Get table schema**: `POST /delta/databases/tables/schema` with `{"database": "enigma_coral", "table": "..."}`.
+3. **List tables in a database**: `POST /delta/databases/tables/list` with `{"database": "enigma.coral", "use_hms": true}`.
+4. **Get table schema**: `POST /delta/databases/tables/schema` with `{"database": "enigma.coral", "table": "..."}`.
 5. **Query data**:
    - Use the structured builder only: `POST /delta/tables/select`.
    - Do not use SQL syntax or `/delta/tables/query` (not supported in this environment).
-6. **Sample data**: `POST /delta/tables/sample` with `{"database": "enigma_coral", "table": "...", "limit": 10}`.
-7. **Count rows**: `POST /delta/tables/count` with `{"database": "enigma_coral", "table": "..."}`.
+6. **Sample data**: `POST /delta/tables/sample` with `{"database": "enigma.coral", "table": "...", "limit": 10}`.
+7. **Count rows**: `POST /delta/tables/count` with `{"database": "enigma.coral", "table": "..."}`.
 
 ## Query guidance
 

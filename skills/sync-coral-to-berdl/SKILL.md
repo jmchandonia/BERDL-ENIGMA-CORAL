@@ -1,6 +1,6 @@
 ---
 name: sync-coral-to-berdl
-description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using the supported BERDL ingest workflow. Use when updating the canonical Iceberg enigma.coral tables and transitional enigma_coral Delta tables from CORAL typedef/static tables or dynamic data bricks, especially when comments and relationship metadata must be preserved.
+description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using the supported BERDL ingest workflow. Use when updating the canonical Iceberg enigma.coral tables from CORAL typedef/static tables or dynamic data bricks, especially when comments and relationship metadata must be preserved.
 ---
 
 # Sync CORAL To BERDL
@@ -11,11 +11,11 @@ upload and table creation through BERDL ingest instead of the legacy manual
 MinIO copy plus notebook paste workflow.
 
 The canonical target is the Iceberg namespace `enigma.coral`, written through
-KBase's supported `data_lakehouse_ingest` package. During the Delta transition,
-the same changed data is also written to the legacy `enigma_coral` namespace
-with the Delta provider. Validate the two targets independently. Keep this
-dual-write policy until KBase formally deprecates Delta, then use
-`--skip-delta-compat` to remove only the compatibility write and check.
+KBase's supported `data_lakehouse_ingest` package. The legacy Delta namespace
+`enigma_coral` was retired in October 2026: the BERDL Spark cluster rejects
+`USING delta` table creation and the MCP API no longer lists the schema, so
+run the driver with `--skip-delta-compat` (Iceberg only). The dual-write code
+path remains available only for a cluster that still accepts Delta.
 
 ## Guardrails
 
@@ -79,10 +79,11 @@ For a prepared run package, prefer the stable end-to-end driver:
 /h/jmc/src/BERIL-research-observatory/.venv-berdl/bin/python \
   skills/sync-coral-to-berdl/scripts/run_sync_pipeline.py \
   --run-dir sync-coral-to-berdl/exports/<run_id> \
-  --resume
+  --prefer-env-file --skip-delta-compat --resume
 ```
 
-The driver loads the repository `.env`, normalizes `KB_AUTH_TOKEN` to
+Pass `--prefer-env-file` so the token in the repository `.env` overrides a
+stale `KBASE_AUTH_TOKEN` exported by the login shell. The driver loads the repository `.env`, normalizes `KB_AUTH_TOKEN` to
 `KBASE_AUTH_TOKEN`, checks/starts the local BERDL proxy path, provisions the
 remote Spark session when a live stage remains, imports only changed tables,
 backfills canonical Iceberg tables that are missing, verifies both providers'
@@ -97,8 +98,9 @@ list. Do not replace this stable command with a run-specific compound shell
 command or require the user to source `.env` manually.
 
 1. **Preflight**
-   - Confirm the target tenant/dataset and both namespaces: canonical Iceberg
-     `enigma.coral` and transitional Delta `enigma_coral`.
+   - Confirm the target tenant/dataset and the canonical Iceberg namespace
+     `enigma.coral` (the Delta namespace `enigma_coral` is retired; only a
+     run without `--skip-delta-compat` would still target it).
    - Check available disk space before export.
    - Confirm `.env` has `CORAL_TYPEDEF` and `CORAL_ONTOLOGIES`; these are
      the canonical sources for static table schemas/comments and `sys_oterm`.
@@ -216,8 +218,9 @@ command or require the user to source `.env` manually.
      `enigma.coral` table. The supported importer owns namespace creation,
      governed schema application, Iceberg `writeTo(...).createOrReplace()`, and
      table/column comment application.
-   - After each successful canonical write, write the same staged TSV and
-     governed schema to `enigma_coral` as transitional Delta compatibility.
+   - Only when `--skip-delta-compat` is not passed (retired path): after each
+     successful canonical write, write the same staged TSV and governed schema
+     to `enigma_coral` as Delta compatibility.
      Keep the compatibility implementation isolated so it can be removed when
      KBase deprecates Delta.
    - Use the generated config and metadata files from this skill.
@@ -237,8 +240,9 @@ command or require the user to source `.env` manually.
 7. **Validate comments**
    - Inspect the supported ingest `table_comment_report` and
      `column_comments_report` for the Iceberg write.
-   - Run separate read-back verification for `enigma.coral` with expected
-     provider `iceberg` and `enigma_coral` with expected provider `delta`.
+   - Run read-back verification for `enigma.coral` with expected provider
+     `iceberg` (and, only on the retired dual-write path, for `enigma_coral`
+     with expected provider `delta`).
    - For Iceberg, union the changed-table list with the import report's
      automatically backfilled table list so every first-migration table gets
      row-count and comment read-back validation.

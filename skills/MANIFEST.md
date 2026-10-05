@@ -5,7 +5,7 @@ This manifest summarizes the Codex skills available in this repo.
 ## Skills
 
 - name: berdl-mcp
-  description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Delta Lake data (including enigma_coral).
+  description: Use the BERDL MCP API to discover databases/tables, inspect schemas, and query Lakehouse tables (including the enigma.coral namespace).
   path: skills/berdl-mcp/SKILL.md
   references:
     - skills/berdl-mcp/references/enigma_coral_schema.md
@@ -25,7 +25,7 @@ This manifest summarizes the Codex skills available in this repo.
     - skills/coral-ndarray-generation/references/static-imports.md
 
 - name: enigma-berdl-query
-  description: Query ENIGMA (enigma_coral) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the enigma_coral table/column list.
+  description: Query ENIGMA (enigma.coral) data using the BERDL MCP API with the provided schema references; use when answering questions about ENIGMA tables, brick/ndarray data, or when composing BERDL queries that must adhere strictly to the enigma.coral table/column list.
   path: skills/enigma-berdl-query/SKILL.md
   references:
     - skills/enigma-berdl-query/references/enigma_coral_schema.md
@@ -33,13 +33,13 @@ This manifest summarizes the Codex skills available in this repo.
     - skills/enigma-berdl-query/references/sys_ddt_typedef_table.md
 
 - name: enigma-object-relationships
-  description: Find and explain relationships/provenance between ENIGMA objects using tools/walk_provenance.py. Use when asked to trace upstream inputs, producing processes, coassemblies, or object-to-object lineage in the enigma_coral database.
+  description: Find and explain relationships/provenance between ENIGMA objects using tools/walk_provenance.py. Use when asked to trace upstream inputs, producing processes, coassemblies, or object-to-object lineage in the enigma.coral database.
   path: skills/enigma-object-relationships/SKILL.md
   tools:
     - skills/enigma-object-relationships/tools/walk_provenance.py
 
 - name: sync-coral-to-berdl
-  description: Export CORAL data into a BERDL-ready local package and sync changed tables into the KBase BERDL Lakehouse using BERDL ingest, preserving column comments and validating table/comment updates.
+  description: Export CORAL data into a BERDL-ready local package and sync changed tables into the canonical Iceberg enigma.coral namespace of the KBase BERDL Lakehouse using the supported ingest, preserving column comments and validating table/comment updates.
   path: skills/sync-coral-to-berdl/SKILL.md
   references:
     - skills/sync-coral-to-berdl/references/workflow.md

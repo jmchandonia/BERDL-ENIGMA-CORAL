@@ -1455,3 +1455,31 @@ Validation completed before live export:
   not updated because the cluster rejects Delta writes; it still carries the
   pre-sync tables and lacks the new bricks and the 62 drops.
 - Committed the sync workflow fixes and schema references.
+
+## 2026-10-05 schema docs and skills moved to enigma.coral
+
+- The BERDL MCP API now lists `enigma.coral` (743 tables) and reports that
+  schema `enigma_coral` no longer exists, so the Delta namespace is gone from
+  the query path as well as the write path.
+- `generate_schema_markdown.py` is namespace-aware (default: the run's
+  `iceberg_namespace`, `enigma.coral`): the database document is titled for
+  `enigma.coral`, states the MCP database value and Spark SQL path, and the
+  per-table extracts are headed `enigma.coral.<table>`. Same format as before:
+  table descriptions, column descriptions, row counts, and 5 sample rows per
+  table. Regenerated from run sync-20261001-151414 and verified byte-identical
+  copies in `berdl-mcp` and `enigma-berdl-query`. File names are unchanged.
+- Updated `berdl-mcp`, `enigma-berdl-query` (including the FEBA examples),
+  `enigma-object-relationships` (skill text and `walk_provenance.py` default
+  database), `skills/MANIFEST.md`, the sync skill (Delta retired; recommended
+  driver flags `--prefer-env-file --skip-delta-compat`), `schema/README.md`,
+  the top-level README, `tools/README.md`, and the CLI tools
+  (`get_schema.py`, `get_table.py`, the notebook variants, and
+  `tools/walk_provenance.py`) to default to `enigma.coral`.
+- Smoke-tested the MCP API against `enigma.coral`: table listing, schema,
+  sample, count, and a structured select all work; `walk_provenance.py`
+  lists tables and resolves the FAMA brick's producing process. 42 tests
+  pass.
+- Observation: CORAL's brick converter builds BERDL column names from each
+  variable's context, including comment text, so the new phenotype bricks
+  carry very long column names (up to 325 characters in `ddt_brick0001734`).
+  This is existing converter behaviour, not a sync change.
