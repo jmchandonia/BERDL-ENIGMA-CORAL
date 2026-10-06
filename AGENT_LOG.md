@@ -1483,3 +1483,53 @@ Validation completed before live export:
   variable's context, including comment text, so the new phenotype bricks
   carry very long column names (up to 325 characters in `ddt_brick0001734`).
   This is existing converter behaviour, not a sync change.
+
+## 2026-10-05 phenotype bricks version 2
+
+- The owner asked for v2 bricks with the long variable comments moved into
+  array context, plus Update Data links. Cause: `convert_bricks.py` composes
+  BERDL column names from the variable term plus every context entry,
+  including full Comment text, and keeps only the context for object and
+  ontology references, so the v1 bricks had column names up to 326 (FAMA) and
+  551 (BacAnt) characters and a comment-prefixed `sdt_taxon_name`.
+- Wrote `tools/build_phenotype_v2_release.py`: per-brick rules keep short
+  variable comments (at most 40 characters) verbatim, replace verbose ones
+  with a label of at most 32 characters only where same-typed variables must
+  stay distinct, or remove them from unique variables; the full original text
+  is appended as an array-level Comment prefixed by the variable. Bricks are
+  renamed with `_v2`, the comment-stripped document hash is asserted
+  unchanged, the production CheckGeneric runs, and one Update Data process
+  row per released brick is written (v1 → v2, 2026-10-05, Environmental
+  Atlas, no protocol). The owner clarified mid-way that short distinguishing
+  comments should stay; after that revision 40 comments moved across nine
+  bricks, GapMind needed no v2 (both comments already short), and all nine
+  pass the validator. Package: `coral_import/phenotype_predictions_v2_20261005/`
+  with README, `validation/comment_relocation_map.tsv`,
+  `files_to_import.txt`, and a notebook-paste `import_to_coral.py`.
+- Rule-based preview of the resulting BERDL column names: longest per
+  released brick now 35 to 83 characters; FAMA's taxon column becomes `sdt_taxon_name`,
+  MIBiG becomes `mibig_accession_sys_oterm_id`, BacAnt strand becomes
+  `strand_sys_oterm_id`. Exact names will be confirmed by the sync's prepare
+  step after the CORAL import.
+- Added `tests/test_phenotype_v2_release.py` (5 tests) and updated the design
+  changelog and plan. The v1 build tools still emit the long comments; they
+  should adopt the array-level placement before any future data rebuild.
+
+## 2026-10-06 sync-20261006-103240: version-2 phenotype bricks published
+
+- After the owner imported the v2 package, exported static tables (Process
+  97,271; 762 Update Data rows), reused 1,502 prior bricks and downloaded the
+  nine new ones (Brick0001735 to Brick0001743), and converted them. The
+  converter produced exactly the previewed column names: longest per v2 brick
+  32 to 83 characters (FAMA 32, RGI 53, BacAnt 69, antiSMASH capability 83).
+- The dry run classified the nine v1 bricks as superseded from the explicit
+  Update Data rows (792 obsolete); GapMind v1 stays current. Selection: 14
+  tables to load (nine v2 bricks, `ddt_ndarray`, `sys_ddt_typedef`,
+  `sys_process`, `sys_process_input`, `sys_process_output`) and nine live
+  obsolete v1 tables to drop.
+- First launch failed at the Spark readiness probe right after the hub kernel
+  spawned (12 attempts, nothing written); the relaunch with `--resume`
+  passed. All 14 tables imported, nine v1 tables dropped, Iceberg read-back
+  verified row counts and comments with no quote-mangled values, the
+  foreign-key audit passed, and schema references were regenerated and
+  copied into the dependent skills.
