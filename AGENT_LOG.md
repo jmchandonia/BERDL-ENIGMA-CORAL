@@ -1533,3 +1533,85 @@ Validation completed before live export:
   verified row counts and comments with no quote-mangled values, the
   foreign-key audit passed, and schema references were regenerated and
   copied into the dependent skills.
+
+## 2026-10-07 Google Drive mirror inventoried against CORAL
+
+- Indexed the NFS mirror of the ENIGMA team drive
+  (`/mnt/net/dipa.jmcnet/data/backup/google-drive/enigma_team_drive_data_enigma_backup`):
+  25,516 files, of which 8,517 are recursive copies produced by a mirrored
+  Drive shortcut (`…/Cone Penetrometer Sampling 2020/…`) and a further ~700
+  are duplicate second copies of folders; 16,325 files remain. Opened every
+  xlsx/xlsm/docx/csv/tsv (1,559 documents) with openpyxl and zip/xml parsing
+  to record sheets, headers, sample rows and hyperlinks.
+- No links to `niya` exist; Arkin-lab EDR paths occur only as
+  `/auto/sahara/namib/...` strings in two isolate workbooks that CORAL already
+  covers. Other link hosts: Google Drive/Docs, KBase narrative ws.41372, Box,
+  Dropbox, OU protocol server, GNPS, ESS-DIVE, MassIVE.
+- Compared every sensor file name (well, zone, log date) against the 283
+  troll/HOBO bricks: all SSO VuSitu/HydroVu logs are covered; gaps are
+  `DP06_LT400_20190728_20191206`, `EFPW01` and `EFPW05` 2022–23 downloads,
+  the 27 April-2024 pump-test TROLL logs (SSO bricks begin 2024-09/10), and
+  LevelTROLL downloads after 2026-05-04.
+- Wrote `GOOGLE_DRIVE_DATA_INVENTORY.md`: per-folder tables of document,
+  data type, in-document versus linked (with host), and CORAL status, plus an
+  18-item gap list. Largest gaps: Spring 2019 lab geochemistry (Adams,
+  Chakraborty, Elias, Fields, Hazen AODC, Stahl), 2023–2024 SSO lab data
+  (Adams metals, Chakraborty IC/TOC, Stahl isotopes, Baliga NH4/NO2, Hazen
+  AODC, Northen metabolomics), CPT probe/lithology/resistivity/water-level
+  data, 2024 borescope and manual DTW, 2026 tracer logs, bug-trap/PBR/EVO/
+  nitrifying-reactor/one-off amplicon sets, RecycNec and SSOM6SED
+  enrichments, GeoChip and ITS, and the PPI datasets.
+
+## 2026-10-08 second Drive mirror compared with the team drive
+
+- Listed `my_drive/DataManagement_ENIGMA/ENIGMA Data` (31,263 files) and
+  matched every file to the team-drive mirror by relative path, then by
+  basename plus size. 22,490 identical; 177 Google-export size drift; 3,673
+  identical files under pre-migration folder names; 10 same-path files with
+  different content; 4,913 files absent from the team drive.
+- Absent from the team drive and flagged for copying: the third 2026
+  bromide tracer injection (`M5-VSZ Injection 20260410`, 12 probe logs plus
+  injection DTW metadata; M5-SZ2 log is a duplicate of M5-SZ1), the Fall
+  2026 time-series planning workbook (`2026_Timeseries/Fall 2026 Gantt
+  Chart.xlsx`, template only), the CPT flow-model folders
+  (`source_overlapping/` with model-ready CPT csv tables and Revil
+  interpolations, `sub_pflotran_initial/` PFLOTRAN ensemble, 54 GB), two
+  AGU 2026 abstracts, and a newer `GenomeSamples_metadata.xlsx` with five
+  Plasmidsaurus long-read runs (three strains not in CORAL).
+- The My Drive one-off metadata is newer than the team copy but its three
+  extra samples are already in CORAL. Four files are newer on the team drive.
+- Added section 6 and gap items 19 to 21 to `GOOGLE_DRIVE_DATA_INVENTORY.md`.
+
+## 2026-10-09 Aqua TROLL nitrate-basis release prepared
+
+- Raw VuSitu logs report nitrate as nitrate-N; the CORAL troll bricks labelled
+  it nitrate, and the field builder's 0 to 500 mg/L cap had nulled about
+  31,000 manual readings at U1-SZ2 and U2-SZ2 plus the HydroVu-only U2-SZ1
+  spring 2025 window. Details and the sentinel audit are in
+  `/scratch/jmc/field_automated_measurements/AGENT_LOG.md` (2026-10-09).
+- Built `/scratch/jmc/field_automated_measurements/generated_continuous_monitoring_261009/`:
+  154 replacement bricks (nitrate converted x4.4268 with a brick comment,
+  40,159 readings restored, sensitivity column removed, legacy 2019 labels
+  canonicalised), all passing CheckGeneric, with Update Data processes and a
+  notebook-paste `import_to_coral.py`. After the owner imports it, run the
+  `sync-coral-to-berdl` workflow; the Update Data rows will retire the 154
+  superseded troll tables in `enigma.coral`.
+
+## 2026-10-09 sync-20261009-134304: Aqua TROLL nitrate-basis bricks published
+
+- After the owner imported the 261009 package, exported the 18 static types
+  (Process 97,425 rows, 154 new Update Data rows), reused 1,511 prior brick
+  CSVs and downloaded the 154 new bricks (Brick0001744 to Brick0001897), and
+  converted them (154 array-context location columns expanded). The dry run
+  classified all 154 replaced Aqua TROLL bricks as superseded from explicit
+  provenance (946 obsolete, 719 current, no lifecycle gate).
+- Live inventory through the MCP API showed 743 tables. Selection: 159 tables
+  to load (154 bricks plus `ddt_ndarray`, `sys_ddt_typedef`, `sys_process`,
+  `sys_process_input`, `sys_process_output`) and 154 live obsolete tables to
+  drop. The Iceberg-only pipeline passed first time: import 23.6 min, 154
+  obsolete tables dropped, read-back verified 159 row counts and every table
+  and column comment with no mismatches, all 205 foreign-key checks passed,
+  schema references regenerated and the 8 dependent skill copies verified.
+  `enigma.coral` again holds exactly the 743 enabled tables; a sample of
+  `ddt_brick0001853` (U1-SZ2 v3) returns nitrate 3,378 mg/L on 2024-10-10,
+  the converted value of the restored 763 mg/L as N reading.
