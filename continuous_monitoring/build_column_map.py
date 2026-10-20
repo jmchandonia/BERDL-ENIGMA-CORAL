@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""Build the measurement-label -> lakehouse column map for continuous monitoring.
+
+The continuous-monitoring builder writes TSV headers such as
+``concentration, molecule from list=dioxygen, state=dissolved, mg/L``.  When
+those TSVs were loaded into CORAL as bricks and synced to enigma.coral, each
+header became a column whose name is derived from ontology term names
+(``concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter``).
+
+Rather than re-implementing that derivation, this script pairs every locally
+generated brick TSV with its ``sys_ddt_typedef`` rows (TSV column order matches
+the brick variable order) and records the column name, description and unit
+the sync used.  Every label must map to exactly one column; conflicts abort.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+SCHEMA = REPO / "schema"
+DEFAULT_GENERATED_ROOT = Path("/scratch/jmc/field_automated_measurements")
+DEFAULT_OUT = Path(__file__).resolve().parent / "column_map.json"
+# Only locations fed by the HydroVu/LI-COR sources; pre-2020 spreadsheet bricks are out of scope.
+IN_SCOPE = re.compile(r"^hazen_[a-z0-9]+_(SSO-|EFPW|WS)")
+
+
+def markdown_rows(path: Path) -> list[list[str]]:
+    rows = []
+    for line in path.read_text().splitlines():
+        if not line.startswith("| Brick"):
+            continue
+        rows.append([field.strip() for field in line.split("|")[1:-1]])
+    return rows
+
+
+def first_term(text: str) -> str:
+    return text.split(",", 1)[0].strip().lower()
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--generated-root", type=Path, default=DEFAULT_GENERATED_ROOT)
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    args = parser.parse_args()
+
+    brick_by_name = {row[1].removesuffix(".hndarray"): row[0] for row in markdown_rows(SCHEMA / "ddt_ndarray_table.md")}
+    variables: dict[str, dict[int, dict[str, str]]] = defaultdict(dict)
+    for row in markdown_rows(SCHEMA / "sys_ddt_typedef_table.md"):
+        brick_id, column, data_type, scalar_type, _fk, comment, unit_id, unit_name = row[:8]
+        variable_number = row[11]
+        if data_type != "variable" or variable_number == "NULL" or scalar_type == "object_ref":
+            continue
+        variables[brick_id][int(variable_number)] = {
+            "column": column,
+            "scalar_type": scalar_type,
+            "description": comment,
+            "unit": None if unit_name == "NULL" else unit_name,
+            "unit_sys_oterm_id": None if unit_id == "NULL" else unit_id,
+        }
+
+    mapping: dict[str, dict[str, object]] = {}
+    sources: dict[str, set[str]] = defaultdict(set)
+    conflicts: list[str] = []
+    paired = 0
+    unmatched_tsvs = 0
+    for tsv in sorted(args.generated_root.glob("generated_continuous_monitoring*/tsv/*.tsv")):
+        brick_id = brick_by_name.get(tsv.stem)
+        if brick_id is None or not IN_SCOPE.match(tsv.stem):
+            unmatched_tsvs += 1
+            continue
+        with tsv.open(newline="") as handle:
+            header = next(csv.reader(handle, delimiter="\t"))
+        labels = header[1:]
+        brick_vars = variables.get(brick_id, {})
+        if not brick_vars:
+            # withdrawn/superseded bricks keep no typedef rows in enigma.coral
+            unmatched_tsvs += 1
+            continue
+        if len(brick_vars) != len(labels):
+            conflicts.append(f"{tsv}: {len(labels)} TSV columns vs {len(brick_vars)} typedef variables for {brick_id}")
+            continue
+        for index, label in enumerate(labels, start=1):
+            spec = brick_vars[index]
+            if first_term(label) != first_term(spec["description"]):
+                conflicts.append(f"{tsv}: column {index} label {label!r} vs typedef {spec['description']!r}")
+                continue
+            entry = {**spec, "label": label}
+            previous = mapping.get(label)
+            if previous is not None and previous["column"] != entry["column"]:
+                conflicts.append(f"{label!r}: {previous['column']} ({sorted(sources[label])[:1]}) vs {entry['column']} ({brick_id})")
+                continue
+            mapping[label] = entry
+            sources[label].add(brick_id)
+        paired += 1
+
+    columns: dict[str, set[str]] = defaultdict(set)
+    for label, entry in mapping.items():
+        columns[str(entry["column"])].add(label)
+    for column, labels in columns.items():
+        if len(labels) > 1:
+            print(f"note: column {column} has several labels: {sorted(labels)}", file=sys.stderr)
+
+    if conflicts:
+        print("\n".join(conflicts), file=sys.stderr)
+        raise SystemExit(f"{len(conflicts)} conflicts; column map not written")
+
+    out = {
+        "_comment": "Generated by build_column_map.py from locally generated brick TSVs paired with enigma.coral sys_ddt_typedef rows.",
+        "timestamp_column": {
+            "column": "time_series_datetime",
+            "scalar_type": "string",
+            "description": "datetime",
+            "unit": None,
+        },
+        "location_column": {
+            "column": "sdt_location_name",
+            "scalar_type": "string",
+            "description": "environmental sample location ID",
+            "references": "sdt_location.sdt_location_name",
+        },
+        "measurements": {label: {k: v for k, v in entry.items() if k != "label"} | {"example_bricks": sorted(sources[label])[:3]} for label, entry in sorted(mapping.items())},
+    }
+    args.out.write_text(json.dumps(out, indent=2) + "\n")
+    print(f"paired {paired} brick TSVs ({unmatched_tsvs} TSVs not loaded in CORAL); {len(mapping)} labels -> {len(columns)} columns; wrote {args.out}")
+
+
+if __name__ == "__main__":
+    main()

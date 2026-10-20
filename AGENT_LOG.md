@@ -1615,3 +1615,105 @@ Validation completed before live export:
   `enigma.coral` again holds exactly the 743 enabled tables; a sample of
   `ddt_brick0001853` (U1-SZ2 v3) returns nitrate 3,378 mg/L on 2024-10-10,
   the converted value of the restored 763 mg/L as N reading.
+
+## 2026-10-16 enigma.continuous_monitoring pipeline built (not yet loaded)
+
+- Added `continuous_monitoring/`, a daily, append-only lakehouse feed of the
+  Hazen HydroVu and LI-COR API data plus the LI-COR CSV exports. There is one
+  table per location/zone, with brick column names and comments, and two
+  bookkeeping tables (`table_metadata`, `ingest_runs`). API data is always
+  used, with no manual precedence. See `continuous_monitoring/README.md`.
+- `column_map.json` (37 labels) pairs 253 locally generated brick TSVs with
+  their `sys_ddt_typedef` rows, so the column names match the bricks exactly.
+- Deployed to `dipa:/data/edr/continuous_monitoring`, with a uv venv. The
+  `spark_connect_remote` and `berdl_remote` GitHub repositories are no longer
+  reachable, so those packages are vendored from the stout BERIL venv.
+- Dry-run backfill: 42 tables and 2,092,629 rows. Compared against all 62
+  active API-derived CORAL bricks: 377,528/377,528 brick rows present, and
+  2,805,329 values compared. The only differences are nitrate (the bricks
+  round to 4 decimals) and the WS3 wind/gust zeros, which are nulled here.
+- Not loaded yet. The repo `.env` KBase token is expired (401), and the
+  fetcher needs HydroVu and LI-COR credentials. Both go in
+  `dipa:/data/edr/continuous_monitoring/credentials.env`, which the user
+  must create.
+- Moved the monthly CORAL cron job from stout to dipa
+  (`continuous_monitoring/run_monthly_coral.sh`); crontab backups are in
+  `/h/jmc/crontab_backups/`.
+
+## 2026-10-16 continuous_monitoring: moved under the EDR tree; cadence and VZ/VSZ timestamp fixes
+
+- At the user's request, moved the work directory to
+  `dipa:/data/edr/field_automated_measurements/continuous_monitoring` and
+  recreated the uv venv there. `sync_niya.sh` now excludes
+  `continuous_monitoring/{credentials.env,.venv/,vendor/}` (backup
+  `.bak-20261016`). `credentials.env` was changed from 644 to 600.
+- Fetcher tested with the user's credentials: HydroVu and LI-COR are current
+  to within about 40 minutes. The loader dry run ran the full unattended
+  proxy chain from dipa. The KBase token expires 2026-10-28.
+- Found that HydroVu streams at SSO-L8/L9/M6/U3 interpolate hourly readings,
+  each instrument reading at its own minute. The bricks' 15-minute per-day
+  phase keeps mostly interpolated values. `cm_build.py` now detects each
+  instrument's real reading schedule from slope breaks in 6-hour windows:
+  - the threshold is computed per window, readings must recur, and the
+    saved schedule is kept while it fits;
+  - a dated history is kept in `state/reading_schedule.json`;
+  - low-signal channels borrow the hourly minute of another instrument in
+    the well.
+  In a simulation, partial-day rows agree with the full-day pass more than
+  99.7% of the time.
+- Lag tests against manual VuSitu logs (`continuous_monitoring/analysis/lag_test.py`)
+  show HydroVu Level TROLL VZ/VSZ timestamps are 4 h early, like SZ.
+  `cm_build.py` now shifts all SSO HydroVu channels.
+- The user deferred the CORAL fixes. They are written up in
+  `dipa:/data/edr/field_automated_measurements/CORAL_FIXES_PENDING.md`.
+- 2026-10-16: ontology update revised after checking PSI-MS 4.2.6: ME:0000512
+  is now `MS1 feature area` (PSI-MS MS:1001844; PSI-MS made "peak area"
+  obsolete), `thomson` dropped (deprecated by PSI-MS and IUPAC), and
+  `mass-to-charge ratio` kept as the name (owner preference) with synonym m/z
+  and dimensionless unit. Metabolomics values are `MS1 feature area`
+  [dimensionless unit]; the sample dimension adds `control` = negative
+  control (ExCtrl_1-4) or positive control (QC-SDM89-SOPv4). Install script
+  hashes updated; 14 bricks rebuilt and validated against the staged ontology.
+- 2026-10-16: ME:0000507 renamed to m/z (IUPAC, PSI-MS), synonym mass-to-charge ratio RELATED; install hashes updated; 14 bricks rebuilt and validated.
+- 2026-10-16: added OBO xrefs to PSI-MS on ME:0000506 (MS:1000894), ME:0000507 m/z (MS:1000040) and ME:0000512 (MS:1001844); CORAL's loader only types Ref:/ORef: xrefs, so these are inert there; install script checks them; 14 bricks rebuilt and validated.
+
+## 2026-10-19 continuous_monitoring: nitrate is nitrate; cron tunnel and BERDL routing failures
+
+- The user determined that the Aqua TROLL nitrate channel reports nitrate,
+  not nitrate-N. `cm_build.py` now sets `NITRATE_NO3_PER_N = 1.0` and writes a
+  new nitrate note.
+- `fix_nitrate_20261019.py` divides the existing lakehouse nitrate values by
+  4.4268, only for rows ingested before 2026-10-19, and fixes the notes in
+  `table_metadata`. It refuses to run twice (`ingest_runs`
+  `nitrate-not-nitrogen-20261019`). `run_daily.sh` runs it with `--if-needed`
+  before each load.
+- **Not yet applied.** Since 2026-10-19 BERDL routes Spark Connect sessions
+  for user jmc to another user's cluster ("This cluster belongs to
+  'praba_kbase'"). This happens from both dipa and stout and with both
+  metrics. and spark.berdl.kbase.us. It is a BERDL-side problem.
+- Daily cron runs on 10-17, 10-18 and 10-19 fetched but failed to open the
+  tunnel. Under cron there is no SSH agent, and the bastion only accepts the
+  passphrase-protected `~/.ssh/id_rsa`. Nothing has been appended since
+  2026-10-17 01:59Z. Unattended loading needs a user decision on a key.
+- CORAL item 0 (undo the Oct 9 nitrate conversion) was added to
+  `CORAL_FIXES_PENDING.md`; the user will fix CORAL in another session.
+- 2026-10-19: Aqua TROLL nitrate conversion undone: 154 replacement bricks in /scratch/jmc/field_automated_measurements/generated_continuous_monitoring_261019 (nitrate as recorded, mg/L NO3-), Update Data from the 261009 versions; see that repo's AGENT_LOG.
+- 2026-10-19 (later): the user chose keychain for the cron tunnel. `run_daily.sh`
+  sources `~/.keychain/$(hostname)-sh` (the agent that `~/.cshrc` starts on
+  interactive logins) when no agent is set. Tested under a cron-like `env -i`:
+  fetch, build, tunnel and JupyterHub all pass. The run stops only at Spark
+  Connect, where BERDL still routes jmc to the praba_kbase cluster. After a
+  dipa reboot, the user must log into dipa once to unlock `id_rsa`.
+
+## 2026-10-20 continuous_monitoring: BERDL routing fixed; nitrate corrected; caught up
+
+- BERDL fixed the Spark Connect routing bug (jmc → praba_kbase); the report is
+  `continuous_monitoring/analysis/berdl_spark_routing_report_20261019.md`.
+- Daily run `20261020T002326Z` (cron-like env, keychain tunnel) applied
+  `nitrate-not-nitrogen-20261019`: 18 Aqua TROLL tables were divided by
+  4.4268, sum checks were OK, and 18 `table_metadata` notes were replaced.
+  It then appended 6,338 rows to 34 tables to fill 2026-10-17..10-20.
+- Checked against fresh builds from the fixed code: 11,841 pre-fix and 3,295
+  newly appended nitrate values all match. No duplicate timestamps.
+- `cm_common.load_env_file` now lets `credentials.env` override inherited env:
+  the dipa login shell exports an old expired `KBASE_AUTH_TOKEN`.

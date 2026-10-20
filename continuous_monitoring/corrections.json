@@ -1,0 +1,12 @@
+{
+  "_comment": "Value ranges nulled by cm_build.py. Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair).",
+  "null_ranges": [
+    {
+      "table": "hazen_hobo_ws3",
+      "labels": ["wind speed, mph", "gust speed, mph"],
+      "start": "2025-03-27",
+      "end": "9999-12-31",
+      "reason": "the WS3 anemometer has reported only zeros since 2025-03-26 18:30 (CORAL dropped these columns from the 2026-01-23 to 2026-04-30 brick for the same reason)"
+    }
+  ]
+}
