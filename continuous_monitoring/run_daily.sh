@@ -103,7 +103,11 @@ log "jupyterhub"
 "$BASE/.venv/bin/berdl-remote" spawn --timeout 180 >> "$LOG" 2>&1 || fail "berdl-remote spawn"
 
 log "nitrate correction (one-time; no-op once recorded in ingest_runs)"
-"$PY" fix_nitrate_20261019.py --if-needed >> "$LOG" 2>&1 || fail "nitrate correction"
+# Non-fatal: the correction is permanently recorded, so this is a no-op whose
+# only work is opening a Spark session.  That session has no readiness wait, so
+# it can lose the spawn race (pod up, port 15002 not yet listening).  Never let
+# that block the load, which rides out the same race with --wait-for-spark.
+"$PY" fix_nitrate_20261019.py --if-needed >> "$LOG" 2>&1 || log "nitrate correction step failed (continuing; it is a recorded no-op)"
 
 log "load"
 "$PY" cm_load.py --staging "$STAGE" --run-id "$RUN_ID" --wait-for-spark 300 >> "$LOG" 2>&1 || fail "load"
