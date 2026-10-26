@@ -73,21 +73,34 @@ def fixed_columns() -> dict[str, tuple[str, str]]:
     }
 
 
+def token_expiry(token: str) -> tuple[datetime | None, int | None]:
+    """Return (expiry datetime UTC, days remaining), or (None, None) if unknown."""
+    try:
+        response = requests.get(KBASE_TOKEN_URL, headers={"Authorization": token}, timeout=30)
+        response.raise_for_status()
+        expires = response.json().get("expires")
+    except Exception:
+        return None, None
+    if not expires:
+        return None, None
+    dt = datetime.fromtimestamp(expires / 1000, tz=timezone.utc)
+    return dt, (dt - datetime.now(timezone.utc)).days
+
+
 def check_token_expiry(token: str) -> str | None:
-    """Return a warning if the KBase token expires within TOKEN_WARN_DAYS."""
+    """Return a warning if the KBase token is expired or expires within TOKEN_WARN_DAYS."""
     try:
         response = requests.get(KBASE_TOKEN_URL, headers={"Authorization": token}, timeout=30)
         if response.status_code == 401:
             return f"KBase token is invalid or expired; replace KBASE_AUTH_TOKEN in {cm.credentials_file()}"
         response.raise_for_status()
-        expires = response.json().get("expires")
     except Exception as exc:  # the load itself will report auth failures
         return f"could not check KBase token expiry: {exc}"
-    if not expires:
+    dt, days = token_expiry(token)
+    if dt is None:
         return None
-    remaining = datetime.fromtimestamp(expires / 1000, tz=timezone.utc) - datetime.now(timezone.utc)
-    if remaining.days < TOKEN_WARN_DAYS:
-        return f"KBase token expires in {remaining.days} days ({datetime.fromtimestamp(expires / 1000, tz=timezone.utc):%Y-%m-%d}); replace KBASE_AUTH_TOKEN in {cm.credentials_file()}"
+    if days < TOKEN_WARN_DAYS:
+        return f"KBase token expires in {days} days ({dt:%Y-%m-%d}); replace KBASE_AUTH_TOKEN in {cm.credentials_file()}"
     return None
 
 
@@ -222,7 +235,7 @@ class Loader:
         after = self.spark.table(target).count()
         return len(frame), after - before
 
-    def write_table_metadata(self, manifest_tables: dict, existing: set[str]) -> None:
+    def write_table_metadata(self, manifest_tables: dict, existing: set[str]) -> dict:
         table = "table_metadata"
         specs = {
             "table_name": ("STRING", comment("data table name in this namespace", type="primary_key")),
@@ -240,7 +253,7 @@ class Loader:
         }
         if self.dry_run:
             log(f"[dry-run] would rewrite {table} with {len(manifest_tables)} tables")
-            return
+            return {}
         if table not in existing:
             ddl = ", ".join(f"{quoted(c)} {t} COMMENT {sql_string(cmt)}" for c, (t, cmt) in specs.items())
             self.sql(f"CREATE TABLE {full_name(table)} ({ddl}) USING iceberg COMMENT {sql_string('table_metadata - one row per continuous-monitoring data table')}")
@@ -250,11 +263,13 @@ class Loader:
                 previous[row["table_name"]] = row.asDict()
         data_tables = sorted(t for t in self.existing_tables() if t.startswith("hazen_"))
         rows = []
+        latest: dict[str, dict] = {}
         for name in data_tables:
             ts = quoted(cm.TIMESTAMP_COLUMN)
             stats = self.spark.sql(
                 f"SELECT min_by({ts}, to_timestamp({ts})) AS first_ts, max_by({ts}, to_timestamp({ts})) AS last_ts, count(*) AS n FROM {full_name(name)}"
             ).collect()[0]
+            latest[name] = {"last_timestamp": stats["last_ts"], "row_count": int(stats["n"])}
             meta = manifest_tables.get(name, {}).get("metadata") or previous.get(name) or {}
             notes = meta.get("notes", [])
             provenance = meta.get("provenance", [])
@@ -282,6 +297,7 @@ class Loader:
         self.spark.createDataFrame(frame, schema=schema).createOrReplaceTempView("cm_meta")
         self.spark.sql(f"DELETE FROM {full_name(table)}")
         self.spark.sql(f"INSERT INTO {full_name(table)} SELECT * FROM cm_meta")
+        return latest
 
     def record_run(self, record: dict, existing: set[str]) -> None:
         table = "ingest_runs"
@@ -348,6 +364,7 @@ def main() -> None:
     existing = loader.existing_tables() if not args.dry_run or _namespace_exists(spark) else set()
 
     per_table: dict[str, dict[str, int]] = {}
+    latest: dict[str, dict] = {}
     status, error = "ok", None
     try:
         for table, info in sorted(manifest["tables"].items()):
@@ -360,7 +377,7 @@ def main() -> None:
             staged, appended = loader.append(table, args.staging / info["tsv"], columns)
             per_table[table] = {"staged": staged, "appended": appended}
             log(f"{table}: staged {staged}, appended {appended} ({time.monotonic() - started_table:.0f}s)")
-        loader.write_table_metadata(manifest["tables"], existing)
+        latest = loader.write_table_metadata(manifest["tables"], existing)
     except Exception as exc:
         status, error = "error", repr(exc)
         raise
@@ -380,7 +397,20 @@ def main() -> None:
             loader.record_run(record, loader.existing_tables() if not args.dry_run else existing)
         except Exception as exc:  # do not mask the original error
             print(f"could not record run: {exc!r}", file=sys.stderr)
-        (args.staging / "load_result.json").write_text(json.dumps(record, indent=2, default=str) + "\n")
+        # Human-readable summary for run_daily.sh's weekday success report.
+        expires_dt, expires_days = token_expiry(token)
+        summary = dict(record)
+        summary["tables"] = {
+            t: {"appended": v["appended"], "last_timestamp": (latest.get(t) or {}).get("last_timestamp")}
+            for t, v in sorted(per_table.items())
+        }
+        summary["latest_timestamp"] = max(
+            (v.get("last_timestamp") for v in latest.values() if v.get("last_timestamp")),
+            default=None,
+        )
+        summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
+        summary["token_days_left"] = expires_days
+        (args.staging / "load_result.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
     log(f"run {run_id}: {record['rows_appended']} rows appended across {len(per_table)} tables")
 
 

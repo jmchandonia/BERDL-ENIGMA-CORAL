@@ -14,6 +14,8 @@ BASE=${CM_WORK_ROOT:-/data/edr/field_automated_measurements/continuous_monitorin
 CODE=$BASE/code
 PY=$BASE/.venv/bin/python
 BASTION=${CM_BASTION:-ac.jmchandonia@login1.berkeley.kbase.us}
+# Weekday success report recipient; relays to the real inbox via lambic.
+REPORT_TO=${CM_REPORT_TO:-jmc}
 RUN_ID=$(date -u +%Y%m%dT%H%M%SZ)
 STAGE=$BASE/staging/$RUN_ID
 LOAD_ONLY=
@@ -53,6 +55,29 @@ fail() {
 
 log() { echo "[$(date '+%F %T')] $*" >> "$LOG"; }
 
+# A positive confirmation on weekdays (Mon-Fri) lets the user tell "no mail
+# because nothing failed" apart from "no mail because the whole run died".
+# Failures still mail via cron (fail() prints to stdout); this is the success
+# counterpart.  No-op on weekends and if sendmail is missing.
+is_weekday() { d=$(date +%u); [ "$d" -ge 1 ] && [ "$d" -le 5 ]; }
+
+send_report() {  # $1 = subject; body on stdin
+    is_weekday || { cat >/dev/null; return 0; }
+    [ -x /usr/sbin/sendmail ] || { cat >/dev/null; return 0; }
+    { printf 'To: %s\n' "$REPORT_TO"
+      printf 'Subject: %s\n' "$1"
+      printf 'Auto-Submitted: auto-generated\n\n'
+      cat
+    } | /usr/sbin/sendmail -t 2>>"$LOG" || log "weekday report send failed"
+}
+
+report_load() {  # email the success report built from the staging load_result.json
+    result="$STAGE/load_result.json"
+    [ -f "$result" ] || { log "no load_result.json; skipping weekday report"; return 0; }
+    subject=$("$PY" cm_report.py "$result" --subject 2>>"$LOG") || subject="[continuous_monitoring] OK $RUN_ID"
+    "$PY" cm_report.py "$result" 2>>"$LOG" | send_report "$subject"
+}
+
 cd "$CODE" || fail "cd $CODE"
 
 if [ -z "$LOAD_ONLY" ]; then
@@ -71,6 +96,12 @@ if [ "$tables" -eq 0 ]; then
     [ -f "$STAGE/build_state_pending.json" ] && mv "$STAGE/build_state_pending.json" "$BASE/state/build_state.json"
     [ -f "$STAGE/reading_schedule_pending.json" ] && mv "$STAGE/reading_schedule_pending.json" "$BASE/state/reading_schedule.json"
     grep -h "^WARNING" "$LOG"
+    send_report "[continuous_monitoring] OK $RUN_ID: no new data" <<EOF
+enigma.continuous_monitoring daily run $RUN_ID succeeded.
+
+No new readings were available to append this run (fetch and build ran
+cleanly; every staged row was already in the lakehouse).
+EOF
     cleanup
     exit 0
 fi
@@ -114,6 +145,7 @@ log "load"
 [ -f "$STAGE/build_state_pending.json" ] && mv "$STAGE/build_state_pending.json" "$BASE/state/build_state.json"
 [ -f "$STAGE/reading_schedule_pending.json" ] && mv "$STAGE/reading_schedule_pending.json" "$BASE/state/reading_schedule.json"
 grep -h "^WARNING" "$LOG"
+report_load
 log "done"
 cleanup
 exit 0
