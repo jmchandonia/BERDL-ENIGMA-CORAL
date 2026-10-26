@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import statistics
 import sys
 import time
 import uuid
@@ -34,6 +35,15 @@ import cm_common as cm
 CHUNK_BYTES = 400_000
 TOKEN_WARN_DAYS = 14
 KBASE_TOKEN_URL = "https://kbase.us/services/auth/api/V2/token"
+
+# Staleness alert: on a normal daily run every instrument should produce fresh
+# data, so a table whose latest reading is much older than its own cadence means
+# that instrument has gone silent.  A table is flagged stale when the gap between
+# its last reading and now exceeds max(STALE_HOURS, STALE_GAP_FACTOR x its own
+# typical reading interval) -- the floor catches fast instruments promptly while
+# the cadence multiple gives a genuinely slow instrument a proportionate leash.
+STALE_HOURS = float(os.environ.get("CM_STALE_HOURS", "36"))
+STALE_GAP_FACTOR = float(os.environ.get("CM_STALE_GAP_FACTOR", "6"))
 
 
 def log(msg: str) -> None:
@@ -269,7 +279,14 @@ class Loader:
             stats = self.spark.sql(
                 f"SELECT min_by({ts}, to_timestamp({ts})) AS first_ts, max_by({ts}, to_timestamp({ts})) AS last_ts, count(*) AS n FROM {full_name(name)}"
             ).collect()[0]
-            latest[name] = {"last_timestamp": stats["last_ts"], "row_count": int(stats["n"])}
+            # Typical cadence from the most recent readings (robust to old gaps).
+            recent = self.spark.sql(
+                f"SELECT to_timestamp({ts}) AS t FROM {full_name(name)} WHERE {ts} IS NOT NULL ORDER BY t DESC LIMIT 100"
+            ).collect()
+            times = sorted(r["t"] for r in recent if r["t"] is not None)
+            gaps = [(b - a).total_seconds() for a, b in zip(times, times[1:])]
+            typical_gap_min = round(statistics.median(gaps) / 60, 1) if gaps else None
+            latest[name] = {"last_timestamp": stats["last_ts"], "row_count": int(stats["n"]), "typical_gap_min": typical_gap_min}
             meta = manifest_tables.get(name, {}).get("metadata") or previous.get(name) or {}
             notes = meta.get("notes", [])
             provenance = meta.get("provenance", [])
@@ -334,6 +351,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="connect and inspect, but do not create or write anything")
     parser.add_argument("--tables", nargs="*", help="only load these tables")
     parser.add_argument("--wait-for-spark", type=int, default=0, help="seconds to keep retrying until Spark Connect answers")
+    parser.add_argument("--check-staleness", action="store_true", help="flag tables whose latest reading has gone stale (normal daily runs only, not backfills)")
     args = parser.parse_args()
 
     cm.load_env_file(cm.credentials_file())
@@ -410,6 +428,27 @@ def main() -> None:
         )
         summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
         summary["token_days_left"] = expires_days
+        # Staleness: on a normal run (not a backfill), flag any instrument whose
+        # latest reading is older than its cadence allows -- it has gone silent.
+        if args.check_staleness:
+            now = datetime.now(timezone.utc)
+            stale = {}
+            for name, info in sorted(latest.items()):
+                last = info.get("last_timestamp")
+                if not last:
+                    continue
+                try:
+                    last_dt = datetime.fromisoformat(str(last))
+                except ValueError:
+                    continue
+                if last_dt.tzinfo is None:
+                    last_dt = last_dt.replace(tzinfo=timezone.utc)
+                age_hours = (now - last_dt).total_seconds() / 3600
+                gap_min = info.get("typical_gap_min")
+                threshold = max(STALE_HOURS, STALE_GAP_FACTOR * gap_min / 60) if gap_min else STALE_HOURS
+                if age_hours > threshold:
+                    stale[name] = {"last_timestamp": last, "age_hours": round(age_hours, 1), "typical_gap_min": gap_min}
+            summary["stale_tables"] = stale
         (args.staging / "load_result.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
     log(f"run {run_id}: {record['rows_appended']} rows appended across {len(per_table)} tables")
 

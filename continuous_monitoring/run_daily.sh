@@ -141,7 +141,11 @@ log "nitrate correction (one-time; no-op once recorded in ingest_runs)"
 "$PY" fix_nitrate_20261019.py --if-needed >> "$LOG" 2>&1 || log "nitrate correction step failed (continuing; it is a recorded no-op)"
 
 log "load"
-"$PY" cm_load.py --staging "$STAGE" --run-id "$RUN_ID" --wait-for-spark 300 >> "$LOG" 2>&1 || fail "load"
+# Flag silent instruments only on a normal daily run; a --load-only backfill
+# loads a fixed old staging dir where stale timestamps are expected.
+STALE_FLAG=
+[ -z "$LOAD_ONLY" ] && STALE_FLAG=--check-staleness
+"$PY" cm_load.py --staging "$STAGE" --run-id "$RUN_ID" --wait-for-spark 300 $STALE_FLAG >> "$LOG" 2>&1 || fail "load"
 [ -f "$STAGE/build_state_pending.json" ] && mv "$STAGE/build_state_pending.json" "$BASE/state/build_state.json"
 [ -f "$STAGE/reading_schedule_pending.json" ] && mv "$STAGE/reading_schedule_pending.json" "$BASE/state/reading_schedule.json"
 grep -h "^WARNING" "$LOG"

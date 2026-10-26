@@ -28,9 +28,23 @@ def short_ts(ts: str | None) -> str:
     return text[:16]
 
 
+def fmt_age(hours: float | None) -> str:
+    if hours is None:
+        return "?"
+    if hours >= 48:
+        return f"{hours / 24:.1f}d"
+    return f"{hours:.0f}h"
+
+
 def subject(data: dict) -> str:
     appended = data.get("rows_appended", 0)
     tables = sum(1 for v in data.get("tables", {}).values() if v.get("appended"))
+    stale = data.get("stale_tables") or {}
+    if stale:
+        return (
+            f"[continuous_monitoring] ALERT {data.get('ingest_run_id', '?')}: "
+            f"{len(stale)} instrument(s) silent; {appended:,} rows / {tables} tables appended"
+        )
     return (
         f"[continuous_monitoring] OK {data.get('ingest_run_id', '?')}: "
         f"{appended:,} rows / {tables} tables, latest {short_ts(data.get('latest_timestamp'))}"
@@ -40,9 +54,26 @@ def subject(data: dict) -> str:
 def body(data: dict) -> str:
     tables = data.get("tables", {})
     updated = {t: v for t, v in tables.items() if v.get("appended")}
-    unchanged = [t for t, v in tables.items() if not v.get("appended")]
+    stale = data.get("stale_tables") or {}
 
-    lines = [
+    lines = []
+    if stale:
+        lines += [
+            f"*** ALERT: {len(stale)} instrument(s) not reporting as expected ***",
+            "The load itself succeeded, but these tables have no recent data —",
+            "check whether the instrument or its upload has stopped:",
+            "",
+        ]
+        width = max(len(t) for t in stale)
+        for name in sorted(stale):
+            info = stale[name]
+            lines.append(
+                f"  {name:<{width}}  last seen {short_ts(info.get('last_timestamp'))} "
+                f"({fmt_age(info.get('age_hours'))} ago)"
+            )
+        lines += ["", "-" * 60, ""]
+
+    lines += [
         "enigma.continuous_monitoring daily load succeeded.",
         "",
         f"Run:            {data.get('ingest_run_id', '?')}  ({data.get('mode', '?')})",
@@ -64,9 +95,6 @@ def body(data: dict) -> str:
     for name in sorted(updated):
         info = updated[name]
         lines.append(f"  {name:<{width}}  {info['appended']:>6,}  {short_ts(info.get('last_timestamp'))}")
-
-    if unchanged:
-        lines += ["", f"No new rows this run ({len(unchanged)}): {', '.join(sorted(unchanged))}"]
 
     files_deferred = json.loads(data.get("details", "{}")).get("files_deferred")
     if files_deferred:
