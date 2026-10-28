@@ -74,8 +74,12 @@ send_report() {  # $1 = subject; body on stdin
 report_load() {  # email the success report built from the staging load_result.json
     result="$STAGE/load_result.json"
     [ -f "$result" ] || { log "no load_result.json; skipping weekday report"; return 0; }
-    subject=$("$PY" cm_report.py "$result" --subject 2>>"$LOG") || subject="[continuous_monitoring] OK $RUN_ID"
-    "$PY" cm_report.py "$result" 2>>"$LOG" | send_report "$subject"
+    # Only weekdays carry a message, and the silent-instrument state advances only
+    # when a message goes out, so "newly silent" means "since the last message".
+    is_weekday || return 0
+    state="$BASE/state/stale_reported.json"
+    subject=$("$PY" cm_report.py "$result" --state "$state" --subject 2>>"$LOG") || subject="[continuous_monitoring] OK $RUN_ID"
+    "$PY" cm_report.py "$result" --state "$state" --commit 2>>"$LOG" | send_report "$subject"
 }
 
 cd "$CODE" || fail "cd $CODE"
