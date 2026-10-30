@@ -13,8 +13,14 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 
+# Deployment lives at <FAM_ROOT>/sso_staging with code/ beside fetch/, staging/,
+# state/, logs/ and credentials.env (same layout as continuous_monitoring).
+# WORK_ROOT defaults to that absolute path — NOT the code dir — so fetch/state/
+# staging resolve identically no matter the CWD; for local dev set SSO_WORK_ROOT.
+FAM_ROOT = Path(os.environ.get("SSO_FAM_ROOT", "/data/edr/field_automated_measurements"))
+
 # Working root for code, venv, fetch cache, staged files, state and logs.
-WORK_ROOT = Path(os.environ.get("SSO_WORK_ROOT", str(HERE)))
+WORK_ROOT = Path(os.environ.get("SSO_WORK_ROOT", str(FAM_ROOT / "sso_staging")))
 FETCH_DIR = Path(os.environ.get("SSO_FETCH_DIR", str(WORK_ROOT / "fetch")))
 STAGING_DIR = WORK_ROOT / "staging"
 STATE_DIR = WORK_ROOT / "state"

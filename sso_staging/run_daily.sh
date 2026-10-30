@@ -18,6 +18,9 @@ set -u
 EDR=${SSO_EDR_ROOT:-/data/edr/field_automated_measurements}
 CM_BASE=${CM_WORK_ROOT:-$EDR/continuous_monitoring}
 SSO_BASE=${SSO_WORK_ROOT:-$EDR/sso_staging}
+# Export so the Python children resolve fetch/state/staging under the same roots
+# (both default to <FAM_ROOT>/<ns> absolutely; this honors any override too).
+export CM_WORK_ROOT="$CM_BASE" SSO_WORK_ROOT="$SSO_BASE" SSO_FAM_ROOT="$EDR"
 CM_CODE=$CM_BASE/code
 SSO_CODE=$SSO_BASE/code
 CM_PY=${CM_PY:-$CM_BASE/.venv/bin/python}
