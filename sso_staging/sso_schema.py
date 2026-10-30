@@ -1,0 +1,310 @@
+"""Authoritative schema for the enigma.sso_staging namespace.
+
+Single source of truth for all three data tables, their column names, types and
+JSON comments, the per-measurement COMO microtype (recorded in `ddt_brick`), and
+the set of source-file columns we know how to map.  The parsers, the loader and
+the drift check all read from here, so the lakehouse schema and the review docs
+in `examples/*.columns.md` stay in lockstep.
+
+Design rules (locked 2026-10-29/30; see PLAN.md / NAMING.md):
+  * Measurement column NAMES are CORAL's own derivation from the microtype label,
+    minimal context (a context token appears only to break a lakehouse collision).
+  * oterm ids never go in a column name -- they live in `ddt_brick`.
+  * method / condition / instrument are free-text string-typed COMO properties,
+    so their values are not minted.  The only mint in the namespace is the
+    `liter per minute` unit (unit_oterm=None below); resolve at build time.
+"""
+
+from __future__ import annotations
+
+# --- COMO / ontology ids (re-verify against live enigma.coral before first load) ---
+
+VALUE_TYPE = {  # measurement term -> sys_oterm id
+    "concentration": "ME:0000129",
+    "temperature": "ME:0000123",
+    "rate": "ME:0000264",
+    "volume": "ME:0000360",
+    "mass": "ME:0000135",
+    "pH": "ME:0000121",
+}
+
+MOLECULE_CHEBI = {
+    "dinitrogen oxide": "CHEBI:17045",
+    "carbon dioxide": "CHEBI:16526",
+    "methane": "CHEBI:16183",
+    "ammonia": "CHEBI:16134",
+    "water": "CHEBI:15377",
+    "dioxygen": "CHEBI:15379",
+}
+
+UNIT_OTERM = {  # unit label -> sys_oterm id (None => must be minted / resolved at build)
+    "parts per million by volume": "ME:0000348",
+    "parts per billion": "UO:0000170",
+    "percent": "UO:0000187",
+    "degree Celsius": "UO:0000027",
+    "liter": "UO:0000099",
+    "gram": "UO:0000021",
+    "pH": "UO:0000196",
+    "second": "UO:0000010",
+    "liter per minute": None,  # MINT under volumetric flow rate unit (UO:0000270)
+}
+
+# Units with no live oterm that the build step must reuse-or-mint, with parent.
+MINT_UNITS = {"liter per minute": {"parent": "UO:0000270", "parent_name": "volumetric flow rate unit"}}
+
+CRDS = [("method", "cavity ring-down spectroscopy")]  # Picarro context fragment
+
+
+def _meas(name, src, value_type, unit, *, molecule=None, context=(), note=None):
+    """Build a measurement column spec (DOUBLE) carrying its COMO microtype."""
+    return {
+        "name": name,
+        "src": src,
+        "type": "DOUBLE",
+        "role": "measurement",
+        "note": note,
+        "ddt": {
+            "value_type": value_type,
+            "value_oterm": VALUE_TYPE[value_type],
+            "molecule": molecule,
+            "molecule_chebi": MOLECULE_CHEBI.get(molecule) if molecule else None,
+            "context": list(context),  # ordered [(property, value), ...], free text
+            "unit": unit,
+            "unit_oterm": UNIT_OTERM[unit],
+        },
+    }
+
+
+def microtype_label(ddt: dict) -> str:
+    """CORAL microtype label, e.g.
+    'concentration, molecule from list=dinitrogen oxide, instrument=picarro,
+     method=cavity ring-down spectroscopy, condition=dry'."""
+    parts = [ddt["value_type"]]
+    if ddt.get("molecule"):
+        parts.append(f"molecule from list={ddt['molecule']}")
+    parts += [f"{prop}={val}" for prop, val in ddt["context"]]
+    return ", ".join(parts)
+
+
+# --- shared column fragments ---
+
+def _fk_location():
+    return {
+        "name": "sdt_location_name", "src": None, "type": "STRING", "role": "fk",
+        "desc": "environmental sample location ID",
+        "references": "enigma.coral.sdt_location.sdt_location_name",
+    }
+
+
+def _bookkeeping():
+    return [
+        {"name": "provenance", "src": None, "type": "STRING", "role": "book",
+         "desc": "data source and source-file date"},
+        {"name": "source_file", "src": None, "type": "STRING", "role": "book",
+         "desc": "raw source file name the row was built from"},
+        {"name": "ingest_run_id", "src": None, "type": "STRING", "role": "fk",
+         "desc": "load that wrote the row", "references": "ingest_runs.ingest_run_id"},
+        {"name": "ingested_at", "src": None, "type": "TIMESTAMP", "role": "book",
+         "desc": "time the row was written (UTC)"},
+    ]
+
+
+# ======================================================================
+# picarro_gas  -- append + dedup on epoch_time
+# ======================================================================
+
+GAS_COLUMNS = [
+    {"name": "time_series_datetime", "src": "TIME", "type": "STRING", "role": "dim",
+     "desc": "datetime (ISO 8601 with UTC offset, America/New_York)"},
+    {"name": "epoch_time", "src": "EPOCH_TIME", "type": "DOUBLE", "role": "key",
+     "desc": "unix epoch seconds; dedup key (one multiplexer port is live at a time)"},
+
+    _meas("concentration_molecule_from_list_dinitrogen_oxide_condition_wet_parts_per_million_by_volume",
+          "N2O_ppm", "concentration", "parts per million by volume",
+          molecule="dinitrogen oxide", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+    _meas("concentration_molecule_from_list_dinitrogen_oxide_condition_dry_parts_per_million_by_volume",
+          "N2O_dry_ppm", "concentration", "parts per million by volume",
+          molecule="dinitrogen oxide", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+    _meas("concentration_molecule_from_list_carbon_dioxide_condition_wet_parts_per_million_by_volume",
+          "CO2_ppm", "concentration", "parts per million by volume",
+          molecule="carbon dioxide", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+    _meas("concentration_molecule_from_list_carbon_dioxide_condition_dry_parts_per_million_by_volume",
+          "CO2_dry_ppm", "concentration", "parts per million by volume",
+          molecule="carbon dioxide", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+    _meas("concentration_molecule_from_list_methane_condition_wet_parts_per_million_by_volume",
+          "CH4_ppm", "concentration", "parts per million by volume",
+          molecule="methane", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+    _meas("concentration_molecule_from_list_methane_condition_dry_parts_per_million_by_volume",
+          "CH4_dry_ppm", "concentration", "parts per million by volume",
+          molecule="methane", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+    _meas("concentration_molecule_from_list_ammonia_condition_wet_parts_per_billion",
+          "NH3_ppb", "concentration", "parts per billion",
+          molecule="ammonia", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+    _meas("concentration_molecule_from_list_ammonia_condition_dry_parts_per_billion",
+          "NH3_dry", "concentration", "parts per billion",
+          molecule="ammonia", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+    _meas("concentration_molecule_from_list_water_percent",
+          "H2O_%", "concentration", "percent",
+          molecule="water", context=[("instrument", "picarro"), *CRDS]),
+    _meas("concentration_molecule_from_list_dioxygen_instrument_picarro_condition_wet_percent",
+          "O2_%", "concentration", "percent",
+          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+    _meas("concentration_molecule_from_list_dioxygen_instrument_picarro_condition_dry_percent",
+          "O2_dry_%", "concentration", "percent",
+          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+    _meas("concentration_molecule_from_list_dioxygen_instrument_firesting_percent",
+          "O2p_%", "concentration", "percent",
+          molecule="dioxygen", context=[("instrument", "firesting"), ("method", "optical oxygen sensor")]),
+    _meas("temperature_degree_celsius",
+          "TrailerTemp_C", "temperature", "degree Celsius",
+          context=[("instrument", "firesting")]),
+
+    _fk_location(),
+    {"name": "location", "src": "Port", "type": "STRING", "role": "dim",
+     "desc": "well-port string, e.g. U2-SZ1 (raw Port); QC channel name for reference channels"},
+    {"name": "zone", "src": "Depth", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2 (raw Depth)"},
+    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. U2 (raw Well)"},
+    {"name": "channel_type", "src": None, "type": "STRING", "role": "dim",
+     "desc": "well (a sampled well-port) or reference (Drierite/Std/N2 QC channel)"},
+    {"name": "multiplexer_on_state", "src": "on_state", "type": "INT", "role": "dim",
+     "desc": "Eosense multiplexer live-port state"},
+    {"name": "cycle_set", "src": "set", "type": "INT", "role": "dim", "desc": "Picarro cycle counter (raw set)"},
+    {"name": "port_seconds", "src": "timedelta", "type": "DOUBLE", "role": "dim",
+     "desc": "seconds this port had been monitored (raw timedelta)", "unit": "second"},
+    {"name": "firesting_datetime", "src": "DateTime", "type": "STRING", "role": "dim",
+     "desc": "Firesting time used to join the frames (traceability)"},
+    *_bookkeeping(),
+]
+
+# Gas source headers we know how to handle (anything else => drift/flag).
+# The file carries a leading UNNAMED index column (header field 1 blank); the
+# parser reads by header name, so the index column is simply ignored.
+GAS_KNOWN_SOURCE = {
+    "TIME", "EPOCH_TIME", "N2O_ppm", "N2O_dry_ppm", "CO2_ppm", "CO2_dry_ppm",
+    "CH4_ppm", "CH4_dry_ppm", "H2O_%", "NH3_ppb", "NH3_dry", "O2_%", "O2_dry_%",
+    "on_state", "timedelta", "set", "DateTime", "O2p_%", "TrailerTemp_C",
+    "Port", "Depth", "Well",
+}
+
+# ======================================================================
+# field_metadata  -- full refresh from source (no stable unique key: a
+# timepoint x well can have several draws); shrink-guarded.
+# ======================================================================
+
+FIELD_COLUMNS = [
+    {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
+    {"name": "sample_date", "src": "Date (YYYYMMDD)", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    _fk_location(),
+    {"name": "location", "src": "Well", "type": "STRING", "role": "dim",
+     "desc": "well-port string, e.g. U1-SZ1 (EFPW wells have no zone)"},
+    {"name": "zone", "src": None, "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
+    {"name": "well", "src": None, "type": "STRING", "role": "dim", "desc": "well id, e.g. U1"},
+    {"name": "pump_time_on", "src": "Pump Time On", "type": "STRING", "role": "dim",
+     "desc": "pump start HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
+    {"name": "pump_time_off", "src": "Pump Time Off", "type": "STRING", "role": "dim",
+     "desc": "pump stop HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
+
+    _meas("rate_instrument_pump_liter_per_minute", "Pump Rate (L/min)", "rate", "liter per minute",
+          context=[("instrument", "pump")]),
+    _meas("volume_liter", "Total Volume (L)", "volume", "liter"),
+    _meas("ph_ph", "In-field pH", "pH", "pH"),
+    _meas("mass_gram", "Restek Bag Mass (g)", "mass", "gram",
+          note="gross as-weighed mass of the Restek gas-sampling bag (includes bag tare; "
+               "not net gas mass -- verified from data 2026-10-30, ~95-116 g, bag-dominated)"),
+
+    {"name": "field_notes", "src": "Field Notes", "type": "STRING", "role": "dim", "desc": "field notes, free text"},
+    *_bookkeeping(),
+]
+
+FIELD_KNOWN_SOURCE = {
+    "Timepoint", "Date (YYYYMMDD)", "Well", "Pump Time On", "Pump Time Off",
+    "Pump Rate (L/min)", "Total Volume (L)", "In-field pH", "Restek Bag Mass (g)", "Field Notes",
+}
+
+# ======================================================================
+# sample_registry  -- upsert (MERGE) by sdt_sample_name; no COMO measurements.
+# ======================================================================
+
+REGISTRY_COLUMNS = [
+    {"name": "sdt_sample_name", "src": "Sample ID", "type": "STRING", "role": "pk_fk",
+     "desc": "environmental sample ID; normalized CORAL id (assay token uppercased), validated ^[A-Z0-9-]+$",
+     "references": "enigma.coral.sdt_sample.sdt_sample_name"},
+    {"name": "source_sample_id", "src": "Sample ID", "type": "STRING", "role": "dim",
+     "desc": "verbatim manifest Sample ID (traceability)"},
+    {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
+    {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    _fk_location(),
+    {"name": "location", "src": "Well", "type": "STRING", "role": "dim", "desc": "well-port string, e.g. U1-SZ1"},
+    {"name": "zone", "src": None, "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
+    {"name": "assay", "src": "Assay", "type": "STRING", "role": "dim", "desc": "raw manifest assay label, e.g. Anions, NitrateIso"},
+    {"name": "assay_token", "src": None, "type": "STRING", "role": "dim", "desc": "uppercased assay token used in the id, e.g. ANIONS"},
+    {"name": "storage_condition", "src": "Storage Condition", "type": "STRING", "role": "dim", "desc": "e.g. '4C, acidified', '-80C'"},
+    {"name": "sample_volume", "src": "Volume", "type": "STRING", "role": "dim", "desc": "planned sample volume as recorded, e.g. '30 mL' (registry attribute, not a measurement)"},
+    {"name": "container", "src": "Container", "type": "STRING", "role": "dim", "desc": "container as recorded, e.g. '30 mL VOA vial', 'Restek Bags'"},
+    {"name": "responsible_person", "src": "Responsible Person", "type": "STRING", "role": "dim", "desc": "person responsible for the sample"},
+    {"name": "pi", "src": "PI", "type": "STRING", "role": "dim", "desc": "principal investigator"},
+    {"name": "ship_date", "src": "Ship Date", "type": "STRING", "role": "dim", "desc": "ship date, YYYYMMDD, or empty"},
+    {"name": "tracking_number", "src": "Tracking #", "type": "STRING", "role": "dim", "desc": "shipment tracking number, or empty"},
+    {"name": "notes", "src": "Notes", "type": "STRING", "role": "dim", "desc": "manifest notes, free text"},
+    *_bookkeeping(),
+]
+
+REGISTRY_KNOWN_SOURCE = {
+    "Timepoint", "Date", "Well", "Assay", "Sample ID", "Storage Condition",
+    "Volume", "Notes", "Container", "Responsible Person", "PI", "Ship Date", "Tracking #",
+}
+
+# ======================================================================
+
+TABLES = {
+    "picarro_gas": {
+        "load_mode": "append_dedup",
+        "dedup_key": "epoch_time",
+        "sheet": None,  # CSV
+        "columns": GAS_COLUMNS,
+        "known_source": GAS_KNOWN_SOURCE,
+        "description": "Picarro CRDS + Eosense multiplexer + Firesting O2 gas monitoring; "
+                       "one row per analyzer cycle step, tagged with the live well-port",
+    },
+    "field_metadata": {
+        "load_mode": "full_refresh",
+        "sheet": "Field Metadata",
+        "columns": FIELD_COLUMNS,
+        "known_source": FIELD_KNOWN_SOURCE,
+        "description": "Per-draw field log (timepoint x well-port): pump times/rate/volume, "
+                       "in-field pH, Restek bag mass; refreshed in full from the source sheet",
+    },
+    "sample_registry": {
+        "load_mode": "upsert",
+        "upsert_key": "sdt_sample_name",
+        "sheet": "Assay Metadata",
+        "columns": REGISTRY_COLUMNS,
+        "known_source": REGISTRY_KNOWN_SOURCE,
+        "description": "Assay sample manifest; one row per physical sample (the staged form of "
+                       "CORAL sdt_sample), upserted by sdt_sample_name",
+    },
+}
+
+
+def measurement_columns(table: str) -> list[dict]:
+    return [c for c in TABLES[table]["columns"] if c["role"] == "measurement"]
+
+
+def column_comment_fields(col: dict) -> dict:
+    """The JSON-comment payload for a column (matches continuous_monitoring style)."""
+    if col["role"] == "measurement":
+        ddt = col["ddt"]
+        out = {"description": microtype_label(ddt), "unit": ddt["unit"]}
+        if ddt["unit_oterm"]:
+            out["unit_sys_oterm_id"] = ddt["unit_oterm"]
+        if col.get("note"):
+            out["note"] = col["note"]
+        return out
+    out = {"description": col["desc"]}
+    if col.get("unit"):
+        out["unit"] = col["unit"]
+    if col["role"] in ("fk", "pk_fk"):
+        out["type"] = "foreign_key" if col["role"] == "fk" else "primary_key"
+        if col.get("references"):
+            out["references"] = col["references"]
+    return out
