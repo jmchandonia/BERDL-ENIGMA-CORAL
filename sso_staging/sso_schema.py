@@ -11,13 +11,14 @@ Design rules (locked 2026-10-29/30; see PLAN.md / NAMING.md):
     minimal context (a context token appears only to break a lakehouse collision).
   * oterm ids never go in a column name -- they live in `ddt_brick`.
   * method / condition / instrument are free-text string-typed COMO properties,
-    so their values are not minted.  The only mint in the namespace is the
-    `liter per minute` unit (unit_oterm=None below); resolve at build time.
+    so their values are not minted.  The one minted term in the namespace is the
+    `liter per minute` unit, added to the COMO ontology as ME:0000517
+    (coral_import/ontology_update_20261030_liter_per_minute).
 """
 
 from __future__ import annotations
 
-# --- COMO / ontology ids (re-verify against live enigma.coral before first load) ---
+# --- COMO / ontology ids (verified against live enigma.coral + CORAL ontologies 2026-10-30) ---
 
 VALUE_TYPE = {  # measurement term -> sys_oterm id
     "concentration": "ME:0000129",
@@ -37,7 +38,7 @@ MOLECULE_CHEBI = {
     "dioxygen": "CHEBI:15379",
 }
 
-UNIT_OTERM = {  # unit label -> sys_oterm id (None => must be minted / resolved at build)
+UNIT_OTERM = {  # unit label -> sys_oterm id
     "parts per million by volume": "ME:0000348",
     "parts per billion": "UO:0000170",
     "percent": "UO:0000187",
@@ -46,11 +47,11 @@ UNIT_OTERM = {  # unit label -> sys_oterm id (None => must be minted / resolved 
     "gram": "UO:0000021",
     "pH": "UO:0000196",
     "second": "UO:0000010",
-    "liter per minute": None,  # MINT under volumetric flow rate unit (UO:0000270)
+    # Minted 2026-10-30 as ME:0000517 under ME:0000294 "units not in UO",
+    # is_a UO:0000270 "volumetric flow rate unit" (not stock UO; UO only has
+    # microliters per minute).  See coral_import/ontology_update_20261030_*.
+    "liter per minute": "ME:0000517",
 }
-
-# Units with no live oterm that the build step must reuse-or-mint, with parent.
-MINT_UNITS = {"liter per minute": {"parent": "UO:0000270", "parent_name": "volumetric flow rate unit"}}
 
 CRDS = [("method", "cavity ring-down spectroscopy")]  # Picarro context fragment
 
