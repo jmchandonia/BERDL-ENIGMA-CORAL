@@ -1,0 +1,5464 @@
+format-version: 1.4
+ontology:me
+date: 27:08:2018 15:13
+saved-by: jmc
+auto-generated-by: ONTO-PERL 1.45
+import: chebi_stub_module.obo
+import: uo_stub_module.obo
+
+[Term]
+id: ME:0000000
+name: term
+namespace: measure.ontology
+def: "Root of all ontological terms." []
+
+[Term]
+id: ME:0000001
+name: context
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Root of all Context and Measurement Terms." []
+xref: ORef:ME:0000001
+is_a: ME:0000000 ! term
+
+[Term]
+id: ME:0000002
+name: experimental context
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Context describing experimental design." []
+xref: ORef:ME:0000002
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000003
+name: series type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Context describing the purpose of a series." []
+xref: ORef:ME:0000003
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000004
+name: time series
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "A time series, in which a series of measurements was taken at different timepoints." []
+is_a: ME:0000003 ! series type
+
+[Term]
+id: ME:0000005
+name: replicate series
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000189" xsd:string
+property_value: valid_units_parent "UO:0000189" xsd:string
+def: "A replicate series, e.g., biological or technical replicates." []
+is_a: ME:0000003 ! series type
+
+[Term]
+id: ME:0000006
+name: condition
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A human-readable description of an experimental condition." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000007
+name: method
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A description of one or more methods used in an experiment." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000008
+name: algorithm parameter
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A description of one or more algorithm parameters." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000009
+name: date
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A date, formatted as YYYY-MM-DD." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000010
+name: time
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A time, formatted as HH:MM (see DateTime to include the date)." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000011
+name: comment
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A human-readable comment." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000012
+name: instrument
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A description of instrument(s) used." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000013
+name: category
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A human-readable description of a category." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000014
+name: homogenized
+namespace: measure.ontology
+def: "Homogenized." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000015
+name: anaerobic
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Anaerobic." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000016
+name: aerobic
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Aerobic." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000017
+name: undisturbed
+namespace: measure.ontology
+def: "Undisturbed." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000018
+name: mathematical context
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Microtypes that provide mathematical context." []
+xref: ORef:ME:0000018
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000019
+name: normalized
+namespace: measure.ontology
+def: "Normalized; describe how in the Method or Protocol." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000020
+name: relative
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Human-readable context saying what another microtype is measured relative to." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000021
+name: increase
+namespace: measure.ontology
+def: "Increase." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000022
+name: decrease
+namespace: measure.ontology
+def: "Decrease." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000023
+name: gain
+namespace: measure.ontology
+def: "Gain." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000024
+name: loss
+namespace: measure.ontology
+def: "Loss." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000025
+name: nearest
+namespace: measure.ontology
+def: "Nearest." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000026
+name: chemical context
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Describes the context of a molecule in a chemical reaction or experiment." []
+xref: ORef:ME:0000026
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000027
+name: molecule
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Use when the type of molecule varies along a dimension." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000028
+name: reaction
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Human-readable description of a chemical reaction." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000029
+name: surface type
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Human-readable description of a type of surface." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000030
+name: bead type
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Human-readable description of the type of bead used in a (geo)chemical experiment." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000031
+name: bead size
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Size of a bead used in a (geo)chemical experiment." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000032
+name: thermodynamic context
+namespace: measure.ontology
+def: "Thermodynamic context for a reaction." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000033
+name: delta-G
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000111" xsd:string
+def: "delta-G, a change in Gibbs Free Energy for a chemical reaction." []
+is_a: ME:0000032 ! thermodynamic context
+
+[Term]
+id: ME:0000034
+name: delta-H
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000111" xsd:string
+def: "delta-H, a change in enthalpy for a chemical reaction." []
+is_a: ME:0000032 ! thermodynamic context
+
+[Term]
+id: ME:0000035
+name: specific activity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Rate of reaction multiplied by the volume, divided by mass of protein." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000036
+name: wavelength
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Wavelength of radiation." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000037
+name: physiochemical state
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Human-readable context for the state or type of matter, e.g., dissolved, or in soil" []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000038
+name: detection limit
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Detection limit for an instrument or experiment." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000039
+name: biological context
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Biological Context." []
+xref: ORef:ME:0000039
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000040
+name: cell
+namespace: measure.ontology
+def: "Cell." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000041
+name: colony
+namespace: measure.ontology
+def: "Colony." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000042
+name: strain
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Strain of microbe, or isolate ID." []
+synonym: "isolate" EXACT []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000043
+name: strain name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Strain name, for microbes that are not ENIGMA isolates." []
+is_a: ME:0000042 ! strain
+
+[Term]
+id: ME:0000044
+name: strain ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use this to link to ENIGMA strains by their official strain name/ID." []
+synonym: "isolate ID" EXACT []
+xref: Ref:DA:0000062.Strain.name
+is_a: ME:0000042 ! strain
+
+[Term]
+id: ME:0000045
+name: taxon
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Taxon." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000046
+name: taxon name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use this to describe taxa by name (use Taxon ID instead if possible)." []
+is_a: ME:0000045 ! taxon
+
+[Term]
+id: ME:0000047
+name: taxon ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use this to link to defined ENIGMA taxa." []
+xref: Ref:DA:0000037.Taxon.name
+is_a: ME:0000045 ! taxon
+
+[Term]
+id: ME:0000048
+name: media
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Media type." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000049
+name: media name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Media name." []
+is_a: ME:0000048 ! media
+
+[Term]
+id: ME:0000050
+name: media composition
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Media composition." []
+is_a: ME:0000048 ! media
+
+[Term]
+id: ME:0000052
+name: media addition
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Media addition." []
+is_a: ME:0000048 ! media
+
+[Term]
+id: ME:0000053
+name: metabolite
+namespace: measure.ontology
+def: "Metabolite." []
+is_a: ME:0000027 ! molecule
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000054
+name: enzyme substrate
+namespace: measure.ontology
+def: "Enzyme Substrate." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000055
+name: carbon source
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Carbon source used for microbial growth." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000054 ! enzyme substrate
+
+[Term]
+id: ME:0000056
+name: nitrogen source
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Nitrogen source used for microbial growth." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000054 ! enzyme substrate
+
+[Term]
+id: ME:0000057
+name: electron donor
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Electron donor used for microbial growth." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000054 ! enzyme substrate
+
+[Term]
+id: ME:0000058
+name: electron acceptor
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Electron acceptor used for microbial growth." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000054 ! enzyme substrate
+
+[Term]
+id: ME:0000059
+name: gene
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Gene." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000060
+name: gene name
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Gene name, e.g., dsrA." []
+xref: Ref:DA:0000040.Gene.aliases
+is_a: ME:0000059 ! gene
+
+[Term]
+id: ME:0000061
+name: gene GI
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Gene GI." []
+is_a: ME:0000059 ! gene
+
+[Term]
+id: ME:0000062
+name: homologous gene
+namespace: measure.ontology
+def: "Homologous Gene." []
+is_a: ME:0000059 ! gene
+
+[Term]
+id: ME:0000063
+name: orthologous gene
+namespace: measure.ontology
+def: "Orthologous Gene." []
+is_a: ME:0000062 ! homologous gene
+
+[Term]
+id: ME:0000064
+name: paralogous gene
+namespace: measure.ontology
+def: "Paralogous Gene." []
+is_a: ME:0000062 ! homologous gene
+
+[Term]
+id: ME:0000065
+name: essential gene
+namespace: measure.ontology
+def: "Essential Gene." []
+is_a: ME:0000059 ! gene
+
+[Term]
+id: ME:0000066
+name: protein
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Protein." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000067
+name: protein annotation
+namespace: measure.ontology
+def: "Protein Annotation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000068
+name: KEGG subsystem
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "KEGG Subsystem." []
+xref: ORef:KEGG
+is_a: ME:0000067 ! protein annotation
+
+[Term]
+id: ME:0000069
+name: TIGR role
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "TIGR Role." []
+xref: ORef:TIGR
+is_a: ME:0000067 ! protein annotation
+
+[Term]
+id: ME:0000070
+name: SEED subsystem
+namespace: measure.ontology
+def: "SEED Subsystem." []
+is_a: ME:0000067 ! protein annotation
+
+[Term]
+id: ME:0000071
+name: SEED subsystem ID
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "SEED Subsystem ID." []
+is_a: ME:0000070 ! SEED subsystem
+
+[Term]
+id: ME:0000073
+name: protein domain
+namespace: measure.ontology
+def: "Protein Domain." []
+is_a: ME:0000067 ! protein annotation
+
+[Term]
+id: ME:0000074
+name: Pfam domain
+namespace: measure.ontology
+def: "Pfam Domain." []
+is_a: ME:0000073 ! protein domain
+
+[Term]
+id: ME:0000075
+name: Pfam domain accession
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Pfam Domain Accession." []
+xref: ORef:Pfam
+is_a: ME:0000074 ! Pfam domain
+
+[Term]
+id: ME:0000076
+name: operon
+namespace: measure.ontology
+def: "Operon." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000077
+name: ribosome
+namespace: measure.ontology
+def: "Ribosome." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000078
+name: growth parameter
+namespace: measure.ontology
+def: "Growth Parameter." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000079
+name: growth rate
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000280" xsd:string
+def: "Growth Rate." []
+is_a: ME:0000078 ! growth parameter
+
+[Term]
+id: ME:0000080
+name: doubling time
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "Doubling Time." []
+is_a: ME:0000078 ! growth parameter
+
+[Term]
+id: ME:0000081
+name: time since inoculation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "Time Since Inoculation." []
+is_a: ME:0000078 ! growth parameter
+
+[Term]
+id: ME:0000082
+name: growth efficiency
+namespace: measure.ontology
+def: "Growth Efficiency." []
+is_a: ME:0000078 ! growth parameter
+
+[Term]
+id: ME:0000083
+name: gene regulation
+namespace: measure.ontology
+def: "Gene Regulation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000084
+name: up-regulated
+namespace: measure.ontology
+def: "Up-regulated." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000085
+name: down-regulated
+namespace: measure.ontology
+def: "Down-regulated." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000086
+name: transcription factor
+namespace: measure.ontology
+def: "Transcription Factor." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000087
+name: motif
+namespace: measure.ontology
+def: "Motif." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000088
+name: binding site
+namespace: measure.ontology
+def: "Binding Site." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000089
+name: regulon
+namespace: measure.ontology
+def: "Regulon." []
+is_a: ME:0000083 ! gene regulation
+
+[Term]
+id: ME:0000090
+name: taxonomic level
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Taxonomic Level." []
+xref: ORef:ME:0000090
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000091
+name: strain change
+namespace: measure.ontology
+def: "Strain Change." []
+synonym: "mutation" EXACT []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000092
+name: strain change effect
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Strain Change Effect." []
+xref: ORef:ME:0000092
+is_a: ME:0000091 ! strain change
+
+[Term]
+id: ME:0000093
+name: synonymous
+namespace: measure.ontology
+def: "Synonymous." []
+is_a: ME:0000092 ! strain change effect
+
+[Term]
+id: ME:0000094
+name: non-synonymous
+namespace: measure.ontology
+def: "Non-Synonymous." []
+is_a: ME:0000092 ! strain change effect
+
+[Term]
+id: ME:0000095
+name: frameshift
+namespace: measure.ontology
+def: "Frameshift." []
+is_a: ME:0000092 ! strain change effect
+
+[Term]
+id: ME:0000096
+name: stop
+namespace: measure.ontology
+def: "Stop." []
+is_a: ME:0000092 ! strain change effect
+
+[Term]
+id: ME:0000097
+name: knockout
+namespace: measure.ontology
+def: "Knockout." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000098
+name: environment
+namespace: measure.ontology
+def: "Environment." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000099
+name: environmental sample location
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Sample Location." []
+synonym: "borehole" EXACT []
+synonym: "core" EXACT []
+synonym: "well" EXACT []
+is_a: ME:0000098 ! environment
+
+[Term]
+id: ME:0000100
+name: environmental sample
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Sample." []
+is_a: ME:0000098 ! environment
+
+[Term]
+id: ME:0000101
+name: environmental sample name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Sample Name." []
+is_a: ME:0000100 ! environmental sample
+
+[Term]
+id: ME:0000102
+name: environmental sample ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Sample ID, chosen from list of valid ENIGMA samples." []
+xref: Ref:DA:0000042.Sample.name
+is_a: ME:0000100 ! environmental sample
+
+[Term]
+id: ME:0000103
+name: environmental parameter
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Parameter." []
+is_a: ME:0000098 ! environment
+
+[Term]
+id: ME:0000104
+name: ecology
+namespace: measure.ontology
+def: "Ecology." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000105
+name: community assembly process
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Community Assembly Process." []
+xref: ORef:ME:0000105
+is_a: ME:0000104 ! ecology
+
+[Term]
+id: ME:0000106
+name: variable selection
+namespace: measure.ontology
+def: "Variable Selection." []
+is_a: ME:0000105 ! community assembly process
+
+[Term]
+id: ME:0000107
+name: homogenous selection
+namespace: measure.ontology
+def: "Homogenous Selection." []
+is_a: ME:0000105 ! community assembly process
+
+[Term]
+id: ME:0000108
+name: dispersal limitation
+namespace: measure.ontology
+def: "Dispersal Limitation." []
+is_a: ME:0000105 ! community assembly process
+
+[Term]
+id: ME:0000109
+name: homogenizing dispersal
+namespace: measure.ontology
+def: "Homogenizing Dispersal." []
+is_a: ME:0000105 ! community assembly process
+
+[Term]
+id: ME:0000110
+name: undominated
+namespace: measure.ontology
+def: "Undominated." []
+is_a: ME:0000105 ! community assembly process
+
+[Term]
+id: ME:0000111
+name: sequencing
+namespace: measure.ontology
+def: "Sequencing." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000112
+name: read type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Read Type." []
+xref: ORef:ME:0000112
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000113
+name: paired end read
+namespace: measure.ontology
+def: "Paired End Read." []
+is_a: ME:0000112 ! read type
+
+[Term]
+id: ME:0000114
+name: single end read
+namespace: measure.ontology
+def: "Single End Read." []
+is_a: ME:0000112 ! read type
+
+[Term]
+id: ME:0000115
+name: base pair
+namespace: measure.ontology
+def: "Base Pair." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000116
+name: sequencing technology
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Sequencing Technology." []
+xref: ORef:ME:0000116
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000117
+name: Illumina
+namespace: measure.ontology
+def: "Illumina." []
+is_a: ME:0000116 ! sequencing technology
+
+[Term]
+id: ME:0000118
+name: PacBio
+namespace: measure.ontology
+def: "PacBio." []
+is_a: ME:0000116 ! sequencing technology
+
+[Term]
+id: ME:0000119
+name: GC content
+namespace: measure.ontology
+def: "GC content." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000120
+name: measurement
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Measurement." []
+xref: ORef:ME:0000120
+is_a: ME:0000000 ! term
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000121
+name: pH
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000196 UO:0000247" xsd:string
+def: "pH." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000122
+name: time elapsed
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "Time Elapsed." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000123
+name: temperature
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000005" xsd:string
+def: "Temperature." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000124
+name: conductivity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000262" xsd:string
+def: "Conductivity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000125
+name: redox potential
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000217" xsd:string
+def: "Redox Potential." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000126
+name: count
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000189 UO:0000200" xsd:string
+property_value: valid_units_parent "UO:0000189 UO:0000200" xsd:string
+def: "Count." []
+synonym: "absolute abundance" EXACT []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000127
+name: optical density
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+property_value: valid_units_parent "UO:0000186" xsd:string
+def: "Optical Density." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000128
+name: size
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000095 UO:0000001" xsd:string
+def: "Size." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000129
+name: concentration
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187 UO:0000322" xsd:string
+property_value: valid_units_parent "UO:0000051 UO:0000052 UO:0000166 UO:0000187" xsd:string
+def: "Concentration." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000130
+name: hybridization intensity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Hybridization Intensity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000131
+name: expression level
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Expression Level." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000132
+name: enzyme activity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Enzyme Activity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000133
+name: absorbance
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Absorbance." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000134
+name: heat
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Heat." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000135
+name: mass
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000002" xsd:string
+def: "Mass." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000137
+name: fitness score
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000379" xsd:string
+def: "Fitness Score." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000138
+name: genetic interaction score
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Genetic Interaction Score." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000139
+name: stoichiometric ratio
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Stoichiometric Ratio." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000140
+name: relative abundance
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "Relative amounts of multiple categories of the same object." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000141
+name: binary
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Binary." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000142
+name: growth
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Boolean property indicating whether something (e.g., an isolate) grows." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000143
+name: activity
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Boolean property indicating whether something (e.g., an isolate) is active." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000144
+name: presence
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Boolean property indicating whether something (e.g., an isolate) is present." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000145
+name: essentiality
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Boolean property indicating whether something (e.g., a gene) is essential." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000146
+name: statistic
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Statistic." []
+xref: ORef:ME:0000146
+is_a: ME:0000000 ! term
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000147
+name: average
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Average." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000148
+name: difference
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Difference." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000149
+name: standard deviation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Standard Deviation." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000150
+name: standard error
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Standard Error." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000151
+name: minimum
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Minimum." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000152
+name: maximum
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Maximum." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000153
+name: median
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Median." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000154
+name: ratio
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Ratio." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000155
+name: log ratio
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Log Ratio." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000156
+name: p value
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "p Value." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000157
+name: T score
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "T Score." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000158
+name: frequency
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Frequency." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000159
+name: fold enrichment
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Fold Enrichment." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000160
+name: confidence
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "Confidence." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000161
+name: evaluation
+namespace: measure.ontology
+def: "Evaluation." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000162
+name: precision
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Precision." []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000163
+name: recall
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Recall." []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000164
+name: true positive
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "True Positive." []
+synonym: "TP" EXACT []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000165
+name: false positive
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "False Positive." []
+synonym: "FP" EXACT []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000166
+name: true negative
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "True Negative." []
+synonym: "TN" EXACT []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000167
+name: false negative
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "False Negative." []
+synonym: "FN" EXACT []
+is_a: ME:0000161 ! evaluation
+
+[Term]
+id: ME:0000168
+name: correlation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Correlation." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000169
+name: Pearson
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Pearson." []
+is_a: ME:0000168 ! correlation
+
+[Term]
+id: ME:0000170
+name: Spearman
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Spearman." []
+is_a: ME:0000168 ! correlation
+
+[Term]
+id: ME:0000171
+name: Kendall tau
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Kendall tau." []
+is_a: ME:0000168 ! correlation
+
+[Term]
+id: ME:0000172
+name: Goodman and Kruskal's gamma
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Goodman and Kruskal's gamma." []
+is_a: ME:0000168 ! correlation
+
+[Term]
+id: ME:0000173
+name: multivariate analysis
+namespace: measure.ontology
+def: "Multivariate Analysis." []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000174
+name: factor analysis
+namespace: measure.ontology
+def: "Factor Analysis." []
+is_a: ME:0000173 ! multivariate analysis
+
+[Term]
+id: ME:0000175
+name: factor
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Factor." []
+is_a: ME:0000174 ! factor analysis
+
+[Term]
+id: ME:0000176
+name: factor loading
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Factor Loading." []
+is_a: ME:0000174 ! factor analysis
+
+[Term]
+id: ME:0000177
+name: principal component analysis
+namespace: measure.ontology
+def: "Principal Component Analysis." []
+is_a: ME:0000173 ! multivariate analysis
+
+[Term]
+id: ME:0000178
+name: principal component
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Principal Component." []
+is_a: ME:0000177 ! principal component analysis
+
+[Term]
+id: ME:0000179
+name: component weight
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Component Weight." []
+is_a: ME:0000177 ! principal component analysis
+
+[Term]
+id: ME:0000180
+name: datetime
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "DateTime." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000181
+name: pressure
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000109" xsd:string
+def: "Pressure." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000182
+name: turbidity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000315" xsd:string
+property_value: valid_units_parent "UO:0000315" xsd:string
+def: "Turbidity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000183
+name: reagent
+namespace: measure.ontology
+def: "Reagent." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000184
+name: ASV
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Amplicon Sequence Variant." []
+synonym: "amplicon sequence variant" EXACT []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000185
+name: ESV
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "ESV." []
+synonym: "exact sequence variant" EXACT []
+synonym: "sub-OTU" EXACT []
+synonym: "unique sequence variant" EXACT []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000186
+name: strand
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Strand of DNA" []
+xref: ORef:ME:0000186
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000187
+name: forward
+namespace: measure.ontology
+def: "Forward." []
+is_a: ME:0000186 ! strand
+
+[Term]
+id: ME:0000188
+name: reverse complement
+namespace: measure.ontology
+def: "Reverse Complement." []
+is_a: ME:0000186 ! strand
+
+[Term]
+id: ME:0000189
+name: sequence type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Sequence Type." []
+xref: ORef:ME:0000189
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000190
+name: 16S sequence
+namespace: measure.ontology
+def: "16S Sequence." []
+is_a: ME:0000189 ! sequence type
+
+[Term]
+id: ME:0000191
+name: 18S sequence
+namespace: measure.ontology
+def: "18S Sequence." []
+is_a: ME:0000189 ! sequence type
+
+[Term]
+id: ME:0000192
+name: ITS sequence
+namespace: measure.ontology
+def: "ITS Sequence." []
+is_a: ME:0000189 ! sequence type
+
+[Term]
+id: ME:0000193
+name: ITS-1 sequence
+namespace: measure.ontology
+def: "ITS-1 Sequence." []
+is_a: ME:0000192 ! ITS sequence
+
+[Term]
+id: ME:0000194
+name: ITS-2 sequence
+namespace: measure.ontology
+def: "ITS-2 Sequence." []
+is_a: ME:0000192 ! ITS sequence
+
+[Term]
+id: ME:0000195
+name: genome sequence
+namespace: measure.ontology
+def: "Genome Sequence." []
+is_a: ME:0000000 ! term
+is_a: ME:0000189 ! sequence type
+
+[Term]
+id: ME:0000196
+name: insertion
+namespace: measure.ontology
+def: "Insertion." []
+is_a: ME:0000091 ! strain change
+is_a: ME:0000227 ! strain change type
+
+[Term]
+id: ME:0000197
+name: deletion
+namespace: measure.ontology
+def: "Deletion." []
+is_a: ME:0000091 ! strain change
+is_a: ME:0000227 ! strain change type
+
+[Term]
+id: ME:0000198
+name: substitution
+namespace: measure.ontology
+def: "Substitution." []
+is_a: ME:0000091 ! strain change
+is_a: ME:0000227 ! strain change type
+
+[Term]
+id: ME:0000200
+name: condition ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Condition, chosen from list of defined experimental conditions in the Data Clearinghouse." []
+xref: Ref:DA:0000045.Condition.name
+is_a: ME:0000006 ! condition
+
+[Term]
+id: ME:0000201
+name: time zone
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Time Zone, e.g., PDT" []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000202
+name: description
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Description." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000203
+name: link
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Link to other data, e.g., a DOI or URL." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000204
+name: experimental process
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Category of experimental process used to create a dataset." []
+xref: ORef:PROCESS:0000001
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000205
+name: person
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Name of a person.  Note that ENIGMA people should be listed as 'ENIGMA personnel' instead." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000206
+name: campaign
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Campaign." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000207
+name: input
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Input." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000208
+name: output
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Output." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000209
+name: physical context
+namespace: measure.ontology
+def: "Physical Context." []
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000210
+name: location
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Location." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000211
+name: latitude
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000185" xsd:string
+def: "Latitude." []
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000212
+name: longitude
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000185" xsd:string
+def: "Longitude." []
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000213
+name: continent
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Continent." []
+xref: ORef:CONTINENT:0000001
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000214
+name: country
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Country." []
+xref: ORef:COUNTRY:0000001
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000215
+name: region
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Region." []
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000216
+name: biome
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Biome." []
+xref: ORef:ENVO:01000254
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000217
+name: environmental feature
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Feature." []
+xref: ORef:ENVO:00002297
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000218
+name: distance
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Distance.  Add context indicating reference points, e.g., From and To." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000219
+name: depth
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Depth.  Add context indicating reference poitns, e.g., Top and Bottom." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000220
+name: elevation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Elevation.  Add context indicating reference poitns, e.g., Top and Bottom." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000221
+name: ASV name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "ASV Name." []
+is_a: ME:0000184 ! ASV
+
+[Term]
+id: ME:0000222
+name: ASV ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "ASV/OTU ID, chosen from the list of defined ASVs/OTUs in the Data Clearinghouse." []
+xref: Ref:DA:0000063.OTU.Name
+is_a: ME:0000184 ! ASV
+
+[Term]
+id: ME:0000223
+name: NCBI taxon ID
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "NCBI Taxon, chosen from names in the NCBI taxonomy." []
+xref: ORef:NCBITaxon:1
+is_a: ME:0000045 ! taxon
+
+[Term]
+id: ME:0000224
+name: gene ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Gene, chosen from list of defined genes in the Data Clearinghouse." []
+xref: Ref:DA:0000040.Gene.gene_id
+is_a: ME:0000059 ! gene
+
+[Term]
+id: ME:0000227
+name: strain change type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Strain Change Type." []
+xref: ORef:ME:0000227
+is_a: ME:0000091 ! strain change
+
+[Term]
+id: ME:0000228
+name: environmental sample location ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Well, borehole, or other defined ENIGMA location." []
+synonym: "location ID" EXACT []
+xref: Ref:DA:0000041.Location.name
+is_a: ME:0000099 ! environmental sample location
+
+[Term]
+id: ME:0000229
+name: environment type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environment Type." []
+xref: ORef:MIxS:0000002
+is_a: ME:0000098 ! environment
+
+[Term]
+id: ME:0000230
+name: environmental material
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Material." []
+xref: ORef:ENVO:00010483
+is_a: ME:0000098 ! environment
+
+[Term]
+id: ME:0000231
+name: community
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Community." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000232
+name: community name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Community Name." []
+is_a: ME:0000231 ! community
+
+[Term]
+id: ME:0000233
+name: community ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Community ID, chosen from list of defined ENIGMA communities." []
+xref: Ref:DA:0000048.Community.name
+is_a: ME:0000231 ! community
+
+[Term]
+id: ME:0000234
+name: community type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Community Type." []
+xref: ORef:ME:0000234
+is_a: ME:0000231 ! community
+
+[Term]
+id: ME:0000235
+name: isolate community
+namespace: measure.ontology
+def: "Isolate Community." []
+is_a: ME:0000234 ! community type
+
+[Term]
+id: ME:0000236
+name: enrichment
+namespace: measure.ontology
+def: "Enrichment." []
+is_a: ME:0000234 ! community type
+
+[Term]
+id: ME:0000237
+name: active fraction
+namespace: measure.ontology
+def: "Active Fraction." []
+is_a: ME:0000236 ! enrichment
+
+[Term]
+id: ME:0000238
+name: assemblage
+namespace: measure.ontology
+def: "Assemblage." []
+is_a: ME:0000234 ! community type
+
+[Term]
+id: ME:0000239
+name: consortium
+namespace: measure.ontology
+def: "Consortium." []
+is_a: ME:0000238 ! assemblage
+
+[Term]
+id: ME:0000240
+name: contig
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Contig." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000241
+name: sequence position
+namespace: measure.ontology
+def: "Sequence Position." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000242
+name: sequence start
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000400" xsd:string
+def: "Sequence Start." []
+is_a: ME:0000241 ! sequence position
+
+[Term]
+id: ME:0000243
+name: sequence stop
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000400" xsd:string
+def: "Sequence Stop." []
+is_a: ME:0000241 ! sequence position
+
+[Term]
+id: ME:0000244
+name: sequence length
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000400" xsd:string
+def: "Sequence Length." []
+is_a: ME:0000241 ! sequence position
+
+[Term]
+id: ME:0000245
+name: genome
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Genome." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000246
+name: genome ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Genome ID, chosen from list of annotated ENIGMA genomes." []
+xref: Ref:DA:0000039.Genome.name
+is_a: ME:0000245 ! genome
+
+[Term]
+id: ME:0000247
+name: read set
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Read Set." []
+synonym: "reads" EXACT []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000248
+name: reads ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Reads ID, chosen from list of reads in the Data Clearinghouse." []
+xref: Ref:DA:0000054.Reads.name
+is_a: ME:0000247 ! read set
+
+[Term]
+id: ME:0000249
+name: read
+namespace: measure.ontology
+def: "Read." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000250
+name: gene annotation
+namespace: measure.ontology
+def: "Gene Annotation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000251
+name: kingdom
+namespace: measure.ontology
+def: "Kingdom." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000252
+name: phylum
+namespace: measure.ontology
+def: "Phylum." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000253
+name: class
+namespace: measure.ontology
+def: "Class." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000254
+name: order
+namespace: measure.ontology
+def: "Order." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000255
+name: family
+namespace: measure.ontology
+def: "Family." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000256
+name: genus
+namespace: measure.ontology
+def: "Genus." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000257
+name: species
+namespace: measure.ontology
+def: "Species." []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000258
+name: environmental chemical
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Chemical." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000103 ! environmental parameter
+
+[Term]
+id: ME:0000259
+name: environmental measurement
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Environmental Measurement." []
+xref: ORef:ME:0000120
+is_a: ME:0000103 ! environmental parameter
+
+[Term]
+id: ME:0000260
+name: knockout library
+namespace: measure.ontology
+def: "Knockout Library." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000261
+name: Tn-Seq library
+namespace: measure.ontology
+def: "Tn-Seq Library." []
+is_a: ME:0000260 ! knockout library
+
+[Term]
+id: ME:0000262
+name: Tn-Seq library name
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Tn-Seq Library Name." []
+xref: Ref:DA:0000060.TnSeq_Library.name
+is_a: ME:0000261 ! Tn-Seq library
+
+[Term]
+id: ME:0000263
+name: Tn-Seq primers model
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Tn-Seq Primers Model." []
+is_a: ME:0000261 ! Tn-Seq library
+
+[Term]
+id: ME:0000264
+name: rate
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Rate." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000265
+name: internal ID
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal ID." []
+xref: ORef:ME:0000265
+is_a: ME:0000000 ! term
+is_a: ME:0000001 ! context
+
+[Term]
+id: ME:0000266
+name: internal Location ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Location ID." []
+xref: Ref:DA:0000041.Location.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000267
+name: internal Sample ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Sample ID." []
+xref: Ref:DA:0000042.Sample.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000268
+name: internal Taxon ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Taxon ID." []
+xref: Ref:DA:0000037.Taxon.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000269
+name: internal OTU ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal OTU ID." []
+xref: Ref:DA:0000063.OTU.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000270
+name: internal Condition ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Condition ID." []
+xref: Ref:DA:0000045.Condition.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000271
+name: internal Strain ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Strain ID." []
+xref: Ref:DA:0000062.Strain.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000272
+name: internal Community ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Community ID." []
+xref: Ref:DA:0000048.Community.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000273
+name: internal Reads ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Reads ID." []
+xref: Ref:DA:0000054.Reads.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000274
+name: internal Genome ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Genome ID." []
+xref: Ref:DA:0000039.Genome.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000275
+name: internal Gene ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Gene ID." []
+xref: Ref:DA:0000040.Gene.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000276
+name: internal TnSeq_Library ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal TnSeq_Library ID." []
+xref: Ref:DA:0000060.TnSeq_Library.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000277
+name: internal Process ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Process ID." []
+xref: Ref:DA:0000061.Process.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000278
+name: internal Brick ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Brick ID." []
+xref: Ref:DA:0000001.Brick.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000279
+name: assembly
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Assembly." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000280
+name: assembly ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Assembly ID, chosen from list of ENIGMA assemblies." []
+xref: Ref:DA:0000066.Assembly.name
+is_a: ME:0000279 ! assembly
+
+[Term]
+id: ME:0000281
+name: internal Assembly ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Assembly ID." []
+xref: Ref:DA:0000066.Assembly.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000282
+name: sequence
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Sequence." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000283
+name: control
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Control." []
+xref: ORef:ME:0000283
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000284
+name: negative control
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Negative Control." []
+is_a: ME:0000283 ! control
+
+[Term]
+id: ME:0000285
+name: positive control
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Positive Control." []
+is_a: ME:0000283 ! control
+
+[Term]
+id: ME:0000286
+name: replicate
+namespace: measure.ontology
+def: "Replicate." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000287
+name: technical replicate
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Technical Replicate." []
+is_a: ME:0000286 ! replicate
+
+[Term]
+id: ME:0000288
+name: biological replicate
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Biological Replicate." []
+is_a: ME:0000286 ! replicate
+
+[Term]
+id: ME:0000289
+name: subsample
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Subsample." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000290
+name: variable name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Variable Name." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000291
+name: variable type
+namespace: measure.ontology
+def: "Variable Type." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000292
+name: dimension
+namespace: measure.ontology
+def: "Dimension." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000293
+name: data variables type
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Data Variables Type." []
+xref: ORef:DA:0000000
+is_a: ME:0000291 ! variable type
+
+[Term]
+id: ME:0000294
+name: units not in UO
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Units not in UO." []
+xref: ORef:ME:0000294
+is_a: ME:0000000 ! term
+is_a: UO:0000000
+
+[Term]
+id: ME:0000295
+name: microsiemen per centimeter
+namespace: measure.ontology
+def: "microsiemen per centimeter." []
+synonym: "microsiemen per cm" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000262
+
+[Term]
+id: ME:0000296
+name: pound per square inch
+namespace: measure.ontology
+def: "pound per square inch." []
+synonym: "PSI" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000109
+
+[Term]
+id: ME:0000299
+name: explained variance
+namespace: measure.ontology
+def: "Explained Variance." []
+is_a: ME:0000177 ! principal component analysis
+
+[Term]
+id: ME:0000300
+name: phase
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Phase of matter, e.g., solid." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000301
+name: specific conductivity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000262" xsd:string
+def: "Specific Conductivity." []
+is_a: ME:0000124 ! conductivity
+
+[Term]
+id: ME:0000302
+name: salinity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "ME:0000378" xsd:string
+def: "Salinity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000303
+name: resistivity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "ME:0000377" xsd:string
+def: "Resistivity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000304
+name: saturation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "Saturation." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000305
+name: density
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000182" xsd:string
+def: "Density." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000306
+name: partial pressure
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000109" xsd:string
+def: "Partial Pressure." []
+is_a: ME:0000181 ! pressure
+
+[Term]
+id: ME:0000307
+name: torr
+namespace: measure.ontology
+def: "torr." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000109
+
+[Term]
+id: ME:0000308
+name: ohm-cm
+namespace: measure.ontology
+def: "ohm-cm." []
+is_a: ME:0000377 ! resistivity unit
+
+[Term]
+id: ME:0000309
+name: practical salinity unit
+namespace: measure.ontology
+def: "practical salinity unit." []
+synonym: "PSU" EXACT []
+is_a: ME:0000378 ! salinity unit
+
+[Term]
+id: ME:0000310
+name: foot
+namespace: measure.ontology
+def: "foot." []
+synonym: "ft" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000001
+
+[Term]
+id: ME:0000311
+name: top
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use as context for locations, e.g., the top end of a depth measurement." []
+is_a: ME:0000339 ! position
+
+[Term]
+id: ME:0000312
+name: bottom
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use as context for locations, e.g., the bottom end of a depth measurement." []
+is_a: ME:0000339 ! position
+
+[Term]
+id: ME:0000313
+name: charge
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187" xsd:string
+property_value: valid_units_parent "UO:0000217 UO:0000187" xsd:string
+def: "Charge." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000314
+name: air pressure
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000109" xsd:string
+def: "Air Pressure." []
+is_a: ME:0000181 ! pressure
+
+[Term]
+id: ME:0000315
+name: water pressure
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000109" xsd:string
+def: "Water Pressure." []
+is_a: ME:0000181 ! pressure
+
+[Term]
+id: ME:0000316
+name: wind speed
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000060" xsd:string
+def: "Wind Speed." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000317
+name: gust speed
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000060" xsd:string
+def: "Gust Speed." []
+is_a: ME:0000316 ! wind speed
+
+[Term]
+id: ME:0000318
+name: solar radiation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000154" xsd:string
+def: "Solar Radiation." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000319
+name: rainfall
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Rainfall." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000320
+name: wind direction
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000185" xsd:string
+def: "Wind Direction." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000321
+name: relative humidity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "Relative Humidity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000322
+name: mile per hour
+namespace: measure.ontology
+def: "mile per hour." []
+synonym: "mph" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000060
+
+[Term]
+id: ME:0000323
+name: inch
+namespace: measure.ontology
+def: "inch." []
+synonym: "in" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000001
+
+[Term]
+id: ME:0000324
+name: m^3 per m^3
+namespace: measure.ontology
+def: "m^3 per m^3." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000051
+
+[Term]
+id: ME:0000325
+name: millibar
+namespace: measure.ontology
+def: "millibar." []
+synonym: "mbar" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000109
+
+[Term]
+id: ME:0000326
+name: environmental community
+namespace: measure.ontology
+def: "Environmental Community." []
+is_a: ME:0000234 ! community type
+
+[Term]
+id: ME:0000327
+name: protocol
+namespace: measure.ontology
+def: "Protocol." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000328
+name: protocol ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Protocol, chosen from list of defined ENIGMA protocols." []
+xref: Ref:DA:0000073.Protocol.name
+is_a: ME:0000327 ! protocol
+
+[Term]
+id: ME:0000329
+name: bin
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Bin (metagenomic)." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000330
+name: bin ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Bin, chosen from metagenomic bins stored in the Data Clearinghouse." []
+xref: Ref:DA:0000072.Bin.name
+is_a: ME:0000329 ! bin
+
+[Term]
+id: ME:0000331
+name: internal Bin ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Bin ID." []
+xref: Ref:DA:0000072.Bin.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000332
+name: internal Protocol ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Protocol ID." []
+xref: Ref:DA:0000073.Protocol.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000333
+name: availability
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Boolean property indicating whether something is available." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000334
+name: US state
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "US State." []
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000335
+name: projected coordinate
+namespace: measure.ontology
+def: "A pair of planar coordinates that identify a location in a projected or local coordinate system." []
+is_a: ME:0000210 ! location
+
+[Term]
+id: ME:0000336
+name: easting
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "The east-west coordinate in projected coordinate systems, measured in distance units from a reference meridian. Easting coordinates require associated coordinate system designation." []
+is_a: ME:0000335 ! projected coordinate
+
+[Term]
+id: ME:0000337
+name: northing
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "The north-south coordinate in projected coordinate systems, measured in distance units from a reference meridian. Northing coordinates require associated coordinate system designation." []
+is_a: ME:0000335 ! projected coordinate
+
+[Term]
+id: ME:0000338
+name: projected coordinate system
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A coordinate reference system that uses a map projection to represent locations on a curved surface as planar coordinates, enabling positions to be expressed as easting and northing values in linear units. A projected coordinate system includes a base geographic coordinate system, projection method, datum, linear unit, and projection parameters; examples include UTM Zone 13N and State Plane zones." []
+is_a: ME:0000335 ! projected coordinate
+
+[Term]
+id: ME:0000339
+name: position
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Position." []
+xref: ORef:ME:0000339
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000340
+name: upper
+namespace: measure.ontology
+def: "Upper." []
+is_a: ME:0000339 ! position
+
+[Term]
+id: ME:0000341
+name: lower
+namespace: measure.ontology
+def: "Lower." []
+is_a: ME:0000339 ! position
+
+[Term]
+id: ME:0000342
+name: middle
+namespace: measure.ontology
+def: "Middle." []
+is_a: ME:0000339 ! position
+
+[Term]
+id: ME:0000343
+name: diameter
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Diameter." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000344
+name: inner diameter
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Inner Diameter." []
+is_a: ME:0000343 ! diameter
+
+[Term]
+id: ME:0000345
+name: outer diameter
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Outer Diameter." []
+is_a: ME:0000343 ! diameter
+
+[Term]
+id: ME:0000346
+name: organic
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Use as context, for example, to label inorganic or organic carbon." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000347
+name: millimhos per centimeter
+namespace: measure.ontology
+def: "millimhos per centimeter." []
+synonym: "mmhos per cm" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000262
+
+[Term]
+id: ME:0000348
+name: parts per million by volume
+namespace: measure.ontology
+def: "parts per million by volume." []
+synonym: "ppmv" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000051
+
+[Term]
+id: ME:0000349
+name: nanogram per liter
+namespace: measure.ontology
+def: "nanogram per liter." []
+synonym: "ng/L" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000051
+
+[Term]
+id: ME:0000350
+name: molecular weight
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000221" xsd:string
+def: "Molecular Weight." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000351
+name: taxonomic domain
+namespace: measure.ontology
+def: "Taxonomic Domain." []
+synonym: "superkingdom" EXACT []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000352
+name: milligram per gram
+namespace: measure.ontology
+def: "milligram per gram." []
+synonym: "mg/g" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000051
+
+[Term]
+id: ME:0000353
+name: millisiemen per centimeter
+namespace: measure.ontology
+def: "millisiemen per centimeter." []
+synonym: "millisiemen per cm" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000262
+
+[Term]
+id: ME:0000354
+name: image
+namespace: measure.ontology
+def: "Image." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000355
+name: image ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Image, chosen from the list of images stored in the Data Clearinghouse." []
+xref: Ref:DA:0000074.Image.name
+is_a: ME:0000354 ! image
+
+[Term]
+id: ME:0000356
+name: internal Image ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Image ID." []
+xref: Ref:DA:0000074.Image.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000357
+name: MIME type
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "MIME type." []
+is_a: ME:0000013 ! category
+
+[Term]
+id: ME:0000358
+name: coefficient of variation
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Coefficient of Variation." []
+synonym: "CV" EXACT []
+is_a: ME:0000146 ! statistic
+
+[Term]
+id: ME:0000359
+name: weight
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000002" xsd:string
+def: "Weight." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000360
+name: volume
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000095" xsd:string
+def: "Volume." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000361
+name: cells per gram
+namespace: measure.ontology
+def: "cells per gram." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000189
+
+[Term]
+id: ME:0000362
+name: above
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Above." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000363
+name: below
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Below." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000365
+name: molecules not in ChEBI
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Molecules not in ChEBI." []
+xref: ORef:ME:0000365
+is_a: CHEBI:24431
+is_a: ME:0000000 ! term
+
+[Term]
+id: ME:0000366
+name: sodium oxide
+namespace: measure.ontology
+def: "sodium oxide." []
+synonym: "Na2O" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000367
+name: barium oxide
+namespace: measure.ontology
+def: "barium oxide." []
+synonym: "BaO" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000371
+name: error range
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Error Range." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000372
+name: manganese(II) oxide 
+namespace: measure.ontology
+def: "manganese(II) oxide ." []
+synonym: "MnO" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000373
+name: cobalt(II) oxide
+namespace: measure.ontology
+def: "cobalt(II) oxide." []
+synonym: "CoO" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000374
+name: nickel(II) oxide
+namespace: measure.ontology
+def: "nickel(II) oxide." []
+synonym: "NiO" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000375
+name: high
+namespace: measure.ontology
+def: "High." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000376
+name: low
+namespace: measure.ontology
+def: "Low." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000377
+name: resistivity unit
+namespace: measure.ontology
+def: "resistivity unit." []
+is_a: ME:0000294 ! units not in UO
+
+[Term]
+id: ME:0000378
+name: salinity unit
+namespace: measure.ontology
+def: "salinity unit." []
+is_a: ME:0000294 ! units not in UO
+
+[Term]
+id: ME:0000379
+name: log ratio unit
+namespace: measure.ontology
+def: "log ratio unit." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000190
+
+[Term]
+id: ME:0000380
+name: confidence unit
+namespace: measure.ontology
+def: "confidence units are a dimensionless unit, with range from 0 to 1" []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000190
+
+[Term]
+id: ME:0000381
+name: molecule from list
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Pick a molecule from a list of chemicals (preferred)." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000382
+name: PubChem molecule name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Give the name of a molecule in PubChem (use list instead if possible)." []
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000383
+name: molecular formula
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Describe a molecule using its molecular formula (use list instead if possible)." []
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000384
+name: InChIKey
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Describe a molecule using its InChIKey (use list instead if possible)." []
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000385
+name: ionization mode
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Ionization mode used in a mass spec experiment." []
+xref: ORef:ME:0000385
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000386
+name: positive polarity
+namespace: measure.ontology
+def: "Positive Polarity (ionization mode for MS experiment)." []
+is_a: ME:0000385 ! ionization mode
+
+[Term]
+id: ME:0000387
+name: negative polarity
+namespace: measure.ontology
+def: "Negative Polarity (ionization mode for MS experiment)." []
+is_a: ME:0000385 ! ionization mode
+
+[Term]
+id: ME:0000388
+name: usability
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Usability." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000389
+name: reference compound
+namespace: measure.ontology
+def: "Reference Compound." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000390
+name: ion intensity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000471 UO:0000313" xsd:string
+def: "Ion Intensity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000391
+name: amount
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000006" xsd:string
+def: "Absolute amount of a substance, such as an element.  See also: concentration." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000392
+name: 1,2-dipalmitoyl-rac-glycero-3-phosphoethanolamine
+namespace: measure.ontology
+def: "1,2-dipalmitoyl-rac-glycero-3-phosphoethanolamine." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000393
+name: objects per grid window
+namespace: measure.ontology
+def: "objects per grid window." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000189
+
+[Term]
+id: ME:0000394
+name: barcode
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Barcode." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000395
+name: overexpression library
+namespace: measure.ontology
+def: "Overexpression Library." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000396
+name: Dub-seq library
+namespace: measure.ontology
+def: "Dub-Seq Library." []
+is_a: ME:0000395 ! overexpression library
+
+[Term]
+id: ME:0000397
+name: Dub-seq library name
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Dub-Seq Library Name." []
+xref: Ref:DA:0000075.DubSeq_Library.name
+is_a: ME:0000396 ! Dub-seq library
+
+[Term]
+id: ME:0000398
+name: genomic region
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Genomic Region." []
+is_a: ME:0000111 ! sequencing
+
+[Term]
+id: ME:0000399
+name: internal DubSeq_Library ID
+namespace: measure.ontology
+property_value: data_type "object_ref" xsd:string
+property_value: is_hidden "true" xsd:boolean
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal DubSeq_Library ID." []
+xref: Ref:DA:0000075.DubSeq_Library.id
+is_a: ME:0000265 ! internal ID
+
+[Term]
+id: ME:0000400
+name: base pairs
+namespace: measure.ontology
+def: "base pairs." []
+synonym: "bases" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000189
+
+[Term]
+id: ME:0000401
+name: numerator
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Numerator." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000402
+name: denominator
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Denominator." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000403
+name: isotope ratio
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187" xsd:string
+property_value: valid_units_parent "UO:0000190 UO:0000166 UO:0000187" xsd:string
+def: "Isotope Ratio." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000404
+name: geologic zone
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Geologic Zone." []
+xref: ORef:ME:0000404
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000405
+name: vadose zone
+namespace: measure.ontology
+def: "Vadose Zone." []
+synonym: "unsaturated zone" EXACT []
+is_a: ME:0000404 ! geologic zone
+
+[Term]
+id: ME:0000406
+name: variably saturated zone
+namespace: measure.ontology
+def: "Variably Saturated Zone." []
+is_a: ME:0000404 ! geologic zone
+
+[Term]
+id: ME:0000407
+name: saturated zone
+namespace: measure.ontology
+def: "Saturated Zone." []
+synonym: "phreatic zone" EXACT []
+is_a: ME:0000404 ! geologic zone
+
+[Term]
+id: ME:0000408
+name: isotope
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Isotope." []
+xref: ORef:CHEBI:24431
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000409
+name: microplate name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Microplate Name." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000411 ! microplate
+
+[Term]
+id: ME:0000410
+name: microplate well name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Microplate Well Name." []
+is_a: ME:0000002 ! experimental context
+is_a: ME:0000412 ! microplate well
+
+[Term]
+id: ME:0000411
+name: microplate
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Microplate." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000412
+name: microplate well
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+def: "Microplate Well." []
+is_a: ME:0000411 ! microplate
+
+[Term]
+id: ME:0000413
+name: fold concentration
+namespace: measure.ontology
+def: "fold concentration." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000051
+
+[Term]
+id: ME:0000414
+name: adenine hydrochloride hydrate
+namespace: measure.ontology
+def: "adenine hydrochloride hydrate." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000415
+name: aphotic
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Aphotic." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000416
+name: growth stage
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Growth Stage." []
+synonym: "growth phase" EXACT []
+xref: ORef:ME:0000416
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000417
+name: enrichment growth
+namespace: measure.ontology
+def: "Preincubation or enrichment of a microbial sample before plating for colony picking/isolation." []
+synonym: "preincubation" EXACT []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000418
+name: inoculation
+namespace: measure.ontology
+def: "Inoculation." []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000419
+name: lag phase
+namespace: measure.ontology
+def: "Lag Phase." []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000420
+name: exponential phase
+namespace: measure.ontology
+def: "Exponential Phase." []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000421
+name: stationary phase
+namespace: measure.ontology
+def: "Stationary Phase." []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000422
+name: humic acid
+namespace: measure.ontology
+def: "humic acid." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000423
+name: fulvic acid
+namespace: measure.ontology
+def: "fulvic acid." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000424
+name: anthrahydroxyquinone-2,6-disulfonate
+namespace: measure.ontology
+def: "anthrahydroxyquinone-2,6-disulfonate." []
+synonym: "AHDS" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000425
+name: citric-disodium phosphate
+namespace: measure.ontology
+def: "citric-disodium phosphate." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000426
+name: natural organic matter
+namespace: measure.ontology
+def: "natural organic matter." []
+synonym: "NOM" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000427
+name: minimal media
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Minimal Media." []
+is_a: ME:0000048 ! media
+
+[Term]
+id: ME:0000428
+name: CAS registry number
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "CAS Registry Number." []
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000429
+name: sequence identity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187" xsd:string
+def: "Sequence Identity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000430
+name: sequence similarity
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Sequence Similarity." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000431
+name: relative evolutionary divergence
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+property_value: valid_units_parent "UO:0000186" xsd:string
+def: "Relative Evolutionary Divergence." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000432
+name: publication
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Publication." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000433
+name: PubMed ID
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+property_value: valid_units_parent "UO:0000186" xsd:string
+def: "PubMed ID." []
+synonym: "PMID" EXACT []
+is_a: ME:0000432 ! publication
+
+[Term]
+id: ME:0000434
+name: PubMed Central ID
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "PubMed Central ID." []
+synonym: "PMCID" EXACT []
+is_a: ME:0000432 ! publication
+
+[Term]
+id: ME:0000435
+name: database
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Database." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000436
+name: obsolete
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Obsolete." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000437
+name: redox
+namespace: measure.ontology
+def: "Redox." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000438
+name: reduction
+namespace: measure.ontology
+def: "Reduction." []
+is_a: ME:0000437 ! redox
+
+[Term]
+id: ME:0000439
+name: oxidation
+namespace: measure.ontology
+def: "Oxidation." []
+is_a: ME:0000437 ! redox
+
+[Term]
+id: ME:0000440
+name: height
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Height." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000441
+name: length
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Length." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000442
+name: width
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000001" xsd:string
+def: "Width." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000443
+name: cell morphology
+namespace: measure.ontology
+def: "Cell Morphology." []
+is_a: ME:0000040 ! cell
+
+[Term]
+id: ME:0000444
+name: cell structure
+namespace: measure.ontology
+def: "Cell Structure." []
+is_a: ME:0000443 ! cell morphology
+
+[Term]
+id: ME:0000445
+name: cellular appendage
+namespace: measure.ontology
+def: "Cellular Appendage." []
+is_a: ME:0000444 ! cell structure
+
+[Term]
+id: ME:0000446
+name: flagella
+namespace: measure.ontology
+def: "Flagella." []
+is_a: ME:0000445 ! cellular appendage
+
+[Term]
+id: ME:0000447
+name: flagellar arrangement
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Flagellar Arrangement." []
+xref: ORef:ME:0000447
+is_a: ME:0000446 ! flagella
+
+[Term]
+id: ME:0000448
+name: monotrichous
+namespace: measure.ontology
+def: "A single flagellum extending from one end of the cell." []
+is_a: ME:0000447 ! flagellar arrangement
+
+[Term]
+id: ME:0000449
+name: amphitrichous
+namespace: measure.ontology
+def: "Single or multiple flagella extending from both ends of the cell." []
+is_a: ME:0000447 ! flagellar arrangement
+
+[Term]
+id: ME:0000450
+name: lophotrichous
+namespace: measure.ontology
+def: "Tuft of flagella extending from one end or both ends of the cell." []
+is_a: ME:0000447 ! flagellar arrangement
+
+[Term]
+id: ME:0000451
+name: peritrichous
+namespace: measure.ontology
+def: "Multiple flagella distributed over the entire cell." []
+is_a: ME:0000447 ! flagellar arrangement
+
+[Term]
+id: ME:0000452
+name: vessicle
+namespace: measure.ontology
+def: "Vessicle." []
+is_a: ME:0000444 ! cell structure
+
+[Term]
+id: ME:0000453
+name: S-layer
+namespace: measure.ontology
+def: "S-layer." []
+is_a: ME:0000444 ! cell structure
+
+[Term]
+id: ME:0000454
+name: cell membrane
+namespace: measure.ontology
+def: "Cell Membrane." []
+is_a: ME:0000444 ! cell structure
+
+[Term]
+id: ME:0000455
+name: cell shape
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Cell Shape." []
+xref: ORef:ME:0000455
+is_a: ME:0000443 ! cell morphology
+
+[Term]
+id: ME:0000456
+name: rod
+namespace: measure.ontology
+def: "Rod." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000457
+name: rod-vibrio
+namespace: measure.ontology
+def: "Rod-vibrio." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000458
+name: oval
+namespace: measure.ontology
+def: "Oval." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000459
+name: irregular oval
+namespace: measure.ontology
+def: "Irregular Oval." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000460
+name: spherical
+namespace: measure.ontology
+def: "Spherical." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000461
+name: pleomorphic
+namespace: measure.ontology
+def: "Pleomorphic." []
+is_a: ME:0000455 ! cell shape
+
+[Term]
+id: ME:0000462
+name: observed
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Observed." []
+is_a: ME:0000141 ! binary
+
+[Term]
+id: ME:0000463
+name: genome quality
+namespace: measure.ontology
+def: "Genome Quality." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000464
+name: genome completeness
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187" xsd:string
+property_value: valid_units_parent "UO:0000187" xsd:string
+def: "Genome Completeness." []
+is_a: ME:0000463 ! genome quality
+
+[Term]
+id: ME:0000465
+name: genome contamination
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000187" xsd:string
+property_value: valid_units_parent "UO:0000187" xsd:string
+def: "Genome Contamination." []
+is_a: ME:0000463 ! genome quality
+
+[Term]
+id: ME:0000466
+name: genome N50
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000189" xsd:string
+property_value: valid_units_parent "UO:0000189" xsd:string
+def: "Genome N50." []
+is_a: ME:0000463 ! genome quality
+
+[Term]
+id: ME:0000467
+name: read coverage
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000189 UO:0000187" xsd:string
+property_value: valid_units_parent "UO:0000189 UO:0000187" xsd:string
+def: "Read Coverage." []
+is_a: ME:0000463 ! genome quality
+
+[Term]
+id: ME:0000468
+name: index
+namespace: measure.ontology
+property_value: data_type "int" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000189" xsd:string
+property_value: valid_units_parent "UO:0000189" xsd:string
+def: "Index." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000469
+name: internal standard
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Internal Standard." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000470
+name: exact mass
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000221" xsd:string
+def: "Exact Mass." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000471
+name: relative ion intensity unit
+namespace: measure.ontology
+def: "relative ion intensity unit." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000186
+
+[Term]
+id: ME:0000472
+name: Jukes-Cantor distance
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000473" xsd:string
+def: "Jukes-Cantor Distance." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000473
+name: substitutions per site
+namespace: measure.ontology
+def: "substitutions per site." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000186
+
+[Term]
+id: ME:0000474
+name: Oxford Nanopore
+namespace: measure.ontology
+def: "Oxford Nanopore." []
+is_a: ME:0000116 ! sequencing technology
+
+[Term]
+id: ME:0000475
+name: dew point
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000005" xsd:string
+def: "Dew Point." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000476
+name: inHg
+namespace: measure.ontology
+def: "inHg." []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000109
+
+[Term]
+id: ME:0000477
+name: cumulative
+namespace: measure.ontology
+def: "Cumulative." []
+is_a: ME:0000018 ! mathematical context
+
+[Term]
+id: ME:0000478
+name: fluorescence
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000314" xsd:string
+def: "Fluorescence." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000479
+name: OTU
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "OTU." []
+synonym: "operational taxonomic unit" EXACT []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000480
+name: low control
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Low Control." []
+is_a: ME:0000283 ! control
+
+[Term]
+id: ME:0000481
+name: high control
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "High Control." []
+is_a: ME:0000283 ! control
+
+[Term]
+id: ME:0000482
+name: control name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Control Name." []
+is_a: ME:0000283 ! control
+
+[Term]
+id: ME:0000483
+name: microaerobic
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Microaerobic." []
+is_a: ME:0000209 ! physical context
+
+[Term]
+id: ME:0000484
+name: colony formation on solid media
+namespace: measure.ontology
+def: "Colony formation on solid media, during the process of microbial isolation" []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000485
+name: single colony growth in liquid media
+namespace: measure.ontology
+def: "Single colony growth in liquid media, after microbial isolation" []
+synonym: "growth in liquid media" EXACT []
+synonym: "single colony grown in liquid media" EXACT []
+is_a: ME:0000416 ! growth stage
+
+[Term]
+id: ME:0000486
+name: culture vessel
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Vessel or format in which microbes were grown, e.g., plates, tubes" []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000487
+name: 2,2-(1,4-Diazepane-1,4-diyl)diethanesulfonic acid
+namespace: measure.ontology
+def: "2,2-(1,4-Diazepane-1,4-diyl)diethanesulfonic acid." []
+synonym: "Homo-PIPES" EXACT []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000488
+name: 3-O-Methyl-D-glucopyranose
+namespace: measure.ontology
+def: "3-O-Methyl-D-glucopyranose." []
+is_a: ME:0000365 ! molecules not in ChEBI
+
+[Term]
+id: ME:0000489
+name: agitated culture
+namespace: measure.ontology
+property_value: data_type "boolean" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "agitated culture." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000491
+name: version
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A version identifier for a tool, database, vocabulary, protocol, or other versioned resource used in a dataset." []
+is_a: ME:0000002 ! experimental context
+
+[Term]
+id: ME:0000492
+name: trait
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A characteristic of a biological entity represented by a source annotation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000493
+name: pathway
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A series of linked biological reactions or processes represented by a source annotation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000494
+name: function
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A biological function represented by a source annotation." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000495
+name: GapMind pathway completeness category
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A GapMind-defined categorical assessment of pathway completeness: all steps were found, may have a gap, or has a gap." []
+is_a: ME:0000013 ! category
+
+[Term]
+id: ME:0000496
+name: RGI model match category
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "An RGI-defined model-match category: Perfect, Strict, or Loose." []
+is_a: ME:0000013 ! category
+
+[Term]
+id: ME:0000497
+name: BacAnt antimicrobial resistance prediction category
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A BacAnt-defined antimicrobial-resistance prediction category: confirmed or possible." []
+is_a: ME:0000013 ! category
+
+[Term]
+id: ME:0000498
+name: completeness
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "The extent to which a defined whole, pathway, or feature is complete, expressed using an explicit ratio unit such as fraction or percent." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000499
+name: bit score
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000232" xsd:string
+def: "A normalized sequence or model match score expressed in bits." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000500
+name: biosynthetic gene cluster
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A contiguous or otherwise defined genomic region predicted to encode a biosynthetic pathway." []
+is_a: ME:0000398 ! genomic region
+
+[Term]
+id: ME:0000501
+name: ARO accession
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "An identifier for a term in the Antibiotic Resistance Ontology." []
+xref: ORef:ARO:1000001
+is_a: ME:0000067 ! protein annotation
+
+[Term]
+id: ME:0000502
+name: MIBiG accession
+namespace: measure.ontology
+property_value: data_type "oterm_ref" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A versioned accession for a biosynthetic gene cluster record in the MIBiG repository." []
+xref: ORef:mibig:0000000
+is_a: ME:0000500 ! biosynthetic gene cluster
+
+[Term]
+id: ME:0000503
+name: unranked
+namespace: measure.ontology
+def: "A taxonomic assignment without a formal rank." []
+synonym: "no rank" EXACT []
+synonym: "norank" EXACT []
+is_a: ME:0000090 ! taxonomic level
+
+[Term]
+id: ME:0000504
+name: sequence length ratio
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000190" xsd:string
+def: "The length of one sequence divided by the length of a reference sequence, expressed using an explicit ratio unit such as fraction or percent; values may exceed one complete reference length." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000505
+name: biosynthetic product class
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "A class of biosynthetic product predicted or observed for a biosynthetic pathway or genomic region." []
+is_a: ME:0000039 ! biological context
+
+[Term]
+id: ME:0000490
+name: reverse
+namespace: measure.ontology
+def: "reverse." []
+is_a: ME:0000186 ! strand
+
+[Term]
+id: ME:0000506
+name: retention time
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "A time interval from the start of chromatography when an analyte exits a chromatographic column (PSI-MS MS:1000894)." []
+xref: MS:1000894 "PSI-MS"
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000507
+name: m/z
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+def: "The mass of an ion in daltons divided by its charge number, a dimensionless value used as the abscissa of a mass spectrum (IUPAC 2013; PSI-MS MS:1000040). Not the physical ratio of mass to electric charge; the term mass-to-charge ratio and the unit thomson are deprecated for this quantity." []
+synonym: "mass-to-charge ratio" RELATED []
+xref: MS:1000040 "PSI-MS"
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000508
+name: spectral library compound name
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Name of the compound whose reference spectrum in a spectral library matched an observed spectrum, as given by the library." []
+is_a: ME:0000027 ! molecule
+
+[Term]
+id: ME:0000509
+name: spectral library match ID
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Identifier of the reference spectrum in a spectral library that matched an observed spectrum, for example a GNPS spectrum ID." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000510
+name: spectral match score
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+def: "Similarity score between an observed spectrum and a matched library spectrum, for example the GNPS MQScore (modified cosine)." []
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000511
+name: adduct
+namespace: measure.ontology
+property_value: data_type "string" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+def: "Ion species formed from a molecule in mass spectrometry, for example M+H or M-H, written as given by the source." []
+is_a: ME:0000026 ! chemical context
+
+[Term]
+id: ME:0000512
+name: MS1 feature area
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "UO:0000186" xsd:string
+def: "Area of an LC-MS MS1 feature: the ion intensity of the feature's m/z integrated over its chromatographic peak, in instrument arbitrary units (PSI-MS MS:1001844)." []
+synonym: "peak area" EXACT []
+xref: MS:1001844 "PSI-MS"
+is_a: ME:0000120 ! measurement
+
+[Term]
+id: ME:0000513
+name: nanogram per milliliter per day
+namespace: measure.ontology
+def: "nanogram per milliliter per day." []
+synonym: "ng/mL/day" EXACT []
+is_a: ME:0000294 ! units not in UO
+is_a: UO:0000280
+
+[Term]
+id: ME:0000514
+name: biomass production rate
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units "ME:0000513" xsd:string
+def: "Rate at which new microbial biomass is produced in a sample, as mass of an element (usually carbon) per volume per time; for example heterotrophic production estimated from 3H-leucine incorporation into protein." []
+synonym: "heterotrophic production" RELATED []
+is_a: ME:0000264 ! rate
+
+[Term]
+id: ME:0000515
+name: time since sample collection
+namespace: measure.ontology
+property_value: data_type "float" xsd:string
+property_value: is_microtype "true" xsd:boolean
+property_value: is_valid_data_variable "true" xsd:boolean
+property_value: is_valid_dimension "true" xsd:boolean
+property_value: is_valid_dimension_variable "true" xsd:boolean
+property_value: is_valid_property "true" xsd:boolean
+property_value: valid_units_parent "UO:0000003" xsd:string
+def: "Time between the collection of a sample and a later step applied to it, such as the start of an incubation, fixation or analysis." []
+is_a: ME:0000120 ! measurement
+
+[Typedef]
+id: data_type
+
+[Typedef]
+id: is_a

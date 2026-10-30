@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 743
+Total Tables: 824
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 743
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1665
+**Total Rows:** 1913
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 743
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 8988
+**Total Rows:** 9613
 
 ### Sample Data (5 rows)
 
@@ -17572,38 +17572,6 @@ Total Tables: 743
 
 ---
 
-## Table: ddt_brick0001603
-
-**Table Description:** pumptest_2025_field_measurements.hndarray - 2025 SSO PumpTest2 sample environmental and geochemical measurements from the metadata workbook
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| volume_comment_source_column_volume_ml_milliliter | double | Yes | {"description": "volume, comment=source column: Volume (mL)", "unit": "milliliter"} |
-| ph_comment_source_column_ph_w_meter_ph | double | Yes | {"description": "pH, comment=source column: pH (w/ meter)", "unit": "pH"} |
-| ph_comment_source_column_ph_ph | double | Yes | {"description": "pH, comment=source column: pH", "unit": "pH"} |
-| conductivity_comment_source_column_conductivity_us_cm_microsiemen_per_centimeter | double | Yes | {"description": "conductivity, comment=source column: Conductivity (uS/cm)", "unit": "microsiemen per centimeter"} |
-| temperature_comment_source_column_temperature_c_degree_celsius | double | Yes | {"description": "temperature, comment=source column: Temperature (C)", "unit": "degree Celsius"} |
-| concentration_comment_source_column_rdo_conc_mg_l_dissolved_oxygen_milligram_per_liter | double | Yes | {"description": "concentration, comment=source column: RDO conc (mg/L), dissolved oxygen", "unit": "milligram per liter"} |
-| redox_potential_comment_source_column_orp_mv_millivolt | double | Yes | {"description": "redox potential, comment=source column: ORP (mV)", "unit": "millivolt"} |
-| concentration_comment_source_column_nitrate_mg_l_milligram_per_liter | double | Yes | {"description": "concentration, comment=source column: Nitrate (mg/L)", "unit": "milligram per liter"} |
-
-**Total Rows:** 127
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | volume_comment_source_column_volume_ml_milliliter | ph_comment_source_column_ph_w_meter_ph | ph_comment_source_column_ph_ph | conductivity_comment_source_column_conductivity_us_cm_microsiemen_per_centimeter | temperature_comment_source_column_temperature_c_degree_celsius | concentration_comment_source_column_rdo_conc_mg_l_dissolved_oxygen_milligram_per_liter | redox_potential_comment_source_column_orp_mv_millivolt | concentration_comment_source_column_nitrate_mg_l_milligram_per_liter |
-|---|---|---|---|---|---|---|---|---|
-| 20250922-U2-SZ2-AODC | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
-| 20250922-U2-SZ2-COUNT-UF | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
-| 20250922-U2-SZ2-COUNT-8F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
-| 20250922-U2-SZ2-COUNT-01F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
-| 20250922-U2-SZ2-ACTIVITY-UF | 50.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
-
----
-
 ## Table: ddt_brick0001604
 
 **Table Description:** pumptest_2025_fields_cell_counts.hndarray - 2025 SSO PumpTest2 Fields fixed-cell count measurements from the raw metadata workbook
@@ -17629,37 +17597,6 @@ Total Tables: 743
 | 20250922-U2-SZ2-COUNT-01F | 40.0 | 3.0 | 25.76409779248166 | 20.139805825909388 |
 | 20250923-U2-SZ1-COUNT-UF | 40.0 | 3.0 | 660.8607743056199 | 252.37177073692192 |
 | 20250923-U2-SZ1-COUNT-8F | 40.0 | 3.0 | 1611.1173177387916 | 333.5965119825522 |
-
----
-
-## Table: ddt_brick0001605
-
-**Table Description:** oneoff_260609_sample_metadata.hndarray - SSO one-off sample environmental and geochemical measurements from the one-off sampling spreadsheet
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| volume_comment_source_column_volume_milliliter | double | Yes | {"description": "volume, comment=source column: volume", "unit": "milliliter"} |
-| ph_comment_source_column_ph_ph | double | Yes | {"description": "pH, comment=source column: pH", "unit": "pH"} |
-| conductivity_comment_source_column_cond_microsiemen_per_centimeter | double | Yes | {"description": "conductivity, comment=source column: Cond", "unit": "microsiemen per centimeter"} |
-| temperature_comment_source_column_temp_degree_celsius | double | Yes | {"description": "temperature, comment=source column: Temp", "unit": "degree Celsius"} |
-| concentration_comment_source_column_do_dissolved_oxygen_milligram_per_liter | double | Yes | {"description": "concentration, comment=source column: DO, dissolved oxygen", "unit": "milligram per liter"} |
-| redox_potential_comment_source_column_orp_millivolt | double | Yes | {"description": "redox potential, comment=source column: ORP", "unit": "millivolt"} |
-| concentration_comment_source_column_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, comment=source column: Nitrate", "unit": "milligram per liter"} |
-
-**Total Rows:** 185
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | volume_comment_source_column_volume_milliliter | ph_comment_source_column_ph_ph | conductivity_comment_source_column_cond_microsiemen_per_centimeter | temperature_comment_source_column_temp_degree_celsius | concentration_comment_source_column_do_dissolved_oxygen_milligram_per_liter | redox_potential_comment_source_column_orp_millivolt | concentration_comment_source_column_nitrate_milligram_per_liter |
-|---|---|---|---|---|---|---|---|
-| 20230913-M5-SZ2-F10-R1 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
-| 20230913-M5-SZ2-F10-R2 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
-| 20230913-M5-SZ2-F10-R3 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
-| 20230913-M5-SZ2-F10-R4 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
-| 20230913-M5-SZ2-F10-R5 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
 
 ---
 
@@ -19542,9 +19479,716 @@ Total Tables: 743
 
 ---
 
-## Table: ddt_brick0001744
+## Table: ddt_brick0001898
 
-**Table Description:** hazen_aquatroll600_EU05_20190604_20190607_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-06-04 to 2019-06-07 (v2)
+**Table Description:** chakraborty_ic_anions_sso_pump_test_2024.hndarray - Chakraborty Lab ion chromatography anions (chloride, sulfate, nitrate) for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| concentration_parts_per_million | double | Yes | {"description": "concentration", "unit": "parts per million"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 153
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_parts_per_million | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 1 | 41.135 | 0 | ENIGMA:0000054 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 2 | 32.14 | 0 | ENIGMA:0000054 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 3 | 34.44 | 0 | ENIGMA:0000054 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 1 | 337.0 | 0 | ENIGMA:0000054 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 2 | 261.745 | 0 | ENIGMA:0000054 |
+
+---
+
+## Table: ddt_brick0001899
+
+**Table Description:** chakraborty_toc_tn_sso_pump_test_2024.hndarray - Chakraborty Lab total organic carbon and total nitrogen for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, organic=1", "unit": "parts per million"} |
+| below_relative_detection_limit_molecule_from_list_elemental_carbon_organic_1 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=elemental carbon, organic=1"} |
+| concentration_molecule_from_list_nitrogen_atom_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrogen atom", "unit": "parts per million"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 51
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million | below_relative_detection_limit_molecule_from_list_elemental_carbon_organic_1 | concentration_molecule_from_list_nitrogen_atom_parts_per_million | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|
+| L8-SZ1-20240314-ICTOC2 | 1 | 4.3771 | 0 | 4.0286 | ENIGMA:0000054 |
+| L8-SZ1-20240314-ICTOC2 | 2 | 5.7257 | 0 | 3.7143 | ENIGMA:0000054 |
+| L8-SZ1-20240314-ICTOC1 | 1 | 2.9086 | 0 | 3.5371 | ENIGMA:0000054 |
+| L8-SZ1-20240314-ICTOC1 | 3 | 0.1486 | 0 | 3.8914 | ENIGMA:0000054 |
+| L8-SZ2-20240320-ICTOC2 | 1 | 4.4514 | 0 | 1.9143 | ENIGMA:0000054 |
+
+---
+
+## Table: ddt_brick0001900
+
+**Table Description:** chakraborty_ic_anions_sso_pilot_time_series_2024.hndarray - Chakraborty Lab ion chromatography anions (chloride, sulfate, nitrate) for the 2024 SSO pilot time series groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_parts_per_million | double | Yes | {"description": "concentration", "unit": "parts per million"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 114
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_parts_per_million | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|
+| L7-SZ1-20240909-ICTOC | CHEBI:16189 | sulfate | 76.37 | 0 | ENIGMA:0000054 |
+| L7-SZ1-20240909-ICTOC | CHEBI:17632 | nitrate | 4.53 | 0 | ENIGMA:0000054 |
+| L7-SZ1-20240918-ICTOC | CHEBI:16189 | sulfate | 77.85 | 0 | ENIGMA:0000054 |
+| L7-SZ1-20240918-ICTOC | CHEBI:17632 | nitrate | 2.475 | 0 | ENIGMA:0000054 |
+| L7-SZ2-20240909-ICTOC | CHEBI:16189 | sulfate | 71.105 | 0 | ENIGMA:0000054 |
+
+---
+
+## Table: ddt_brick0001901
+
+**Table Description:** stahl_nitrate_isotopes_sso_pump_test_2024.hndarray - Stahl Lab nitrate d15N and d18O isotope ratios and nitrate concentration for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| concentration_molecule_from_list_nitrate_micromolar | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "micromolar"} |
+| isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=nitrogen-15 atom", "unit": "parts per thousand"} |
+| isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 34
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_nitrate_micromolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|
+| L8-SZ1-20240314-ISOTOPES2 | 1 | 33.171 | 13.711 | 10.04 | ENIGMA:0000164 |
+| L8-SZ1-20240314-ISOTOPES2 | 2 | 32.277 | 14.045 | 10.82 | ENIGMA:0000164 |
+| L8-SZ1-20240314-ISOTOPES1 | 1 | 37.74 | 13.907 | 9.71 | ENIGMA:0000164 |
+| L8-SZ1-20240314-ISOTOPES1 | 2 | 37.473 | 14.217 | 10.584 | ENIGMA:0000164 |
+| L8-SZ2-20240320-ISOTOPES2 | 1 | 32.778 | 14.076 | 9.365 | ENIGMA:0000164 |
+
+---
+
+## Table: ddt_brick0001907
+
+**Table Description:** baliga_ammonium_nitrite_sso_pilot_time_series_2024.hndarray - Baliga Lab Gallery analyzer ammonium and nitrite concentrations for the 2024 SSO pilot time series groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| concentration_molecule_from_list_ammonium_method_high_range_micromolar | double | Yes | {"description": "concentration, molecule from list=ammonium, method=high range", "unit": "micromolar"} |
+| below_relative_calibration_range_molecule_from_list_ammonium_method_high_range | boolean | Yes | {"description": "below, relative=calibration range, molecule from list=ammonium, method=high range"} |
+| concentration_molecule_from_list_ammonium_method_low_range_micromolar | double | Yes | {"description": "concentration, molecule from list=ammonium, method=low range", "unit": "micromolar"} |
+| below_relative_calibration_range_molecule_from_list_ammonium_method_low_range | boolean | Yes | {"description": "below, relative=calibration range, molecule from list=ammonium, method=low range"} |
+| concentration_molecule_from_list_nitrite_micromolar | double | Yes | {"description": "concentration, molecule from list=nitrite", "unit": "micromolar"} |
+| below_relative_calibration_range_molecule_from_list_nitrite | boolean | Yes | {"description": "below, relative=calibration range, molecule from list=nitrite"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 59
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_count_unit | concentration_molecule_from_list_ammonium_method_high_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_high_range | concentration_molecule_from_list_ammonium_method_low_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_low_range | concentration_molecule_from_list_nitrite_micromolar | below_relative_calibration_range_molecule_from_list_nitrite | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| U1-SZ1-20240909-NH3NO2 | 1 | 1.0409 | 0 | NULL | 1 | 0.1234 | 0 | ENIGMA:0000044 |
+| U1-SZ1-20240909-NH3NO2 | 2 | 3.2791 | 0 | 0.9337 | 0 | 0.1668 | 0 | ENIGMA:0000044 |
+| M5-SZ2-20240909-NH3NO2 | 1 | 2.0875 | 0 | 1.0381 | 0 | 2.0519 | 0 | ENIGMA:0000044 |
+| M5-SZ3-20240909-NH3NO2 | 1 | 2.0561 | 0 | 0.4808 | 0 | 0.4914 | 0 | ENIGMA:0000044 |
+| M6-SZ1-20240909-NH3NO2 | 1 | 6.2255 | 0 | 4.3175 | 0 | NULL | 1 | ENIGMA:0000044 |
+
+---
+
+## Table: ddt_brick0001908
+
+**Table Description:** hazen_aodc_raw_sso_pump_test_2024.hndarray - Hazen Lab AODC raw field counts data for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 85
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 1 | 28 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 2 | 19 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 3 | 22 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 4 | 23 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 5 | 23 | ENIGMA:0000166 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0001910
+
+**Table Description:** hazen_aodc_raw_sso_initial_well_characterization_2023.hndarray - Hazen Lab AODC raw field counts data for the 2023 SSO initial well characterization groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 145
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 1 | 13 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 2 | 15 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 3 | 24 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 4 | 21 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 5 | 27 | ENIGMA:0000166 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0001916
+
+**Table Description:** adams_metals_spring2019_integrated_sampling.hndarray - Adams Lab ICP-MS metal concentrations (52 elements) for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_micromolar | double | Yes | {"description": "concentration", "unit": "micromolar"} |
+| standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
+| detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 2340
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R92 | CHEBI:30501 | beryllium atom | 0.006891594034591052 | 7.198042287555368E-4 | 7.3371462676554E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:27560 | boron atom | 1.043795384526683 | 0.03070548271403609 | 0.010727242398948763 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:26708 | sodium atom | 99.05800344336397 | 1.775534274400087 | 0.9198665337908479 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:25107 | magnesium atom | 144.8032397833085 | 2.4285750202097667 | 0.06154594646551375 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:28984 | aluminium atom | 15.026304713275529 | 0.21043514623733037 | 8.712042138416755E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0001917
+
+**Table Description:** chakraborty_c_n_spring2019_integrated_sampling.hndarray - Chakraborty Lab carbon and nitrogen species (TC, DOC, DIC, TN, DON, nitrate, nitrite, ammonium) for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| concentration_molecule_from_list_elemental_carbon_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon", "unit": "parts per million"} |
+| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=1", "unit": "parts per million"} |
+| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=0", "unit": "parts per million"} |
+| concentration_molecule_from_list_nitrogen_atom_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrogen atom", "unit": "parts per million"} |
+| concentration_molecule_from_list_nitrogen_atom_physiochemical_state_dissolved_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrogen atom, physiochemical state=dissolved, organic=1", "unit": "parts per million"} |
+| concentration_molecule_from_list_nitrate_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "parts per million"} |
+| below_relative_detection_limit_molecule_from_list_nitrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrate"} |
+| concentration_molecule_from_list_nitrite_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrite", "unit": "parts per million"} |
+| below_relative_detection_limit_molecule_from_list_nitrite | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrite"} |
+| concentration_molecule_from_list_ammonium_parts_per_million | double | Yes | {"description": "concentration, molecule from list=ammonium", "unit": "parts per million"} |
+| below_relative_detection_limit_molecule_from_list_ammonium | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=ammonium"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 45
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_parts_per_million | concentration_molecule_from_list_nitrogen_atom_parts_per_million | concentration_molecule_from_list_nitrogen_atom_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_nitrate_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrate | concentration_molecule_from_list_nitrite_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrite | concentration_molecule_from_list_ammonium_parts_per_million | below_relative_detection_limit_molecule_from_list_ammonium | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-F02-R13 | 19.959 | 3.937 | 16.022 | 0.119 | 0.0559522413551187 | 0.2791 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
+| GW821E-2019-04-01-F02-R13 | 19.505 | 1.063 | 18.442 | 0.089 | 0.045740789034415016 | 0.1915 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
+| GW821E-2019-04-15-F02-R13 | 14.629 | 0.86 | 13.769 | 0.057 | 0.010420108088231739 | 0.2062 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
+| GW821E-2019-04-29-F02-R13 | 20.1105 | 0.415 | 19.6955 | 0.112 | 0.0564444444444445 | NULL | 1 | NULL | 1 | 0.07155 | 0 | ENIGMA:0000054 | ENIGMA:0000100 |
+| GW821E-2019-05-13-F02-R131 | 18.726 | 1.002 | 17.724 | 0.116 | 0.116 | NULL | 1 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0001918
+
+**Table Description:** hazen_aodc_raw_spring2019_integrated_sampling.hndarray - Hazen Lab AODC raw field counts data for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 250
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 1 | 29 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 2 | 63 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 3 | 69 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 4 | 121 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 5 | 97 | ENIGMA:0000067 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0001919
+
+**Table Description:** hazen_aodc_spring2019_integrated_sampling.hndarray - Hazen Lab AODC processed data for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
+| coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
+| average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 44
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 89555.7656 | 46.14020615 | 75.8 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R6 | 10.0 | 10ml filtered | 71833.64839 | 44.65695266 | 60.8 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-04-15-UF-R6 | 10.0 | 10ml filtered | 21502.83554 | 18.79410041 | 18.2 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-04-29-UF-R6 | 10.0 | 10ml filtered | 12051.0397 | 18.85821967 | 10.2 | ENIGMA:0000067 | ENIGMA:0000100 |
+| GW821E-2019-05-13-UF-R6 | 10.0 | 10ml filtered | 77032.13611 | 16.28224789 | 65.2 | ENIGMA:0000067 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0001920
+
+**Table Description:** adams_metals_sso_pump_test_2024_v2.hndarray - Adams Lab ICP-MS metal concentrations (52 elements, sample minus blank) for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_micromolar | double | Yes | {"description": "concentration", "unit": "micromolar"} |
+| standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
+| detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 884
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| L8-SZ1-20240314-METALS1 | CHEBI:30501 | beryllium atom | 0.003 | 1.1111111111111112E-4 | 1.8888888888888888E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L8-SZ1-20240314-METALS1 | CHEBI:27560 | boron atom | 6.845 | 0.13527272727272727 | 0.002990909090909091 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L8-SZ1-20240314-METALS1 | CHEBI:26708 | sodium atom | 248.68508695652173 | 5.982391304347826 | 7.187695652173914 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L8-SZ1-20240314-METALS1 | CHEBI:25107 | magnesium atom | 605.702625 | 19.730458333333335 | 0.14379166666666668 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L8-SZ1-20240314-METALS1 | CHEBI:28984 | aluminium atom | 19.97962962962963 | 2.6772592592592592 | 0.32601851851851854 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001921
+
+**Table Description:** adams_metals_sso_pilot_time_series_2024_v2.hndarray - Adams Lab ICP-MS metal concentrations (52 elements, sample minus blank) for the 2024 SSO pilot time series groundwater samples (2024-09-09 and 2024-09-18)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_micromolar | double | Yes | {"description": "concentration", "unit": "micromolar"} |
+| standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
+| detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 1976
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| U1-SZ1-20240909-METALS | CHEBI:30501 | beryllium atom | 5.555555555555556E-4 | 1.1111111111111112E-4 | 8.888888888888889E-5 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| U1-SZ1-20240909-METALS | CHEBI:27560 | boron atom | 10.595454545454546 | 0.42263636363636364 | 0.0042636363636363635 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| U1-SZ1-20240909-METALS | CHEBI:26708 | sodium atom | 871.6094347826087 | 19.227695652173914 | 17.253008695652174 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| U1-SZ1-20240909-METALS | CHEBI:25107 | magnesium atom | 638.3781250000001 | 15.809916666666666 | 0.6432916666666667 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| U1-SZ1-20240909-METALS | CHEBI:28984 | aluminium atom | 5.195592592592593 | 0.35240740740740745 | 0.7714814814814814 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001922
+
+**Table Description:** adams_metals_sso_initial_well_characterization_2023_v2.hndarray - Adams Lab ICP-MS metal concentrations (52 elements, sample minus blank) for the 2023 SSO initial well characterization groundwater samples (28 ports)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_micromolar | double | Yes | {"description": "concentration", "unit": "micromolar"} |
+| standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
+| detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 1456
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| L7-SZ2-20230626-METALS | CHEBI:30501 | beryllium atom | 0.0012222222222222222 | 1.1111111111111112E-4 | 1.7777777777777779E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L7-SZ2-20230626-METALS | CHEBI:27560 | boron atom | 9.579636363636364 | 0.016727272727272726 | 6.090909090909091E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L7-SZ2-20230626-METALS | CHEBI:26708 | sodium atom | 693.4703043478261 | 22.453434782608696 | 13.716365217391305 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L7-SZ2-20230626-METALS | CHEBI:25107 | magnesium atom | 526.1085416666666 | 15.764958333333333 | 0.2939083333333333 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| L7-SZ2-20230626-METALS | CHEBI:28984 | aluminium atom | 0.0 | 0.31333333333333335 | 0.8958148148148148 | 1 | ENIGMA:0000103 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001923
+
+**Table Description:** adams_metals_sso_sediment_cores_2023_v2.hndarray - Adams Lab ICP-MS metal concentrations (52 elements, mg per kg dry sediment, sample minus blank) for the 2023 SSO sediment core samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_weight_category_dry_sediment_digested_gram | double | Yes | {"description": "weight, category=dry sediment digested", "unit": "gram"} |
+| environmental_sample_volume_category_digest_resuspension_volume_liter | double | Yes | {"description": "volume, category=digest resuspension volume", "unit": "liter"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
+| standard_deviation_measurement_concentration_milligram_per_kilogram | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "milligram per kilogram"} |
+| detection_limit_milligram_per_kilogram | double | Yes | {"description": "detection limit", "unit": "milligram per kilogram"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 1924
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_weight_category_dry_sediment_digested_gram | environmental_sample_volume_category_digest_resuspension_volume_liter | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | detection_limit_milligram_per_kilogram | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:30501 | beryllium atom | 1.1980198019802004 | 0.021782178217821822 | 0.0031 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:27560 | boron atom | 4.355775577557764 | 0.20198019801980235 | 0.2349 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:26708 | sodium atom | 91.31980198019819 | 2.2435643564356478 | 0.689 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:25107 | magnesium atom | 7842.753135313547 | 152.71089108910923 | 6.301700000000001 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:28984 | aluminium atom | 19090.256765676604 | 322.136633663367 | 22.6475 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001924
+
+**Table Description:** hazen_aodc_sso_pump_test_2024_v2.hndarray - Hazen Lab AODC processed data for the 2024 SSO pump test groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
+| coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
+| average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 17
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 271739.13043478265 | 14.08856673566926 | 23.0 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ2-20240319-AODC1 | 1.0 | 1ml clear filter | 106332.7032136106 | 35.136418446315325 | 9.0 | ENIGMA:0000166 | ENIGMA:0000067 |
+| M5-SZ1-20240318-AODC1 | 1.0 | 1ml clear filter | 215028.35538752362 | 27.582198676947545 | 18.2 | ENIGMA:0000166 | ENIGMA:0000067 |
+| M5-SZ2-20240321-AODC1 | 1.0 | 1ml clear filter | 274102.07939508505 | 20.536429740640706 | 23.2 | ENIGMA:0000166 | ENIGMA:0000067 |
+| M5-SZ3-20240328-AODC1 | 1.0 | 1ml filtered | 203213.61058601135 | 30.041885308753045 | 17.2 | ENIGMA:0000166 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0001925
+
+**Table Description:** hazen_aodc_sso_initial_well_characterization_2023_v2.hndarray - Hazen Lab AODC processed data for the 2023 SSO initial well characterization groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| environmental_sample_comment | string | Yes | {"description": "comment"} |
+| count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
+| coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
+| average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 28
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 29.58039891549808 | 20.0 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-SZ1-20230703-AODC | 1.0 | 1ml filtered | 342627.5992438564 | 30.55180197701612 | 29.0 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U1-SZ2-20230703-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 40.2768199119819 | 20.0 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-VSZ-20230711-AODC | 1.0 | 1ml filtered | 222117.20226843102 | 29.472117398287374 | 18.8 | ENIGMA:0000166 | ENIGMA:0000067 |
+| U2-SZ1-20230705-AODC | 1.0 | 1ml filtered | 229206.04914933836 | 28.373935968088432 | 19.4 | ENIGMA:0000166 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0001926
+
+**Table Description:** northen_metabolomics_sso_sediment_2023_c18_pos_v2.hndarray - Northen Lab untargeted LC-MS metabolomics feature table (C18 reversed-phase, positive polarity) for the 2023 SSO sediment core samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| molecule_index_count_unit | int | Yes | {"description": "index", "unit": "count unit"} |
+| molecule_m_z_dimensionless_unit | double | Yes | {"description": "m/z", "unit": "dimensionless unit"} |
+| molecule_retention_time_minute | double | Yes | {"description": "retention time", "unit": "minute"} |
+| ionization_mode_sys_oterm_id | string | Yes | {"description": "ionization mode, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| ionization_mode_sys_oterm_name | string | Yes | {"description": "ionization mode"} |
+| chemical_context_reference_compound_sys_oterm_id | string | Yes | {"description": "molecule from list, chemical context=reference compound, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| chemical_context_reference_compound_sys_oterm_name | string | Yes | {"description": "molecule from list, chemical context=reference compound"} |
+| inchikey_chemical_context_reference_compound | string | Yes | {"description": "InChIKey, chemical context=reference compound"} |
+| molecular_formula_chemical_context_reference_compound | string | Yes | {"description": "molecular formula, chemical context=reference compound"} |
+| spectral_library_compound_name | string | Yes | {"description": "spectral library compound name"} |
+| molecule_spectral_library_match_id | string | Yes | {"description": "spectral library match ID"} |
+| molecule_spectral_match_score_dimensionless_unit | double | Yes | {"description": "spectral match score", "unit": "dimensionless unit"} |
+| molecule_adduct | string | Yes | {"description": "adduct"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| environmental_sample_control_name | string | Yes | {"description": "control name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 60830
+
+### Sample Data (5 rows)
+
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 189592.5 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 299610.1 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 571396.2 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 887428.1 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 1119338.4 | ENIGMA:0000072 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001927
+
+**Table Description:** northen_metabolomics_sso_sediment_2023_c18_neg_v2.hndarray - Northen Lab untargeted LC-MS metabolomics feature table (C18 reversed-phase, negative polarity) for the 2023 SSO sediment core samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| molecule_index_count_unit | int | Yes | {"description": "index", "unit": "count unit"} |
+| molecule_m_z_dimensionless_unit | double | Yes | {"description": "m/z", "unit": "dimensionless unit"} |
+| molecule_retention_time_minute | double | Yes | {"description": "retention time", "unit": "minute"} |
+| ionization_mode_sys_oterm_id | string | Yes | {"description": "ionization mode, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| ionization_mode_sys_oterm_name | string | Yes | {"description": "ionization mode"} |
+| chemical_context_reference_compound_sys_oterm_id | string | Yes | {"description": "molecule from list, chemical context=reference compound, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| chemical_context_reference_compound_sys_oterm_name | string | Yes | {"description": "molecule from list, chemical context=reference compound"} |
+| inchikey_chemical_context_reference_compound | string | Yes | {"description": "InChIKey, chemical context=reference compound"} |
+| molecular_formula_chemical_context_reference_compound | string | Yes | {"description": "molecular formula, chemical context=reference compound"} |
+| spectral_library_compound_name | string | Yes | {"description": "spectral library compound name"} |
+| molecule_spectral_library_match_id | string | Yes | {"description": "spectral library match ID"} |
+| molecule_spectral_match_score_dimensionless_unit | double | Yes | {"description": "spectral match score", "unit": "dimensionless unit"} |
+| molecule_adduct | string | Yes | {"description": "adduct"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| environmental_sample_control_name | string | Yes | {"description": "control name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 10744
+
+### Sample Data (5 rows)
+
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 110032.29 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 161028.44 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 39243.812 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 35039.324 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 48394.56 | ENIGMA:0000072 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001928
+
+**Table Description:** northen_metabolomics_sso_sediment_2023_hilic_pos_v2.hndarray - Northen Lab untargeted LC-MS metabolomics feature table (HILIC-Z, positive polarity) for the 2023 SSO sediment core samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| molecule_index_count_unit | int | Yes | {"description": "index", "unit": "count unit"} |
+| molecule_m_z_dimensionless_unit | double | Yes | {"description": "m/z", "unit": "dimensionless unit"} |
+| molecule_retention_time_minute | double | Yes | {"description": "retention time", "unit": "minute"} |
+| ionization_mode_sys_oterm_id | string | Yes | {"description": "ionization mode, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| ionization_mode_sys_oterm_name | string | Yes | {"description": "ionization mode"} |
+| chemical_context_reference_compound_sys_oterm_id | string | Yes | {"description": "molecule from list, chemical context=reference compound, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| chemical_context_reference_compound_sys_oterm_name | string | Yes | {"description": "molecule from list, chemical context=reference compound"} |
+| inchikey_chemical_context_reference_compound | string | Yes | {"description": "InChIKey, chemical context=reference compound"} |
+| molecular_formula_chemical_context_reference_compound | string | Yes | {"description": "molecular formula, chemical context=reference compound"} |
+| spectral_library_compound_name | string | Yes | {"description": "spectral library compound name"} |
+| molecule_spectral_library_match_id | string | Yes | {"description": "spectral library match ID"} |
+| molecule_spectral_match_score_dimensionless_unit | double | Yes | {"description": "spectral match score", "unit": "dimensionless unit"} |
+| molecule_adduct | string | Yes | {"description": "adduct"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| environmental_sample_control_name | string | Yes | {"description": "control name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 23937
+
+### Sample Data (5 rows)
+
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 0.0 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 0.0 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 174.76102 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 219.65651 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 141.9996 | ENIGMA:0000072 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001929
+
+**Table Description:** northen_metabolomics_sso_sediment_2023_hilic_neg_v2.hndarray - Northen Lab untargeted LC-MS metabolomics feature table (HILIC-Z, negative polarity) for the 2023 SSO sediment core samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| molecule_index_count_unit | int | Yes | {"description": "index", "unit": "count unit"} |
+| molecule_m_z_dimensionless_unit | double | Yes | {"description": "m/z", "unit": "dimensionless unit"} |
+| molecule_retention_time_minute | double | Yes | {"description": "retention time", "unit": "minute"} |
+| ionization_mode_sys_oterm_id | string | Yes | {"description": "ionization mode, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| ionization_mode_sys_oterm_name | string | Yes | {"description": "ionization mode"} |
+| chemical_context_reference_compound_sys_oterm_id | string | Yes | {"description": "molecule from list, chemical context=reference compound, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| chemical_context_reference_compound_sys_oterm_name | string | Yes | {"description": "molecule from list, chemical context=reference compound"} |
+| inchikey_chemical_context_reference_compound | string | Yes | {"description": "InChIKey, chemical context=reference compound"} |
+| molecular_formula_chemical_context_reference_compound | string | Yes | {"description": "molecular formula, chemical context=reference compound"} |
+| spectral_library_compound_name | string | Yes | {"description": "spectral library compound name"} |
+| molecule_spectral_library_match_id | string | Yes | {"description": "spectral library match ID"} |
+| molecule_spectral_match_score_dimensionless_unit | double | Yes | {"description": "spectral match score", "unit": "dimensionless unit"} |
+| molecule_adduct | string | Yes | {"description": "adduct"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| environmental_sample_control_name | string | Yes | {"description": "control name"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 17380
+
+### Sample Data (5 rows)
+
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 146946.9 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 83556.99 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 9577.214 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 7204.3657 | ENIGMA:0000072 | ENIGMA:0000166 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 11704.822 | ENIGMA:0000072 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0001930
+
+**Table Description:** hazen_aquatroll600_EU05_20190604_20190607_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-06-04 to 2019-06-07 (v3)
 
 ### Schema
 
@@ -19580,17 +20224,17 @@ Total Tables: 743
 
 | time_series_datetime | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_ph | ph_millivolt | redox_potential_millivolt | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_meter | depth_top_ground_surface_bottom_water_surface_meter | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-06-04T17:00:00.000-04:00 | 521.132 | 15.835 | 631.714 | 0.30900000000000005 | 0.41100000000000003 | 1918.901 | 0.999 | 1.4033 | 1.248 | 13.033999999999999 | 18.483999999999998 | 7.237 | -14.230999999999998 | 268.879 | 15.835 | 2.3959999999999995 | 75.0 | 736.739 | 2.27 | 1.7850000000000001 | 2.864 | EU05 |
-| 2019-06-04T17:10:00.000-04:00 | 521.006 | 15.824 | 631.726 | 0.30900000000000005 | 0.41100000000000003 | 1919.365 | 0.999 | 1.4343 | 1.026 | 10.712 | 15.193 | 7.2139999999999995 | -13.006 | 270.557 | 15.824 | 2.387 | 75.0 | 736.8069999999999 | 2.269 | 1.7850000000000001 | 2.8649999999999998 | EU05 |
-| 2019-06-04T17:20:00.000-04:00 | 520.136 | 15.803 | 630.971 | 0.30900000000000005 | 0.41000000000000003 | 1922.575 | 0.999 | 1.5405 | 1.041 | 10.863000000000001 | 15.409 | 7.189 | -11.600999999999999 | 273.106 | 15.803 | 2.423 | 74.0 | 736.8669999999998 | 2.2680000000000002 | 1.7840000000000003 | 2.8649999999999998 | EU05 |
-| 2019-06-04T17:30:00.000-04:00 | 519.753 | 15.785 | 630.777 | 0.30900000000000005 | 0.41000000000000003 | 1923.99 | 0.999 | 1.6114 | 1.101 | 11.484 | 16.282999999999998 | 7.164999999999999 | -10.269 | 275.257 | 15.785 | 3.433 | 74.0 | 736.5519999999999 | 2.269 | 1.7840000000000003 | 2.8649999999999998 | EU05 |
-| 2019-06-04T17:40:00.000-04:00 | 519.554 | 15.769 | 630.7700000000001 | 0.30900000000000005 | 0.41000000000000003 | 1924.726 | 0.999 | 1.6601 | 1.125 | 11.732 | 16.637000000000004 | 7.146 | -9.253 | 277.03499999999997 | 15.769 | 2.4319999999999995 | 74.0 | 736.641 | 2.2670000000000003 | 1.7830000000000001 | 2.8659999999999997 | EU05 |
+| 2019-06-04T17:00:00.000-04:00 | 521.132 | 15.835 | 631.714 | 0.30900000000000005 | 0.41100000000000003 | 1918.901 | 0.999 | 0.317 | 1.248 | 13.033999999999999 | 18.483999999999998 | 7.237 | -14.230999999999998 | 268.879 | 15.835 | 2.3959999999999995 | 75.0 | 736.739 | 2.27 | 1.7850000000000001 | 2.864 | EU05 |
+| 2019-06-04T17:10:00.000-04:00 | 521.006 | 15.824 | 631.726 | 0.30900000000000005 | 0.41100000000000003 | 1919.365 | 0.999 | 0.324 | 1.026 | 10.712 | 15.193 | 7.2139999999999995 | -13.006 | 270.557 | 15.824 | 2.387 | 75.0 | 736.8069999999999 | 2.269 | 1.7850000000000001 | 2.8649999999999998 | EU05 |
+| 2019-06-04T17:20:00.000-04:00 | 520.136 | 15.803 | 630.971 | 0.30900000000000005 | 0.41000000000000003 | 1922.575 | 0.999 | 0.348 | 1.041 | 10.863000000000001 | 15.409 | 7.189 | -11.600999999999999 | 273.106 | 15.803 | 2.423 | 74.0 | 736.8669999999998 | 2.2680000000000002 | 1.7840000000000003 | 2.8649999999999998 | EU05 |
+| 2019-06-04T17:30:00.000-04:00 | 519.753 | 15.785 | 630.777 | 0.30900000000000005 | 0.41000000000000003 | 1923.99 | 0.999 | 0.364 | 1.101 | 11.484 | 16.282999999999998 | 7.164999999999999 | -10.269 | 275.257 | 15.785 | 3.433 | 74.0 | 736.5519999999999 | 2.269 | 1.7840000000000003 | 2.8649999999999998 | EU05 |
+| 2019-06-04T17:40:00.000-04:00 | 519.554 | 15.769 | 630.7700000000001 | 0.30900000000000005 | 0.41000000000000003 | 1924.726 | 0.999 | 0.375 | 1.125 | 11.732 | 16.637000000000004 | 7.146 | -9.253 | 277.03499999999997 | 15.769 | 2.4319999999999995 | 74.0 | 736.641 | 2.2670000000000003 | 1.7830000000000001 | 2.8659999999999997 | EU05 |
 
 ---
 
-## Table: ddt_brick0001745
+## Table: ddt_brick0001931
 
-**Table Description:** hazen_aquatroll600_EU05_20190607_20191004_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-06-07 to 2019-10-04 (v2)
+**Table Description:** hazen_aquatroll600_EU05_20190607_20191004_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-06-07 to 2019-10-04 (v3)
 
 ### Schema
 
@@ -19626,17 +20270,17 @@ Total Tables: 743
 
 | time_series_datetime | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_ph | ph_millivolt | redox_potential_millivolt | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_top_of_casing_bottom_water_surface_foot | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-06-07T17:00:00.000-04:00 | 15.839 | 523.975 | 635.109 | 0.31100000000000005 | 0.41300000000000003 | 1908.489 | 0.999 | 0.9518 | 1.11 | 11.733999999999998 | 16.439999999999998 | 7.235 | -14.105 | 329.001 | 15.839 | 3.9549999999999996 | 99.0 | 727.9780000000001 | 2.387 | 6.123999999999999 | 9.382000000000001 | EU05 |
-| 2019-06-07T17:10:00.000-04:00 | 15.812000000000001 | 523.9599999999999 | 635.485 | 0.31100000000000005 | 0.41300000000000003 | 1908.541 | 0.999 | 0.996 | 0.8440000000000001 | 8.911 | 12.489 | 7.24 | -14.4 | 319.03499999999997 | 15.812000000000001 | 2.36 | 99.0 | 728.248 | 2.3909999999999996 | 6.135 | 9.375000000000002 | EU05 |
-| 2019-06-07T17:20:00.000-04:00 | 15.786999999999999 | 523.7880000000001 | 635.648 | 0.31100000000000005 | 0.41300000000000003 | 1909.168 | 0.999 | 1.0934 | 0.899 | 9.484 | 13.295 | 7.236000000000001 | -14.186 | 312.46 | 15.786999999999999 | 2.3779999999999997 | 99.0 | 728.398 | 2.389 | 6.132 | 9.378 | EU05 |
-| 2019-06-07T17:30:00.000-04:00 | 15.766 | 523.715 | 635.8569999999999 | 0.31100000000000005 | 0.41300000000000003 | 1909.4350000000002 | 0.999 | 1.1864 | 0.9500000000000001 | 10.016 | 14.039 | 7.223 | -13.454 | 308.54900000000004 | 15.766 | 2.3689999999999998 | 99.0 | 728.2330000000001 | 2.393 | 6.141 | 9.368 | EU05 |
-| 2019-06-07T17:40:00.000-04:00 | 15.748999999999999 | 523.633 | 636.006 | 0.31100000000000005 | 0.41300000000000003 | 1909.7350000000001 | 0.999 | 1.2749 | 0.965 | 10.18 | 14.267 | 7.202 | -12.312000000000001 | 305.91999999999996 | 15.748999999999999 | 2.3689999999999998 | 99.0 | 728.136 | 2.3939999999999997 | 6.1419999999999995 | 9.367 | EU05 |
+| 2019-06-07T17:00:00.000-04:00 | 15.839 | 523.975 | 635.109 | 0.31100000000000005 | 0.41300000000000003 | 1908.489 | 0.999 | 0.215 | 1.11 | 11.733999999999998 | 16.439999999999998 | 7.235 | -14.105 | 329.001 | 15.839 | 3.9549999999999996 | 99.0 | 727.9780000000001 | 2.387 | 6.123999999999999 | 9.382000000000001 | EU05 |
+| 2019-06-07T17:10:00.000-04:00 | 15.812000000000001 | 523.9599999999999 | 635.485 | 0.31100000000000005 | 0.41300000000000003 | 1908.541 | 0.999 | 0.225 | 0.8440000000000001 | 8.911 | 12.489 | 7.24 | -14.4 | 319.03499999999997 | 15.812000000000001 | 2.36 | 99.0 | 728.248 | 2.3909999999999996 | 6.135 | 9.375000000000002 | EU05 |
+| 2019-06-07T17:20:00.000-04:00 | 15.786999999999999 | 523.7880000000001 | 635.648 | 0.31100000000000005 | 0.41300000000000003 | 1909.168 | 0.999 | 0.247 | 0.899 | 9.484 | 13.295 | 7.236000000000001 | -14.186 | 312.46 | 15.786999999999999 | 2.3779999999999997 | 99.0 | 728.398 | 2.389 | 6.132 | 9.378 | EU05 |
+| 2019-06-07T17:30:00.000-04:00 | 15.766 | 523.715 | 635.8569999999999 | 0.31100000000000005 | 0.41300000000000003 | 1909.4350000000002 | 0.999 | 0.268 | 0.9500000000000001 | 10.016 | 14.039 | 7.223 | -13.454 | 308.54900000000004 | 15.766 | 2.3689999999999998 | 99.0 | 728.2330000000001 | 2.393 | 6.141 | 9.368 | EU05 |
+| 2019-06-07T17:40:00.000-04:00 | 15.748999999999999 | 523.633 | 636.006 | 0.31100000000000005 | 0.41300000000000003 | 1909.7350000000001 | 0.999 | 0.288 | 0.965 | 10.18 | 14.267 | 7.202 | -12.312000000000001 | 305.91999999999996 | 15.748999999999999 | 2.3689999999999998 | 99.0 | 728.136 | 2.3939999999999997 | 6.1419999999999995 | 9.367 | EU05 |
 
 ---
 
-## Table: ddt_brick0001746
+## Table: ddt_brick0001932
 
-**Table Description:** hazen_aquatroll600_EU05_20191004_20191206_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-10-04 to 2019-12-06 (v2)
+**Table Description:** hazen_aquatroll600_EU05_20191004_20191206_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for EU05 from 2019-10-04 to 2019-12-06 (v3)
 
 ### Schema
 
@@ -19672,17 +20316,17 @@ Total Tables: 743
 
 | time_series_datetime | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_millivolt | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_top_of_casing_bottom_water_surface_foot | concentration_molecule_from_list_nitrate_milligram_per_liter | ph_ph | redox_potential_millivolt | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-10-04T16:30:00.000-04:00 | 20.071 | 732.094 | 808.1880000000001 | 0.4 | 0.525 | 1365.944 | 0.998 | 0.19 | 2.1670000000000003 | 2.9819999999999998 | -4.675 | 20.071 | 2.3149999999999995 | 99.0 | 736.979 | 1.607 | 4.324999999999999 | 11.07 | 0.7658 | 6.885 | 241.009 | EU05 |
-| 2019-10-04T16:40:00.000-04:00 | 20.064999999999998 | 731.3649999999999 | 807.4730000000001 | 0.4 | 0.525 | 1367.307 | 0.998 | 0.085 | 0.967 | 1.33 | -4.761 | 20.064999999999998 | 2.324 | 99.0 | 736.8969999999999 | 1.612 | 4.335 | 11.06 | 0.7304 | 6.887 | 231.656 | EU05 |
-| 2019-10-04T16:50:00.000-04:00 | 20.052 | 730.229 | 806.4399999999999 | 0.399 | 0.524 | 1369.434 | 0.999 | 0.093 | 1.057 | 1.454 | -4.728 | 20.052 | 2.3059999999999996 | 99.0 | 736.8219999999999 | 1.611 | 4.333 | 11.061 | 0.8721 | 6.886 | 228.33700000000002 | EU05 |
-| 2019-10-04T17:00:00.000-04:00 | 20.04 | 728.555 | 804.7900000000001 | 0.398 | 0.523 | 1372.58 | 0.999 | 0.101 | 1.1540000000000001 | 1.588 | -4.702 | 20.04 | 2.324 | 99.0 | 736.9419999999999 | 1.603 | 4.3149999999999995 | 11.081 | 0.8499 | 6.886 | 228.35600000000002 | EU05 |
-| 2019-10-04T17:10:00.000-04:00 | 20.032 | 728.1990000000001 | 804.548 | 0.398 | 0.523 | 1373.251 | 0.999 | 0.099 | 1.129 | 1.554 | -4.671 | 20.032 | 2.3149999999999995 | 99.0 | 736.9559999999999 | 1.609 | 4.326999999999999 | 11.066 | 0.7658 | 6.885 | 230.02800000000002 | EU05 |
+| 2019-10-04T16:30:00.000-04:00 | 20.071 | 732.094 | 808.1880000000001 | 0.4 | 0.525 | 1365.944 | 0.998 | 0.19 | 2.1670000000000003 | 2.9819999999999998 | -4.675 | 20.071 | 2.3149999999999995 | 99.0 | 736.979 | 1.607 | 4.324999999999999 | 11.07 | 0.173 | 6.885 | 241.009 | EU05 |
+| 2019-10-04T16:40:00.000-04:00 | 20.064999999999998 | 731.3649999999999 | 807.4730000000001 | 0.4 | 0.525 | 1367.307 | 0.998 | 0.085 | 0.967 | 1.33 | -4.761 | 20.064999999999998 | 2.324 | 99.0 | 736.8969999999999 | 1.612 | 4.335 | 11.06 | 0.165 | 6.887 | 231.656 | EU05 |
+| 2019-10-04T16:50:00.000-04:00 | 20.052 | 730.229 | 806.4399999999999 | 0.399 | 0.524 | 1369.434 | 0.999 | 0.093 | 1.057 | 1.454 | -4.728 | 20.052 | 2.3059999999999996 | 99.0 | 736.8219999999999 | 1.611 | 4.333 | 11.061 | 0.197 | 6.886 | 228.33700000000002 | EU05 |
+| 2019-10-04T17:00:00.000-04:00 | 20.04 | 728.555 | 804.7900000000001 | 0.398 | 0.523 | 1372.58 | 0.999 | 0.101 | 1.1540000000000001 | 1.588 | -4.702 | 20.04 | 2.324 | 99.0 | 736.9419999999999 | 1.603 | 4.3149999999999995 | 11.081 | 0.192 | 6.886 | 228.35600000000002 | EU05 |
+| 2019-10-04T17:10:00.000-04:00 | 20.032 | 728.1990000000001 | 804.548 | 0.398 | 0.523 | 1373.251 | 0.999 | 0.099 | 1.129 | 1.554 | -4.671 | 20.032 | 2.3149999999999995 | 99.0 | 736.9559999999999 | 1.609 | 4.326999999999999 | 11.066 | 0.173 | 6.885 | 230.02800000000002 | EU05 |
 
 ---
 
-## Table: ddt_brick0001747
+## Table: ddt_brick0001933
 
-**Table Description:** hazen_aquatroll600_FW-106_20190604_20190607_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-106 from 2019-06-04 to 2019-06-07 (v2)
+**Table Description:** hazen_aquatroll600_FW-106_20190604_20190607_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-106 from 2019-06-04 to 2019-06-07 (v3)
 
 ### Schema
 
@@ -19718,17 +20362,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_nitrate_milligram_per_liter | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_ph | ph_millivolt | redox_potential_millivolt | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_meter | depth_top_ground_surface_bottom_water_surface_meter | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-06-04T19:00:00.000-04:00 | 1529.0089 | 17.796 | 4349.021000000001 | 5042.902 | 2.7359999999999998 | 3.278 | 229.937 | 1.001 | 0.257 | 2.8369999999999997 | 3.4419999999999997 | 3.8339999999999996 | 177.05200000000002 | 363.108 | 17.796 | 0.0 | 53.0 | 736.259 | 11.979000000000001 | 8.622 | 3.685 | FW-106 |
-| 2019-06-04T19:10:00.000-04:00 | 1522.4351 | 17.793 | 4349.668000000001 | 5043.942999999999 | 2.7359999999999998 | 3.279 | 229.903 | 1.001 | 0.232 | 2.563 | 3.11 | 3.8339999999999996 | 177.062 | 363.974 | 17.793 | 0.0 | 53.0 | 736.2890000000001 | 11.978 | 8.620999999999999 | 3.686 | FW-106 |
-| 2019-06-04T19:20:00.000-04:00 | 1511.9701 | 17.788999999999998 | 4351.759 | 5046.828 | 2.738 | 3.2800000000000002 | 229.792 | 1.001 | 0.223 | 2.4619999999999997 | 2.987 | 3.8349999999999995 | 177.023 | 363.04900000000004 | 17.788999999999998 | 0.0 | 53.0 | 736.3639999999999 | 11.978 | 8.620999999999999 | 3.685 | FW-106 |
-| 2019-06-04T19:30:00.000-04:00 | 1504.3604 | 17.785999999999998 | 4352.1410000000005 | 5047.606000000001 | 2.738 | 3.281 | 229.772 | 1.001 | 0.21600000000000003 | 2.3859999999999997 | 2.8949999999999996 | 3.8329999999999997 | 177.107 | 361.952 | 17.785999999999998 | 0.0 | 53.0 | 736.424 | 11.977 | 8.620999999999999 | 3.686 | FW-106 |
-| 2019-06-04T19:40:00.000-04:00 | 1497.7114 | 17.784 | 4353.095 | 5048.946 | 2.739 | 3.282 | 229.722 | 1.001 | 0.21200000000000002 | 2.34 | 2.84 | 3.8319999999999994 | 177.183 | 361.897 | 17.784 | 0.0 | 53.0 | 736.499 | 11.977 | 8.620999999999999 | 3.686 | FW-106 |
+| 2019-06-04T19:00:00.000-04:00 | 345.398 | 17.796 | 4349.021000000001 | 5042.902 | 2.7359999999999998 | 3.278 | 229.937 | 1.001 | 0.257 | 2.8369999999999997 | 3.4419999999999997 | 3.8339999999999996 | 177.05200000000002 | 363.108 | 17.796 | 0.0 | 53.0 | 736.259 | 11.979000000000001 | 8.622 | 3.685 | FW-106 |
+| 2019-06-04T19:10:00.000-04:00 | 343.913 | 17.793 | 4349.668000000001 | 5043.942999999999 | 2.7359999999999998 | 3.279 | 229.903 | 1.001 | 0.232 | 2.563 | 3.11 | 3.8339999999999996 | 177.062 | 363.974 | 17.793 | 0.0 | 53.0 | 736.2890000000001 | 11.978 | 8.620999999999999 | 3.686 | FW-106 |
+| 2019-06-04T19:20:00.000-04:00 | 341.549 | 17.788999999999998 | 4351.759 | 5046.828 | 2.738 | 3.2800000000000002 | 229.792 | 1.001 | 0.223 | 2.4619999999999997 | 2.987 | 3.8349999999999995 | 177.023 | 363.04900000000004 | 17.788999999999998 | 0.0 | 53.0 | 736.3639999999999 | 11.978 | 8.620999999999999 | 3.685 | FW-106 |
+| 2019-06-04T19:30:00.000-04:00 | 339.83 | 17.785999999999998 | 4352.1410000000005 | 5047.606000000001 | 2.738 | 3.281 | 229.772 | 1.001 | 0.21600000000000003 | 2.3859999999999997 | 2.8949999999999996 | 3.8329999999999997 | 177.107 | 361.952 | 17.785999999999998 | 0.0 | 53.0 | 736.424 | 11.977 | 8.620999999999999 | 3.686 | FW-106 |
+| 2019-06-04T19:40:00.000-04:00 | 338.328 | 17.784 | 4353.095 | 5048.946 | 2.739 | 3.282 | 229.722 | 1.001 | 0.21200000000000002 | 2.34 | 2.84 | 3.8319999999999994 | 177.183 | 361.897 | 17.784 | 0.0 | 53.0 | 736.499 | 11.977 | 8.620999999999999 | 3.686 | FW-106 |
 
 ---
 
-## Table: ddt_brick0001748
+## Table: ddt_brick0001934
 
-**Table Description:** hazen_aquatroll600_FW-106_20190607_20200104_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-106 from 2019-06-07 to 2020-01-04 (v2)
+**Table Description:** hazen_aquatroll600_FW-106_20190607_20200104_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-106 from 2019-06-07 to 2020-01-04 (v3)
 
 ### Schema
 
@@ -19764,17 +20408,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_nitrate_milligram_per_liter | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_ph | ph_millivolt | redox_potential_millivolt | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_top_of_casing_bottom_water_surface_foot | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-06-07T13:00:00.000-04:00 | 1812.3729 | 17.810000000000002 | 4418.472 | 5121.801 | 2.781 | 3.3289999999999997 | 226.323 | 1.001 | 0.34500000000000003 | 3.8449999999999998 | 4.626999999999999 | 3.8 | 178.969 | 392.651 | 17.810000000000002 | 0.0 | 52.0 | 730.611 | 12.012 | 28.364 | 12.161 | FW-106 |
-| 2019-06-07T13:10:00.000-04:00 | 1793.0544 | 17.8 | 4416.688 | 5120.966 | 2.781 | 3.3289999999999997 | 226.414 | 1.001 | 0.261 | 2.908 | 3.5 | 3.799 | 178.98600000000002 | 384.192 | 17.8 | 0.0 | 52.0 | 730.5880000000001 | 12.016 | 28.372 | 12.154 | FW-106 |
-| 2019-06-07T13:20:00.000-04:00 | 1791.0048 | 17.781999999999996 | 4414.664000000001 | 5120.589 | 2.781 | 3.328 | 226.518 | 1.001 | 0.406 | 4.515 | 5.433000000000001 | 3.8 | 178.907 | 380.91299999999995 | 17.781999999999996 | 0.0 | 52.0 | 730.498 | 12.011 | 28.361 | 12.165000000000001 | FW-106 |
-| 2019-06-07T13:30:00.000-04:00 | 1786.7772 | 17.769 | 4412.825000000001 | 5119.947999999999 | 2.7800000000000002 | 3.328 | 226.612 | 1.001 | 0.6130000000000001 | 6.821999999999999 | 8.209999999999999 | 3.8009999999999997 | 178.847 | 379.01099999999997 | 17.769 | 0.0 | 52.0 | 730.453 | 12.009 | 28.357000000000003 | 12.168 | FW-106 |
-| 2019-06-07T13:40:00.000-04:00 | 1782.5761 | 17.761 | 4408.03 | 5115.328 | 2.777 | 3.3249999999999997 | 226.859 | 1.001 | 0.6470000000000001 | 7.199 | 8.663 | 3.8 | 178.912 | 376.95099999999996 | 17.761 | 0.0 | 52.0 | 730.386 | 12.017999999999999 | 28.377000000000002 | 12.147999999999998 | FW-106 |
+| 2019-06-07T13:00:00.000-04:00 | 409.409 | 17.810000000000002 | 4418.472 | 5121.801 | 2.781 | 3.3289999999999997 | 226.323 | 1.001 | 0.34500000000000003 | 3.8449999999999998 | 4.626999999999999 | 3.8 | 178.969 | 392.651 | 17.810000000000002 | 0.0 | 52.0 | 730.611 | 12.012 | 28.364 | 12.161 | FW-106 |
+| 2019-06-07T13:10:00.000-04:00 | 405.045 | 17.8 | 4416.688 | 5120.966 | 2.781 | 3.3289999999999997 | 226.414 | 1.001 | 0.261 | 2.908 | 3.5 | 3.799 | 178.98600000000002 | 384.192 | 17.8 | 0.0 | 52.0 | 730.5880000000001 | 12.016 | 28.372 | 12.154 | FW-106 |
+| 2019-06-07T13:20:00.000-04:00 | 404.582 | 17.781999999999996 | 4414.664000000001 | 5120.589 | 2.781 | 3.328 | 226.518 | 1.001 | 0.406 | 4.515 | 5.433000000000001 | 3.8 | 178.907 | 380.91299999999995 | 17.781999999999996 | 0.0 | 52.0 | 730.498 | 12.011 | 28.361 | 12.165000000000001 | FW-106 |
+| 2019-06-07T13:30:00.000-04:00 | 403.627 | 17.769 | 4412.825000000001 | 5119.947999999999 | 2.7800000000000002 | 3.328 | 226.612 | 1.001 | 0.6130000000000001 | 6.821999999999999 | 8.209999999999999 | 3.8009999999999997 | 178.847 | 379.01099999999997 | 17.769 | 0.0 | 52.0 | 730.453 | 12.009 | 28.357000000000003 | 12.168 | FW-106 |
+| 2019-06-07T13:40:00.000-04:00 | 402.678 | 17.761 | 4408.03 | 5115.328 | 2.777 | 3.3249999999999997 | 226.859 | 1.001 | 0.6470000000000001 | 7.199 | 8.663 | 3.8 | 178.912 | 376.95099999999996 | 17.761 | 0.0 | 52.0 | 730.386 | 12.017999999999999 | 28.377000000000002 | 12.147999999999998 | FW-106 |
 
 ---
 
-## Table: ddt_brick0001749
+## Table: ddt_brick0001935
 
-**Table Description:** hazen_aquatroll600_FW-126_20190207_20190604_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-126 from 2019-02-07 to 2019-06-04 (v2)
+**Table Description:** hazen_aquatroll600_FW-126_20190207_20190604_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for FW-126 from 2019-02-07 to 2019-06-04 (v3)
 
 ### Schema
 
@@ -19812,17 +20456,17 @@ Total Tables: 743
 
 | time_series_datetime | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_water_surface_bottom_instrument_meter | depth_top_ground_surface_bottom_water_surface_foot | depth_top_ground_surface_bottom_water_surface_meter | temperature_degree_fahrenheit | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | ph_ph | ph_millivolt | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | salinity_practical_salinity_unit | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-02-07T14:00:00.000-04:00 | 13.828 | 31.896 | 9.722 | 12.687 | 3.867 | 64.521 | 18.067 | 10391.44 | 11977.554999999998 | 0.36000000000000004 | 4.167999999999999 | 6.236000000000001 | 3.256 | 196.097 | 466.341 | 10139.7558 | 7.785 | 6.909000000000001 | 96.233 | 1.004 | 724.828 | 70.0 | 0.0 | FW-126 |
-| 2019-02-07T14:10:00.000-04:00 | 13.842 | 31.929 | 9.732 | 12.654 | 3.8569999999999998 | 64.52199999999999 | 18.067999999999998 | 10254.887999999999 | 11819.883 | 0.28800000000000003 | 3.3309999999999995 | 4.977 | 3.257 | 196.047 | 472.47099999999995 | 10096.112 | 7.683 | 6.811 | 97.51400000000001 | 1.004 | 723.883 | 70.0 | 0.0 | FW-126 |
-| 2019-02-07T14:20:00.000-04:00 | 13.847 | 31.939999999999998 | 9.735 | 12.642999999999999 | 3.8529999999999998 | 64.477 | 18.043 | 10471.681 | 12076.267 | 0.31400000000000006 | 3.639 | 5.438000000000001 | 3.24 | 196.993 | 469.767 | 10285.4552 | 7.85 | 6.971000000000001 | 95.49600000000001 | 1.004 | 723.823 | 70.0 | 0.0 | FW-126 |
-| 2019-02-07T14:30:00.000-04:00 | 13.859000000000002 | 31.967999999999996 | 9.743999999999998 | 12.615 | 3.8449999999999998 | 64.44000000000001 | 18.022 | 10645.601 | 12282.640000000001 | 0.35300000000000004 | 4.092 | 6.111 | 3.222 | 197.995 | 468.055 | 10600.1743 | 7.984 | 7.099 | 93.936 | 1.004 | 723.433 | 69.0 | 0.0 | FW-126 |
-| 2019-02-07T14:40:00.000-04:00 | 13.847999999999999 | 31.942999999999998 | 9.735999999999999 | 12.639999999999999 | 3.8529999999999998 | 64.409 | 18.005 | 10781.753 | 12444.362 | 0.28500000000000003 | 3.308 | 4.9430000000000005 | 3.21 | 198.612 | 467.128 | 10791.9567 | 8.089 | 7.2 | 92.74900000000001 | 1.004 | 723.883 | 69.0 | 0.0 | FW-126 |
+| 2019-02-07T14:00:00.000-04:00 | 13.828 | 31.896 | 9.722 | 12.687 | 3.867 | 64.521 | 18.067 | 10391.44 | 11977.554999999998 | 0.36000000000000004 | 4.167999999999999 | 6.236000000000001 | 3.256 | 196.097 | 466.341 | 2290.537 | 7.785 | 6.909000000000001 | 96.233 | 1.004 | 724.828 | 70.0 | 0.0 | FW-126 |
+| 2019-02-07T14:10:00.000-04:00 | 13.842 | 31.929 | 9.732 | 12.654 | 3.8569999999999998 | 64.52199999999999 | 18.067999999999998 | 10254.887999999999 | 11819.883 | 0.28800000000000003 | 3.3309999999999995 | 4.977 | 3.257 | 196.047 | 472.47099999999995 | 2280.678 | 7.683 | 6.811 | 97.51400000000001 | 1.004 | 723.883 | 70.0 | 0.0 | FW-126 |
+| 2019-02-07T14:20:00.000-04:00 | 13.847 | 31.939999999999998 | 9.735 | 12.642999999999999 | 3.8529999999999998 | 64.477 | 18.043 | 10471.681 | 12076.267 | 0.31400000000000006 | 3.639 | 5.438000000000001 | 3.24 | 196.993 | 469.767 | 2323.45 | 7.85 | 6.971000000000001 | 95.49600000000001 | 1.004 | 723.823 | 70.0 | 0.0 | FW-126 |
+| 2019-02-07T14:30:00.000-04:00 | 13.859000000000002 | 31.967999999999996 | 9.743999999999998 | 12.615 | 3.8449999999999998 | 64.44000000000001 | 18.022 | 10645.601 | 12282.640000000001 | 0.35300000000000004 | 4.092 | 6.111 | 3.222 | 197.995 | 468.055 | 2394.544 | 7.984 | 7.099 | 93.936 | 1.004 | 723.433 | 69.0 | 0.0 | FW-126 |
+| 2019-02-07T14:40:00.000-04:00 | 13.847999999999999 | 31.942999999999998 | 9.735999999999999 | 12.639999999999999 | 3.8529999999999998 | 64.409 | 18.005 | 10781.753 | 12444.362 | 0.28500000000000003 | 3.308 | 4.9430000000000005 | 3.21 | 198.612 | 467.128 | 2437.867 | 8.089 | 7.2 | 92.74900000000001 | 1.004 | 723.883 | 69.0 | 0.0 | FW-126 |
 
 ---
 
-## Table: ddt_brick0001750
+## Table: ddt_brick0001936
 
-**Table Description:** hazen_aquatroll600_GW-835_20190606_20191002_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for GW-835 from 2019-06-06 to 2019-10-02 (v2)
+**Table Description:** hazen_aquatroll600_GW-835_20190606_20191002_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for GW-835 from 2019-06-06 to 2019-10-02 (v3)
 
 ### Schema
 
@@ -19858,17 +20502,17 @@ Total Tables: 743
 
 | time_series_datetime | temperature_degree_celsius | ph_millivolt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_top_of_casing_bottom_water_surface_foot | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | ph_ph | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-06-06T15:00:00.000-04:00 | 16.229 | -23.830000000000002 | 7.68 | 81.053 | 113.91000000000001 | 16.229 | 0.0 | 97.0 | 738.716 | 2.269 | 5.866 | 14.629999999999999 | 1875.052 | 2252.3630000000003 | 1.1640000000000001 | 1.464 | 533.318 | 1.0 | 7.3149999999999995 | 258.861 | 1082.6455 | GW-835 |
-| 2019-06-06T15:10:00.000-04:00 | 16.183 | -23.437 | 7.638 | 80.55799999999999 | 113.191 | 16.183 | 0.0 | 97.0 | 738.514 | 2.27 | 5.869 | 14.629999999999999 | 1872.471 | 2251.663 | 1.1640000000000001 | 1.464 | 534.054 | 1.0 | 7.308 | 264.64000000000004 | 1285.0345 | GW-835 |
-| 2019-06-06T15:20:00.000-04:00 | 16.150000000000002 | -22.862 | 7.608 | 80.245 | 112.66199999999999 | 16.150000000000002 | 0.0 | 97.0 | 737.899 | 2.282 | 5.898 | 14.6 | 1869.508 | 2249.824 | 1.163 | 1.462 | 534.9 | 1.0 | 7.298 | 267.087 | 1459.3133 | GW-835 |
-| 2019-06-06T15:30:00.000-04:00 | 16.130000000000003 | -22.213 | 7.592 | 80.61 | 112.38799999999999 | 16.130000000000003 | 0.0 | 97.0 | 732.8359999999999 | 2.3819999999999997 | 6.126999999999999 | 14.370000000000001 | 1868.014 | 2249.016 | 1.163 | 1.462 | 535.328 | 1.0 | 7.2860000000000005 | 270.835 | 1482.9834 | GW-835 |
-| 2019-06-06T15:40:00.000-04:00 | 16.117000000000004 | -21.665 | 7.584 | 80.504 | 112.242 | 16.117000000000004 | 9.974 | 97.0 | 732.8359999999999 | 2.3779999999999997 | 6.119 | 14.38 | 1867.4460000000001 | 2249.025 | 1.163 | 1.462 | 535.491 | 1.0 | 7.276000000000001 | 273.53599999999994 | 1486.5293 | GW-835 |
+| 2019-06-06T15:00:00.000-04:00 | 16.229 | -23.830000000000002 | 7.68 | 81.053 | 113.91000000000001 | 16.229 | 0.0 | 97.0 | 738.716 | 2.269 | 5.866 | 14.629999999999999 | 1875.052 | 2252.3630000000003 | 1.1640000000000001 | 1.464 | 533.318 | 1.0 | 7.3149999999999995 | 258.861 | 244.566 | GW-835 |
+| 2019-06-06T15:10:00.000-04:00 | 16.183 | -23.437 | 7.638 | 80.55799999999999 | 113.191 | 16.183 | 0.0 | 97.0 | 738.514 | 2.27 | 5.869 | 14.629999999999999 | 1872.471 | 2251.663 | 1.1640000000000001 | 1.464 | 534.054 | 1.0 | 7.308 | 264.64000000000004 | 290.285 | GW-835 |
+| 2019-06-06T15:20:00.000-04:00 | 16.150000000000002 | -22.862 | 7.608 | 80.245 | 112.66199999999999 | 16.150000000000002 | 0.0 | 97.0 | 737.899 | 2.282 | 5.898 | 14.6 | 1869.508 | 2249.824 | 1.163 | 1.462 | 534.9 | 1.0 | 7.298 | 267.087 | 329.654 | GW-835 |
+| 2019-06-06T15:30:00.000-04:00 | 16.130000000000003 | -22.213 | 7.592 | 80.61 | 112.38799999999999 | 16.130000000000003 | 0.0 | 97.0 | 732.8359999999999 | 2.3819999999999997 | 6.126999999999999 | 14.370000000000001 | 1868.014 | 2249.016 | 1.163 | 1.462 | 535.328 | 1.0 | 7.2860000000000005 | 270.835 | 335.001 | GW-835 |
+| 2019-06-06T15:40:00.000-04:00 | 16.117000000000004 | -21.665 | 7.584 | 80.504 | 112.242 | 16.117000000000004 | 9.974 | 97.0 | 732.8359999999999 | 2.3779999999999997 | 6.119 | 14.38 | 1867.4460000000001 | 2249.025 | 1.163 | 1.462 | 535.491 | 1.0 | 7.276000000000001 | 273.53599999999994 | 335.802 | GW-835 |
 
 ---
 
-## Table: ddt_brick0001751
+## Table: ddt_brick0001937
 
-**Table Description:** hazen_aquatroll600_GW-835_20191004_20191206_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for GW-835 from 2019-10-04 to 2019-12-06 (v2)
+**Table Description:** hazen_aquatroll600_GW-835_20191004_20191206_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for GW-835 from 2019-10-04 to 2019-12-06 (v3)
 
 ### Schema
 
@@ -19904,17 +20548,17 @@ Total Tables: 743
 
 | time_series_datetime | temperature_degree_celsius | conductivity_microsiemen_per_centimeter | specific_conductivity_microsiemen_per_centimeter | salinity_practical_salinity_unit | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | resistivity_ohm_cm | density_molecule_from_list_water_gram_per_cubic_centimeter | ph_ph | ph_millivolt | redox_potential_millivolt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | partial_pressure_molecule_from_list_oxygen_atom_torr | concentration_molecule_from_list_nitrate_milligram_per_liter | temperature_degree_celsius_2 | charge_instrument_external_power_source_volt | charge_instrument_battery_percent | air_pressure_millimetres_of_mercury | water_pressure_pound_per_square_inch | depth_top_water_surface_bottom_instrument_foot | depth_top_top_of_casing_bottom_water_surface_foot | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2019-10-04T13:00:00.000-04:00 | 20.051000000000002 | 872.495 | 963.5880000000001 | 0.48000000000000004 | 0.6260000000000001 | 1146.138 | 0.999 | 6.617999999999999 | 7.088 | 201.73499999999999 | 0.125 | 1.422 | 1.986 | 147.2974 | 20.051000000000002 | 2.009 | 94.0 | 738.5659999999999 | 2.024 | 5.302 | 15.553 | GW-835 |
-| 2019-10-04T13:10:00.000-04:00 | 20.037000000000003 | 871.382 | 962.641 | 0.48000000000000004 | 0.6260000000000001 | 1147.6019999999999 | 0.999 | 6.632 | 6.313 | 215.88100000000003 | 0.093 | 1.058 | 1.478 | 151.5516 | 20.037000000000003 | 1.9909999999999999 | 94.0 | 738.604 | 2.024 | 5.3 | 15.554 | GW-835 |
-| 2019-10-04T13:20:00.000-04:00 | 20.018 | 870.4569999999999 | 962.0 | 0.47900000000000004 | 0.6250000000000001 | 1148.822 | 0.999 | 6.633 | 6.299 | 218.508 | 0.094 | 1.074 | 1.4989999999999999 | 151.3303 | 20.018 | 2.018 | 94.0 | 738.484 | 2.022 | 5.296 | 15.558 | GW-835 |
-| 2019-10-04T13:30:00.000-04:00 | 20.002 | 870.148 | 961.98 | 0.47900000000000004 | 0.6250000000000001 | 1149.23 | 0.999 | 6.6339999999999995 | 6.218 | 217.576 | 0.08 | 0.909 | 1.269 | 150.861 | 20.002 | 2.063 | 94.0 | 738.296 | 2.024 | 5.302 | 15.552000000000001 | GW-835 |
-| 2019-10-04T13:40:00.000-04:00 | 19.985999999999997 | 869.8509999999999 | 961.9669999999999 | 0.47900000000000004 | 0.6250000000000001 | 1149.6229999999998 | 0.999 | 6.632 | 6.337 | 216.515 | 0.066 | 0.7530000000000001 | 1.051 | 150.7149 | 19.985999999999997 | 2.018 | 94.0 | 738.266 | 2.026 | 5.306 | 15.549 | GW-835 |
+| 2019-10-04T13:00:00.000-04:00 | 20.051000000000002 | 872.495 | 963.5880000000001 | 0.48000000000000004 | 0.6260000000000001 | 1146.138 | 0.999 | 6.617999999999999 | 7.088 | 201.73499999999999 | 0.125 | 1.422 | 1.986 | 33.274 | 20.051000000000002 | 2.009 | 94.0 | 738.5659999999999 | 2.024 | 5.302 | 15.553 | GW-835 |
+| 2019-10-04T13:10:00.000-04:00 | 20.037000000000003 | 871.382 | 962.641 | 0.48000000000000004 | 0.6260000000000001 | 1147.6019999999999 | 0.999 | 6.632 | 6.313 | 215.88100000000003 | 0.093 | 1.058 | 1.478 | 34.235 | 20.037000000000003 | 1.9909999999999999 | 94.0 | 738.604 | 2.024 | 5.3 | 15.554 | GW-835 |
+| 2019-10-04T13:20:00.000-04:00 | 20.018 | 870.4569999999999 | 962.0 | 0.47900000000000004 | 0.6250000000000001 | 1148.822 | 0.999 | 6.633 | 6.299 | 218.508 | 0.094 | 1.074 | 1.4989999999999999 | 34.185 | 20.018 | 2.018 | 94.0 | 738.484 | 2.022 | 5.296 | 15.558 | GW-835 |
+| 2019-10-04T13:30:00.000-04:00 | 20.002 | 870.148 | 961.98 | 0.47900000000000004 | 0.6250000000000001 | 1149.23 | 0.999 | 6.6339999999999995 | 6.218 | 217.576 | 0.08 | 0.909 | 1.269 | 34.079 | 20.002 | 2.063 | 94.0 | 738.296 | 2.024 | 5.302 | 15.552000000000001 | GW-835 |
+| 2019-10-04T13:40:00.000-04:00 | 19.985999999999997 | 869.8509999999999 | 961.9669999999999 | 0.47900000000000004 | 0.6250000000000001 | 1149.6229999999998 | 0.999 | 6.632 | 6.337 | 216.515 | 0.066 | 0.7530000000000001 | 1.051 | 34.046 | 19.985999999999997 | 2.018 | 94.0 | 738.266 | 2.026 | 5.306 | 15.549 | GW-835 |
 
 ---
 
-## Table: ddt_brick0001752
+## Table: ddt_brick0001938
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250819_20250821_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-08-19 to 2025-08-21 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250819_20250821_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-08-19 to 2025-08-21 (v4)
 
 ### Schema
 
@@ -19935,17 +20579,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-19T11:00:00.000-04:00 | 1.93 | 10.9785 | 698.97 | 10.49 | 6.64 | 17.77 | SSO-L7 |
-| 2025-08-19T12:00:00.000-04:00 | 1.91 | 10.8014 | 698.57 | 10.49 | 0.0 | 17.78 | SSO-L7 |
-| 2025-08-19T13:00:00.000-04:00 | 1.88 | 10.7571 | 698.64 | 10.49 | 0.0 | 17.78 | SSO-L7 |
-| 2025-08-19T14:00:00.000-04:00 | 1.87 | 10.6686 | 698.79 | 10.48 | 0.0 | 17.78 | SSO-L7 |
-| 2025-08-19T15:00:00.000-04:00 | 1.84 | 10.6686 | 698.72 | 10.47 | 0.0 | 17.77 | SSO-L7 |
+| 2025-08-19T11:00:00.000-04:00 | 1.93 | 2.48 | 698.97 | 10.49 | 6.64 | 17.77 | SSO-L7 |
+| 2025-08-19T12:00:00.000-04:00 | 1.91 | 2.44 | 698.57 | 10.49 | 0.0 | 17.78 | SSO-L7 |
+| 2025-08-19T13:00:00.000-04:00 | 1.88 | 2.43 | 698.64 | 10.49 | 0.0 | 17.78 | SSO-L7 |
+| 2025-08-19T14:00:00.000-04:00 | 1.87 | 2.41 | 698.79 | 10.48 | 0.0 | 17.78 | SSO-L7 |
+| 2025-08-19T15:00:00.000-04:00 | 1.84 | 2.41 | 698.72 | 10.47 | 0.0 | 17.77 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001753
+## Table: ddt_brick0001939
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250826_20250905_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-08-26 to 2025-09-05 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250826_20250905_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-08-26 to 2025-09-05 (v3)
 
 ### Schema
 
@@ -19977,17 +20621,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-26T17:22:00.000-04:00 | 740.79065 | 88.0 | 0.009 | 0.0 | 10.1759 | 0.5513271 | 732.66394 | 0.9989448 | 10.724057 | -0.17896882 | -44.94506 | 1364.8822 | 0.42021838 | 0.0 | 848.19556 | 17.868654 | 2.6522112 | SSO-L7 |
-| 2025-08-26T17:32:00.000-04:00 | 740.7681 | 88.0 | 13.137 | 0.0 | 10.3143 | 0.5508586 | 732.25604 | 0.9989422 | 10.754411 | -0.4387221 | -43.323814 | 1365.6426 | 0.41985124 | 0.0 | 847.47473 | 17.881918 | 2.6390657 | SSO-L7 |
-| 2025-08-26T17:42:00.000-04:00 | 740.7757 | 88.0 | 13.119 | 0.0 | 10.3215 | 0.5497194 | 730.63025 | 0.9989427 | 10.757021 | -0.39660257 | -44.08914 | 1368.6814 | 0.41894832 | 0.0 | 845.72217 | 17.87502 | 2.6379356 | SSO-L7 |
-| 2025-08-26T17:52:00.000-04:00 | 740.79065 | 88.0 | 13.119 | 0.0 | 10.3038 | 0.54924005 | 729.8898 | 0.9989436 | 10.758639 | -0.38996804 | -44.756714 | 1370.07 | 0.41856754 | 0.0 | 844.9847 | 17.868614 | 2.6372347 | SSO-L7 |
-| 2025-08-26T18:02:00.000-04:00 | 740.7681 | 88.0 | 12.957 | 0.0 | 10.2878 | 0.54933685 | 729.933 | 0.99894464 | 10.758806 | -0.39876467 | -45.519653 | 1369.9888 | 0.41864264 | 0.0 | 845.13367 | 17.863321 | 2.6371622 | SSO-L7 |
+| 2025-08-26T17:22:00.000-04:00 | 740.79065 | 88.0 | 0.009 | 0.0 | 2.2987 | 0.5513271 | 732.66394 | 0.9989448 | 10.724057 | -0.17896882 | -44.94506 | 1364.8822 | 0.42021838 | 0.0 | 848.19556 | 17.868654 | 2.6522112 | SSO-L7 |
+| 2025-08-26T17:32:00.000-04:00 | 740.7681 | 88.0 | 13.137 | 0.0 | 2.33 | 0.5508586 | 732.25604 | 0.9989422 | 10.754411 | -0.4387221 | -43.323814 | 1365.6426 | 0.41985124 | 0.0 | 847.47473 | 17.881918 | 2.6390657 | SSO-L7 |
+| 2025-08-26T17:42:00.000-04:00 | 740.7757 | 88.0 | 13.119 | 0.0 | 2.3316 | 0.5497194 | 730.63025 | 0.9989427 | 10.757021 | -0.39660257 | -44.08914 | 1368.6814 | 0.41894832 | 0.0 | 845.72217 | 17.87502 | 2.6379356 | SSO-L7 |
+| 2025-08-26T17:52:00.000-04:00 | 740.79065 | 88.0 | 13.119 | 0.0 | 2.3276 | 0.54924005 | 729.8898 | 0.9989436 | 10.758639 | -0.38996804 | -44.756714 | 1370.07 | 0.41856754 | 0.0 | 844.9847 | 17.868614 | 2.6372347 | SSO-L7 |
+| 2025-08-26T18:02:00.000-04:00 | 740.7681 | 88.0 | 12.957 | 0.0 | 2.324 | 0.54933685 | 729.933 | 0.99894464 | 10.758806 | -0.39876467 | -45.519653 | 1369.9888 | 0.41864264 | 0.0 | 845.13367 | 17.863321 | 2.6371622 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001754
+## Table: ddt_brick0001940
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250908_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-09-08 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20250908_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-09-08 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -20020,17 +20664,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-09-08T15:06:00.000-04:00 | 741.31573 | 86.0 | 0.018 | 4.160402 | 5.554 | 0.50123006 | 699.445 | 0.9984702 | 9.554679 | 6.9786253 | 72.01204 | 191.08772 | 1429.705 | 0.3810758 | 47.16937 | 771.12317 | 20.133352 | 3.118204 | SSO-L7 |
-| 2025-09-08T15:16:00.000-04:00 | 741.2407 | 86.0 | 0.504 | 4.155927 | 5.5722 | 0.5011617 | 699.5232 | 0.9984676 | 9.574532 | 6.9742775 | 71.95141 | 205.02567 | 1429.5452 | 0.38102323 | 47.13464 | 771.018 | 20.145142 | 3.1096106 | SSO-L7 |
-| 2025-09-08T15:26:00.000-04:00 | 741.12823 | 86.0 | 0.504 | 4.1581125 | 5.55 | 0.5011616 | 699.5104 | 0.9984678 | 9.582214 | 6.974458 | 71.987526 | 195.46509 | 1429.5714 | 0.38102314 | 47.165924 | 771.0178 | 20.14428 | 3.106285 | SSO-L7 |
-| 2025-09-08T15:36:00.000-04:00 | 741.0382 | 86.0 | 0.495 | 4.1568437 | 5.5536 | 0.5012127 | 699.5462 | 0.99846834 | 9.580494 | 6.974276 | 71.96265 | 189.03256 | 1429.4982 | 0.38106298 | 47.155098 | 771.09644 | 20.141872 | 3.10703 | SSO-L7 |
-| 2025-09-08T15:46:00.000-04:00 | 741.0307 | 86.0 | 0.495 | 4.159351 | 5.543 | 0.50125796 | 699.5777 | 0.9984688 | 9.57458 | 6.9744563 | 72.002655 | 184.5503 | 1429.4338 | 0.38109845 | 47.182076 | 771.166 | 20.139725 | 3.1095896 | SSO-L7 |
+| 2025-09-08T15:06:00.000-04:00 | 741.31573 | 86.0 | 0.018 | 4.160402 | 1.2546 | 0.50123006 | 699.445 | 0.9984702 | 9.554679 | 6.9786253 | 72.01204 | 191.08772 | 1429.705 | 0.3810758 | 47.16937 | 771.12317 | 20.133352 | 3.118204 | SSO-L7 |
+| 2025-09-08T15:16:00.000-04:00 | 741.2407 | 86.0 | 0.504 | 4.155927 | 1.2588 | 0.5011617 | 699.5232 | 0.9984676 | 9.574532 | 6.9742775 | 71.95141 | 205.02567 | 1429.5452 | 0.38102323 | 47.13464 | 771.018 | 20.145142 | 3.1096106 | SSO-L7 |
+| 2025-09-08T15:26:00.000-04:00 | 741.12823 | 86.0 | 0.504 | 4.1581125 | 1.2537 | 0.5011616 | 699.5104 | 0.9984678 | 9.582214 | 6.974458 | 71.987526 | 195.46509 | 1429.5714 | 0.38102314 | 47.165924 | 771.0178 | 20.14428 | 3.106285 | SSO-L7 |
+| 2025-09-08T15:36:00.000-04:00 | 741.0382 | 86.0 | 0.495 | 4.1568437 | 1.2545 | 0.5012127 | 699.5462 | 0.99846834 | 9.580494 | 6.974276 | 71.96265 | 189.03256 | 1429.4982 | 0.38106298 | 47.155098 | 771.09644 | 20.141872 | 3.10703 | SSO-L7 |
+| 2025-09-08T15:46:00.000-04:00 | 741.0307 | 86.0 | 0.495 | 4.159351 | 1.2521 | 0.50125796 | 699.5777 | 0.9984688 | 9.57458 | 6.9744563 | 72.002655 | 184.5503 | 1429.4338 | 0.38109845 | 47.182076 | 771.166 | 20.139725 | 3.1095896 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001755
+## Table: ddt_brick0001941
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20251015_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-10-15 to 2025-12-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20251015_20251208_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-10-15 to 2025-12-08 (v4)
 
 ### Schema
 
@@ -20063,17 +20707,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T16:23:00.000-04:00 | 738.623 | 79.0 | 0.018 | 0.050231364 | 0.5714 | 0.39886996 | 540.9782 | 0.99867713 | 11.391838 | 6.901542 | 0.83026963 | 181.90732 | 1848.5033 | 0.3006963 | 0.5562771 | 613.64606 | 18.80001 | 2.332529 | SSO-L7 |
-| 2025-10-15T16:33:00.000-04:00 | 738.5855 | 79.0 | 0.351 | 0.010282304 | 0.5721 | 0.3986849 | 540.8362 | 0.9986751 | 11.405256 | 6.8972445 | 0.16422999 | 171.37398 | 1848.9888 | 0.30055347 | 0.113896556 | 613.3614 | 18.809307 | 2.3267193 | SSO-L7 |
-| 2025-10-15T16:43:00.000-04:00 | 738.51794 | 79.0 | 0.351 | 0.0 | 0.5676 | 0.39668092 | 538.1338 | 0.9986736 | 11.400687 | 6.897149 | -0.4414087 | 163.07224 | 1858.2739 | 0.29899335 | 0.0 | 610.2783 | 18.810692 | 2.3286972 | SSO-L7 |
-| 2025-10-15T16:53:00.000-04:00 | 738.46545 | 79.0 | 0.342 | 0.0 | 0.5658 | 0.39691302 | 538.47766 | 0.9986732 | 11.400256 | 6.8969584 | -0.5803082 | 156.53003 | 1857.0873 | 0.29917434 | 0.0 | 610.6354 | 18.813177 | 2.3288841 | SSO-L7 |
-| 2025-10-15T17:03:00.000-04:00 | 738.45795 | 79.0 | 0.342 | 0.0 | 0.5627 | 0.39722994 | 538.9183 | 0.99867326 | 11.40103 | 6.896959 | -0.59492993 | 150.90335 | 1855.569 | 0.29942128 | 0.0 | 611.123 | 18.814093 | 2.3285494 | SSO-L7 |
+| 2025-10-15T16:23:00.000-04:00 | 738.623 | 79.0 | 0.018 | 0.050231364 | 0.1291 | 0.39886996 | 540.9782 | 0.99867713 | 11.391838 | 6.901542 | 0.83026963 | 181.90732 | 1848.5033 | 0.3006963 | 0.5562771 | 613.64606 | 18.80001 | 2.332529 | SSO-L7 |
+| 2025-10-15T16:33:00.000-04:00 | 738.5855 | 79.0 | 0.351 | 0.010282304 | 0.1292 | 0.3986849 | 540.8362 | 0.9986751 | 11.405256 | 6.8972445 | 0.16422999 | 171.37398 | 1848.9888 | 0.30055347 | 0.113896556 | 613.3614 | 18.809307 | 2.3267193 | SSO-L7 |
+| 2025-10-15T16:43:00.000-04:00 | 738.51794 | 79.0 | 0.351 | 0.0 | 0.1282 | 0.39668092 | 538.1338 | 0.9986736 | 11.400687 | 6.897149 | -0.4414087 | 163.07224 | 1858.2739 | 0.29899335 | 0.0 | 610.2783 | 18.810692 | 2.3286972 | SSO-L7 |
+| 2025-10-15T16:53:00.000-04:00 | 738.46545 | 79.0 | 0.342 | 0.0 | 0.1278 | 0.39691302 | 538.47766 | 0.9986732 | 11.400256 | 6.8969584 | -0.5803082 | 156.53003 | 1857.0873 | 0.29917434 | 0.0 | 610.6354 | 18.813177 | 2.3288841 | SSO-L7 |
+| 2025-10-15T17:03:00.000-04:00 | 738.45795 | 79.0 | 0.342 | 0.0 | 0.1271 | 0.39722994 | 538.9183 | 0.99867326 | 11.40103 | 6.896959 | -0.59492993 | 150.90335 | 1855.569 | 0.29942128 | 0.0 | 611.123 | 18.814093 | 2.3285494 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001756
+## Table: ddt_brick0001942
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20251209_20260121_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-12-09 to 2026-01-21 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20251209_20260121_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2025-12-09 to 2026-01-21 (v3)
 
 ### Schema
 
@@ -20106,17 +20750,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-09T13:07:00.000-05:00 | 739.6656 | 58.0 | 0.009 | 4.627185 | 0.8916 | 0.23456457 | 342.3066 | 0.9988727 | 7.5758905 | 7.119852 | 74.60973 | 230.79523 | 2921.3577 | 0.19402944 | 49.592426 | 360.86856 | 17.30697 | 3.6699238 | SSO-L7 |
-| 2025-12-09T13:17:00.000-05:00 | 739.2155 | 58.0 | 0.063 | 4.6261764 | 0.8863 | 0.23459053 | 342.3378 | 0.9988728 | 7.848185 | 7.121376 | 74.592186 | 257.49335 | 2921.0913 | 0.19405182 | 49.61143 | 360.9085 | 17.305998 | 3.5520096 | SSO-L7 |
-| 2025-12-09T13:27:00.000-05:00 | 738.8255 | 58.0 | 0.054 | 4.6233706 | 0.8852 | 0.23460427 | 342.2579 | 0.9988754 | 7.919821 | 7.1213875 | 74.52617 | 258.08463 | 2921.7732 | 0.19406825 | 49.593143 | 360.92966 | 17.291498 | 3.5209885 | SSO-L7 |
-| 2025-12-09T13:37:00.000-05:00 | 738.84796 | 58.0 | 0.063 | 4.620827 | 0.884 | 0.23466805 | 342.4174 | 0.9988737 | 7.904967 | 7.12146 | 74.499275 | 256.28217 | 2920.4124 | 0.19411914 | 49.57421 | 361.02774 | 17.30114 | 3.527421 | SSO-L7 |
-| 2025-12-09T13:47:00.000-05:00 | 738.623 | 58.0 | 0.063 | 4.6182203 | 0.8827 | 0.23473643 | 342.52463 | 0.99887353 | 7.859941 | 7.121379 | 74.45904 | 254.02197 | 2919.498 | 0.1941769 | 49.562763 | 361.13297 | 17.302216 | 3.5469189 | SSO-L7 |
+| 2025-12-09T13:07:00.000-05:00 | 739.6656 | 58.0 | 0.009 | 4.627185 | 0.2014 | 0.23456457 | 342.3066 | 0.9988727 | 7.5758905 | 7.119852 | 74.60973 | 230.79523 | 2921.3577 | 0.19402944 | 49.592426 | 360.86856 | 17.30697 | 3.6699238 | SSO-L7 |
+| 2025-12-09T13:17:00.000-05:00 | 739.2155 | 58.0 | 0.063 | 4.6261764 | 0.2002 | 0.23459053 | 342.3378 | 0.9988728 | 7.848185 | 7.121376 | 74.592186 | 257.49335 | 2921.0913 | 0.19405182 | 49.61143 | 360.9085 | 17.305998 | 3.5520096 | SSO-L7 |
+| 2025-12-09T13:27:00.000-05:00 | 738.8255 | 58.0 | 0.054 | 4.6233706 | 0.2 | 0.23460427 | 342.2579 | 0.9988754 | 7.919821 | 7.1213875 | 74.52617 | 258.08463 | 2921.7732 | 0.19406825 | 49.593143 | 360.92966 | 17.291498 | 3.5209885 | SSO-L7 |
+| 2025-12-09T13:37:00.000-05:00 | 738.84796 | 58.0 | 0.063 | 4.620827 | 0.1997 | 0.23466805 | 342.4174 | 0.9988737 | 7.904967 | 7.12146 | 74.499275 | 256.28217 | 2920.4124 | 0.19411914 | 49.57421 | 361.02774 | 17.30114 | 3.527421 | SSO-L7 |
+| 2025-12-09T13:47:00.000-05:00 | 738.623 | 58.0 | 0.063 | 4.6182203 | 0.1994 | 0.23473643 | 342.52463 | 0.99887353 | 7.859941 | 7.121379 | 74.45904 | 254.02197 | 2919.498 | 0.1941769 | 49.562763 | 361.13297 | 17.302216 | 3.5469189 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001757
+## Table: ddt_brick0001943
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20260122_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2026-01-22 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20260122_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2026-01-22 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -20149,17 +20793,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-22T14:01:00.000-05:00 | 739.1157 | 99.0 | 0.0 | 6.4669075 | 1.5297 | 0.28819925 | 380.90884 | 0.9988321 | 10.163289 | 7.1853333 | 104.79488 | 184.09857 | 2625.3 | 0.21500966 | 69.82709 | 443.38342 | 17.622818 | 2.9586468 | SSO-L7 |
-| 2026-01-22T14:11:00.000-05:00 | 739.8507 | 99.0 | 0.0 | 6.439078 | 1.5442 | 0.28828272 | 380.69278 | 0.998839 | 10.2214775 | 7.1712794 | 104.26739 | 177.68512 | 2626.79 | 0.21506898 | 69.40071 | 443.51187 | 17.584282 | 2.9334497 | SSO-L7 |
-| 2026-01-22T14:21:00.000-05:00 | 739.9258 | 99.0 | 0.0 | 6.436121 | 1.4238 | 0.28769907 | 379.06723 | 0.99885696 | 10.246563 | 7.172339 | 104.01514 | 172.49713 | 2638.0544 | 0.21460892 | 69.21639 | 442.61398 | 17.483166 | 2.9225874 | SSO-L7 |
-| 2026-01-22T14:31:00.000-05:00 | 739.81323 | 99.0 | 0.0 | 6.417119 | 1.3093 | 0.28696853 | 377.26877 | 0.9988743 | 10.263268 | 7.172356 | 103.50907 | 168.11023 | 2650.6301 | 0.21403629 | 68.88076 | 441.49002 | 17.384045 | 2.9153528 | SSO-L7 |
-| 2026-01-22T14:41:00.000-05:00 | 739.5207 | 99.0 | 0.0 | 6.416968 | 1.292 | 0.28742176 | 377.394 | 0.99888444 | 10.25946 | 7.173292 | 103.39458 | 165.09662 | 2649.7505 | 0.21437645 | 68.82736 | 442.18735 | 17.328318 | 2.9170017 | SSO-L7 |
+| 2026-01-22T14:01:00.000-05:00 | 739.1157 | 99.0 | 0.0 | 6.4669075 | 0.3456 | 0.28819925 | 380.90884 | 0.9988321 | 10.163289 | 7.1853333 | 104.79488 | 184.09857 | 2625.3 | 0.21500966 | 69.82709 | 443.38342 | 17.622818 | 2.9586468 | SSO-L7 |
+| 2026-01-22T14:11:00.000-05:00 | 739.8507 | 99.0 | 0.0 | 6.439078 | 0.3488 | 0.28828272 | 380.69278 | 0.998839 | 10.2214775 | 7.1712794 | 104.26739 | 177.68512 | 2626.79 | 0.21506898 | 69.40071 | 443.51187 | 17.584282 | 2.9334497 | SSO-L7 |
+| 2026-01-22T14:21:00.000-05:00 | 739.9258 | 99.0 | 0.0 | 6.436121 | 0.3216 | 0.28769907 | 379.06723 | 0.99885696 | 10.246563 | 7.172339 | 104.01514 | 172.49713 | 2638.0544 | 0.21460892 | 69.21639 | 442.61398 | 17.483166 | 2.9225874 | SSO-L7 |
+| 2026-01-22T14:31:00.000-05:00 | 739.81323 | 99.0 | 0.0 | 6.417119 | 0.2958 | 0.28696853 | 377.26877 | 0.9988743 | 10.263268 | 7.172356 | 103.50907 | 168.11023 | 2650.6301 | 0.21403629 | 68.88076 | 441.49002 | 17.384045 | 2.9153528 | SSO-L7 |
+| 2026-01-22T14:41:00.000-05:00 | 739.5207 | 99.0 | 0.0 | 6.416968 | 0.2919 | 0.28742176 | 377.394 | 0.99888444 | 10.25946 | 7.173292 | 103.39458 | 165.09662 | 2649.7505 | 0.21437645 | 68.82736 | 442.18735 | 17.328318 | 2.9170017 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001758
+## Table: ddt_brick0001944
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20260123_20260309_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2026-01-23 to 2026-03-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ1_20260123_20260309_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ1 from 2026-01-23 to 2026-03-09 (v3)
 
 ### Schema
 
@@ -20192,17 +20836,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:01:00.000-05:00 | 740.5558 | 99.0 | 0.0 | 6.2947226 | 1.3692 | 0.28731096 | 376.4868 | 0.9989005 | 10.353545 | 7.16833 | 101.252815 | 164.42905 | 2656.1357 | 0.21427956 | 67.29349 | 442.01685 | 17.238092 | 2.876258 | SSO-L7 |
-| 2026-01-23T00:11:00.000-05:00 | 740.5708 | 99.0 | 0.0 | 6.2723694 | 1.3499 | 0.2874562 | 376.71854 | 0.99889964 | 10.359459 | 7.168646 | 100.904144 | 167.77643 | 2654.5017 | 0.21439154 | 67.06002 | 442.24033 | 17.242996 | 2.8736973 | SSO-L7 |
-| 2026-01-23T00:21:00.000-05:00 | 740.4508 | 99.0 | 0.0 | 6.282843 | 1.3662 | 0.28757164 | 376.8865 | 0.99889934 | 10.36094 | 7.169286 | 101.07608 | 167.46173 | 2653.3186 | 0.21448025 | 67.18592 | 442.41788 | 17.244974 | 2.8730555 | SSO-L7 |
-| 2026-01-23T00:31:00.000-05:00 | 740.52576 | 99.0 | 0.0 | 6.2839236 | 1.3721 | 0.28773442 | 377.11526 | 0.9988991 | 10.357163 | 7.169284 | 101.0972 | 166.78938 | 2651.7092 | 0.21460526 | 67.193214 | 442.66833 | 17.246796 | 2.874691 | SSO-L7 |
-| 2026-01-23T00:41:00.000-05:00 | 740.3908 | 99.0 | 0.0 | 6.2852798 | 1.3698 | 0.28788403 | 377.3204 | 0.998899 | 10.359089 | 7.1685615 | 101.12115 | 166.07889 | 2650.2676 | 0.21472007 | 67.22177 | 442.8985 | 17.247866 | 2.8738575 | SSO-L7 |
+| 2026-01-23T00:01:00.000-05:00 | 740.5558 | 99.0 | 0.0 | 6.2947226 | 0.3093 | 0.28731096 | 376.4868 | 0.9989005 | 10.353545 | 7.16833 | 101.252815 | 164.42905 | 2656.1357 | 0.21427956 | 67.29349 | 442.01685 | 17.238092 | 2.876258 | SSO-L7 |
+| 2026-01-23T00:11:00.000-05:00 | 740.5708 | 99.0 | 0.0 | 6.2723694 | 0.3049 | 0.2874562 | 376.71854 | 0.99889964 | 10.359459 | 7.168646 | 100.904144 | 167.77643 | 2654.5017 | 0.21439154 | 67.06002 | 442.24033 | 17.242996 | 2.8736973 | SSO-L7 |
+| 2026-01-23T00:21:00.000-05:00 | 740.4508 | 99.0 | 0.0 | 6.282843 | 0.3086 | 0.28757164 | 376.8865 | 0.99889934 | 10.36094 | 7.169286 | 101.07608 | 167.46173 | 2653.3186 | 0.21448025 | 67.18592 | 442.41788 | 17.244974 | 2.8730555 | SSO-L7 |
+| 2026-01-23T00:31:00.000-05:00 | 740.52576 | 99.0 | 0.0 | 6.2839236 | 0.3099 | 0.28773442 | 377.11526 | 0.9988991 | 10.357163 | 7.169284 | 101.0972 | 166.78938 | 2651.7092 | 0.21460526 | 67.193214 | 442.66833 | 17.246796 | 2.874691 | SSO-L7 |
+| 2026-01-23T00:41:00.000-05:00 | 740.3908 | 99.0 | 0.0 | 6.2852798 | 0.3094 | 0.28788403 | 377.3204 | 0.998899 | 10.359089 | 7.1685615 | 101.12115 | 166.07889 | 2650.2676 | 0.21472007 | 67.22177 | 442.8985 | 17.247866 | 2.8738575 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001759
+## Table: ddt_brick0001945
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20241003_20250610_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2024-10-03 to 2025-06-10 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20241003_20250610_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2024-10-03 to 2025-06-10 (v4)
 
 ### Schema
 
@@ -20232,17 +20876,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:17:00.000-04:00 | 738.3331 | 98.0 | 0.0 | 23.0597 | 0.43580133 | 590.57623 | 0.9987065 | 9.922592 | 6.9989643 | 238.58449 | 1693.2615 | 0.32951242 | 670.46356 | 18.761656 | 5.5608397 | SSO-L7 |
-| 2024-10-03T11:27:00.000-04:00 | 738.30316 | 98.0 | 13.245 | 23.0552 | 0.43576255 | 590.8952 | 0.9987009 | 9.927261 | 7.011987 | 256.61844 | 1692.3474 | 0.32948643 | 670.40393 | 18.790668 | 5.558818 | SSO-L7 |
-| 2024-10-03T11:37:00.000-04:00 | 738.2657 | 98.0 | 13.245 | 23.0504 | 0.43586668 | 591.0422 | 0.9987009 | 9.927174 | 7.010406 | 255.16887 | 1691.9266 | 0.32956797 | 670.56415 | 18.791119 | 5.558856 | SSO-L7 |
-| 2024-10-03T11:47:00.000-04:00 | 738.2282 | 98.0 | 13.245 | 22.9781 | 0.43595994 | 591.1732 | 0.99870086 | 9.930875 | 7.011708 | 253.13756 | 1691.5516 | 0.32964095 | 670.7076 | 18.791477 | 5.557254 | SSO-L7 |
-| 2024-10-03T11:57:00.000-04:00 | 738.23566 | 98.0 | 13.236 | 22.9974 | 0.43602332 | 591.2405 | 0.99870116 | 9.93066 | 7.010034 | 251.19682 | 1691.3591 | 0.32969034 | 670.8051 | 18.790016 | 5.5573463 | SSO-L7 |
+| 2024-10-03T11:17:00.000-04:00 | 738.3331 | 98.0 | 0.0 | 5.2091 | 0.43580133 | 590.57623 | 0.9987065 | 9.922592 | 6.9989643 | 238.58449 | 1693.2615 | 0.32951242 | 670.46356 | 18.761656 | 5.5608397 | SSO-L7 |
+| 2024-10-03T11:27:00.000-04:00 | 738.30316 | 98.0 | 13.245 | 5.2081 | 0.43576255 | 590.8952 | 0.9987009 | 9.927261 | 7.011987 | 256.61844 | 1692.3474 | 0.32948643 | 670.40393 | 18.790668 | 5.558818 | SSO-L7 |
+| 2024-10-03T11:37:00.000-04:00 | 738.2657 | 98.0 | 13.245 | 5.207 | 0.43586668 | 591.0422 | 0.9987009 | 9.927174 | 7.010406 | 255.16887 | 1691.9266 | 0.32956797 | 670.56415 | 18.791119 | 5.558856 | SSO-L7 |
+| 2024-10-03T11:47:00.000-04:00 | 738.2282 | 98.0 | 13.245 | 5.1907 | 0.43595994 | 591.1732 | 0.99870086 | 9.930875 | 7.011708 | 253.13756 | 1691.5516 | 0.32964095 | 670.7076 | 18.791477 | 5.557254 | SSO-L7 |
+| 2024-10-03T11:57:00.000-04:00 | 738.23566 | 98.0 | 13.236 | 5.195 | 0.43602332 | 591.2405 | 0.99870116 | 9.93066 | 7.010034 | 251.19682 | 1691.3591 | 0.32969034 | 670.8051 | 18.790016 | 5.5573463 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001760
+## Table: ddt_brick0001946
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250610_20250815_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-06-10 to 2025-08-15 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250610_20250815_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-06-10 to 2025-08-15 (v3)
 
 ### Schema
 
@@ -20275,17 +20919,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-06-10T10:50:00.000-04:00 | 737.7406 | 60.0 | 0.0 | 3.4752426 | 30.1381 | 0.45372212 | 584.7907 | 0.99912614 | 7.347334 | 7.383745 | 57.59301 | 213.99399 | 1710.0134 | 0.3430561 | 36.757927 | 698.03406 | 16.506186 | 6.726137 | SSO-L7 |
-| 2025-06-10T11:00:00.000-04:00 | 737.8906 | 60.0 | 0.063 | 3.4745054 | 30.0496 | 0.45225802 | 582.9915 | 0.99912417 | 7.358673 | 7.381019 | 57.58802 | 211.8673 | 1715.2908 | 0.3419126 | 36.747295 | 695.78156 | 16.512796 | 6.7212257 | SSO-L7 |
-| 2025-06-10T11:10:00.000-04:00 | 737.83813 | 60.0 | 13.254 | 3.4707851 | 29.9512 | 0.45210028 | 582.7906 | 0.99912405 | 7.369611 | 7.3792653 | 57.527653 | 212.13908 | 1715.8822 | 0.34178928 | 36.710766 | 695.5389 | 16.512978 | 6.716488 | SSO-L7 |
-| 2025-06-10T11:20:00.000-04:00 | 737.7556 | 60.0 | 13.227 | 3.4677093 | 29.815 | 0.45249593 | 583.32874 | 0.999124 | 7.3667727 | 7.3793507 | 57.480022 | 212.81143 | 1714.2992 | 0.3420993 | 36.68409 | 696.1476 | 16.515095 | 6.717717 | SSO-L7 |
-| 2025-06-10T11:30:00.000-04:00 | 737.7706 | 60.0 | 13.245 | 3.4620926 | 29.6715 | 0.4529167 | 583.8641 | 0.9991243 | 7.3709035 | 7.3791757 | 57.38803 | 213.02124 | 1712.7274 | 0.3424284 | 36.623573 | 696.7949 | 16.514565 | 6.715928 | SSO-L7 |
+| 2025-06-10T10:50:00.000-04:00 | 737.7406 | 60.0 | 0.0 | 3.4752426 | 6.8081 | 0.45372212 | 584.7907 | 0.99912614 | 7.347334 | 7.383745 | 57.59301 | 213.99399 | 1710.0134 | 0.3430561 | 36.757927 | 698.03406 | 16.506186 | 6.726137 | SSO-L7 |
+| 2025-06-10T11:00:00.000-04:00 | 737.8906 | 60.0 | 0.063 | 3.4745054 | 6.7881 | 0.45225802 | 582.9915 | 0.99912417 | 7.358673 | 7.381019 | 57.58802 | 211.8673 | 1715.2908 | 0.3419126 | 36.747295 | 695.78156 | 16.512796 | 6.7212257 | SSO-L7 |
+| 2025-06-10T11:10:00.000-04:00 | 737.83813 | 60.0 | 13.254 | 3.4707851 | 6.7659 | 0.45210028 | 582.7906 | 0.99912405 | 7.369611 | 7.3792653 | 57.527653 | 212.13908 | 1715.8822 | 0.34178928 | 36.710766 | 695.5389 | 16.512978 | 6.716488 | SSO-L7 |
+| 2025-06-10T11:20:00.000-04:00 | 737.7556 | 60.0 | 13.227 | 3.4677093 | 6.7351 | 0.45249593 | 583.32874 | 0.999124 | 7.3667727 | 7.3793507 | 57.480022 | 212.81143 | 1714.2992 | 0.3420993 | 36.68409 | 696.1476 | 16.515095 | 6.717717 | SSO-L7 |
+| 2025-06-10T11:30:00.000-04:00 | 737.7706 | 60.0 | 13.245 | 3.4620926 | 6.7027 | 0.4529167 | 583.8641 | 0.9991243 | 7.3709035 | 7.3791757 | 57.38803 | 213.02124 | 1712.7274 | 0.3424284 | 36.623573 | 696.7949 | 16.514565 | 6.715928 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001761
+## Table: ddt_brick0001947
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250819_20250821_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-08-19 to 2025-08-21 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250819_20250821_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-08-19 to 2025-08-21 (v4)
 
 ### Schema
 
@@ -20306,17 +20950,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-19T11:00:00.000-04:00 | 0.0 | 22.4439 | 2399.33 | 10.78 | 7.01 | 17.18 | SSO-L7 |
-| 2025-08-19T12:00:00.000-04:00 | 0.0 | 22.4439 | 2399.53 | 10.78 | 7.01 | 17.18 | SSO-L7 |
-| 2025-08-19T13:00:00.000-04:00 | 0.0 | 22.4882 | 2399.5 | 10.78 | 7.01 | 17.18 | SSO-L7 |
-| 2025-08-19T14:00:00.000-04:00 | 0.0 | 22.4882 | 2399.74 | 10.77 | 7.01 | 17.18 | SSO-L7 |
-| 2025-08-19T15:00:00.000-04:00 | 0.0 | 22.4882 | 2399.47 | 10.76 | 7.01 | 17.18 | SSO-L7 |
+| 2025-08-19T11:00:00.000-04:00 | 0.0 | 5.07 | 2399.33 | 10.78 | 7.01 | 17.18 | SSO-L7 |
+| 2025-08-19T12:00:00.000-04:00 | 0.0 | 5.07 | 2399.53 | 10.78 | 7.01 | 17.18 | SSO-L7 |
+| 2025-08-19T13:00:00.000-04:00 | 0.0 | 5.08 | 2399.5 | 10.78 | 7.01 | 17.18 | SSO-L7 |
+| 2025-08-19T14:00:00.000-04:00 | 0.0 | 5.08 | 2399.74 | 10.77 | 7.01 | 17.18 | SSO-L7 |
+| 2025-08-19T15:00:00.000-04:00 | 0.0 | 5.08 | 2399.47 | 10.76 | 7.01 | 17.18 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001762
+## Table: ddt_brick0001948
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250903_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-09-03 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20250903_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-09-03 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -20346,17 +20990,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-09-03T15:29:00.000-04:00 | 734.68036 | 99.0 | 0.018 | 21.3875 | 1.8441145 | 2416.1174 | 0.9998784 | 11.134252 | 7.031929 | 68.73349 | 413.88718 | 1.4864783 | 2837.0994 | 17.23117 | 5.0769377 | SSO-L7 |
-| 2025-09-03T15:39:00.000-04:00 | 734.7104 | 99.0 | 13.272 | 21.361 | 1.8444623 | 2416.9463 | 0.99987745 | 11.161702 | 7.0292745 | 74.99436 | 413.74524 | 1.4867835 | 2837.6343 | 17.23806 | 5.0650387 | SSO-L7 |
-| 2025-09-03T15:49:00.000-04:00 | 734.5753 | 99.0 | 13.254 | 21.1152 | 1.8444778 | 2416.9834 | 0.99987733 | 11.153168 | 7.029515 | 75.63332 | 413.7389 | 1.4867973 | 2837.658 | 17.238373 | 5.068738 | SSO-L7 |
-| 2025-09-03T15:59:00.000-04:00 | 734.41034 | 99.0 | 13.272 | 20.9959 | 1.8449533 | 2417.5884 | 0.9998778 | 11.147885 | 7.028393 | 75.862206 | 413.63535 | 1.4872011 | 2838.3896 | 17.238031 | 5.0710278 | SSO-L7 |
-| 2025-09-03T16:09:00.000-04:00 | 734.36536 | 99.0 | 13.254 | 20.7807 | 1.8456633 | 2418.5684 | 0.9998781 | 11.143794 | 7.028472 | 75.88605 | 413.46774 | 1.4878067 | 2839.482 | 17.238949 | 5.0728016 | SSO-L7 |
+| 2025-09-03T15:29:00.000-04:00 | 734.68036 | 99.0 | 0.018 | 4.8314 | 1.8441145 | 2416.1174 | 0.9998784 | 11.134252 | 7.031929 | 68.73349 | 413.88718 | 1.4864783 | 2837.0994 | 17.23117 | 5.0769377 | SSO-L7 |
+| 2025-09-03T15:39:00.000-04:00 | 734.7104 | 99.0 | 13.272 | 4.8254 | 1.8444623 | 2416.9463 | 0.99987745 | 11.161702 | 7.0292745 | 74.99436 | 413.74524 | 1.4867835 | 2837.6343 | 17.23806 | 5.0650387 | SSO-L7 |
+| 2025-09-03T15:49:00.000-04:00 | 734.5753 | 99.0 | 13.254 | 4.7699 | 1.8444778 | 2416.9834 | 0.99987733 | 11.153168 | 7.029515 | 75.63332 | 413.7389 | 1.4867973 | 2837.658 | 17.238373 | 5.068738 | SSO-L7 |
+| 2025-09-03T15:59:00.000-04:00 | 734.41034 | 99.0 | 13.272 | 4.7429 | 1.8449533 | 2417.5884 | 0.9998778 | 11.147885 | 7.028393 | 75.862206 | 413.63535 | 1.4872011 | 2838.3896 | 17.238031 | 5.0710278 | SSO-L7 |
+| 2025-09-03T16:09:00.000-04:00 | 734.36536 | 99.0 | 13.254 | 4.6943 | 1.8456633 | 2418.5684 | 0.9998781 | 11.143794 | 7.028472 | 75.88605 | 413.46774 | 1.4878067 | 2839.482 | 17.238949 | 5.0728016 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001763
+## Table: ddt_brick0001949
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20251015_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-10-15 to 2025-12-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20251015_20251208_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-10-15 to 2025-12-08 (v4)
 
 ### Schema
 
@@ -20389,17 +21033,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T16:18:00.000-04:00 | 738.42316 | 93.0 | 0.009 | 0.0 | 2.6164 | 0.39499927 | 523.9895 | 0.99886537 | 11.694645 | 7.0052195 | 0.59888923 | 40.651756 | 1908.4352 | 0.29752794 | 0.0 | 607.69116 | 17.78863 | 4.801363 | SSO-L7 |
-| 2025-10-15T16:28:00.000-04:00 | 738.4082 | 93.0 | 13.254 | 0.0 | 2.4921 | 0.3947916 | 523.84143 | 0.99886316 | 11.705711 | 7.001546 | 0.24153392 | 50.875145 | 1908.9746 | 0.29736835 | 0.0 | 607.3717 | 17.799612 | 4.796571 | SSO-L7 |
-| 2025-10-15T16:38:00.000-04:00 | 738.36316 | 93.0 | 13.263 | 0.0 | 2.4679 | 0.3947703 | 523.82764 | 0.998863 | 11.700377 | 7.001361 | 0.28122535 | 53.78862 | 1909.0249 | 0.29735196 | 0.0 | 607.33887 | 17.800865 | 4.7988806 | SSO-L7 |
-| 2025-10-15T16:48:00.000-04:00 | 738.3557 | 93.0 | 13.245 | 0.0 | 2.4537 | 0.39480752 | 523.87573 | 0.998863 | 11.704916 | 7.00063 | 0.4464702 | 55.581528 | 1908.8496 | 0.29738092 | 0.0 | 607.3962 | 17.800747 | 4.796915 | SSO-L7 |
-| 2025-10-15T16:58:00.000-04:00 | 738.36316 | 93.0 | 13.191 | 0.0 | 2.4433 | 0.39506373 | 524.22656 | 0.9988629 | 11.70642 | 7.000263 | 0.5982351 | 56.935745 | 1907.5721 | 0.2975804 | 0.0 | 607.79034 | 17.801683 | 4.7962637 | SSO-L7 |
+| 2025-10-15T16:18:00.000-04:00 | 738.42316 | 93.0 | 0.009 | 0.0 | 0.591 | 0.39499927 | 523.9895 | 0.99886537 | 11.694645 | 7.0052195 | 0.59888923 | 40.651756 | 1908.4352 | 0.29752794 | 0.0 | 607.69116 | 17.78863 | 4.801363 | SSO-L7 |
+| 2025-10-15T16:28:00.000-04:00 | 738.4082 | 93.0 | 13.254 | 0.0 | 0.5629 | 0.3947916 | 523.84143 | 0.99886316 | 11.705711 | 7.001546 | 0.24153392 | 50.875145 | 1908.9746 | 0.29736835 | 0.0 | 607.3717 | 17.799612 | 4.796571 | SSO-L7 |
+| 2025-10-15T16:38:00.000-04:00 | 738.36316 | 93.0 | 13.263 | 0.0 | 0.5575 | 0.3947703 | 523.82764 | 0.998863 | 11.700377 | 7.001361 | 0.28122535 | 53.78862 | 1909.0249 | 0.29735196 | 0.0 | 607.33887 | 17.800865 | 4.7988806 | SSO-L7 |
+| 2025-10-15T16:48:00.000-04:00 | 738.3557 | 93.0 | 13.245 | 0.0 | 0.5543 | 0.39480752 | 523.87573 | 0.998863 | 11.704916 | 7.00063 | 0.4464702 | 55.581528 | 1908.8496 | 0.29738092 | 0.0 | 607.3962 | 17.800747 | 4.796915 | SSO-L7 |
+| 2025-10-15T16:58:00.000-04:00 | 738.36316 | 93.0 | 13.191 | 0.0 | 0.5519 | 0.39506373 | 524.22656 | 0.9988629 | 11.70642 | 7.000263 | 0.5982351 | 56.935745 | 1907.5721 | 0.2975804 | 0.0 | 607.79034 | 17.801683 | 4.7962637 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001764
+## Table: ddt_brick0001950
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20251209_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-12-09 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20251209_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2025-12-09 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -20432,17 +21076,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-09T13:01:00.000-05:00 | 739.6308 | 72.0 | 0.009 | 4.6155024 | 0.5313 | 0.3934393 | 581.8047 | 0.9988574 | 7.8619294 | 7.056641 | 71.77524 | 283.64984 | 1718.7899 | 0.33019036 | 50.19165 | 605.2912 | 17.968483 | 6.417074 | SSO-L7 |
-| 2025-12-09T13:11:00.000-05:00 | 738.8882 | 72.0 | 0.063 | 4.619563 | 0.526 | 0.39395732 | 582.76245 | 0.9988547 | 7.853012 | 7.057322 | 71.86088 | 315.76007 | 1715.9651 | 0.3306309 | 50.304638 | 606.0882 | 17.985039 | 6.4209356 | SSO-L7 |
-| 2025-12-09T13:21:00.000-05:00 | 738.7532 | 72.0 | 0.189 | 4.615648 | 0.526 | 0.3940882 | 582.9873 | 0.9988542 | 7.8465676 | 7.057237 | 71.80429 | 317.2764 | 1715.3032 | 0.33074296 | 50.27417 | 606.28955 | 17.987738 | 6.423726 | SSO-L7 |
-| 2025-12-09T13:31:00.000-05:00 | 738.61816 | 72.0 | 0.063 | 4.6146135 | 0.5252 | 0.39418966 | 583.1559 | 0.9988539 | 7.844636 | 7.056836 | 71.79067 | 315.06387 | 1714.8074 | 0.3308301 | 50.274006 | 606.4456 | 17.989338 | 6.4245625 | SSO-L7 |
-| 2025-12-09T13:41:00.000-05:00 | 738.4757 | 72.0 | 0.063 | 4.611135 | 0.5261 | 0.39410344 | 583.05396 | 0.9988535 | 7.8412685 | 7.056752 | 71.74008 | 314.40585 | 1715.1072 | 0.330754 | 50.248245 | 606.313 | 17.991549 | 6.4260206 | SSO-L7 |
+| 2025-12-09T13:01:00.000-05:00 | 739.6308 | 72.0 | 0.009 | 4.6155024 | 0.12 | 0.3934393 | 581.8047 | 0.9988574 | 7.8619294 | 7.056641 | 71.77524 | 283.64984 | 1718.7899 | 0.33019036 | 50.19165 | 605.2912 | 17.968483 | 6.417074 | SSO-L7 |
+| 2025-12-09T13:11:00.000-05:00 | 738.8882 | 72.0 | 0.063 | 4.619563 | 0.1188 | 0.39395732 | 582.76245 | 0.9988547 | 7.853012 | 7.057322 | 71.86088 | 315.76007 | 1715.9651 | 0.3306309 | 50.304638 | 606.0882 | 17.985039 | 6.4209356 | SSO-L7 |
+| 2025-12-09T13:21:00.000-05:00 | 738.7532 | 72.0 | 0.189 | 4.615648 | 0.1188 | 0.3940882 | 582.9873 | 0.9988542 | 7.8465676 | 7.057237 | 71.80429 | 317.2764 | 1715.3032 | 0.33074296 | 50.27417 | 606.28955 | 17.987738 | 6.423726 | SSO-L7 |
+| 2025-12-09T13:31:00.000-05:00 | 738.61816 | 72.0 | 0.063 | 4.6146135 | 0.1186 | 0.39418966 | 583.1559 | 0.9988539 | 7.844636 | 7.056836 | 71.79067 | 315.06387 | 1714.8074 | 0.3308301 | 50.274006 | 606.4456 | 17.989338 | 6.4245625 | SSO-L7 |
+| 2025-12-09T13:41:00.000-05:00 | 738.4757 | 72.0 | 0.063 | 4.611135 | 0.1189 | 0.39410344 | 583.05396 | 0.9988535 | 7.8412685 | 7.056752 | 71.74008 | 314.40585 | 1715.1072 | 0.330754 | 50.248245 | 606.313 | 17.991549 | 6.4260206 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001765
+## Table: ddt_brick0001951
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20260123_20260309_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2026-01-23 to 2026-03-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20260123_20260309_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2026-01-23 to 2026-03-09 (v3)
 
 ### Schema
 
@@ -20475,17 +21119,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:01:00.000-05:00 | 742.87103 | 54.0 | 0.054 | 5.641875 | 0.6936 | 0.42113444 | 622.22156 | 0.9988839 | 10.174477 | 7.1049933 | 87.51779 | 324.39084 | 1607.1445 | 0.35429773 | 61.034214 | 647.8992 | 17.925022 | 5.415641 | SSO-L7 |
-| 2026-01-23T00:11:00.000-05:00 | 742.7135 | 54.0 | 0.063 | 5.643148 | 0.6986 | 0.42104763 | 622.0985 | 0.9988838 | 10.191686 | 7.105151 | 87.53802 | 335.8492 | 1607.4624 | 0.3542218 | 61.06169 | 647.76556 | 17.925446 | 5.408189 | SSO-L7 |
-| 2026-01-23T00:21:00.000-05:00 | 742.8335 | 54.0 | 0.054 | 5.645102 | 0.6873 | 0.42105567 | 622.121 | 0.9988836 | 10.182281 | 7.1049905 | 87.5696 | 336.06857 | 1607.4044 | 0.35422838 | 61.073895 | 647.77795 | 17.926298 | 5.412262 | SSO-L7 |
-| 2026-01-23T00:31:00.000-05:00 | 742.676 | 54.0 | 0.054 | 5.643073 | 0.6817 | 0.42118412 | 622.3021 | 0.9988838 | 10.183229 | 7.1049123 | 87.537155 | 335.90167 | 1606.9365 | 0.35434058 | 61.064243 | 647.9756 | 17.925604 | 5.411851 | SSO-L7 |
-| 2026-01-23T00:41:00.000-05:00 | 742.7135 | 54.0 | 0.054 | 5.636821 | 0.6768 | 0.4213723 | 622.5836 | 0.99888384 | 10.195474 | 7.1049914 | 87.44173 | 335.62988 | 1606.21 | 0.35450438 | 60.993996 | 648.2651 | 17.925879 | 5.4065485 | SSO-L7 |
+| 2026-01-23T00:01:00.000-05:00 | 742.87103 | 54.0 | 0.054 | 5.641875 | 0.1567 | 0.42113444 | 622.22156 | 0.9988839 | 10.174477 | 7.1049933 | 87.51779 | 324.39084 | 1607.1445 | 0.35429773 | 61.034214 | 647.8992 | 17.925022 | 5.415641 | SSO-L7 |
+| 2026-01-23T00:11:00.000-05:00 | 742.7135 | 54.0 | 0.063 | 5.643148 | 0.1578 | 0.42104763 | 622.0985 | 0.9988838 | 10.191686 | 7.105151 | 87.53802 | 335.8492 | 1607.4624 | 0.3542218 | 61.06169 | 647.76556 | 17.925446 | 5.408189 | SSO-L7 |
+| 2026-01-23T00:21:00.000-05:00 | 742.8335 | 54.0 | 0.054 | 5.645102 | 0.1553 | 0.42105567 | 622.121 | 0.9988836 | 10.182281 | 7.1049905 | 87.5696 | 336.06857 | 1607.4044 | 0.35422838 | 61.073895 | 647.77795 | 17.926298 | 5.412262 | SSO-L7 |
+| 2026-01-23T00:31:00.000-05:00 | 742.676 | 54.0 | 0.054 | 5.643073 | 0.154 | 0.42118412 | 622.3021 | 0.9988838 | 10.183229 | 7.1049123 | 87.537155 | 335.90167 | 1606.9365 | 0.35434058 | 61.064243 | 647.9756 | 17.925604 | 5.411851 | SSO-L7 |
+| 2026-01-23T00:41:00.000-05:00 | 742.7135 | 54.0 | 0.054 | 5.636821 | 0.1529 | 0.4213723 | 622.5836 | 0.99888384 | 10.195474 | 7.1049914 | 87.44173 | 335.62988 | 1606.21 | 0.35450438 | 60.993996 | 648.2651 | 17.925879 | 5.4065485 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001766
+## Table: ddt_brick0001952
 
-**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20260409_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2026-04-09 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L7_SZ2_20260409_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L7 SZ2 from 2026-04-09 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -20506,17 +21150,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-09T09:45:00.000-04:00 | 2.08 | 0.3984 | 0.05 | 10.34 | 7.1 | 16.5 | SSO-L7 |
-| 2026-04-09T10:00:00.000-04:00 | 2.09 | 0.3984 | 0.05 | 10.38 | 7.1 | 16.49 | SSO-L7 |
-| 2026-04-09T10:15:00.000-04:00 | 2.1 | 0.3984 | 0.05 | 10.42 | 7.09 | 16.46 | SSO-L7 |
-| 2026-04-09T10:30:00.000-04:00 | 2.04 | 0.3984 | 0.05 | 10.44 | 7.1 | 16.45 | SSO-L7 |
-| 2026-04-09T10:45:00.000-04:00 | 2.08 | 0.3984 | 0.05 | 10.43 | 7.09 | 16.44 | SSO-L7 |
+| 2026-04-09T09:45:00.000-04:00 | 2.08 | 0.09 | 0.05 | 10.34 | 7.1 | 16.5 | SSO-L7 |
+| 2026-04-09T10:00:00.000-04:00 | 2.09 | 0.09 | 0.05 | 10.38 | 7.1 | 16.49 | SSO-L7 |
+| 2026-04-09T10:15:00.000-04:00 | 2.1 | 0.09 | 0.05 | 10.42 | 7.09 | 16.46 | SSO-L7 |
+| 2026-04-09T10:30:00.000-04:00 | 2.04 | 0.09 | 0.05 | 10.44 | 7.1 | 16.45 | SSO-L7 |
+| 2026-04-09T10:45:00.000-04:00 | 2.08 | 0.09 | 0.05 | 10.43 | 7.09 | 16.44 | SSO-L7 |
 
 ---
 
-## Table: ddt_brick0001767
+## Table: ddt_brick0001953
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20241003_20250815_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2024-10-03 to 2025-08-15 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20241003_20250815_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2024-10-03 to 2025-08-15 (v4)
 
 ### Schema
 
@@ -20549,17 +21193,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:25:00.000-04:00 | 737.8195 | 72.0 | 0.0 | 0.3129684 | 12.1388 | 0.40866372 | 563.9781 | 0.9985224 | 10.057745 | 6.679537 | 6.2567887 | 222.91989 | 1773.1185 | 0.30842713 | 3.526971 | 628.7134 | 19.609177 | 3.0483484 | SSO-L8 |
-| 2024-10-03T11:35:00.000-04:00 | 737.74457 | 72.0 | 13.407 | 0.2934827 | 12.6093 | 0.4092841 | 565.06964 | 0.9985188 | 10.060891 | 6.6772466 | 5.9321384 | 225.88342 | 1769.6934 | 0.3089131 | 3.309028 | 629.66785 | 19.628748 | 3.0469866 | SSO-L8 |
-| 2024-10-03T11:45:00.000-04:00 | 737.70703 | 72.0 | 13.371 | 0.27329275 | 13.151 | 0.4099935 | 566.0831 | 0.9985186 | 10.063348 | 6.6809263 | 5.593695 | 228.42497 | 1766.525 | 0.30946684 | 3.0817304 | 630.7592 | 19.631575 | 3.0459232 | SSO-L8 |
-| 2024-10-03T11:55:00.000-04:00 | 737.71454 | 72.0 | 13.398 | 0.24643368 | 13.2459 | 0.4109136 | 567.34985 | 0.99851924 | 10.070019 | 6.6827846 | 5.143017 | 228.8422 | 1762.5809 | 0.31018454 | 2.7788277 | 632.17474 | 19.631271 | 3.0430355 | SSO-L8 |
-| 2024-10-03T12:05:00.000-04:00 | 737.767 | 72.0 | 13.462 | 0.2105434 | 13.3215 | 0.41256928 | 569.61285 | 0.9985207 | 10.0722475 | 6.683278 | 4.540671 | 228.08641 | 1755.5784 | 0.31147623 | 2.373874 | 634.722 | 19.629372 | 3.0420704 | SSO-L8 |
+| 2024-10-03T11:25:00.000-04:00 | 737.8195 | 72.0 | 0.0 | 0.3129684 | 2.7421 | 0.40866372 | 563.9781 | 0.9985224 | 10.057745 | 6.679537 | 6.2567887 | 222.91989 | 1773.1185 | 0.30842713 | 3.526971 | 628.7134 | 19.609177 | 3.0483484 | SSO-L8 |
+| 2024-10-03T11:35:00.000-04:00 | 737.74457 | 72.0 | 13.407 | 0.2934827 | 2.8484 | 0.4092841 | 565.06964 | 0.9985188 | 10.060891 | 6.6772466 | 5.9321384 | 225.88342 | 1769.6934 | 0.3089131 | 3.309028 | 629.66785 | 19.628748 | 3.0469866 | SSO-L8 |
+| 2024-10-03T11:45:00.000-04:00 | 737.70703 | 72.0 | 13.371 | 0.27329275 | 2.9708 | 0.4099935 | 566.0831 | 0.9985186 | 10.063348 | 6.6809263 | 5.593695 | 228.42497 | 1766.525 | 0.30946684 | 3.0817304 | 630.7592 | 19.631575 | 3.0459232 | SSO-L8 |
+| 2024-10-03T11:55:00.000-04:00 | 737.71454 | 72.0 | 13.398 | 0.24643368 | 2.9922 | 0.4109136 | 567.34985 | 0.99851924 | 10.070019 | 6.6827846 | 5.143017 | 228.8422 | 1762.5809 | 0.31018454 | 2.7788277 | 632.17474 | 19.631271 | 3.0430355 | SSO-L8 |
+| 2024-10-03T12:05:00.000-04:00 | 737.767 | 72.0 | 13.462 | 0.2105434 | 3.0093 | 0.41256928 | 569.61285 | 0.9985207 | 10.0722475 | 6.683278 | 4.540671 | 228.08641 | 1755.5784 | 0.31147623 | 2.373874 | 634.722 | 19.629372 | 3.0420704 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001768
+## Table: ddt_brick0001954
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20250819_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-08-19 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20250819_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-08-19 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -20592,17 +21236,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:49:00.000-04:00 | 738.6446 | 20.0 | 0.018 | 0.0 | 32.6838 | 0.5142629 | 681.98474 | 0.9989397 | 10.878188 | 6.7076325 | -0.35027504 | 103.329254 | 1466.3085 | 0.39092696 | 0.0 | 791.17365 | 17.774408 | 2.807804 | SSO-L8 |
-| 2025-08-19T10:59:00.000-04:00 | 738.6746 | 20.0 | 13.137 | 0.0 | 32.3314 | 0.5163259 | 685.06696 | 0.9989367 | 10.878543 | 6.6906934 | -0.34885293 | 105.39635 | 1459.7113 | 0.3925586 | 0.0 | 794.3475 | 17.79724 | 2.8076506 | SSO-L8 |
-| 2025-08-19T11:09:00.000-04:00 | 738.6596 | 20.0 | 13.407 | 0.0 | 32.6155 | 0.51658154 | 685.48895 | 0.99893606 | 10.882671 | 6.6908703 | -0.34959674 | 105.7206 | 1458.8127 | 0.39276147 | 0.0 | 794.7408 | 17.802694 | 2.8058624 | SSO-L8 |
-| 2025-08-19T11:19:00.000-04:00 | 738.6296 | 20.0 | 13.38 | 0.0 | 32.6823 | 0.5167393 | 685.74854 | 0.9989354 | 10.878185 | 6.691091 | -0.37126073 | 105.77304 | 1458.2605 | 0.39288667 | 0.0 | 794.98346 | 17.806005 | 2.807805 | SSO-L8 |
-| 2025-08-19T11:29:00.000-04:00 | 738.5396 | 20.0 | 13.389 | 0.0 | 32.5172 | 0.51675117 | 685.83167 | 0.99893457 | 10.883215 | 6.690826 | -0.36680898 | 105.72298 | 1458.0837 | 0.39289716 | 0.0 | 795.00183 | 17.810438 | 2.8056269 | SSO-L8 |
+| 2025-08-19T10:49:00.000-04:00 | 738.6446 | 20.0 | 0.018 | 0.0 | 7.3832 | 0.5142629 | 681.98474 | 0.9989397 | 10.878188 | 6.7076325 | -0.35027504 | 103.329254 | 1466.3085 | 0.39092696 | 0.0 | 791.17365 | 17.774408 | 2.807804 | SSO-L8 |
+| 2025-08-19T10:59:00.000-04:00 | 738.6746 | 20.0 | 13.137 | 0.0 | 7.3035 | 0.5163259 | 685.06696 | 0.9989367 | 10.878543 | 6.6906934 | -0.34885293 | 105.39635 | 1459.7113 | 0.3925586 | 0.0 | 794.3475 | 17.79724 | 2.8076506 | SSO-L8 |
+| 2025-08-19T11:09:00.000-04:00 | 738.6596 | 20.0 | 13.407 | 0.0 | 7.3677 | 0.51658154 | 685.48895 | 0.99893606 | 10.882671 | 6.6908703 | -0.34959674 | 105.7206 | 1458.8127 | 0.39276147 | 0.0 | 794.7408 | 17.802694 | 2.8058624 | SSO-L8 |
+| 2025-08-19T11:19:00.000-04:00 | 738.6296 | 20.0 | 13.38 | 0.0 | 7.3828 | 0.5167393 | 685.74854 | 0.9989354 | 10.878185 | 6.691091 | -0.37126073 | 105.77304 | 1458.2605 | 0.39288667 | 0.0 | 794.98346 | 17.806005 | 2.807805 | SSO-L8 |
+| 2025-08-19T11:29:00.000-04:00 | 738.5396 | 20.0 | 13.389 | 0.0 | 7.3455 | 0.51675117 | 685.83167 | 0.99893457 | 10.883215 | 6.690826 | -0.36680898 | 105.72298 | 1458.0837 | 0.39289716 | 0.0 | 795.00183 | 17.810438 | 2.8056269 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001769
+## Table: ddt_brick0001955
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251016_20251017_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-10-16 to 2025-10-17 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251016_20251017_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-10-16 to 2025-10-17 (v4)
 
 ### Schema
 
@@ -20629,17 +21273,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T12:00:00.000-04:00 | 739.4397 | 99.0 | 0.018 | 0.009355661 | 6.1351 | 12.005217 | 6.7422037 | 0.13169695 | 189.62837 | 0.10356654 | 18.92439 | 2.3097448 | SSO-L8 |
-| 2025-10-16T12:10:00.000-04:00 | 739.39465 | 99.0 | 13.038 | 0.003308534 | 5.771 | 12.009004 | 6.7148013 | 0.031750873 | 201.24413 | 0.036639128 | 18.939966 | 2.3081055 | SSO-L8 |
-| 2025-10-16T12:20:00.000-04:00 | 739.3197 | 99.0 | 13.137 | 2.52952E-4 | 5.702 | 12.005761 | 6.7137566 | -0.018771373 | 203.69269 | 0.002801585 | 18.941187 | 2.3095093 | SSO-L8 |
-| 2025-10-16T12:30:00.000-04:00 | 739.2447 | 99.0 | 13.218 | 0.0 | 5.6859 | 12.003199 | 6.713708 | -0.036913067 | 203.03703 | 0.0 | 18.943693 | 2.3106184 | SSO-L8 |
-| 2025-10-16T12:40:00.000-04:00 | 739.1771 | 99.0 | 13.353 | 0.0 | 5.7117 | 12.000488 | 6.713516 | -0.053581394 | 203.12048 | 0.0 | 18.947893 | 2.3117914 | SSO-L8 |
+| 2025-10-16T12:00:00.000-04:00 | 739.4397 | 99.0 | 0.018 | 0.009355661 | 1.3859 | 12.005217 | 6.7422037 | 0.13169695 | 189.62837 | 0.10356654 | 18.92439 | 2.3097448 | SSO-L8 |
+| 2025-10-16T12:10:00.000-04:00 | 739.39465 | 99.0 | 13.038 | 0.003308534 | 1.3037 | 12.009004 | 6.7148013 | 0.031750873 | 201.24413 | 0.036639128 | 18.939966 | 2.3081055 | SSO-L8 |
+| 2025-10-16T12:20:00.000-04:00 | 739.3197 | 99.0 | 13.137 | 2.52952E-4 | 1.2881 | 12.005761 | 6.7137566 | -0.018771373 | 203.69269 | 0.002801585 | 18.941187 | 2.3095093 | SSO-L8 |
+| 2025-10-16T12:30:00.000-04:00 | 739.2447 | 99.0 | 13.218 | 0.0 | 1.2844 | 12.003199 | 6.713708 | -0.036913067 | 203.03703 | 0.0 | 18.943693 | 2.3106184 | SSO-L8 |
+| 2025-10-16T12:40:00.000-04:00 | 739.1771 | 99.0 | 13.353 | 0.0 | 1.2903 | 12.000488 | 6.713516 | -0.053581394 | 203.12048 | 0.0 | 18.947893 | 2.3117914 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001770
+## Table: ddt_brick0001956
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251020_20251104_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-10-20 to 2025-11-04 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251020_20251104_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-10-20 to 2025-11-04 (v4)
 
 ### Schema
 
@@ -20672,17 +21316,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-20T14:31:00.000-04:00 | 742.58246 | 99.0 | 0.027 | 0.0 | 7.2471 | 0.5380997 | 737.18945 | 0.99866897 | 13.162841 | 6.6968226 | -0.24320705 | 96.306564 | 1356.5034 | 0.41005865 | 0.0 | 827.84564 | 19.266565 | 1.6942368 | SSO-L8 |
-| 2025-10-20T14:41:00.000-04:00 | 740.3247 | 99.0 | 0.0 | 0.0 | 6.6703 | 0.5382451 | 735.8323 | 0.9986885 | 13.013924 | 6.686282 | -0.23272961 | 97.181564 | 1359.0054 | 0.41015616 | 0.0 | 828.06934 | 19.168163 | 1.7587128 | SSO-L8 |
-| 2025-10-20T14:51:00.000-04:00 | 739.86725 | 99.0 | 0.387 | 0.0 | 6.6921 | 0.5384344 | 734.923 | 0.9987033 | 12.963908 | 6.686498 | -0.25832736 | 97.615486 | 1360.6868 | 0.41029254 | 0.0 | 828.36066 | 19.094328 | 1.7803688 | SSO-L8 |
-| 2025-10-20T15:01:00.000-04:00 | 739.7022 | 99.0 | 0.387 | 0.0 | 6.6651 | 0.5390837 | 734.77576 | 0.9987166 | 12.926309 | 6.6866636 | -0.2760396 | 98.01126 | 1360.9595 | 0.41079363 | 0.0 | 829.3595 | 19.029093 | 1.7966499 | SSO-L8 |
-| 2025-10-20T15:11:00.000-04:00 | 739.52966 | 99.0 | 0.387 | 0.0 | 6.769 | 0.5392963 | 734.4093 | 0.99872494 | 12.891835 | 6.6895266 | -0.27584052 | 98.75513 | 1361.6385 | 0.41095394 | 0.0 | 829.68665 | 18.987679 | 1.8115768 | SSO-L8 |
+| 2025-10-20T14:31:00.000-04:00 | 742.58246 | 99.0 | 0.027 | 0.0 | 1.6371 | 0.5380997 | 737.18945 | 0.99866897 | 13.162841 | 6.6968226 | -0.24320705 | 96.306564 | 1356.5034 | 0.41005865 | 0.0 | 827.84564 | 19.266565 | 1.6942368 | SSO-L8 |
+| 2025-10-20T14:41:00.000-04:00 | 740.3247 | 99.0 | 0.0 | 0.0 | 1.5068 | 0.5382451 | 735.8323 | 0.9986885 | 13.013924 | 6.686282 | -0.23272961 | 97.181564 | 1359.0054 | 0.41015616 | 0.0 | 828.06934 | 19.168163 | 1.7587128 | SSO-L8 |
+| 2025-10-20T14:51:00.000-04:00 | 739.86725 | 99.0 | 0.387 | 0.0 | 1.5117 | 0.5384344 | 734.923 | 0.9987033 | 12.963908 | 6.686498 | -0.25832736 | 97.615486 | 1360.6868 | 0.41029254 | 0.0 | 828.36066 | 19.094328 | 1.7803688 | SSO-L8 |
+| 2025-10-20T15:01:00.000-04:00 | 739.7022 | 99.0 | 0.387 | 0.0 | 1.5056 | 0.5390837 | 734.77576 | 0.9987166 | 12.926309 | 6.6866636 | -0.2760396 | 98.01126 | 1360.9595 | 0.41079363 | 0.0 | 829.3595 | 19.029093 | 1.7966499 | SSO-L8 |
+| 2025-10-20T15:11:00.000-04:00 | 739.52966 | 99.0 | 0.387 | 0.0 | 1.5291 | 0.5392963 | 734.4093 | 0.99872494 | 12.891835 | 6.6895266 | -0.27584052 | 98.75513 | 1361.6385 | 0.41095394 | 0.0 | 829.68665 | 18.987679 | 1.8115768 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001771
+## Table: ddt_brick0001957
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251105_20251106_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-11-05 to 2025-11-06 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251105_20251106_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-11-05 to 2025-11-06 (v4)
 
 ### Schema
 
@@ -20704,17 +21348,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-11-05T10:51:00.000-05:00 | 9.469999999999999 | 145.8189 | 0.05 | 17.04 | 7.795 | 350.85 | 17.145000000000003 | SSO-L8 |
-| 2025-11-05T11:06:00.000-05:00 | 1.79 | 10.8678 | 612.04 | 9.614999999999998 | 6.93 | 234.0 | 19.655 | SSO-L8 |
-| 2025-11-05T11:21:00.000-05:00 | 2.005 | 10.0488 | 611.495 | 9.61 | 6.94 | 234.75 | 19.65 | SSO-L8 |
-| 2025-11-05T11:36:00.000-05:00 | 2.16 | 9.6283 | 611.135 | 9.61 | 6.95 | 231.25 | 19.65 | SSO-L8 |
-| 2025-11-05T11:51:00.000-05:00 | 2.19 | 9.3184 | 613.505 | 9.61 | 6.94 | 240.39999999999998 | 19.65 | SSO-L8 |
+| 2025-11-05T10:51:00.000-05:00 | 9.469999999999999 | 32.94 | 0.05 | 17.04 | 7.795 | 350.85 | 17.145000000000003 | SSO-L8 |
+| 2025-11-05T11:06:00.000-05:00 | 1.79 | 2.455 | 612.04 | 9.614999999999998 | 6.93 | 234.0 | 19.655 | SSO-L8 |
+| 2025-11-05T11:21:00.000-05:00 | 2.005 | 2.27 | 611.495 | 9.61 | 6.94 | 234.75 | 19.65 | SSO-L8 |
+| 2025-11-05T11:36:00.000-05:00 | 2.16 | 2.175 | 611.135 | 9.61 | 6.95 | 231.25 | 19.65 | SSO-L8 |
+| 2025-11-05T11:51:00.000-05:00 | 2.19 | 2.105 | 613.505 | 9.61 | 6.94 | 240.39999999999998 | 19.65 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001772
+## Table: ddt_brick0001958
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251106_20251208_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-11-06 to 2025-12-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251106_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-11-06 to 2025-12-08 (v3)
 
 ### Schema
 
@@ -20747,17 +21391,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-06T14:51:00.000-05:00 | 739.7097 | 96.0 | 0.027 | 0.76707083 | 3.6351 | 0.46940783 | 647.6322 | 0.9985613 | 9.9393425 | 6.961683 | 12.843338 | 183.0504 | 1544.0863 | 0.35597014 | 8.622067 | 722.1659 | 19.59641 | 3.1693878 | SSO-L8 |
-| 2025-11-06T15:01:00.000-05:00 | 739.25964 | 96.0 | 13.444 | 0.798073 | 3.5958 | 0.46885607 | 647.0873 | 0.99855787 | 9.928819 | 6.9298315 | 13.367223 | 188.08104 | 1545.3866 | 0.35553896 | 8.978929 | 721.317 | 19.612114 | 3.1739435 | SSO-L8 |
-| 2025-11-06T15:11:00.000-05:00 | 739.22217 | 96.0 | 13.453 | 0.7611997 | 3.4851 | 0.46956387 | 648.11865 | 0.9985575 | 9.92351 | 6.9315796 | 12.749505 | 177.11378 | 1542.9274 | 0.35609534 | 8.56522 | 722.40594 | 19.616064 | 3.1762419 | SSO-L8 |
-| 2025-11-06T15:21:00.000-05:00 | 739.2146 | 96.0 | 13.453 | 0.7454853 | 3.3875 | 0.46787077 | 645.7551 | 0.9985569 | 9.9265585 | 6.9276505 | 12.485287 | 166.0607 | 1548.5746 | 0.3547655 | 8.388103 | 719.8012 | 19.614126 | 3.174922 | SSO-L8 |
-| 2025-11-06T15:31:00.000-05:00 | 739.13214 | 96.0 | 13.38 | 0.70880044 | 3.4177 | 0.4668732 | 644.3734 | 0.9985563 | 9.912948 | 6.923814 | 11.869603 | 159.72353 | 1551.8951 | 0.35398215 | 7.9761386 | 718.2664 | 19.613775 | 3.1808138 | SSO-L8 |
+| 2025-11-06T14:51:00.000-05:00 | 739.7097 | 96.0 | 0.027 | 0.76707083 | 0.8212 | 0.46940783 | 647.6322 | 0.9985613 | 9.9393425 | 6.961683 | 12.843338 | 183.0504 | 1544.0863 | 0.35597014 | 8.622067 | 722.1659 | 19.59641 | 3.1693878 | SSO-L8 |
+| 2025-11-06T15:01:00.000-05:00 | 739.25964 | 96.0 | 13.444 | 0.798073 | 0.8123 | 0.46885607 | 647.0873 | 0.99855787 | 9.928819 | 6.9298315 | 13.367223 | 188.08104 | 1545.3866 | 0.35553896 | 8.978929 | 721.317 | 19.612114 | 3.1739435 | SSO-L8 |
+| 2025-11-06T15:11:00.000-05:00 | 739.22217 | 96.0 | 13.453 | 0.7611997 | 0.7873 | 0.46956387 | 648.11865 | 0.9985575 | 9.92351 | 6.9315796 | 12.749505 | 177.11378 | 1542.9274 | 0.35609534 | 8.56522 | 722.40594 | 19.616064 | 3.1762419 | SSO-L8 |
+| 2025-11-06T15:21:00.000-05:00 | 739.2146 | 96.0 | 13.453 | 0.7454853 | 0.7652 | 0.46787077 | 645.7551 | 0.9985569 | 9.9265585 | 6.9276505 | 12.485287 | 166.0607 | 1548.5746 | 0.3547655 | 8.388103 | 719.8012 | 19.614126 | 3.174922 | SSO-L8 |
+| 2025-11-06T15:31:00.000-05:00 | 739.13214 | 96.0 | 13.38 | 0.70880044 | 0.772 | 0.4668732 | 644.3734 | 0.9985563 | 9.912948 | 6.923814 | 11.869603 | 159.72353 | 1551.8951 | 0.35398215 | 7.9761386 | 718.2664 | 19.613775 | 3.1808138 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001773
+## Table: ddt_brick0001959
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251210_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-12-10 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20251210_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2025-12-10 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -20790,17 +21434,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-10T11:00:00.000-05:00 | 729.89136 | 90.0 | 0.018 | 3.138537 | 2.8911 | 0.4130425 | 559.7646 | 0.99869245 | 8.33601 | 7.0142803 | 50.96714 | 231.59134 | 1786.4653 | 0.31173688 | 35.15873 | 635.45 | 18.764124 | 3.8537636 | SSO-L8 |
-| 2025-12-10T11:10:00.000-05:00 | 729.5614 | 89.0 | 0.063 | 3.293285 | 2.7179 | 0.3908936 | 529.7506 | 0.9986793 | 8.335438 | 6.99962 | 53.469814 | 253.97647 | 1887.6807 | 0.29448342 | 36.905727 | 601.37476 | 18.764362 | 3.8540115 | SSO-L8 |
-| 2025-12-10T11:20:00.000-05:00 | 729.49384 | 89.0 | 0.072 | 3.214008 | 2.7079 | 0.38748953 | 525.104 | 0.99867773 | 8.33394 | 6.993173 | 52.18146 | 250.24759 | 1904.3846 | 0.29183534 | 36.018036 | 596.1377 | 18.761442 | 3.85466 | SSO-L8 |
-| 2025-12-10T11:30:00.000-05:00 | 729.4188 | 89.0 | 13.182 | 3.0868979 | 2.7068 | 0.38634065 | 523.61224 | 0.99867594 | 8.33495 | 6.991407 | 50.126965 | 245.70572 | 1909.8102 | 0.29094294 | 34.601032 | 594.37024 | 18.767172 | 3.8542223 | SSO-L8 |
-| 2025-12-10T11:40:00.000-05:00 | 729.4039 | 89.0 | 13.38 | 3.0389655 | 2.7086 | 0.38614717 | 523.421 | 0.99867463 | 8.3350935 | 6.989596 | 49.355995 | 240.85153 | 1910.5079 | 0.2907933 | 34.06877 | 594.0726 | 18.77343 | 3.8541603 | SSO-L8 |
+| 2025-12-10T11:00:00.000-05:00 | 729.89136 | 90.0 | 0.018 | 3.138537 | 0.6531 | 0.4130425 | 559.7646 | 0.99869245 | 8.33601 | 7.0142803 | 50.96714 | 231.59134 | 1786.4653 | 0.31173688 | 35.15873 | 635.45 | 18.764124 | 3.8537636 | SSO-L8 |
+| 2025-12-10T11:10:00.000-05:00 | 729.5614 | 89.0 | 0.063 | 3.293285 | 0.614 | 0.3908936 | 529.7506 | 0.9986793 | 8.335438 | 6.99962 | 53.469814 | 253.97647 | 1887.6807 | 0.29448342 | 36.905727 | 601.37476 | 18.764362 | 3.8540115 | SSO-L8 |
+| 2025-12-10T11:20:00.000-05:00 | 729.49384 | 89.0 | 0.072 | 3.214008 | 0.6117 | 0.38748953 | 525.104 | 0.99867773 | 8.33394 | 6.993173 | 52.18146 | 250.24759 | 1904.3846 | 0.29183534 | 36.018036 | 596.1377 | 18.761442 | 3.85466 | SSO-L8 |
+| 2025-12-10T11:30:00.000-05:00 | 729.4188 | 89.0 | 13.182 | 3.0868979 | 0.6115 | 0.38634065 | 523.61224 | 0.99867594 | 8.33495 | 6.991407 | 50.126965 | 245.70572 | 1909.8102 | 0.29094294 | 34.601032 | 594.37024 | 18.767172 | 3.8542223 | SSO-L8 |
+| 2025-12-10T11:40:00.000-05:00 | 729.4039 | 89.0 | 13.38 | 3.0389655 | 0.6119 | 0.38614717 | 523.421 | 0.99867463 | 8.3350935 | 6.989596 | 49.355995 | 240.85153 | 1910.5079 | 0.2907933 | 34.06877 | 594.0726 | 18.77343 | 3.8541603 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001774
+## Table: ddt_brick0001960
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ1_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ1 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -20833,17 +21477,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:00:00.000-05:00 | 742.31244 | 83.0 | 12.2 | 2.6589134 | 4.932 | 0.38447964 | 508.69397 | 0.99888074 | 10.3735285 | 7.072578 | 42.29451 | 157.3645 | 1965.8185 | 0.28933048 | 28.624355 | 591.50714 | 17.669964 | 2.9714346 | SSO-L8 |
-| 2026-01-23T00:10:00.000-05:00 | 742.2674 | 83.0 | 12.182 | 4.0843935 | 4.8414 | 0.38265434 | 506.25763 | 0.99888 | 10.38194 | 7.077901 | 64.912186 | 171.84604 | 1975.2789 | 0.2879125 | 43.970856 | 588.699 | 17.66807 | 2.9677925 | SSO-L8 |
-| 2026-01-23T00:20:00.000-05:00 | 742.18494 | 83.0 | 12.209 | 2.9186475 | 4.8035 | 0.38221812 | 505.70117 | 0.9988794 | 10.378999 | 7.071208 | 46.41568 | 169.33786 | 1977.4524 | 0.28757405 | 31.425676 | 588.0279 | 17.669909 | 2.9690666 | SSO-L8 |
-| 2026-01-23T00:30:00.000-05:00 | 742.1999 | 83.0 | 12.218 | 2.558718 | 4.7264 | 0.38201436 | 505.43335 | 0.99887925 | 10.380878 | 7.0632687 | 40.70417 | 170.5419 | 1978.5002 | 0.2874159 | 27.549738 | 587.7144 | 17.670065 | 2.9682531 | SSO-L8 |
-| 2026-01-23T00:40:00.000-05:00 | 742.2374 | 83.0 | 12.218 | 2.5101938 | 4.6317 | 0.3813966 | 504.62817 | 0.9988787 | 10.383965 | 7.060607 | 39.934853 | 167.97412 | 1981.6571 | 0.28693634 | 27.02639 | 586.764 | 17.67115 | 2.966917 | SSO-L8 |
+| 2026-01-23T00:00:00.000-05:00 | 742.31244 | 83.0 | 12.2 | 2.6589134 | 1.1141 | 0.38447964 | 508.69397 | 0.99888074 | 10.3735285 | 7.072578 | 42.29451 | 157.3645 | 1965.8185 | 0.28933048 | 28.624355 | 591.50714 | 17.669964 | 2.9714346 | SSO-L8 |
+| 2026-01-23T00:10:00.000-05:00 | 742.2674 | 83.0 | 12.182 | 4.0843935 | 1.0937 | 0.38265434 | 506.25763 | 0.99888 | 10.38194 | 7.077901 | 64.912186 | 171.84604 | 1975.2789 | 0.2879125 | 43.970856 | 588.699 | 17.66807 | 2.9677925 | SSO-L8 |
+| 2026-01-23T00:20:00.000-05:00 | 742.18494 | 83.0 | 12.209 | 2.9186475 | 1.0851 | 0.38221812 | 505.70117 | 0.9988794 | 10.378999 | 7.071208 | 46.41568 | 169.33786 | 1977.4524 | 0.28757405 | 31.425676 | 588.0279 | 17.669909 | 2.9690666 | SSO-L8 |
+| 2026-01-23T00:30:00.000-05:00 | 742.1999 | 83.0 | 12.218 | 2.558718 | 1.0677 | 0.38201436 | 505.43335 | 0.99887925 | 10.380878 | 7.0632687 | 40.70417 | 170.5419 | 1978.5002 | 0.2874159 | 27.549738 | 587.7144 | 17.670065 | 2.9682531 | SSO-L8 |
+| 2026-01-23T00:40:00.000-05:00 | 742.2374 | 83.0 | 12.218 | 2.5101938 | 1.0463 | 0.3813966 | 504.62817 | 0.9988787 | 10.383965 | 7.060607 | 39.934853 | 167.97412 | 1981.6571 | 0.28693634 | 27.02639 | 586.764 | 17.67115 | 2.966917 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001775
+## Table: ddt_brick0001961
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20241003_20241015_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2024-10-03 to 2024-10-15 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20241003_20241015_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2024-10-03 to 2024-10-15 (v3)
 
 ### Schema
 
@@ -20876,17 +21520,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:26:00.000-04:00 | 738.46954 | 78.0 | 0.0 | 0.047753148 | 3.3576 | 0.4367858 | 584.53485 | 0.9988166 | 10.299502 | 6.7700834 | 1.00801 | 19.243935 | 1710.762 | 0.33018687 | 0.5224677 | 671.97815 | 18.187004 | 5.4422455 | SSO-L8 |
-| 2024-10-03T11:36:00.000-04:00 | 738.40204 | 78.0 | 13.353 | 0.041071564 | 3.3095 | 0.43664786 | 584.44653 | 0.9988152 | 10.3012905 | 6.7709336 | 0.9078672 | 42.4516 | 1711.0205 | 0.33008033 | 0.44947496 | 671.7659 | 18.19451 | 5.441471 | SSO-L8 |
-| 2024-10-03T11:46:00.000-04:00 | 738.36456 | 78.0 | 13.308 | 0.054482892 | 3.2923 | 0.43595856 | 583.49115 | 0.9988152 | 10.303281 | 6.7711864 | 1.1091058 | 44.516304 | 1713.822 | 0.32954097 | 0.5962429 | 670.7055 | 18.191948 | 5.440609 | SSO-L8 |
-| 2024-10-03T11:56:00.000-04:00 | 738.39453 | 78.0 | 13.317 | 0.049576417 | 3.3027 | 0.43615258 | 583.7699 | 0.998815 | 10.310919 | 6.7726264 | 1.0354958 | 29.73912 | 1713.0037 | 0.32969293 | 0.54254186 | 671.00397 | 18.19344 | 5.4373016 | SSO-L8 |
-| 2024-10-03T12:06:00.000-04:00 | 738.4171 | 78.0 | 13.362 | 0.046773627 | 3.3002 | 0.43631417 | 583.965 | 0.99881536 | 10.308887 | 6.774065 | 0.9933976 | 41.621902 | 1712.4313 | 0.32981893 | 0.5118363 | 671.25256 | 18.191792 | 5.438182 | SSO-L8 |
+| 2024-10-03T11:26:00.000-04:00 | 738.46954 | 78.0 | 0.0 | 0.047753148 | 0.7585 | 0.4367858 | 584.53485 | 0.9988166 | 10.299502 | 6.7700834 | 1.00801 | 19.243935 | 1710.762 | 0.33018687 | 0.5224677 | 671.97815 | 18.187004 | 5.4422455 | SSO-L8 |
+| 2024-10-03T11:36:00.000-04:00 | 738.40204 | 78.0 | 13.353 | 0.041071564 | 0.7476 | 0.43664786 | 584.44653 | 0.9988152 | 10.3012905 | 6.7709336 | 0.9078672 | 42.4516 | 1711.0205 | 0.33008033 | 0.44947496 | 671.7659 | 18.19451 | 5.441471 | SSO-L8 |
+| 2024-10-03T11:46:00.000-04:00 | 738.36456 | 78.0 | 13.308 | 0.054482892 | 0.7437 | 0.43595856 | 583.49115 | 0.9988152 | 10.303281 | 6.7711864 | 1.1091058 | 44.516304 | 1713.822 | 0.32954097 | 0.5962429 | 670.7055 | 18.191948 | 5.440609 | SSO-L8 |
+| 2024-10-03T11:56:00.000-04:00 | 738.39453 | 78.0 | 13.317 | 0.049576417 | 0.7461 | 0.43615258 | 583.7699 | 0.998815 | 10.310919 | 6.7726264 | 1.0354958 | 29.73912 | 1713.0037 | 0.32969293 | 0.54254186 | 671.00397 | 18.19344 | 5.4373016 | SSO-L8 |
+| 2024-10-03T12:06:00.000-04:00 | 738.4171 | 78.0 | 13.362 | 0.046773627 | 0.7455 | 0.43631417 | 583.965 | 0.99881536 | 10.308887 | 6.774065 | 0.9933976 | 41.621902 | 1712.4313 | 0.32981893 | 0.5118363 | 671.25256 | 18.191792 | 5.438182 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001776
+## Table: ddt_brick0001962
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20241015_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2024-10-15 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20241015_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2024-10-15 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -20919,17 +21563,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-15T15:50:00.000-04:00 | 737.9745 | 76.0 | 0.0 | 0.0 | 10.7038 | 0.5094151 | 684.058 | 0.9988311 | 11.485498 | 6.7652564 | 0.23774227 | -26.1605 | 1461.8644 | 0.38723475 | 0.0 | 783.7155 | 18.34239 | 5.123105 | SSO-L8 |
-| 2024-10-15T16:00:00.000-04:00 | 738.01953 | 76.0 | 12.732 | 0.0 | 10.5872 | 0.5094948 | 684.4052 | 0.998828 | 11.481633 | 6.7700033 | 0.07731709 | -3.2913904 | 1461.1227 | 0.38730085 | 0.0 | 783.83813 | 18.358435 | 5.1247787 | SSO-L8 |
-| 2024-10-15T16:10:00.000-04:00 | 738.1396 | 76.0 | 12.777 | 0.0 | 10.4779 | 0.50944924 | 684.24274 | 0.9988294 | 11.487858 | 6.7710996 | 0.08540982 | -25.731346 | 1461.4696 | 0.3872636 | 0.0 | 783.76807 | 18.35167 | 5.1220837 | SSO-L8 |
-| 2024-10-15T16:20:00.000-04:00 | 738.2596 | 76.0 | 12.795 | 0.0 | 10.4468 | 0.50935084 | 684.02997 | 0.9988304 | 11.489402 | 6.7710123 | 0.124068975 | -30.852577 | 1461.9242 | 0.38718486 | 0.0 | 783.6167 | 18.346281 | 5.121415 | SSO-L8 |
-| 2024-10-15T16:30:00.000-04:00 | 738.3271 | 76.0 | 12.741 | 0.0 | 10.4335 | 0.50920856 | 683.7785 | 0.99883103 | 11.4980545 | 6.772618 | 0.16031373 | -31.40094 | 1462.4619 | 0.38707188 | 0.0 | 783.3978 | 18.342245 | 5.117668 | SSO-L8 |
+| 2024-10-15T15:50:00.000-04:00 | 737.9745 | 76.0 | 0.0 | 0.0 | 2.418 | 0.5094151 | 684.058 | 0.9988311 | 11.485498 | 6.7652564 | 0.23774227 | -26.1605 | 1461.8644 | 0.38723475 | 0.0 | 783.7155 | 18.34239 | 5.123105 | SSO-L8 |
+| 2024-10-15T16:00:00.000-04:00 | 738.01953 | 76.0 | 12.732 | 0.0 | 2.3916 | 0.5094948 | 684.4052 | 0.998828 | 11.481633 | 6.7700033 | 0.07731709 | -3.2913904 | 1461.1227 | 0.38730085 | 0.0 | 783.83813 | 18.358435 | 5.1247787 | SSO-L8 |
+| 2024-10-15T16:10:00.000-04:00 | 738.1396 | 76.0 | 12.777 | 0.0 | 2.3669 | 0.50944924 | 684.24274 | 0.9988294 | 11.487858 | 6.7710996 | 0.08540982 | -25.731346 | 1461.4696 | 0.3872636 | 0.0 | 783.76807 | 18.35167 | 5.1220837 | SSO-L8 |
+| 2024-10-15T16:20:00.000-04:00 | 738.2596 | 76.0 | 12.795 | 0.0 | 2.3599 | 0.50935084 | 684.02997 | 0.9988304 | 11.489402 | 6.7710123 | 0.124068975 | -30.852577 | 1461.9242 | 0.38718486 | 0.0 | 783.6167 | 18.346281 | 5.121415 | SSO-L8 |
+| 2024-10-15T16:30:00.000-04:00 | 738.3271 | 76.0 | 12.741 | 0.0 | 2.3569 | 0.50920856 | 683.7785 | 0.99883103 | 11.4980545 | 6.772618 | 0.16031373 | -31.40094 | 1462.4619 | 0.38707188 | 0.0 | 783.3978 | 18.342245 | 5.117668 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001777
+## Table: ddt_brick0001963
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20250819_20250928_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-08-19 to 2025-09-28 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20250819_20250928_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-08-19 to 2025-09-28 (v3)
 
 ### Schema
 
@@ -20962,17 +21606,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:55:00.000-04:00 | 739.1071 | 14.0 | 0.018 | 0.0 | 28.298 | 0.5035845 | 658.50854 | 0.9990462 | 10.89692 | 6.7814865 | -0.7191595 | 137.66437 | 1518.5831 | 0.3823548 | 0.0 | 774.74536 | 17.144905 | 5.1922474 | SSO-L8 |
-| 2025-08-19T11:05:00.000-04:00 | 739.1296 | 14.0 | 13.02 | 0.0 | 28.3747 | 0.50385576 | 659.0653 | 0.999044 | 10.901983 | 6.776153 | -0.7125071 | 94.38185 | 1517.3003 | 0.38257203 | 0.0 | 775.16266 | 17.158554 | 5.190055 | SSO-L8 |
-| 2025-08-19T11:15:00.000-04:00 | 739.06964 | 14.0 | 13.236 | 0.0 | 28.4052 | 0.5038884 | 659.15796 | 0.9990434 | 10.897863 | 6.7751746 | -0.71347064 | 78.88464 | 1517.087 | 0.38259873 | 0.0 | 775.213 | 17.16192 | 5.191839 | SSO-L8 |
-| 2025-08-19T11:25:00.000-04:00 | 739.0471 | 14.0 | 13.281 | 0.0 | 28.4396 | 0.5038732 | 659.2124 | 0.9990426 | 10.903902 | 6.7748175 | -0.71975815 | 66.649 | 1516.9618 | 0.38258803 | 0.0 | 775.1896 | 17.166946 | 5.1892233 | SSO-L8 |
-| 2025-08-19T11:35:00.000-04:00 | 738.9571 | 14.0 | 13.254 | 0.0 | 28.4403 | 0.5044098 | 659.9404 | 0.9990426 | 10.898766 | 6.774639 | -0.71297485 | 55.867718 | 1515.2883 | 0.38301072 | 0.0 | 776.0151 | 17.168701 | 5.191448 | SSO-L8 |
+| 2025-08-19T10:55:00.000-04:00 | 739.1071 | 14.0 | 0.018 | 0.0 | 6.3924 | 0.5035845 | 658.50854 | 0.9990462 | 10.89692 | 6.7814865 | -0.7191595 | 137.66437 | 1518.5831 | 0.3823548 | 0.0 | 774.74536 | 17.144905 | 5.1922474 | SSO-L8 |
+| 2025-08-19T11:05:00.000-04:00 | 739.1296 | 14.0 | 13.02 | 0.0 | 6.4097 | 0.50385576 | 659.0653 | 0.999044 | 10.901983 | 6.776153 | -0.7125071 | 94.38185 | 1517.3003 | 0.38257203 | 0.0 | 775.16266 | 17.158554 | 5.190055 | SSO-L8 |
+| 2025-08-19T11:15:00.000-04:00 | 739.06964 | 14.0 | 13.236 | 0.0 | 6.4166 | 0.5038884 | 659.15796 | 0.9990434 | 10.897863 | 6.7751746 | -0.71347064 | 78.88464 | 1517.087 | 0.38259873 | 0.0 | 775.213 | 17.16192 | 5.191839 | SSO-L8 |
+| 2025-08-19T11:25:00.000-04:00 | 739.0471 | 14.0 | 13.281 | 0.0 | 6.4244 | 0.5038732 | 659.2124 | 0.9990426 | 10.903902 | 6.7748175 | -0.71975815 | 66.649 | 1516.9618 | 0.38258803 | 0.0 | 775.1896 | 17.166946 | 5.1892233 | SSO-L8 |
+| 2025-08-19T11:35:00.000-04:00 | 738.9571 | 14.0 | 13.254 | 0.0 | 6.4246 | 0.5044098 | 659.9404 | 0.9990426 | 10.898766 | 6.774639 | -0.71297485 | 55.867718 | 1515.2883 | 0.38301072 | 0.0 | 776.0151 | 17.168701 | 5.191448 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001778
+## Table: ddt_brick0001964
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20250929_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-09-29 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20250929_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-09-29 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -20993,17 +21637,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-09-29T04:07:00.000-04:00 | 0.0 | 17.9286 | 677.29 | 11.33 | 6.83 | 17.81 | SSO-L8 |
-| 2025-09-29T04:22:00.000-04:00 | 0.0 | 17.9286 | 677.155 | 11.32 | 6.83 | 17.81 | SSO-L8 |
-| 2025-09-29T04:37:00.000-04:00 | 0.0 | 17.9286 | 677.415 | 11.325 | 6.83 | 17.81 | SSO-L8 |
-| 2025-09-29T04:52:00.000-04:00 | 0.0 | 17.9286 | 677.345 | 11.33 | 6.83 | 17.81 | SSO-L8 |
-| 2025-09-29T05:07:00.000-04:00 | 0.0 | 17.9507 | 677.0350000000001 | 11.33 | 6.83 | 17.81 | SSO-L8 |
+| 2025-09-29T04:07:00.000-04:00 | 0.0 | 4.05 | 677.29 | 11.33 | 6.83 | 17.81 | SSO-L8 |
+| 2025-09-29T04:22:00.000-04:00 | 0.0 | 4.05 | 677.155 | 11.32 | 6.83 | 17.81 | SSO-L8 |
+| 2025-09-29T04:37:00.000-04:00 | 0.0 | 4.05 | 677.415 | 11.325 | 6.83 | 17.81 | SSO-L8 |
+| 2025-09-29T04:52:00.000-04:00 | 0.0 | 4.05 | 677.345 | 11.33 | 6.83 | 17.81 | SSO-L8 |
+| 2025-09-29T05:07:00.000-04:00 | 0.0 | 4.055 | 677.0350000000001 | 11.33 | 6.83 | 17.81 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001779
+## Table: ddt_brick0001965
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251016_20251031_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-10-16 to 2025-10-31 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251016_20251031_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-10-16 to 2025-10-31 (v3)
 
 ### Schema
 
@@ -21036,17 +21680,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T12:09:00.000-04:00 | 739.75964 | 99.0 | 0.0 | 0.014064077 | 2.1533 | 0.40542352 | 540.2011 | 0.99883485 | 12.053628 | 6.845398 | 0.42382044 | 199.1126 | 1851.1625 | 0.30567643 | 0.1529549 | 623.72845 | 17.98868 | 4.5784216 | SSO-L8 |
-| 2025-10-16T12:19:00.000-04:00 | 739.6771 | 99.0 | 12.93 | 0.015485391 | 2.1621 | 0.4143779 | 552.2299 | 0.99883866 | 12.045677 | 6.842009 | 0.44494343 | 200.75291 | 1810.84 | 0.31265643 | 0.16846642 | 637.50446 | 17.996696 | 4.5818644 | SSO-L8 |
-| 2025-10-16T12:29:00.000-04:00 | 739.59467 | 99.0 | 13.083 | 0.0230534 | 2.1857 | 0.38830456 | 517.50995 | 0.9988226 | 12.043363 | 6.8419104 | 0.5569341 | 203.93819 | 1932.33 | 0.29235762 | 0.2508099 | 597.3916 | 17.99909 | 4.5828667 | SSO-L8 |
-| 2025-10-16T12:39:00.000-04:00 | 739.5571 | 99.0 | 13.11 | 0.026455808 | 2.1975 | 0.4287657 | 571.4898 | 0.9988461 | 12.044996 | 6.841616 | 0.60746336 | 207.4048 | 1749.8125 | 0.32388607 | 0.28792173 | 659.6395 | 18.003498 | 4.582159 | SSO-L8 |
-| 2025-10-16T12:49:00.000-04:00 | 739.53467 | 99.0 | 13.227 | 0.024428502 | 2.2025 | 0.4162848 | 554.85834 | 0.9988384 | 12.037643 | 6.841326 | 0.5774155 | 210.7665 | 1802.2618 | 0.31414473 | 0.26585242 | 640.4382 | 18.003822 | 4.5853434 | SSO-L8 |
+| 2025-10-16T12:09:00.000-04:00 | 739.75964 | 99.0 | 0.0 | 0.014064077 | 0.4864 | 0.40542352 | 540.2011 | 0.99883485 | 12.053628 | 6.845398 | 0.42382044 | 199.1126 | 1851.1625 | 0.30567643 | 0.1529549 | 623.72845 | 17.98868 | 4.5784216 | SSO-L8 |
+| 2025-10-16T12:19:00.000-04:00 | 739.6771 | 99.0 | 12.93 | 0.015485391 | 0.4884 | 0.4143779 | 552.2299 | 0.99883866 | 12.045677 | 6.842009 | 0.44494343 | 200.75291 | 1810.84 | 0.31265643 | 0.16846642 | 637.50446 | 17.996696 | 4.5818644 | SSO-L8 |
+| 2025-10-16T12:29:00.000-04:00 | 739.59467 | 99.0 | 13.083 | 0.0230534 | 0.4937 | 0.38830456 | 517.50995 | 0.9988226 | 12.043363 | 6.8419104 | 0.5569341 | 203.93819 | 1932.33 | 0.29235762 | 0.2508099 | 597.3916 | 17.99909 | 4.5828667 | SSO-L8 |
+| 2025-10-16T12:39:00.000-04:00 | 739.5571 | 99.0 | 13.11 | 0.026455808 | 0.4964 | 0.4287657 | 571.4898 | 0.9988461 | 12.044996 | 6.841616 | 0.60746336 | 207.4048 | 1749.8125 | 0.32388607 | 0.28792173 | 659.6395 | 18.003498 | 4.582159 | SSO-L8 |
+| 2025-10-16T12:49:00.000-04:00 | 739.53467 | 99.0 | 13.227 | 0.024428502 | 0.4975 | 0.4162848 | 554.85834 | 0.9988384 | 12.037643 | 6.841326 | 0.5774155 | 210.7665 | 1802.2618 | 0.31414473 | 0.26585242 | 640.4382 | 18.003822 | 4.5853434 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001780
+## Table: ddt_brick0001966
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251114_20251208_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-11-14 to 2025-12-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251114_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-11-14 to 2025-12-08 (v3)
 
 ### Schema
 
@@ -21079,17 +21723,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-14T14:02:00.000-05:00 | 740.07074 | 93.0 | 0.018 | 0.30381185 | 0.4703 | 0.47369146 | 638.685 | 0.99877405 | 10.610995 | 7.1383066 | 6.6246805 | 183.97969 | 1565.717 | 0.35916755 | 3.3404922 | 728.7561 | 18.52902 | 5.3252125 | SSO-L8 |
-| 2025-11-14T14:12:00.000-05:00 | 739.85315 | 93.0 | 12.732 | 0.31807926 | 0.4697 | 0.47402647 | 639.1674 | 0.99877393 | 10.616037 | 7.1291347 | 6.8595877 | 184.01784 | 1564.5353 | 0.35943103 | 3.4985776 | 729.2715 | 18.53123 | 5.3230295 | SSO-L8 |
-| 2025-11-14T14:22:00.000-05:00 | 739.7556 | 93.0 | 12.705 | 0.33150706 | 0.4693 | 0.47423035 | 639.46075 | 0.9987737 | 10.608711 | 7.129587 | 7.080596 | 184.06076 | 1563.8176 | 0.35959136 | 3.6468678 | 729.58514 | 18.532553 | 5.3262014 | SSO-L8 |
-| 2025-11-14T14:32:00.000-05:00 | 739.5681 | 93.0 | 12.876 | 0.34362942 | 0.4681 | 0.47438604 | 639.6842 | 0.99877363 | 10.606848 | 7.129677 | 7.280081 | 184.10843 | 1563.2714 | 0.35971382 | 3.7812767 | 729.82465 | 18.533524 | 5.3270082 | SSO-L8 |
-| 2025-11-14T14:42:00.000-05:00 | 739.4481 | 93.0 | 13.056 | 0.3537259 | 0.4668 | 0.47449467 | 639.8544 | 0.99877334 | 10.600784 | 7.130492 | 7.446368 | 184.14182 | 1562.8556 | 0.35979947 | 3.89316 | 729.99176 | 18.535221 | 5.3296337 | SSO-L8 |
+| 2025-11-14T14:02:00.000-05:00 | 740.07074 | 93.0 | 0.018 | 0.30381185 | 0.1062 | 0.47369146 | 638.685 | 0.99877405 | 10.610995 | 7.1383066 | 6.6246805 | 183.97969 | 1565.717 | 0.35916755 | 3.3404922 | 728.7561 | 18.52902 | 5.3252125 | SSO-L8 |
+| 2025-11-14T14:12:00.000-05:00 | 739.85315 | 93.0 | 12.732 | 0.31807926 | 0.1061 | 0.47402647 | 639.1674 | 0.99877393 | 10.616037 | 7.1291347 | 6.8595877 | 184.01784 | 1564.5353 | 0.35943103 | 3.4985776 | 729.2715 | 18.53123 | 5.3230295 | SSO-L8 |
+| 2025-11-14T14:22:00.000-05:00 | 739.7556 | 93.0 | 12.705 | 0.33150706 | 0.106 | 0.47423035 | 639.46075 | 0.9987737 | 10.608711 | 7.129587 | 7.080596 | 184.06076 | 1563.8176 | 0.35959136 | 3.6468678 | 729.58514 | 18.532553 | 5.3262014 | SSO-L8 |
+| 2025-11-14T14:32:00.000-05:00 | 739.5681 | 93.0 | 12.876 | 0.34362942 | 0.1057 | 0.47438604 | 639.6842 | 0.99877363 | 10.606848 | 7.129677 | 7.280081 | 184.10843 | 1563.2714 | 0.35971382 | 3.7812767 | 729.82465 | 18.533524 | 5.3270082 | SSO-L8 |
+| 2025-11-14T14:42:00.000-05:00 | 739.4481 | 93.0 | 13.056 | 0.3537259 | 0.1055 | 0.47449467 | 639.8544 | 0.99877334 | 10.600784 | 7.130492 | 7.446368 | 184.14182 | 1562.8556 | 0.35979947 | 3.89316 | 729.99176 | 18.535221 | 5.3296337 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001781
+## Table: ddt_brick0001967
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251210_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-12-10 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20251210_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2025-12-10 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -21122,17 +21766,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-10T11:06:00.000-05:00 | 730.6349 | 88.0 | 0.063 | 2.852983 | 0.4671 | 0.52910084 | 717.94104 | 0.99875116 | 8.359544 | 7.1373477 | 50.417027 | 222.69745 | 1392.8721 | 0.40286392 | 31.981092 | 814.0013 | 18.821468 | 6.282404 | SSO-L8 |
-| 2025-12-10T11:16:00.000-05:00 | 729.4798 | 88.0 | 0.063 | 2.8475528 | 0.4648 | 0.52953434 | 718.4938 | 0.9987518 | 8.316207 | 7.125532 | 50.329872 | 222.45427 | 1391.8005 | 0.40320584 | 31.970469 | 814.66815 | 18.819193 | 6.3011684 | SSO-L8 |
-| 2025-12-10T11:26:00.000-05:00 | 729.2773 | 88.0 | 0.063 | 2.8428488 | 0.4639 | 0.52927953 | 718.13403 | 0.99875194 | 8.314949 | 7.125191 | 50.255325 | 222.64978 | 1392.4977 | 0.40300453 | 31.926147 | 814.2762 | 18.81829 | 6.301713 | SSO-L8 |
-| 2025-12-10T11:36:00.000-05:00 | 729.25476 | 88.0 | 13.146 | 2.845797 | 0.4639 | 0.5297377 | 718.86035 | 0.99875087 | 8.30368 | 7.1272335 | 50.308018 | 222.30168 | 1391.0908 | 0.4033677 | 31.964697 | 814.981 | 18.825014 | 6.306592 | SSO-L8 |
-| 2025-12-10T11:46:00.000-05:00 | 729.2398 | 88.0 | 13.281 | 2.8345041 | 0.4658 | 0.52986306 | 719.1255 | 0.9987497 | 8.306723 | 7.127821 | 50.13686 | 221.22403 | 1390.5779 | 0.40346795 | 31.84249 | 815.17395 | 18.831112 | 6.305275 | SSO-L8 |
+| 2025-12-10T11:06:00.000-05:00 | 730.6349 | 88.0 | 0.063 | 2.852983 | 0.1055 | 0.52910084 | 717.94104 | 0.99875116 | 8.359544 | 7.1373477 | 50.417027 | 222.69745 | 1392.8721 | 0.40286392 | 31.981092 | 814.0013 | 18.821468 | 6.282404 | SSO-L8 |
+| 2025-12-10T11:16:00.000-05:00 | 729.4798 | 88.0 | 0.063 | 2.8475528 | 0.105 | 0.52953434 | 718.4938 | 0.9987518 | 8.316207 | 7.125532 | 50.329872 | 222.45427 | 1391.8005 | 0.40320584 | 31.970469 | 814.66815 | 18.819193 | 6.3011684 | SSO-L8 |
+| 2025-12-10T11:26:00.000-05:00 | 729.2773 | 88.0 | 0.063 | 2.8428488 | 0.1048 | 0.52927953 | 718.13403 | 0.99875194 | 8.314949 | 7.125191 | 50.255325 | 222.64978 | 1392.4977 | 0.40300453 | 31.926147 | 814.2762 | 18.81829 | 6.301713 | SSO-L8 |
+| 2025-12-10T11:36:00.000-05:00 | 729.25476 | 88.0 | 13.146 | 2.845797 | 0.1048 | 0.5297377 | 718.86035 | 0.99875087 | 8.30368 | 7.1272335 | 50.308018 | 222.30168 | 1391.0908 | 0.4033677 | 31.964697 | 814.981 | 18.825014 | 6.306592 | SSO-L8 |
+| 2025-12-10T11:46:00.000-05:00 | 729.2398 | 88.0 | 13.281 | 2.8345041 | 0.1052 | 0.52986306 | 719.1255 | 0.9987497 | 8.306723 | 7.127821 | 50.13686 | 221.22403 | 1390.5779 | 0.40346795 | 31.84249 | 815.17395 | 18.831112 | 6.305275 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001782
+## Table: ddt_brick0001968
 
-**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L8_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L8 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -21165,17 +21809,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:06:00.000-05:00 | 742.57587 | 80.0 | 12.164 | 3.8755255 | 0.8118 | 0.50626314 | 679.4789 | 0.99883354 | 10.351846 | 7.2563353 | 65.803444 | 323.0383 | 1471.7161 | 0.3847462 | 42.290596 | 778.8664 | 18.319094 | 5.419694 | SSO-L8 |
-| 2026-01-23T00:16:00.000-05:00 | 742.43335 | 80.0 | 12.146 | 3.879116 | 0.8118 | 0.5062534 | 679.4658 | 0.99883354 | 10.360652 | 7.2570214 | 65.85918 | 323.1718 | 1471.7444 | 0.38473853 | 42.338078 | 778.85144 | 18.31909 | 5.415881 | SSO-L8 |
-| 2026-01-23T00:26:00.000-05:00 | 742.51587 | 80.0 | 12.155 | 3.8786707 | 0.8114 | 0.50627553 | 679.4939 | 0.9988336 | 10.359702 | 7.257022 | 65.85215 | 323.25287 | 1471.6836 | 0.38475594 | 42.32833 | 778.8854 | 18.318985 | 5.416292 | SSO-L8 |
-| 2026-01-23T00:36:00.000-05:00 | 742.3584 | 80.0 | 12.155 | 3.8780994 | 0.8121 | 0.50622594 | 679.4265 | 0.99883354 | 10.357991 | 7.256936 | 65.843185 | 323.3578 | 1471.8295 | 0.38471684 | 42.331196 | 778.80914 | 18.31893 | 5.417033 | SSO-L8 |
-| 2026-01-23T00:46:00.000-05:00 | 742.38837 | 80.0 | 12.173 | 3.8824124 | 0.8124 | 0.506219 | 679.422 | 0.9988336 | 10.363453 | 7.257021 | 65.91056 | 323.45316 | 1471.8394 | 0.38471147 | 42.376835 | 778.7985 | 18.31925 | 5.414668 | SSO-L8 |
+| 2026-01-23T00:06:00.000-05:00 | 742.57587 | 80.0 | 12.164 | 3.8755255 | 0.1834 | 0.50626314 | 679.4789 | 0.99883354 | 10.351846 | 7.2563353 | 65.803444 | 323.0383 | 1471.7161 | 0.3847462 | 42.290596 | 778.8664 | 18.319094 | 5.419694 | SSO-L8 |
+| 2026-01-23T00:16:00.000-05:00 | 742.43335 | 80.0 | 12.146 | 3.879116 | 0.1834 | 0.5062534 | 679.4658 | 0.99883354 | 10.360652 | 7.2570214 | 65.85918 | 323.1718 | 1471.7444 | 0.38473853 | 42.338078 | 778.85144 | 18.31909 | 5.415881 | SSO-L8 |
+| 2026-01-23T00:26:00.000-05:00 | 742.51587 | 80.0 | 12.155 | 3.8786707 | 0.1833 | 0.50627553 | 679.4939 | 0.9988336 | 10.359702 | 7.257022 | 65.85215 | 323.25287 | 1471.6836 | 0.38475594 | 42.32833 | 778.8854 | 18.318985 | 5.416292 | SSO-L8 |
+| 2026-01-23T00:36:00.000-05:00 | 742.3584 | 80.0 | 12.155 | 3.8780994 | 0.1835 | 0.50622594 | 679.4265 | 0.99883354 | 10.357991 | 7.256936 | 65.843185 | 323.3578 | 1471.8295 | 0.38471684 | 42.331196 | 778.80914 | 18.31893 | 5.417033 | SSO-L8 |
+| 2026-01-23T00:46:00.000-05:00 | 742.38837 | 80.0 | 12.173 | 3.8824124 | 0.1835 | 0.506219 | 679.422 | 0.9988336 | 10.363453 | 7.257021 | 65.91056 | 323.45316 | 1471.8394 | 0.38471147 | 42.376835 | 778.7985 | 18.31925 | 5.414668 | SSO-L8 |
 
 ---
 
-## Table: ddt_brick0001783
+## Table: ddt_brick0001969
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20241003_20250815_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2024-10-03 to 2025-08-15 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20241003_20250815_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2024-10-03 to 2025-08-15 (v4)
 
 ### Schema
 
@@ -21208,17 +21852,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:30:00.000-04:00 | 737.92194 | 77.0 | 0.009 | 0.065473706 | 0.3077 | 0.5521182 | 788.21173 | 0.9982667 | 9.94693 | 6.4688473 | 0.9223546 | 25.215149 | 1268.6947 | 0.42141262 | 0.76223963 | 849.4126 | 21.227707 | 3.1978216 | SSO-L9 |
-| 2024-10-03T11:40:00.000-04:00 | 737.80194 | 77.0 | 13.389 | 0.091059506 | 0.2973 | 0.5494757 | 784.1906 | 0.99826837 | 9.936744 | 6.4675846 | 1.3352407 | 12.049675 | 1275.2002 | 0.41931707 | 1.0599536 | 845.3472 | 21.212305 | 3.2022305 | SSO-L9 |
-| 2024-10-03T11:50:00.000-04:00 | 737.7794 | 77.0 | 13.398 | 0.063998975 | 0.2897 | 0.5492671 | 783.8834 | 0.9982684 | 9.936362 | 6.4677076 | 0.8982677 | 5.0139427 | 1275.7 | 0.4191517 | 0.7449783 | 845.0263 | 21.21172 | 3.2023954 | SSO-L9 |
-| 2024-10-03T12:00:00.000-04:00 | 737.8169 | 77.0 | 13.398 | 0.053095188 | 0.2906 | 0.5497082 | 784.4792 | 0.9982691 | 9.942175 | 6.467126 | 0.72217226 | -1.335144 | 1274.7311 | 0.41950104 | 0.61799616 | 845.70496 | 21.209623 | 3.1998796 | SSO-L9 |
-| 2024-10-03T12:10:00.000-04:00 | 737.80945 | 77.0 | 13.407 | 0.047999386 | 0.3054 | 0.5499688 | 784.8383 | 0.99826956 | 9.9357605 | 6.467042 | 0.6398822 | -7.367134 | 1274.1478 | 0.41970742 | 0.5586817 | 846.10583 | 21.20884 | 3.2026558 | SSO-L9 |
+| 2024-10-03T11:30:00.000-04:00 | 737.92194 | 77.0 | 0.009 | 0.065473706 | 0.0695 | 0.5521182 | 788.21173 | 0.9982667 | 9.94693 | 6.4688473 | 0.9223546 | 25.215149 | 1268.6947 | 0.42141262 | 0.76223963 | 849.4126 | 21.227707 | 3.1978216 | SSO-L9 |
+| 2024-10-03T11:40:00.000-04:00 | 737.80194 | 77.0 | 13.389 | 0.091059506 | 0.0672 | 0.5494757 | 784.1906 | 0.99826837 | 9.936744 | 6.4675846 | 1.3352407 | 12.049675 | 1275.2002 | 0.41931707 | 1.0599536 | 845.3472 | 21.212305 | 3.2022305 | SSO-L9 |
+| 2024-10-03T11:50:00.000-04:00 | 737.7794 | 77.0 | 13.398 | 0.063998975 | 0.0654 | 0.5492671 | 783.8834 | 0.9982684 | 9.936362 | 6.4677076 | 0.8982677 | 5.0139427 | 1275.7 | 0.4191517 | 0.7449783 | 845.0263 | 21.21172 | 3.2023954 | SSO-L9 |
+| 2024-10-03T12:00:00.000-04:00 | 737.8169 | 77.0 | 13.398 | 0.053095188 | 0.0657 | 0.5497082 | 784.4792 | 0.9982691 | 9.942175 | 6.467126 | 0.72217226 | -1.335144 | 1274.7311 | 0.41950104 | 0.61799616 | 845.70496 | 21.209623 | 3.1998796 | SSO-L9 |
+| 2024-10-03T12:10:00.000-04:00 | 737.80945 | 77.0 | 13.407 | 0.047999386 | 0.069 | 0.5499688 | 784.8383 | 0.99826956 | 9.9357605 | 6.467042 | 0.6398822 | -7.367134 | 1274.1478 | 0.41970742 | 0.5586817 | 846.10583 | 21.20884 | 3.2026558 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001784
+## Table: ddt_brick0001970
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20250819_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-08-19 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20250819_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-08-19 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -21251,17 +21895,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:54:00.000-04:00 | 738.7095 | 20.0 | 0.018 | 0.0 | 3.6437 | 0.4108241 | 545.9408 | 0.99886024 | 11.125588 | 6.5579877 | -0.2854377 | 94.57233 | 1831.7004 | 0.3098632 | 0.0 | 632.03705 | 17.868048 | 2.6618052 | SSO-L9 |
-| 2025-08-19T11:04:00.000-04:00 | 738.912 | 20.0 | 13.353 | 0.0 | 4.3458 | 0.41094655 | 546.25867 | 0.99885803 | 11.130687 | 6.5729322 | -0.28725597 | 103.11248 | 1830.6345 | 0.30996093 | 0.0 | 632.22546 | 17.880896 | 2.6595974 | SSO-L9 |
-| 2025-08-19T11:14:00.000-04:00 | 738.882 | 20.0 | 13.353 | 0.0 | 4.1248 | 0.40968794 | 544.6338 | 0.9988565 | 11.129647 | 6.57298 | -0.29789045 | 104.19967 | 1836.0962 | 0.30898076 | 0.0 | 630.2891 | 17.884895 | 2.6600475 | SSO-L9 |
-| 2025-08-19T11:24:00.000-04:00 | 738.7395 | 20.0 | 13.389 | 0.0 | 3.9803 | 0.4080588 | 542.4813 | 0.99885535 | 11.133758 | 6.5732956 | -0.3131999 | 103.892105 | 1843.3815 | 0.30771148 | 0.0 | 627.7828 | 17.886002 | 2.658268 | SSO-L9 |
-| 2025-08-19T11:34:00.000-04:00 | 738.702 | 20.0 | 13.362 | 0.0 | 3.9923 | 0.407279 | 541.46423 | 0.9988546 | 11.13399 | 6.5739717 | -0.29599458 | 102.37576 | 1846.844 | 0.30710435 | 0.0 | 626.58307 | 17.887644 | 2.658167 | SSO-L9 |
+| 2025-08-19T10:54:00.000-04:00 | 738.7095 | 20.0 | 0.018 | 0.0 | 0.8231 | 0.4108241 | 545.9408 | 0.99886024 | 11.125588 | 6.5579877 | -0.2854377 | 94.57233 | 1831.7004 | 0.3098632 | 0.0 | 632.03705 | 17.868048 | 2.6618052 | SSO-L9 |
+| 2025-08-19T11:04:00.000-04:00 | 738.912 | 20.0 | 13.353 | 0.0 | 0.9817 | 0.41094655 | 546.25867 | 0.99885803 | 11.130687 | 6.5729322 | -0.28725597 | 103.11248 | 1830.6345 | 0.30996093 | 0.0 | 632.22546 | 17.880896 | 2.6595974 | SSO-L9 |
+| 2025-08-19T11:14:00.000-04:00 | 738.882 | 20.0 | 13.353 | 0.0 | 0.9318 | 0.40968794 | 544.6338 | 0.9988565 | 11.129647 | 6.57298 | -0.29789045 | 104.19967 | 1836.0962 | 0.30898076 | 0.0 | 630.2891 | 17.884895 | 2.6600475 | SSO-L9 |
+| 2025-08-19T11:24:00.000-04:00 | 738.7395 | 20.0 | 13.389 | 0.0 | 0.8991 | 0.4080588 | 542.4813 | 0.99885535 | 11.133758 | 6.5732956 | -0.3131999 | 103.892105 | 1843.3815 | 0.30771148 | 0.0 | 627.7828 | 17.886002 | 2.658268 | SSO-L9 |
+| 2025-08-19T11:34:00.000-04:00 | 738.702 | 20.0 | 13.362 | 0.0 | 0.9018 | 0.407279 | 541.46423 | 0.9988546 | 11.13399 | 6.5739717 | -0.29599458 | 102.37576 | 1846.844 | 0.30710435 | 0.0 | 626.58307 | 17.887644 | 2.658167 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001785
+## Table: ddt_brick0001971
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20251016_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-10-16 to 2025-12-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20251016_20251208_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-10-16 to 2025-12-08 (v4)
 
 ### Schema
 
@@ -21294,17 +21938,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T11:46:00.000-04:00 | 739.5121 | 99.0 | 0.018 | 0.11728993 | 3.4803 | 0.60461754 | 827.52936 | 0.9987182 | 12.021133 | 6.4485874 | 2.4432468 | 163.12146 | 1208.4164 | 0.46282 | 1.3096809 | 930.1808 | 19.222176 | 2.2485876 | SSO-L9 |
-| 2025-10-16T11:56:00.000-04:00 | 739.65454 | 99.0 | 13.344 | 0.0 | 3.3982 | 0.6049191 | 828.1468 | 0.99871606 | 12.0282545 | 6.462894 | -0.5660383 | 145.49039 | 1207.5154 | 0.46306232 | 0.0 | 930.6447 | 19.233694 | 2.2455044 | SSO-L9 |
-| 2025-10-16T12:06:00.000-04:00 | 739.6321 | 99.0 | 13.362 | 0.0 | 3.2959 | 0.60485786 | 828.1054 | 0.99871564 | 12.03295 | 6.461577 | -0.57144356 | 138.73837 | 1207.5757 | 0.46301413 | 0.0 | 930.5506 | 19.236076 | 2.2434711 | SSO-L9 |
-| 2025-10-16T12:16:00.000-04:00 | 739.5871 | 99.0 | 13.389 | 0.0 | 3.1528 | 0.60471016 | 827.9189 | 0.99871534 | 12.029294 | 6.4600563 | -0.56304735 | 132.96628 | 1207.8478 | 0.46289682 | 0.0 | 930.3233 | 19.236965 | 2.2450542 | SSO-L9 |
-| 2025-10-16T12:26:00.000-04:00 | 739.4971 | 99.0 | 13.371 | 0.0 | 3.0906 | 0.60481346 | 828.07697 | 0.99871516 | 12.02478 | 6.4589415 | -0.56052375 | 126.05929 | 1207.6172 | 0.46297932 | 0.0 | 930.48224 | 19.2379 | 2.2470083 | SSO-L9 |
+| 2025-10-16T11:46:00.000-04:00 | 739.5121 | 99.0 | 0.018 | 0.11728993 | 0.7862 | 0.60461754 | 827.52936 | 0.9987182 | 12.021133 | 6.4485874 | 2.4432468 | 163.12146 | 1208.4164 | 0.46282 | 1.3096809 | 930.1808 | 19.222176 | 2.2485876 | SSO-L9 |
+| 2025-10-16T11:56:00.000-04:00 | 739.65454 | 99.0 | 13.344 | 0.0 | 0.7676 | 0.6049191 | 828.1468 | 0.99871606 | 12.0282545 | 6.462894 | -0.5660383 | 145.49039 | 1207.5154 | 0.46306232 | 0.0 | 930.6447 | 19.233694 | 2.2455044 | SSO-L9 |
+| 2025-10-16T12:06:00.000-04:00 | 739.6321 | 99.0 | 13.362 | 0.0 | 0.7445 | 0.60485786 | 828.1054 | 0.99871564 | 12.03295 | 6.461577 | -0.57144356 | 138.73837 | 1207.5757 | 0.46301413 | 0.0 | 930.5506 | 19.236076 | 2.2434711 | SSO-L9 |
+| 2025-10-16T12:16:00.000-04:00 | 739.5871 | 99.0 | 13.389 | 0.0 | 0.7122 | 0.60471016 | 827.9189 | 0.99871534 | 12.029294 | 6.4600563 | -0.56304735 | 132.96628 | 1207.8478 | 0.46289682 | 0.0 | 930.3233 | 19.236965 | 2.2450542 | SSO-L9 |
+| 2025-10-16T12:26:00.000-04:00 | 739.4971 | 99.0 | 13.371 | 0.0 | 0.6982 | 0.60481346 | 828.07697 | 0.99871516 | 12.02478 | 6.4589415 | -0.56052375 | 126.05929 | 1207.6172 | 0.46297932 | 0.0 | 930.48224 | 19.2379 | 2.2470083 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001786
+## Table: ddt_brick0001972
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20251210_20251217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-12-10 to 2025-12-17 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20251210_20251217_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2025-12-10 to 2025-12-17 (v4)
 
 ### Schema
 
@@ -21338,16 +21982,16 @@ Total Tables: 743
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2025-12-10T11:09:00.000-05:00 | 730.5263 | 80.0 | 0.027 | 0.0 | NULL | 0.37939295 | 519.87604 | 0.99857175 | 8.352517 | 6.612179 | 0.082858704 | 8.00172 | 1923.5355 | 0.28560367 | 0.0 | 583.68146 | 19.276678 | 3.7589483 | SSO-L9 |
-| 2025-12-10T11:19:00.000-05:00 | 729.8212 | 80.0 | 0.054 | 0.0 | 0.3755 | 0.379328 | 519.83295 | 0.99857086 | 8.326451 | 6.637639 | 0.08342105 | 14.617836 | 1923.695 | 0.28555375 | 0.0 | 583.58154 | 19.280792 | 3.7702322 | SSO-L9 |
-| 2025-12-10T11:29:00.000-05:00 | 729.79126 | 80.0 | 12.515 | 0.0 | 0.3797 | 0.37916118 | 519.4401 | 0.9985737 | 8.3241 | 6.6366143 | 0.074347466 | 12.989437 | 1925.1497 | 0.28542244 | 0.0 | 583.3249 | 19.266058 | 3.7712507 | SSO-L9 |
-| 2025-12-10T11:39:00.000-05:00 | 729.7688 | 80.0 | 12.452 | 0.0 | 0.381 | 0.37913075 | 519.3344 | 0.998575 | 8.319905 | 6.6362915 | 0.06441888 | 12.433922 | 1925.5416 | 0.28539816 | 0.0 | 583.2781 | 19.26031 | 3.7730665 | SSO-L9 |
-| 2025-12-10T11:49:00.000-05:00 | 729.3937 | 80.0 | 12.461 | 0.0 | 0.3826 | 0.37936908 | 519.65216 | 0.99857515 | 8.3238125 | 6.6367283 | 0.053936973 | 12.844002 | 1924.3641 | 0.28558332 | 0.0 | 583.6447 | 19.25953 | 3.7713747 | SSO-L9 |
+| 2025-12-10T11:19:00.000-05:00 | 729.8212 | 80.0 | 0.054 | 0.0 | 0.0848 | 0.379328 | 519.83295 | 0.99857086 | 8.326451 | 6.637639 | 0.08342105 | 14.617836 | 1923.695 | 0.28555375 | 0.0 | 583.58154 | 19.280792 | 3.7702322 | SSO-L9 |
+| 2025-12-10T11:29:00.000-05:00 | 729.79126 | 80.0 | 12.515 | 0.0 | 0.0858 | 0.37916118 | 519.4401 | 0.9985737 | 8.3241 | 6.6366143 | 0.074347466 | 12.989437 | 1925.1497 | 0.28542244 | 0.0 | 583.3249 | 19.266058 | 3.7712507 | SSO-L9 |
+| 2025-12-10T11:39:00.000-05:00 | 729.7688 | 80.0 | 12.452 | 0.0 | 0.0861 | 0.37913075 | 519.3344 | 0.998575 | 8.319905 | 6.6362915 | 0.06441888 | 12.433922 | 1925.5416 | 0.28539816 | 0.0 | 583.2781 | 19.26031 | 3.7730665 | SSO-L9 |
+| 2025-12-10T11:49:00.000-05:00 | 729.3937 | 80.0 | 12.461 | 0.0 | 0.0864 | 0.37936908 | 519.65216 | 0.99857515 | 8.3238125 | 6.6367283 | 0.053936973 | 12.844002 | 1924.3641 | 0.28558332 | 0.0 | 583.6447 | 19.25953 | 3.7713747 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001787
+## Table: ddt_brick0001973
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20260113_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2026-01-13 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20260113_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2026-01-13 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -21380,17 +22024,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-13T14:38:00.000-05:00 | 736.96185 | 99.0 | 0.027 | 0.0 | 0.6863 | 0.16064031 | 210.17035 | 0.99883866 | 8.696583 | 6.7240925 | 0.06381027 | 59.74332 | 4758.045 | 0.11815993 | 0.0 | 247.13893 | 17.168259 | 3.6968956 | SSO-L9 |
-| 2026-01-13T14:48:00.000-05:00 | 736.93933 | 99.0 | 12.101 | 0.0 | 0.7641 | 0.16198406 | 212.1861 | 0.9988299 | 8.710704 | 6.742321 | 0.039707802 | 67.35364 | 4712.844 | 0.11917281 | 0.0 | 249.20625 | 17.222391 | 3.6907806 | SSO-L9 |
-| 2026-01-13T14:58:00.000-05:00 | 736.88684 | 99.0 | 12.101 | 0.0 | 0.7541 | 0.16090769 | 210.77545 | 0.9988293 | 8.709643 | 6.743639 | 0.0505023 | 70.09784 | 4744.3857 | 0.11836436 | 0.0 | 247.5503 | 17.222248 | 3.6912394 | SSO-L9 |
-| 2026-01-13T15:08:00.000-05:00 | 736.6243 | 99.0 | 12.083 | 0.0 | 0.749 | 0.161511 | 211.586 | 0.99882895 | 8.705182 | 6.742701 | 0.05136717 | 67.506226 | 4726.2104 | 0.11881776 | 0.0 | 248.47847 | 17.226519 | 3.6931715 | SSO-L9 |
-| 2026-01-13T15:18:00.000-05:00 | 736.6093 | 99.0 | 12.092 | 0.0 | 0.7493 | 0.1618189 | 212.11945 | 0.99882436 | 8.714129 | 6.7420115 | 0.028611094 | 65.0386 | 4714.325 | 0.11905085 | 0.0 | 248.95215 | 17.253878 | 3.6892967 | SSO-L9 |
+| 2026-01-13T14:38:00.000-05:00 | 736.96185 | 99.0 | 0.027 | 0.0 | 0.155 | 0.16064031 | 210.17035 | 0.99883866 | 8.696583 | 6.7240925 | 0.06381027 | 59.74332 | 4758.045 | 0.11815993 | 0.0 | 247.13893 | 17.168259 | 3.6968956 | SSO-L9 |
+| 2026-01-13T14:48:00.000-05:00 | 736.93933 | 99.0 | 12.101 | 0.0 | 0.1726 | 0.16198406 | 212.1861 | 0.9988299 | 8.710704 | 6.742321 | 0.039707802 | 67.35364 | 4712.844 | 0.11917281 | 0.0 | 249.20625 | 17.222391 | 3.6907806 | SSO-L9 |
+| 2026-01-13T14:58:00.000-05:00 | 736.88684 | 99.0 | 12.101 | 0.0 | 0.1703 | 0.16090769 | 210.77545 | 0.9988293 | 8.709643 | 6.743639 | 0.0505023 | 70.09784 | 4744.3857 | 0.11836436 | 0.0 | 247.5503 | 17.222248 | 3.6912394 | SSO-L9 |
+| 2026-01-13T15:08:00.000-05:00 | 736.6243 | 99.0 | 12.083 | 0.0 | 0.1692 | 0.161511 | 211.586 | 0.99882895 | 8.705182 | 6.742701 | 0.05136717 | 67.506226 | 4726.2104 | 0.11881776 | 0.0 | 248.47847 | 17.226519 | 3.6931715 | SSO-L9 |
+| 2026-01-13T15:18:00.000-05:00 | 736.6093 | 99.0 | 12.092 | 0.0 | 0.1693 | 0.1618189 | 212.11945 | 0.99882436 | 8.714129 | 6.7420115 | 0.028611094 | 65.0386 | 4714.325 | 0.11905085 | 0.0 | 248.95215 | 17.253878 | 3.6892967 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001788
+## Table: ddt_brick0001974
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ1_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ1 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -21423,17 +22067,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:08:00.000-05:00 | 742.57983 | 96.0 | 1.135 | 0.0 | 0.8322 | 0.37423304 | 499.95258 | 0.99879396 | 10.488836 | 6.7788343 | 0.050426245 | -54.058636 | 2000.1897 | 0.28144586 | 0.0 | 575.74316 | 18.107878 | 2.9208384 | SSO-L9 |
-| 2026-01-23T00:18:00.000-05:00 | 742.6098 | 96.0 | 1.135 | 0.0 | 0.832 | 0.37428793 | 500.0385 | 0.9987939 | 10.484538 | 6.778997 | 0.08208671 | -58.35494 | 1999.846 | 0.2814886 | 0.0 | 575.8276 | 18.109024 | 2.9227 | SSO-L9 |
-| 2026-01-23T00:28:00.000-05:00 | 742.5273 | 96.0 | 1.135 | 0.0 | 0.8336 | 0.37427175 | 500.00323 | 0.998794 | 10.484659 | 6.779875 | 0.1807535 | -64.30824 | 1999.987 | 0.2814758 | 0.0 | 575.8027 | 18.10778 | 2.9226475 | SSO-L9 |
-| 2026-01-23T00:38:00.000-05:00 | 742.5273 | 96.0 | 0.991 | 0.0 | 0.7714 | 0.37361076 | 498.99445 | 0.99879575 | 10.486964 | 6.7607822 | 0.28826806 | -67.55551 | 2004.0303 | 0.28096116 | 0.0 | 574.78577 | 18.09633 | 2.921648 | SSO-L9 |
-| 2026-01-23T00:48:00.000-05:00 | 742.3998 | 96.0 | 1.135 | 0.0 | 0.8191 | 0.37439907 | 500.1557 | 0.99879444 | 10.487208 | 6.779603 | 0.035901234 | -49.00893 | 1999.3774 | 0.28157437 | 0.0 | 575.99854 | 18.106182 | 2.9215431 | SSO-L9 |
+| 2026-01-23T00:08:00.000-05:00 | 742.57983 | 96.0 | 1.135 | 0.0 | 0.188 | 0.37423304 | 499.95258 | 0.99879396 | 10.488836 | 6.7788343 | 0.050426245 | -54.058636 | 2000.1897 | 0.28144586 | 0.0 | 575.74316 | 18.107878 | 2.9208384 | SSO-L9 |
+| 2026-01-23T00:18:00.000-05:00 | 742.6098 | 96.0 | 1.135 | 0.0 | 0.1879 | 0.37428793 | 500.0385 | 0.9987939 | 10.484538 | 6.778997 | 0.08208671 | -58.35494 | 1999.846 | 0.2814886 | 0.0 | 575.8276 | 18.109024 | 2.9227 | SSO-L9 |
+| 2026-01-23T00:28:00.000-05:00 | 742.5273 | 96.0 | 1.135 | 0.0 | 0.1883 | 0.37427175 | 500.00323 | 0.998794 | 10.484659 | 6.779875 | 0.1807535 | -64.30824 | 1999.987 | 0.2814758 | 0.0 | 575.8027 | 18.10778 | 2.9226475 | SSO-L9 |
+| 2026-01-23T00:38:00.000-05:00 | 742.5273 | 96.0 | 0.991 | 0.0 | 0.1743 | 0.37361076 | 498.99445 | 0.99879575 | 10.486964 | 6.7607822 | 0.28826806 | -67.55551 | 2004.0303 | 0.28096116 | 0.0 | 574.78577 | 18.09633 | 2.921648 | SSO-L9 |
+| 2026-01-23T00:48:00.000-05:00 | 742.3998 | 96.0 | 1.135 | 0.0 | 0.185 | 0.37439907 | 500.1557 | 0.99879444 | 10.487208 | 6.779603 | 0.035901234 | -49.00893 | 1999.3774 | 0.28157437 | 0.0 | 575.99854 | 18.106182 | 2.9215431 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001789
+## Table: ddt_brick0001975
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20241003_20250809_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2024-10-03 to 2025-08-09 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20241003_20250809_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2024-10-03 to 2025-08-09 (v4)
 
 ### Schema
 
@@ -21463,17 +22107,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:30:00.000-04:00 | 738.45374 | 74.0 | 0.009 | 1.1525 | 0.56179094 | 774.4615 | 0.99862474 | 10.158756 | 6.526115 | 73.55847 | 1291.2198 | 0.42886776 | 864.2937 | 19.558266 | 5.571705 | SSO-L9 |
-| 2024-10-03T11:40:00.000-04:00 | 738.45374 | 74.0 | 13.426 | 1.1496 | 0.5622762 | 775.22314 | 0.99862397 | 10.139213 | 6.522338 | 73.3582 | 1289.9512 | 0.4292535 | 865.04034 | 19.563873 | 5.580166 | SSO-L9 |
-| 2024-10-03T11:50:00.000-04:00 | 738.3863 | 74.0 | 13.444 | 1.1447 | 0.56219214 | 775.2105 | 0.9986226 | 10.139236 | 6.521675 | 72.95766 | 1289.9722 | 0.42918792 | 864.911 | 19.570124 | 5.5801554 | SSO-L9 |
-| 2024-10-03T12:00:00.000-04:00 | 738.4312 | 74.0 | 13.444 | 1.1393 | 0.56204116 | 775.0805 | 0.9986216 | 10.145067 | 6.5222692 | 72.77169 | 1290.1886 | 0.42906895 | 864.6787 | 19.574858 | 5.577631 | SSO-L9 |
-| 2024-10-03T12:10:00.000-04:00 | 738.40875 | 74.0 | 13.416 | 1.1372 | 0.5620175 | 775.05475 | 0.99862146 | 10.143308 | 6.522356 | 73.520325 | 1290.2314 | 0.42905024 | 864.6423 | 19.575275 | 5.578393 | SSO-L9 |
+| 2024-10-03T11:30:00.000-04:00 | 738.45374 | 74.0 | 0.009 | 0.2603 | 0.56179094 | 774.4615 | 0.99862474 | 10.158756 | 6.526115 | 73.55847 | 1291.2198 | 0.42886776 | 864.2937 | 19.558266 | 5.571705 | SSO-L9 |
+| 2024-10-03T11:40:00.000-04:00 | 738.45374 | 74.0 | 13.426 | 0.2597 | 0.5622762 | 775.22314 | 0.99862397 | 10.139213 | 6.522338 | 73.3582 | 1289.9512 | 0.4292535 | 865.04034 | 19.563873 | 5.580166 | SSO-L9 |
+| 2024-10-03T11:50:00.000-04:00 | 738.3863 | 74.0 | 13.444 | 0.2586 | 0.56219214 | 775.2105 | 0.9986226 | 10.139236 | 6.521675 | 72.95766 | 1289.9722 | 0.42918792 | 864.911 | 19.570124 | 5.5801554 | SSO-L9 |
+| 2024-10-03T12:00:00.000-04:00 | 738.4312 | 74.0 | 13.444 | 0.2574 | 0.56204116 | 775.0805 | 0.9986216 | 10.145067 | 6.5222692 | 72.77169 | 1290.1886 | 0.42906895 | 864.6787 | 19.574858 | 5.577631 | SSO-L9 |
+| 2024-10-03T12:10:00.000-04:00 | 738.40875 | 74.0 | 13.416 | 0.2569 | 0.5620175 | 775.05475 | 0.99862146 | 10.143308 | 6.522356 | 73.520325 | 1290.2314 | 0.42905024 | 864.6423 | 19.575275 | 5.578393 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001790
+## Table: ddt_brick0001976
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20250819_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-08-19 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20250819_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-08-19 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -21494,17 +22138,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-19T11:16:00.000-04:00 | 0.0 | 4.0284 | 794.96 | 11.135000000000002 | 6.64 | 17.3 | SSO-L9 |
-| 2025-08-19T11:31:00.000-04:00 | 0.0 | 3.8071 | 793.79 | 11.135000000000002 | 6.64 | 17.3 | SSO-L9 |
-| 2025-08-19T11:46:00.000-04:00 | 0.0 | 3.6742 | 789.2049999999999 | 11.13 | 6.64 | 17.3 | SSO-L9 |
-| 2025-08-19T12:01:00.000-04:00 | 0.0 | 4.1612 | 790.215 | 11.129999999999999 | 6.63 | 17.295 | SSO-L9 |
-| 2025-08-19T12:16:00.000-04:00 | 0.0 | 3.7628 | 788.39 | 11.13 | 6.63 | 17.305 | SSO-L9 |
+| 2025-08-19T11:16:00.000-04:00 | 0.0 | 0.91 | 794.96 | 11.135000000000002 | 6.64 | 17.3 | SSO-L9 |
+| 2025-08-19T11:31:00.000-04:00 | 0.0 | 0.86 | 793.79 | 11.135000000000002 | 6.64 | 17.3 | SSO-L9 |
+| 2025-08-19T11:46:00.000-04:00 | 0.0 | 0.83 | 789.2049999999999 | 11.13 | 6.64 | 17.3 | SSO-L9 |
+| 2025-08-19T12:01:00.000-04:00 | 0.0 | 0.94 | 790.215 | 11.129999999999999 | 6.63 | 17.295 | SSO-L9 |
+| 2025-08-19T12:16:00.000-04:00 | 0.0 | 0.85 | 788.39 | 11.13 | 6.63 | 17.305 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001791
+## Table: ddt_brick0001977
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20251016_20251208_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-10-16 to 2025-12-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20251016_20251208_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-10-16 to 2025-12-08 (v4)
 
 ### Schema
 
@@ -21537,17 +22181,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T11:52:00.000-04:00 | 740.0889 | 99.0 | 0.0 | 0.055638216 | 0.5129 | 0.33302903 | 444.51956 | 0.9987768 | 11.943206 | 6.591209 | 1.2973894 | 273.24368 | 2249.6199 | 0.24955185 | 0.60561013 | 512.35236 | 18.068335 | 4.819129 | SSO-L9 |
-| 2025-10-16T12:02:00.000-04:00 | 740.0964 | 99.0 | 0.738 | 0.1295067 | 0.3914 | 0.3414892 | 456.0013 | 0.9987784 | 11.952736 | 6.606209 | 2.5419426 | 281.85538 | 2192.976 | 0.25608757 | 1.4102374 | 525.368 | 18.087204 | 4.8150024 | SSO-L9 |
-| 2025-10-16T12:12:00.000-04:00 | 740.0589 | 99.0 | 0.711 | 0.18461601 | 0.3792 | 0.3419288 | 456.6124 | 0.9987783 | 11.94664 | 6.6063113 | 3.47022 | 293.39484 | 2190.0413 | 0.25642765 | 2.0105493 | 526.0443 | 18.089596 | 4.817642 | SSO-L9 |
-| 2025-10-16T12:22:00.000-04:00 | 739.94635 | 99.0 | 0.684 | 0.2529242 | 0.383 | 0.34239465 | 457.26486 | 0.998778 | 11.934714 | 6.606414 | 4.620942 | 301.4057 | 2186.9163 | 0.256788 | 2.7550561 | 526.761 | 18.092615 | 4.8228054 | SSO-L9 |
-| 2025-10-16T12:32:00.000-04:00 | 739.9089 | 99.0 | 0.684 | 0.29173914 | 0.3885 | 0.342664 | 457.6431 | 0.99877775 | 11.938416 | 6.6064143 | 5.2749014 | 306.79398 | 2185.109 | 0.2569964 | 3.1781526 | 527.1754 | 18.09445 | 4.821203 | SSO-L9 |
+| 2025-10-16T11:52:00.000-04:00 | 740.0889 | 99.0 | 0.0 | 0.055638216 | 0.1159 | 0.33302903 | 444.51956 | 0.9987768 | 11.943206 | 6.591209 | 1.2973894 | 273.24368 | 2249.6199 | 0.24955185 | 0.60561013 | 512.35236 | 18.068335 | 4.819129 | SSO-L9 |
+| 2025-10-16T12:02:00.000-04:00 | 740.0964 | 99.0 | 0.738 | 0.1295067 | 0.0884 | 0.3414892 | 456.0013 | 0.9987784 | 11.952736 | 6.606209 | 2.5419426 | 281.85538 | 2192.976 | 0.25608757 | 1.4102374 | 525.368 | 18.087204 | 4.8150024 | SSO-L9 |
+| 2025-10-16T12:12:00.000-04:00 | 740.0589 | 99.0 | 0.711 | 0.18461601 | 0.0857 | 0.3419288 | 456.6124 | 0.9987783 | 11.94664 | 6.6063113 | 3.47022 | 293.39484 | 2190.0413 | 0.25642765 | 2.0105493 | 526.0443 | 18.089596 | 4.817642 | SSO-L9 |
+| 2025-10-16T12:22:00.000-04:00 | 739.94635 | 99.0 | 0.684 | 0.2529242 | 0.0865 | 0.34239465 | 457.26486 | 0.998778 | 11.934714 | 6.606414 | 4.620942 | 301.4057 | 2186.9163 | 0.256788 | 2.7550561 | 526.761 | 18.092615 | 4.8228054 | SSO-L9 |
+| 2025-10-16T12:32:00.000-04:00 | 739.9089 | 99.0 | 0.684 | 0.29173914 | 0.0878 | 0.342664 | 457.6431 | 0.99877775 | 11.938416 | 6.6064143 | 5.2749014 | 306.79398 | 2185.109 | 0.2569964 | 3.1781526 | 527.1754 | 18.09445 | 4.821203 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001792
+## Table: ddt_brick0001978
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20251210_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-12-10 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20251210_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2025-12-10 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -21580,17 +22224,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-10T11:17:00.000-05:00 | 731.5157 | 90.0 | 0.018 | 0.0 | 3.8347 | 0.5206178 | 712.101 | 0.9986732 | 8.785134 | 6.794337 | 0.9780684 | 32.728035 | 1404.2952 | 0.39623293 | 0.0 | 800.9504 | 19.192152 | 6.1928015 | SSO-L9 |
-| 2025-12-10T11:27:00.000-05:00 | 730.1056 | 90.0 | 12.606 | 0.0 | 3.6187 | 0.52030617 | 711.9303 | 0.99866974 | 8.720847 | 6.8145537 | 0.89676476 | 36.714394 | 1404.6318 | 0.39598992 | 0.0 | 800.47107 | 19.208857 | 6.2206345 | SSO-L9 |
-| 2025-12-10T11:37:00.000-05:00 | 730.0981 | 90.0 | 12.524 | 0.0 | 3.5785 | 0.5198126 | 711.4058 | 0.9986674 | 8.721891 | 6.814365 | 0.4366568 | 37.300903 | 1405.6675 | 0.3956019 | 0.0 | 799.7117 | 19.218739 | 6.2201824 | SSO-L9 |
-| 2025-12-10T11:47:00.000-05:00 | 729.9931 | 90.0 | 12.515 | 0.0 | 3.5353 | 0.5195239 | 711.0879 | 0.9986663 | 8.723704 | 6.814362 | 0.26806572 | 39.18441 | 1406.2959 | 0.39537492 | 0.0 | 799.2675 | 19.223795 | 6.2193975 | SSO-L9 |
-| 2025-12-10T11:57:00.000-05:00 | 729.76807 | 90.0 | 12.597 | 0.0 | 3.5113 | 0.5182661 | 709.4021 | 0.99866503 | 8.713589 | 6.814452 | 0.18618307 | 41.12037 | 1409.6378 | 0.3943825 | 0.0 | 797.3324 | 19.226145 | 6.223777 | SSO-L9 |
+| 2025-12-10T11:17:00.000-05:00 | 731.5157 | 90.0 | 0.018 | 0.0 | 0.8662 | 0.5206178 | 712.101 | 0.9986732 | 8.785134 | 6.794337 | 0.9780684 | 32.728035 | 1404.2952 | 0.39623293 | 0.0 | 800.9504 | 19.192152 | 6.1928015 | SSO-L9 |
+| 2025-12-10T11:27:00.000-05:00 | 730.1056 | 90.0 | 12.606 | 0.0 | 0.8175 | 0.52030617 | 711.9303 | 0.99866974 | 8.720847 | 6.8145537 | 0.89676476 | 36.714394 | 1404.6318 | 0.39598992 | 0.0 | 800.47107 | 19.208857 | 6.2206345 | SSO-L9 |
+| 2025-12-10T11:37:00.000-05:00 | 730.0981 | 90.0 | 12.524 | 0.0 | 0.8084 | 0.5198126 | 711.4058 | 0.9986674 | 8.721891 | 6.814365 | 0.4366568 | 37.300903 | 1405.6675 | 0.3956019 | 0.0 | 799.7117 | 19.218739 | 6.2201824 | SSO-L9 |
+| 2025-12-10T11:47:00.000-05:00 | 729.9931 | 90.0 | 12.515 | 0.0 | 0.7986 | 0.5195239 | 711.0879 | 0.9986663 | 8.723704 | 6.814362 | 0.26806572 | 39.18441 | 1406.2959 | 0.39537492 | 0.0 | 799.2675 | 19.223795 | 6.2193975 | SSO-L9 |
+| 2025-12-10T11:57:00.000-05:00 | 729.76807 | 90.0 | 12.597 | 0.0 | 0.7932 | 0.5182661 | 709.4021 | 0.99866503 | 8.713589 | 6.814452 | 0.18618307 | 41.12037 | 1409.6378 | 0.3943825 | 0.0 | 797.3324 | 19.226145 | 6.223777 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001793
+## Table: ddt_brick0001979
 
-**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-L9_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-L9 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -21623,17 +22267,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:07:00.000-05:00 | 743.0892 | 78.0 | 11.759 | 0.0 | 13.3075 | 0.51531214 | 694.66113 | 0.9988009 | 10.602712 | 6.9007287 | 0.11491574 | -298.9456 | 1439.5508 | 0.39192045 | 0.0 | 792.78796 | 18.519669 | 5.405777 | SSO-L9 |
-| 2026-01-23T00:17:00.000-05:00 | 742.9616 | 78.0 | 11.741 | 0.0 | 13.5725 | 0.5151453 | 694.426 | 0.998801 | 10.6019 | 6.849633 | 0.11040544 | -296.11316 | 1440.0382 | 0.39178875 | 0.0 | 792.5312 | 18.518997 | 5.406128 | SSO-L9 |
-| 2026-01-23T00:27:00.000-05:00 | 743.0141 | 78.0 | 11.731 | 0.0 | 13.6839 | 0.51514 | 694.43933 | 0.9988007 | 10.606662 | 6.9010034 | 0.11016041 | -294.4013 | 1440.0106 | 0.3917849 | 0.0 | 792.5231 | 18.520348 | 5.404066 | SSO-L9 |
-| 2026-01-23T00:37:00.000-05:00 | 742.92413 | 78.0 | 11.587 | 0.0 | 13.5145 | 0.515025 | 694.26886 | 0.99880075 | 10.60708 | 6.9008207 | 0.10898289 | -295.3073 | 1440.3641 | 0.39169413 | 0.0 | 792.3462 | 18.519325 | 5.403885 | SSO-L9 |
-| 2026-01-23T00:47:00.000-05:00 | 742.9016 | 78.0 | 11.425 | 0.0 | 13.4471 | 0.5152005 | 694.5115 | 0.9988008 | 10.609324 | 6.900545 | 0.11397072 | -296.98102 | 1439.861 | 0.39183244 | 0.0 | 792.61615 | 18.519726 | 5.402913 | SSO-L9 |
+| 2026-01-23T00:07:00.000-05:00 | 743.0892 | 78.0 | 11.759 | 0.0 | 3.0061 | 0.51531214 | 694.66113 | 0.9988009 | 10.602712 | 6.9007287 | 0.11491574 | -298.9456 | 1439.5508 | 0.39192045 | 0.0 | 792.78796 | 18.519669 | 5.405777 | SSO-L9 |
+| 2026-01-23T00:17:00.000-05:00 | 742.9616 | 78.0 | 11.741 | 0.0 | 3.066 | 0.5151453 | 694.426 | 0.998801 | 10.6019 | 6.849633 | 0.11040544 | -296.11316 | 1440.0382 | 0.39178875 | 0.0 | 792.5312 | 18.518997 | 5.406128 | SSO-L9 |
+| 2026-01-23T00:27:00.000-05:00 | 743.0141 | 78.0 | 11.731 | 0.0 | 3.0911 | 0.51514 | 694.43933 | 0.9988007 | 10.606662 | 6.9010034 | 0.11016041 | -294.4013 | 1440.0106 | 0.3917849 | 0.0 | 792.5231 | 18.520348 | 5.404066 | SSO-L9 |
+| 2026-01-23T00:37:00.000-05:00 | 742.92413 | 78.0 | 11.587 | 0.0 | 3.0529 | 0.515025 | 694.26886 | 0.99880075 | 10.60708 | 6.9008207 | 0.10898289 | -295.3073 | 1440.3641 | 0.39169413 | 0.0 | 792.3462 | 18.519325 | 5.403885 | SSO-L9 |
+| 2026-01-23T00:47:00.000-05:00 | 742.9016 | 78.0 | 11.425 | 0.0 | 3.0377 | 0.5152005 | 694.5115 | 0.9988008 | 10.609324 | 6.900545 | 0.11397072 | -296.98102 | 1439.861 | 0.39183244 | 0.0 | 792.61615 | 18.519726 | 5.402913 | SSO-L9 |
 
 ---
 
-## Table: ddt_brick0001794
+## Table: ddt_brick0001980
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20241003_20250322_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2024-10-03 to 2025-03-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20241003_20250322_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2024-10-03 to 2025-03-22 (v4)
 
 ### Schema
 
@@ -21666,17 +22310,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T10:58:00.000-04:00 | 738.17456 | 88.0 | 0.0 | 2.9447603 | 8.786 | 0.3598117 | 493.21918 | 0.99855685 | 9.989977 | 6.9486876 | 46.51806 | 218.42003 | 2027.4962 | 0.2704093 | 32.95225 | 553.55646 | 19.293226 | 3.1474981 | SSO-M4 |
-| 2024-10-03T11:08:00.000-04:00 | 741.96234 | 88.0 | 0.081 | 2.9497054 | 8.7931 | 0.35529175 | 487.11392 | 0.99855244 | 10.148509 | 6.949267 | 46.60154 | 224.01334 | 2052.908 | 0.2669078 | 32.8404 | 546.6027 | 19.301899 | 3.0788698 | SSO-M4 |
-| 2024-10-03T11:18:00.000-04:00 | 738.197 | 88.0 | 0.081 | 2.96673 | 8.6026 | 0.35672185 | 488.74454 | 0.99855953 | 9.982641 | 6.951664 | 46.83881 | 222.56851 | 2046.0587 | 0.26801252 | 33.18141 | 548.80286 | 19.270412 | 3.1506739 | SSO-M4 |
-| 2024-10-03T11:28:00.000-04:00 | 738.1295 | 88.0 | 0.081 | 2.9696572 | 8.6274 | 0.3599928 | 493.0001 | 0.9985658 | 9.9902525 | 6.95158 | 46.866234 | 220.74222 | 2028.3972 | 0.27054513 | 33.20346 | 553.8351 | 19.24905 | 3.147379 | SSO-M4 |
-| 2024-10-03T11:38:00.000-04:00 | 738.1145 | 88.0 | 0.09 | 2.9501681 | 8.818 | 0.36117125 | 494.45645 | 0.9985693 | 9.997126 | 6.9514966 | 46.551113 | 219.06853 | 2022.4229 | 0.27145708 | 32.976597 | 555.6481 | 19.234211 | 3.1444035 | SSO-M4 |
+| 2024-10-03T10:58:00.000-04:00 | 738.17456 | 88.0 | 0.0 | 2.9447603 | 1.9847 | 0.3598117 | 493.21918 | 0.99855685 | 9.989977 | 6.9486876 | 46.51806 | 218.42003 | 2027.4962 | 0.2704093 | 32.95225 | 553.55646 | 19.293226 | 3.1474981 | SSO-M4 |
+| 2024-10-03T11:08:00.000-04:00 | 741.96234 | 88.0 | 0.081 | 2.9497054 | 1.9863 | 0.35529175 | 487.11392 | 0.99855244 | 10.148509 | 6.949267 | 46.60154 | 224.01334 | 2052.908 | 0.2669078 | 32.8404 | 546.6027 | 19.301899 | 3.0788698 | SSO-M4 |
+| 2024-10-03T11:18:00.000-04:00 | 738.197 | 88.0 | 0.081 | 2.96673 | 1.9433 | 0.35672185 | 488.74454 | 0.99855953 | 9.982641 | 6.951664 | 46.83881 | 222.56851 | 2046.0587 | 0.26801252 | 33.18141 | 548.80286 | 19.270412 | 3.1506739 | SSO-M4 |
+| 2024-10-03T11:28:00.000-04:00 | 738.1295 | 88.0 | 0.081 | 2.9696572 | 1.9489 | 0.3599928 | 493.0001 | 0.9985658 | 9.9902525 | 6.95158 | 46.866234 | 220.74222 | 2028.3972 | 0.27054513 | 33.20346 | 553.8351 | 19.24905 | 3.147379 | SSO-M4 |
+| 2024-10-03T11:38:00.000-04:00 | 738.1145 | 88.0 | 0.09 | 2.9501681 | 1.992 | 0.36117125 | 494.45645 | 0.9985693 | 9.997126 | 6.9514966 | 46.551113 | 219.06853 | 2022.4229 | 0.27145708 | 32.976597 | 555.6481 | 19.234211 | 3.1444035 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001795
+## Table: ddt_brick0001981
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250323_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-03-23 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250323_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-03-23 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -21698,17 +22342,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-03-23T04:00:00.000-04:00 | 6.74 | 48.1636 | 418.31 | 8.29 | 7.45 | 459.9 | 15.35 | SSO-M4 |
-| 2025-03-23T04:15:00.000-04:00 | 6.74 | 52.1035 | 418.27 | 8.29 | 7.45 | 459.9 | 15.34 | SSO-M4 |
-| 2025-03-23T04:30:00.000-04:00 | 6.74 | 52.0149 | 418.13 | 8.3 | 7.45 | 460.3 | 15.34 | SSO-M4 |
-| 2025-03-23T04:45:00.000-04:00 | 6.73 | 52.0149 | 418.06 | 8.3 | 7.45 | 460.8 | 15.34 | SSO-M4 |
-| 2025-03-23T05:00:00.000-04:00 | 6.74 | 47.5439 | 418.21 | 8.3 | 7.45 | 459.6 | 15.35 | SSO-M4 |
+| 2025-03-23T04:00:00.000-04:00 | 6.74 | 10.88 | 418.31 | 8.29 | 7.45 | 459.9 | 15.35 | SSO-M4 |
+| 2025-03-23T04:15:00.000-04:00 | 6.74 | 11.77 | 418.27 | 8.29 | 7.45 | 459.9 | 15.34 | SSO-M4 |
+| 2025-03-23T04:30:00.000-04:00 | 6.74 | 11.75 | 418.13 | 8.3 | 7.45 | 460.3 | 15.34 | SSO-M4 |
+| 2025-03-23T04:45:00.000-04:00 | 6.73 | 11.75 | 418.06 | 8.3 | 7.45 | 460.8 | 15.34 | SSO-M4 |
+| 2025-03-23T05:00:00.000-04:00 | 6.74 | 10.74 | 418.21 | 8.3 | 7.45 | 459.6 | 15.35 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001796
+## Table: ddt_brick0001982
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250819_20250819_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-08-19 to 2025-08-19 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250819_20250819_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-08-19 to 2025-08-19 (v4)
 
 ### Schema
 
@@ -21730,17 +22374,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:45:00.000-04:00 | 3.21 | 11.2441 | 437.7 | 10.9 | 7.12 | 331.1 | 17.57 | SSO-M4 |
-| 2025-08-19T11:00:00.000-04:00 | 3.21 | 10.9342 | 438.91 | 10.91 | 7.12 | 331.5 | 17.59 | SSO-M4 |
-| 2025-08-19T11:30:00.000-04:00 | 3.17 | 11.1555 | 437.48 | 10.9 | 7.12 | 335.8 | 17.6 | SSO-M4 |
-| 2025-08-19T11:45:00.000-04:00 | 3.18 | 10.8457 | 438.09 | 10.91 | 7.12 | 338.1 | 17.6 | SSO-M4 |
-| 2025-08-19T12:00:00.000-04:00 | 3.17 | 11.1998 | 438.96 | 10.91 | 7.12 | 331.8 | 17.61 | SSO-M4 |
+| 2025-08-19T10:45:00.000-04:00 | 3.21 | 2.54 | 437.7 | 10.9 | 7.12 | 331.1 | 17.57 | SSO-M4 |
+| 2025-08-19T11:00:00.000-04:00 | 3.21 | 2.47 | 438.91 | 10.91 | 7.12 | 331.5 | 17.59 | SSO-M4 |
+| 2025-08-19T11:30:00.000-04:00 | 3.17 | 2.52 | 437.48 | 10.9 | 7.12 | 335.8 | 17.6 | SSO-M4 |
+| 2025-08-19T11:45:00.000-04:00 | 3.18 | 2.45 | 438.09 | 10.91 | 7.12 | 338.1 | 17.6 | SSO-M4 |
+| 2025-08-19T12:00:00.000-04:00 | 3.17 | 2.53 | 438.96 | 10.91 | 7.12 | 331.8 | 17.61 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001797
+## Table: ddt_brick0001983
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250828_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-08-28 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20250828_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-08-28 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -21762,17 +22406,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-08-28T14:00:00.000-04:00 | 0.65 | 11.5982 | 387.2 | 11.1 | 7.09 | 253.2 | 17.76 | SSO-M4 |
-| 2025-08-28T14:15:00.000-04:00 | 0.71 | 11.3326 | 386.65 | 11.1 | 7.09 | 262.7 | 17.75 | SSO-M4 |
-| 2025-08-28T14:30:00.000-04:00 | 0.72 | 11.2441 | 386.45 | 11.1 | 7.09 | 265.3 | 17.75 | SSO-M4 |
-| 2025-08-28T14:45:00.000-04:00 | 0.72 | 11.1998 | 386.41 | 11.1 | 7.09 | 266.3 | 17.75 | SSO-M4 |
-| 2025-08-28T15:00:00.000-04:00 | 0.71 | 9.6062 | 383.38 | 11.09 | 7.09 | 261.1 | 17.75 | SSO-M4 |
+| 2025-08-28T14:00:00.000-04:00 | 0.65 | 2.62 | 387.2 | 11.1 | 7.09 | 253.2 | 17.76 | SSO-M4 |
+| 2025-08-28T14:15:00.000-04:00 | 0.71 | 2.56 | 386.65 | 11.1 | 7.09 | 262.7 | 17.75 | SSO-M4 |
+| 2025-08-28T14:30:00.000-04:00 | 0.72 | 2.54 | 386.45 | 11.1 | 7.09 | 265.3 | 17.75 | SSO-M4 |
+| 2025-08-28T14:45:00.000-04:00 | 0.72 | 2.53 | 386.41 | 11.1 | 7.09 | 266.3 | 17.75 | SSO-M4 |
+| 2025-08-28T15:00:00.000-04:00 | 0.71 | 2.17 | 383.38 | 11.09 | 7.09 | 261.1 | 17.75 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001798
+## Table: ddt_brick0001984
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251015_20251103_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-10-15 to 2025-11-03 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251015_20251103_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-10-15 to 2025-11-03 (v4)
 
 ### Schema
 
@@ -21805,17 +22449,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T15:55:00.000-04:00 | 738.18945 | 99.0 | 0.018 | 0.054933388 | 23.8098 | 0.34049702 | 460.8897 | 0.99866 | 11.902604 | 6.9806376 | 1.0083843 | 153.40068 | 2169.7166 | 0.25539747 | 0.6074167 | 523.84155 | 18.708197 | 2.2578325 | SSO-M4 |
-| 2025-10-15T16:05:00.000-04:00 | 738.242 | 99.0 | 0.072 | 0.048115138 | 24.2031 | 0.34100446 | 461.7146 | 0.99865776 | 11.898872 | 6.97479 | 0.90522736 | 156.92928 | 2165.84 | 0.25579125 | 0.5321362 | 524.62225 | 18.72197 | 2.259448 | SSO-M4 |
-| 2025-10-15T16:15:00.000-04:00 | 738.21204 | 99.0 | 0.243 | 0.04239554 | 24.1264 | 0.34105077 | 461.76776 | 0.99865794 | 11.899308 | 6.975285 | 0.8184551 | 158.30734 | 2165.5908 | 0.25582686 | 0.46888942 | 524.6935 | 18.72102 | 2.2592592 | SSO-M4 |
-| 2025-10-15T16:25:00.000-04:00 | 738.137 | 99.0 | 0.072 | 0.03805861 | 24.1181 | 0.34096175 | 461.64313 | 0.9986579 | 11.895306 | 6.9753847 | 0.7526669 | 159.31824 | 2166.1755 | 0.25575805 | 0.42096385 | 524.5565 | 18.72061 | 2.260992 | SSO-M4 |
-| 2025-10-15T16:35:00.000-04:00 | 738.137 | 99.0 | 0.072 | 0.03504889 | 24.1236 | 0.34070468 | 461.2975 | 0.9986578 | 11.903258 | 6.9757795 | 0.70701885 | 160.20992 | 2167.7986 | 0.25555936 | 0.38767546 | 524.161 | 18.720854 | 2.2575493 | SSO-M4 |
+| 2025-10-15T15:55:00.000-04:00 | 738.18945 | 99.0 | 0.018 | 0.054933388 | 5.3786 | 0.34049702 | 460.8897 | 0.99866 | 11.902604 | 6.9806376 | 1.0083843 | 153.40068 | 2169.7166 | 0.25539747 | 0.6074167 | 523.84155 | 18.708197 | 2.2578325 | SSO-M4 |
+| 2025-10-15T16:05:00.000-04:00 | 738.242 | 99.0 | 0.072 | 0.048115138 | 5.4674 | 0.34100446 | 461.7146 | 0.99865776 | 11.898872 | 6.97479 | 0.90522736 | 156.92928 | 2165.84 | 0.25579125 | 0.5321362 | 524.62225 | 18.72197 | 2.259448 | SSO-M4 |
+| 2025-10-15T16:15:00.000-04:00 | 738.21204 | 99.0 | 0.243 | 0.04239554 | 5.4501 | 0.34105077 | 461.76776 | 0.99865794 | 11.899308 | 6.975285 | 0.8184551 | 158.30734 | 2165.5908 | 0.25582686 | 0.46888942 | 524.6935 | 18.72102 | 2.2592592 | SSO-M4 |
+| 2025-10-15T16:25:00.000-04:00 | 738.137 | 99.0 | 0.072 | 0.03805861 | 5.4482 | 0.34096175 | 461.64313 | 0.9986579 | 11.895306 | 6.9753847 | 0.7526669 | 159.31824 | 2166.1755 | 0.25575805 | 0.42096385 | 524.5565 | 18.72061 | 2.260992 | SSO-M4 |
+| 2025-10-15T16:35:00.000-04:00 | 738.137 | 99.0 | 0.072 | 0.03504889 | 5.4494 | 0.34070468 | 461.2975 | 0.9986578 | 11.903258 | 6.9757795 | 0.70701885 | 160.20992 | 2167.7986 | 0.25555936 | 0.38767546 | 524.161 | 18.720854 | 2.2575493 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001799
+## Table: ddt_brick0001985
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251104_20251212_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-11-04 to 2025-12-12 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251104_20251212_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-11-04 to 2025-12-12 (v3)
 
 ### Schema
 
@@ -21848,17 +22492,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-04T14:49:00.000-05:00 | 743.62 | 91.0 | 0.0 | 6.616864 | 8.611 | 0.3642081 | 499.98508 | 0.9985457 | 7.906511 | 7.2212863 | 101.76947 | 310.07507 | 2000.0597 | 0.2738248 | 73.59298 | 560.3202 | 19.362316 | 4.010005 | SSO-M4 |
-| 2025-11-04T14:59:00.000-05:00 | 743.935 | 91.0 | 0.063 | 6.5493217 | 8.2614 | 0.3565941 | 489.93613 | 0.9985333 | 7.928631 | 7.219271 | 100.80125 | 320.8945 | 2041.0824 | 0.2679263 | 72.864 | 548.60626 | 19.40084 | 4.000429 | SSO-M4 |
-| 2025-11-04T15:09:00.000-05:00 | 743.90497 | 91.0 | 0.072 | 6.5409083 | 8.1632 | 0.3562285 | 489.36618 | 0.9985345 | 7.9289923 | 7.2179036 | 100.65979 | 323.0069 | 2043.4596 | 0.26764247 | 72.7639 | 548.0438 | 19.394377 | 4.0002728 | SSO-M4 |
-| 2025-11-04T15:19:00.000-05:00 | 743.83746 | 91.0 | 0.072 | 6.524184 | 8.1204 | 0.3561924 | 489.22794 | 0.9985361 | 7.929849 | 7.217026 | 100.386986 | 323.47418 | 2044.037 | 0.26761374 | 72.57222 | 547.9883 | 19.385902 | 3.9999018 | SSO-M4 |
-| 2025-11-04T15:29:00.000-05:00 | 743.76996 | 91.0 | 0.072 | 6.5179734 | 8.1403 | 0.35550892 | 488.22293 | 0.9985371 | 7.9377604 | 7.216713 | 100.27919 | 323.66968 | 2048.2446 | 0.26708364 | 72.500244 | 546.9368 | 19.379557 | 3.9964771 | SSO-M4 |
+| 2025-11-04T14:49:00.000-05:00 | 743.62 | 91.0 | 0.0 | 6.616864 | 1.9452 | 0.3642081 | 499.98508 | 0.9985457 | 7.906511 | 7.2212863 | 101.76947 | 310.07507 | 2000.0597 | 0.2738248 | 73.59298 | 560.3202 | 19.362316 | 4.010005 | SSO-M4 |
+| 2025-11-04T14:59:00.000-05:00 | 743.935 | 91.0 | 0.063 | 6.5493217 | 1.8662 | 0.3565941 | 489.93613 | 0.9985333 | 7.928631 | 7.219271 | 100.80125 | 320.8945 | 2041.0824 | 0.2679263 | 72.864 | 548.60626 | 19.40084 | 4.000429 | SSO-M4 |
+| 2025-11-04T15:09:00.000-05:00 | 743.90497 | 91.0 | 0.072 | 6.5409083 | 1.844 | 0.3562285 | 489.36618 | 0.9985345 | 7.9289923 | 7.2179036 | 100.65979 | 323.0069 | 2043.4596 | 0.26764247 | 72.7639 | 548.0438 | 19.394377 | 4.0002728 | SSO-M4 |
+| 2025-11-04T15:19:00.000-05:00 | 743.83746 | 91.0 | 0.072 | 6.524184 | 1.8344 | 0.3561924 | 489.22794 | 0.9985361 | 7.929849 | 7.217026 | 100.386986 | 323.47418 | 2044.037 | 0.26761374 | 72.57222 | 547.9883 | 19.385902 | 3.9999018 | SSO-M4 |
+| 2025-11-04T15:29:00.000-05:00 | 743.76996 | 91.0 | 0.072 | 6.5179734 | 1.8389 | 0.35550892 | 488.22293 | 0.9985371 | 7.9377604 | 7.216713 | 100.27919 | 323.66968 | 2048.2446 | 0.26708364 | 72.500244 | 546.9368 | 19.379557 | 3.9964771 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001800
+## Table: ddt_brick0001986
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -21889,17 +22533,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:56:00.000-05:00 | 741.5273 | 76.0 | 0.0 | 5.7754545 | 0.8511 | 0.021150472 | 28.51941 | 0.9985084 | 9.99323 | 7.2425737 | 87.50604 | 300.77625 | 63.249218 | 32.53919 | 18.532116 | 3.0564737 | SSO-M4 |
-| 2025-12-16T14:06:00.000-05:00 | 741.5048 | 76.0 | 0.063 | 5.763434 | 0.8705 | 0.020131981 | 27.14624 | 0.9985078 | 9.996074 | 7.2424917 | 87.32647 | 331.8565 | 63.11963 | 30.97228 | 18.532402 | 3.0552425 | SSO-M4 |
-| 2025-12-16T14:16:00.000-05:00 | 741.4673 | 76.0 | 0.072 | 5.7585406 | 0.8637 | 0.019110002 | 25.767334 | 0.9985075 | 9.991612 | 7.2427397 | 87.25041 | 337.7693 | 63.067062 | 29.400002 | 18.530884 | 3.0571737 | SSO-M4 |
-| 2025-12-16T14:26:00.000-05:00 | 741.4373 | 76.0 | 0.072 | 5.7536674 | 0.8653 | 0.018459722 | 24.890503 | 0.9985072 | 9.992736 | 7.243067 | 87.1773 | 340.26312 | 63.0161 | 28.39957 | 18.530857 | 3.0566874 | SSO-M4 |
-| 2025-12-16T14:36:00.000-05:00 | 741.42975 | 76.0 | 0.072 | 5.753641 | 0.8685 | 0.017824898 | 24.034546 | 0.9985068 | 9.991549 | 7.2417593 | 87.17667 | 341.25018 | 63.016293 | 27.422918 | 18.530895 | 3.0572014 | SSO-M4 |
+| 2025-12-16T13:56:00.000-05:00 | 741.5273 | 76.0 | 0.0 | 5.7754545 | 0.1923 | 0.021150472 | 28.51941 | 0.9985084 | 9.99323 | 7.2425737 | 87.50604 | 300.77625 | 63.249218 | 32.53919 | 18.532116 | 3.0564737 | SSO-M4 |
+| 2025-12-16T14:06:00.000-05:00 | 741.5048 | 76.0 | 0.063 | 5.763434 | 0.1966 | 0.020131981 | 27.14624 | 0.9985078 | 9.996074 | 7.2424917 | 87.32647 | 331.8565 | 63.11963 | 30.97228 | 18.532402 | 3.0552425 | SSO-M4 |
+| 2025-12-16T14:16:00.000-05:00 | 741.4673 | 76.0 | 0.072 | 5.7585406 | 0.1951 | 0.019110002 | 25.767334 | 0.9985075 | 9.991612 | 7.2427397 | 87.25041 | 337.7693 | 63.067062 | 29.400002 | 18.530884 | 3.0571737 | SSO-M4 |
+| 2025-12-16T14:26:00.000-05:00 | 741.4373 | 76.0 | 0.072 | 5.7536674 | 0.1955 | 0.018459722 | 24.890503 | 0.9985072 | 9.992736 | 7.243067 | 87.1773 | 340.26312 | 63.0161 | 28.39957 | 18.530857 | 3.0566874 | SSO-M4 |
+| 2025-12-16T14:36:00.000-05:00 | 741.42975 | 76.0 | 0.072 | 5.753641 | 0.1962 | 0.017824898 | 24.034546 | 0.9985068 | 9.991549 | 7.2417593 | 87.17667 | 341.25018 | 63.016293 | 27.422918 | 18.530895 | 3.0572014 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001801
+## Table: ddt_brick0001987
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20260123_20260309_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2026-01-23 to 2026-03-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ1_20260123_20260309_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ1 from 2026-01-23 to 2026-03-09 (v3)
 
 ### Schema
 
@@ -21930,17 +22574,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:06:00.000-05:00 | 742.60736 | 61.0 | 0.063 | 5.382269 | 1.0277 | 4.15E-5 | 0.054945055 | 0.99864936 | 10.486365 | 7.3200088 | 80.35744 | 497.71954 | 57.875626 | 0.063822284 | 17.717648 | 2.8429747 | SSO-M4 |
-| 2026-01-23T00:16:00.000-05:00 | 742.4874 | 61.0 | 0.063 | 5.3596697 | 1.0218 | 4.15E-5 | 0.054945055 | 0.9986492 | 10.488193 | 7.3202534 | 80.02566 | 498.18207 | 57.642715 | 0.06382154 | 17.718172 | 2.842183 | SSO-M4 |
-| 2026-01-23T00:26:00.000-05:00 | 742.5174 | 61.0 | 0.063 | 5.371424 | 1.0181 | 4.15E-5 | 0.054945055 | 0.99864924 | 10.487104 | 7.320008 | 80.1984 | 498.38232 | 57.766563 | 0.063821875 | 17.717937 | 2.8426542 | SSO-M4 |
-| 2026-01-23T00:36:00.000-05:00 | 742.46484 | 61.0 | 0.063 | 5.3618417 | 1.018 | 4.15E-5 | 0.054945055 | 0.9986492 | 10.4931345 | 7.319925 | 80.058075 | 498.492 | 57.668213 | 0.063821144 | 17.718454 | 2.840044 | SSO-M4 |
-| 2026-01-23T00:46:00.000-05:00 | 742.45734 | 61.0 | 0.063 | 5.3554215 | 1.0184 | 4.15E-5 | 0.054945055 | 0.99864924 | 10.500841 | 7.3201714 | 79.963135 | 498.54443 | 57.599407 | 0.06382157 | 17.718155 | 2.836707 | SSO-M4 |
+| 2026-01-23T00:06:00.000-05:00 | 742.60736 | 61.0 | 0.063 | 5.382269 | 0.2322 | 4.15E-5 | 0.054945055 | 0.99864936 | 10.486365 | 7.3200088 | 80.35744 | 497.71954 | 57.875626 | 0.063822284 | 17.717648 | 2.8429747 | SSO-M4 |
+| 2026-01-23T00:16:00.000-05:00 | 742.4874 | 61.0 | 0.063 | 5.3596697 | 0.2308 | 4.15E-5 | 0.054945055 | 0.9986492 | 10.488193 | 7.3202534 | 80.02566 | 498.18207 | 57.642715 | 0.06382154 | 17.718172 | 2.842183 | SSO-M4 |
+| 2026-01-23T00:26:00.000-05:00 | 742.5174 | 61.0 | 0.063 | 5.371424 | 0.23 | 4.15E-5 | 0.054945055 | 0.99864924 | 10.487104 | 7.320008 | 80.1984 | 498.38232 | 57.766563 | 0.063821875 | 17.717937 | 2.8426542 | SSO-M4 |
+| 2026-01-23T00:36:00.000-05:00 | 742.46484 | 61.0 | 0.063 | 5.3618417 | 0.23 | 4.15E-5 | 0.054945055 | 0.9986492 | 10.4931345 | 7.319925 | 80.058075 | 498.492 | 57.668213 | 0.063821144 | 17.718454 | 2.840044 | SSO-M4 |
+| 2026-01-23T00:46:00.000-05:00 | 742.45734 | 61.0 | 0.063 | 5.3554215 | 0.2301 | 4.15E-5 | 0.054945055 | 0.99864924 | 10.500841 | 7.3201714 | 79.963135 | 498.54443 | 57.599407 | 0.06382157 | 17.718155 | 2.836707 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001802
+## Table: ddt_brick0001988
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20241003_20250313_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2024-10-03 to 2025-03-13 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20241003_20250313_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2024-10-03 to 2025-03-13 (v4)
 
 ### Schema
 
@@ -21961,17 +22605,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2024-10-03T11:15:00.000-04:00 | 2.07 | 6.5959 | 519.71 | 10.04 | 6.97 | 17.88 | SSO-M4 |
-| 2024-10-03T11:30:00.000-04:00 | 2.08 | 6.5517 | 520.11 | 10.05 | 6.97 | 17.87 | SSO-M4 |
-| 2024-10-03T11:45:00.000-04:00 | 2.09 | 6.5517 | 519.8 | 10.06 | 6.97 | 17.87 | SSO-M4 |
-| 2024-10-03T12:00:00.000-04:00 | 2.13 | 6.5517 | 519.39 | 10.07 | 6.97 | 17.87 | SSO-M4 |
-| 2024-10-03T12:15:00.000-04:00 | 2.1 | 6.5517 | 519.61 | 10.07 | 6.97 | 17.87 | SSO-M4 |
+| 2024-10-03T11:15:00.000-04:00 | 2.07 | 1.49 | 519.71 | 10.04 | 6.97 | 17.88 | SSO-M4 |
+| 2024-10-03T11:30:00.000-04:00 | 2.08 | 1.48 | 520.11 | 10.05 | 6.97 | 17.87 | SSO-M4 |
+| 2024-10-03T11:45:00.000-04:00 | 2.09 | 1.48 | 519.8 | 10.06 | 6.97 | 17.87 | SSO-M4 |
+| 2024-10-03T12:00:00.000-04:00 | 2.13 | 1.48 | 519.39 | 10.07 | 6.97 | 17.87 | SSO-M4 |
+| 2024-10-03T12:15:00.000-04:00 | 2.1 | 1.48 | 519.61 | 10.07 | 6.97 | 17.87 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001803
+## Table: ddt_brick0001989
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250819_20250825_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-08-19 to 2025-08-25 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250819_20250825_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-08-19 to 2025-08-25 (v3)
 
 ### Schema
 
@@ -22004,17 +22648,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:27:00.000-04:00 | 737.72076 | 30.0 | 0.009 | 3.5851636 | 39.3031 | 0.3050378 | 398.07605 | 0.998943 | 10.913917 | 7.150817 | 52.49813 | 218.71947 | 2512.0828 | 0.22785541 | 38.333958 | 469.2889 | 17.055164 | 5.2357407 | SSO-M4 |
-| 2025-08-19T10:37:00.000-04:00 | 739.73096 | 30.0 | 0.0 | 3.529164 | 38.3269 | 0.30452517 | 397.4394 | 0.9989421 | 11.013513 | 7.1482067 | 51.69272 | 225.13054 | 2516.107 | 0.2274621 | 37.633453 | 468.50024 | 17.058779 | 5.192609 | SSO-M4 |
-| 2025-08-19T10:47:00.000-04:00 | 739.9335 | 30.0 | 0.0 | 3.5216832 | 38.2222 | 0.3042735 | 397.0987 | 0.9989422 | 11.024474 | 7.1482058 | 51.583084 | 223.80017 | 2518.2656 | 0.22726856 | 37.54201 | 468.11304 | 17.057413 | 5.1878614 | SSO-M4 |
-| 2025-08-19T10:57:00.000-04:00 | 740.2634 | 30.0 | 0.0 | 3.5058262 | 38.1727 | 0.304226 | 397.03662 | 0.99894214 | 11.033146 | 7.1480474 | 51.353977 | 223.08492 | 2518.6594 | 0.22723208 | 37.35598 | 468.03998 | 17.057402 | 5.184106 | SSO-M4 |
-| 2025-08-19T11:07:00.000-04:00 | 740.451 | 30.0 | 0.0 | 3.4920032 | 38.1902 | 0.304169 | 396.9558 | 0.99894226 | 11.04796 | 7.147849 | 51.15358 | 222.55562 | 2519.172 | 0.22718824 | 37.198547 | 467.9523 | 17.056683 | 5.1776905 | SSO-M4 |
+| 2025-08-19T10:27:00.000-04:00 | 737.72076 | 30.0 | 0.009 | 3.5851636 | 8.8784 | 0.3050378 | 398.07605 | 0.998943 | 10.913917 | 7.150817 | 52.49813 | 218.71947 | 2512.0828 | 0.22785541 | 38.333958 | 469.2889 | 17.055164 | 5.2357407 | SSO-M4 |
+| 2025-08-19T10:37:00.000-04:00 | 739.73096 | 30.0 | 0.0 | 3.529164 | 8.6579 | 0.30452517 | 397.4394 | 0.9989421 | 11.013513 | 7.1482067 | 51.69272 | 225.13054 | 2516.107 | 0.2274621 | 37.633453 | 468.50024 | 17.058779 | 5.192609 | SSO-M4 |
+| 2025-08-19T10:47:00.000-04:00 | 739.9335 | 30.0 | 0.0 | 3.5216832 | 8.6343 | 0.3042735 | 397.0987 | 0.9989422 | 11.024474 | 7.1482058 | 51.583084 | 223.80017 | 2518.2656 | 0.22726856 | 37.54201 | 468.11304 | 17.057413 | 5.1878614 | SSO-M4 |
+| 2025-08-19T10:57:00.000-04:00 | 740.2634 | 30.0 | 0.0 | 3.5058262 | 8.6231 | 0.304226 | 397.03662 | 0.99894214 | 11.033146 | 7.1480474 | 51.353977 | 223.08492 | 2518.6594 | 0.22723208 | 37.35598 | 468.03998 | 17.057402 | 5.184106 | SSO-M4 |
+| 2025-08-19T11:07:00.000-04:00 | 740.451 | 30.0 | 0.0 | 3.4920032 | 8.627 | 0.304169 | 396.9558 | 0.99894226 | 11.04796 | 7.147849 | 51.15358 | 222.55562 | 2519.172 | 0.22718824 | 37.198547 | 467.9523 | 17.056683 | 5.1776905 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001804
+## Table: ddt_brick0001990
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250826_20250902_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-08-26 to 2025-09-02 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250826_20250902_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-08-26 to 2025-09-02 (v4)
 
 ### Schema
 
@@ -22035,17 +22679,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-26T04:00:00.000-04:00 | 0.46 | 31.5188 | 461.88 | 11.0 | 7.16 | 17.11 | SSO-M4 |
-| 2025-08-26T04:15:00.000-04:00 | 0.53 | 31.386 | 461.89 | 11.0 | 7.16 | 17.11 | SSO-M4 |
-| 2025-08-26T04:30:00.000-04:00 | 0.49 | 31.209 | 461.55 | 11.01 | 7.16 | 17.11 | SSO-M4 |
-| 2025-08-26T04:45:00.000-04:00 | 0.47 | 31.1647 | 461.45 | 11.0 | 7.16 | 17.11 | SSO-M4 |
-| 2025-08-26T05:00:00.000-04:00 | 0.46 | 31.2532 | 461.36 | 11.01 | 7.16 | 17.11 | SSO-M4 |
+| 2025-08-26T04:00:00.000-04:00 | 0.46 | 7.12 | 461.88 | 11.0 | 7.16 | 17.11 | SSO-M4 |
+| 2025-08-26T04:15:00.000-04:00 | 0.53 | 7.09 | 461.89 | 11.0 | 7.16 | 17.11 | SSO-M4 |
+| 2025-08-26T04:30:00.000-04:00 | 0.49 | 7.05 | 461.55 | 11.01 | 7.16 | 17.11 | SSO-M4 |
+| 2025-08-26T04:45:00.000-04:00 | 0.47 | 7.04 | 461.45 | 11.0 | 7.16 | 17.11 | SSO-M4 |
+| 2025-08-26T05:00:00.000-04:00 | 0.46 | 7.06 | 461.36 | 11.01 | 7.16 | 17.11 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001805
+## Table: ddt_brick0001991
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250908_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-09-08 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20250908_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-09-08 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -22066,17 +22710,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-09-08T15:15:00.000-04:00 | 3.11 | 17.5301 | 424.23 | 9.41 | 7.24 | 17.31 | SSO-M4 |
-| 2025-09-08T15:30:00.000-04:00 | 3.1 | 17.3973 | 422.0 | 9.42 | 7.23 | 17.31 | SSO-M4 |
-| 2025-09-08T15:45:00.000-04:00 | 3.09 | 17.3088 | 421.48 | 9.43 | 7.23 | 17.31 | SSO-M4 |
-| 2025-09-08T16:00:00.000-04:00 | 3.08 | 17.3088 | 421.47 | 9.43 | 7.23 | 17.31 | SSO-M4 |
-| 2025-09-08T16:15:00.000-04:00 | 3.09 | 17.5301 | 424.31 | 9.43 | 7.22 | 17.3 | SSO-M4 |
+| 2025-09-08T15:15:00.000-04:00 | 3.11 | 3.96 | 424.23 | 9.41 | 7.24 | 17.31 | SSO-M4 |
+| 2025-09-08T15:30:00.000-04:00 | 3.1 | 3.93 | 422.0 | 9.42 | 7.23 | 17.31 | SSO-M4 |
+| 2025-09-08T15:45:00.000-04:00 | 3.09 | 3.91 | 421.48 | 9.43 | 7.23 | 17.31 | SSO-M4 |
+| 2025-09-08T16:00:00.000-04:00 | 3.08 | 3.91 | 421.47 | 9.43 | 7.23 | 17.31 | SSO-M4 |
+| 2025-09-08T16:15:00.000-04:00 | 3.09 | 3.96 | 424.31 | 9.43 | 7.22 | 17.3 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001806
+## Table: ddt_brick0001992
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20251015_20251212_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-10-15 to 2025-12-12 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20251015_20251212_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-10-15 to 2025-12-12 (v4)
 
 ### Schema
 
@@ -22109,17 +22753,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T15:57:00.000-04:00 | 737.50323 | 99.0 | 0.0 | 0.0 | 14.9382 | 0.2868737 | 379.90427 | 0.99881524 | 11.873009 | 6.984479 | -0.55851996 | 65.196976 | 2632.2422 | 0.2140042 | 0.0 | 441.34415 | 17.711473 | 4.8168697 | SSO-M4 |
-| 2025-10-15T16:07:00.000-04:00 | 737.5482 | 99.0 | 0.072 | 0.0 | 14.7566 | 0.2863121 | 379.21597 | 0.9988137 | 11.878304 | 6.9893827 | -0.76348674 | 72.08012 | 2637.0198 | 0.2135745 | 0.0 | 440.48016 | 17.718063 | 4.814577 | SSO-M4 |
-| 2025-10-15T16:17:00.000-04:00 | 737.4808 | 99.0 | 0.072 | 0.0 | 14.6958 | 0.28602678 | 378.83078 | 0.99881375 | 11.871855 | 6.9897223 | -0.7768872 | 74.08283 | 2639.701 | 0.21335568 | 0.0 | 440.04117 | 17.717197 | 4.8173695 | SSO-M4 |
-| 2025-10-15T16:27:00.000-04:00 | 737.4207 | 99.0 | 0.072 | 0.0 | 14.6387 | 0.28615445 | 378.9918 | 0.998814 | 11.869154 | 6.9922934 | -0.77560306 | 74.42139 | 2638.5796 | 0.21345347 | 0.0 | 440.2376 | 17.716234 | 4.8185387 | SSO-M4 |
-| 2025-10-15T16:37:00.000-04:00 | 737.37573 | 99.0 | 0.072 | 0.0 | 14.6001 | 0.28608558 | 378.91183 | 0.99881375 | 11.8684845 | 6.9943805 | -0.7772834 | 74.21397 | 2639.1365 | 0.2134008 | 0.0 | 440.13165 | 17.717573 | 4.8188286 | SSO-M4 |
+| 2025-10-15T15:57:00.000-04:00 | 737.50323 | 99.0 | 0.0 | 0.0 | 3.3745 | 0.2868737 | 379.90427 | 0.99881524 | 11.873009 | 6.984479 | -0.55851996 | 65.196976 | 2632.2422 | 0.2140042 | 0.0 | 441.34415 | 17.711473 | 4.8168697 | SSO-M4 |
+| 2025-10-15T16:07:00.000-04:00 | 737.5482 | 99.0 | 0.072 | 0.0 | 3.3335 | 0.2863121 | 379.21597 | 0.9988137 | 11.878304 | 6.9893827 | -0.76348674 | 72.08012 | 2637.0198 | 0.2135745 | 0.0 | 440.48016 | 17.718063 | 4.814577 | SSO-M4 |
+| 2025-10-15T16:17:00.000-04:00 | 737.4808 | 99.0 | 0.072 | 0.0 | 3.3197 | 0.28602678 | 378.83078 | 0.99881375 | 11.871855 | 6.9897223 | -0.7768872 | 74.08283 | 2639.701 | 0.21335568 | 0.0 | 440.04117 | 17.717197 | 4.8173695 | SSO-M4 |
+| 2025-10-15T16:27:00.000-04:00 | 737.4207 | 99.0 | 0.072 | 0.0 | 3.3068 | 0.28615445 | 378.9918 | 0.998814 | 11.869154 | 6.9922934 | -0.77560306 | 74.42139 | 2638.5796 | 0.21345347 | 0.0 | 440.2376 | 17.716234 | 4.8185387 | SSO-M4 |
+| 2025-10-15T16:37:00.000-04:00 | 737.37573 | 99.0 | 0.072 | 0.0 | 3.2981 | 0.28608558 | 378.91183 | 0.99881375 | 11.8684845 | 6.9943805 | -0.7772834 | 74.21397 | 2639.1365 | 0.2134008 | 0.0 | 440.13165 | 17.717573 | 4.8188286 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001807
+## Table: ddt_brick0001993
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -22150,17 +22794,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:58:00.000-05:00 | 740.94604 | 75.0 | 0.072 | 4.6174335 | 0.1237 | 0.25569165 | 342.74887 | 0.998695 | 9.967691 | 7.0969534 | 66.492485 | 197.70517 | 50.382595 | 393.37177 | 18.26232 | 5.6671143 | SSO-M4 |
-| 2025-12-16T14:08:00.000-05:00 | 740.89355 | 75.0 | 0.072 | 4.629061 | 0.1184 | 0.25525478 | 342.18442 | 0.9986942 | 9.963576 | 7.1057158 | 66.66309 | 218.63356 | 50.515965 | 392.69965 | 18.265144 | 5.6688957 | SSO-M4 |
-| 2025-12-16T14:18:00.000-05:00 | 740.916 | 75.0 | 0.063 | 4.62387 | 0.1172 | 0.25482574 | 341.60782 | 0.998694 | 9.962562 | 7.106292 | 66.58805 | 208.64381 | 50.457413 | 392.03958 | 18.264948 | 5.6693354 | SSO-M4 |
-| 2025-12-16T14:28:00.000-05:00 | 740.8635 | 75.0 | 0.099 | 4.6059384 | 0.1165 | 0.25477687 | 341.53305 | 0.99869424 | 9.965645 | 7.1054697 | 66.32872 | 201.06448 | 50.264065 | 391.96442 | 18.26371 | 5.668 | SSO-M4 |
-| 2025-12-16T14:38:00.000-05:00 | 740.8485 | 75.0 | 0.072 | 4.5702844 | 0.1159 | 0.25487095 | 341.6556 | 0.9986943 | 9.964817 | 7.105264 | 65.815735 | 195.88365 | 49.87551 | 392.10916 | 18.263231 | 5.668359 | SSO-M4 |
+| 2025-12-16T13:58:00.000-05:00 | 740.94604 | 75.0 | 0.072 | 4.6174335 | 0.0279 | 0.25569165 | 342.74887 | 0.998695 | 9.967691 | 7.0969534 | 66.492485 | 197.70517 | 50.382595 | 393.37177 | 18.26232 | 5.6671143 | SSO-M4 |
+| 2025-12-16T14:08:00.000-05:00 | 740.89355 | 75.0 | 0.072 | 4.629061 | 0.0267 | 0.25525478 | 342.18442 | 0.9986942 | 9.963576 | 7.1057158 | 66.66309 | 218.63356 | 50.515965 | 392.69965 | 18.265144 | 5.6688957 | SSO-M4 |
+| 2025-12-16T14:18:00.000-05:00 | 740.916 | 75.0 | 0.063 | 4.62387 | 0.0265 | 0.25482574 | 341.60782 | 0.998694 | 9.962562 | 7.106292 | 66.58805 | 208.64381 | 50.457413 | 392.03958 | 18.264948 | 5.6693354 | SSO-M4 |
+| 2025-12-16T14:28:00.000-05:00 | 740.8635 | 75.0 | 0.099 | 4.6059384 | 0.0263 | 0.25477687 | 341.53305 | 0.99869424 | 9.965645 | 7.1054697 | 66.32872 | 201.06448 | 50.264065 | 391.96442 | 18.26371 | 5.668 | SSO-M4 |
+| 2025-12-16T14:38:00.000-05:00 | 740.8485 | 75.0 | 0.072 | 4.5702844 | 0.0262 | 0.25487095 | 341.6556 | 0.9986943 | 9.964817 | 7.105264 | 65.815735 | 195.88365 | 49.87551 | 392.10916 | 18.263231 | 5.668359 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001808
+## Table: ddt_brick0001994
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20260123_20260309_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2026-01-23 to 2026-03-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20260123_20260309_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2026-01-23 to 2026-03-09 (v3)
 
 ### Schema
 
@@ -22191,17 +22835,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:08:00.000-05:00 | 742.1537 | 60.0 | 0.063 | 4.6947074 | 0.1539 | 0.20297803 | 271.1523 | 0.9986936 | 10.611152 | 7.216277 | 67.38436 | 189.28662 | 50.964447 | 312.2739 | 18.105536 | 5.388521 | SSO-M4 |
-| 2026-01-23T00:18:00.000-05:00 | 741.9661 | 60.0 | 0.063 | 4.695297 | 0.1524 | 0.20283087 | 270.9636 | 0.99869317 | 10.618404 | 7.214876 | 67.39454 | 191.65411 | 50.985397 | 312.0475 | 18.106853 | 5.3853807 | SSO-M4 |
-| 2026-01-23T00:28:00.000-05:00 | 742.0786 | 60.0 | 0.063 | 4.72475 | 0.1515 | 0.2028505 | 270.9857 | 0.99869335 | 10.614178 | 7.2141767 | 67.81552 | 192.28354 | 51.296543 | 312.0777 | 18.10616 | 5.387211 | SSO-M4 |
-| 2026-01-23T00:38:00.000-05:00 | 741.91364 | 60.0 | 0.063 | 4.7882524 | 0.1507 | 0.20285253 | 270.99472 | 0.99869317 | 10.616943 | 7.2134347 | 68.72649 | 192.32169 | 51.998848 | 312.0808 | 18.107222 | 5.386014 | SSO-M4 |
-| 2026-01-23T00:48:00.000-05:00 | 741.91364 | 60.0 | 0.063 | 4.8594847 | 0.1501 | 0.20286748 | 271.00803 | 0.9986934 | 10.614704 | 7.214259 | 69.74543 | 192.02843 | 52.771225 | 312.1038 | 18.106106 | 5.386983 | SSO-M4 |
+| 2026-01-23T00:08:00.000-05:00 | 742.1537 | 60.0 | 0.063 | 4.6947074 | 0.0348 | 0.20297803 | 271.1523 | 0.9986936 | 10.611152 | 7.216277 | 67.38436 | 189.28662 | 50.964447 | 312.2739 | 18.105536 | 5.388521 | SSO-M4 |
+| 2026-01-23T00:18:00.000-05:00 | 741.9661 | 60.0 | 0.063 | 4.695297 | 0.0344 | 0.20283087 | 270.9636 | 0.99869317 | 10.618404 | 7.214876 | 67.39454 | 191.65411 | 50.985397 | 312.0475 | 18.106853 | 5.3853807 | SSO-M4 |
+| 2026-01-23T00:28:00.000-05:00 | 742.0786 | 60.0 | 0.063 | 4.72475 | 0.0342 | 0.2028505 | 270.9857 | 0.99869335 | 10.614178 | 7.2141767 | 67.81552 | 192.28354 | 51.296543 | 312.0777 | 18.10616 | 5.387211 | SSO-M4 |
+| 2026-01-23T00:38:00.000-05:00 | 741.91364 | 60.0 | 0.063 | 4.7882524 | 0.034 | 0.20285253 | 270.99472 | 0.99869317 | 10.616943 | 7.2134347 | 68.72649 | 192.32169 | 51.998848 | 312.0808 | 18.107222 | 5.386014 | SSO-M4 |
+| 2026-01-23T00:48:00.000-05:00 | 741.91364 | 60.0 | 0.063 | 4.8594847 | 0.0339 | 0.20286748 | 271.00803 | 0.9986934 | 10.614704 | 7.214259 | 69.74543 | 192.02843 | 52.771225 | 312.1038 | 18.106106 | 5.386983 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001809
+## Table: ddt_brick0001995
 
-**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20260409_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2026-04-09 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M4_SZ2_20260409_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M4 SZ2 from 2026-04-09 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -22222,17 +22866,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-09T09:15:00.000-04:00 | 2.71 | 0.8411 | 276.5 | 10.58 | 7.49 | 16.77 | SSO-M4 |
-| 2026-04-09T09:30:00.000-04:00 | 2.69 | 0.8411 | 275.74 | 10.59 | 7.5 | 16.75 | SSO-M4 |
-| 2026-04-09T09:45:00.000-04:00 | 2.68 | 0.7968 | 275.89 | 10.59 | 7.5 | 16.75 | SSO-M4 |
-| 2026-04-09T10:00:00.000-04:00 | 2.68 | 0.7968 | 275.78 | 10.6 | 7.49 | 16.75 | SSO-M4 |
-| 2026-04-09T10:15:00.000-04:00 | 2.67 | 0.8411 | 275.95 | 10.62 | 7.49 | 16.75 | SSO-M4 |
+| 2026-04-09T09:15:00.000-04:00 | 2.71 | 0.19 | 276.5 | 10.58 | 7.49 | 16.77 | SSO-M4 |
+| 2026-04-09T09:30:00.000-04:00 | 2.69 | 0.19 | 275.74 | 10.59 | 7.5 | 16.75 | SSO-M4 |
+| 2026-04-09T09:45:00.000-04:00 | 2.68 | 0.18 | 275.89 | 10.59 | 7.5 | 16.75 | SSO-M4 |
+| 2026-04-09T10:00:00.000-04:00 | 2.68 | 0.18 | 275.78 | 10.6 | 7.49 | 16.75 | SSO-M4 |
+| 2026-04-09T10:15:00.000-04:00 | 2.67 | 0.19 | 275.95 | 10.62 | 7.49 | 16.75 | SSO-M4 |
 
 ---
 
-## Table: ddt_brick0001810
+## Table: ddt_brick0001996
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20241003_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2024-10-03 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20241003_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2024-10-03 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -22265,17 +22909,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:04:00.000-04:00 | 738.606 | 98.0 | 0.0 | 0.28092128 | 29.0509 | 0.3410881 | 469.53864 | 0.99850607 | 10.951195 | 5.969128 | 5.654768 | 365.22064 | 2129.7502 | 0.25593278 | 3.153929 | 524.7509 | 19.491297 | 2.755928 | SSO-M5 |
-| 2024-10-03T11:14:00.000-04:00 | 738.216 | 98.0 | 13.371 | 0.17587969 | 30.2925 | 0.34423968 | 473.89218 | 0.9985076 | 10.940496 | 5.95382 | 3.9688878 | 359.15527 | 2110.1846 | 0.25837034 | 1.9757745 | 529.5995 | 19.492794 | 2.760559 | SSO-M5 |
-| 2024-10-03T11:24:00.000-04:00 | 738.1785 | 98.0 | 13.398 | 0.20914662 | 31.2312 | 0.34471667 | 474.44168 | 0.99851006 | 10.938002 | 6.003832 | 4.502014 | 357.63895 | 2107.7407 | 0.2587384 | 2.3491135 | 530.3333 | 19.482222 | 2.7616386 | SSO-M5 |
-| 2024-10-03T11:34:00.000-04:00 | 738.141 | 98.0 | 13.389 | 0.24757552 | 34.1403 | 0.34415382 | 473.5891 | 0.9985112 | 10.9319105 | 5.9819345 | 5.117996 | 358.2493 | 2111.535 | 0.25830227 | 2.7804449 | 529.4674 | 19.47451 | 2.7642756 | SSO-M5 |
-| 2024-10-03T11:44:00.000-04:00 | 738.10345 | 98.0 | 13.371 | 0.14401144 | 43.2665 | 0.34248164 | 471.22495 | 0.9985116 | 10.944924 | 5.9900885 | 3.455731 | 356.93323 | 2122.1287 | 0.2570084 | 1.6172184 | 526.89484 | 19.468246 | 2.7586422 | SSO-M5 |
+| 2024-10-03T11:04:00.000-04:00 | 738.606 | 98.0 | 0.0 | 0.28092128 | 6.5625 | 0.3410881 | 469.53864 | 0.99850607 | 10.951195 | 5.969128 | 5.654768 | 365.22064 | 2129.7502 | 0.25593278 | 3.153929 | 524.7509 | 19.491297 | 2.755928 | SSO-M5 |
+| 2024-10-03T11:14:00.000-04:00 | 738.216 | 98.0 | 13.371 | 0.17587969 | 6.843 | 0.34423968 | 473.89218 | 0.9985076 | 10.940496 | 5.95382 | 3.9688878 | 359.15527 | 2110.1846 | 0.25837034 | 1.9757745 | 529.5995 | 19.492794 | 2.760559 | SSO-M5 |
+| 2024-10-03T11:24:00.000-04:00 | 738.1785 | 98.0 | 13.398 | 0.20914662 | 7.055 | 0.34471667 | 474.44168 | 0.99851006 | 10.938002 | 6.003832 | 4.502014 | 357.63895 | 2107.7407 | 0.2587384 | 2.3491135 | 530.3333 | 19.482222 | 2.7616386 | SSO-M5 |
+| 2024-10-03T11:34:00.000-04:00 | 738.141 | 98.0 | 13.389 | 0.24757552 | 7.7122 | 0.34415382 | 473.5891 | 0.9985112 | 10.9319105 | 5.9819345 | 5.117996 | 358.2493 | 2111.535 | 0.25830227 | 2.7804449 | 529.4674 | 19.47451 | 2.7642756 | SSO-M5 |
+| 2024-10-03T11:44:00.000-04:00 | 738.10345 | 98.0 | 13.371 | 0.14401144 | 9.7737 | 0.34248164 | 471.22495 | 0.9985116 | 10.944924 | 5.9900885 | 3.455731 | 356.93323 | 2122.1287 | 0.2570084 | 1.6172184 | 526.89484 | 19.468246 | 2.7586422 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001811
+## Table: ddt_brick0001997
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20250818_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-08-18 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20250818_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-08-18 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -22308,17 +22952,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-18T11:35:00.000-04:00 | 738.4785 | 41.0 | 0.009 | 0.0 | 11.2133 | 0.36470878 | 488.03052 | 0.9987744 | 11.237934 | 6.1544094 | -0.3502579 | 152.71541 | 2049.0522 | 0.27407032 | 0.0 | 561.09045 | 18.18269 | 2.7111874 | SSO-M5 |
-| 2025-08-18T11:45:00.000-04:00 | 738.441 | 41.0 | 0.072 | 0.0 | 10.9243 | 0.35932544 | 480.73804 | 0.99877274 | 11.098892 | 6.1762724 | -0.3646283 | 155.69087 | 2080.135 | 0.269898 | 0.0 | 552.80835 | 18.174278 | 2.7713919 | SSO-M5 |
-| 2025-08-18T11:55:00.000-04:00 | 738.45605 | 41.0 | 0.054 | 0.0 | 10.8066 | 0.3557328 | 475.93652 | 0.99877053 | 11.111063 | 6.174984 | -0.35465142 | 156.74469 | 2101.1206 | 0.267116 | 0.0 | 547.28125 | 18.174759 | 2.7661219 | SSO-M5 |
-| 2025-08-18T12:05:00.000-04:00 | 738.441 | 41.0 | 0.063 | 0.0 | 10.7851 | 0.35564154 | 475.78662 | 0.998771 | 11.106266 | 6.177778 | -0.36506397 | 157.59584 | 2101.7825 | 0.26704502 | 0.0 | 547.14087 | 18.172096 | 2.768199 | SSO-M5 |
-| 2025-08-18T12:15:00.000-04:00 | 738.3885 | 41.0 | 0.054 | 0.0 | 10.7584 | 0.35626495 | 476.54327 | 0.99877274 | 11.107094 | 6.177085 | -0.3569404 | 158.23956 | 2098.4453 | 0.26752666 | 0.0 | 548.0999 | 18.164711 | 2.7678404 | SSO-M5 |
+| 2025-08-18T11:35:00.000-04:00 | 738.4785 | 41.0 | 0.009 | 0.0 | 2.5331 | 0.36470878 | 488.03052 | 0.9987744 | 11.237934 | 6.1544094 | -0.3502579 | 152.71541 | 2049.0522 | 0.27407032 | 0.0 | 561.09045 | 18.18269 | 2.7111874 | SSO-M5 |
+| 2025-08-18T11:45:00.000-04:00 | 738.441 | 41.0 | 0.072 | 0.0 | 2.4678 | 0.35932544 | 480.73804 | 0.99877274 | 11.098892 | 6.1762724 | -0.3646283 | 155.69087 | 2080.135 | 0.269898 | 0.0 | 552.80835 | 18.174278 | 2.7713919 | SSO-M5 |
+| 2025-08-18T11:55:00.000-04:00 | 738.45605 | 41.0 | 0.054 | 0.0 | 2.4412 | 0.3557328 | 475.93652 | 0.99877053 | 11.111063 | 6.174984 | -0.35465142 | 156.74469 | 2101.1206 | 0.267116 | 0.0 | 547.28125 | 18.174759 | 2.7661219 | SSO-M5 |
+| 2025-08-18T12:05:00.000-04:00 | 738.441 | 41.0 | 0.063 | 0.0 | 2.4363 | 0.35564154 | 475.78662 | 0.998771 | 11.106266 | 6.177778 | -0.36506397 | 157.59584 | 2101.7825 | 0.26704502 | 0.0 | 547.14087 | 18.172096 | 2.768199 | SSO-M5 |
+| 2025-08-18T12:15:00.000-04:00 | 738.3885 | 41.0 | 0.054 | 0.0 | 2.4303 | 0.35626495 | 476.54327 | 0.99877274 | 11.107094 | 6.177085 | -0.3569404 | 158.23956 | 2098.4453 | 0.26752666 | 0.0 | 548.0999 | 18.164711 | 2.7678404 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001812
+## Table: ddt_brick0001998
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20251015_20251212_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-10-15 to 2025-12-12 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20251015_20251212_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-10-15 to 2025-12-12 (v4)
 
 ### Schema
 
@@ -22351,17 +22995,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T16:08:00.000-04:00 | 738.19354 | 99.0 | 0.0 | 0.0 | 16.3106 | 0.28136015 | 387.67456 | 0.99846214 | 12.169365 | 5.9525385 | -0.29915738 | 243.80124 | 2579.4832 | 0.20994473 | 0.0 | 432.8618 | 19.53446 | 2.316578 | SSO-M5 |
-| 2025-10-15T16:18:00.000-04:00 | 738.17096 | 99.0 | 0.036 | 0.0 | 16.312 | 0.28107077 | 387.3119 | 0.998461 | 11.974818 | 5.971389 | -0.34868696 | 206.7367 | 2581.8984 | 0.20972319 | 0.0 | 432.4166 | 19.538826 | 2.4007893 | SSO-M5 |
-| 2025-10-15T16:28:00.000-04:00 | 738.10345 | 99.0 | 13.335 | 0.0 | 16.0448 | 0.28131065 | 387.66382 | 0.9984607 | 12.111443 | 5.970312 | -0.34437454 | 197.77216 | 2579.5547 | 0.2099072 | 0.0 | 432.7856 | 19.541414 | 2.34165 | SSO-M5 |
-| 2025-10-15T16:38:00.000-04:00 | 738.11096 | 99.0 | 13.281 | 0.0 | 15.9126 | 0.2812145 | 387.53607 | 0.9984606 | 12.118387 | 5.9674964 | -0.34509265 | 188.18057 | 2580.405 | 0.20983356 | 0.0 | 432.63766 | 19.54199 | 2.338644 | SSO-M5 |
-| 2025-10-15T16:48:00.000-04:00 | 738.02094 | 99.0 | 13.173 | 0.0 | 15.8133 | 0.28082383 | 387.0266 | 0.9984595 | 12.138643 | 5.9751225 | -0.34385586 | 170.21812 | 2583.8018 | 0.20953427 | 0.0 | 432.03665 | 19.545496 | 2.329876 | SSO-M5 |
+| 2025-10-15T16:08:00.000-04:00 | 738.19354 | 99.0 | 0.0 | 0.0 | 3.6845 | 0.28136015 | 387.67456 | 0.99846214 | 12.169365 | 5.9525385 | -0.29915738 | 243.80124 | 2579.4832 | 0.20994473 | 0.0 | 432.8618 | 19.53446 | 2.316578 | SSO-M5 |
+| 2025-10-15T16:18:00.000-04:00 | 738.17096 | 99.0 | 0.036 | 0.0 | 3.6848 | 0.28107077 | 387.3119 | 0.998461 | 11.974818 | 5.971389 | -0.34868696 | 206.7367 | 2581.8984 | 0.20972319 | 0.0 | 432.4166 | 19.538826 | 2.4007893 | SSO-M5 |
+| 2025-10-15T16:28:00.000-04:00 | 738.10345 | 99.0 | 13.335 | 0.0 | 3.6245 | 0.28131065 | 387.66382 | 0.9984607 | 12.111443 | 5.970312 | -0.34437454 | 197.77216 | 2579.5547 | 0.2099072 | 0.0 | 432.7856 | 19.541414 | 2.34165 | SSO-M5 |
+| 2025-10-15T16:38:00.000-04:00 | 738.11096 | 99.0 | 13.281 | 0.0 | 3.5946 | 0.2812145 | 387.53607 | 0.9984606 | 12.118387 | 5.9674964 | -0.34509265 | 188.18057 | 2580.405 | 0.20983356 | 0.0 | 432.63766 | 19.54199 | 2.338644 | SSO-M5 |
+| 2025-10-15T16:48:00.000-04:00 | 738.02094 | 99.0 | 13.173 | 0.0 | 3.5722 | 0.28082383 | 387.0266 | 0.9984595 | 12.138643 | 5.9751225 | -0.34385586 | 170.21812 | 2583.8018 | 0.20953427 | 0.0 | 432.03665 | 19.545496 | 2.329876 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001813
+## Table: ddt_brick0001999
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20251216_20260102_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-12-16 to 2026-01-02 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20251216_20260102_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2025-12-16 to 2026-01-02 (v4)
 
 ### Schema
 
@@ -22394,17 +23038,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:45:00.000-05:00 | 741.3813 | 65.0 | 0.009 | 0.0 | 16.032 | 0.33989757 | 470.9552 | 0.99844337 | 10.301517 | 6.260963 | -0.29891205 | 205.91489 | 2123.3442 | 0.25503764 | 0.0 | 522.9193 | 19.79722 | 3.0928583 | SSO-M5 |
-| 2025-12-16T13:55:00.000-05:00 | 741.4563 | 65.0 | 0.063 | 0.0 | 15.7036 | 0.32045788 | 444.08783 | 0.9984303 | 10.086278 | 6.26537 | -0.2966744 | 188.66293 | 2251.807 | 0.24002707 | 0.0 | 493.01212 | 19.804424 | 3.1860237 | SSO-M5 |
-| 2025-12-16T14:05:00.000-05:00 | 741.4188 | 65.0 | 0.072 | 0.0 | 15.6384 | 0.31463325 | 435.98236 | 0.9984276 | 10.05766 | 6.258527 | -0.32209674 | 185.03181 | 2293.6707 | 0.2355371 | 0.0 | 484.05118 | 19.800774 | 3.19841 | SSO-M5 |
-| 2025-12-16T14:15:00.000-05:00 | 741.4337 | 65.0 | 0.036 | 0.0 | 15.2606 | 0.3091789 | 428.40143 | 0.99842495 | 10.085901 | 6.2540836 | -0.3028443 | 184.50252 | 2334.2593 | 0.23133592 | 0.0 | 475.65982 | 19.798254 | 3.1861858 | SSO-M5 |
-| 2025-12-16T14:25:00.000-05:00 | 741.3663 | 65.0 | 0.036 | 0.0 | 15.1055 | 0.30659765 | 424.79736 | 0.998424 | 10.070128 | 6.244336 | -0.3122151 | 189.49739 | 2354.0635 | 0.2293488 | 0.0 | 471.6887 | 19.795204 | 3.1930132 | SSO-M5 |
+| 2025-12-16T13:45:00.000-05:00 | 741.3813 | 65.0 | 0.009 | 0.0 | 3.6216 | 0.33989757 | 470.9552 | 0.99844337 | 10.301517 | 6.260963 | -0.29891205 | 205.91489 | 2123.3442 | 0.25503764 | 0.0 | 522.9193 | 19.79722 | 3.0928583 | SSO-M5 |
+| 2025-12-16T13:55:00.000-05:00 | 741.4563 | 65.0 | 0.063 | 0.0 | 3.5474 | 0.32045788 | 444.08783 | 0.9984303 | 10.086278 | 6.26537 | -0.2966744 | 188.66293 | 2251.807 | 0.24002707 | 0.0 | 493.01212 | 19.804424 | 3.1860237 | SSO-M5 |
+| 2025-12-16T14:05:00.000-05:00 | 741.4188 | 65.0 | 0.072 | 0.0 | 3.5327 | 0.31463325 | 435.98236 | 0.9984276 | 10.05766 | 6.258527 | -0.32209674 | 185.03181 | 2293.6707 | 0.2355371 | 0.0 | 484.05118 | 19.800774 | 3.19841 | SSO-M5 |
+| 2025-12-16T14:15:00.000-05:00 | 741.4337 | 65.0 | 0.036 | 0.0 | 3.4473 | 0.3091789 | 428.40143 | 0.99842495 | 10.085901 | 6.2540836 | -0.3028443 | 184.50252 | 2334.2593 | 0.23133592 | 0.0 | 475.65982 | 19.798254 | 3.1861858 | SSO-M5 |
+| 2025-12-16T14:25:00.000-05:00 | 741.3663 | 65.0 | 0.036 | 0.0 | 3.4123 | 0.30659765 | 424.79736 | 0.998424 | 10.070128 | 6.244336 | -0.3122151 | 189.49739 | 2354.0635 | 0.2293488 | 0.0 | 471.6887 | 19.795204 | 3.1930132 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001814
+## Table: ddt_brick0002000
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20260103_20260106_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2026-01-03 to 2026-01-06 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ1_20260103_20260106_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ1 from 2026-01-03 to 2026-01-06 (v4)
 
 ### Schema
 
@@ -22426,16 +23070,16 @@ Total Tables: 743
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
 | 2026-01-03T05:45:00.000-05:00 | 0.0 | 0.0 | 0.0 | 10.86 | 0.0 | 17.6 | SSO-M5 |
-| 2026-01-03T11:45:00.000-05:00 | 0.0 | 25.5427 | 286.62 | 10.91 | 5.9 | 19.35 | SSO-M5 |
+| 2026-01-03T11:45:00.000-05:00 | 0.0 | 5.77 | 286.62 | 10.91 | 5.9 | 19.35 | SSO-M5 |
 | 2026-01-03T12:00:00.000-05:00 | 0.0 | 0.0 | 270.76 | 10.82 | 5.92 | 19.33 | SSO-M5 |
 | 2026-01-03T12:15:00.000-05:00 | 0.0 | 0.0 | 0.0 | 10.72 | 0.0 | 17.6 | SSO-M5 |
 | 2026-01-04T08:30:00.000-05:00 | 0.0 | 0.0 | 0.0 | 11.15 | 0.0 | 17.6 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001815
+## Table: ddt_brick0002001
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20241003_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2024-10-03 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20241003_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2024-10-03 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -22468,17 +23112,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:03:00.000-04:00 | 739.2552 | 76.0 | 0.594 | 0.3011244 | 25.8377 | 0.31868303 | 426.56097 | 0.99874467 | 10.958169 | 5.995014 | 4.607173 | 278.21063 | 2344.3308 | 0.23850615 | 3.289794 | 490.28156 | 18.195427 | 5.303253 | SSO-M5 |
-| 2024-10-03T11:13:00.000-04:00 | 739.3076 | 76.0 | 13.344 | 0.29624218 | 25.478 | 0.31443778 | 421.0468 | 0.9987387 | 10.98207 | 5.9930778 | 4.535948 | 275.87415 | 2375.0327 | 0.23523903 | 3.237368 | 483.75043 | 18.213623 | 5.292905 | SSO-M5 |
-| 2024-10-03T11:23:00.000-04:00 | 739.28516 | 76.0 | 13.353 | 0.27817532 | 26.0756 | 0.31001693 | 415.14368 | 0.99873585 | 10.98275 | 5.984555 | 4.2668176 | 276.6943 | 2408.8047 | 0.23183689 | 3.0400763 | 476.94913 | 18.215446 | 5.29261 | SSO-M5 |
-| 2024-10-03T11:33:00.000-04:00 | 739.27765 | 76.0 | 13.371 | 0.2708965 | 26.872 | 0.30705744 | 411.1715 | 0.9987342 | 10.978556 | 5.978352 | 4.158223 | 278.52298 | 2432.0752 | 0.22956029 | 2.9604554 | 472.3961 | 18.214432 | 5.294426 | SSO-M5 |
-| 2024-10-03T11:43:00.000-04:00 | 739.26263 | 76.0 | 13.344 | 0.26549342 | 28.4809 | 0.30579916 | 409.48203 | 0.9987336 | 10.985109 | 5.9722757 | 4.0776587 | 279.7532 | 2442.1096 | 0.22859253 | 2.9014227 | 470.4602 | 18.213934 | 5.291589 | SSO-M5 |
+| 2024-10-03T11:03:00.000-04:00 | 739.2552 | 76.0 | 0.594 | 0.3011244 | 5.8366 | 0.31868303 | 426.56097 | 0.99874467 | 10.958169 | 5.995014 | 4.607173 | 278.21063 | 2344.3308 | 0.23850615 | 3.289794 | 490.28156 | 18.195427 | 5.303253 | SSO-M5 |
+| 2024-10-03T11:13:00.000-04:00 | 739.3076 | 76.0 | 13.344 | 0.29624218 | 5.7554 | 0.31443778 | 421.0468 | 0.9987387 | 10.98207 | 5.9930778 | 4.535948 | 275.87415 | 2375.0327 | 0.23523903 | 3.237368 | 483.75043 | 18.213623 | 5.292905 | SSO-M5 |
+| 2024-10-03T11:23:00.000-04:00 | 739.28516 | 76.0 | 13.353 | 0.27817532 | 5.8904 | 0.31001693 | 415.14368 | 0.99873585 | 10.98275 | 5.984555 | 4.2668176 | 276.6943 | 2408.8047 | 0.23183689 | 3.0400763 | 476.94913 | 18.215446 | 5.29261 | SSO-M5 |
+| 2024-10-03T11:33:00.000-04:00 | 739.27765 | 76.0 | 13.371 | 0.2708965 | 6.0703 | 0.30705744 | 411.1715 | 0.9987342 | 10.978556 | 5.978352 | 4.158223 | 278.52298 | 2432.0752 | 0.22956029 | 2.9604554 | 472.3961 | 18.214432 | 5.294426 | SSO-M5 |
+| 2024-10-03T11:43:00.000-04:00 | 739.26263 | 76.0 | 13.344 | 0.26549342 | 6.4337 | 0.30579916 | 409.48203 | 0.9987336 | 10.985109 | 5.9722757 | 4.0776587 | 279.7532 | 2442.1096 | 0.22859253 | 2.9014227 | 470.4602 | 18.213934 | 5.291589 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001816
+## Table: ddt_brick0002002
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20250818_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-08-18 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20250818_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-08-18 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -22511,17 +23155,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-18T11:41:00.000-04:00 | 739.51764 | 21.0 | 0.081 | 0.0 | 20.8236 | 0.5005528 | 653.4555 | 0.99905735 | 11.294243 | 6.2406816 | -0.7002653 | 236.80629 | 1530.326 | 0.37994927 | 0.0 | 770.0812 | 17.070894 | 5.2103367 | SSO-M5 |
-| 2025-08-18T11:51:00.000-04:00 | 739.26263 | 21.0 | 0.054 | 0.0 | 20.6881 | 0.49920693 | 651.761 | 0.9990558 | 11.288978 | 6.2257423 | -0.70886254 | 237.43333 | 1534.3048 | 0.3788919 | 0.0 | 768.0107 | 17.075148 | 5.212617 | SSO-M5 |
-| 2025-08-18T12:01:00.000-04:00 | 739.13513 | 21.0 | 0.063 | 0.0 | 20.401 | 0.49742025 | 649.4148 | 0.99905485 | 11.289575 | 6.2246227 | -0.71047175 | 237.21399 | 1539.8479 | 0.3774865 | 0.0 | 765.2619 | 17.074226 | 5.2123585 | SSO-M5 |
-| 2025-08-18T12:11:00.000-04:00 | 739.09015 | 21.0 | 0.054 | 0.0 | 20.1867 | 0.49756342 | 649.58905 | 0.99905515 | 11.284607 | 6.222608 | -0.7078264 | 237.25214 | 1539.4348 | 0.37759882 | 0.0 | 765.4822 | 17.073359 | 5.21451 | SSO-M5 |
-| 2025-08-18T12:21:00.000-04:00 | 739.01514 | 21.0 | 0.054 | 0.0 | 20.0894 | 0.49738207 | 649.35876 | 0.9990548 | 11.27888 | 6.224309 | -0.71355987 | 237.2879 | 1539.9807 | 0.3774565 | 0.0 | 765.2032 | 17.073797 | 5.2169905 | SSO-M5 |
+| 2025-08-18T11:41:00.000-04:00 | 739.51764 | 21.0 | 0.081 | 0.0 | 4.704 | 0.5005528 | 653.4555 | 0.99905735 | 11.294243 | 6.2406816 | -0.7002653 | 236.80629 | 1530.326 | 0.37994927 | 0.0 | 770.0812 | 17.070894 | 5.2103367 | SSO-M5 |
+| 2025-08-18T11:51:00.000-04:00 | 739.26263 | 21.0 | 0.054 | 0.0 | 4.6734 | 0.49920693 | 651.761 | 0.9990558 | 11.288978 | 6.2257423 | -0.70886254 | 237.43333 | 1534.3048 | 0.3788919 | 0.0 | 768.0107 | 17.075148 | 5.212617 | SSO-M5 |
+| 2025-08-18T12:01:00.000-04:00 | 739.13513 | 21.0 | 0.063 | 0.0 | 4.6085 | 0.49742025 | 649.4148 | 0.99905485 | 11.289575 | 6.2246227 | -0.71047175 | 237.21399 | 1539.8479 | 0.3774865 | 0.0 | 765.2619 | 17.074226 | 5.2123585 | SSO-M5 |
+| 2025-08-18T12:11:00.000-04:00 | 739.09015 | 21.0 | 0.054 | 0.0 | 4.5601 | 0.49756342 | 649.58905 | 0.99905515 | 11.284607 | 6.222608 | -0.7078264 | 237.25214 | 1539.4348 | 0.37759882 | 0.0 | 765.4822 | 17.073359 | 5.21451 | SSO-M5 |
+| 2025-08-18T12:21:00.000-04:00 | 739.01514 | 21.0 | 0.054 | 0.0 | 4.5381 | 0.49738207 | 649.35876 | 0.9990548 | 11.27888 | 6.224309 | -0.71355987 | 237.2879 | 1539.9807 | 0.3774565 | 0.0 | 765.2032 | 17.073797 | 5.2169905 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001817
+## Table: ddt_brick0002003
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20251015_20251209_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-10-15 to 2025-12-09 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20251015_20251209_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-10-15 to 2025-12-09 (v4)
 
 ### Schema
 
@@ -22554,17 +23198,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-15T16:06:00.000-04:00 | 735.77484 | 99.0 | 0.0 | 0.0 | 220.4818 | 0.6885243 | 914.2721 | 0.99903524 | 12.069994 | 6.153821 | -0.1658241 | 284.2529 | 1093.7662 | 0.5294194 | 0.0 | 1059.2682 | 17.833338 | 4.8576736 | SSO-M5 |
-| 2025-10-15T16:16:00.000-04:00 | 735.6324 | 99.0 | 13.317 | 0.0 | 220.6901 | 0.6884228 | 914.29456 | 0.99903375 | 12.06832 | 6.1400757 | -0.62301236 | 283.35406 | 1093.7394 | 0.5293408 | 0.0 | 1059.112 | 17.84111 | 4.8583984 | SSO-M5 |
-| 2025-10-15T16:26:00.000-04:00 | 736.0149 | 99.0 | 13.326 | 0.0 | 220.8918 | 0.6881134 | 913.9531 | 0.9990329 | 12.082025 | 6.144529 | -0.5969671 | 278.28766 | 1094.1481 | 0.52909416 | 0.0 | 1058.636 | 17.844547 | 4.852463 | SSO-M5 |
-| 2025-10-15T16:36:00.000-04:00 | 736.2249 | 99.0 | 13.272 | 0.0 | 221.0575 | 0.68770474 | 913.43616 | 0.9990325 | 12.08853 | 6.1425786 | -0.54243696 | 273.0329 | 1094.7672 | 0.5287676 | 0.0 | 1058.0073 | 17.845823 | 4.8496456 | SSO-M5 |
-| 2025-10-15T16:46:00.000-04:00 | 736.3074 | 99.0 | 13.128 | 0.0 | 220.569 | 0.68789434 | 913.71375 | 0.99903226 | 12.0923605 | 6.142853 | -0.5316398 | 269.30408 | 1094.4347 | 0.5289197 | 0.0 | 1058.299 | 17.8471 | 4.847986 | SSO-M5 |
+| 2025-10-15T16:06:00.000-04:00 | 735.77484 | 99.0 | 0.0 | 0.0 | 49.8061 | 0.6885243 | 914.2721 | 0.99903524 | 12.069994 | 6.153821 | -0.1658241 | 284.2529 | 1093.7662 | 0.5294194 | 0.0 | 1059.2682 | 17.833338 | 4.8576736 | SSO-M5 |
+| 2025-10-15T16:16:00.000-04:00 | 735.6324 | 99.0 | 13.317 | 0.0 | 49.8532 | 0.6884228 | 914.29456 | 0.99903375 | 12.06832 | 6.1400757 | -0.62301236 | 283.35406 | 1093.7394 | 0.5293408 | 0.0 | 1059.112 | 17.84111 | 4.8583984 | SSO-M5 |
+| 2025-10-15T16:26:00.000-04:00 | 736.0149 | 99.0 | 13.326 | 0.0 | 49.8987 | 0.6881134 | 913.9531 | 0.9990329 | 12.082025 | 6.144529 | -0.5969671 | 278.28766 | 1094.1481 | 0.52909416 | 0.0 | 1058.636 | 17.844547 | 4.852463 | SSO-M5 |
+| 2025-10-15T16:36:00.000-04:00 | 736.2249 | 99.0 | 13.272 | 0.0 | 49.9362 | 0.68770474 | 913.43616 | 0.9990325 | 12.08853 | 6.1425786 | -0.54243696 | 273.0329 | 1094.7672 | 0.5287676 | 0.0 | 1058.0073 | 17.845823 | 4.8496456 | SSO-M5 |
+| 2025-10-15T16:46:00.000-04:00 | 736.3074 | 99.0 | 13.128 | 0.0 | 49.8258 | 0.68789434 | 913.71375 | 0.99903226 | 12.0923605 | 6.142853 | -0.5316398 | 269.30408 | 1094.4347 | 0.5289197 | 0.0 | 1058.299 | 17.8471 | 4.847986 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001818
+## Table: ddt_brick0002004
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -22597,17 +23241,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:38:00.000-05:00 | 749.7935 | 80.0 | 0.297 | 0.84709275 | 7.9265 | 0.2482488 | 335.4594 | 0.99862057 | 10.143414 | 6.3128705 | 13.724293 | 267.10855 | 2980.9866 | 0.1845631 | 9.200147 | 381.92123 | 18.630737 | 5.5518894 | SSO-M5 |
-| 2025-12-16T13:48:00.000-05:00 | 749.60596 | 80.0 | 0.063 | 0.7577383 | 7.1412 | 0.24270459 | 327.97357 | 0.99861723 | 10.096212 | 6.2922897 | 12.280539 | 262.92908 | 3049.0261 | 0.18033785 | 8.2317295 | 373.39166 | 18.631592 | 5.572324 | SSO-M5 |
-| 2025-12-16T13:58:00.000-05:00 | 749.5085 | 80.0 | 0.072 | 0.9231373 | 6.773 | 0.23284666 | 314.64337 | 0.9986117 | 10.085223 | 6.295974 | 14.951749 | 263.50128 | 3178.2014 | 0.17283404 | 10.029165 | 358.22562 | 18.630291 | 5.5770807 | SSO-M5 |
-| 2025-12-16T14:08:00.000-05:00 | 749.4635 | 80.0 | 0.045 | 0.993565 | 6.7454 | 0.22816285 | 308.31787 | 0.9986088 | 10.08561 | 6.3193054 | 16.089346 | 268.00262 | 3243.406 | 0.16927306 | 10.794854 | 351.01978 | 18.630836 | 5.576913 | SSO-M5 |
-| 2025-12-16T14:18:00.000-05:00 | 749.45593 | 80.0 | 0.036 | 1.0392095 | 6.7877 | 0.22430816 | 303.12018 | 0.9986062 | 10.099897 | 6.338855 | 16.826994 | 271.32855 | 3299.0215 | 0.16634452 | 11.291086 | 345.08948 | 18.632536 | 5.5707273 | SSO-M5 |
+| 2025-12-16T13:38:00.000-05:00 | 749.7935 | 80.0 | 0.297 | 0.84709275 | 1.7906 | 0.2482488 | 335.4594 | 0.99862057 | 10.143414 | 6.3128705 | 13.724293 | 267.10855 | 2980.9866 | 0.1845631 | 9.200147 | 381.92123 | 18.630737 | 5.5518894 | SSO-M5 |
+| 2025-12-16T13:48:00.000-05:00 | 749.60596 | 80.0 | 0.063 | 0.7577383 | 1.6132 | 0.24270459 | 327.97357 | 0.99861723 | 10.096212 | 6.2922897 | 12.280539 | 262.92908 | 3049.0261 | 0.18033785 | 8.2317295 | 373.39166 | 18.631592 | 5.572324 | SSO-M5 |
+| 2025-12-16T13:58:00.000-05:00 | 749.5085 | 80.0 | 0.072 | 0.9231373 | 1.53 | 0.23284666 | 314.64337 | 0.9986117 | 10.085223 | 6.295974 | 14.951749 | 263.50128 | 3178.2014 | 0.17283404 | 10.029165 | 358.22562 | 18.630291 | 5.5770807 | SSO-M5 |
+| 2025-12-16T14:08:00.000-05:00 | 749.4635 | 80.0 | 0.045 | 0.993565 | 1.5238 | 0.22816285 | 308.31787 | 0.9986088 | 10.08561 | 6.3193054 | 16.089346 | 268.00262 | 3243.406 | 0.16927306 | 10.794854 | 351.01978 | 18.630836 | 5.576913 | SSO-M5 |
+| 2025-12-16T14:18:00.000-05:00 | 749.45593 | 80.0 | 0.036 | 1.0392095 | 1.5333 | 0.22430816 | 303.12018 | 0.9986062 | 10.099897 | 6.338855 | 16.826994 | 271.32855 | 3299.0215 | 0.16634452 | 11.291086 | 345.08948 | 18.632536 | 5.5707273 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001819
+## Table: ddt_brick0002005
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -22640,17 +23284,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:08:00.000-05:00 | 743.598 | 64.0 | 0.036 | 0.80760133 | 13.2379 | 0.22134107 | 295.85645 | 0.9986993 | 10.414521 | 6.1873636 | 12.960981 | 432.05844 | 3380.0176 | 0.16405566 | 8.755238 | 340.52472 | 18.13221 | 5.434515 | SSO-M5 |
-| 2026-01-23T00:18:00.000-05:00 | 743.6055 | 64.0 | 0.036 | 0.8065322 | 13.1993 | 0.22135046 | 295.86523 | 0.9986995 | 10.418107 | 6.187609 | 12.943723 | 432.29208 | 3379.9172 | 0.1640628 | 8.743449 | 340.53915 | 18.131628 | 5.4329624 | SSO-M5 |
-| 2026-01-23T00:28:00.000-05:00 | 743.643 | 64.0 | 0.036 | 0.80808717 | 13.1838 | 0.22132993 | 295.84515 | 0.99869925 | 10.4193325 | 6.1880527 | 12.968895 | 432.30878 | 3380.1467 | 0.16404726 | 8.760064 | 340.50757 | 18.132761 | 5.432432 | SSO-M5 |
-| 2026-01-23T00:38:00.000-05:00 | 743.6505 | 64.0 | 0.036 | 0.80343723 | 13.389 | 0.2216982 | 296.36615 | 0.99869853 | 10.434628 | 6.1952877 | 12.895597 | 432.26825 | 3374.2046 | 0.1643271 | 8.710371 | 341.07413 | 18.137175 | 5.42581 | SSO-M5 |
-| 2026-01-23T00:48:00.000-05:00 | 743.6205 | 64.0 | 0.027 | 0.8024629 | 13.3795 | 0.22162734 | 296.25513 | 0.9986989 | 10.425603 | 6.186873 | 12.879369 | 432.0179 | 3375.469 | 0.16427314 | 8.699708 | 340.96515 | 18.134666 | 5.429717 | SSO-M5 |
+| 2026-01-23T00:08:00.000-05:00 | 743.598 | 64.0 | 0.036 | 0.80760133 | 2.9904 | 0.22134107 | 295.85645 | 0.9986993 | 10.414521 | 6.1873636 | 12.960981 | 432.05844 | 3380.0176 | 0.16405566 | 8.755238 | 340.52472 | 18.13221 | 5.434515 | SSO-M5 |
+| 2026-01-23T00:18:00.000-05:00 | 743.6055 | 64.0 | 0.036 | 0.8065322 | 2.9817 | 0.22135046 | 295.86523 | 0.9986995 | 10.418107 | 6.187609 | 12.943723 | 432.29208 | 3379.9172 | 0.1640628 | 8.743449 | 340.53915 | 18.131628 | 5.4329624 | SSO-M5 |
+| 2026-01-23T00:28:00.000-05:00 | 743.643 | 64.0 | 0.036 | 0.80808717 | 2.9782 | 0.22132993 | 295.84515 | 0.99869925 | 10.4193325 | 6.1880527 | 12.968895 | 432.30878 | 3380.1467 | 0.16404726 | 8.760064 | 340.50757 | 18.132761 | 5.432432 | SSO-M5 |
+| 2026-01-23T00:38:00.000-05:00 | 743.6505 | 64.0 | 0.036 | 0.80343723 | 3.0245 | 0.2216982 | 296.36615 | 0.99869853 | 10.434628 | 6.1952877 | 12.895597 | 432.26825 | 3374.2046 | 0.1643271 | 8.710371 | 341.07413 | 18.137175 | 5.42581 | SSO-M5 |
+| 2026-01-23T00:48:00.000-05:00 | 743.6205 | 64.0 | 0.027 | 0.8024629 | 3.0224 | 0.22162734 | 296.25513 | 0.9986989 | 10.425603 | 6.186873 | 12.879369 | 432.0179 | 3375.469 | 0.16427314 | 8.699708 | 340.96515 | 18.134666 | 5.429717 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001820
+## Table: ddt_brick0002006
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20250928_20251003_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-09-28 to 2025-10-03 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20250928_20251003_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-09-28 to 2025-10-03 (v4)
 
 ### Schema
 
@@ -22678,17 +23322,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-09-28T07:53:00.000-04:00 | 739.27295 | 53.0 | 0.0 | 233.1478 | 0.55448025 | 731.1814 | 0.99901026 | 7.9512424 | 1367.6497 | 0.42261833 | 853.0466 | 17.520483 | 9.820089 | SSO-M5 |
-| 2025-09-28T08:03:00.000-04:00 | 739.33295 | 53.0 | 0.0 | 234.3841 | 0.55520743 | 731.85864 | 0.9990138 | 7.920343 | 1366.384 | 0.42318875 | 854.1653 | 17.50322 | 9.833478 | SSO-M5 |
-| 2025-09-28T08:13:00.000-04:00 | 739.4079 | 53.0 | 0.0 | 235.7331 | 0.56828547 | 749.0536 | 0.99902225 | 8.373686 | 1335.018 | 0.43354145 | 874.2854 | 17.50057 | 9.637147 | SSO-M5 |
-| 2025-09-28T08:23:00.000-04:00 | 739.47546 | 53.0 | 0.0 | 249.4936 | 0.57034445 | 751.8449 | 0.99902254 | 8.738226 | 1330.0615 | 0.43517384 | 877.45294 | 17.505196 | 9.479264 | SSO-M5 |
-| 2025-09-28T08:33:00.000-04:00 | 739.54297 | 53.0 | 0.0 | 267.1468 | 0.5832707 | 769.01843 | 0.9990291 | 9.350244 | 1300.359 | 0.44542393 | 897.33954 | 17.512999 | 9.214204 | SSO-M5 |
+| 2025-09-28T07:53:00.000-04:00 | 739.27295 | 53.0 | 0.0 | 52.6673 | 0.55448025 | 731.1814 | 0.99901026 | 7.9512424 | 1367.6497 | 0.42261833 | 853.0466 | 17.520483 | 9.820089 | SSO-M5 |
+| 2025-09-28T08:03:00.000-04:00 | 739.33295 | 53.0 | 0.0 | 52.9466 | 0.55520743 | 731.85864 | 0.9990138 | 7.920343 | 1366.384 | 0.42318875 | 854.1653 | 17.50322 | 9.833478 | SSO-M5 |
+| 2025-09-28T08:13:00.000-04:00 | 739.4079 | 53.0 | 0.0 | 53.2513 | 0.56828547 | 749.0536 | 0.99902225 | 8.373686 | 1335.018 | 0.43354145 | 874.2854 | 17.50057 | 9.637147 | SSO-M5 |
+| 2025-09-28T08:23:00.000-04:00 | 739.47546 | 53.0 | 0.0 | 56.3598 | 0.57034445 | 751.8449 | 0.99902254 | 8.738226 | 1330.0615 | 0.43517384 | 877.45294 | 17.505196 | 9.479264 | SSO-M5 |
+| 2025-09-28T08:33:00.000-04:00 | 739.54297 | 53.0 | 0.0 | 60.3476 | 0.5832707 | 769.01843 | 0.9990291 | 9.350244 | 1300.359 | 0.44542393 | 897.33954 | 17.512999 | 9.214204 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001821
+## Table: ddt_brick0002007
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20251117_20251209_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-11-17 to 2025-12-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20251117_20251209_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-11-17 to 2025-12-09 (v3)
 
 ### Schema
 
@@ -22721,17 +23365,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-17T15:10:00.000-05:00 | 738.65735 | 98.0 | 0.036 | 0.14281368 | 17.52 | 0.083677694 | 111.44104 | 0.99865043 | 10.447736 | 6.611307 | 3.2090826 | 212.6272 | 8973.3545 | 0.06068408 | 1.5525684 | 128.73491 | 17.966644 | 6.9112644 | SSO-M5 |
-| 2025-11-17T15:20:00.000-05:00 | 737.48724 | 98.0 | 0.0 | 0.1313475 | 17.4802 | 0.08431069 | 112.28705 | 0.9986506 | 10.398224 | 6.6104 | 3.0325158 | 211.57816 | 8905.747 | 0.061155695 | 1.4302696 | 129.70876 | 17.967854 | 6.9327 | SSO-M5 |
-| 2025-11-17T15:30:00.000-05:00 | 737.5847 | 98.0 | 0.0 | 0.12003098 | 17.491 | 0.0844653 | 112.48541 | 0.99865127 | 10.400764 | 6.6107574 | 2.8579962 | 211.02025 | 8890.042 | 0.06127081 | 1.3067818 | 129.94662 | 17.964808 | 6.9316006 | SSO-M5 |
-| 2025-11-17T15:40:00.000-05:00 | 737.60724 | 98.0 | 0.0 | 0.11229416 | 17.4837 | 0.08457499 | 112.629944 | 0.9986514 | 10.402492 | 6.612302 | 2.7387755 | 210.50526 | 8878.634 | 0.061352503 | 1.222498 | 130.11537 | 17.964188 | 6.930853 | SSO-M5 |
-| 2025-11-17T15:50:00.000-05:00 | 737.53973 | 98.0 | 0.0 | 0.10773071 | 17.4365 | 0.08473495 | 112.842896 | 0.9986515 | 10.403654 | 6.612302 | 2.6684756 | 210.00458 | 8861.878 | 0.06147165 | 1.172928 | 130.36145 | 17.964163 | 6.9303493 | SSO-M5 |
+| 2025-11-17T15:10:00.000-05:00 | 738.65735 | 98.0 | 0.036 | 0.14281368 | 3.9577 | 0.083677694 | 111.44104 | 0.99865043 | 10.447736 | 6.611307 | 3.2090826 | 212.6272 | 8973.3545 | 0.06068408 | 1.5525684 | 128.73491 | 17.966644 | 6.9112644 | SSO-M5 |
+| 2025-11-17T15:20:00.000-05:00 | 737.48724 | 98.0 | 0.0 | 0.1313475 | 3.9487 | 0.08431069 | 112.28705 | 0.9986506 | 10.398224 | 6.6104 | 3.0325158 | 211.57816 | 8905.747 | 0.061155695 | 1.4302696 | 129.70876 | 17.967854 | 6.9327 | SSO-M5 |
+| 2025-11-17T15:30:00.000-05:00 | 737.5847 | 98.0 | 0.0 | 0.12003098 | 3.9512 | 0.0844653 | 112.48541 | 0.99865127 | 10.400764 | 6.6107574 | 2.8579962 | 211.02025 | 8890.042 | 0.06127081 | 1.3067818 | 129.94662 | 17.964808 | 6.9316006 | SSO-M5 |
+| 2025-11-17T15:40:00.000-05:00 | 737.60724 | 98.0 | 0.0 | 0.11229416 | 3.9495 | 0.08457499 | 112.629944 | 0.9986514 | 10.402492 | 6.612302 | 2.7387755 | 210.50526 | 8878.634 | 0.061352503 | 1.222498 | 130.11537 | 17.964188 | 6.930853 | SSO-M5 |
+| 2025-11-17T15:50:00.000-05:00 | 737.53973 | 98.0 | 0.0 | 0.10773071 | 3.9389 | 0.08473495 | 112.842896 | 0.9986515 | 10.403654 | 6.612302 | 2.6684756 | 210.00458 | 8861.878 | 0.06147165 | 1.172928 | 130.36145 | 17.964163 | 6.9303493 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001822
+## Table: ddt_brick0002008
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -22764,17 +23408,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:42:00.000-05:00 | 741.005 | 78.0 | 0.0 | 0.015822418 | 24.5215 | 0.37330648 | 500.81842 | 0.9987575 | 10.357884 | 6.2764163 | 1.0819896 | 195.708 | 1996.7317 | 0.28075486 | 0.17285544 | 574.3176 | 18.299658 | 7.0018845 | SSO-M5 |
-| 2025-12-16T13:52:00.000-05:00 | 740.885 | 78.0 | 0.0 | 0.019127652 | 24.542 | 0.3738953 | 501.55487 | 0.9987587 | 10.354702 | 6.2769895 | 1.1328361 | 194.32039 | 1993.7998 | 0.28121105 | 0.2089788 | 575.2235 | 18.294786 | 7.0032625 | SSO-M5 |
-| 2025-12-16T14:02:00.000-05:00 | 740.87006 | 78.0 | 0.0 | 0.016353637 | 24.3628 | 0.3740134 | 501.68396 | 0.9987593 | 10.348957 | 6.2759137 | 1.0900254 | 193.5956 | 1993.2867 | 0.2813024 | 0.17866527 | 575.4052 | 18.292116 | 7.0057497 | SSO-M5 |
-| 2025-12-16T14:12:00.000-05:00 | 740.87006 | 78.0 | 0.0 | 0.012035668 | 24.4134 | 0.37405035 | 501.72778 | 0.99875945 | 10.348324 | 6.274453 | 1.023469 | 193.25227 | 1993.1127 | 0.2813309 | 0.13148975 | 575.46204 | 18.291597 | 7.0060244 | SSO-M5 |
-| 2025-12-16T14:22:00.000-05:00 | 740.8325 | 78.0 | 0.0 | 0.008525245 | 24.6593 | 0.3739148 | 501.54742 | 0.9987594 | 10.360664 | 6.2732863 | 0.96936774 | 193.14738 | 1993.8293 | 0.2812258 | 0.09314323 | 575.25354 | 18.291723 | 7.000681 | SSO-M5 |
+| 2025-12-16T13:42:00.000-05:00 | 741.005 | 78.0 | 0.0 | 0.015822418 | 5.5393 | 0.37330648 | 500.81842 | 0.9987575 | 10.357884 | 6.2764163 | 1.0819896 | 195.708 | 1996.7317 | 0.28075486 | 0.17285544 | 574.3176 | 18.299658 | 7.0018845 | SSO-M5 |
+| 2025-12-16T13:52:00.000-05:00 | 740.885 | 78.0 | 0.0 | 0.019127652 | 5.544 | 0.3738953 | 501.55487 | 0.9987587 | 10.354702 | 6.2769895 | 1.1328361 | 194.32039 | 1993.7998 | 0.28121105 | 0.2089788 | 575.2235 | 18.294786 | 7.0032625 | SSO-M5 |
+| 2025-12-16T14:02:00.000-05:00 | 740.87006 | 78.0 | 0.0 | 0.016353637 | 5.5035 | 0.3740134 | 501.68396 | 0.9987593 | 10.348957 | 6.2759137 | 1.0900254 | 193.5956 | 1993.2867 | 0.2813024 | 0.17866527 | 575.4052 | 18.292116 | 7.0057497 | SSO-M5 |
+| 2025-12-16T14:12:00.000-05:00 | 740.87006 | 78.0 | 0.0 | 0.012035668 | 5.5149 | 0.37405035 | 501.72778 | 0.99875945 | 10.348324 | 6.274453 | 1.023469 | 193.25227 | 1993.1127 | 0.2813309 | 0.13148975 | 575.46204 | 18.291597 | 7.0060244 | SSO-M5 |
+| 2025-12-16T14:22:00.000-05:00 | 740.8325 | 78.0 | 0.0 | 0.008525245 | 5.5705 | 0.3739148 | 501.54742 | 0.9987594 | 10.360664 | 6.2732863 | 0.96936774 | 193.14738 | 1993.8293 | 0.2812258 | 0.09314323 | 575.25354 | 18.291723 | 7.000681 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001823
+## Table: ddt_brick0002009
 
-**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20260123_20260309_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2026-01-23 to 2026-03-09 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M5_SZ3_20260123_20260309_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M5 SZ3 from 2026-01-23 to 2026-03-09 (v3)
 
 ### Schema
 
@@ -22807,17 +23451,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:02:00.000-05:00 | 742.0926 | 66.0 | 0.0 | 0.5571471 | 13.692 | 0.3553953 | 475.57953 | 0.9987686 | 10.981708 | 6.5697618 | 9.4043255 | 173.63043 | 2102.6978 | 0.266856 | 6.062673 | 546.76196 | 18.183819 | 6.7317734 | SSO-M5 |
-| 2026-01-23T00:12:00.000-05:00 | 742.0551 | 66.0 | 0.0 | 0.5812663 | 13.5446 | 0.35541368 | 475.5943 | 0.9987688 | 10.990808 | 6.5821195 | 9.775077 | 174.20741 | 2102.6323 | 0.26687014 | 6.3253403 | 546.7903 | 18.182873 | 6.727833 | SSO-M5 |
-| 2026-01-23T00:22:00.000-05:00 | 741.9876 | 66.0 | 0.0 | 0.59962994 | 13.4322 | 0.35531002 | 475.45764 | 0.9987687 | 10.982234 | 6.5687876 | 10.057512 | 174.62703 | 2103.2368 | 0.26678994 | 6.5258026 | 546.6308 | 18.18307 | 6.7315454 | SSO-M5 |
-| 2026-01-23T00:32:00.000-05:00 | 742.0476 | 66.0 | 0.0 | 0.61062336 | 13.3728 | 0.35524607 | 475.3662 | 0.99876875 | 10.99095 | 6.5676193 | 10.226482 | 175.01326 | 2103.6414 | 0.26674032 | 6.6448307 | 546.5324 | 18.18251 | 6.7277718 | SSO-M5 |
-| 2026-01-23T00:42:00.000-05:00 | 741.9726 | 66.0 | 0.0 | 0.6165467 | 13.3154 | 0.355175 | 475.27026 | 0.99876875 | 10.992603 | 6.560126 | 10.31754 | 175.26122 | 2104.066 | 0.26668525 | 6.709959 | 546.42303 | 18.182432 | 6.7270555 | SSO-M5 |
+| 2026-01-23T00:02:00.000-05:00 | 742.0926 | 66.0 | 0.0 | 0.5571471 | 3.093 | 0.3553953 | 475.57953 | 0.9987686 | 10.981708 | 6.5697618 | 9.4043255 | 173.63043 | 2102.6978 | 0.266856 | 6.062673 | 546.76196 | 18.183819 | 6.7317734 | SSO-M5 |
+| 2026-01-23T00:12:00.000-05:00 | 742.0551 | 66.0 | 0.0 | 0.5812663 | 3.0597 | 0.35541368 | 475.5943 | 0.9987688 | 10.990808 | 6.5821195 | 9.775077 | 174.20741 | 2102.6323 | 0.26687014 | 6.3253403 | 546.7903 | 18.182873 | 6.727833 | SSO-M5 |
+| 2026-01-23T00:22:00.000-05:00 | 741.9876 | 66.0 | 0.0 | 0.59962994 | 3.0343 | 0.35531002 | 475.45764 | 0.9987687 | 10.982234 | 6.5687876 | 10.057512 | 174.62703 | 2103.2368 | 0.26678994 | 6.5258026 | 546.6308 | 18.18307 | 6.7315454 | SSO-M5 |
+| 2026-01-23T00:32:00.000-05:00 | 742.0476 | 66.0 | 0.0 | 0.61062336 | 3.0209 | 0.35524607 | 475.3662 | 0.99876875 | 10.99095 | 6.5676193 | 10.226482 | 175.01326 | 2103.6414 | 0.26674032 | 6.6448307 | 546.5324 | 18.18251 | 6.7277718 | SSO-M5 |
+| 2026-01-23T00:42:00.000-05:00 | 741.9726 | 66.0 | 0.0 | 0.6165467 | 3.0079 | 0.355175 | 475.27026 | 0.99876875 | 10.992603 | 6.560126 | 10.31754 | 175.26122 | 2104.066 | 0.26668525 | 6.709959 | 546.42303 | 18.182432 | 6.7270555 | SSO-M5 |
 
 ---
 
-## Table: ddt_brick0001824
+## Table: ddt_brick0002010
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20241003_20250531_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2024-10-03 to 2025-05-31 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20241003_20250531_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2024-10-03 to 2025-05-31 (v4)
 
 ### Schema
 
@@ -22839,17 +23483,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2024-10-03T11:26:00.000-04:00 | 0.08 | 6.773 | 905.88 | 10.2 | 6.49 | 259.8 | 20.8 | SSO-M6 |
-| 2024-10-03T11:41:00.000-04:00 | 0.04 | 6.8394 | 905.145 | 10.2 | 6.49 | 259.5 | 20.8 | SSO-M6 |
-| 2024-10-03T11:56:00.000-04:00 | 0.055 | 6.6845 | 904.51 | 10.205 | 6.49 | 258.45 | 20.79 | SSO-M6 |
-| 2024-10-03T12:11:00.000-04:00 | 0.035 | 6.7951 | 908.4300000000001 | 10.21 | 6.49 | 254.3 | 20.775 | SSO-M6 |
-| 2024-10-03T12:26:00.000-04:00 | 0.05 | 6.5074 | 904.9100000000001 | 10.22 | 6.49 | 254.6 | 20.77 | SSO-M6 |
+| 2024-10-03T11:26:00.000-04:00 | 0.08 | 1.53 | 905.88 | 10.2 | 6.49 | 259.8 | 20.8 | SSO-M6 |
+| 2024-10-03T11:41:00.000-04:00 | 0.04 | 1.545 | 905.145 | 10.2 | 6.49 | 259.5 | 20.8 | SSO-M6 |
+| 2024-10-03T11:56:00.000-04:00 | 0.055 | 1.51 | 904.51 | 10.205 | 6.49 | 258.45 | 20.79 | SSO-M6 |
+| 2024-10-03T12:11:00.000-04:00 | 0.035 | 1.535 | 908.4300000000001 | 10.21 | 6.49 | 254.3 | 20.775 | SSO-M6 |
+| 2024-10-03T12:26:00.000-04:00 | 0.05 | 1.47 | 904.9100000000001 | 10.22 | 6.49 | 254.6 | 20.77 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001825
+## Table: ddt_brick0002011
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250610_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-06-10 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250610_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-06-10 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -22871,17 +23515,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-06-10T12:47:00.000-04:00 | 0.045 | 21.5807 | 791.48 | 8.34 | 7.01 | 377.7 | 16.24 | SSO-M6 |
-| 2025-06-10T13:02:00.000-04:00 | 0.05 | 21.2044 | 791.64 | 8.34 | 7.01 | 378.3 | 16.24 | SSO-M6 |
-| 2025-06-10T13:17:00.000-04:00 | 0.05 | 21.0716 | 791.72 | 8.34 | 7.01 | 378.5 | 16.25 | SSO-M6 |
-| 2025-06-10T13:32:00.000-04:00 | 0.05 | 21.0494 | 791.8199999999999 | 8.34 | 7.01 | 378.6 | 16.25 | SSO-M6 |
-| 2025-06-10T13:47:00.000-04:00 | 0.05 | 21.3372 | 791.1949999999999 | 8.335 | 7.01 | 378.35 | 16.24 | SSO-M6 |
+| 2025-06-10T12:47:00.000-04:00 | 0.045 | 4.875 | 791.48 | 8.34 | 7.01 | 377.7 | 16.24 | SSO-M6 |
+| 2025-06-10T13:02:00.000-04:00 | 0.05 | 4.79 | 791.64 | 8.34 | 7.01 | 378.3 | 16.24 | SSO-M6 |
+| 2025-06-10T13:17:00.000-04:00 | 0.05 | 4.76 | 791.72 | 8.34 | 7.01 | 378.5 | 16.25 | SSO-M6 |
+| 2025-06-10T13:32:00.000-04:00 | 0.05 | 4.755 | 791.8199999999999 | 8.34 | 7.01 | 378.6 | 16.25 | SSO-M6 |
+| 2025-06-10T13:47:00.000-04:00 | 0.05 | 4.82 | 791.1949999999999 | 8.335 | 7.01 | 378.35 | 16.24 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001826
+## Table: ddt_brick0002012
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250825_20250829_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-08-25 to 2025-08-29 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250825_20250829_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-08-25 to 2025-08-29 (v4)
 
 ### Schema
 
@@ -22914,17 +23558,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-25T12:43:00.000-04:00 | 738.17035 | 97.0 | 0.0 | 0.015021933 | 3.0084 | 0.5382621 | 719.4694 | 0.99888813 | 11.248876 | 6.5675445 | 0.5563336 | 183.94829 | 1389.9131 | 0.40995362 | 0.16431648 | 828.0956 | 18.132153 | 2.5717506 | SSO-M6 |
-| 2025-08-25T12:53:00.000-04:00 | 738.1478 | 97.0 | 0.0 | 0.011663677 | 3.3399 | 0.52882206 | 710.7793 | 0.99883485 | 11.349452 | 6.551861 | 0.5020066 | 195.78816 | 1406.9065 | 0.40255374 | 0.1282422 | 813.5724 | 18.384933 | 2.5281992 | SSO-M6 |
-| 2025-08-25T13:03:00.000-04:00 | 738.1403 | 97.0 | 0.0 | 0.011279283 | 3.8587 | 0.5352766 | 717.7421 | 0.99885917 | 11.203246 | 6.554022 | 0.49447072 | 196.82289 | 1393.258 | 0.40762794 | 0.12374521 | 823.5024 | 18.276054 | 2.5915098 | SSO-M6 |
-| 2025-08-25T13:13:00.000-04:00 | 738.06537 | 97.0 | 0.0 | 0.011044869 | 3.5168 | 0.53537667 | 717.34863 | 0.99886566 | 11.209818 | 6.5544844 | 0.4901863 | 198.12465 | 1394.0223 | 0.40769935 | 0.121102825 | 823.65643 | 18.242504 | 2.588664 | SSO-M6 |
-| 2025-08-25T13:23:00.000-04:00 | 738.0503 | 97.0 | 0.0 | 0.011469172 | 3.3817 | 0.5354195 | 717.07574 | 0.99886966 | 11.212618 | 6.5548835 | 0.49716946 | 199.60762 | 1394.5529 | 0.40772828 | 0.125704 | 823.72235 | 18.221514 | 2.587452 | SSO-M6 |
+| 2025-08-25T12:43:00.000-04:00 | 738.17035 | 97.0 | 0.0 | 0.015021933 | 0.6796 | 0.5382621 | 719.4694 | 0.99888813 | 11.248876 | 6.5675445 | 0.5563336 | 183.94829 | 1389.9131 | 0.40995362 | 0.16431648 | 828.0956 | 18.132153 | 2.5717506 | SSO-M6 |
+| 2025-08-25T12:53:00.000-04:00 | 738.1478 | 97.0 | 0.0 | 0.011663677 | 0.7545 | 0.52882206 | 710.7793 | 0.99883485 | 11.349452 | 6.551861 | 0.5020066 | 195.78816 | 1406.9065 | 0.40255374 | 0.1282422 | 813.5724 | 18.384933 | 2.5281992 | SSO-M6 |
+| 2025-08-25T13:03:00.000-04:00 | 738.1403 | 97.0 | 0.0 | 0.011279283 | 0.8717 | 0.5352766 | 717.7421 | 0.99885917 | 11.203246 | 6.554022 | 0.49447072 | 196.82289 | 1393.258 | 0.40762794 | 0.12374521 | 823.5024 | 18.276054 | 2.5915098 | SSO-M6 |
+| 2025-08-25T13:13:00.000-04:00 | 738.06537 | 97.0 | 0.0 | 0.011044869 | 0.7944 | 0.53537667 | 717.34863 | 0.99886566 | 11.209818 | 6.5544844 | 0.4901863 | 198.12465 | 1394.0223 | 0.40769935 | 0.121102825 | 823.65643 | 18.242504 | 2.588664 | SSO-M6 |
+| 2025-08-25T13:23:00.000-04:00 | 738.0503 | 97.0 | 0.0 | 0.011469172 | 0.7639 | 0.5354195 | 717.07574 | 0.99886966 | 11.212618 | 6.5548835 | 0.49716946 | 199.60762 | 1394.5529 | 0.40772828 | 0.125704 | 823.72235 | 18.221514 | 2.587452 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001827
+## Table: ddt_brick0002013
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250829_20250911_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-08-29 to 2025-09-11 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250829_20250911_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-08-29 to 2025-09-11 (v4)
 
 ### Schema
 
@@ -22957,17 +23601,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-29T13:50:00.000-04:00 | 738.8079 | 95.0 | 0.0 | 0.010190269 | 3.9441 | 0.540431 | 724.27936 | 0.9988668 | 11.239125 | 6.5470347 | 0.47582394 | 108.65569 | 1380.6827 | 0.41169593 | 0.11164331 | 831.4323 | 18.252485 | 2.5267344 | SSO-M6 |
-| 2025-08-29T14:00:00.000-04:00 | 738.9054 | 95.0 | 1.829 | 0.009753011 | 3.4996 | 0.54074657 | 724.7725 | 0.99886614 | 11.241457 | 6.5447593 | 0.46846157 | 107.92613 | 1379.7433 | 0.4119465 | 0.10684816 | 831.9178 | 18.256908 | 2.5257244 | SSO-M6 |
-| 2025-08-29T14:10:00.000-04:00 | 738.8679 | 95.0 | 1.63 | 0.009571226 | 3.3989 | 0.54066414 | 724.62524 | 0.99886656 | 11.236801 | 6.5451937 | 0.46536294 | 107.63526 | 1380.0237 | 0.4118809 | 0.10485702 | 831.791 | 18.254587 | 2.5277405 | SSO-M6 |
-| 2025-08-29T14:20:00.000-04:00 | 738.83044 | 95.0 | 1.369 | 0.00970454 | 3.3511 | 0.54043865 | 724.30524 | 0.9988666 | 11.239484 | 6.5454555 | 0.46760958 | 107.6591 | 1380.6334 | 0.4117024 | 0.10632053 | 831.44403 | 18.253471 | 2.526579 | SSO-M6 |
-| 2025-08-29T14:30:00.000-04:00 | 738.7854 | 95.0 | 1.27 | 0.009769714 | 3.2974 | 0.53979635 | 723.4632 | 0.9988661 | 11.2353325 | 6.5459847 | 0.46872178 | 107.85461 | 1382.2404 | 0.41119498 | 0.1070434 | 830.45593 | 18.254652 | 2.5283766 | SSO-M6 |
+| 2025-08-29T13:50:00.000-04:00 | 738.8079 | 95.0 | 0.0 | 0.010190269 | 0.891 | 0.540431 | 724.27936 | 0.9988668 | 11.239125 | 6.5470347 | 0.47582394 | 108.65569 | 1380.6827 | 0.41169593 | 0.11164331 | 831.4323 | 18.252485 | 2.5267344 | SSO-M6 |
+| 2025-08-29T14:00:00.000-04:00 | 738.9054 | 95.0 | 1.829 | 0.009753011 | 0.7906 | 0.54074657 | 724.7725 | 0.99886614 | 11.241457 | 6.5447593 | 0.46846157 | 107.92613 | 1379.7433 | 0.4119465 | 0.10684816 | 831.9178 | 18.256908 | 2.5257244 | SSO-M6 |
+| 2025-08-29T14:10:00.000-04:00 | 738.8679 | 95.0 | 1.63 | 0.009571226 | 0.7678 | 0.54066414 | 724.62524 | 0.99886656 | 11.236801 | 6.5451937 | 0.46536294 | 107.63526 | 1380.0237 | 0.4118809 | 0.10485702 | 831.791 | 18.254587 | 2.5277405 | SSO-M6 |
+| 2025-08-29T14:20:00.000-04:00 | 738.83044 | 95.0 | 1.369 | 0.00970454 | 0.757 | 0.54043865 | 724.30524 | 0.9988666 | 11.239484 | 6.5454555 | 0.46760958 | 107.6591 | 1380.6334 | 0.4117024 | 0.10632053 | 831.44403 | 18.253471 | 2.526579 | SSO-M6 |
+| 2025-08-29T14:30:00.000-04:00 | 738.7854 | 95.0 | 1.27 | 0.009769714 | 0.7449 | 0.53979635 | 723.4632 | 0.9988661 | 11.2353325 | 6.5459847 | 0.46872178 | 107.85461 | 1382.2404 | 0.41119498 | 0.1070434 | 830.45593 | 18.254652 | 2.5283766 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001828
+## Table: ddt_brick0002014
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250912_20250918_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-09-12 to 2025-09-18 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250912_20250918_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-09-12 to 2025-09-18 (v4)
 
 ### Schema
 
@@ -23000,17 +23644,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-09-12T11:15:00.000-04:00 | 741.4331 | 73.0 | 0.009 | 0.042846717 | 2.4149 | 0.45982796 | 621.9773 | 0.9987375 | 9.885041 | 6.565673 | 1.0365949 | 150.09761 | 1607.7758 | 0.34831437 | 0.47160313 | 707.4276 | 18.675905 | 2.6352615 | SSO-M6 |
-| 2025-09-12T11:25:00.000-04:00 | 741.4331 | 73.0 | 3.451 | 0.025820443 | 2.072 | 0.46033594 | 622.8406 | 0.99873537 | 9.891266 | 6.561925 | 0.74631935 | 156.38234 | 1605.5472 | 0.34871495 | 0.28427526 | 708.2091 | 18.688929 | 2.6325665 | SSO-M6 |
-| 2025-09-12T11:35:00.000-04:00 | 741.41064 | 73.0 | 3.379 | 0.00978432 | 2.0474 | 0.45968586 | 622.0287 | 0.99873394 | 9.886698 | 6.562812 | 0.47272444 | 159.48177 | 1607.643 | 0.3482061 | 0.10773643 | 707.20905 | 18.693937 | 2.6345444 | SSO-M6 |
-| 2025-09-12T11:45:00.000-04:00 | 741.41064 | 73.0 | 2.784 | 0.00967899 | 2.0161 | 0.45955536 | 621.8844 | 0.9987335 | 9.893424 | 6.560009 | 0.47094792 | 161.18886 | 1608.0159 | 0.3481041 | 0.106581725 | 707.00824 | 18.696331 | 2.6316319 | SSO-M6 |
-| 2025-09-12T11:55:00.000-04:00 | 741.4181 | 73.0 | 2.784 | 0.009618111 | 1.9715 | 0.45986822 | 622.2877 | 0.99873394 | 9.892492 | 6.5574617 | 0.46989608 | 162.60982 | 1606.9738 | 0.34834927 | 0.10590714 | 707.48956 | 18.694847 | 2.6320353 | SSO-M6 |
+| 2025-09-12T11:15:00.000-04:00 | 741.4331 | 73.0 | 0.009 | 0.042846717 | 0.5455 | 0.45982796 | 621.9773 | 0.9987375 | 9.885041 | 6.565673 | 1.0365949 | 150.09761 | 1607.7758 | 0.34831437 | 0.47160313 | 707.4276 | 18.675905 | 2.6352615 | SSO-M6 |
+| 2025-09-12T11:25:00.000-04:00 | 741.4331 | 73.0 | 3.451 | 0.025820443 | 0.4681 | 0.46033594 | 622.8406 | 0.99873537 | 9.891266 | 6.561925 | 0.74631935 | 156.38234 | 1605.5472 | 0.34871495 | 0.28427526 | 708.2091 | 18.688929 | 2.6325665 | SSO-M6 |
+| 2025-09-12T11:35:00.000-04:00 | 741.41064 | 73.0 | 3.379 | 0.00978432 | 0.4625 | 0.45968586 | 622.0287 | 0.99873394 | 9.886698 | 6.562812 | 0.47272444 | 159.48177 | 1607.643 | 0.3482061 | 0.10773643 | 707.20905 | 18.693937 | 2.6345444 | SSO-M6 |
+| 2025-09-12T11:45:00.000-04:00 | 741.41064 | 73.0 | 2.784 | 0.00967899 | 0.4554 | 0.45955536 | 621.8844 | 0.9987335 | 9.893424 | 6.560009 | 0.47094792 | 161.18886 | 1608.0159 | 0.3481041 | 0.106581725 | 707.00824 | 18.696331 | 2.6316319 | SSO-M6 |
+| 2025-09-12T11:55:00.000-04:00 | 741.4181 | 73.0 | 2.784 | 0.009618111 | 0.4454 | 0.45986822 | 622.2877 | 0.99873394 | 9.892492 | 6.5574617 | 0.46989608 | 162.60982 | 1606.9738 | 0.34834927 | 0.10590714 | 707.48956 | 18.694847 | 2.6320353 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001829
+## Table: ddt_brick0002015
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250919_20250925_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-09-19 to 2025-09-25 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20250919_20250925_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-09-19 to 2025-09-25 (v4)
 
 ### Schema
 
@@ -23031,17 +23675,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-09-19T16:40:00.000-04:00 | 0.0 | 1.4608 | 316.61 | 6.91 | 6.54 | 18.84 | SSO-M6 |
-| 2025-09-19T16:55:00.000-04:00 | 0.0 | 1.4608 | 311.94 | 6.92 | 6.53 | 18.84 | SSO-M6 |
-| 2025-09-19T17:10:00.000-04:00 | 0.0 | 1.4608 | 310.53999999999996 | 6.925 | 6.52 | 18.84 | SSO-M6 |
-| 2025-09-19T17:40:00.000-04:00 | 0.0 | 1.5494 | 315.59 | 6.93 | 6.53 | 18.85 | SSO-M6 |
-| 2025-09-19T17:55:00.000-04:00 | 0.0 | 1.5494 | 313.04 | 6.92 | 6.52 | 18.85 | SSO-M6 |
+| 2025-09-19T16:40:00.000-04:00 | 0.0 | 0.33 | 316.61 | 6.91 | 6.54 | 18.84 | SSO-M6 |
+| 2025-09-19T16:55:00.000-04:00 | 0.0 | 0.33 | 311.94 | 6.92 | 6.53 | 18.84 | SSO-M6 |
+| 2025-09-19T17:10:00.000-04:00 | 0.0 | 0.33 | 310.53999999999996 | 6.925 | 6.52 | 18.84 | SSO-M6 |
+| 2025-09-19T17:40:00.000-04:00 | 0.0 | 0.35 | 315.59 | 6.93 | 6.53 | 18.85 | SSO-M6 |
+| 2025-09-19T17:55:00.000-04:00 | 0.0 | 0.35 | 313.04 | 6.92 | 6.52 | 18.85 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001830
+## Table: ddt_brick0002016
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20251016_20251209_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-10-16 to 2025-12-09 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20251016_20251209_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-10-16 to 2025-12-09 (v4)
 
 ### Schema
 
@@ -23074,17 +23718,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T11:42:00.000-04:00 | 739.618 | 99.0 | 0.009 | 0.04936289 | 1.0143 | 0.42271945 | 579.0454 | 0.9986008 | 12.166916 | 6.4149947 | 1.3055955 | 159.51819 | 1726.9802 | 0.3193573 | 0.5510726 | 650.3376 | 19.260555 | 2.1875305 | SSO-M6 |
-| 2025-10-16T11:52:00.000-04:00 | 739.54297 | 99.0 | 0.009 | 6.8506E-4 | 0.8903 | 0.41381273 | 566.96375 | 0.99859357 | 12.168032 | 6.413039 | 0.47769666 | 142.2996 | 1763.7812 | 0.3124049 | 0.007649795 | 636.63495 | 19.270332 | 2.187047 | SSO-M6 |
-| 2025-10-16T12:02:00.000-04:00 | 739.54297 | 99.0 | 0.675 | 4.39527E-4 | 0.9176 | 0.4140557 | 567.3436 | 0.9985929 | 12.1676 | 6.4085994 | 0.47355452 | 141.36977 | 1762.6002 | 0.312595 | 0.004908405 | 637.0088 | 19.274189 | 2.187234 | SSO-M6 |
-| 2025-10-16T12:12:00.000-04:00 | 739.5355 | 99.0 | 0.657 | 6.01118E-4 | 0.9276 | 0.41401258 | 567.31665 | 0.9985923 | 12.174625 | 6.4078145 | 0.47632736 | 126.30172 | 1762.6841 | 0.31256166 | 0.006713409 | 636.94244 | 19.27683 | 2.1841927 | SSO-M6 |
-| 2025-10-16T12:22:00.000-04:00 | 739.3704 | 99.0 | 0.603 | 9.45125E-4 | 0.9319 | 0.4139279 | 567.2151 | 0.998592 | 12.165737 | 6.407521 | 0.48219016 | 119.98363 | 1762.9996 | 0.31249577 | 0.010557985 | 636.81213 | 19.27802 | 2.1880407 | SSO-M6 |
+| 2025-10-16T11:42:00.000-04:00 | 739.618 | 99.0 | 0.009 | 0.04936289 | 0.2291 | 0.42271945 | 579.0454 | 0.9986008 | 12.166916 | 6.4149947 | 1.3055955 | 159.51819 | 1726.9802 | 0.3193573 | 0.5510726 | 650.3376 | 19.260555 | 2.1875305 | SSO-M6 |
+| 2025-10-16T11:52:00.000-04:00 | 739.54297 | 99.0 | 0.009 | 6.8506E-4 | 0.2011 | 0.41381273 | 566.96375 | 0.99859357 | 12.168032 | 6.413039 | 0.47769666 | 142.2996 | 1763.7812 | 0.3124049 | 0.007649795 | 636.63495 | 19.270332 | 2.187047 | SSO-M6 |
+| 2025-10-16T12:02:00.000-04:00 | 739.54297 | 99.0 | 0.675 | 4.39527E-4 | 0.2073 | 0.4140557 | 567.3436 | 0.9985929 | 12.1676 | 6.4085994 | 0.47355452 | 141.36977 | 1762.6002 | 0.312595 | 0.004908405 | 637.0088 | 19.274189 | 2.187234 | SSO-M6 |
+| 2025-10-16T12:12:00.000-04:00 | 739.5355 | 99.0 | 0.657 | 6.01118E-4 | 0.2095 | 0.41401258 | 567.31665 | 0.9985923 | 12.174625 | 6.4078145 | 0.47632736 | 126.30172 | 1762.6841 | 0.31256166 | 0.006713409 | 636.94244 | 19.27683 | 2.1841927 | SSO-M6 |
+| 2025-10-16T12:22:00.000-04:00 | 739.3704 | 99.0 | 0.603 | 9.45125E-4 | 0.2105 | 0.4139279 | 567.2151 | 0.998592 | 12.165737 | 6.407521 | 0.48219016 | 119.98363 | 1762.9996 | 0.31249577 | 0.010557985 | 636.81213 | 19.27802 | 2.1880407 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001831
+## Table: ddt_brick0002017
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -23117,17 +23761,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:34:00.000-05:00 | 742.04065 | 94.0 | 0.0 | 0.065775596 | 4.6007 | 0.55672574 | 759.4158 | 0.9987201 | 9.399821 | 6.820275 | 2.2871428 | 154.65524 | 1316.8018 | 0.4247639 | 0.7294296 | 856.50116 | 19.065384 | 3.379981 | SSO-M6 |
-| 2025-12-16T13:44:00.000-05:00 | 741.9432 | 94.0 | 0.072 | 0.062134095 | 4.3585 | 0.55683756 | 759.89355 | 0.99871624 | 9.405294 | 6.819366 | 2.2276027 | 159.23288 | 1315.9738 | 0.42485633 | 0.6894157 | 856.67316 | 19.085266 | 3.3776112 | SSO-M6 |
-| 2025-12-16T13:54:00.000-05:00 | 741.83813 | 94.0 | 0.072 | 0.059957094 | 4.3101 | 0.5569348 | 760.0763 | 0.9987157 | 9.395912 | 6.818632 | 2.19163 | 160.754 | 1315.6573 | 0.42493388 | 0.6653997 | 856.82275 | 19.088324 | 3.3816738 | SSO-M6 |
-| 2025-12-16T14:04:00.000-05:00 | 741.85315 | 94.0 | 13.308 | 0.057776593 | 4.3027 | 0.5569038 | 760.1427 | 0.9987143 | 9.398086 | 6.8202915 | 2.1557298 | 162.7424 | 1315.5425 | 0.42491046 | 0.6412723 | 856.775 | 19.094969 | 3.3807325 | SSO-M6 |
-| 2025-12-16T14:14:00.000-05:00 | 741.8232 | 94.0 | 13.272 | 0.05788172 | 4.293 | 0.55692357 | 760.24255 | 0.9987135 | 9.39379 | 6.8213058 | 2.1576543 | 165.34595 | 1315.3696 | 0.42492718 | 0.64252365 | 856.8054 | 19.09942 | 3.3825922 | SSO-M6 |
+| 2025-12-16T13:34:00.000-05:00 | 742.04065 | 94.0 | 0.0 | 0.065775596 | 1.0393 | 0.55672574 | 759.4158 | 0.9987201 | 9.399821 | 6.820275 | 2.2871428 | 154.65524 | 1316.8018 | 0.4247639 | 0.7294296 | 856.50116 | 19.065384 | 3.379981 | SSO-M6 |
+| 2025-12-16T13:44:00.000-05:00 | 741.9432 | 94.0 | 0.072 | 0.062134095 | 0.9846 | 0.55683756 | 759.89355 | 0.99871624 | 9.405294 | 6.819366 | 2.2276027 | 159.23288 | 1315.9738 | 0.42485633 | 0.6894157 | 856.67316 | 19.085266 | 3.3776112 | SSO-M6 |
+| 2025-12-16T13:54:00.000-05:00 | 741.83813 | 94.0 | 0.072 | 0.059957094 | 0.9736 | 0.5569348 | 760.0763 | 0.9987157 | 9.395912 | 6.818632 | 2.19163 | 160.754 | 1315.6573 | 0.42493388 | 0.6653997 | 856.82275 | 19.088324 | 3.3816738 | SSO-M6 |
+| 2025-12-16T14:04:00.000-05:00 | 741.85315 | 94.0 | 13.308 | 0.057776593 | 0.972 | 0.5569038 | 760.1427 | 0.9987143 | 9.398086 | 6.8202915 | 2.1557298 | 162.7424 | 1315.5425 | 0.42491046 | 0.6412723 | 856.775 | 19.094969 | 3.3807325 | SSO-M6 |
+| 2025-12-16T14:14:00.000-05:00 | 741.8232 | 94.0 | 13.272 | 0.05788172 | 0.9698 | 0.55692357 | 760.24255 | 0.9987135 | 9.39379 | 6.8213058 | 2.1576543 | 165.34595 | 1315.3696 | 0.42492718 | 0.64252365 | 856.8054 | 19.09942 | 3.3825922 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001832
+## Table: ddt_brick0002018
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ1_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ1 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -23160,17 +23804,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:04:00.000-05:00 | 743.13574 | 89.0 | 12.308 | 0.058384277 | 4.1696 | 0.517623 | 692.0156 | 0.9988739 | 10.680823 | 6.847902 | 2.1266406 | 392.18692 | 1445.0541 | 0.39366186 | 0.6343363 | 796.3431 | 18.14093 | 2.8252573 | SSO-M6 |
-| 2026-01-23T00:14:00.000-05:00 | 743.02325 | 89.0 | 12.272 | 0.05649022 | 4.17 | 0.5177186 | 692.14136 | 0.99887407 | 10.685849 | 6.8474402 | 2.0957756 | 392.51593 | 1444.7916 | 0.3937372 | 0.6138605 | 796.4901 | 18.1408 | 2.823081 | SSO-M6 |
-| 2026-01-23T00:24:00.000-05:00 | 743.06824 | 89.0 | 12.29 | 0.05496251 | 4.143 | 0.5176599 | 692.0819 | 0.9988737 | 10.687281 | 6.8471637 | 2.0708978 | 392.8068 | 1444.9156 | 0.3936912 | 0.59719336 | 796.3998 | 18.14205 | 2.8224611 | SSO-M6 |
-| 2026-01-23T00:34:00.000-05:00 | 742.9933 | 89.0 | 12.272 | 0.05367992 | 4.3569 | 0.5136715 | 686.5729 | 0.99887353 | 10.687481 | 6.8442974 | 2.0495431 | 392.25366 | 1456.5096 | 0.39054388 | 0.5831949 | 790.26385 | 18.130335 | 2.8223743 | SSO-M6 |
-| 2026-01-23T00:44:00.000-05:00 | 742.9707 | 89.0 | 12.263 | 0.058067255 | 4.1615 | 0.51411057 | 687.2898 | 0.9988722 | 10.684083 | 6.8443017 | 2.1213455 | 392.87833 | 1454.9904 | 0.39089185 | 0.63095504 | 790.9393 | 18.138948 | 2.8238468 | SSO-M6 |
+| 2026-01-23T00:04:00.000-05:00 | 743.13574 | 89.0 | 12.308 | 0.058384277 | 0.9419 | 0.517623 | 692.0156 | 0.9988739 | 10.680823 | 6.847902 | 2.1266406 | 392.18692 | 1445.0541 | 0.39366186 | 0.6343363 | 796.3431 | 18.14093 | 2.8252573 | SSO-M6 |
+| 2026-01-23T00:14:00.000-05:00 | 743.02325 | 89.0 | 12.272 | 0.05649022 | 0.942 | 0.5177186 | 692.14136 | 0.99887407 | 10.685849 | 6.8474402 | 2.0957756 | 392.51593 | 1444.7916 | 0.3937372 | 0.6138605 | 796.4901 | 18.1408 | 2.823081 | SSO-M6 |
+| 2026-01-23T00:24:00.000-05:00 | 743.06824 | 89.0 | 12.29 | 0.05496251 | 0.9359 | 0.5176599 | 692.0819 | 0.9988737 | 10.687281 | 6.8471637 | 2.0708978 | 392.8068 | 1444.9156 | 0.3936912 | 0.59719336 | 796.3998 | 18.14205 | 2.8224611 | SSO-M6 |
+| 2026-01-23T00:34:00.000-05:00 | 742.9933 | 89.0 | 12.272 | 0.05367992 | 0.9842 | 0.5136715 | 686.5729 | 0.99887353 | 10.687481 | 6.8442974 | 2.0495431 | 392.25366 | 1456.5096 | 0.39054388 | 0.5831949 | 790.26385 | 18.130335 | 2.8223743 | SSO-M6 |
+| 2026-01-23T00:44:00.000-05:00 | 742.9707 | 89.0 | 12.263 | 0.058067255 | 0.9401 | 0.51411057 | 687.2898 | 0.9988722 | 10.684083 | 6.8443017 | 2.1213455 | 392.87833 | 1454.9904 | 0.39089185 | 0.63095504 | 790.9393 | 18.138948 | 2.8238468 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001833
+## Table: ddt_brick0002019
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20241003_20250531_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2024-10-03 to 2025-05-31 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20241003_20250531_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2024-10-03 to 2025-05-31 (v4)
 
 ### Schema
 
@@ -23190,17 +23834,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|
-| 2024-10-03T11:26:00.000-04:00 | 5.0466 | 881.46 | 10.12 | 6.48 | 18.65 | SSO-M6 |
-| 2024-10-03T11:41:00.000-04:00 | 5.0466 | 881.27 | 10.094999999999999 | 6.48 | 18.63 | SSO-M6 |
-| 2024-10-03T11:56:00.000-04:00 | 5.0908 | 882.16 | 10.1 | 6.48 | 18.64 | SSO-M6 |
-| 2024-10-03T12:11:00.000-04:00 | 5.0908 | 882.55 | 10.105 | 6.48 | 18.645 | SSO-M6 |
-| 2024-10-03T12:26:00.000-04:00 | 5.0466 | 882.495 | 10.12 | 6.48 | 18.65 | SSO-M6 |
+| 2024-10-03T11:26:00.000-04:00 | 1.14 | 881.46 | 10.12 | 6.48 | 18.65 | SSO-M6 |
+| 2024-10-03T11:41:00.000-04:00 | 1.14 | 881.27 | 10.094999999999999 | 6.48 | 18.63 | SSO-M6 |
+| 2024-10-03T11:56:00.000-04:00 | 1.15 | 882.16 | 10.1 | 6.48 | 18.64 | SSO-M6 |
+| 2024-10-03T12:11:00.000-04:00 | 1.15 | 882.55 | 10.105 | 6.48 | 18.645 | SSO-M6 |
+| 2024-10-03T12:26:00.000-04:00 | 1.14 | 882.495 | 10.12 | 6.48 | 18.65 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001834
+## Table: ddt_brick0002020
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250610_20250720_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-06-10 to 2025-07-20 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250610_20250720_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-06-10 to 2025-07-20 (v4)
 
 ### Schema
 
@@ -23220,17 +23864,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|
-| 2025-06-10T12:47:00.000-04:00 | 7.6584 | 850.495 | 8.285 | 6.98 | 16.63 | SSO-M6 |
-| 2025-06-10T13:02:00.000-04:00 | 7.6584 | 850.35 | 8.28 | 6.98 | 16.63 | SSO-M6 |
-| 2025-06-10T13:17:00.000-04:00 | 7.6584 | 850.25 | 8.28 | 6.98 | 16.63 | SSO-M6 |
-| 2025-06-10T13:32:00.000-04:00 | 7.6141 | 850.255 | 8.28 | 6.98 | 16.63 | SSO-M6 |
-| 2025-06-10T13:47:00.000-04:00 | 7.6362 | 850.295 | 8.274999999999999 | 6.98 | 16.63 | SSO-M6 |
+| 2025-06-10T12:47:00.000-04:00 | 1.73 | 850.495 | 8.285 | 6.98 | 16.63 | SSO-M6 |
+| 2025-06-10T13:02:00.000-04:00 | 1.73 | 850.35 | 8.28 | 6.98 | 16.63 | SSO-M6 |
+| 2025-06-10T13:17:00.000-04:00 | 1.73 | 850.25 | 8.28 | 6.98 | 16.63 | SSO-M6 |
+| 2025-06-10T13:32:00.000-04:00 | 1.72 | 850.255 | 8.28 | 6.98 | 16.63 | SSO-M6 |
+| 2025-06-10T13:47:00.000-04:00 | 1.725 | 850.295 | 8.274999999999999 | 6.98 | 16.63 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001835
+## Table: ddt_brick0002021
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250727_20250807_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-07-27 to 2025-08-07 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250727_20250807_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-07-27 to 2025-08-07 (v4)
 
 ### Schema
 
@@ -23250,17 +23894,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|
-| 2025-07-27T08:30:00.000-04:00 | 1.9921 | 890.0699999999999 | 11.63 | 6.94 | 16.98 | SSO-M6 |
-| 2025-07-27T08:45:00.000-04:00 | 1.9921 | 890.375 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
-| 2025-07-27T09:00:00.000-04:00 | 1.9921 | 890.605 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
-| 2025-07-27T09:15:00.000-04:00 | 1.9921 | 890.73 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
-| 2025-07-27T09:30:00.000-04:00 | 2.0363 | 890.8 | 11.64 | 6.94 | 16.99 | SSO-M6 |
+| 2025-07-27T08:30:00.000-04:00 | 0.45 | 890.0699999999999 | 11.63 | 6.94 | 16.98 | SSO-M6 |
+| 2025-07-27T08:45:00.000-04:00 | 0.45 | 890.375 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
+| 2025-07-27T09:00:00.000-04:00 | 0.45 | 890.605 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
+| 2025-07-27T09:15:00.000-04:00 | 0.45 | 890.73 | 11.635000000000002 | 6.94 | 16.99 | SSO-M6 |
+| 2025-07-27T09:30:00.000-04:00 | 0.46 | 890.8 | 11.64 | 6.94 | 16.99 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001836
+## Table: ddt_brick0002022
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250819_20250826_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-19 to 2025-08-26 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250819_20250826_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-19 to 2025-08-26 (v4)
 
 ### Schema
 
@@ -23281,17 +23925,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-25T15:46:00.000-04:00 | 0.6 | 3.2758 | 990.24 | 14.184999999999999 | 6.4 | 18.39 | SSO-M6 |
-| 2025-08-25T16:01:00.000-04:00 | 0.515 | 3.5414 | 984.3050000000001 | 14.195 | 6.45 | 18.1 | SSO-M6 |
-| 2025-08-25T16:16:00.000-04:00 | 0.5 | 3.6742 | 980.325 | 14.19 | 6.48 | 17.895 | SSO-M6 |
-| 2025-08-25T16:31:00.000-04:00 | 0.595 | 4.1169 | 981.235 | 14.19 | 6.5 | 17.755000000000003 | SSO-M6 |
-| 2025-08-25T16:46:00.000-04:00 | 0.43 | 3.8071 | 981.0066666666667 | 14.183333333333332 | 6.510000000000001 | 17.69 | SSO-M6 |
+| 2025-08-25T15:46:00.000-04:00 | 0.6 | 0.74 | 990.24 | 14.184999999999999 | 6.4 | 18.39 | SSO-M6 |
+| 2025-08-25T16:01:00.000-04:00 | 0.515 | 0.8 | 984.3050000000001 | 14.195 | 6.45 | 18.1 | SSO-M6 |
+| 2025-08-25T16:16:00.000-04:00 | 0.5 | 0.83 | 980.325 | 14.19 | 6.48 | 17.895 | SSO-M6 |
+| 2025-08-25T16:31:00.000-04:00 | 0.595 | 0.93 | 981.235 | 14.19 | 6.5 | 17.755000000000003 | SSO-M6 |
+| 2025-08-25T16:46:00.000-04:00 | 0.43 | 0.86 | 981.0066666666667 | 14.183333333333332 | 6.510000000000001 | 17.69 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001837
+## Table: ddt_brick0002023
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250826_20250829_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-26 to 2025-08-29 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250826_20250829_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-26 to 2025-08-29 (v3)
 
 ### Schema
 
@@ -23324,17 +23968,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-26T11:00:00.000-04:00 | 741.9727 | 15.0 | 0.009 | 0.22591963 | 2.7266 | 0.7806683 | 1026.316 | 0.9991736 | 11.279795 | 6.5424643 | 3.9769604 | 140.62323 | 974.35876 | 0.6032706 | 2.4234505 | 1201.0282 | 17.383831 | 5.0991964 | SSO-M6 |
-| 2025-08-26T11:10:00.000-04:00 | 741.9202 | 15.0 | 13.371 | 0.17788644 | 2.7923 | 0.7686431 | 1010.76416 | 0.99916416 | 11.280042 | 6.534087 | 3.2027209 | 142.59018 | 989.35046 | 0.5935869 | 1.9086746 | 1182.5278 | 17.39522 | 5.0990896 | SSO-M6 |
-| 2025-08-26T11:20:00.000-04:00 | 742.0027 | 15.0 | 13.353 | 0.19009158 | 2.7328 | 0.768629 | 1010.70593 | 0.99916434 | 11.282094 | 6.5347924 | 3.3995047 | 144.10892 | 989.4075 | 0.5935746 | 2.0393279 | 1182.5061 | 17.393465 | 5.098201 | SSO-M6 |
-| 2025-08-26T11:30:00.000-04:00 | 741.8902 | 15.0 | 13.362 | 0.19343084 | 2.7001 | 0.7685691 | 1010.59705 | 0.9991647 | 11.284813 | 6.5321894 | 3.453276 | 145.77307 | 989.5141 | 0.59352595 | 2.0754108 | 1182.4141 | 17.392126 | 5.097023 | SSO-M6 |
-| 2025-08-26T11:40:00.000-04:00 | 741.9052 | 15.0 | 13.371 | 0.18974605 | 2.6824 | 0.76842755 | 1010.4042 | 0.99916464 | 11.287525 | 6.5327625 | 3.3938205 | 147.6065 | 989.70294 | 0.5934117 | 2.0358233 | 1182.1962 | 17.391832 | 5.095848 | SSO-M6 |
+| 2025-08-26T11:00:00.000-04:00 | 741.9727 | 15.0 | 0.009 | 0.22591963 | 0.6159 | 0.7806683 | 1026.316 | 0.9991736 | 11.279795 | 6.5424643 | 3.9769604 | 140.62323 | 974.35876 | 0.6032706 | 2.4234505 | 1201.0282 | 17.383831 | 5.0991964 | SSO-M6 |
+| 2025-08-26T11:10:00.000-04:00 | 741.9202 | 15.0 | 13.371 | 0.17788644 | 0.6308 | 0.7686431 | 1010.76416 | 0.99916416 | 11.280042 | 6.534087 | 3.2027209 | 142.59018 | 989.35046 | 0.5935869 | 1.9086746 | 1182.5278 | 17.39522 | 5.0990896 | SSO-M6 |
+| 2025-08-26T11:20:00.000-04:00 | 742.0027 | 15.0 | 13.353 | 0.19009158 | 0.6173 | 0.768629 | 1010.70593 | 0.99916434 | 11.282094 | 6.5347924 | 3.3995047 | 144.10892 | 989.4075 | 0.5935746 | 2.0393279 | 1182.5061 | 17.393465 | 5.098201 | SSO-M6 |
+| 2025-08-26T11:30:00.000-04:00 | 741.8902 | 15.0 | 13.362 | 0.19343084 | 0.6099 | 0.7685691 | 1010.59705 | 0.9991647 | 11.284813 | 6.5321894 | 3.453276 | 145.77307 | 989.5141 | 0.59352595 | 2.0754108 | 1182.4141 | 17.392126 | 5.097023 | SSO-M6 |
+| 2025-08-26T11:40:00.000-04:00 | 741.9052 | 15.0 | 13.371 | 0.18974605 | 0.6059 | 0.76842755 | 1010.4042 | 0.99916464 | 11.287525 | 6.5327625 | 3.3938205 | 147.6065 | 989.70294 | 0.5934117 | 2.0358233 | 1182.1962 | 17.391832 | 5.095848 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001838
+## Table: ddt_brick0002024
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250829_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-29 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20250829_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-08-29 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -23367,17 +24011,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-29T13:52:00.000-04:00 | 739.3775 | 15.0 | 0.009 | 0.0 | 2.8888 | 0.78106856 | 1027.2019 | 0.9991711 | 11.240974 | 6.520238 | -0.8182982 | -165.9783 | 973.51843 | 0.60360026 | 0.0 | 1201.6439 | 17.399502 | 5.0852547 | SSO-M6 |
-| 2025-08-29T14:02:00.000-04:00 | 739.415 | 15.0 | 0.216 | 0.0 | 2.8199 | 0.7813515 | 1027.6735 | 0.9991705 | 11.247509 | 6.5242977 | -0.8215625 | -159.47424 | 973.0717 | 0.6038302 | 0.0 | 1202.0792 | 17.403837 | 5.082424 | SSO-M6 |
-| 2025-08-29T14:12:00.000-04:00 | 739.415 | 15.0 | 0.216 | 0.0 | 2.7842 | 0.7815153 | 1027.8546 | 0.9991708 | 11.2436695 | 6.5249147 | -0.82410306 | -156.3247 | 972.90027 | 0.60396165 | 0.0 | 1202.3312 | 17.402346 | 5.0840874 | SSO-M6 |
-| 2025-08-29T14:22:00.000-04:00 | 739.3475 | 15.0 | 0.216 | 0.0 | 2.7602 | 0.7816374 | 1027.9696 | 0.9991713 | 11.236067 | 6.5247817 | -0.82176536 | -154.08835 | 972.7914 | 0.6040591 | 0.0 | 1202.519 | 17.400358 | 5.0873804 | SSO-M6 |
-| 2025-08-29T14:32:00.000-04:00 | 739.3025 | 15.0 | 0.216 | 0.0 | 2.7406 | 0.78170794 | 1028.0676 | 0.99917126 | 11.237212 | 6.5243406 | -0.8175626 | -152.7103 | 972.69867 | 0.60411614 | 0.0 | 1202.6276 | 17.400587 | 5.0868845 | SSO-M6 |
+| 2025-08-29T13:52:00.000-04:00 | 739.3775 | 15.0 | 0.009 | 0.0 | 0.6526 | 0.78106856 | 1027.2019 | 0.9991711 | 11.240974 | 6.520238 | -0.8182982 | -165.9783 | 973.51843 | 0.60360026 | 0.0 | 1201.6439 | 17.399502 | 5.0852547 | SSO-M6 |
+| 2025-08-29T14:02:00.000-04:00 | 739.415 | 15.0 | 0.216 | 0.0 | 0.637 | 0.7813515 | 1027.6735 | 0.9991705 | 11.247509 | 6.5242977 | -0.8215625 | -159.47424 | 973.0717 | 0.6038302 | 0.0 | 1202.0792 | 17.403837 | 5.082424 | SSO-M6 |
+| 2025-08-29T14:12:00.000-04:00 | 739.415 | 15.0 | 0.216 | 0.0 | 0.6289 | 0.7815153 | 1027.8546 | 0.9991708 | 11.2436695 | 6.5249147 | -0.82410306 | -156.3247 | 972.90027 | 0.60396165 | 0.0 | 1202.3312 | 17.402346 | 5.0840874 | SSO-M6 |
+| 2025-08-29T14:22:00.000-04:00 | 739.3475 | 15.0 | 0.216 | 0.0 | 0.6235 | 0.7816374 | 1027.9696 | 0.9991713 | 11.236067 | 6.5247817 | -0.82176536 | -154.08835 | 972.7914 | 0.6040591 | 0.0 | 1202.519 | 17.400358 | 5.0873804 | SSO-M6 |
+| 2025-08-29T14:32:00.000-04:00 | 739.3025 | 15.0 | 0.216 | 0.0 | 0.6191 | 0.78170794 | 1028.0676 | 0.99917126 | 11.237212 | 6.5243406 | -0.8175626 | -152.7103 | 972.69867 | 0.60411614 | 0.0 | 1202.6276 | 17.400587 | 5.0868845 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001839
+## Table: ddt_brick0002025
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20251016_20251209_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-10-16 to 2025-12-09 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20251016_20251209_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-10-16 to 2025-12-09 (v4)
 
 ### Schema
 
@@ -23410,17 +24054,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-16T11:41:00.000-04:00 | 739.52 | 99.0 | 0.0 | 0.25645447 | 0.8302 | 0.67488897 | 900.5391 | 0.99898595 | 12.162593 | 6.6038976 | 4.490209 | 111.2695 | 1110.4459 | 0.5185809 | 2.7973049 | 1038.2906 | 18.05385 | 4.7208576 | SSO-M6 |
-| 2025-10-16T11:51:00.000-04:00 | 739.7075 | 99.0 | 0.414 | 0.16205472 | 0.7519 | 0.6759223 | 901.99164 | 0.998986 | 12.171564 | 6.593672 | 2.9350169 | 134.52246 | 1108.6577 | 0.51940876 | 1.7673134 | 1039.8804 | 18.057564 | 4.7169724 | SSO-M6 |
-| 2025-10-16T12:01:00.000-04:00 | 739.64 | 99.0 | 13.353 | 0.16345476 | 0.7331 | 0.6762556 | 902.5389 | 0.9989853 | 12.170496 | 6.5912523 | 2.9583874 | 136.7493 | 1107.9855 | 0.51967686 | 1.7829413 | 1040.3932 | 18.06272 | 4.717435 | SSO-M6 |
-| 2025-10-16T12:11:00.000-04:00 | 739.6025 | 99.0 | 13.362 | 0.17257698 | 0.7199 | 0.6763998 | 902.87897 | 0.99898386 | 12.165623 | 6.589776 | 3.1091638 | 136.9305 | 1107.5681 | 0.51979464 | 1.8828309 | 1040.6151 | 18.070143 | 4.7195454 | SSO-M6 |
-| 2025-10-16T12:21:00.000-04:00 | 739.53503 | 99.0 | 13.362 | 0.17816992 | 0.7085 | 0.6766154 | 903.2535 | 0.9989833 | 12.169243 | 6.5886126 | 3.201622 | 137.0354 | 1107.1089 | 0.5199686 | 1.9442092 | 1040.9468 | 18.074503 | 4.7179775 | SSO-M6 |
+| 2025-10-16T11:41:00.000-04:00 | 739.52 | 99.0 | 0.0 | 0.25645447 | 0.1875 | 0.67488897 | 900.5391 | 0.99898595 | 12.162593 | 6.6038976 | 4.490209 | 111.2695 | 1110.4459 | 0.5185809 | 2.7973049 | 1038.2906 | 18.05385 | 4.7208576 | SSO-M6 |
+| 2025-10-16T11:51:00.000-04:00 | 739.7075 | 99.0 | 0.414 | 0.16205472 | 0.1699 | 0.6759223 | 901.99164 | 0.998986 | 12.171564 | 6.593672 | 2.9350169 | 134.52246 | 1108.6577 | 0.51940876 | 1.7673134 | 1039.8804 | 18.057564 | 4.7169724 | SSO-M6 |
+| 2025-10-16T12:01:00.000-04:00 | 739.64 | 99.0 | 13.353 | 0.16345476 | 0.1656 | 0.6762556 | 902.5389 | 0.9989853 | 12.170496 | 6.5912523 | 2.9583874 | 136.7493 | 1107.9855 | 0.51967686 | 1.7829413 | 1040.3932 | 18.06272 | 4.717435 | SSO-M6 |
+| 2025-10-16T12:11:00.000-04:00 | 739.6025 | 99.0 | 13.362 | 0.17257698 | 0.1626 | 0.6763998 | 902.87897 | 0.99898386 | 12.165623 | 6.589776 | 3.1091638 | 136.9305 | 1107.5681 | 0.51979464 | 1.8828309 | 1040.6151 | 18.070143 | 4.7195454 | SSO-M6 |
+| 2025-10-16T12:21:00.000-04:00 | 739.53503 | 99.0 | 13.362 | 0.17816992 | 0.16 | 0.6766154 | 903.2535 | 0.9989833 | 12.169243 | 6.5886126 | 3.201622 | 137.0354 | 1107.1089 | 0.5199686 | 1.9442092 | 1040.9468 | 18.074503 | 4.7179775 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001840
+## Table: ddt_brick0002026
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20251216_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-12-16 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20251216_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2025-12-16 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -23453,17 +24097,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-16T13:25:00.000-05:00 | 741.74023 | 99.0 | 0.0 | 0.0 | 1.9059 | 0.7825492 | 1063.9125 | 0.9988887 | 9.397903 | 6.7036943 | -0.09530908 | -19.800247 | 939.92694 | 0.60537285 | 0.0 | 1203.9219 | 18.911287 | 5.9203043 | SSO-M6 |
-| 2025-12-16T13:35:00.000-05:00 | 741.6277 | 99.0 | 0.072 | 0.0 | 1.879 | 0.78306085 | 1064.7959 | 0.9988874 | 9.38687 | 6.6919246 | -0.08959388 | -7.4096336 | 939.1471 | 0.60578865 | 0.0 | 1204.709 | 18.919453 | 5.925082 | SSO-M6 |
-| 2025-12-16T13:45:00.000-05:00 | 741.5077 | 99.0 | 0.063 | 0.0 | 1.8669 | 0.7827749 | 1064.3174 | 0.99888796 | 9.393219 | 6.6938725 | -0.10986673 | -3.578247 | 939.56934 | 0.6055564 | 0.0 | 1204.2692 | 18.915546 | 5.922333 | SSO-M6 |
-| 2025-12-16T13:55:00.000-05:00 | 741.4927 | 99.0 | 13.182 | 0.0 | 1.861 | 0.782248 | 1063.6122 | 0.9988875 | 9.389996 | 6.693872 | -0.123495534 | -2.9178276 | 940.1923 | 0.6051314 | 0.0 | 1203.4585 | 18.916035 | 5.923729 | SSO-M6 |
-| 2025-12-16T14:05:00.000-05:00 | 741.4927 | 99.0 | 13.2 | 0.0 | 1.8616 | 0.78246766 | 1064.1074 | 0.9988859 | 9.39366 | 6.6913652 | -0.13913009 | -4.2029037 | 939.75476 | 0.60531133 | 0.0 | 1203.7964 | 18.924587 | 5.922142 | SSO-M6 |
+| 2025-12-16T13:25:00.000-05:00 | 741.74023 | 99.0 | 0.0 | 0.0 | 0.4305 | 0.7825492 | 1063.9125 | 0.9988887 | 9.397903 | 6.7036943 | -0.09530908 | -19.800247 | 939.92694 | 0.60537285 | 0.0 | 1203.9219 | 18.911287 | 5.9203043 | SSO-M6 |
+| 2025-12-16T13:35:00.000-05:00 | 741.6277 | 99.0 | 0.072 | 0.0 | 0.4245 | 0.78306085 | 1064.7959 | 0.9988874 | 9.38687 | 6.6919246 | -0.08959388 | -7.4096336 | 939.1471 | 0.60578865 | 0.0 | 1204.709 | 18.919453 | 5.925082 | SSO-M6 |
+| 2025-12-16T13:45:00.000-05:00 | 741.5077 | 99.0 | 0.063 | 0.0 | 0.4217 | 0.7827749 | 1064.3174 | 0.99888796 | 9.393219 | 6.6938725 | -0.10986673 | -3.578247 | 939.56934 | 0.6055564 | 0.0 | 1204.2692 | 18.915546 | 5.922333 | SSO-M6 |
+| 2025-12-16T13:55:00.000-05:00 | 741.4927 | 99.0 | 13.182 | 0.0 | 0.4204 | 0.782248 | 1063.6122 | 0.9988875 | 9.389996 | 6.693872 | -0.123495534 | -2.9178276 | 940.1923 | 0.6051314 | 0.0 | 1203.4585 | 18.916035 | 5.923729 | SSO-M6 |
+| 2025-12-16T14:05:00.000-05:00 | 741.4927 | 99.0 | 13.2 | 0.0 | 0.4205 | 0.78246766 | 1064.1074 | 0.9988859 | 9.39366 | 6.6913652 | -0.13913009 | -4.2029037 | 939.75476 | 0.60531133 | 0.0 | 1203.7964 | 18.924587 | 5.922142 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001841
+## Table: ddt_brick0002027
 
-**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-M6_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-M6 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -23496,17 +24140,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:05:00.000-05:00 | 742.5877 | 94.0 | 12.155 | 0.19810194 | 1.9116 | 0.74963737 | 1011.3235 | 0.99893737 | 10.650967 | 6.767187 | 3.5320027 | 367.73007 | 988.8033 | 0.57872844 | 2.1746387 | 1153.2882 | 18.5552 | 5.3776445 | SSO-M6 |
-| 2026-01-23T00:15:00.000-05:00 | 742.4753 | 94.0 | 12.155 | 0.20014305 | 1.9092 | 0.74963796 | 1011.3286 | 0.9989373 | 10.643277 | 6.767094 | 3.5658152 | 367.77536 | 988.7983 | 0.57872915 | 2.1973958 | 1153.2892 | 18.555397 | 5.380975 | SSO-M6 |
-| 2026-01-23T00:25:00.000-05:00 | 742.56525 | 94.0 | 12.146 | 0.20007426 | 1.9331 | 0.74948514 | 1010.97656 | 0.99893856 | 10.6431 | 6.767703 | 3.5642216 | 361.288 | 989.14264 | 0.57860374 | 2.196068 | 1153.0541 | 18.548773 | 5.381051 | SSO-M6 |
-| 2026-01-23T00:35:00.000-05:00 | 742.44525 | 94.0 | 12.164 | 0.19917798 | 1.9222 | 0.74946445 | 1011.08496 | 0.99893725 | 10.648137 | 6.768347 | 3.5497994 | 367.07443 | 989.03656 | 0.57858926 | 2.1868663 | 1153.0222 | 18.554962 | 5.37887 | SSO-M6 |
-| 2026-01-23T00:45:00.000-05:00 | 742.43024 | 94.0 | 12.155 | 0.19912472 | 1.9134 | 0.74951583 | 1011.1443 | 0.99893737 | 10.650312 | 6.7675123 | 3.548887 | 367.8469 | 988.9785 | 0.5786304 | 2.1863065 | 1153.1013 | 18.55451 | 5.377928 | SSO-M6 |
+| 2026-01-23T00:05:00.000-05:00 | 742.5877 | 94.0 | 12.155 | 0.19810194 | 0.4318 | 0.74963737 | 1011.3235 | 0.99893737 | 10.650967 | 6.767187 | 3.5320027 | 367.73007 | 988.8033 | 0.57872844 | 2.1746387 | 1153.2882 | 18.5552 | 5.3776445 | SSO-M6 |
+| 2026-01-23T00:15:00.000-05:00 | 742.4753 | 94.0 | 12.155 | 0.20014305 | 0.4313 | 0.74963796 | 1011.3286 | 0.9989373 | 10.643277 | 6.767094 | 3.5658152 | 367.77536 | 988.7983 | 0.57872915 | 2.1973958 | 1153.2892 | 18.555397 | 5.380975 | SSO-M6 |
+| 2026-01-23T00:25:00.000-05:00 | 742.56525 | 94.0 | 12.146 | 0.20007426 | 0.4367 | 0.74948514 | 1010.97656 | 0.99893856 | 10.6431 | 6.767703 | 3.5642216 | 361.288 | 989.14264 | 0.57860374 | 2.196068 | 1153.0541 | 18.548773 | 5.381051 | SSO-M6 |
+| 2026-01-23T00:35:00.000-05:00 | 742.44525 | 94.0 | 12.164 | 0.19917798 | 0.4342 | 0.74946445 | 1011.08496 | 0.99893725 | 10.648137 | 6.768347 | 3.5497994 | 367.07443 | 989.03656 | 0.57858926 | 2.1868663 | 1153.0222 | 18.554962 | 5.37887 | SSO-M6 |
+| 2026-01-23T00:45:00.000-05:00 | 742.43024 | 94.0 | 12.155 | 0.19912472 | 0.4322 | 0.74951583 | 1011.1443 | 0.99893737 | 10.650312 | 6.7675123 | 3.548887 | 367.8469 | 988.9785 | 0.5786304 | 2.1863065 | 1153.1013 | 18.55451 | 5.377928 | SSO-M6 |
 
 ---
 
-## Table: ddt_brick0001842
+## Table: ddt_brick0002028
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20241003_20250111_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2024-10-03 to 2025-01-10 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20241003_20250111_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2024-10-03 to 2025-01-10 (v4)
 
 ### Schema
 
@@ -23539,17 +24183,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T10:42:00.000-04:00 | 738.24585 | 46.0 | 0.0 | 4.52889 | 1.1299 | 0.43536654 | 591.928 | 0.9986768 | 8.073044 | 6.7871037 | 72.394295 | 239.10284 | 1689.3948 | 0.32919505 | 50.304344 | 669.7947 | 18.913372 | 3.9028788 | SSO-U1 |
-| 2024-10-03T10:52:00.000-04:00 | 738.0959 | 46.0 | 0.081 | 4.5197287 | 1.1619 | 0.4363571 | 593.32367 | 0.99867666 | 8.081685 | 6.7888055 | 72.25532 | 240.07797 | 1685.4207 | 0.32997036 | 50.217197 | 671.3186 | 18.91719 | 3.8991375 | SSO-U1 |
-| 2024-10-03T11:02:00.000-04:00 | 738.11835 | 46.0 | 0.081 | 4.5137467 | 1.2737 | 0.43720865 | 594.2536 | 0.9986806 | 8.09158 | 6.7893257 | 72.13686 | 240.23294 | 1682.7832 | 0.33063385 | 50.13122 | 672.62866 | 18.899446 | 3.8948536 | SSO-U1 |
-| 2024-10-03T11:12:00.000-04:00 | 738.1558 | 46.0 | 0.081 | 4.5034804 | 1.394 | 0.4361198 | 592.60675 | 0.9986825 | 8.108979 | 6.787753 | 71.956955 | 240.18288 | 1687.4597 | 0.32978022 | 50.001244 | 670.95355 | 18.886423 | 3.8873205 | SSO-U1 |
-| 2024-10-03T11:22:00.000-04:00 | 738.11084 | 46.0 | 0.072 | 4.4872966 | 1.5276 | 0.43545434 | 591.5721 | 0.9986841 | 8.120451 | 6.7923756 | 71.68754 | 239.95161 | 1690.4111 | 0.3292582 | 49.814144 | 669.92975 | 18.876232 | 3.8823538 | SSO-U1 |
+| 2024-10-03T10:42:00.000-04:00 | 738.24585 | 46.0 | 0.0 | 4.52889 | 0.2552 | 0.43536654 | 591.928 | 0.9986768 | 8.073044 | 6.7871037 | 72.394295 | 239.10284 | 1689.3948 | 0.32919505 | 50.304344 | 669.7947 | 18.913372 | 3.9028788 | SSO-U1 |
+| 2024-10-03T10:52:00.000-04:00 | 738.0959 | 46.0 | 0.081 | 4.5197287 | 0.2625 | 0.4363571 | 593.32367 | 0.99867666 | 8.081685 | 6.7888055 | 72.25532 | 240.07797 | 1685.4207 | 0.32997036 | 50.217197 | 671.3186 | 18.91719 | 3.8991375 | SSO-U1 |
+| 2024-10-03T11:02:00.000-04:00 | 738.11835 | 46.0 | 0.081 | 4.5137467 | 0.2877 | 0.43720865 | 594.2536 | 0.9986806 | 8.09158 | 6.7893257 | 72.13686 | 240.23294 | 1682.7832 | 0.33063385 | 50.13122 | 672.62866 | 18.899446 | 3.8948536 | SSO-U1 |
+| 2024-10-03T11:12:00.000-04:00 | 738.1558 | 46.0 | 0.081 | 4.5034804 | 0.3149 | 0.4361198 | 592.60675 | 0.9986825 | 8.108979 | 6.787753 | 71.956955 | 240.18288 | 1687.4597 | 0.32978022 | 50.001244 | 670.95355 | 18.886423 | 3.8873205 | SSO-U1 |
+| 2024-10-03T11:22:00.000-04:00 | 738.11084 | 46.0 | 0.072 | 4.4872966 | 0.3451 | 0.43545434 | 591.5721 | 0.9986841 | 8.120451 | 6.7923756 | 71.68754 | 239.95161 | 1690.4111 | 0.3292582 | 49.814144 | 669.92975 | 18.876232 | 3.8823538 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001843
+## Table: ddt_brick0002029
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20250112_20250807_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-01-12 to 2025-08-07 (v4)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20250112_20250807_v5.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-01-12 to 2025-08-07 (v5)
 
 ### Schema
 
@@ -23571,17 +24215,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-01-12T04:00:00.000-05:00 | 4.38 | 0.664 | 519.66 | 4.4 | 7.25 | 379.4 | 17.87 | SSO-U1 |
-| 2025-01-12T04:15:00.000-05:00 | 4.37 | 0.664 | 519.58 | 4.41 | 7.25 | 379.6 | 17.87 | SSO-U1 |
-| 2025-01-12T04:30:00.000-05:00 | 4.37 | 0.664 | 519.75 | 4.41 | 7.25 | 379.7 | 17.87 | SSO-U1 |
-| 2025-01-12T04:45:00.000-05:00 | 4.37 | 0.664 | 520.06 | 4.42 | 7.24 | 378.8 | 17.87 | SSO-U1 |
-| 2025-01-12T05:00:00.000-05:00 | 4.37 | 0.664 | 520.15 | 4.42 | 7.25 | 379.1 | 17.87 | SSO-U1 |
+| 2025-01-12T04:00:00.000-05:00 | 4.38 | 0.15 | 519.66 | 4.4 | 7.25 | 379.4 | 17.87 | SSO-U1 |
+| 2025-01-12T04:15:00.000-05:00 | 4.37 | 0.15 | 519.58 | 4.41 | 7.25 | 379.6 | 17.87 | SSO-U1 |
+| 2025-01-12T04:30:00.000-05:00 | 4.37 | 0.15 | 519.75 | 4.41 | 7.25 | 379.7 | 17.87 | SSO-U1 |
+| 2025-01-12T04:45:00.000-05:00 | 4.37 | 0.15 | 520.06 | 4.42 | 7.24 | 378.8 | 17.87 | SSO-U1 |
+| 2025-01-12T05:00:00.000-05:00 | 4.37 | 0.15 | 520.15 | 4.42 | 7.25 | 379.1 | 17.87 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001844
+## Table: ddt_brick0002030
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20250819_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-08-19 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20250819_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-08-19 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -23603,17 +24247,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:30:00.000-04:00 | 3.31 | 0.7526 | 2799.1 | 10.58 | 7.01 | 241.1 | 17.42 | SSO-U1 |
-| 2025-08-19T10:45:00.000-04:00 | 3.31 | 0.7526 | 2799.1 | 10.59 | 7.01 | 246.1 | 17.41 | SSO-U1 |
-| 2025-08-19T11:00:00.000-04:00 | 3.3 | 0.7526 | 2799.0 | 10.59 | 7.01 | 249.8 | 17.41 | SSO-U1 |
-| 2025-08-19T11:15:00.000-04:00 | 3.3 | 0.7526 | 2797.7 | 10.6 | 7.01 | 255.4 | 17.41 | SSO-U1 |
-| 2025-08-19T11:30:00.000-04:00 | 3.29 | 0.7526 | 2798.3 | 10.59 | 7.01 | 258.3 | 17.42 | SSO-U1 |
+| 2025-08-19T10:30:00.000-04:00 | 3.31 | 0.17 | 2799.1 | 10.58 | 7.01 | 241.1 | 17.42 | SSO-U1 |
+| 2025-08-19T10:45:00.000-04:00 | 3.31 | 0.17 | 2799.1 | 10.59 | 7.01 | 246.1 | 17.41 | SSO-U1 |
+| 2025-08-19T11:00:00.000-04:00 | 3.3 | 0.17 | 2799.0 | 10.59 | 7.01 | 249.8 | 17.41 | SSO-U1 |
+| 2025-08-19T11:15:00.000-04:00 | 3.3 | 0.17 | 2797.7 | 10.6 | 7.01 | 255.4 | 17.41 | SSO-U1 |
+| 2025-08-19T11:30:00.000-04:00 | 3.29 | 0.17 | 2798.3 | 10.59 | 7.01 | 258.3 | 17.42 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001845
+## Table: ddt_brick0002031
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251014_20251017_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-14 to 2025-10-17 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251014_20251017_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-14 to 2025-10-17 (v4)
 
 ### Schema
 
@@ -23646,17 +24290,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T14:51:00.000-04:00 | 739.851 | 99.0 | 0.018 | 0.0 | 0.3795 | 0.6445842 | 869.7555 | 0.9988712 | 11.743693 | 6.981041 | 0.4373381 | 227.61974 | 1149.7484 | 0.494516 | 0.0 | 991.668 | 18.563515 | 2.4879332 | SSO-U1 |
-| 2025-10-14T15:01:00.000-04:00 | 739.66345 | 99.0 | 0.072 | 0.0 | 0.3369 | 0.64517355 | 870.5729 | 0.9988714 | 11.732658 | 6.9780974 | 0.019677192 | 230.62143 | 1148.669 | 0.4949867 | 0.0 | 992.5747 | 18.564686 | 2.492712 | SSO-U1 |
-| 2025-10-14T15:11:00.000-04:00 | 739.626 | 99.0 | 0.072 | 0.0 | 0.3304 | 0.6452174 | 870.7079 | 0.9988705 | 11.730253 | 6.974498 | -0.05413769 | 229.57477 | 1148.4908 | 0.4950229 | 0.0 | 992.6422 | 18.568684 | 2.4937534 | SSO-U1 |
-| 2025-10-14T15:21:00.000-04:00 | 739.581 | 99.0 | 0.072 | 0.0 | 0.3261 | 0.6453141 | 870.8833 | 0.9988702 | 11.736543 | 6.9742546 | -0.1125551 | 228.98111 | 1148.2595 | 0.49510083 | 0.0 | 992.79095 | 18.571053 | 2.4910297 | SSO-U1 |
-| 2025-10-14T15:31:00.000-04:00 | 739.55096 | 99.0 | 0.063 | 0.0 | 0.321 | 0.64535 | 870.94653 | 0.9988702 | 11.739175 | 6.9730763 | -0.14223641 | 228.60202 | 1148.1761 | 0.49512962 | 0.0 | 992.8462 | 18.571833 | 2.48989 | SSO-U1 |
+| 2025-10-14T14:51:00.000-04:00 | 739.851 | 99.0 | 0.018 | 0.0 | 0.0857 | 0.6445842 | 869.7555 | 0.9988712 | 11.743693 | 6.981041 | 0.4373381 | 227.61974 | 1149.7484 | 0.494516 | 0.0 | 991.668 | 18.563515 | 2.4879332 | SSO-U1 |
+| 2025-10-14T15:01:00.000-04:00 | 739.66345 | 99.0 | 0.072 | 0.0 | 0.0761 | 0.64517355 | 870.5729 | 0.9988714 | 11.732658 | 6.9780974 | 0.019677192 | 230.62143 | 1148.669 | 0.4949867 | 0.0 | 992.5747 | 18.564686 | 2.492712 | SSO-U1 |
+| 2025-10-14T15:11:00.000-04:00 | 739.626 | 99.0 | 0.072 | 0.0 | 0.0746 | 0.6452174 | 870.7079 | 0.9988705 | 11.730253 | 6.974498 | -0.05413769 | 229.57477 | 1148.4908 | 0.4950229 | 0.0 | 992.6422 | 18.568684 | 2.4937534 | SSO-U1 |
+| 2025-10-14T15:21:00.000-04:00 | 739.581 | 99.0 | 0.072 | 0.0 | 0.0737 | 0.6453141 | 870.8833 | 0.9988702 | 11.736543 | 6.9742546 | -0.1125551 | 228.98111 | 1148.2595 | 0.49510083 | 0.0 | 992.79095 | 18.571053 | 2.4910297 | SSO-U1 |
+| 2025-10-14T15:31:00.000-04:00 | 739.55096 | 99.0 | 0.063 | 0.0 | 0.0725 | 0.64535 | 870.94653 | 0.9988702 | 11.739175 | 6.9730763 | -0.14223641 | 228.60202 | 1148.1761 | 0.49512962 | 0.0 | 992.8462 | 18.571833 | 2.48989 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001846
+## Table: ddt_brick0002032
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251020_20251023_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-20 to 2025-10-23 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251020_20251023_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-20 to 2025-10-23 (v4)
 
 ### Schema
 
@@ -23683,17 +24327,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-20T14:28:00.000-04:00 | 741.86865 | 98.0 | 0.063 | 0.0 | 0.2289 | 12.257446 | 6.9877014 | -0.38809705 | 189.8304 | 0.0 | 19.64 | 2.129487 | SSO-U1 |
-| 2025-10-20T14:38:00.000-04:00 | 740.286 | 98.0 | 0.072 | 0.0 | 0.2454 | 12.187683 | 6.9825125 | -0.39482427 | 182.18431 | 0.0 | 19.65 | 2.1597013 | SSO-U1 |
-| 2025-10-20T14:48:00.000-04:00 | 740.17346 | 98.0 | 0.072 | 0.0 | 0.2764 | 12.189705 | 6.9812765 | -0.39568084 | 178.87268 | 0.0 | 19.61 | 2.1588259 | SSO-U1 |
-| 2025-10-20T14:58:00.000-04:00 | 740.046 | 98.0 | 0.063 | 0.0 | 0.3083 | 12.181909 | 6.9795036 | -0.39148724 | 176.18808 | 0.0 | 19.58 | 2.162202 | SSO-U1 |
-| 2025-10-20T15:08:00.000-04:00 | 739.8285 | 98.0 | 0.072 | 0.0 | 0.2928 | 12.189365 | 6.9807 | -0.38905782 | 173.64655 | 0.0 | 19.59 | 2.1589727 | SSO-U1 |
+| 2025-10-20T14:28:00.000-04:00 | 741.86865 | 98.0 | 0.063 | 0.0 | 0.0517 | 12.257446 | 6.9877014 | -0.38809705 | 189.8304 | 0.0 | 19.64 | 2.129487 | SSO-U1 |
+| 2025-10-20T14:38:00.000-04:00 | 740.286 | 98.0 | 0.072 | 0.0 | 0.0554 | 12.187683 | 6.9825125 | -0.39482427 | 182.18431 | 0.0 | 19.65 | 2.1597013 | SSO-U1 |
+| 2025-10-20T14:48:00.000-04:00 | 740.17346 | 98.0 | 0.072 | 0.0 | 0.0624 | 12.189705 | 6.9812765 | -0.39568084 | 178.87268 | 0.0 | 19.61 | 2.1588259 | SSO-U1 |
+| 2025-10-20T14:58:00.000-04:00 | 740.046 | 98.0 | 0.063 | 0.0 | 0.0697 | 12.181909 | 6.9795036 | -0.39148724 | 176.18808 | 0.0 | 19.58 | 2.162202 | SSO-U1 |
+| 2025-10-20T15:08:00.000-04:00 | 739.8285 | 98.0 | 0.072 | 0.0 | 0.0662 | 12.189365 | 6.9807 | -0.38905782 | 173.64655 | 0.0 | 19.59 | 2.1589727 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001847
+## Table: ddt_brick0002033
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251028_20251107_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-28 to 2025-11-07 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251028_20251107_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-10-28 to 2025-11-07 (v4)
 
 ### Schema
 
@@ -23726,17 +24370,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-28T09:58:00.000-04:00 | 736.6843 | 96.0 | 0.009 | 1.331246 | 0.3314 | 0.70230883 | 958.49554 | 0.9988042 | 2.7263145 | 6.8678665 | 25.390305 | 145.00293 | 1043.3016 | 0.5408516 | 14.890242 | 1080.4751 | 19.0893 | 6.2667723 | SSO-U1 |
-| 2025-10-28T10:08:00.000-04:00 | 736.60187 | 96.0 | 0.288 | 1.4013815 | 0.3207 | 0.70467705 | 961.35297 | 0.9988093 | 2.7262175 | 6.8733206 | 26.670761 | 146.80537 | 1040.2007 | 0.54274714 | 15.670962 | 1084.1185 | 19.071203 | 6.266814 | SSO-U1 |
-| 2025-10-28T10:18:00.000-04:00 | 736.5493 | 96.0 | 0.063 | 1.4753704 | 0.3171 | 0.70394754 | 960.3676 | 0.99880874 | 2.723916 | 6.873554 | 28.030512 | 147.47772 | 1041.268 | 0.54216176 | 16.499645 | 1082.9962 | 19.071684 | 6.267811 | SSO-U1 |
-| 2025-10-28T10:28:00.000-04:00 | 736.66187 | 96.0 | 0.063 | 1.5083531 | 0.3133 | 0.70314294 | 959.293 | 0.99880797 | 2.7250745 | 6.8723183 | 28.637096 | 148.05707 | 1042.4343 | 0.54151654 | 16.866188 | 1081.7583 | 19.072805 | 6.267309 | SSO-U1 |
-| 2025-10-28T10:38:00.000-04:00 | 736.59436 | 96.0 | 0.27 | 1.5931597 | 0.3098 | 0.70033795 | 955.47565 | 0.9988062 | 2.7169585 | 6.8717885 | 30.1954 | 148.70796 | 1046.5991 | 0.5392663 | 17.816095 | 1077.443 | 19.073261 | 6.2708235 | SSO-U1 |
+| 2025-10-28T09:58:00.000-04:00 | 736.6843 | 96.0 | 0.009 | 1.331246 | 0.0749 | 0.70230883 | 958.49554 | 0.9988042 | 2.7263145 | 6.8678665 | 25.390305 | 145.00293 | 1043.3016 | 0.5408516 | 14.890242 | 1080.4751 | 19.0893 | 6.2667723 | SSO-U1 |
+| 2025-10-28T10:08:00.000-04:00 | 736.60187 | 96.0 | 0.288 | 1.4013815 | 0.0725 | 0.70467705 | 961.35297 | 0.9988093 | 2.7262175 | 6.8733206 | 26.670761 | 146.80537 | 1040.2007 | 0.54274714 | 15.670962 | 1084.1185 | 19.071203 | 6.266814 | SSO-U1 |
+| 2025-10-28T10:18:00.000-04:00 | 736.5493 | 96.0 | 0.063 | 1.4753704 | 0.0716 | 0.70394754 | 960.3676 | 0.99880874 | 2.723916 | 6.873554 | 28.030512 | 147.47772 | 1041.268 | 0.54216176 | 16.499645 | 1082.9962 | 19.071684 | 6.267811 | SSO-U1 |
+| 2025-10-28T10:28:00.000-04:00 | 736.66187 | 96.0 | 0.063 | 1.5083531 | 0.0708 | 0.70314294 | 959.293 | 0.99880797 | 2.7250745 | 6.8723183 | 28.637096 | 148.05707 | 1042.4343 | 0.54151654 | 16.866188 | 1081.7583 | 19.072805 | 6.267309 | SSO-U1 |
+| 2025-10-28T10:38:00.000-04:00 | 736.59436 | 96.0 | 0.27 | 1.5931597 | 0.07 | 0.70033795 | 955.47565 | 0.9988062 | 2.7169585 | 6.8717885 | 30.1954 | 148.70796 | 1046.5991 | 0.5392663 | 17.816095 | 1077.443 | 19.073261 | 6.2708235 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001848
+## Table: ddt_brick0002034
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251110_20251126_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-11-10 to 2025-11-26 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251110_20251126_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-11-10 to 2025-11-26 (v3)
 
 ### Schema
 
@@ -23769,17 +24413,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-10T15:11:00.000-05:00 | 739.60956 | 91.0 | 0.009 | 2.757267 | 5.1247 | 0.64118886 | 877.09143 | 0.99874574 | 6.210623 | 6.851647 | 51.691406 | 249.4255 | 1140.132 | 0.49196282 | 30.77311 | 986.4444 | 19.196037 | 4.737879 | SSO-U1 |
-| 2025-11-10T15:21:00.000-05:00 | 739.6996 | 91.0 | 0.063 | 2.7499063 | 4.9902 | 0.64160717 | 877.3735 | 0.99874896 | 6.216193 | 6.846999 | 51.541084 | 252.99939 | 1139.7655 | 0.4922933 | 30.677658 | 987.08795 | 19.180645 | 4.735467 | SSO-U1 |
-| 2025-11-10T15:31:00.000-05:00 | 739.6771 | 91.0 | 0.063 | 2.7385802 | 4.9565 | 0.6416871 | 877.384 | 0.99875015 | 6.2214794 | 6.846076 | 51.32763 | 265.65942 | 1139.7518 | 0.49235582 | 30.54908 | 987.2109 | 19.17541 | 4.733178 | SSO-U1 |
-| 2025-11-10T15:41:00.000-05:00 | 739.72205 | 91.0 | 0.063 | 2.7308733 | 4.9623 | 0.6410514 | 876.44617 | 0.99875045 | 6.221574 | 6.8459105 | 51.18207 | 275.85657 | 1140.9714 | 0.49184763 | 30.458845 | 986.2329 | 19.171764 | 4.733137 | SSO-U1 |
-| 2025-11-10T15:51:00.000-05:00 | 740.01465 | 91.0 | 0.063 | 2.7241886 | 4.9608 | 0.6411046 | 876.4466 | 0.9987512 | 6.226237 | 6.8462152 | 51.055466 | 285.3337 | 1140.9708 | 0.49188903 | 30.369717 | 986.31476 | 19.167927 | 4.731118 | SSO-U1 |
+| 2025-11-10T15:11:00.000-05:00 | 739.60956 | 91.0 | 0.009 | 2.757267 | 1.1576 | 0.64118886 | 877.09143 | 0.99874574 | 6.210623 | 6.851647 | 51.691406 | 249.4255 | 1140.132 | 0.49196282 | 30.77311 | 986.4444 | 19.196037 | 4.737879 | SSO-U1 |
+| 2025-11-10T15:21:00.000-05:00 | 739.6996 | 91.0 | 0.063 | 2.7499063 | 1.1273 | 0.64160717 | 877.3735 | 0.99874896 | 6.216193 | 6.846999 | 51.541084 | 252.99939 | 1139.7655 | 0.4922933 | 30.677658 | 987.08795 | 19.180645 | 4.735467 | SSO-U1 |
+| 2025-11-10T15:31:00.000-05:00 | 739.6771 | 91.0 | 0.063 | 2.7385802 | 1.1197 | 0.6416871 | 877.384 | 0.99875015 | 6.2214794 | 6.846076 | 51.32763 | 265.65942 | 1139.7518 | 0.49235582 | 30.54908 | 987.2109 | 19.17541 | 4.733178 | SSO-U1 |
+| 2025-11-10T15:41:00.000-05:00 | 739.72205 | 91.0 | 0.063 | 2.7308733 | 1.121 | 0.6410514 | 876.44617 | 0.99875045 | 6.221574 | 6.8459105 | 51.18207 | 275.85657 | 1140.9714 | 0.49184763 | 30.458845 | 986.2329 | 19.171764 | 4.733137 | SSO-U1 |
+| 2025-11-10T15:51:00.000-05:00 | 740.01465 | 91.0 | 0.063 | 2.7241886 | 1.1206 | 0.6411046 | 876.4466 | 0.9987512 | 6.226237 | 6.8462152 | 51.055466 | 285.3337 | 1140.9708 | 0.49188903 | 30.369717 | 986.31476 | 19.167927 | 4.731118 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001849
+## Table: ddt_brick0002035
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251126_20251216_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-11-26 to 2025-12-16 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251126_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-11-26 to 2025-12-16 (v3)
 
 ### Schema
 
@@ -23812,17 +24456,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-26T09:51:00.000-05:00 | 738.702 | 85.0 | 0.306 | 5.347763 | 4.0846 | 0.5615442 | 763.86395 | 0.9987483 | 2.2349017 | 6.8545885 | 98.871185 | 374.95526 | 1309.1337 | 0.42855582 | 59.425407 | 863.91406 | 18.936634 | 6.459305 | SSO-U1 |
-| 2025-11-26T10:01:00.000-05:00 | 737.55444 | 85.0 | 0.009 | 5.334689 | 4.0842 | 0.5618428 | 764.72253 | 0.9987431 | 2.1865127 | 6.8503385 | 98.68272 | 368.49652 | 1307.6638 | 0.42879808 | 59.40743 | 864.37354 | 18.964035 | 6.4802475 | SSO-U1 |
-| 2025-11-26T10:11:00.000-05:00 | 736.8794 | 85.0 | 0.063 | 5.3381886 | 4.1378 | 0.5622343 | 764.93823 | 0.9987471 | 2.1513052 | 6.8489275 | 98.71143 | 368.06973 | 1307.295 | 0.42910457 | 59.47909 | 864.9758 | 18.944836 | 6.4954987 | SSO-U1 |
-| 2025-11-26T10:21:00.000-05:00 | 736.88684 | 85.0 | 0.072 | 5.3293285 | 4.0821 | 0.5623854 | 765.06866 | 0.9987481 | 2.1463914 | 6.8478837 | 98.54063 | 369.9413 | 1307.0723 | 0.4292233 | 59.37426 | 865.2083 | 18.940287 | 6.497628 | SSO-U1 |
-| 2025-11-26T10:31:00.000-05:00 | 736.9394 | 85.0 | 0.072 | 5.3228335 | 4.0661 | 0.5624804 | 765.12506 | 0.9987491 | 2.146558 | 6.8477206 | 98.41347 | 372.06802 | 1306.9758 | 0.42929763 | 59.292267 | 865.3544 | 18.935884 | 6.4975576 | SSO-U1 |
+| 2025-11-26T09:51:00.000-05:00 | 738.702 | 85.0 | 0.306 | 5.347763 | 0.9227 | 0.5615442 | 763.86395 | 0.9987483 | 2.2349017 | 6.8545885 | 98.871185 | 374.95526 | 1309.1337 | 0.42855582 | 59.425407 | 863.91406 | 18.936634 | 6.459305 | SSO-U1 |
+| 2025-11-26T10:01:00.000-05:00 | 737.55444 | 85.0 | 0.009 | 5.334689 | 0.9226 | 0.5618428 | 764.72253 | 0.9987431 | 2.1865127 | 6.8503385 | 98.68272 | 368.49652 | 1307.6638 | 0.42879808 | 59.40743 | 864.37354 | 18.964035 | 6.4802475 | SSO-U1 |
+| 2025-11-26T10:11:00.000-05:00 | 736.8794 | 85.0 | 0.063 | 5.3381886 | 0.9347 | 0.5622343 | 764.93823 | 0.9987471 | 2.1513052 | 6.8489275 | 98.71143 | 368.06973 | 1307.295 | 0.42910457 | 59.47909 | 864.9758 | 18.944836 | 6.4954987 | SSO-U1 |
+| 2025-11-26T10:21:00.000-05:00 | 736.88684 | 85.0 | 0.072 | 5.3293285 | 0.9221 | 0.5623854 | 765.06866 | 0.9987481 | 2.1463914 | 6.8478837 | 98.54063 | 369.9413 | 1307.0723 | 0.4292233 | 59.37426 | 865.2083 | 18.940287 | 6.497628 | SSO-U1 |
+| 2025-11-26T10:31:00.000-05:00 | 736.9394 | 85.0 | 0.072 | 5.3228335 | 0.9185 | 0.5624804 | 765.12506 | 0.9987491 | 2.146558 | 6.8477206 | 98.41347 | 372.06802 | 1306.9758 | 0.42929763 | 59.292267 | 865.3544 | 18.935884 | 6.4975576 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001850
+## Table: ddt_brick0002036
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251217_20260123_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-12-17 to 2026-01-23 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20251217_20260123_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2025-12-17 to 2026-01-23 (v4)
 
 ### Schema
 
@@ -23843,17 +24487,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-12-17T15:30:00.000-05:00 | 0.8 | 0.5755 | 850.77 | 9.23 | 7.08 | 18.61 | SSO-U1 |
-| 2025-12-17T15:45:00.000-05:00 | 0.79 | 0.5755 | 844.34 | 9.24 | 7.08 | 18.61 | SSO-U1 |
-| 2025-12-17T16:00:00.000-05:00 | 0.83 | 0.5755 | 847.52 | 9.24 | 7.08 | 18.61 | SSO-U1 |
-| 2025-12-17T16:15:00.000-05:00 | 0.85 | 0.5755 | 845.4 | 9.24 | 7.08 | 18.61 | SSO-U1 |
-| 2025-12-17T16:30:00.000-05:00 | 0.87 | 0.5755 | 847.48 | 9.25 | 7.08 | 18.61 | SSO-U1 |
+| 2025-12-17T15:30:00.000-05:00 | 0.8 | 0.13 | 850.77 | 9.23 | 7.08 | 18.61 | SSO-U1 |
+| 2025-12-17T15:45:00.000-05:00 | 0.79 | 0.13 | 844.34 | 9.24 | 7.08 | 18.61 | SSO-U1 |
+| 2025-12-17T16:00:00.000-05:00 | 0.83 | 0.13 | 847.52 | 9.24 | 7.08 | 18.61 | SSO-U1 |
+| 2025-12-17T16:15:00.000-05:00 | 0.85 | 0.13 | 845.4 | 9.24 | 7.08 | 18.61 | SSO-U1 |
+| 2025-12-17T16:30:00.000-05:00 | 0.87 | 0.13 | 847.48 | 9.25 | 7.08 | 18.61 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001851
+## Table: ddt_brick0002037
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20260123_20260330_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2026-01-23 to 2026-03-30 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20260123_20260330_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2026-01-23 to 2026-03-30 (v4)
 
 ### Schema
 
@@ -23874,17 +24518,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-01-23T04:00:00.000-05:00 | 4.05 | 0.6198 | 788.83 | 10.0 | 7.18 | 17.88 | SSO-U1 |
-| 2026-01-23T04:15:00.000-05:00 | 4.05 | 0.6198 | 786.03 | 10.01 | 7.18 | 17.88 | SSO-U1 |
-| 2026-01-23T04:30:00.000-05:00 | 4.05 | 0.6198 | 786.08 | 10.0 | 7.18 | 17.88 | SSO-U1 |
-| 2026-01-23T04:45:00.000-05:00 | 4.04 | 0.6198 | 789.01 | 10.0 | 7.18 | 17.88 | SSO-U1 |
-| 2026-01-23T05:00:00.000-05:00 | 4.04 | 0.6198 | 788.97 | 10.01 | 7.18 | 17.88 | SSO-U1 |
+| 2026-01-23T04:00:00.000-05:00 | 4.05 | 0.14 | 788.83 | 10.0 | 7.18 | 17.88 | SSO-U1 |
+| 2026-01-23T04:15:00.000-05:00 | 4.05 | 0.14 | 786.03 | 10.01 | 7.18 | 17.88 | SSO-U1 |
+| 2026-01-23T04:30:00.000-05:00 | 4.05 | 0.14 | 786.08 | 10.0 | 7.18 | 17.88 | SSO-U1 |
+| 2026-01-23T04:45:00.000-05:00 | 4.04 | 0.14 | 789.01 | 10.0 | 7.18 | 17.88 | SSO-U1 |
+| 2026-01-23T05:00:00.000-05:00 | 4.04 | 0.14 | 788.97 | 10.01 | 7.18 | 17.88 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001852
+## Table: ddt_brick0002038
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20260406_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2026-04-06 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ1_20260406_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ1 from 2026-04-06 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -23905,17 +24549,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-06T15:00:00.000-04:00 | 2.24 | 0.4427 | 463.3 | 6.36 | 7.23 | 16.07 | SSO-U1 |
-| 2026-04-06T15:15:00.000-04:00 | 2.22 | 0.4427 | 462.99 | 6.36 | 7.23 | 16.06 | SSO-U1 |
-| 2026-04-06T15:30:00.000-04:00 | 2.26 | 0.4427 | 462.98 | 6.36 | 7.23 | 16.06 | SSO-U1 |
-| 2026-04-06T15:45:00.000-04:00 | 2.25 | 0.4427 | 460.29 | 6.36 | 7.23 | 16.05 | SSO-U1 |
-| 2026-04-06T16:00:00.000-04:00 | 2.16 | 0.4427 | 462.51 | 6.36 | 7.23 | 16.05 | SSO-U1 |
+| 2026-04-06T15:00:00.000-04:00 | 2.24 | 0.1 | 463.3 | 6.36 | 7.23 | 16.07 | SSO-U1 |
+| 2026-04-06T15:15:00.000-04:00 | 2.22 | 0.1 | 462.99 | 6.36 | 7.23 | 16.06 | SSO-U1 |
+| 2026-04-06T15:30:00.000-04:00 | 2.26 | 0.1 | 462.98 | 6.36 | 7.23 | 16.06 | SSO-U1 |
+| 2026-04-06T15:45:00.000-04:00 | 2.25 | 0.1 | 460.29 | 6.36 | 7.23 | 16.05 | SSO-U1 |
+| 2026-04-06T16:00:00.000-04:00 | 2.16 | 0.1 | 462.51 | 6.36 | 7.23 | 16.05 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001853
+## Table: ddt_brick0002039
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20241010_20250308_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2024-10-10 to 2025-03-07 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20241010_20250308_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2024-10-10 to 2025-03-07 (v4)
 
 ### Schema
 
@@ -23948,17 +24592,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-10T10:06:00.000-04:00 | 738.9379 | 72.0 | 0.0 | 0.272229 | 3378.1203 | 3.3831816 | 4492.615 | 1.0007944 | 10.816613 | 5.8836865 | 5.351652 | 139.70375 | 222.5875 | 2.8294642 | 2.999621 | 5204.8945 | 17.835186 | 5.298375 | SSO-U1 |
-| 2024-10-10T10:16:00.000-04:00 | 738.87787 | 72.0 | 0.081 | 0.20867042 | 3374.6845 | 3.3403413 | 4436.25 | 1.0007643 | 10.816364 | 5.8786693 | 4.2785287 | 131.18744 | 225.4156 | 2.791362 | 2.2992048 | 5138.9863 | 17.840517 | 5.298483 | SSO-U1 |
-| 2024-10-10T10:26:00.000-04:00 | 738.9229 | 72.0 | 0.081 | 0.25712842 | 3340.264 | 3.3446026 | 4442.073 | 1.0007669 | 10.818916 | 5.8791714 | 5.0964603 | 136.34682 | 225.1201 | 2.795157 | 2.833116 | 5145.5425 | 17.84218 | 5.2973757 | SSO-U1 |
-| 2024-10-10T10:36:00.000-04:00 | 738.9304 | 72.0 | 0.081 | 0.29280075 | 3328.2468 | 3.3510983 | 4450.681 | 1.0007712 | 10.826188 | 5.8789225 | 5.69859 | 137.74872 | 224.68471 | 2.8009338 | 3.2262323 | 5155.5356 | 17.84199 | 5.294221 | SSO-U1 |
-| 2024-10-10T10:46:00.000-04:00 | 738.9154 | 72.0 | 0.09 | 0.28075424 | 3331.252 | 3.3548293 | 4455.337 | 1.0007744 | 10.823436 | 5.8789935 | 5.4950895 | 138.46875 | 224.44992 | 2.8042455 | 3.0934277 | 5161.276 | 17.838947 | 5.295415 | SSO-U1 |
+| 2024-10-10T10:06:00.000-04:00 | 738.9379 | 72.0 | 0.0 | 0.272229 | 763.1061 | 3.3831816 | 4492.615 | 1.0007944 | 10.816613 | 5.8836865 | 5.351652 | 139.70375 | 222.5875 | 2.8294642 | 2.999621 | 5204.8945 | 17.835186 | 5.298375 | SSO-U1 |
+| 2024-10-10T10:16:00.000-04:00 | 738.87787 | 72.0 | 0.081 | 0.20867042 | 762.33 | 3.3403413 | 4436.25 | 1.0007643 | 10.816364 | 5.8786693 | 4.2785287 | 131.18744 | 225.4156 | 2.791362 | 2.2992048 | 5138.9863 | 17.840517 | 5.298483 | SSO-U1 |
+| 2024-10-10T10:26:00.000-04:00 | 738.9229 | 72.0 | 0.081 | 0.25712842 | 754.5545 | 3.3446026 | 4442.073 | 1.0007669 | 10.818916 | 5.8791714 | 5.0964603 | 136.34682 | 225.1201 | 2.795157 | 2.833116 | 5145.5425 | 17.84218 | 5.2973757 | SSO-U1 |
+| 2024-10-10T10:36:00.000-04:00 | 738.9304 | 72.0 | 0.081 | 0.29280075 | 751.8398 | 3.3510983 | 4450.681 | 1.0007712 | 10.826188 | 5.8789225 | 5.69859 | 137.74872 | 224.68471 | 2.8009338 | 3.2262323 | 5155.5356 | 17.84199 | 5.294221 | SSO-U1 |
+| 2024-10-10T10:46:00.000-04:00 | 738.9154 | 72.0 | 0.09 | 0.28075424 | 752.5187 | 3.3548293 | 4455.337 | 1.0007744 | 10.823436 | 5.8789935 | 5.4950895 | 138.46875 | 224.44992 | 2.8042455 | 3.0934277 | 5161.276 | 17.838947 | 5.295415 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001854
+## Table: ddt_brick0002040
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20250309_20250530_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-03-09 to 2025-05-30 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20250309_20250530_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-03-09 to 2025-05-30 (v4)
 
 ### Schema
 
@@ -23979,17 +24623,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-03-09T05:00:00.000-04:00 | 0.0 | 1654.5618 | 2905.7 | 9.71 | 6.31 | 17.81 | SSO-U1 |
-| 2025-03-09T05:15:00.000-04:00 | 0.0 | 1652.3042 | 2806.7 | 9.72 | 6.32 | 17.81 | SSO-U1 |
-| 2025-03-09T05:30:00.000-04:00 | 0.0 | 1654.916 | 2807.8 | 9.72 | 6.31 | 17.81 | SSO-U1 |
-| 2025-03-09T05:45:00.000-04:00 | 0.0 | 1655.8456 | 2805.9 | 9.72 | 6.31 | 17.81 | SSO-U1 |
-| 2025-03-09T06:00:00.000-04:00 | 0.0 | 1653.588 | 2803.6 | 9.72 | 6.31 | 17.81 | SSO-U1 |
+| 2025-03-09T05:00:00.000-04:00 | 0.0 | 373.76 | 2905.7 | 9.71 | 6.31 | 17.81 | SSO-U1 |
+| 2025-03-09T05:15:00.000-04:00 | 0.0 | 373.25 | 2806.7 | 9.72 | 6.32 | 17.81 | SSO-U1 |
+| 2025-03-09T05:30:00.000-04:00 | 0.0 | 373.84 | 2807.8 | 9.72 | 6.31 | 17.81 | SSO-U1 |
+| 2025-03-09T05:45:00.000-04:00 | 0.0 | 374.05 | 2805.9 | 9.72 | 6.31 | 17.81 | SSO-U1 |
+| 2025-03-09T06:00:00.000-04:00 | 0.0 | 373.54 | 2803.6 | 9.72 | 6.31 | 17.81 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001855
+## Table: ddt_brick0002041
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20250828_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-08-28 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20250828_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-08-28 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -24010,17 +24654,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-28T14:00:00.000-04:00 | 0.05 | 1313.4324 | 2290.3 | 11.16 | 6.21 | 17.24 | SSO-U1 |
-| 2025-08-28T14:15:00.000-04:00 | 0.12 | 1265.0475 | 2286.9 | 11.16 | 6.21 | 17.24 | SSO-U1 |
-| 2025-08-28T14:30:00.000-04:00 | 0.06 | 1239.6819 | 2281.4 | 11.16 | 6.21 | 17.24 | SSO-U1 |
-| 2025-08-28T14:45:00.000-04:00 | 0.02 | 1276.6457 | 2299.5 | 11.16 | 6.21 | 17.24 | SSO-U1 |
-| 2025-08-28T15:00:00.000-04:00 | 0.01 | 1300.816 | 2374.3 | 11.16 | 6.21 | 17.24 | SSO-U1 |
+| 2025-08-28T14:00:00.000-04:00 | 0.05 | 296.7 | 2290.3 | 11.16 | 6.21 | 17.24 | SSO-U1 |
+| 2025-08-28T14:15:00.000-04:00 | 0.12 | 285.77 | 2286.9 | 11.16 | 6.21 | 17.24 | SSO-U1 |
+| 2025-08-28T14:30:00.000-04:00 | 0.06 | 280.04 | 2281.4 | 11.16 | 6.21 | 17.24 | SSO-U1 |
+| 2025-08-28T14:45:00.000-04:00 | 0.02 | 288.39 | 2299.5 | 11.16 | 6.21 | 17.24 | SSO-U1 |
+| 2025-08-28T15:00:00.000-04:00 | 0.01 | 293.85 | 2374.3 | 11.16 | 6.21 | 17.24 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001856
+## Table: ddt_brick0002042
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251014_20251110_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-10-14 to 2025-11-10 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251014_20251110_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-10-14 to 2025-11-10 (v4)
 
 ### Schema
 
@@ -24053,17 +24697,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T14:53:00.000-04:00 | 739.5004 | 99.0 | 0.009 | 0.01825584 | 1377.1538 | 1.167081 | 1549.1951 | 0.99933684 | 11.97113 | 5.6860557 | 0.7156625 | 252.2269 | 645.4965 | 0.91902125 | 0.1986434 | 1795.5093 | 17.81762 | 4.804908 | SSO-U1 |
-| 2025-10-14T15:03:00.000-04:00 | 739.40295 | 99.0 | 0.072 | 0.0 | 1395.724 | 1.1772305 | 1563.085 | 0.99934113 | 11.972686 | 5.6861076 | 0.15521516 | 176.96768 | 639.7605 | 0.92741525 | 0.0 | 1811.1238 | 17.829687 | 4.8042336 | SSO-U1 |
-| 2025-10-14T15:13:00.000-04:00 | 739.38043 | 99.0 | 0.072 | 0.0 | 1405.2819 | 1.1783415 | 1564.479 | 0.99934214 | 11.972369 | 5.6867533 | 0.16479978 | 211.63852 | 639.1904 | 0.92833185 | 0.0 | 1812.833 | 17.827347 | 4.804371 | SSO-U1 |
-| 2025-10-14T15:23:00.000-04:00 | 739.3654 | 99.0 | 0.063 | 0.0 | 1401.4929 | 1.1773413 | 1563.0758 | 0.999342 | 11.969487 | 5.68729 | 0.21368568 | 226.83054 | 639.7642 | 0.92750365 | 0.0 | 1811.2944 | 17.825163 | 4.8056192 | SSO-U1 |
-| 2025-10-14T15:33:00.000-04:00 | 739.3129 | 99.0 | 0.072 | 0.0 | 1399.9133 | 1.1767493 | 1562.2415 | 0.9993419 | 11.974902 | 5.684334 | 0.22724563 | 233.2297 | 640.1059 | 0.92701346 | 0.0 | 1810.3835 | 17.82377 | 4.803273 | SSO-U1 |
+| 2025-10-14T14:53:00.000-04:00 | 739.5004 | 99.0 | 0.009 | 0.01825584 | 311.0944 | 1.167081 | 1549.1951 | 0.99933684 | 11.97113 | 5.6860557 | 0.7156625 | 252.2269 | 645.4965 | 0.91902125 | 0.1986434 | 1795.5093 | 17.81762 | 4.804908 | SSO-U1 |
+| 2025-10-14T15:03:00.000-04:00 | 739.40295 | 99.0 | 0.072 | 0.0 | 315.2894 | 1.1772305 | 1563.085 | 0.99934113 | 11.972686 | 5.6861076 | 0.15521516 | 176.96768 | 639.7605 | 0.92741525 | 0.0 | 1811.1238 | 17.829687 | 4.8042336 | SSO-U1 |
+| 2025-10-14T15:13:00.000-04:00 | 739.38043 | 99.0 | 0.072 | 0.0 | 317.4485 | 1.1783415 | 1564.479 | 0.99934214 | 11.972369 | 5.6867533 | 0.16479978 | 211.63852 | 639.1904 | 0.92833185 | 0.0 | 1812.833 | 17.827347 | 4.804371 | SSO-U1 |
+| 2025-10-14T15:23:00.000-04:00 | 739.3654 | 99.0 | 0.063 | 0.0 | 316.5926 | 1.1773413 | 1563.0758 | 0.999342 | 11.969487 | 5.68729 | 0.21368568 | 226.83054 | 639.7642 | 0.92750365 | 0.0 | 1811.2944 | 17.825163 | 4.8056192 | SSO-U1 |
+| 2025-10-14T15:33:00.000-04:00 | 739.3129 | 99.0 | 0.072 | 0.0 | 316.2357 | 1.1767493 | 1562.2415 | 0.9993419 | 11.974902 | 5.684334 | 0.22724563 | 233.2297 | 640.1059 | 0.92701346 | 0.0 | 1810.3835 | 17.82377 | 4.803273 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001857
+## Table: ddt_brick0002043
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251110_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-11-10 to 2025-12-16 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251110_20251216_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-11-10 to 2025-12-16 (v4)
 
 ### Schema
 
@@ -24096,17 +24740,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-11-10T15:25:00.000-05:00 | 739.8155 | 89.0 | 0.0 | 0.0 | 2040.3221 | 2.5490587 | 3406.6472 | 1.0001789 | 9.571929 | 5.7931633 | -0.031419247 | 80.54644 | 293.54376 | 2.095146 | 0.0 | 3921.629 | 18.124695 | 5.837085 | SSO-U1 |
-| 2025-11-10T15:35:00.000-05:00 | 740.003 | 89.0 | 0.063 | 0.0 | 2084.4646 | 2.5417404 | 3397.366 | 1.0001727 | 9.579922 | 5.785002 | -0.0397273 | 69.493355 | 294.34567 | 2.0887809 | 0.0 | 3910.3699 | 18.131378 | 5.833619 | SSO-U1 |
-| 2025-11-10T15:45:00.000-05:00 | 740.1155 | 89.0 | 0.324 | 0.0 | 2085.852 | 2.5411563 | 3396.4297 | 1.0001727 | 9.577865 | 5.7845573 | -0.038939685 | 72.802605 | 294.42682 | 2.0882676 | 0.0 | 3909.4714 | 18.129293 | 5.834511 | SSO-U1 |
-| 2025-11-10T15:55:00.000-05:00 | 740.2355 | 89.0 | 0.063 | 0.0 | 2085.6029 | 2.54077 | 3395.758 | 1.000173 | 9.584739 | 5.7836757 | -0.03292402 | 74.92453 | 294.48505 | 2.0879288 | 0.0 | 3908.8772 | 18.127213 | 5.8315306 | SSO-U1 |
-| 2025-11-10T16:05:00.000-05:00 | 740.5956 | 89.0 | 0.063 | 0.0 | 2085.3677 | 2.540697 | 3395.629 | 1.000173 | 9.591022 | 5.784329 | -0.02496884 | 76.39319 | 294.49625 | 2.0878637 | 0.0 | 3908.765 | 18.126793 | 5.828806 | SSO-U1 |
+| 2025-11-10T15:25:00.000-05:00 | 739.8155 | 89.0 | 0.0 | 0.0 | 460.9019 | 2.5490587 | 3406.6472 | 1.0001789 | 9.571929 | 5.7931633 | -0.031419247 | 80.54644 | 293.54376 | 2.095146 | 0.0 | 3921.629 | 18.124695 | 5.837085 | SSO-U1 |
+| 2025-11-10T15:35:00.000-05:00 | 740.003 | 89.0 | 0.063 | 0.0 | 470.8736 | 2.5417404 | 3397.366 | 1.0001727 | 9.579922 | 5.785002 | -0.0397273 | 69.493355 | 294.34567 | 2.0887809 | 0.0 | 3910.3699 | 18.131378 | 5.833619 | SSO-U1 |
+| 2025-11-10T15:45:00.000-05:00 | 740.1155 | 89.0 | 0.324 | 0.0 | 471.187 | 2.5411563 | 3396.4297 | 1.0001727 | 9.577865 | 5.7845573 | -0.038939685 | 72.802605 | 294.42682 | 2.0882676 | 0.0 | 3909.4714 | 18.129293 | 5.834511 | SSO-U1 |
+| 2025-11-10T15:55:00.000-05:00 | 740.2355 | 89.0 | 0.063 | 0.0 | 471.1307 | 2.54077 | 3395.758 | 1.000173 | 9.584739 | 5.7836757 | -0.03292402 | 74.92453 | 294.48505 | 2.0879288 | 0.0 | 3908.8772 | 18.127213 | 5.8315306 | SSO-U1 |
+| 2025-11-10T16:05:00.000-05:00 | 740.5956 | 89.0 | 0.063 | 0.0 | 471.0776 | 2.540697 | 3395.629 | 1.000173 | 9.591022 | 5.784329 | -0.02496884 | 76.39319 | 294.49625 | 2.0878637 | 0.0 | 3908.765 | 18.126793 | 5.828806 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001858
+## Table: ddt_brick0002044
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251217_20260123_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-12-17 to 2026-01-23 (v4)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20251217_20260123_v5.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2025-12-17 to 2026-01-23 (v5)
 
 ### Schema
 
@@ -24127,17 +24771,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-12-17T15:30:00.000-05:00 | 0.0 | 968.8501 | 2497.2 | 9.97 | 6.13 | 18.37 | SSO-U1 |
-| 2025-12-17T15:45:00.000-05:00 | 0.0 | 968.8501 | 2497.2 | 9.96 | 6.13 | 18.37 | SSO-U1 |
-| 2025-12-17T16:00:00.000-05:00 | 0.0 | 970.0896 | 2496.4 | 9.96 | 6.13 | 18.37 | SSO-U1 |
-| 2025-12-17T16:15:00.000-05:00 | 0.0 | 971.7275 | 2496.2 | 9.95 | 6.13 | 18.37 | SSO-U1 |
-| 2025-12-17T16:30:00.000-05:00 | 0.0 | 972.6129 | 2497.2 | 9.97 | 6.13 | 18.37 | SSO-U1 |
+| 2025-12-17T15:30:00.000-05:00 | 0.0 | 218.86 | 2497.2 | 9.97 | 6.13 | 18.37 | SSO-U1 |
+| 2025-12-17T15:45:00.000-05:00 | 0.0 | 218.86 | 2497.2 | 9.96 | 6.13 | 18.37 | SSO-U1 |
+| 2025-12-17T16:00:00.000-05:00 | 0.0 | 219.14 | 2496.4 | 9.96 | 6.13 | 18.37 | SSO-U1 |
+| 2025-12-17T16:15:00.000-05:00 | 0.0 | 219.51 | 2496.2 | 9.95 | 6.13 | 18.37 | SSO-U1 |
+| 2025-12-17T16:30:00.000-05:00 | 0.0 | 219.71 | 2497.2 | 9.97 | 6.13 | 18.37 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001859
+## Table: ddt_brick0002045
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20260123_20260330_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2026-01-23 to 2026-03-30 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20260123_20260330_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2026-01-23 to 2026-03-30 (v4)
 
 ### Schema
 
@@ -24158,17 +24802,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-01-23T04:00:00.000-05:00 | 0.0 | 1593.1621 | 2969.6 | 10.42 | 6.0 | 18.29 | SSO-U1 |
-| 2026-01-23T04:15:00.000-05:00 | 0.0 | 1595.0656 | 2970.1 | 10.42 | 6.0 | 18.29 | SSO-U1 |
-| 2026-01-23T04:30:00.000-05:00 | 0.0 | 1593.649 | 2970.8 | 10.43 | 6.0 | 18.29 | SSO-U1 |
-| 2026-01-23T04:45:00.000-05:00 | 0.0 | 1589.0894 | 2973.1 | 10.43 | 6.0 | 18.29 | SSO-U1 |
-| 2026-01-23T05:00:00.000-05:00 | 0.0 | 1590.0191 | 2972.3 | 10.42 | 6.0 | 18.29 | SSO-U1 |
+| 2026-01-23T04:00:00.000-05:00 | 0.0 | 359.89 | 2969.6 | 10.42 | 6.0 | 18.29 | SSO-U1 |
+| 2026-01-23T04:15:00.000-05:00 | 0.0 | 360.32 | 2970.1 | 10.42 | 6.0 | 18.29 | SSO-U1 |
+| 2026-01-23T04:30:00.000-05:00 | 0.0 | 360.0 | 2970.8 | 10.43 | 6.0 | 18.29 | SSO-U1 |
+| 2026-01-23T04:45:00.000-05:00 | 0.0 | 358.97 | 2973.1 | 10.43 | 6.0 | 18.29 | SSO-U1 |
+| 2026-01-23T05:00:00.000-05:00 | 0.0 | 359.18 | 2972.3 | 10.42 | 6.0 | 18.29 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001860
+## Table: ddt_brick0002046
 
-**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20260406_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2026-04-06 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U1_SZ2_20260406_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U1 SZ2 from 2026-04-06 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -24189,17 +24833,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-06T15:00:00.000-04:00 | 0.0 | 664.8173 | 1759.0 | 5.23 | 6.29 | 17.31 | SSO-U1 |
-| 2026-04-06T15:15:00.000-04:00 | 0.0 | 661.807 | 1754.4 | 5.23 | 6.29 | 17.3 | SSO-U1 |
-| 2026-04-06T15:30:00.000-04:00 | 0.0 | 661.8956 | 1753.0 | 5.22 | 6.29 | 17.3 | SSO-U1 |
-| 2026-04-06T15:45:00.000-04:00 | 0.0 | 661.4529 | 1754.9 | 5.22 | 6.29 | 17.3 | SSO-U1 |
-| 2026-04-06T16:00:00.000-04:00 | 0.0 | 661.9841 | 1640.6 | 5.24 | 6.29 | 17.3 | SSO-U1 |
+| 2026-04-06T15:00:00.000-04:00 | 0.0 | 150.18 | 1759.0 | 5.23 | 6.29 | 17.31 | SSO-U1 |
+| 2026-04-06T15:15:00.000-04:00 | 0.0 | 149.5 | 1754.4 | 5.23 | 6.29 | 17.3 | SSO-U1 |
+| 2026-04-06T15:30:00.000-04:00 | 0.0 | 149.52 | 1753.0 | 5.22 | 6.29 | 17.3 | SSO-U1 |
+| 2026-04-06T15:45:00.000-04:00 | 0.0 | 149.42 | 1754.9 | 5.22 | 6.29 | 17.3 | SSO-U1 |
+| 2026-04-06T16:00:00.000-04:00 | 0.0 | 149.54 | 1640.6 | 5.24 | 6.29 | 17.3 | SSO-U1 |
 
 ---
 
-## Table: ddt_brick0001861
+## Table: ddt_brick0002047
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20241003_20250205_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2024-10-03 to 2025-02-05 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20241003_20250205_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2024-10-03 to 2025-02-05 (v4)
 
 ### Schema
 
@@ -24232,17 +24876,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T10:48:00.000-04:00 | 738.39325 | 72.0 | 0.0 | 0.32033938 | 113.6757 | 0.52196306 | 714.9445 | 0.998661 | 10.323555 | 5.3543367 | 6.9064636 | 349.9544 | 1398.71 | 0.39730614 | 3.5836728 | 803.0201 | 19.257568 | 2.4633808 | SSO-U2 |
-| 2024-10-03T10:58:00.000-04:00 | 738.02576 | 72.0 | 0.09 | 0.28277868 | 107.8598 | 0.5176186 | 708.94025 | 0.9986591 | 10.302153 | 5.330908 | 6.2573214 | 352.08588 | 1410.5562 | 0.3938761 | 3.1648064 | 796.3363 | 19.254051 | 2.4726467 | SSO-U2 |
-| 2024-10-03T11:08:00.000-04:00 | 738.0482 | 72.0 | 0.09 | 0.27321905 | 105.8092 | 0.5158205 | 706.23 | 0.9986613 | 10.305739 | 5.337733 | 6.090328 | 356.3154 | 1415.9694 | 0.39245456 | 3.0566823 | 793.57007 | 19.237713 | 2.4710941 | SSO-U2 |
-| 2024-10-03T11:18:00.000-04:00 | 738.0332 | 72.0 | 0.09 | 0.2704047 | 105.8057 | 0.5146479 | 704.4308 | 0.99866307 | 10.315492 | 5.341016 | 6.0402737 | 361.45334 | 1419.5859 | 0.39152724 | 3.024465 | 791.766 | 19.224907 | 2.4668722 | SSO-U2 |
-| 2024-10-03T11:28:00.000-04:00 | 738.0407 | 72.0 | 0.09 | 0.26006544 | 105.5482 | 0.511054 | 699.361 | 0.9986629 | 10.312786 | 5.3363175 | 5.8606577 | 363.31778 | 1429.8767 | 0.38869068 | 2.9081593 | 786.2369 | 19.214882 | 2.4680433 | SSO-U2 |
+| 2024-10-03T10:48:00.000-04:00 | 738.39325 | 72.0 | 0.0 | 0.32033938 | 25.679 | 0.52196306 | 714.9445 | 0.998661 | 10.323555 | 5.3543367 | 6.9064636 | 349.9544 | 1398.71 | 0.39730614 | 3.5836728 | 803.0201 | 19.257568 | 2.4633808 | SSO-U2 |
+| 2024-10-03T10:58:00.000-04:00 | 738.02576 | 72.0 | 0.09 | 0.28277868 | 24.3652 | 0.5176186 | 708.94025 | 0.9986591 | 10.302153 | 5.330908 | 6.2573214 | 352.08588 | 1410.5562 | 0.3938761 | 3.1648064 | 796.3363 | 19.254051 | 2.4726467 | SSO-U2 |
+| 2024-10-03T11:08:00.000-04:00 | 738.0482 | 72.0 | 0.09 | 0.27321905 | 23.902 | 0.5158205 | 706.23 | 0.9986613 | 10.305739 | 5.337733 | 6.090328 | 356.3154 | 1415.9694 | 0.39245456 | 3.0566823 | 793.57007 | 19.237713 | 2.4710941 | SSO-U2 |
+| 2024-10-03T11:18:00.000-04:00 | 738.0332 | 72.0 | 0.09 | 0.2704047 | 23.9012 | 0.5146479 | 704.4308 | 0.99866307 | 10.315492 | 5.341016 | 6.0402737 | 361.45334 | 1419.5859 | 0.39152724 | 3.024465 | 791.766 | 19.224907 | 2.4668722 | SSO-U2 |
+| 2024-10-03T11:28:00.000-04:00 | 738.0407 | 72.0 | 0.09 | 0.26006544 | 23.843 | 0.511054 | 699.361 | 0.9986629 | 10.312786 | 5.3363175 | 5.8606577 | 363.31778 | 1429.8767 | 0.38869068 | 2.9081593 | 786.2369 | 19.214882 | 2.4680433 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001862
+## Table: ddt_brick0002048
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20250206_20250531_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-02-06 to 2025-05-31 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20250206_20250531_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-02-06 to 2025-05-31 (v4)
 
 ### Schema
 
@@ -24264,17 +24908,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-02-06T04:00:00.000-05:00 | 0.0 | 1819.8587 | 627.62 | 8.65 | 5.99 | 110.3 | 17.56 | SSO-U2 |
-| 2025-02-06T04:15:00.000-05:00 | 0.0 | 1764.8335 | 624.63 | 8.64 | 5.99 | 110.6 | 17.55 | SSO-U2 |
-| 2025-02-06T04:30:00.000-05:00 | 0.0 | 1761.4691 | 624.3 | 8.64 | 5.99 | 110.5 | 17.55 | SSO-U2 |
-| 2025-02-06T04:45:00.000-05:00 | 0.0 | 1734.9083 | 623.19 | 8.65 | 5.99 | 110.4 | 17.55 | SSO-U2 |
-| 2025-02-06T05:00:00.000-05:00 | 0.0 | 1810.3853 | 626.16 | 8.65 | 5.99 | 109.8 | 17.56 | SSO-U2 |
+| 2025-02-06T04:00:00.000-05:00 | 0.0 | 411.1 | 627.62 | 8.65 | 5.99 | 110.3 | 17.56 | SSO-U2 |
+| 2025-02-06T04:15:00.000-05:00 | 0.0 | 398.67 | 624.63 | 8.64 | 5.99 | 110.6 | 17.55 | SSO-U2 |
+| 2025-02-06T04:30:00.000-05:00 | 0.0 | 397.91 | 624.3 | 8.64 | 5.99 | 110.5 | 17.55 | SSO-U2 |
+| 2025-02-06T04:45:00.000-05:00 | 0.0 | 391.91 | 623.19 | 8.65 | 5.99 | 110.4 | 17.55 | SSO-U2 |
+| 2025-02-06T05:00:00.000-05:00 | 0.0 | 408.96 | 626.16 | 8.65 | 5.99 | 109.8 | 17.56 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001863
+## Table: ddt_brick0002049
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20250828_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-08-28 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20250828_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-08-28 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -24296,17 +24940,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-08-28T14:00:00.000-04:00 | 0.5 | 198.4978 | 196.24 | 11.26 | 5.97 | 261.8 | 18.08 | SSO-U2 |
-| 2025-08-28T14:15:00.000-04:00 | 0.49 | 197.2141 | 196.68 | 11.26 | 5.97 | 265.4 | 18.07 | SSO-U2 |
-| 2025-08-28T14:30:00.000-04:00 | 0.5 | 197.8338 | 196.87 | 11.26 | 5.97 | 267.1 | 18.07 | SSO-U2 |
-| 2025-08-28T14:45:00.000-04:00 | 0.5 | 199.2504 | 197.0 | 11.25 | 5.97 | 268.0 | 18.07 | SSO-U2 |
-| 2025-08-28T15:00:00.000-04:00 | 0.5 | 195.1777 | 206.32 | 11.25 | 5.97 | 248.7 | 18.07 | SSO-U2 |
+| 2025-08-28T14:00:00.000-04:00 | 0.5 | 44.84 | 196.24 | 11.26 | 5.97 | 261.8 | 18.08 | SSO-U2 |
+| 2025-08-28T14:15:00.000-04:00 | 0.49 | 44.55 | 196.68 | 11.26 | 5.97 | 265.4 | 18.07 | SSO-U2 |
+| 2025-08-28T14:30:00.000-04:00 | 0.5 | 44.69 | 196.87 | 11.26 | 5.97 | 267.1 | 18.07 | SSO-U2 |
+| 2025-08-28T14:45:00.000-04:00 | 0.5 | 45.01 | 197.0 | 11.25 | 5.97 | 268.0 | 18.07 | SSO-U2 |
+| 2025-08-28T15:00:00.000-04:00 | 0.5 | 44.09 | 206.32 | 11.25 | 5.97 | 248.7 | 18.07 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001864
+## Table: ddt_brick0002050
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251014_20251023_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-10-14 to 2025-10-23 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251014_20251023_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-10-14 to 2025-10-23 (v4)
 
 ### Schema
 
@@ -24339,17 +24983,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T15:02:00.000-04:00 | 739.5183 | 76.0 | 0.0 | 0.2162638 | 303.3344 | 0.45662308 | 623.55023 | 0.9986497 | 11.992985 | 5.890963 | 4.0990067 | 372.0426 | 1603.7201 | 0.34587082 | 2.4079967 | 702.497 | 19.116215 | 1.7022142 | SSO-U2 |
-| 2025-10-14T15:12:00.000-04:00 | 739.51086 | 76.0 | 0.072 | 0.19330609 | 306.0878 | 0.4568203 | 623.9919 | 0.99864733 | 11.998487 | 5.884601 | 3.6988633 | 381.03815 | 1602.585 | 0.34602734 | 2.152959 | 702.8005 | 19.129053 | 1.699832 | SSO-U2 |
-| 2025-10-14T15:22:00.000-04:00 | 739.54083 | 76.0 | 0.072 | 0.21030091 | 306.0404 | 0.45698118 | 624.1788 | 0.99864775 | 11.995137 | 5.8841763 | 3.995633 | 381.92508 | 1602.1051 | 0.34615317 | 2.3420274 | 703.048 | 19.126606 | 1.7012825 | SSO-U2 |
-| 2025-10-14T15:32:00.000-04:00 | 739.4583 | 76.0 | 0.072 | 0.22595023 | 305.599 | 0.4570623 | 624.2588 | 0.9986484 | 11.994993 | 5.885412 | 4.268886 | 382.0586 | 1601.8998 | 0.34621638 | 2.5164824 | 703.1728 | 19.12431 | 1.7013445 | SSO-U2 |
-| 2025-10-14T15:42:00.000-04:00 | 739.4583 | 76.0 | 13.308 | 0.23438576 | 305.3218 | 0.4594497 | 627.51263 | 0.99864984 | 11.99559 | 5.8832417 | 4.416267 | 381.87738 | 1593.5934 | 0.34808853 | 2.6104293 | 706.8457 | 19.123804 | 1.701086 | SSO-U2 |
+| 2025-10-14T15:02:00.000-04:00 | 739.5183 | 76.0 | 0.0 | 0.2162638 | 68.5222 | 0.45662308 | 623.55023 | 0.9986497 | 11.992985 | 5.890963 | 4.0990067 | 372.0426 | 1603.7201 | 0.34587082 | 2.4079967 | 702.497 | 19.116215 | 1.7022142 | SSO-U2 |
+| 2025-10-14T15:12:00.000-04:00 | 739.51086 | 76.0 | 0.072 | 0.19330609 | 69.1442 | 0.4568203 | 623.9919 | 0.99864733 | 11.998487 | 5.884601 | 3.6988633 | 381.03815 | 1602.585 | 0.34602734 | 2.152959 | 702.8005 | 19.129053 | 1.699832 | SSO-U2 |
+| 2025-10-14T15:22:00.000-04:00 | 739.54083 | 76.0 | 0.072 | 0.21030091 | 69.1335 | 0.45698118 | 624.1788 | 0.99864775 | 11.995137 | 5.8841763 | 3.995633 | 381.92508 | 1602.1051 | 0.34615317 | 2.3420274 | 703.048 | 19.126606 | 1.7012825 | SSO-U2 |
+| 2025-10-14T15:32:00.000-04:00 | 739.4583 | 76.0 | 0.072 | 0.22595023 | 69.0338 | 0.4570623 | 624.2588 | 0.9986484 | 11.994993 | 5.885412 | 4.268886 | 382.0586 | 1601.8998 | 0.34621638 | 2.5164824 | 703.1728 | 19.12431 | 1.7013445 | SSO-U2 |
+| 2025-10-14T15:42:00.000-04:00 | 739.4583 | 76.0 | 13.308 | 0.23438576 | 68.9712 | 0.4594497 | 627.51263 | 0.99864984 | 11.99559 | 5.8832417 | 4.416267 | 381.87738 | 1593.5934 | 0.34808853 | 2.6104293 | 706.8457 | 19.123804 | 1.701086 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001865
+## Table: ddt_brick0002051
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251024_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-10-24 to 2025-12-16 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251024_20251216_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-10-24 to 2025-12-16 (v4)
 
 ### Schema
 
@@ -24371,17 +25015,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-10-24T04:00:00.000-04:00 | 0.0 | 384.5121 | 780.86 | 12.27 | 5.91 | 234.0 | 19.21 | SSO-U2 |
-| 2025-10-24T04:15:00.000-04:00 | 0.0 | 384.2465 | 781.98 | 12.27 | 5.92 | 228.6 | 19.21 | SSO-U2 |
-| 2025-10-24T04:30:00.000-04:00 | 0.0 | 387.5666 | 781.49 | 12.27 | 5.91 | 232.2 | 19.21 | SSO-U2 |
-| 2025-10-24T04:45:00.000-04:00 | 0.0 | 383.671 | 781.47 | 12.27 | 5.91 | 233.0 | 19.21 | SSO-U2 |
-| 2025-10-24T05:00:00.000-04:00 | 0.0 | 382.9627 | 780.66 | 12.27 | 5.91 | 233.4 | 19.21 | SSO-U2 |
+| 2025-10-24T04:00:00.000-04:00 | 0.0 | 86.86 | 780.86 | 12.27 | 5.91 | 234.0 | 19.21 | SSO-U2 |
+| 2025-10-24T04:15:00.000-04:00 | 0.0 | 86.8 | 781.98 | 12.27 | 5.92 | 228.6 | 19.21 | SSO-U2 |
+| 2025-10-24T04:30:00.000-04:00 | 0.0 | 87.55 | 781.49 | 12.27 | 5.91 | 232.2 | 19.21 | SSO-U2 |
+| 2025-10-24T04:45:00.000-04:00 | 0.0 | 86.67 | 781.47 | 12.27 | 5.91 | 233.0 | 19.21 | SSO-U2 |
+| 2025-10-24T05:00:00.000-04:00 | 0.0 | 86.51 | 780.66 | 12.27 | 5.91 | 233.4 | 19.21 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001866
+## Table: ddt_brick0002052
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251217_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-12-17 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20251217_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2025-12-17 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -24412,17 +25056,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-17T14:51:00.000-05:00 | 739.1583 | 56.0 | 0.072 | 0.0 | 35.2682 | 4.04E-5 | 0.054945055 | 0.99842995 | 10.004844 | 5.6536875 | -0.44931114 | 235.83505 | 0.0 | 0.062212728 | 18.883787 | 2.5793762 | SSO-U2 |
-| 2025-12-17T15:01:00.000-05:00 | 738.9633 | 56.0 | 0.063 | 0.0 | 31.7922 | 4.04E-5 | 0.054945055 | 0.9984279 | 9.996273 | 5.6471205 | -0.44824147 | 219.34839 | 0.0 | 0.06219809 | 18.894665 | 2.583086 | SSO-U2 |
-| 2025-12-17T15:11:00.000-05:00 | 738.9108 | 56.0 | 0.063 | 0.0 | 30.7326 | 4.04E-5 | 0.054945055 | 0.9984287 | 9.992175 | 5.6417403 | -0.46555334 | 197.66663 | 0.0 | 0.06220382 | 18.890406 | 2.5848598 | SSO-U2 |
-| 2025-12-17T15:21:00.000-05:00 | 738.90326 | 56.0 | 0.099 | 0.0 | 31.6623 | 4.04E-5 | 0.054945055 | 0.99842924 | 9.997716 | 5.635371 | -0.46318546 | 180.95584 | 0.0 | 0.06220768 | 18.887537 | 2.5824614 | SSO-U2 |
-| 2025-12-17T15:31:00.000-05:00 | 739.02325 | 56.0 | 0.072 | 0.0 | 32.3737 | 4.04E-5 | 0.054945055 | 0.99842906 | 9.99592 | 5.6337376 | -0.4493044 | 171.72668 | 0.0 | 0.062205724 | 18.888992 | 2.5832386 | SSO-U2 |
+| 2025-12-17T14:51:00.000-05:00 | 739.1583 | 56.0 | 0.072 | 0.0 | 7.967 | 4.04E-5 | 0.054945055 | 0.99842995 | 10.004844 | 5.6536875 | -0.44931114 | 235.83505 | 0.0 | 0.062212728 | 18.883787 | 2.5793762 | SSO-U2 |
+| 2025-12-17T15:01:00.000-05:00 | 738.9633 | 56.0 | 0.063 | 0.0 | 7.1818 | 4.04E-5 | 0.054945055 | 0.9984279 | 9.996273 | 5.6471205 | -0.44824147 | 219.34839 | 0.0 | 0.06219809 | 18.894665 | 2.583086 | SSO-U2 |
+| 2025-12-17T15:11:00.000-05:00 | 738.9108 | 56.0 | 0.063 | 0.0 | 6.9424 | 4.04E-5 | 0.054945055 | 0.9984287 | 9.992175 | 5.6417403 | -0.46555334 | 197.66663 | 0.0 | 0.06220382 | 18.890406 | 2.5848598 | SSO-U2 |
+| 2025-12-17T15:21:00.000-05:00 | 738.90326 | 56.0 | 0.099 | 0.0 | 7.1524 | 4.04E-5 | 0.054945055 | 0.99842924 | 9.997716 | 5.635371 | -0.46318546 | 180.95584 | 0.0 | 0.06220768 | 18.887537 | 2.5824614 | SSO-U2 |
+| 2025-12-17T15:31:00.000-05:00 | 739.02325 | 56.0 | 0.072 | 0.0 | 7.3131 | 4.04E-5 | 0.054945055 | 0.99842906 | 9.99592 | 5.6337376 | -0.4493044 | 171.72668 | 0.0 | 0.062205724 | 18.888992 | 2.5832386 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001867
+## Table: ddt_brick0002053
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -24453,17 +25097,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:01:00.000-05:00 | 742.481 | 38.0 | 0.063 | 0.0 | 46.8794 | 4.13E-5 | 0.054945055 | 0.998615 | 10.516148 | 5.64626 | -0.43996805 | 201.63391 | 0.0 | 0.06355824 | 17.904898 | 2.3580294 | SSO-U2 |
-| 2026-01-23T00:11:00.000-05:00 | 742.5036 | 38.0 | 0.063 | 0.0 | 45.7913 | 4.13E-5 | 0.054945055 | 0.99861497 | 10.523254 | 5.6466117 | -0.4511854 | 201.11893 | 0.0 | 0.06355699 | 17.905787 | 2.3549528 | SSO-U2 |
-| 2026-01-23T00:21:00.000-05:00 | 742.4136 | 38.0 | 0.063 | 0.0 | 45.595 | 4.13E-5 | 0.054945055 | 0.99861485 | 10.525234 | 5.6467624 | -0.45925325 | 201.99152 | 0.0 | 0.06355654 | 17.906113 | 2.3540955 | SSO-U2 |
-| 2026-01-23T00:31:00.000-05:00 | 742.4736 | 38.0 | 0.063 | 0.0 | 45.7637 | 4.13E-5 | 0.054945055 | 0.9986147 | 10.523428 | 5.6458173 | -0.44896457 | 203.3648 | 0.0 | 0.06355588 | 17.90658 | 2.3548775 | SSO-U2 |
-| 2026-01-23T00:41:00.000-05:00 | 742.4136 | 38.0 | 0.063 | 0.0 | 46.2718 | 4.13E-5 | 0.054945055 | 0.99861497 | 10.522221 | 5.64686 | -0.43655214 | 204.91931 | 0.0 | 0.06355741 | 17.905495 | 2.3554 | SSO-U2 |
+| 2026-01-23T00:01:00.000-05:00 | 742.481 | 38.0 | 0.063 | 0.0 | 10.5899 | 4.13E-5 | 0.054945055 | 0.998615 | 10.516148 | 5.64626 | -0.43996805 | 201.63391 | 0.0 | 0.06355824 | 17.904898 | 2.3580294 | SSO-U2 |
+| 2026-01-23T00:11:00.000-05:00 | 742.5036 | 38.0 | 0.063 | 0.0 | 10.3441 | 4.13E-5 | 0.054945055 | 0.99861497 | 10.523254 | 5.6466117 | -0.4511854 | 201.11893 | 0.0 | 0.06355699 | 17.905787 | 2.3549528 | SSO-U2 |
+| 2026-01-23T00:21:00.000-05:00 | 742.4136 | 38.0 | 0.063 | 0.0 | 10.2998 | 4.13E-5 | 0.054945055 | 0.99861485 | 10.525234 | 5.6467624 | -0.45925325 | 201.99152 | 0.0 | 0.06355654 | 17.906113 | 2.3540955 | SSO-U2 |
+| 2026-01-23T00:31:00.000-05:00 | 742.4736 | 38.0 | 0.063 | 0.0 | 10.3379 | 4.13E-5 | 0.054945055 | 0.9986147 | 10.523428 | 5.6458173 | -0.44896457 | 203.3648 | 0.0 | 0.06355588 | 17.90658 | 2.3548775 | SSO-U2 |
+| 2026-01-23T00:41:00.000-05:00 | 742.4136 | 38.0 | 0.063 | 0.0 | 10.4526 | 4.13E-5 | 0.054945055 | 0.99861497 | 10.522221 | 5.64686 | -0.43655214 | 204.91931 | 0.0 | 0.06355741 | 17.905495 | 2.3554 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001868
+## Table: ddt_brick0002054
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20260406_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2026-04-06 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ1_20260406_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ1 from 2026-04-06 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -24485,17 +25129,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2026-04-06T15:15:00.000-04:00 | 2.79 | 35.1931 | 306.86 | 10.48 | 6.05 | 254.1 | 15.63 | SSO-U2 |
-| 2026-04-06T15:30:00.000-04:00 | 2.76 | 36.3883 | 304.92 | 10.48 | 6.06 | 255.7 | 15.63 | SSO-U2 |
-| 2026-04-06T15:45:00.000-04:00 | 2.74 | 37.1851 | 305.79 | 10.48 | 6.04 | 256.0 | 15.63 | SSO-U2 |
-| 2026-04-06T16:00:00.000-04:00 | 2.69 | 38.9559 | 311.01 | 10.48 | 6.0 | 255.6 | 15.63 | SSO-U2 |
-| 2026-04-06T16:15:00.000-04:00 | 2.16 | 45.9059 | 320.1 | 10.47 | 5.89 | 257.1 | 15.63 | SSO-U2 |
+| 2026-04-06T15:15:00.000-04:00 | 2.79 | 7.95 | 306.86 | 10.48 | 6.05 | 254.1 | 15.63 | SSO-U2 |
+| 2026-04-06T15:30:00.000-04:00 | 2.76 | 8.22 | 304.92 | 10.48 | 6.06 | 255.7 | 15.63 | SSO-U2 |
+| 2026-04-06T15:45:00.000-04:00 | 2.74 | 8.4 | 305.79 | 10.48 | 6.04 | 256.0 | 15.63 | SSO-U2 |
+| 2026-04-06T16:00:00.000-04:00 | 2.69 | 8.8 | 311.01 | 10.48 | 6.0 | 255.6 | 15.63 | SSO-U2 |
+| 2026-04-06T16:15:00.000-04:00 | 2.16 | 10.37 | 320.1 | 10.47 | 5.89 | 257.1 | 15.63 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001869
+## Table: ddt_brick0002055
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20241004_20241015_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2024-10-04 to 2024-10-15 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20241004_20241015_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2024-10-04 to 2024-10-15 (v3)
 
 ### Schema
 
@@ -24528,17 +25172,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-04T10:26:00.000-04:00 | 741.94574 | 90.0 | 0.027 | 0.0 | 1478.1577 | 1.8925889 | 2521.1902 | 0.9997737 | 10.539531 | 5.658205 | 3.0871694 | 252.35321 | 396.63806 | 1.5287433 | 0.0 | 2911.675 | 17.97853 | 5.476427 | SSO-U2 |
-| 2024-10-04T10:36:00.000-04:00 | 741.95325 | 90.0 | 0.081 | 0.0 | 1504.9773 | 1.8943436 | 2522.1797 | 0.99977934 | 10.563725 | 5.6542916 | 3.407273 | 263.63995 | 396.48245 | 1.5302099 | 0.0 | 2914.3748 | 17.954313 | 5.4659405 | SSO-U2 |
-| 2024-10-04T10:46:00.000-04:00 | 742.0582 | 90.0 | 0.081 | 0.0 | 1528.8178 | 1.893993 | 2520.3992 | 0.9997835 | 10.561175 | 5.6557417 | 2.9401965 | 268.58954 | 396.76254 | 1.5298814 | 0.0 | 2913.8354 | 17.930708 | 5.467046 | SSO-U2 |
-| 2024-10-04T10:56:00.000-04:00 | 742.1557 | 90.0 | 0.081 | 0.0 | 1546.6908 | 1.891578 | 2516.0996 | 0.99978554 | 10.574888 | 5.656259 | 2.5774531 | 272.33746 | 397.44055 | 1.527797 | 0.0 | 2910.1199 | 17.911177 | 5.4611025 | SSO-U2 |
-| 2024-10-04T11:06:00.000-04:00 | 742.1257 | 90.0 | 0.081 | 0.0 | 1561.9207 | 1.8880943 | 2510.6387 | 0.9997861 | 10.570283 | 5.656192 | 2.5671794 | 273.23392 | 398.30502 | 1.5248077 | 0.0 | 2904.7605 | 17.896265 | 5.4630985 | SSO-U2 |
+| 2024-10-04T10:26:00.000-04:00 | 741.94574 | 90.0 | 0.027 | 0.0 | 333.9109 | 1.8925889 | 2521.1902 | 0.9997737 | 10.539531 | 5.658205 | 3.0871694 | 252.35321 | 396.63806 | 1.5287433 | 0.0 | 2911.675 | 17.97853 | 5.476427 | SSO-U2 |
+| 2024-10-04T10:36:00.000-04:00 | 741.95325 | 90.0 | 0.081 | 0.0 | 339.9694 | 1.8943436 | 2522.1797 | 0.99977934 | 10.563725 | 5.6542916 | 3.407273 | 263.63995 | 396.48245 | 1.5302099 | 0.0 | 2914.3748 | 17.954313 | 5.4659405 | SSO-U2 |
+| 2024-10-04T10:46:00.000-04:00 | 742.0582 | 90.0 | 0.081 | 0.0 | 345.3548 | 1.893993 | 2520.3992 | 0.9997835 | 10.561175 | 5.6557417 | 2.9401965 | 268.58954 | 396.76254 | 1.5298814 | 0.0 | 2913.8354 | 17.930708 | 5.467046 | SSO-U2 |
+| 2024-10-04T10:56:00.000-04:00 | 742.1557 | 90.0 | 0.081 | 0.0 | 349.3923 | 1.891578 | 2516.0996 | 0.99978554 | 10.574888 | 5.656259 | 2.5774531 | 272.33746 | 397.44055 | 1.527797 | 0.0 | 2910.1199 | 17.911177 | 5.4611025 | SSO-U2 |
+| 2024-10-04T11:06:00.000-04:00 | 742.1257 | 90.0 | 0.081 | 0.0 | 352.8327 | 1.8880943 | 2510.6387 | 0.9997861 | 10.570283 | 5.656192 | 2.5671794 | 273.23392 | 398.30502 | 1.5248077 | 0.0 | 2904.7605 | 17.896265 | 5.4630985 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001870
+## Table: ddt_brick0002056
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20241015_20250501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2024-10-15 to 2025-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20241015_20250501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2024-10-15 to 2025-05-01 (v4)
 
 ### Schema
 
@@ -24571,17 +25215,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-15T15:30:00.000-04:00 | 738.4654 | 85.0 | 0.0 | 0.0 | 1268.7705 | 1.5613364 | 2079.5784 | 0.9995603 | 11.295733 | 5.6706233 | 18.196722 | 231.11012 | 480.8667 | 1.2480171 | 0.0 | 2402.056 | 17.971169 | 5.16749 | SSO-U2 |
-| 2024-10-15T15:40:00.000-04:00 | 738.488 | 85.0 | 0.081 | 0.0 | 1291.0464 | 1.5606748 | 2078.9304 | 0.9995589 | 11.3179035 | 5.661221 | 16.289045 | 234.57672 | 481.01657 | 1.247465 | 0.0 | 2401.038 | 17.976257 | 5.1578827 | SSO-U2 |
-| 2024-10-15T15:50:00.000-04:00 | 738.6079 | 85.0 | 0.081 | 0.0 | 1290.1967 | 1.5645838 | 2083.9778 | 0.9995621 | 11.3241625 | 5.6621566 | 16.082636 | 235.88327 | 479.85156 | 1.2507522 | 0.0 | 2407.052 | 17.97278 | 5.1551704 | SSO-U2 |
-| 2024-10-15T16:00:00.000-04:00 | 738.7354 | 85.0 | 0.081 | 0.0 | 1293.6783 | 1.5703449 | 2091.5603 | 0.99956614 | 11.318055 | 5.6626663 | 15.869969 | 237.03244 | 478.11197 | 1.255601 | 0.0 | 2415.9153 | 17.97081 | 5.157817 | SSO-U2 |
-| 2024-10-15T16:10:00.000-04:00 | 738.81793 | 85.0 | 0.081 | 0.0 | 1304.0507 | 1.5784626 | 2102.2449 | 0.9995719 | 11.327838 | 5.6632595 | 15.651321 | 238.12439 | 475.68198 | 1.2624357 | 0.0 | 2428.404 | 17.968056 | 5.153578 | SSO-U2 |
+| 2024-10-15T15:30:00.000-04:00 | 738.4654 | 85.0 | 0.0 | 0.0 | 286.611 | 1.5613364 | 2079.5784 | 0.9995603 | 11.295733 | 5.6706233 | 18.196722 | 231.11012 | 480.8667 | 1.2480171 | 0.0 | 2402.056 | 17.971169 | 5.16749 | SSO-U2 |
+| 2024-10-15T15:40:00.000-04:00 | 738.488 | 85.0 | 0.081 | 0.0 | 291.6431 | 1.5606748 | 2078.9304 | 0.9995589 | 11.3179035 | 5.661221 | 16.289045 | 234.57672 | 481.01657 | 1.247465 | 0.0 | 2401.038 | 17.976257 | 5.1578827 | SSO-U2 |
+| 2024-10-15T15:50:00.000-04:00 | 738.6079 | 85.0 | 0.081 | 0.0 | 291.4511 | 1.5645838 | 2083.9778 | 0.9995621 | 11.3241625 | 5.6621566 | 16.082636 | 235.88327 | 479.85156 | 1.2507522 | 0.0 | 2407.052 | 17.97278 | 5.1551704 | SSO-U2 |
+| 2024-10-15T16:00:00.000-04:00 | 738.7354 | 85.0 | 0.081 | 0.0 | 292.2376 | 1.5703449 | 2091.5603 | 0.99956614 | 11.318055 | 5.6626663 | 15.869969 | 237.03244 | 478.11197 | 1.255601 | 0.0 | 2415.9153 | 17.97081 | 5.157817 | SSO-U2 |
+| 2024-10-15T16:10:00.000-04:00 | 738.81793 | 85.0 | 0.081 | 0.0 | 294.5807 | 1.5784626 | 2102.2449 | 0.9995719 | 11.327838 | 5.6632595 | 15.651321 | 238.12439 | 475.68198 | 1.2624357 | 0.0 | 2428.404 | 17.968056 | 5.153578 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001871
+## Table: ddt_brick0002057
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250502_20250807_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-05-02 to 2025-08-07 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250502_20250807_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-05-02 to 2025-08-07 (v4)
 
 ### Schema
 
@@ -24602,17 +25246,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-05-02T04:00:00.000-04:00 | 0.0 | 1949.0328 | 1488.9 | 13.78 | 5.98 | 16.96 | SSO-U2 |
-| 2025-05-02T04:15:00.000-04:00 | 0.0 | 1945.0487 | 1489.5 | 13.77 | 5.98 | 16.96 | SSO-U2 |
-| 2025-05-02T04:30:00.000-04:00 | 0.0 | 1945.6684 | 1489.1 | 13.78 | 5.99 | 16.96 | SSO-U2 |
-| 2025-05-02T04:45:00.000-04:00 | 0.0 | 1932.2109 | 1494.9 | 13.78 | 5.99 | 16.96 | SSO-U2 |
-| 2025-05-02T05:00:00.000-04:00 | 0.0 | 1933.8931 | 1488.9 | 13.77 | 5.99 | 16.96 | SSO-U2 |
+| 2025-05-02T04:00:00.000-04:00 | 0.0 | 440.28 | 1488.9 | 13.78 | 5.98 | 16.96 | SSO-U2 |
+| 2025-05-02T04:15:00.000-04:00 | 0.0 | 439.38 | 1489.5 | 13.77 | 5.98 | 16.96 | SSO-U2 |
+| 2025-05-02T04:30:00.000-04:00 | 0.0 | 439.52 | 1489.1 | 13.78 | 5.99 | 16.96 | SSO-U2 |
+| 2025-05-02T04:45:00.000-04:00 | 0.0 | 436.48 | 1494.9 | 13.78 | 5.99 | 16.96 | SSO-U2 |
+| 2025-05-02T05:00:00.000-04:00 | 0.0 | 436.86 | 1488.9 | 13.77 | 5.99 | 16.96 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001872
+## Table: ddt_brick0002058
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250819_20250825_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-08-19 to 2025-08-25 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250819_20250825_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-08-19 to 2025-08-25 (v4)
 
 ### Schema
 
@@ -24633,17 +25277,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-08-19T10:45:00.000-04:00 | 0.0 | 1102.9379 | 1872.3 | 11.03 | 5.61 | 17.12 | SSO-U2 |
-| 2025-08-19T11:00:00.000-04:00 | 0.0 | 1103.779 | 1872.2 | 11.04 | 5.61 | 17.12 | SSO-U2 |
-| 2025-08-19T11:15:00.000-04:00 | 0.0 | 1104.6201 | 1872.0 | 11.03 | 5.61 | 17.12 | SSO-U2 |
-| 2025-08-19T11:30:00.000-04:00 | 0.0 | 1104.7529 | 1879.8 | 11.03 | 5.6 | 17.12 | SSO-U2 |
-| 2025-08-19T11:45:00.000-04:00 | 0.0 | 1106.6122 | 1873.8 | 11.03 | 5.61 | 17.12 | SSO-U2 |
+| 2025-08-19T10:45:00.000-04:00 | 0.0 | 249.15 | 1872.3 | 11.03 | 5.61 | 17.12 | SSO-U2 |
+| 2025-08-19T11:00:00.000-04:00 | 0.0 | 249.34 | 1872.2 | 11.04 | 5.61 | 17.12 | SSO-U2 |
+| 2025-08-19T11:15:00.000-04:00 | 0.0 | 249.53 | 1872.0 | 11.03 | 5.61 | 17.12 | SSO-U2 |
+| 2025-08-19T11:30:00.000-04:00 | 0.0 | 249.56 | 1879.8 | 11.03 | 5.6 | 17.12 | SSO-U2 |
+| 2025-08-19T11:45:00.000-04:00 | 0.0 | 249.98 | 1873.8 | 11.03 | 5.61 | 17.12 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001873
+## Table: ddt_brick0002059
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250825_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-08-25 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20250825_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-08-25 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -24676,17 +25320,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-25T14:58:00.000-04:00 | 739.02795 | 0.0 | 17.372 | 0.0 | 1077.7335 | 1.4498165 | 1898.4207 | 0.99962795 | 11.050185 | 5.6409235 | -0.5616207 | 16.165533 | 526.75366 | 1.1536444 | 0.0 | 2230.4868 | 17.205439 | 5.2283545 | SSO-U2 |
-| 2025-08-25T15:09:00.000-04:00 | 739.02045 | 0.0 | 13.191 | 0.0 | 1077.2515 | 1.4506054 | 1899.415 | 0.99962854 | 11.060713 | 5.6402793 | -0.5687597 | -17.790041 | 526.4779 | 1.1543039 | 0.0 | 2231.7007 | 17.20453 | 5.223792 | SSO-U2 |
-| 2025-08-25T15:24:00.000-04:00 | 738.8554 | 0.0 | 13.29 | 0.0 | 1078.2069 | 1.4500422 | 1898.6663 | 0.9996283 | 11.054202 | 5.639456 | -0.5638165 | -23.62176 | 526.6855 | 1.1538323 | 0.0 | 2230.8342 | 17.204266 | 5.226614 | SSO-U2 |
-| 2025-08-25T15:39:00.000-04:00 | 738.64545 | 0.0 | 13.317 | 0.0 | 1082.1635 | 1.4504313 | 1899.1797 | 0.9996285 | 11.0424385 | 5.6390905 | -0.5705029 | -28.766832 | 526.5431 | 1.1541581 | 0.0 | 2231.4329 | 17.20436 | 5.2317114 | SSO-U2 |
-| 2025-08-25T15:54:00.000-04:00 | 738.57794 | 0.0 | 13.2 | 0.0 | 1077.4909 | 1.4499673 | 1898.5857 | 0.9996282 | 11.05175 | 5.640554 | -0.5646459 | -33.80223 | 526.7079 | 1.1537699 | 0.0 | 2230.7188 | 17.20468 | 5.2276764 | SSO-U2 |
+| 2025-08-25T14:58:00.000-04:00 | 739.02795 | 0.0 | 17.372 | 0.0 | 243.4564 | 1.4498165 | 1898.4207 | 0.99962795 | 11.050185 | 5.6409235 | -0.5616207 | 16.165533 | 526.75366 | 1.1536444 | 0.0 | 2230.4868 | 17.205439 | 5.2283545 | SSO-U2 |
+| 2025-08-25T15:09:00.000-04:00 | 739.02045 | 0.0 | 13.191 | 0.0 | 243.3475 | 1.4506054 | 1899.415 | 0.99962854 | 11.060713 | 5.6402793 | -0.5687597 | -17.790041 | 526.4779 | 1.1543039 | 0.0 | 2231.7007 | 17.20453 | 5.223792 | SSO-U2 |
+| 2025-08-25T15:24:00.000-04:00 | 738.8554 | 0.0 | 13.29 | 0.0 | 243.5633 | 1.4500422 | 1898.6663 | 0.9996283 | 11.054202 | 5.639456 | -0.5638165 | -23.62176 | 526.6855 | 1.1538323 | 0.0 | 2230.8342 | 17.204266 | 5.226614 | SSO-U2 |
+| 2025-08-25T15:39:00.000-04:00 | 738.64545 | 0.0 | 13.317 | 0.0 | 244.4571 | 1.4504313 | 1899.1797 | 0.9996285 | 11.0424385 | 5.6390905 | -0.5705029 | -28.766832 | 526.5431 | 1.1541581 | 0.0 | 2231.4329 | 17.20436 | 5.2317114 | SSO-U2 |
+| 2025-08-25T15:54:00.000-04:00 | 738.57794 | 0.0 | 13.2 | 0.0 | 243.4016 | 1.4499673 | 1898.5857 | 0.9996282 | 11.05175 | 5.640554 | -0.5646459 | -33.80223 | 526.7079 | 1.1537699 | 0.0 | 2230.7188 | 17.20468 | 5.2276764 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001874
+## Table: ddt_brick0002060
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20251014_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-10-14 to 2025-12-16 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20251014_20251216_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-10-14 to 2025-12-16 (v4)
 
 ### Schema
 
@@ -24719,17 +25363,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T15:10:00.000-04:00 | 739.778 | 94.0 | 0.018 | 0.0 | 915.8013 | 1.5709279 | 2084.5752 | 0.9995977 | 11.932221 | 5.4212084 | -0.5524421 | 100.473434 | 479.71405 | 1.2559252 | 0.0 | 2416.812 | 17.802668 | 4.8615446 | SSO-U2 |
-| 2025-10-14T15:20:00.000-04:00 | 740.1455 | 94.0 | 0.072 | 0.0 | 918.0911 | 1.5695552 | 2082.838 | 0.9995964 | 11.952069 | 5.428143 | -0.5440541 | 111.72679 | 480.11417 | 1.2547712 | 0.0 | 2414.7002 | 17.804493 | 4.8529434 | SSO-U2 |
-| 2025-10-14T15:30:00.000-04:00 | 740.11554 | 94.0 | 13.371 | 0.0 | 917.7862 | 1.5678617 | 2080.6597 | 0.9995951 | 11.960267 | 5.430145 | -0.54096985 | 113.54354 | 480.6168 | 1.2533469 | 0.0 | 2412.0947 | 17.805992 | 4.849391 | SSO-U2 |
-| 2025-10-14T15:40:00.000-04:00 | 740.06305 | 94.0 | 0.072 | 0.0 | 915.398 | 1.56674 | 2079.128 | 0.99959457 | 11.949664 | 5.4310837 | -0.54322577 | 114.33032 | 480.9709 | 1.252402 | 0.0 | 2410.3694 | 17.80505 | 4.853986 | SSO-U2 |
-| 2025-10-14T15:50:00.000-04:00 | 740.06305 | 94.0 | 0.072 | 0.0 | 912.916 | 1.5645446 | 2076.1975 | 0.99959326 | 11.959365 | 5.431816 | -0.5463737 | 114.969284 | 481.64975 | 1.250553 | 0.0 | 2406.9915 | 17.804686 | 4.849782 | SSO-U2 |
+| 2025-10-14T15:10:00.000-04:00 | 739.778 | 94.0 | 0.018 | 0.0 | 206.8765 | 1.5709279 | 2084.5752 | 0.9995977 | 11.932221 | 5.4212084 | -0.5524421 | 100.473434 | 479.71405 | 1.2559252 | 0.0 | 2416.812 | 17.802668 | 4.8615446 | SSO-U2 |
+| 2025-10-14T15:20:00.000-04:00 | 740.1455 | 94.0 | 0.072 | 0.0 | 207.3937 | 1.5695552 | 2082.838 | 0.9995964 | 11.952069 | 5.428143 | -0.5440541 | 111.72679 | 480.11417 | 1.2547712 | 0.0 | 2414.7002 | 17.804493 | 4.8529434 | SSO-U2 |
+| 2025-10-14T15:30:00.000-04:00 | 740.11554 | 94.0 | 13.371 | 0.0 | 207.3248 | 1.5678617 | 2080.6597 | 0.9995951 | 11.960267 | 5.430145 | -0.54096985 | 113.54354 | 480.6168 | 1.2533469 | 0.0 | 2412.0947 | 17.805992 | 4.849391 | SSO-U2 |
+| 2025-10-14T15:40:00.000-04:00 | 740.06305 | 94.0 | 0.072 | 0.0 | 206.7853 | 1.56674 | 2079.128 | 0.99959457 | 11.949664 | 5.4310837 | -0.54322577 | 114.33032 | 480.9709 | 1.252402 | 0.0 | 2410.3694 | 17.80505 | 4.853986 | SSO-U2 |
+| 2025-10-14T15:50:00.000-04:00 | 740.06305 | 94.0 | 0.072 | 0.0 | 206.2247 | 1.5645446 | 2076.1975 | 0.99959326 | 11.959365 | 5.431816 | -0.5463737 | 114.969284 | 481.64975 | 1.250553 | 0.0 | 2406.9915 | 17.804686 | 4.849782 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001875
+## Table: ddt_brick0002061
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20251217_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-12-17 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20251217_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2025-12-17 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -24762,17 +25406,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-17T14:54:00.000-05:00 | 739.913 | 74.0 | 0.054 | 0.0 | 575.857 | 1.1215471 | 1507.7797 | 0.9992 | 10.009493 | 5.7246623 | -0.5349156 | 134.00922 | 663.22687 | 0.8818123 | 0.0 | 1725.4569 | 18.39496 | 5.6683207 | SSO-U2 |
-| 2025-12-17T15:04:00.000-05:00 | 739.418 | 74.0 | 0.072 | 0.0 | 588.9369 | 1.1103764 | 1492.975 | 0.9991917 | 10.017179 | 5.719348 | -0.54058075 | 141.45265 | 669.8036 | 0.8726103 | 0.0 | 1708.2714 | 18.401482 | 5.6649914 | SSO-U2 |
-| 2025-12-17T15:14:00.000-05:00 | 739.3955 | 74.0 | 0.072 | 0.0 | 587.1493 | 1.1108088 | 1493.4957 | 0.9991923 | 10.028167 | 5.7186174 | -0.53957903 | 139.9697 | 669.57007 | 0.8729654 | 0.0 | 1708.9366 | 18.399622 | 5.6602316 | SSO-U2 |
-| 2025-12-17T15:24:00.000-05:00 | 739.418 | 74.0 | 0.072 | 0.0 | 586.3127 | 1.1103047 | 1492.8038 | 0.9991921 | 10.02603 | 5.7178016 | -0.53650844 | 138.92065 | 669.8804 | 0.8725499 | 0.0 | 1708.1611 | 18.399189 | 5.6611576 | SSO-U2 |
-| 2025-12-17T15:34:00.000-05:00 | 739.448 | 74.0 | 0.072 | 0.0 | 585.482 | 1.1098716 | 1492.2367 | 0.9991917 | 10.01377 | 5.7176223 | -0.5390619 | 138.41043 | 670.13495 | 0.87219346 | 0.0 | 1707.4949 | 18.39965 | 5.6664677 | SSO-U2 |
+| 2025-12-17T14:54:00.000-05:00 | 739.913 | 74.0 | 0.054 | 0.0 | 130.0842 | 1.1215471 | 1507.7797 | 0.9992 | 10.009493 | 5.7246623 | -0.5349156 | 134.00922 | 663.22687 | 0.8818123 | 0.0 | 1725.4569 | 18.39496 | 5.6683207 | SSO-U2 |
+| 2025-12-17T15:04:00.000-05:00 | 739.418 | 74.0 | 0.072 | 0.0 | 133.0389 | 1.1103764 | 1492.975 | 0.9991917 | 10.017179 | 5.719348 | -0.54058075 | 141.45265 | 669.8036 | 0.8726103 | 0.0 | 1708.2714 | 18.401482 | 5.6649914 | SSO-U2 |
+| 2025-12-17T15:14:00.000-05:00 | 739.3955 | 74.0 | 0.072 | 0.0 | 132.6351 | 1.1108088 | 1493.4957 | 0.9991923 | 10.028167 | 5.7186174 | -0.53957903 | 139.9697 | 669.57007 | 0.8729654 | 0.0 | 1708.9366 | 18.399622 | 5.6602316 | SSO-U2 |
+| 2025-12-17T15:24:00.000-05:00 | 739.418 | 74.0 | 0.072 | 0.0 | 132.4461 | 1.1103047 | 1492.8038 | 0.9991921 | 10.02603 | 5.7178016 | -0.53650844 | 138.92065 | 669.8804 | 0.8725499 | 0.0 | 1708.1611 | 18.399189 | 5.6611576 | SSO-U2 |
+| 2025-12-17T15:34:00.000-05:00 | 739.448 | 74.0 | 0.072 | 0.0 | 132.2584 | 1.1098716 | 1492.2367 | 0.9991917 | 10.01377 | 5.7176223 | -0.5390619 | 138.41043 | 670.13495 | 0.87219346 | 0.0 | 1707.4949 | 18.39965 | 5.6664677 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001876
+## Table: ddt_brick0002062
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -24805,17 +25449,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:04:00.000-05:00 | 743.1308 | 62.0 | 0.063 | 0.0 | 972.4739 | 1.2531464 | 1681.3339 | 0.99930066 | 10.551954 | 5.474516 | -0.52005893 | 183.462 | 594.76587 | 0.9906202 | 0.0 | 1927.9176 | 18.303581 | 5.433317 | SSO-U2 |
-| 2026-01-23T00:14:00.000-05:00 | 742.97327 | 62.0 | 0.063 | 0.0 | 971.1914 | 1.2534906 | 1681.8156 | 0.99930084 | 10.548269 | 5.4739757 | -0.51570415 | 184.09143 | 594.5955 | 0.99090606 | 0.0 | 1928.4469 | 18.304127 | 5.4349136 | SSO-U2 |
-| 2026-01-23T00:24:00.000-05:00 | 742.99585 | 62.0 | 0.063 | 0.0 | 972.7763 | 1.253728 | 1681.9413 | 0.999302 | 10.558382 | 5.4734993 | -0.51976466 | 184.63503 | 594.5511 | 0.99109983 | 0.0 | 1928.8125 | 18.298883 | 5.4305325 | SSO-U2 |
-| 2026-01-23T00:34:00.000-05:00 | 742.9658 | 62.0 | 0.063 | 0.0 | 971.819 | 1.2536668 | 1681.924 | 0.99930155 | 10.562439 | 5.4734163 | -0.51940584 | 185.14047 | 594.5572 | 0.99105006 | 0.0 | 1928.7181 | 18.300648 | 5.428775 | SSO-U2 |
-| 2026-01-23T00:44:00.000-05:00 | 742.9358 | 62.0 | 0.063 | 0.0 | 973.2286 | 1.2534609 | 1681.8036 | 0.99930066 | 10.546913 | 5.4735265 | -0.51701 | 185.61731 | 594.59973 | 0.9908821 | 0.0 | 1928.4012 | 18.30488 | 5.435501 | SSO-U2 |
+| 2026-01-23T00:04:00.000-05:00 | 743.1308 | 62.0 | 0.063 | 0.0 | 219.6786 | 1.2531464 | 1681.3339 | 0.99930066 | 10.551954 | 5.474516 | -0.52005893 | 183.462 | 594.76587 | 0.9906202 | 0.0 | 1927.9176 | 18.303581 | 5.433317 | SSO-U2 |
+| 2026-01-23T00:14:00.000-05:00 | 742.97327 | 62.0 | 0.063 | 0.0 | 219.3889 | 1.2534906 | 1681.8156 | 0.99930084 | 10.548269 | 5.4739757 | -0.51570415 | 184.09143 | 594.5955 | 0.99090606 | 0.0 | 1928.4469 | 18.304127 | 5.4349136 | SSO-U2 |
+| 2026-01-23T00:24:00.000-05:00 | 742.99585 | 62.0 | 0.063 | 0.0 | 219.7469 | 1.253728 | 1681.9413 | 0.999302 | 10.558382 | 5.4734993 | -0.51976466 | 184.63503 | 594.5511 | 0.99109983 | 0.0 | 1928.8125 | 18.298883 | 5.4305325 | SSO-U2 |
+| 2026-01-23T00:34:00.000-05:00 | 742.9658 | 62.0 | 0.063 | 0.0 | 219.5307 | 1.2536668 | 1681.924 | 0.99930155 | 10.562439 | 5.4734163 | -0.51940584 | 185.14047 | 594.5572 | 0.99105006 | 0.0 | 1928.7181 | 18.300648 | 5.428775 | SSO-U2 |
+| 2026-01-23T00:44:00.000-05:00 | 742.9358 | 62.0 | 0.063 | 0.0 | 219.8491 | 1.2534609 | 1681.8036 | 0.99930066 | 10.546913 | 5.4735265 | -0.51701 | 185.61731 | 594.59973 | 0.9908821 | 0.0 | 1928.4012 | 18.30488 | 5.435501 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001877
+## Table: ddt_brick0002063
 
-**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20260406_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2026-04-06 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U2_SZ2_20260406_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U2 SZ2 from 2026-04-06 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -24836,17 +25480,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-06T15:15:00.000-04:00 | 0.0 | 1680.016 | 1881.8 | 10.45 | 5.67 | 17.38 | SSO-U2 |
-| 2026-04-06T15:30:00.000-04:00 | 0.0 | 1675.722 | 1878.5 | 10.46 | 5.67 | 17.37 | SSO-U2 |
-| 2026-04-06T15:45:00.000-04:00 | 0.0 | 1675.899 | 1876.6 | 10.46 | 5.67 | 17.37 | SSO-U2 |
-| 2026-04-06T16:00:00.000-04:00 | 0.0 | 1670.5426 | 1875.1 | 10.44 | 5.67 | 17.37 | SSO-U2 |
-| 2026-04-06T16:15:00.000-04:00 | 0.0 | 1696.9706 | 1893.0 | 10.43 | 5.67 | 17.37 | SSO-U2 |
+| 2026-04-06T15:15:00.000-04:00 | 0.0 | 379.51 | 1881.8 | 10.45 | 5.67 | 17.38 | SSO-U2 |
+| 2026-04-06T15:30:00.000-04:00 | 0.0 | 378.54 | 1878.5 | 10.46 | 5.67 | 17.37 | SSO-U2 |
+| 2026-04-06T15:45:00.000-04:00 | 0.0 | 378.58 | 1876.6 | 10.46 | 5.67 | 17.37 | SSO-U2 |
+| 2026-04-06T16:00:00.000-04:00 | 0.0 | 377.37 | 1875.1 | 10.44 | 5.67 | 17.37 | SSO-U2 |
+| 2026-04-06T16:15:00.000-04:00 | 0.0 | 383.34 | 1893.0 | 10.43 | 5.67 | 17.37 | SSO-U2 |
 
 ---
 
-## Table: ddt_brick0001878
+## Table: ddt_brick0002064
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20241003_20250429_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2024-10-03 to 2025-04-29 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20241003_20250429_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2024-10-03 to 2025-04-29 (v4)
 
 ### Schema
 
@@ -24879,17 +25523,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2024-10-03T10:52:00.000-04:00 | 738.4844 | 89.0 | 0.0 | 0.6509976 | 9.2578 | 0.5969599 | 821.7422 | 0.99865997 | 10.76603 | 6.5071106 | 11.163762 | 282.82172 | 1216.9266 | 0.45678124 | 7.318499 | 918.3998 | 19.489758 | 2.7255487 | SSO-U3 |
-| 2024-10-03T11:02:00.000-04:00 | 738.1468 | 89.0 | 13.38 | 0.6177449 | 9.0557 | 0.59879375 | 823.63025 | 0.9986684 | 10.753225 | 6.5019183 | 10.596967 | 285.87347 | 1214.1371 | 0.45823306 | 6.942941 | 921.2211 | 19.45359 | 2.7310925 | SSO-U3 |
-| 2024-10-03T11:12:00.000-04:00 | 738.2293 | 89.0 | 13.389 | 0.63059723 | 8.9895 | 0.5987516 | 823.6999 | 0.998667 | 10.75225 | 6.4986496 | 10.814624 | 286.6078 | 1214.0344 | 0.45820084 | 7.087609 | 921.1563 | 19.46084 | 2.731515 | SSO-U3 |
-| 2024-10-03T11:22:00.000-04:00 | 738.19934 | 89.0 | 13.371 | 0.6466491 | 8.9124 | 0.59866214 | 823.4575 | 0.9986682 | 10.759794 | 6.498386 | 11.083301 | 287.12277 | 1214.3917 | 0.4581285 | 7.2673426 | 921.0187 | 19.45406 | 2.7282486 | SSO-U3 |
-| 2024-10-03T11:32:00.000-04:00 | 738.1319 | 89.0 | 13.371 | 0.6713605 | 8.8332 | 0.598668 | 823.3701 | 0.9986693 | 10.768659 | 6.502247 | 11.497835 | 287.48996 | 1214.5206 | 0.458132 | 7.5449367 | 921.02765 | 19.448637 | 2.724411 | SSO-U3 |
+| 2024-10-03T10:52:00.000-04:00 | 738.4844 | 89.0 | 0.0 | 0.6509976 | 2.0913 | 0.5969599 | 821.7422 | 0.99865997 | 10.76603 | 6.5071106 | 11.163762 | 282.82172 | 1216.9266 | 0.45678124 | 7.318499 | 918.3998 | 19.489758 | 2.7255487 | SSO-U3 |
+| 2024-10-03T11:02:00.000-04:00 | 738.1468 | 89.0 | 13.38 | 0.6177449 | 2.0457 | 0.59879375 | 823.63025 | 0.9986684 | 10.753225 | 6.5019183 | 10.596967 | 285.87347 | 1214.1371 | 0.45823306 | 6.942941 | 921.2211 | 19.45359 | 2.7310925 | SSO-U3 |
+| 2024-10-03T11:12:00.000-04:00 | 738.2293 | 89.0 | 13.389 | 0.63059723 | 2.0307 | 0.5987516 | 823.6999 | 0.998667 | 10.75225 | 6.4986496 | 10.814624 | 286.6078 | 1214.0344 | 0.45820084 | 7.087609 | 921.1563 | 19.46084 | 2.731515 | SSO-U3 |
+| 2024-10-03T11:22:00.000-04:00 | 738.19934 | 89.0 | 13.371 | 0.6466491 | 2.0133 | 0.59866214 | 823.4575 | 0.9986682 | 10.759794 | 6.498386 | 11.083301 | 287.12277 | 1214.3917 | 0.4581285 | 7.2673426 | 921.0187 | 19.45406 | 2.7282486 | SSO-U3 |
+| 2024-10-03T11:32:00.000-04:00 | 738.1319 | 89.0 | 13.371 | 0.6713605 | 1.9954 | 0.598668 | 823.3701 | 0.9986693 | 10.768659 | 6.502247 | 11.497835 | 287.48996 | 1214.5206 | 0.458132 | 7.5449367 | 921.02765 | 19.448637 | 2.724411 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001879
+## Table: ddt_brick0002065
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250515_20250522_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-05-15 to 2025-05-22 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250515_20250522_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-05-15 to 2025-05-22 (v3)
 
 ### Schema
 
@@ -24919,17 +25563,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-05-15T10:17:00.000-04:00 | 732.9339 | 55.0 | 0.0 | 4.5375 | 0.60499585 | 771.6547 | 0.99929386 | 8.627209 | 6.7493095 | 215.63231 | 1295.9164 | 0.46213523 | 930.7628 | 16.050064 | 3.6915693 | SSO-U3 |
-| 2025-05-15T10:27:00.000-04:00 | 732.8964 | 55.0 | 13.426 | 4.4952 | 0.60327524 | 769.5804 | 0.99929166 | 8.642882 | 6.745361 | 185.56773 | 1299.4094 | 0.46077254 | 928.1157 | 16.056847 | 3.6847792 | SSO-U3 |
-| 2025-05-15T10:37:00.000-04:00 | 732.8664 | 55.0 | 13.389 | 4.4625 | 0.6001716 | 765.6038 | 0.99929 | 8.639201 | 6.74966 | 174.2953 | 1306.1586 | 0.4583095 | 923.3409 | 16.055862 | 3.6863737 | SSO-U3 |
-| 2025-05-15T10:47:00.000-04:00 | 732.85144 | 55.0 | 13.407 | 4.4614 | 0.59900373 | 764.1042 | 0.99928933 | 8.639906 | 6.74966 | 164.27695 | 1308.722 | 0.4573827 | 921.54425 | 16.055302 | 3.6860685 | SSO-U3 |
-| 2025-05-15T10:57:00.000-04:00 | 732.8589 | 55.0 | 13.407 | 4.4576 | 0.59874326 | 763.7468 | 0.99928945 | 8.637694 | 6.750011 | 158.09714 | 1309.3344 | 0.45717552 | 921.1435 | 16.053877 | 3.687027 | SSO-U3 |
+| 2025-05-15T10:17:00.000-04:00 | 732.9339 | 55.0 | 0.0 | 1.025 | 0.60499585 | 771.6547 | 0.99929386 | 8.627209 | 6.7493095 | 215.63231 | 1295.9164 | 0.46213523 | 930.7628 | 16.050064 | 3.6915693 | SSO-U3 |
+| 2025-05-15T10:27:00.000-04:00 | 732.8964 | 55.0 | 13.426 | 1.0154 | 0.60327524 | 769.5804 | 0.99929166 | 8.642882 | 6.745361 | 185.56773 | 1299.4094 | 0.46077254 | 928.1157 | 16.056847 | 3.6847792 | SSO-U3 |
+| 2025-05-15T10:37:00.000-04:00 | 732.8664 | 55.0 | 13.389 | 1.0081 | 0.6001716 | 765.6038 | 0.99929 | 8.639201 | 6.74966 | 174.2953 | 1306.1586 | 0.4583095 | 923.3409 | 16.055862 | 3.6863737 | SSO-U3 |
+| 2025-05-15T10:47:00.000-04:00 | 732.85144 | 55.0 | 13.407 | 1.0078 | 0.59900373 | 764.1042 | 0.99928933 | 8.639906 | 6.74966 | 164.27695 | 1308.722 | 0.4573827 | 921.54425 | 16.055302 | 3.6860685 | SSO-U3 |
+| 2025-05-15T10:57:00.000-04:00 | 732.8589 | 55.0 | 13.407 | 1.007 | 0.59874326 | 763.7468 | 0.99928945 | 8.637694 | 6.750011 | 158.09714 | 1309.3344 | 0.45717552 | 921.1435 | 16.053877 | 3.687027 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001880
+## Table: ddt_brick0002066
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250523_20250610_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-05-23 to 2025-06-10 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250523_20250610_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-05-23 to 2025-06-10 (v3)
 
 ### Schema
 
@@ -24962,17 +25606,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-05-23T12:46:00.000-04:00 | 739.0094 | 0.0 | 17.363 | 0.16270208 | 6.968 | 0.5844009 | 746.99677 | 0.99926585 | 8.194964 | 6.7555246 | 2.668328 | 160.75789 | 1338.6938 | 0.44584152 | 1.7058623 | 899.0783 | 16.143835 | 3.8770247 | SSO-U3 |
-| 2025-05-23T12:56:00.000-04:00 | 738.9344 | 0.0 | 13.416 | 0.16529392 | 6.9293 | 0.58043647 | 742.08167 | 0.9992621 | 8.203566 | 6.7428937 | 2.7082708 | 180.28914 | 1347.5605 | 0.44270453 | 1.7335124 | 892.97925 | 16.152763 | 3.8732986 | SSO-U3 |
-| 2025-05-23T13:06:00.000-04:00 | 738.87445 | 0.0 | 13.398 | 0.16832873 | 6.9231 | 0.5799694 | 741.5259 | 0.99926144 | 8.20228 | 6.743858 | 2.754665 | 178.95876 | 1348.5706 | 0.44233552 | 1.7655716 | 892.26056 | 16.155197 | 3.8738556 | SSO-U3 |
-| 2025-05-23T13:16:00.000-04:00 | 738.8369 | 0.0 | 13.416 | 0.16915481 | 6.9515 | 0.58114684 | 743.0226 | 0.9992621 | 8.202726 | 6.744121 | 2.7672493 | 172.96968 | 1345.8541 | 0.4432679 | 1.7743205 | 894.072 | 16.154686 | 3.873662 | SSO-U3 |
-| 2025-05-23T13:26:00.000-04:00 | 738.8144 | 0.0 | 13.398 | 0.1668926 | 6.9037 | 0.5804421 | 742.13904 | 0.9992615 | 8.201793 | 6.742981 | 2.732801 | 164.15297 | 1347.4564 | 0.44271004 | 1.7506748 | 892.9878 | 16.155714 | 3.8740664 | SSO-U3 |
+| 2025-05-23T12:46:00.000-04:00 | 739.0094 | 0.0 | 17.363 | 0.16270208 | 1.5741 | 0.5844009 | 746.99677 | 0.99926585 | 8.194964 | 6.7555246 | 2.668328 | 160.75789 | 1338.6938 | 0.44584152 | 1.7058623 | 899.0783 | 16.143835 | 3.8770247 | SSO-U3 |
+| 2025-05-23T12:56:00.000-04:00 | 738.9344 | 0.0 | 13.416 | 0.16529392 | 1.5653 | 0.58043647 | 742.08167 | 0.9992621 | 8.203566 | 6.7428937 | 2.7082708 | 180.28914 | 1347.5605 | 0.44270453 | 1.7335124 | 892.97925 | 16.152763 | 3.8732986 | SSO-U3 |
+| 2025-05-23T13:06:00.000-04:00 | 738.87445 | 0.0 | 13.398 | 0.16832873 | 1.5639 | 0.5799694 | 741.5259 | 0.99926144 | 8.20228 | 6.743858 | 2.754665 | 178.95876 | 1348.5706 | 0.44233552 | 1.7655716 | 892.26056 | 16.155197 | 3.8738556 | SSO-U3 |
+| 2025-05-23T13:16:00.000-04:00 | 738.8369 | 0.0 | 13.416 | 0.16915481 | 1.5703 | 0.58114684 | 743.0226 | 0.9992621 | 8.202726 | 6.744121 | 2.7672493 | 172.96968 | 1345.8541 | 0.4432679 | 1.7743205 | 894.072 | 16.154686 | 3.873662 | SSO-U3 |
+| 2025-05-23T13:26:00.000-04:00 | 738.8144 | 0.0 | 13.398 | 0.1668926 | 1.5595 | 0.5804421 | 742.13904 | 0.9992615 | 8.201793 | 6.742981 | 2.732801 | 164.15297 | 1347.4564 | 0.44271004 | 1.7506748 | 892.9878 | 16.155714 | 3.8740664 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001881
+## Table: ddt_brick0002067
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250611_20250808_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-06-11 to 2025-08-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250611_20250808_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-06-11 to 2025-08-08 (v4)
 
 ### Schema
 
@@ -24994,17 +25638,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-06-11T04:06:00.000-04:00 | 0.12 | 6.6402 | 828.33 | 8.385000000000002 | 6.76 | 323.05 | 16.46 | SSO-U3 |
-| 2025-06-11T04:21:00.000-04:00 | 0.12 | 6.6402 | 827.61 | 8.39 | 6.760000000000001 | 324.5 | 16.46 | SSO-U3 |
-| 2025-06-11T04:36:00.000-04:00 | 0.13 | 6.6402 | 826.435 | 8.385000000000002 | 6.76 | 325.45 | 16.46 | SSO-U3 |
-| 2025-06-11T04:51:00.000-04:00 | 0.14 | 6.6623 | 825.275 | 8.385000000000002 | 6.76 | 325.95 | 16.46 | SSO-U3 |
-| 2025-06-11T05:06:00.000-04:00 | 0.14 | 6.6845 | 824.96 | 8.385000000000002 | 6.76 | 326.8 | 16.46 | SSO-U3 |
+| 2025-06-11T04:06:00.000-04:00 | 0.12 | 1.5 | 828.33 | 8.385000000000002 | 6.76 | 323.05 | 16.46 | SSO-U3 |
+| 2025-06-11T04:21:00.000-04:00 | 0.12 | 1.5 | 827.61 | 8.39 | 6.760000000000001 | 324.5 | 16.46 | SSO-U3 |
+| 2025-06-11T04:36:00.000-04:00 | 0.13 | 1.5 | 826.435 | 8.385000000000002 | 6.76 | 325.45 | 16.46 | SSO-U3 |
+| 2025-06-11T04:51:00.000-04:00 | 0.14 | 1.505 | 825.275 | 8.385000000000002 | 6.76 | 325.95 | 16.46 | SSO-U3 |
+| 2025-06-11T05:06:00.000-04:00 | 0.14 | 1.51 | 824.96 | 8.385000000000002 | 6.76 | 326.8 | 16.46 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001882
+## Table: ddt_brick0002068
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250819_20250826_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-08-19 to 2025-08-26 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250819_20250826_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-08-19 to 2025-08-26 (v4)
 
 ### Schema
 
@@ -25026,17 +25670,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:37:00.000-04:00 | 0.18 | 13.1033 | 659.3050000000001 | 11.27 | 6.63 | 217.5 | 17.94 | SSO-U3 |
-| 2025-08-19T10:52:00.000-04:00 | 0.17 | 13.0148 | 659.775 | 11.27 | 6.63 | 213.75 | 17.95 | SSO-U3 |
-| 2025-08-19T11:07:00.000-04:00 | 0.17 | 13.0148 | 659.4200000000001 | 11.274999999999999 | 6.63 | 193.85 | 17.95 | SSO-U3 |
-| 2025-08-19T11:22:00.000-04:00 | 0.17 | 12.9705 | 659.19 | 11.27 | 6.63 | 176.65 | 17.96 | SSO-U3 |
-| 2025-08-19T11:37:00.000-04:00 | 0.175 | 13.2583 | 660.9549999999999 | 11.274999999999999 | 6.63 | 163.5 | 17.95 | SSO-U3 |
+| 2025-08-19T10:37:00.000-04:00 | 0.18 | 2.96 | 659.3050000000001 | 11.27 | 6.63 | 217.5 | 17.94 | SSO-U3 |
+| 2025-08-19T10:52:00.000-04:00 | 0.17 | 2.94 | 659.775 | 11.27 | 6.63 | 213.75 | 17.95 | SSO-U3 |
+| 2025-08-19T11:07:00.000-04:00 | 0.17 | 2.94 | 659.4200000000001 | 11.274999999999999 | 6.63 | 193.85 | 17.95 | SSO-U3 |
+| 2025-08-19T11:22:00.000-04:00 | 0.17 | 2.93 | 659.19 | 11.27 | 6.63 | 176.65 | 17.96 | SSO-U3 |
+| 2025-08-19T11:37:00.000-04:00 | 0.175 | 2.995 | 660.9549999999999 | 11.274999999999999 | 6.63 | 163.5 | 17.95 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001883
+## Table: ddt_brick0002069
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250826_20250911_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-08-26 to 2025-09-11 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250826_20250911_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-08-26 to 2025-09-11 (v3)
 
 ### Schema
 
@@ -25069,17 +25713,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-26T10:09:00.000-04:00 | 741.1846 | 0.0 | 17.201 | 0.0 | 13.1274 | 0.48474887 | 647.9416 | 0.99885577 | 11.336602 | 6.606435 | -0.7064619 | 32.944004 | 1543.349 | 0.36777723 | 0.0 | 745.76746 | 18.132212 | 2.529975 | SSO-U3 |
-| 2025-08-26T10:19:00.000-04:00 | 741.1621 | 0.0 | 13.362 | 0.0 | 13.0167 | 0.48395523 | 647.07745 | 0.9988527 | 11.348279 | 6.5969 | -0.7121811 | 35.466473 | 1545.41 | 0.36715642 | 0.0 | 744.5465 | 18.14604 | 2.5249186 | SSO-U3 |
-| 2025-08-26T10:29:00.000-04:00 | 741.1996 | 0.0 | 13.353 | 0.0 | 13.0817 | 0.48340595 | 646.3287 | 0.99885255 | 11.330564 | 6.5995493 | -0.7192311 | 37.02096 | 1547.2004 | 0.3667245 | 0.0 | 743.7014 | 18.145031 | 2.53259 | SSO-U3 |
-| 2025-08-26T10:39:00.000-04:00 | 741.23706 | 0.0 | 13.353 | 0.0 | 13.2305 | 0.48250487 | 645.11334 | 0.99885213 | 11.34953 | 6.5993724 | -0.7464999 | 38.37518 | 1550.1152 | 0.3660163 | 0.0 | 742.3152 | 18.144285 | 2.5243769 | SSO-U3 |
-| 2025-08-26T10:49:00.000-04:00 | 741.3421 | 0.0 | 13.371 | 0.0 | 13.4183 | 0.48174632 | 644.1152 | 0.9988515 | 11.341122 | 6.598401 | -0.7443497 | 39.591114 | 1552.5173 | 0.36542046 | 0.0 | 741.1482 | 18.145416 | 2.528018 | SSO-U3 |
+| 2025-08-26T10:09:00.000-04:00 | 741.1846 | 0.0 | 17.201 | 0.0 | 2.9654 | 0.48474887 | 647.9416 | 0.99885577 | 11.336602 | 6.606435 | -0.7064619 | 32.944004 | 1543.349 | 0.36777723 | 0.0 | 745.76746 | 18.132212 | 2.529975 | SSO-U3 |
+| 2025-08-26T10:19:00.000-04:00 | 741.1621 | 0.0 | 13.362 | 0.0 | 2.9404 | 0.48395523 | 647.07745 | 0.9988527 | 11.348279 | 6.5969 | -0.7121811 | 35.466473 | 1545.41 | 0.36715642 | 0.0 | 744.5465 | 18.14604 | 2.5249186 | SSO-U3 |
+| 2025-08-26T10:29:00.000-04:00 | 741.1996 | 0.0 | 13.353 | 0.0 | 2.9551 | 0.48340595 | 646.3287 | 0.99885255 | 11.330564 | 6.5995493 | -0.7192311 | 37.02096 | 1547.2004 | 0.3667245 | 0.0 | 743.7014 | 18.145031 | 2.53259 | SSO-U3 |
+| 2025-08-26T10:39:00.000-04:00 | 741.23706 | 0.0 | 13.353 | 0.0 | 2.9887 | 0.48250487 | 645.11334 | 0.99885213 | 11.34953 | 6.5993724 | -0.7464999 | 38.37518 | 1550.1152 | 0.3660163 | 0.0 | 742.3152 | 18.144285 | 2.5243769 | SSO-U3 |
+| 2025-08-26T10:49:00.000-04:00 | 741.3421 | 0.0 | 13.371 | 0.0 | 3.0312 | 0.48174632 | 644.1152 | 0.9988515 | 11.341122 | 6.598401 | -0.7443497 | 39.591114 | 1552.5173 | 0.36542046 | 0.0 | 741.1482 | 18.145416 | 2.528018 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001884
+## Table: ddt_brick0002070
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250912_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-09-12 to 2025-10-08 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20250912_20251008_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-09-12 to 2025-10-08 (v4)
 
 ### Schema
 
@@ -25101,17 +25745,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-09-12T04:00:00.000-04:00 | 0.06 | 13.5017 | 726.855 | 11.1 | 6.68 | 373.9 | 18.66 | SSO-U3 |
-| 2025-09-12T04:15:00.000-04:00 | 0.06 | 13.5017 | 725.73 | 11.1 | 6.68 | 374.5 | 18.66 | SSO-U3 |
-| 2025-09-12T04:30:00.000-04:00 | 0.06 | 13.5017 | 729.3299999999999 | 11.1 | 6.68 | 368.85 | 18.66 | SSO-U3 |
-| 2025-09-12T04:45:00.000-04:00 | 0.06 | 13.5017 | 726.4000000000001 | 11.11 | 6.68 | 371.35 | 18.66 | SSO-U3 |
-| 2025-09-12T05:00:00.000-04:00 | 0.06 | 13.546 | 725.295 | 11.1 | 6.68 | 372.9 | 18.66 | SSO-U3 |
+| 2025-09-12T04:00:00.000-04:00 | 0.06 | 3.05 | 726.855 | 11.1 | 6.68 | 373.9 | 18.66 | SSO-U3 |
+| 2025-09-12T04:15:00.000-04:00 | 0.06 | 3.05 | 725.73 | 11.1 | 6.68 | 374.5 | 18.66 | SSO-U3 |
+| 2025-09-12T04:30:00.000-04:00 | 0.06 | 3.05 | 729.3299999999999 | 11.1 | 6.68 | 368.85 | 18.66 | SSO-U3 |
+| 2025-09-12T04:45:00.000-04:00 | 0.06 | 3.05 | 726.4000000000001 | 11.11 | 6.68 | 371.35 | 18.66 | SSO-U3 |
+| 2025-09-12T05:00:00.000-04:00 | 0.06 | 3.06 | 725.295 | 11.1 | 6.68 | 372.9 | 18.66 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001885
+## Table: ddt_brick0002071
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251014_20251212_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-10-14 to 2025-12-12 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251014_20251212_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-10-14 to 2025-12-12 (v4)
 
 ### Schema
 
@@ -25144,17 +25788,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T15:12:00.000-04:00 | 739.10693 | 99.0 | 0.018 | 0.0 | 10.9742 | 0.4279893 | 586.4854 | 0.9986004 | 12.145411 | 6.512937 | 0.05755514 | 247.02155 | 1705.0723 | 0.32347715 | 0.0 | 658.44507 | 19.278152 | 2.1489124 | SSO-U3 |
-| 2025-10-14T15:22:00.000-04:00 | 739.0469 | 99.0 | 0.072 | 0.0 | 10.5387 | 0.426813 | 584.9904 | 0.99859786 | 12.184593 | 6.5024447 | -0.028889768 | 210.7247 | 1709.4297 | 0.32255897 | 0.0 | 656.6354 | 19.28748 | 2.1319494 | SSO-U3 |
-| 2025-10-14T15:32:00.000-04:00 | 739.0094 | 99.0 | 13.38 | 0.0 | 10.4487 | 0.42635682 | 584.424 | 0.9985967 | 12.178408 | 6.5080767 | -0.067442045 | 207.16272 | 1711.0864 | 0.32220313 | 0.0 | 655.9336 | 19.292168 | 2.1346273 | SSO-U3 |
-| 2025-10-14T15:42:00.000-04:00 | 738.99445 | 99.0 | 13.38 | 0.0 | 10.442 | 0.4259409 | 583.88727 | 0.99859583 | 12.18432 | 6.507792 | -0.06734206 | 206.22812 | 1712.6594 | 0.32187837 | 0.0 | 655.2937 | 19.294838 | 2.1320677 | SSO-U3 |
-| 2025-10-14T15:52:00.000-04:00 | 738.9344 | 99.0 | 13.38 | 0.0 | 10.5128 | 0.4259142 | 583.8724 | 0.9985956 | 12.180785 | 6.507411 | -0.068682894 | 202.68524 | 1712.703 | 0.32185784 | 0.0 | 655.2526 | 19.296572 | 2.1335983 | SSO-U3 |
+| 2025-10-14T15:12:00.000-04:00 | 739.10693 | 99.0 | 0.018 | 0.0 | 2.479 | 0.4279893 | 586.4854 | 0.9986004 | 12.145411 | 6.512937 | 0.05755514 | 247.02155 | 1705.0723 | 0.32347715 | 0.0 | 658.44507 | 19.278152 | 2.1489124 | SSO-U3 |
+| 2025-10-14T15:22:00.000-04:00 | 739.0469 | 99.0 | 0.072 | 0.0 | 2.3806 | 0.426813 | 584.9904 | 0.99859786 | 12.184593 | 6.5024447 | -0.028889768 | 210.7247 | 1709.4297 | 0.32255897 | 0.0 | 656.6354 | 19.28748 | 2.1319494 | SSO-U3 |
+| 2025-10-14T15:32:00.000-04:00 | 739.0094 | 99.0 | 13.38 | 0.0 | 2.3603 | 0.42635682 | 584.424 | 0.9985967 | 12.178408 | 6.5080767 | -0.067442045 | 207.16272 | 1711.0864 | 0.32220313 | 0.0 | 655.9336 | 19.292168 | 2.1346273 | SSO-U3 |
+| 2025-10-14T15:42:00.000-04:00 | 738.99445 | 99.0 | 13.38 | 0.0 | 2.3588 | 0.4259409 | 583.88727 | 0.99859583 | 12.18432 | 6.507792 | -0.06734206 | 206.22812 | 1712.6594 | 0.32187837 | 0.0 | 655.2937 | 19.294838 | 2.1320677 | SSO-U3 |
+| 2025-10-14T15:52:00.000-04:00 | 738.9344 | 99.0 | 13.38 | 0.0 | 2.3748 | 0.4259142 | 583.8724 | 0.9985956 | 12.180785 | 6.507411 | -0.068682894 | 202.68524 | 1712.703 | 0.32185784 | 0.0 | 655.2526 | 19.296572 | 2.1335983 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001886
+## Table: ddt_brick0002072
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251213_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-12-13 to 2025-12-16 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251213_20251216_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-12-13 to 2025-12-16 (v4)
 
 ### Schema
 
@@ -25176,17 +25820,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | redox_potential_millivolt | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|
-| 2025-12-13T04:05:00.000-05:00 | 1.09 | 4.3383 | 611.37 | 8.864999999999998 | 6.95 | 428.05 | 19.2 | SSO-U3 |
-| 2025-12-13T04:20:00.000-05:00 | 1.09 | 4.3825 | 611.005 | 8.86 | 6.95 | 423.85 | 19.2 | SSO-U3 |
-| 2025-12-13T04:35:00.000-05:00 | 1.09 | 4.3604 | 611.13 | 8.864999999999998 | 6.95 | 385.95000000000005 | 19.2 | SSO-U3 |
-| 2025-12-13T04:50:00.000-05:00 | 1.08 | 4.3825 | 611.245 | 8.87 | 6.95 | 408.54999999999995 | 19.2 | SSO-U3 |
-| 2025-12-13T05:05:00.000-05:00 | 1.08 | 4.3825 | 611.52 | 8.864999999999998 | 6.95 | 422.25 | 19.2 | SSO-U3 |
+| 2025-12-13T04:05:00.000-05:00 | 1.09 | 0.98 | 611.37 | 8.864999999999998 | 6.95 | 428.05 | 19.2 | SSO-U3 |
+| 2025-12-13T04:20:00.000-05:00 | 1.09 | 0.99 | 611.005 | 8.86 | 6.95 | 423.85 | 19.2 | SSO-U3 |
+| 2025-12-13T04:35:00.000-05:00 | 1.09 | 0.985 | 611.13 | 8.864999999999998 | 6.95 | 385.95000000000005 | 19.2 | SSO-U3 |
+| 2025-12-13T04:50:00.000-05:00 | 1.08 | 0.99 | 611.245 | 8.87 | 6.95 | 408.54999999999995 | 19.2 | SSO-U3 |
+| 2025-12-13T05:05:00.000-05:00 | 1.08 | 0.99 | 611.52 | 8.864999999999998 | 6.95 | 422.25 | 19.2 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001887
+## Table: ddt_brick0002073
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251217_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-12-17 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20251217_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2025-12-17 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -25217,17 +25861,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-17T14:53:00.000-05:00 | 739.0245 | 91.0 | 0.054 | 0.82934463 | 0.3236 | 0.278952 | 381.77386 | 0.9985238 | 10.198297 | 6.684564 | 14.180016 | 192.97893 | 9.252388 | 429.15695 | 19.219387 | 2.9642696 | SSO-U3 |
-| 2025-12-17T15:03:00.000-05:00 | 738.39435 | 91.0 | 0.072 | 0.79516387 | 0.3117 | 0.27949545 | 382.55316 | 0.9985231 | 10.199549 | 6.672943 | 13.610029 | 188.87335 | 8.879595 | 429.99295 | 19.223724 | 2.963728 | SSO-U3 |
-| 2025-12-17T15:13:00.000-05:00 | 738.3043 | 91.0 | 0.072 | 0.78828245 | 0.3087 | 0.2794981 | 382.54803 | 0.99852335 | 10.196769 | 6.672314 | 13.49478 | 185.83115 | 8.803666 | 429.99707 | 19.222652 | 2.9649315 | SSO-U3 |
-| 2025-12-17T15:23:00.000-05:00 | 738.40186 | 91.0 | 13.056 | 0.7640824 | 0.3069 | 0.28058517 | 384.05975 | 0.99852335 | 10.183642 | 6.675913 | 13.091155 | 187.44284 | 8.532771 | 431.66946 | 19.225544 | 2.9706135 | SSO-U3 |
-| 2025-12-17T15:33:00.000-05:00 | 738.33435 | 91.0 | 12.939 | 0.72876847 | 0.3048 | 0.27975544 | 382.95367 | 0.9985222 | 10.172828 | 6.672938 | 12.5018215 | 191.82976 | 8.13973 | 430.393 | 19.229147 | 2.975295 | SSO-U3 |
+| 2025-12-17T14:53:00.000-05:00 | 739.0245 | 91.0 | 0.054 | 0.82934463 | 0.0731 | 0.278952 | 381.77386 | 0.9985238 | 10.198297 | 6.684564 | 14.180016 | 192.97893 | 9.252388 | 429.15695 | 19.219387 | 2.9642696 | SSO-U3 |
+| 2025-12-17T15:03:00.000-05:00 | 738.39435 | 91.0 | 0.072 | 0.79516387 | 0.0704 | 0.27949545 | 382.55316 | 0.9985231 | 10.199549 | 6.672943 | 13.610029 | 188.87335 | 8.879595 | 429.99295 | 19.223724 | 2.963728 | SSO-U3 |
+| 2025-12-17T15:13:00.000-05:00 | 738.3043 | 91.0 | 0.072 | 0.78828245 | 0.0697 | 0.2794981 | 382.54803 | 0.99852335 | 10.196769 | 6.672314 | 13.49478 | 185.83115 | 8.803666 | 429.99707 | 19.222652 | 2.9649315 | SSO-U3 |
+| 2025-12-17T15:23:00.000-05:00 | 738.40186 | 91.0 | 13.056 | 0.7640824 | 0.0693 | 0.28058517 | 384.05975 | 0.99852335 | 10.183642 | 6.675913 | 13.091155 | 187.44284 | 8.532771 | 431.66946 | 19.225544 | 2.9706135 | SSO-U3 |
+| 2025-12-17T15:33:00.000-05:00 | 738.33435 | 91.0 | 12.939 | 0.72876847 | 0.0688 | 0.27975544 | 382.95367 | 0.9985222 | 10.172828 | 6.672938 | 12.5018215 | 191.82976 | 8.13973 | 430.393 | 19.229147 | 2.975295 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001888
+## Table: ddt_brick0002074
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -25258,17 +25902,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:03:00.000-05:00 | 741.95715 | 86.0 | 1.117 | 1.8641878 | 0.5839 | 0.16975573 | 227.8111 | 0.99863535 | 10.712858 | 6.721734 | 30.921925 | 440.67676 | 20.326107 | 261.16266 | 18.31392 | 2.7415009 | SSO-U3 |
-| 2026-01-23T00:13:00.000-05:00 | 741.90466 | 86.0 | 1.117 | 1.9030414 | 0.5868 | 0.17024527 | 228.46771 | 0.99863565 | 10.714318 | 6.721915 | 31.559837 | 437.76807 | 20.751266 | 261.9158 | 18.31385 | 2.7408686 | SSO-U3 |
-| 2026-01-23T00:23:00.000-05:00 | 741.9122 | 86.0 | 1.117 | 1.8883605 | 0.5851 | 0.16964062 | 227.65778 | 0.9986351 | 10.721363 | 6.7217336 | 31.318916 | 438.93628 | 20.59104 | 260.98557 | 18.31415 | 2.7378187 | SSO-U3 |
-| 2026-01-23T00:33:00.000-05:00 | 741.83716 | 86.0 | 1.108 | 1.883747 | 0.5844 | 0.16946891 | 227.42279 | 0.99863523 | 10.721086 | 6.7213736 | 31.24258 | 439.81366 | 20.542439 | 260.7214 | 18.313234 | 2.737939 | SSO-U3 |
-| 2026-01-23T00:43:00.000-05:00 | 741.81464 | 86.0 | 1.117 | 1.8850392 | 0.5831 | 0.16942413 | 227.3659 | 0.9986351 | 10.7225685 | 6.721734 | 31.2642 | 440.49554 | 20.557455 | 260.6525 | 18.31388 | 2.737297 | SSO-U3 |
+| 2026-01-23T00:03:00.000-05:00 | 741.95715 | 86.0 | 1.117 | 1.8641878 | 0.1319 | 0.16975573 | 227.8111 | 0.99863535 | 10.712858 | 6.721734 | 30.921925 | 440.67676 | 20.326107 | 261.16266 | 18.31392 | 2.7415009 | SSO-U3 |
+| 2026-01-23T00:13:00.000-05:00 | 741.90466 | 86.0 | 1.117 | 1.9030414 | 0.1326 | 0.17024527 | 228.46771 | 0.99863565 | 10.714318 | 6.721915 | 31.559837 | 437.76807 | 20.751266 | 261.9158 | 18.31385 | 2.7408686 | SSO-U3 |
+| 2026-01-23T00:23:00.000-05:00 | 741.9122 | 86.0 | 1.117 | 1.8883605 | 0.1322 | 0.16964062 | 227.65778 | 0.9986351 | 10.721363 | 6.7217336 | 31.318916 | 438.93628 | 20.59104 | 260.98557 | 18.31415 | 2.7378187 | SSO-U3 |
+| 2026-01-23T00:33:00.000-05:00 | 741.83716 | 86.0 | 1.108 | 1.883747 | 0.132 | 0.16946891 | 227.42279 | 0.99863523 | 10.721086 | 6.7213736 | 31.24258 | 439.81366 | 20.542439 | 260.7214 | 18.313234 | 2.737939 | SSO-U3 |
+| 2026-01-23T00:43:00.000-05:00 | 741.81464 | 86.0 | 1.117 | 1.8850392 | 0.1317 | 0.16942413 | 227.3659 | 0.9986351 | 10.7225685 | 6.721734 | 31.2642 | 440.49554 | 20.557455 | 260.6525 | 18.31388 | 2.737297 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001889
+## Table: ddt_brick0002075
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20260406_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2026-04-06 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ1_20260406_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ1 from 2026-04-06 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -25289,17 +25933,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-20T15:03:00.000-04:00 | 0.66 | 0.7083 | 951.405 | 11.295 | 6.78 | 16.025 | SSO-U3 |
-| 2026-04-20T15:18:00.000-04:00 | 0.675 | 0.7083 | 951.6700000000001 | 11.3 | 6.785 | 16.03 | SSO-U3 |
-| 2026-04-20T15:33:00.000-04:00 | 0.65 | 0.7083 | 951.76 | 11.3 | 6.78 | 16.03 | SSO-U3 |
-| 2026-04-20T15:48:00.000-04:00 | 0.645 | 0.7083 | 952.0550000000001 | 11.295 | 6.79 | 16.03 | SSO-U3 |
-| 2026-04-20T16:03:00.000-04:00 | 0.66 | 0.7083 | 952.605 | 11.29 | 6.785 | 16.025 | SSO-U3 |
+| 2026-04-20T15:03:00.000-04:00 | 0.66 | 0.16 | 951.405 | 11.295 | 6.78 | 16.025 | SSO-U3 |
+| 2026-04-20T15:18:00.000-04:00 | 0.675 | 0.16 | 951.6700000000001 | 11.3 | 6.785 | 16.03 | SSO-U3 |
+| 2026-04-20T15:33:00.000-04:00 | 0.65 | 0.16 | 951.76 | 11.3 | 6.78 | 16.03 | SSO-U3 |
+| 2026-04-20T15:48:00.000-04:00 | 0.645 | 0.16 | 952.0550000000001 | 11.295 | 6.79 | 16.03 | SSO-U3 |
+| 2026-04-20T16:03:00.000-04:00 | 0.66 | 0.16 | 952.605 | 11.29 | 6.785 | 16.025 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001890
+## Table: ddt_brick0002076
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20241003_20250429_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2024-10-03 to 2025-04-29 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20241003_20250429_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2024-10-03 to 2025-04-29 (v4)
 
 ### Schema
 
@@ -25320,17 +25964,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2024-10-03T11:23:00.000-04:00 | 0.22 | 10.7129 | 833.8199999999999 | 10.8 | 6.41 | 17.93 | SSO-U3 |
-| 2024-10-03T11:38:00.000-04:00 | 0.22 | 10.8899 | 833.86 | 10.805 | 6.41 | 17.93 | SSO-U3 |
-| 2024-10-03T11:53:00.000-04:00 | 0.21 | 11.7753 | 835.65 | 10.81 | 6.41 | 17.93 | SSO-U3 |
-| 2024-10-03T12:08:00.000-04:00 | 0.17 | 11.8638 | 835.395 | 10.82 | 6.41 | 17.93 | SSO-U3 |
-| 2024-10-03T12:23:00.000-04:00 | 0.16 | 11.8638 | 834.975 | 10.805 | 6.41 | 17.93 | SSO-U3 |
+| 2024-10-03T11:23:00.000-04:00 | 0.22 | 2.42 | 833.8199999999999 | 10.8 | 6.41 | 17.93 | SSO-U3 |
+| 2024-10-03T11:38:00.000-04:00 | 0.22 | 2.46 | 833.86 | 10.805 | 6.41 | 17.93 | SSO-U3 |
+| 2024-10-03T11:53:00.000-04:00 | 0.21 | 2.66 | 835.65 | 10.81 | 6.41 | 17.93 | SSO-U3 |
+| 2024-10-03T12:08:00.000-04:00 | 0.17 | 2.68 | 835.395 | 10.82 | 6.41 | 17.93 | SSO-U3 |
+| 2024-10-03T12:23:00.000-04:00 | 0.16 | 2.68 | 834.975 | 10.805 | 6.41 | 17.93 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001891
+## Table: ddt_brick0002077
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20250819_20250825_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-08-19 to 2025-08-25 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20250819_20250825_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-08-19 to 2025-08-25 (v3)
 
 ### Schema
 
@@ -25363,17 +26007,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-19T10:34:00.000-04:00 | 737.76447 | 21.0 | 0.018 | 0.25313613 | 13.7882 | 0.60207784 | 787.8383 | 0.9991008 | 11.268351 | 6.565488 | 3.947656 | 223.15027 | 1269.296 | 0.4602453 | 2.717043 | 926.2736 | 17.175184 | 5.1052513 | SSO-U3 |
-| 2025-08-19T10:44:00.000-04:00 | 737.8244 | 21.0 | 0.0 | 0.25313252 | 13.7979 | 0.602116 | 787.7328 | 0.99910235 | 11.268729 | 6.5450473 | 3.9469266 | 222.46602 | 1269.4661 | 0.46027267 | 2.716285 | 926.33234 | 17.166397 | 5.1050873 | SSO-U3 |
-| 2025-08-19T10:54:00.000-04:00 | 737.8244 | 21.0 | 0.0 | 0.24736576 | 13.7462 | 0.6021719 | 787.75586 | 0.9991029 | 11.28331 | 6.5455265 | 3.8573782 | 221.89857 | 1269.4288 | 0.4603161 | 2.6542468 | 926.4183 | 17.163567 | 5.098772 | SSO-U3 |
-| 2025-08-19T11:04:00.000-04:00 | 737.8469 | 21.0 | 0.0 | 0.2445828 | 13.7264 | 0.60229665 | 787.8877 | 0.9991032 | 11.283261 | 6.5464926 | 3.8141403 | 221.71976 | 1269.2164 | 0.4604146 | 2.6242096 | 926.6102 | 17.161797 | 5.098793 | SSO-U3 |
-| 2025-08-19T11:14:00.000-04:00 | 737.7419 | 21.0 | 0.0 | 0.24460264 | 13.7195 | 0.60262203 | 788.3222 | 0.99910337 | 11.271006 | 6.546229 | 3.814493 | 221.65302 | 1268.5168 | 0.4606732 | 2.6248364 | 927.11084 | 17.162294 | 5.104101 | SSO-U3 |
+| 2025-08-19T10:34:00.000-04:00 | 737.76447 | 21.0 | 0.018 | 0.25313613 | 3.1147 | 0.60207784 | 787.8383 | 0.9991008 | 11.268351 | 6.565488 | 3.947656 | 223.15027 | 1269.296 | 0.4602453 | 2.717043 | 926.2736 | 17.175184 | 5.1052513 | SSO-U3 |
+| 2025-08-19T10:44:00.000-04:00 | 737.8244 | 21.0 | 0.0 | 0.25313252 | 3.1169 | 0.602116 | 787.7328 | 0.99910235 | 11.268729 | 6.5450473 | 3.9469266 | 222.46602 | 1269.4661 | 0.46027267 | 2.716285 | 926.33234 | 17.166397 | 5.1050873 | SSO-U3 |
+| 2025-08-19T10:54:00.000-04:00 | 737.8244 | 21.0 | 0.0 | 0.24736576 | 3.1052 | 0.6021719 | 787.75586 | 0.9991029 | 11.28331 | 6.5455265 | 3.8573782 | 221.89857 | 1269.4288 | 0.4603161 | 2.6542468 | 926.4183 | 17.163567 | 5.098772 | SSO-U3 |
+| 2025-08-19T11:04:00.000-04:00 | 737.8469 | 21.0 | 0.0 | 0.2445828 | 3.1007 | 0.60229665 | 787.8877 | 0.9991032 | 11.283261 | 6.5464926 | 3.8141403 | 221.71976 | 1269.2164 | 0.4604146 | 2.6242096 | 926.6102 | 17.161797 | 5.098793 | SSO-U3 |
+| 2025-08-19T11:14:00.000-04:00 | 737.7419 | 21.0 | 0.0 | 0.24460264 | 3.0992 | 0.60262203 | 788.3222 | 0.99910337 | 11.271006 | 6.546229 | 3.814493 | 221.65302 | 1268.5168 | 0.4606732 | 2.6248364 | 927.11084 | 17.162294 | 5.104101 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001892
+## Table: ddt_brick0002078
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20250825_20251008_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-08-25 to 2025-10-08 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20250825_20251008_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-08-25 to 2025-10-08 (v3)
 
 ### Schema
 
@@ -25406,17 +26050,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-08-25T12:36:00.000-04:00 | 737.80194 | 19.0 | 0.0 | 0.012482526 | 12.5713 | 0.6362698 | 833.95917 | 0.99910855 | 11.331147 | 6.5614657 | 0.21934661 | 146.50108 | 1199.0995 | 0.4874742 | 0.13420242 | 978.8766 | 17.24897 | 5.0827923 | SSO-U3 |
-| 2025-08-25T12:46:00.000-04:00 | 737.6819 | 19.0 | 13.389 | 0.043679778 | 12.4453 | 0.6366076 | 834.1797 | 0.99911094 | 11.329862 | 6.561535 | 0.70332706 | 146.33658 | 1198.7825 | 0.48773906 | 0.46957332 | 979.3963 | 17.237091 | 5.083349 | SSO-U3 |
-| 2025-08-25T12:56:00.000-04:00 | 737.72687 | 19.0 | 13.371 | 0.041534264 | 12.397 | 0.6367622 | 834.3304 | 0.99911165 | 11.33515 | 6.5601664 | 0.67000395 | 146.44626 | 1198.5659 | 0.4878614 | 0.4464555 | 979.6341 | 17.234318 | 5.0810585 | SSO-U3 |
-| 2025-08-25T13:06:00.000-04:00 | 737.6594 | 19.0 | 13.371 | 0.03276673 | 12.4036 | 0.63687825 | 834.50214 | 0.99911153 | 11.32116 | 6.5594196 | 0.53399277 | 146.66321 | 1198.3193 | 0.48795423 | 0.3522535 | 979.81274 | 17.235369 | 5.087118 | SSO-U3 |
-| 2025-08-25T13:16:00.000-04:00 | 737.57697 | 19.0 | 13.38 | 0.026511895 | 12.3987 | 0.6370371 | 834.6985 | 0.99911165 | 11.325713 | 6.559375 | 0.43694586 | 147.08044 | 1198.0374 | 0.48808062 | 0.2850409 | 980.05707 | 17.234741 | 5.085146 | SSO-U3 |
+| 2025-08-25T12:36:00.000-04:00 | 737.80194 | 19.0 | 0.0 | 0.012482526 | 2.8398 | 0.6362698 | 833.95917 | 0.99910855 | 11.331147 | 6.5614657 | 0.21934661 | 146.50108 | 1199.0995 | 0.4874742 | 0.13420242 | 978.8766 | 17.24897 | 5.0827923 | SSO-U3 |
+| 2025-08-25T12:46:00.000-04:00 | 737.6819 | 19.0 | 13.389 | 0.043679778 | 2.8113 | 0.6366076 | 834.1797 | 0.99911094 | 11.329862 | 6.561535 | 0.70332706 | 146.33658 | 1198.7825 | 0.48773906 | 0.46957332 | 979.3963 | 17.237091 | 5.083349 | SSO-U3 |
+| 2025-08-25T12:56:00.000-04:00 | 737.72687 | 19.0 | 13.371 | 0.041534264 | 2.8004 | 0.6367622 | 834.3304 | 0.99911165 | 11.33515 | 6.5601664 | 0.67000395 | 146.44626 | 1198.5659 | 0.4878614 | 0.4464555 | 979.6341 | 17.234318 | 5.0810585 | SSO-U3 |
+| 2025-08-25T13:06:00.000-04:00 | 737.6594 | 19.0 | 13.371 | 0.03276673 | 2.8019 | 0.63687825 | 834.50214 | 0.99911153 | 11.32116 | 6.5594196 | 0.53399277 | 146.66321 | 1198.3193 | 0.48795423 | 0.3522535 | 979.81274 | 17.235369 | 5.087118 | SSO-U3 |
+| 2025-08-25T13:16:00.000-04:00 | 737.57697 | 19.0 | 13.38 | 0.026511895 | 2.8008 | 0.6370371 | 834.6985 | 0.99911165 | 11.325713 | 6.559375 | 0.43694586 | 147.08044 | 1198.0374 | 0.48808062 | 0.2850409 | 980.05707 | 17.234741 | 5.085146 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001893
+## Table: ddt_brick0002079
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251014_20251212_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-10-14 to 2025-12-12 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251014_20251212_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-10-14 to 2025-12-12 (v4)
 
 ### Schema
 
@@ -25449,17 +26093,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-10-14T15:25:00.000-04:00 | 738.97205 | 99.0 | 0.0 | 0.0 | 5.8716 | 0.49987647 | 664.6729 | 0.99890894 | 12.059996 | 6.483985 | -1.1349049 | 382.94724 | 1504.4994 | 0.379624 | 0.0 | 769.0407 | 17.894678 | 4.773408 | SSO-U3 |
-| 2025-10-14T15:35:00.000-04:00 | 738.957 | 99.0 | 13.362 | 0.0 | 5.9249 | 0.50063366 | 665.6316 | 0.99890995 | 12.061377 | 6.450585 | -1.1123966 | 387.10287 | 1502.3325 | 0.3802193 | 0.0 | 770.2056 | 17.891403 | 4.77281 | SSO-U3 |
-| 2025-10-14T15:45:00.000-04:00 | 738.942 | 99.0 | 13.335 | 0.0 | 5.9002 | 0.50103337 | 666.19086 | 0.99890983 | 12.058522 | 6.452205 | -1.1230627 | 383.76025 | 1501.0713 | 0.3805343 | 0.0 | 770.82056 | 17.893295 | 4.774046 | SSO-U3 |
-| 2025-10-14T15:55:00.000-04:00 | 738.8895 | 99.0 | 13.326 | 0.0 | 5.8832 | 0.5012667 | 666.51935 | 0.9989098 | 12.059632 | 6.45349 | -1.1305815 | 376.09747 | 1500.3315 | 0.38071838 | 0.0 | 771.17957 | 17.89453 | 4.7735653 | SSO-U3 |
-| 2025-10-14T16:05:00.000-04:00 | 738.777 | 99.0 | 13.344 | 0.0 | 5.9059 | 0.501449 | 666.77277 | 0.99890983 | 12.051286 | 6.4547734 | -1.1538795 | 370.20853 | 1499.7614 | 0.38086197 | 0.0 | 771.45996 | 17.895283 | 4.7771797 | SSO-U3 |
+| 2025-10-14T15:25:00.000-04:00 | 738.97205 | 99.0 | 0.0 | 0.0 | 1.3264 | 0.49987647 | 664.6729 | 0.99890894 | 12.059996 | 6.483985 | -1.1349049 | 382.94724 | 1504.4994 | 0.379624 | 0.0 | 769.0407 | 17.894678 | 4.773408 | SSO-U3 |
+| 2025-10-14T15:35:00.000-04:00 | 738.957 | 99.0 | 13.362 | 0.0 | 1.3384 | 0.50063366 | 665.6316 | 0.99890995 | 12.061377 | 6.450585 | -1.1123966 | 387.10287 | 1502.3325 | 0.3802193 | 0.0 | 770.2056 | 17.891403 | 4.77281 | SSO-U3 |
+| 2025-10-14T15:45:00.000-04:00 | 738.942 | 99.0 | 13.335 | 0.0 | 1.3328 | 0.50103337 | 666.19086 | 0.99890983 | 12.058522 | 6.452205 | -1.1230627 | 383.76025 | 1501.0713 | 0.3805343 | 0.0 | 770.82056 | 17.893295 | 4.774046 | SSO-U3 |
+| 2025-10-14T15:55:00.000-04:00 | 738.8895 | 99.0 | 13.326 | 0.0 | 1.329 | 0.5012667 | 666.51935 | 0.9989098 | 12.059632 | 6.45349 | -1.1305815 | 376.09747 | 1500.3315 | 0.38071838 | 0.0 | 771.17957 | 17.89453 | 4.7735653 | SSO-U3 |
+| 2025-10-14T16:05:00.000-04:00 | 738.777 | 99.0 | 13.344 | 0.0 | 1.3341 | 0.501449 | 666.77277 | 0.99890983 | 12.051286 | 6.4547734 | -1.1538795 | 370.20853 | 1499.7614 | 0.38086197 | 0.0 | 771.45996 | 17.895283 | 4.7771797 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001894
+## Table: ddt_brick0002080
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251213_20251216_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-12-13 to 2025-12-16 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251213_20251216_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-12-13 to 2025-12-16 (v4)
 
 ### Schema
 
@@ -25480,17 +26124,17 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2025-12-13T04:05:00.000-05:00 | 0.82 | 2.7446 | 660.18 | 8.91 | 6.71 | 18.57 | SSO-U3 |
-| 2025-12-13T04:20:00.000-05:00 | 0.85 | 2.7889 | 660.475 | 8.905000000000001 | 6.71 | 18.57 | SSO-U3 |
-| 2025-12-13T04:35:00.000-05:00 | 0.86 | 2.7446 | 660.915 | 8.91 | 6.72 | 18.57 | SSO-U3 |
-| 2025-12-13T04:50:00.000-05:00 | 0.855 | 2.7446 | 661.48 | 8.905000000000001 | 6.72 | 18.57 | SSO-U3 |
-| 2025-12-13T05:05:00.000-05:00 | 0.84 | 2.7446 | 661.665 | 8.915 | 6.72 | 18.57 | SSO-U3 |
+| 2025-12-13T04:05:00.000-05:00 | 0.82 | 0.62 | 660.18 | 8.91 | 6.71 | 18.57 | SSO-U3 |
+| 2025-12-13T04:20:00.000-05:00 | 0.85 | 0.63 | 660.475 | 8.905000000000001 | 6.71 | 18.57 | SSO-U3 |
+| 2025-12-13T04:35:00.000-05:00 | 0.86 | 0.62 | 660.915 | 8.91 | 6.72 | 18.57 | SSO-U3 |
+| 2025-12-13T04:50:00.000-05:00 | 0.855 | 0.62 | 661.48 | 8.905000000000001 | 6.72 | 18.57 | SSO-U3 |
+| 2025-12-13T05:05:00.000-05:00 | 0.84 | 0.62 | 661.665 | 8.915 | 6.72 | 18.57 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001895
+## Table: ddt_brick0002081
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251217_20260122_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-12-17 to 2026-01-22 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20251217_20260122_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2025-12-17 to 2026-01-22 (v4)
 
 ### Schema
 
@@ -25523,17 +26167,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2025-12-17T15:01:00.000-05:00 | 739.572 | 90.0 | 0.063 | 0.2106991 | 3.31 | 0.43167812 | 581.8861 | 0.99875116 | 10.320578 | 6.735515 | 2.9695532 | 315.93396 | 1718.5493 | 0.32625023 | 2.3172674 | 664.1202 | 18.517065 | 5.5081787 | SSO-U3 |
-| 2025-12-17T15:11:00.000-05:00 | 738.4245 | 90.0 | 0.072 | 0.20058186 | 3.2773 | 0.43227562 | 582.67444 | 0.99875176 | 10.270944 | 6.6922684 | 2.8108733 | 315.17816 | 1716.2242 | 0.32671696 | 2.209447 | 665.0394 | 18.515717 | 5.52967 | SSO-U3 |
-| 2025-12-17T15:21:00.000-05:00 | 738.45447 | 90.0 | 0.072 | 0.19460511 | 3.2281 | 0.4317096 | 581.8793 | 0.9987518 | 10.272468 | 6.6904154 | 2.7170336 | 314.88013 | 1718.5696 | 0.32627416 | 2.1434064 | 664.1686 | 18.513182 | 5.52901 | SSO-U3 |
-| 2025-12-17T15:31:00.000-05:00 | 738.48444 | 90.0 | 13.011 | 0.19355041 | 3.1784 | 0.43258995 | 583.1725 | 0.99875087 | 10.274008 | 6.68786 | 2.7009447 | 313.91693 | 1714.7585 | 0.32696366 | 2.1320782 | 665.523 | 18.521566 | 5.528343 | SSO-U3 |
-| 2025-12-17T15:41:00.000-05:00 | 738.32697 | 90.0 | 12.912 | 0.19189319 | 3.1412 | 0.43336374 | 584.26184 | 0.9987506 | 10.264193 | 6.6895504 | 2.6751468 | 311.8236 | 1711.5614 | 0.32756907 | 2.1144414 | 666.71344 | 18.525196 | 5.532593 | SSO-U3 |
+| 2025-12-17T15:01:00.000-05:00 | 739.572 | 90.0 | 0.063 | 0.2106991 | 0.7477 | 0.43167812 | 581.8861 | 0.99875116 | 10.320578 | 6.735515 | 2.9695532 | 315.93396 | 1718.5493 | 0.32625023 | 2.3172674 | 664.1202 | 18.517065 | 5.5081787 | SSO-U3 |
+| 2025-12-17T15:11:00.000-05:00 | 738.4245 | 90.0 | 0.072 | 0.20058186 | 0.7403 | 0.43227562 | 582.67444 | 0.99875176 | 10.270944 | 6.6922684 | 2.8108733 | 315.17816 | 1716.2242 | 0.32671696 | 2.209447 | 665.0394 | 18.515717 | 5.52967 | SSO-U3 |
+| 2025-12-17T15:21:00.000-05:00 | 738.45447 | 90.0 | 0.072 | 0.19460511 | 0.7292 | 0.4317096 | 581.8793 | 0.9987518 | 10.272468 | 6.6904154 | 2.7170336 | 314.88013 | 1718.5696 | 0.32627416 | 2.1434064 | 664.1686 | 18.513182 | 5.52901 | SSO-U3 |
+| 2025-12-17T15:31:00.000-05:00 | 738.48444 | 90.0 | 13.011 | 0.19355041 | 0.718 | 0.43258995 | 583.1725 | 0.99875087 | 10.274008 | 6.68786 | 2.7009447 | 313.91693 | 1714.7585 | 0.32696366 | 2.1320782 | 665.523 | 18.521566 | 5.528343 | SSO-U3 |
+| 2025-12-17T15:41:00.000-05:00 | 738.32697 | 90.0 | 12.912 | 0.19189319 | 0.7096 | 0.43336374 | 584.26184 | 0.9987506 | 10.264193 | 6.6895504 | 2.6751468 | 311.8236 | 1711.5614 | 0.32756907 | 2.1144414 | 666.71344 | 18.525196 | 5.532593 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001896
+## Table: ddt_brick0002082
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20260123_20260217_v2.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2026-01-23 to 2026-02-17 (v2)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20260123_20260217_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2026-01-23 to 2026-02-17 (v3)
 
 ### Schema
 
@@ -25566,17 +26210,17 @@ Total Tables: 743
 
 | time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | partial_pressure_molecule_from_list_oxygen_atom_torr | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | saturation_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_percent | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-01-23T00:01:00.000-05:00 | 742.1372 | 85.0 | 12.317 | 0.11550069 | 4.2549 | 0.4361932 | 586.59485 | 0.99877423 | 10.812979 | 6.6012735 | 1.4740512 | 373.74808 | 1704.7542 | 0.3297622 | 1.2630494 | 671.06647 | 18.4096 | 5.2949715 | SSO-U3 |
-| 2026-01-23T00:11:00.000-05:00 | 742.10724 | 85.0 | 12.281 | 0.1152855 | 4.2542 | 0.4361606 | 586.54333 | 0.9987743 | 10.802744 | 6.6009464 | 1.4706681 | 373.76953 | 1704.9038 | 0.32973656 | 1.260733 | 671.0163 | 18.408998 | 5.299403 | SSO-U3 |
-| 2026-01-23T00:21:00.000-05:00 | 741.97974 | 85.0 | 12.308 | 0.114829086 | 4.2538 | 0.43615577 | 586.54626 | 0.9987742 | 10.81036 | 6.6015463 | 1.463547 | 373.74808 | 1704.8954 | 0.32973295 | 1.2559805 | 671.00885 | 18.409737 | 5.2961054 | SSO-U3 |
-| 2026-01-23T00:31:00.000-05:00 | 742.05475 | 85.0 | 12.317 | 0.11481462 | 4.2532 | 0.43620887 | 586.62244 | 0.9987742 | 10.811913 | 6.6011653 | 1.4633307 | 373.79337 | 1704.674 | 0.32977453 | 1.255702 | 671.0906 | 18.410107 | 5.295433 | SSO-U3 |
-| 2026-01-23T00:41:00.000-05:00 | 741.98724 | 85.0 | 12.263 | 0.11424556 | 4.2543 | 0.43620932 | 586.61365 | 0.9987743 | 10.814943 | 6.6010556 | 1.4544058 | 373.63123 | 1704.6995 | 0.32977483 | 1.249575 | 671.09125 | 18.409374 | 5.294121 | SSO-U3 |
+| 2026-01-23T00:01:00.000-05:00 | 742.1372 | 85.0 | 12.317 | 0.11550069 | 0.9612 | 0.4361932 | 586.59485 | 0.99877423 | 10.812979 | 6.6012735 | 1.4740512 | 373.74808 | 1704.7542 | 0.3297622 | 1.2630494 | 671.06647 | 18.4096 | 5.2949715 | SSO-U3 |
+| 2026-01-23T00:11:00.000-05:00 | 742.10724 | 85.0 | 12.281 | 0.1152855 | 0.961 | 0.4361606 | 586.54333 | 0.9987743 | 10.802744 | 6.6009464 | 1.4706681 | 373.76953 | 1704.9038 | 0.32973656 | 1.260733 | 671.0163 | 18.408998 | 5.299403 | SSO-U3 |
+| 2026-01-23T00:21:00.000-05:00 | 741.97974 | 85.0 | 12.308 | 0.114829086 | 0.9609 | 0.43615577 | 586.54626 | 0.9987742 | 10.81036 | 6.6015463 | 1.463547 | 373.74808 | 1704.8954 | 0.32973295 | 1.2559805 | 671.00885 | 18.409737 | 5.2961054 | SSO-U3 |
+| 2026-01-23T00:31:00.000-05:00 | 742.05475 | 85.0 | 12.317 | 0.11481462 | 0.9608 | 0.43620887 | 586.62244 | 0.9987742 | 10.811913 | 6.6011653 | 1.4633307 | 373.79337 | 1704.674 | 0.32977453 | 1.255702 | 671.0906 | 18.410107 | 5.295433 | SSO-U3 |
+| 2026-01-23T00:41:00.000-05:00 | 741.98724 | 85.0 | 12.263 | 0.11424556 | 0.961 | 0.43620932 | 586.61365 | 0.9987743 | 10.814943 | 6.6010556 | 1.4544058 | 373.63123 | 1704.6995 | 0.32977483 | 1.249575 | 671.09125 | 18.409374 | 5.294121 | SSO-U3 |
 
 ---
 
-## Table: ddt_brick0001897
+## Table: ddt_brick0002083
 
-**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20260401_20260501_v3.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2026-04-01 to 2026-05-01 (v3)
+**Table Description:** hazen_aquatroll600_SSO-U3_SZ2_20260401_20260501_v4.hndarray - Hazen Lab Aqua TROLL 600 Data for SSO-U3 SZ2 from 2026-04-01 to 2026-05-01 (v4)
 
 ### Schema
 
@@ -25597,11 +26241,1855 @@ Total Tables: 743
 
 | time_series_datetime | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | conductivity_microsiemen_per_centimeter | depth_top_ground_surface_bottom_water_surface_foot | ph_ph | temperature_degree_celsius | sdt_location_name |
 |---|---|---|---|---|---|---|---|
-| 2026-04-01T14:10:00.000-04:00 | 1.31 | 2.6118 | 726.26 | 10.07 | 6.77 | 17.22 | SSO-U3 |
-| 2026-04-01T14:25:00.000-04:00 | 1.225 | 2.6118 | 728.385 | 10.1 | 6.77 | 17.23 | SSO-U3 |
-| 2026-04-01T14:40:00.000-04:00 | 1.145 | 2.6118 | 729.73 | 10.114999999999998 | 6.77 | 17.23 | SSO-U3 |
-| 2026-04-01T14:55:00.000-04:00 | 1.13 | 2.6118 | 730.435 | 10.114999999999998 | 6.77 | 17.23 | SSO-U3 |
-| 2026-04-01T15:10:00.000-04:00 | 1.13 | 2.6118 | 730.91 | 10.125 | 6.77 | 17.23 | SSO-U3 |
+| 2026-04-01T14:10:00.000-04:00 | 1.31 | 0.59 | 726.26 | 10.07 | 6.77 | 17.22 | SSO-U3 |
+| 2026-04-01T14:25:00.000-04:00 | 1.225 | 0.59 | 728.385 | 10.1 | 6.77 | 17.23 | SSO-U3 |
+| 2026-04-01T14:40:00.000-04:00 | 1.145 | 0.59 | 729.73 | 10.114999999999998 | 6.77 | 17.23 | SSO-U3 |
+| 2026-04-01T14:55:00.000-04:00 | 1.13 | 0.59 | 730.435 | 10.114999999999998 | 6.77 | 17.23 | SSO-U3 |
+| 2026-04-01T15:10:00.000-04:00 | 1.13 | 0.59 | 730.91 | 10.125 | 6.77 | 17.23 | SSO-U3 |
+
+---
+
+## Table: ddt_brick0002084
+
+**Table Description:** elias_ferrozine_iron_spring2019_integrated_sampling.hndarray - Elias Lab ferrozine iron (total iron, Fe(III) and Fe(II)) for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| concentration_molecule_from_list_iron_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron atom", "unit": "milligram per liter"} |
+| standard_deviation_measurement_concentration_molecule_from_list_iron_atom_milligram_per_liter | double | Yes | {"description": "standard deviation, measurement=concentration, molecule from list=iron atom", "unit": "milligram per liter"} |
+| below_relative_detection_limit_molecule_from_list_iron_atom | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=iron atom"} |
+| concentration_molecule_from_list_iron_3_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron(3+)", "unit": "milligram per liter"} |
+| standard_deviation_measurement_concentration_molecule_from_list_iron_3_milligram_per_liter | double | Yes | {"description": "standard deviation, measurement=concentration, molecule from list=iron(3+)", "unit": "milligram per liter"} |
+| below_relative_detection_limit_molecule_from_list_iron_3 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=iron(3+)"} |
+| concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron(2+)", "unit": "milligram per liter"} |
+| standard_deviation_measurement_concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "standard deviation, measurement=concentration, molecule from list=iron(2+)", "unit": "milligram per liter"} |
+| below_relative_detection_limit_molecule_from_list_iron_2 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=iron(2+)"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 44
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | concentration_molecule_from_list_iron_atom_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_atom_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_atom | concentration_molecule_from_list_iron_3_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_3_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_3 | concentration_molecule_from_list_iron_2_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_2_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_2 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R5 | 0.22 | 0.05 | 0 | 0.12 | 0.05 | 0 | 0.1 | 0.0 | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R5 | 0.11937119999999998 | NULL | 0 | 0.05578559999999999 | NULL | 0 | 0.06358559999999999 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+| GW821E-2019-04-15-UF-R5 | 0.12866879999999997 | NULL | 0 | 0.046487999999999974 | NULL | 0 | 0.0821808 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+| GW823D-2019-03-18-UF-R5 | 0.1565616 | NULL | 0 | 0.139464 | NULL | 0 | 0.017097599999999998 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+| GW823D-2019-04-15-UF-R5 | 0.1751568 | NULL | 0 | 0.1673568 | NULL | 0 | 0.0078 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002085
+
+**Table Description:** fields_cell_counts_spring2019_integrated_sampling.hndarray - Fields Lab SYBR Gold cell counts for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_date_category_fixation_date | string | Yes | {"description": "date, category=fixation date"} |
+| environmental_sample_date_category_count_date | string | Yes | {"description": "date, category=count date"} |
+| count_category_cell_method_sybr_gold_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=SYBR Gold", "unit": "cells per milliliter"} |
+| standard_deviation_measurement_count_category_cell_method_sybr_gold_cells_per_milliliter | double | Yes | {"description": "standard deviation, measurement=count, category=cell, method=SYBR Gold", "unit": "cells per milliliter"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 64
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_date_category_fixation_date | environmental_sample_date_category_count_date | count_category_cell_method_sybr_gold_cells_per_milliliter | standard_deviation_measurement_count_category_cell_method_sybr_gold_cells_per_milliliter | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| GW821E-2019-03-11-UF-R1 | 2019-03-13 | 2019-07-24 | 1.58E7 | 2380000.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R7 | 2019-03-18 | 2019-06-17 | 5641502.244057235 | 645198.0144675873 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R7 | 2019-04-01 | 2019-06-17 | 6112328.064723711 | 252648.14867702386 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-15-UF-R7 | 2019-04-15 | 2019-06-19 | 9420000.0 | 143000.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-29-UF-R1 | 2019-04-30 | 2019-06-17 | 6684045.13267586 | 600599.5870072771 | ENIGMA:0000129 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002086
+
+**Table Description:** fields_biomass_production_spring2019_integrated_sampling.hndarray - Fields Lab 3H-leucine biomass production (ng C/mL/day) for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| time_since_sample_collection_category_incubation_start_hour | double | Yes | {"description": "time since sample collection, category=incubation start", "unit": "hour"} |
+| biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | double | Yes | {"description": "biomass production rate, molecule from list=elemental carbon", "unit": "nanogram per milliliter per day"} |
+| standard_deviation_measurement_biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | double | Yes | {"description": "standard deviation, measurement=biomass production rate, molecule from list=elemental carbon", "unit": "nanogram per milliliter per day"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 48
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | time_since_sample_collection_category_incubation_start_hour | biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | standard_deviation_measurement_biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| GW821E-2019-03-11-UF-R1 | 48.0 | 357.870281098546 | 51.804315171515256 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R1 | 24.0 | 160.0485441033926 | 39.10020398858612 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R1 | 24.0 | 160.7929085621971 | 5.059064577405062 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R1 | 48.0 | 278.97567754442645 | 36.844136230349534 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-15-UF-R1 | 24.0 | 25.18940064620356 | 1.8944727202614389 | ENIGMA:0000129 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002087
+
+**Table Description:** fields_water_isotopes_spring2019_integrated_sampling.hndarray - Fields Lab water delta 18O and delta 2H for the Spring 2019 Integrated Sampling groundwater samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_date_category_analysis_date | string | Yes | {"description": "date, category=analysis date"} |
+| isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=water, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
+| standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "standard deviation, measurement=isotope ratio, molecule from list=water, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
+| isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=water, isotope=deuterium atom", "unit": "parts per thousand"} |
+| standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | double | Yes | {"description": "standard deviation, measurement=isotope ratio, molecule from list=water, isotope=deuterium atom", "unit": "parts per thousand"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 46
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_date_category_analysis_date | isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-11-UF-R8 | 2019-03-21 | -6.383595 | 0.1 | -37.73831 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-03-18-UF-R8 | 2019-03-21 | -6.346244 | 0.1 | -36.213002 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R8 | 2019-04-24 | -6.359386 | 0.12 | -35.304796 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-15-UF-R8 | 2019-04-24 | -6.225738 | 0.12 | -36.581541 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| GW821E-2019-04-29-UF-R8 | 2019-06-03 | -6.364182 | NULL | -35.805444 | 2.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002088
+
+**Table Description:** stahl_ammonia_oxidation_isotopes_spring2019_integrated_sampling.hndarray - Stahl Lab 15N ammonia oxidation assay and natural-abundance nitrate and nitrous oxide isotopes for GW821E and MLSB5, Spring 2019 Integrated Sampling
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| concentration_molecule_from_list_nitrate_millimolar | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "millimolar"} |
+| isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=nitrogen-15 atom", "unit": "parts per thousand"} |
+| isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
+| isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_nitrogen_15_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=dinitrogen oxide, physiochemical state=dissolved, isotope=nitrogen-15 atom", "unit": "parts per thousand"} |
+| isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=dinitrogen oxide, physiochemical state=dissolved, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
+| concentration_molecule_from_list_ammonia_chemical_context_oxidation_nanomolar | double | Yes | {"description": "concentration, molecule from list=ammonia, chemical context=oxidation", "unit": "nanomolar"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 11
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | concentration_molecule_from_list_nitrate_millimolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_oxygen_18_atom_parts_per_thousand | concentration_molecule_from_list_ammonia_chemical_context_oxidation_nanomolar | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-04-01-UF-R21 | NULL | NULL | 0.724 | 15.863 | 17.701 | NULL | NULL | 5.358312592 | ENIGMA:0000164 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R22 | NULL | NULL | 0.816 | 14.457 | 11.392 | NULL | NULL | 1.776592892 | ENIGMA:0000164 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R23 | NULL | NULL | 0.768 | 14.369 | 16.705 | NULL | NULL | 1.420988975 | ENIGMA:0000164 | ENIGMA:0000100 |
+| GW821E-2019-04-01-UF-R24 | ME:0000284 | negative control | 0.802 | 13.871 | 19.531 | NULL | NULL | NULL | ENIGMA:0000164 | ENIGMA:0000100 |
+| MLSB5-2019-04-02-UF-R21 | NULL | NULL | 0.965 | 14.778 | 12.286 | NULL | NULL | 0.3836288293 | ENIGMA:0000164 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002089
+
+**Table Description:** hazen_field_spring2019_integrated_sampling.hndarray - Hazen Lab field readings (dissolved oxygen, ORP, conductivity, temperature, pH) for each well visit of the Spring 2019 Integrated Sampling
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_date | string | Yes | {"description": "date"} |
+| environmental_sample_location_time | string | Yes | {"description": "time"} |
+| concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 33
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_date | environmental_sample_location_time | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | ph_ph | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|
+| GW-821E | 2019-03-18 | 10:04 | 2.19 | 124.0 | 89.61 | 13.65 | 6.18 | ENIGMA:0000066 | ENIGMA:0000100 |
+| GW-821E | 2019-04-01 | 11:34 | 1.16 | 101.0 | 113.5 | 13.88 | 6.6 | ENIGMA:0000066 | ENIGMA:0000100 |
+| GW-821E | 2019-04-15 | 10:14 | 2.044 | 314.996 | 59.279 | 13.257 | 6.045 | ENIGMA:0000066 | ENIGMA:0000100 |
+| GW-821E | 2019-04-29 | 10:16 | 1.149 | 197.025 | 78.073 | 19.938 | 6.368 | ENIGMA:0000066 | ENIGMA:0000100 |
+| GW-822E | 2019-03-18 | 10:26 | 1.94 | 52.0 | 147.6 | 14.8 | 6.49 | ENIGMA:0000066 | ENIGMA:0000100 |
+
+---
+
+## Table: ddt_brick0002090
+
+**Table Description:** hazen_field_sso_initial_well_characterization_2023_v2.hndarray - Hazen Lab field readings (pH, dissolved oxygen, conductivity, temperature, sonde nitrate, depth to water, pump rate) at pump start and end for the 2023 SSO initial well characterization
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_location | string | Yes | {"description": "location"} |
+| environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_meter | double | Yes | {"description": "depth, top=ground surface, bottom=screen midpoint", "unit": "meter"} |
+| environmental_sample_location_date | string | Yes | {"description": "date"} |
+| time_series_category | string | Yes | {"description": "category"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| saturation_molecule_from_list_dioxygen_physiochemical_state_dissolved_percent | double | Yes | {"description": "saturation, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "percent"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| depth_top_top_of_casing_bottom_water_surface_meter | double | Yes | {"description": "depth, top=top of casing, bottom=water surface", "unit": "meter"} |
+| time | string | Yes | {"description": "time"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 56
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_meter | environmental_sample_location_date | time_series_category | ph_ph | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_dioxygen_physiochemical_state_dissolved_percent | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_nitrate_milligram_per_liter | depth_top_top_of_casing_bottom_water_surface_meter | time | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump start | 6.7 | 2.4 | 26.1 | 647.0 | 18.3 | 10.27 | 3.4747 | 09:30 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump end | 6.6 | 2.3 | 24.5 | 661.0 | 18.5 | 10.77 | 3.871 | 10:00 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump start | 6.87 | 2.4 | 26.0 | 635.0 | 19.9 | 11.12 | 3.3223 | 10:45 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump end | 6.74 | 2.3 | 24.6 | 641.0 | 19.3 | 11.43 | 3.749 | 11:14 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-L7 | L7-VSZ | 3.5052 | 2023-06-26 | pump start | 6.6 | 2.7 | 33.2 | 651.0 | 26.3 | 12.1 | 3.3071 | 11:45 | ENIGMA:0000066 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002091
+
+**Table Description:** pumptest_2025_field_measurements_v2.hndarray - 2025 SSO PumpTest2 sample environmental and geochemical measurements from the metadata workbook
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| ph_instrument_ph_meter_ph | double | Yes | {"description": "pH, instrument=pH meter", "unit": "pH"} |
+| ph_instrument_aqua_troll_ph | double | Yes | {"description": "pH, instrument=Aqua TROLL", "unit": "pH"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 127
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | volume_milliliter | ph_instrument_ph_meter_ph | ph_instrument_aqua_troll_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|
+| 20250922-U2-SZ2-AODC | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+| 20250922-U2-SZ2-COUNT-UF | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+| 20250922-U2-SZ2-COUNT-8F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+| 20250922-U2-SZ2-COUNT-01F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+| 20250922-U2-SZ2-ACTIVITY-UF | 50.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002092
+
+**Table Description:** oneoff_260609_sample_metadata_v2.hndarray - SSO one-off sample environmental and geochemical measurements from the one-off sampling spreadsheet
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| volume_milliliter | double | Yes | {"description": "volume", "unit": "milliliter"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 185
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | volume_milliliter | ph_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| 20230913-M5-SZ2-F10-R1 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+| 20230913-M5-SZ2-F10-R2 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+| 20230913-M5-SZ2-F10-R3 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+| 20230913-M5-SZ2-F10-R4 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+| 20230913-M5-SZ2-F10-R5 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002093
+
+**Table Description:** hazen_manual_dtw_sso_2024.hndarray - Hazen Lab manual depth to water at the 37 SSO ports, six surveys from 2024-01-31 to 2024-02-28
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_location | string | Yes | {"description": "location"} |
+| environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen midpoint", "unit": "foot"} |
+| time_series_date | string | Yes | {"description": "date"} |
+| depth_top_ground_surface_bottom_water_surface_foot | double | Yes | {"description": "depth, top=ground surface, bottom=water surface", "unit": "foot"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 136
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | time_series_date | depth_top_ground_surface_bottom_water_surface_foot | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| SSO-U1 | U1-VZ | 7.5 | 2024-01-31 | 4.6 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-05 | 7.2 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-08 | 8.5 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-26 | 7.74 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VSZ | 11.5 | 2024-01-31 | 4.61 | ENIGMA:0000066 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002094
+
+**Table Description:** hazen_manual_dtw_sso_pump_test_2024.hndarray - Hazen Lab manual depth to water during the March 2024 SSO pump tests (790 readings)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_location | string | Yes | {"description": "location"} |
+| environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen midpoint", "unit": "foot"} |
+| environmental_sample_location_datetime | string | Yes | {"description": "datetime"} |
+| depth_top_ground_surface_bottom_water_surface_foot | double | Yes | {"description": "depth, top=ground surface, bottom=water surface", "unit": "foot"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 790
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | environmental_sample_location_datetime | depth_top_ground_surface_bottom_water_surface_foot | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T09:45:00-04:00 | 6.66 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T14:59:00-04:00 | 7.51 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T09:04:00-04:00 | 7.87 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T13:49:00-04:00 | 7.96 | ENIGMA:0000066 | ENIGMA:0000166 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-18T09:19:00-04:00 | 6.58 | ENIGMA:0000066 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002095
+
+**Table Description:** hazen_temphion_SSO-L8_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173338
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:23:21-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:23:31-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:23:41-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:23:51-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:24:01-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002096
+
+**Table Description:** hazen_temphion_SSO-L8_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173253
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-02-17T11:21:48-05:00 | 16.75 | 0.8 | -29.8 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:21:58-05:00 | 16.75 | 0.8 | -30.6 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:22:08-05:00 | 16.75 | 0.8 | -31.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:22:18-05:00 | 16.75 | 0.8 | -31.3 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:22:28-05:00 | 16.74 | 0.8 | -31.5 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002097
+
+**Table Description:** hazen_temphion_SSO-L9_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173033
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:46:11-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:46:21-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:46:31-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:46:41-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:46:51-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002098
+
+**Table Description:** hazen_temphion_SSO-L9_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 172824
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-02-17T11:50:35-05:00 | 14.88 | 10.9 | 69.9 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:50:45-05:00 | 15.05 | 12.0 | 114.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:50:55-05:00 | 15.2 | 12.6 | 114.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:51:05-05:00 | 15.34 | 12.6 | 110.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:51:15-05:00 | 15.46 | 12.8 | 107.2 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002099
+
+**Table Description:** hazen_temphion_SSO-M5_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173656
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:38:50-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:39:00-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:39:10-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:39:20-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:39:30-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002100
+
+**Table Description:** hazen_temphion_SSO-M5_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173747
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:36:39-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:36:49-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:36:59-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:37:09-05:00 | 16.45 | 5.8 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:37:19-05:00 | 16.45 | 5.7 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002101
+
+**Table Description:** hazen_temphion_SSO-M6_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M6 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173677
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:43:42-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:43:52-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:44:02-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:44:12-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:44:22-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002102
+
+**Table Description:** hazen_temphion_SSO-M6_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M6 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173589
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:41:44-05:00 | 17.3 | 7.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:41:54-05:00 | 17.31 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:42:04-05:00 | 17.31 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:42:14-05:00 | 17.32 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:42:24-05:00 | 17.33 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002103
+
+**Table Description:** hazen_temphion_SSO-U2_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-U2 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173444
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:40:25-05:00 | 16.43 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:40:35-05:00 | 16.44 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:40:45-05:00 | 16.43 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:40:55-05:00 | 16.43 | 3.0 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:41:05-05:00 | 16.43 | 3.0 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002104
+
+**Table Description:** hazen_temphion_SSO-U2_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-U2 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 154512
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:38:14-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:38:24-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:38:34-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:38:44-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:38:54-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002105
+
+**Table Description:** hazen_temphion_SSO-U3_SZ1_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-U3 SZ1, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173297
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-02-17T11:48:03-05:00 | 15.97 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:48:13-05:00 | 15.98 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:48:23-05:00 | 15.97 | 6.2 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:48:33-05:00 | 15.98 | 1.0 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:48:43-05:00 | 15.98 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002106
+
+**Table Description:** hazen_temphion_SSO-U3_SZ2_20260217_20260309.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-U3 SZ2, tracer test 1, from 2026-02-17 to 2026-03-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 173325
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-02-17T11:46:57-05:00 | 17.33 | 0.6 | -75.5 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:47:07-05:00 | 17.33 | 0.6 | -74.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:47:17-05:00 | 17.33 | 0.6 | -72.7 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:47:27-05:00 | 17.33 | 0.6 | -71.9 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-02-17T11:47:37-05:00 | 17.33 | 0.6 | -71.3 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002107
+
+**Table Description:** hazen_temphion_SSO-L7_SZ1_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L7 SZ1, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 59013
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T14:25:26-04:00 | 15.02 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:25:36-04:00 | 14.94 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:25:46-04:00 | 14.86 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:25:56-04:00 | 14.8 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:26:06-04:00 | 14.74 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002108
+
+**Table Description:** hazen_temphion_SSO-L7_SZ2_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L7 SZ2, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58559
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-03-09T15:33:55-04:00 | 15.94 | 7.9 | -120.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:34:05-04:00 | 15.92 | 7.8 | -120.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:34:15-04:00 | 15.9 | 7.6 | -119.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:34:25-04:00 | 15.89 | 7.5 | -118.6 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:34:35-04:00 | 15.88 | 7.4 | -118.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002109
+
+**Table Description:** hazen_temphion_SSO-L8_SZ1_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ1, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 59234
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T14:09:44-04:00 | 14.69 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:09:54-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:10:04-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:10:14-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:10:24-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002110
+
+**Table Description:** hazen_temphion_SSO-L8_SZ2_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ2, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 59395
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-03-09T13:52:36-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:52:46-04:00 | 16.07 | 0.0 | 165.7 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:52:56-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:53:06-04:00 | 16.07 | 0.0 | 166.7 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:53:16-04:00 | 16.07 | 0.0 | 167.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002111
+
+**Table Description:** hazen_temphion_SSO-L9_SZ1_20260309_20260317.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ1, tracer test 2, from 2026-03-09 to 2026-03-17
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 69483
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T13:37:10-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:37:20-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:37:30-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:37:40-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:37:50-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002112
+
+**Table Description:** hazen_temphion_SSO-L9_SZ2_20260309_20260317.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ2, tracer test 2, from 2026-03-09 to 2026-03-17
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 69591
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-03-09T13:24:26-04:00 | 16.61 | 0.0 | 1.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:24:36-04:00 | 16.61 | 0.0 | 31.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:24:46-04:00 | 16.61 | 0.0 | 17.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:24:56-04:00 | 16.61 | 0.0 | 5.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T13:25:06-04:00 | 16.61 | 0.0 | -5.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002113
+
+**Table Description:** hazen_temphion_SSO-M4_SZ1_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M4 SZ1, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58837
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T14:43:15-04:00 | 15.86 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:43:25-04:00 | 15.82 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:43:35-04:00 | 15.78 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:43:45-04:00 | 15.75 | 7.0 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:43:55-04:00 | 15.72 | 7.0 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002114
+
+**Table Description:** hazen_temphion_SSO-M4_SZ2_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M4 SZ2, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58704
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T14:59:45-04:00 | 16.36 | 2.7 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T14:59:55-04:00 | 16.36 | 2.7 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:00:05-04:00 | 16.36 | 2.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:00:15-04:00 | 16.36 | 2.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:00:25-04:00 | 16.36 | 2.9 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002115
+
+**Table Description:** hazen_temphion_SSO-M5_SZ1_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ1, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58817
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T15:13:33-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:13:43-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:13:53-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:14:03-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:14:13-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002116
+
+**Table Description:** hazen_temphion_SSO-M5_SZ2_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ2, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58708
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T15:26:13-04:00 | 15.88 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:26:23-04:00 | 15.88 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:26:33-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:26:43-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:26:53-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002117
+
+**Table Description:** hazen_temphion_SSO-M5_SZ3_20260309_20260316.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ3, tracer test 2, from 2026-03-09 to 2026-03-16
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 58777
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T15:09:36-04:00 | 16.38 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:09:46-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:09:56-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:10:06-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:10:16-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002118
+
+**Table Description:** hazen_temphion_SSO-M6_SZ1_20260309_20260317.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M6 SZ1, tracer test 2, from 2026-03-09 to 2026-03-17
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 68807
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-03-09T15:21:39-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:21:49-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:21:59-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:22:09-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-03-09T15:22:19-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002119
+
+**Table Description:** hazen_temphion_SSO-L7_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L7 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277670
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:33:01-04:00 | 14.93 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:33:11-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:33:21-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:33:31-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:33:41-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002120
+
+**Table Description:** hazen_temphion_SSO-L8_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277911
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:31:46-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:31:56-04:00 | 14.86 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:32:06-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:32:16-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:32:26-04:00 | 14.86 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002121
+
+**Table Description:** hazen_temphion_SSO-L8_SZ2_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L8 SZ2, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277789
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-04-09T10:30:38-04:00 | 15.94 | 0.0 | 264.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:30:48-04:00 | 15.94 | 0.0 | 263.6 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:30:58-04:00 | 15.93 | 0.0 | 263.4 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:31:08-04:00 | 15.93 | 0.0 | 263.3 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:31:18-04:00 | 15.93 | 0.0 | 263.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002122
+
+**Table Description:** hazen_temphion_SSO-L9_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 278029
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:29:36-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:29:46-04:00 | 15.28 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:29:56-04:00 | 15.28 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:30:06-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:30:16-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002123
+
+**Table Description:** hazen_temphion_SSO-L9_SZ2_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-L9 SZ2, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 278213
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-04-09T10:28:37-04:00 | 16.36 | 0.0 | 91.2 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:28:47-04:00 | 16.37 | 0.0 | 131.9 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:28:57-04:00 | 16.37 | 0.0 | 126.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:29:07-04:00 | 16.37 | 0.0 | 122.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:29:17-04:00 | 16.37 | 0.0 | 118.8 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002124
+
+**Table Description:** hazen_temphion_SSO-M4_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M4 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277430
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:55:32-04:00 | 18.39 | 7.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:55:42-04:00 | 18.14 | 7.6 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:55:52-04:00 | 17.92 | 7.5 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:56:02-04:00 | 17.71 | 7.4 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:56:12-04:00 | 17.52 | 7.3 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002125
+
+**Table Description:** hazen_temphion_SSO-M5_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277692
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:53:26-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:53:36-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:53:46-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:53:56-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:54:06-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002126
+
+**Table Description:** hazen_temphion_SSO-M5_SZ3_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 SZ3, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277887
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:57:23-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:57:33-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:57:43-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:57:53-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:58:03-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002127
+
+**Table Description:** hazen_temphion_SSO-M5_VSZ_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M5 VSZ, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 277574
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:50:44-04:00 | 14.4 | 1.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:50:54-04:00 | 14.4 | 7.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:51:04-04:00 | 14.4 | 7.8 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:51:14-04:00 | 14.4 | 7.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:51:24-04:00 | 14.4 | 7.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002128
+
+**Table Description:** hazen_temphion_SSO-M6_SZ1_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M6 SZ1, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 278345
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|
+| 2026-04-09T10:27:24-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:27:34-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:27:44-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:27:54-04:00 | 15.28 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:28:04-04:00 | 15.28 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002129
+
+**Table Description:** hazen_temphion_SSO-M6_SZ2_20260409_20260511.hndarray - Hazen Lab Seametrics TempHion bromide probe data for SSO-M6 SZ2, tracer test 3, from 2026-04-09 to 2026-05-11
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 278413
+
+### Sample Data (5 rows)
+
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 2026-04-09T10:25:31-04:00 | 16.15 | 0.3 | 88.5 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:25:41-04:00 | 16.15 | 0.3 | 108.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:25:51-04:00 | 16.15 | 0.3 | 116.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:26:01-04:00 | 16.15 | 0.3 | 104.6 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| 2026-04-09T10:26:11-04:00 | 16.15 | 0.3 | 97.8 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+
+---
+
+## Table: ddt_brick0002130
+
+**Table Description:** zhou_lab_sso_oneoff_colloids_2024_ASV_16S.ndarray - Zhou Lab 16S ASV sequences, SSO one-off colloid filter fractions (Murtazina, Hazen Lab), 2024-05-29
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 5273
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | TACCAGCACCTCGAGTGGTCAGGACGTTTATTGGGCCTAAAGCATCCGTAGCCGGCTTTGCAAGTCTTCGGTTAAATCCACCTGCTCAACAGATGGGCCGCTGGAGATACTACAAAGCTAGGGAGTGGGAGAGGCAGACGGTATTCAGTGGGTAGGGGTAAAATCCTCTGATCCATTGAGGACCACCAGTGGCGAAGGCGGTCTGCCAGAACACGTTCGACGGTGAGGGATGAAAGCTGGGGGAGCAAACCGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| b63edd27d66cb22a08a048ce4e488c09 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGCTTTTTAAGTGAGATGTGTAATCCCTGAGCTCAACTTGGGAACTGCATCTCATACTGGGAGGCTAGAGTACTGGAGAGGGTGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| d12833fed8673a8d32d1adc368a01538 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTGTTTAAGTCTGTCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGATGGATACTGGGCAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| dda2f81232ee68b118d784e5e746a144 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTATTTAAGTCTGCCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGGTGGATACTGGATAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002131
+
+**Table Description:** zhou_lab_sso_oneoff_colloids_2024_ASV_count.ndarray - Zhou Lab 16S ASV counts (resampled to 37,579 reads per sample), SSO one-off colloid filter fractions (Murtazina, Hazen Lab), 2024-05-29
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 42184
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F01 | 1 | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F8 | 48 | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F01 | 105 | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F8 | 21 | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-M5-SZ2-F01 | 1168 | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002132
+
+**Table Description:** zhou_lab_sso_oneoff_colloids_2024_ASV_taxonomy.ndarray - Zhou Lab 16S ASV taxonomy, SSO one-off colloid filter fractions (Murtazina, Hazen Lab), 2024-05-29
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 23665
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000351 | taxonomic domain | Archaea | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000252 | phylum | Crenarchaeota | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000253 | class | Nitrososphaeria | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000254 | order | Nitrosotaleales | ENIGMA:0000166 | ENIGMA:0000092 |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000255 | family | Nitrosotaleaceae | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002133
+
+**Table Description:** zhou_lab_sso_oneoff_ftp6_2024_ASV_16S.ndarray - Zhou Lab 16S ASV sequences, SSO one-off field test plan 6, upper-well ammonia-oxidizing archaea survey (Arkin), 2024-08-12
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 4513
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | TACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGAGCACGTAGGTGGTTAGGTGAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGATACTGCCTGGCTAGAGTTTGGTAGAGGGAAGTGGAATTCCACATGTAGCGGTGAAATGCGTAGAGATGTGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCAAAACTGACACTGAGGTGCGAAAGCGTGGGTAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0013aacacdba8495d504237c6334ddfb | TACGGAGGGTGCGAGCGTTGTCCGGAATCATTGGGCGTAAAGCGCACGTAGGCGGTTCTTTAAGTCTCATGGTGAAAGGCTGGGGCTCAACCCCAAGCATGCCGGGGATACTGGAGGACTGGAGACAGGTAGAGGCCAGCGGAATTCCGGGTGTAGCGGTGGAATGCGTAGAGATCCGGAAGAACACCGGAGGCGAAGGCGGCTGGCTGGACCTGATCTGACGCTGAGGTGCGAAAGCGTGGGGAGCGAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0015c5366c3012ea504174b29ace1dcc | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGCTCGTAGGCGGTTCGAAAAGTCAGATGTGAAATCCCACAGCTTAACTGTGGAACTGCATCTGAAACTCTCGAACTAGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACATCAGTCGCGAAGGCGCTTTACTGGATCACTACTGACGCTGAGGGGCGAAAGCTAGGGGAGCAAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 003d0470f23082c7bf6de11e71a56898 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTCTGCAAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCGTTTGAAACTACGGAGCTAGAGTGCGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGACACTGACGCTCAGGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002134
+
+**Table Description:** zhou_lab_sso_oneoff_ftp6_2024_ASV_count.ndarray - Zhou Lab 16S ASV counts (resampled to 25,181 reads per sample), SSO one-off field test plan 6, upper-well ammonia-oxidizing archaea survey (Arkin), 2024-08-12
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 54156
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F8 | 4 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F8 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U3-SZ1-F8 | 3 | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002135
+
+**Table Description:** zhou_lab_sso_oneoff_ftp6_2024_ASV_taxonomy.ndarray - Zhou Lab 16S ASV taxonomy, SSO one-off field test plan 6, upper-well ammonia-oxidizing archaea survey (Arkin), 2024-08-12
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 21402
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000252 | phylum | Proteobacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000253 | class | Gammaproteobacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000254 | order | Acidiferrobacterales | 0.9 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000255 | family | Acidiferrobacteraceae | 0.9 | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002136
+
+**Table Description:** zhou_lab_sso_oneoff_ftp7_2024_ASV_16S.ndarray - Zhou Lab 16S ASV sequences, SSO one-off field test plan 7, microcalorimetry activity-assay water (Shreve, Fields Lab), 2024-08-20
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 3457
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | TACAGAGGGTGCGAGCGTTAATCGGAGTTACTGGGCGTAAAGGGCGCGTAGGCGGTGAGATGAGTGTGATGTGAAAGCCCCGGGCTTAACCTGGGAAGCGCATCGCAAACTATCTGACTGGAGTATATGAGAGGGTGGCGGAATTTCCGGTGTAGCGGTGAAATGCGTAGAGATCGGAAGGAACGTCGATGGCGAAGGCAGCCACCTGGCATAATACTGACGCTGAGGCGCGAAAGCGTGGGGAGCGAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0044710531f11498f3fdc9d98ce0e4cd | GACGTAGGGGGCGAGCGTTGCCCGGATTCACTGGGCGTAAAGCGCGTGTAGGCGGTTTGTTAAGTCGGATGTGAAATCTTCGGGCTCAACCCGGAAATTGCATCCGATACTGGCAGACTTGAGGACGGTAGGGGCCGGTGGAATTCCCGGTGTACCGGTGAAATGGATAGATATCGGGAGGAACACCAGTGGCGAAGGCGGCCGGCTGGGCCGATCCTGACGCTGAGACGCGAAAGCCAGGGGAGCGAACCGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0054450c62e5609403033267aeed502c | AACGTAGGACACAAGCGTTATCCGGAGTTACTGGGCGTAAAGGGCGTGTAGGCGGATTGGTAAGTCTATTCTGAAAGCTTCTGGCTAAACTGGAAGAGGCGAATGGAGACTGTCAGTCTAGAGTGAGGAAGAGGAAAGTGGAATTCCGCGTGTAGTGGTGAAATGCGTAGAGATGCGGAGGAACACCAGTGGCGAAAGCGGCTTTCTGGTCCTTAACTGACGCTGAGGCGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| 00609ab1c084bcda8c880fbcea5ad2d8 | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGTCCGTAGGCGGTTTGGATAGTCGGGTGTGAAATCCCACAGCTTAACTGTGGAACTGCATTCGATACTTCCAGACTGGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACACCAGTCGCGAAGGCGCTTTACTGGCTCACAACTGACGCTGAGGGACGAAAGCTAGGGGAGCAAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002137
+
+**Table Description:** zhou_lab_sso_oneoff_ftp7_2024_ASV_count.ndarray - Zhou Lab 16S ASV counts (resampled to 25,181 reads per sample), SSO one-off field test plan 7, microcalorimetry activity-assay water (Shreve, Fields Lab), 2024-08-20
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 13828
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F8 | 18 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F8 | 10 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | 20240820-U1-VSZ-F8 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002138
+
+**Table Description:** zhou_lab_sso_oneoff_ftp7_2024_ASV_taxonomy.ndarray - Zhou Lab 16S ASV taxonomy, SSO one-off field test plan 7, microcalorimetry activity-assay water (Shreve, Fields Lab), 2024-08-20
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 16531
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000252 | phylum | Chloroflexi | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000253 | class | Anaerolineae | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000254 | order | SBR1031 | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+
+---
+
+## Table: ddt_brick0002139
+
+**Table Description:** zhou_lab_27ws_bug_trap_2019_ASV_16S.ndarray - Zhou Lab 16S ASV sequences, 2019 27-well survey bug traps (EU05, GW-835, FW106)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 2393
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACAGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 0a9495dc2a22f1eefcd9e4e4ebd2617f | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACGGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 7388c0129a2d5b00352f79fe73678eb5 | TACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGCAAGACAGAGGTGAAATCCCCGGGCTTAACCTGGGAACTGCCTTTGTGACTGCACGGCTAGAGTGTGTCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGATAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 070fc272903ae7ea02e3a26448029004 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGTTTTTTAAGTCAGATGTGTAATCCCCGAGCTCAACTTGGGAACTGCATCTGAGACTGGAAGGCTAGAGTACTGGAGAGGGTGGTGGAATTCCTCGTGTAGCGGTGAAATGCGTAGAGATGAGGAGGAACACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 821890c6f07a73ce116233563e148775 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGACAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGTGACTGCAAGGCTAGAGTATGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002140
+
+**Table Description:** zhou_lab_27ws_bug_trap_2019_ASV_count.ndarray - Zhou Lab 16S ASV counts, 2019 27-well survey bug traps (EU05, GW-835, FW106)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| community_date_comment_deployment | string | Yes | {"description": "date, comment=deployment"} |
+| community_time_elapsed_comment_deployment_week | double | Yes | {"description": "time elapsed, comment=deployment", "unit": "week"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 131615
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | control_sys_oterm_id | control_sys_oterm_name | community_date_comment_deployment | community_time_elapsed_comment_deployment_week | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190906-TP1-R1 | NULL | NULL | 2019-08-08 | 4.0 | 11530 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190919-TP1-R2 | NULL | NULL | 2019-08-08 | 6.0 | 14607 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20191003-TP1-R3 | NULL | NULL | 2019-08-08 | 8.0 | 5614 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190912-TP2-R1 | NULL | NULL | 2019-08-15 | 4.0 | 11803 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190926-TP2-R2 | NULL | NULL | 2019-08-15 | 6.0 | 6409 | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002141
+
+**Table Description:** zhou_lab_27ws_bug_trap_2019_ASV_taxonomy.ndarray - Zhou Lab 16S ASV taxonomy (SILVA 132), 2019 27-well survey bug traps (EU05, GW-835, FW106)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| asv_confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 13338
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000351 | taxonomic domain | Bacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000252 | phylum | Proteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000253 | class | Gammaproteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000254 | order | Betaproteobacteriales | ENIGMA:0000101 | ENIGMA:0000154 |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000255 | family | Rhodocyclaceae | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002142
+
+**Table Description:** zhou_lab_27ws_bug_trap_reactor_2020_ASV_16S.ndarray - Zhou Lab 16S ASV sequences, 2020 Fields Lab packed-bed reactors inoculated from the 2019 27-well survey bug traps
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 634
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|
+| 945184b6386c192c0066e0a98a154780 | TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGCACGCAGGCGGTCTGTCAAGTCGGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTCGAAACTGGCAGGCTAGAGTCTTGTAGAGGGGGGTAGAATTCCAGGTGTAGCGGTGAAATGCGTAGAGATCTGGAGGAATACCGGTGGCGAAGGCGGCCCCCTGGACAAAGACTGACGCTCAGGTGCGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| dd78b6b4c49b1a8c83214298dd4f9716 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTCGTAAGACAGACGTGAAATCCCCGGGCTCAACCTGGGAACTGCGTTTGTGACTGCGAGGCTAGAGTACGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGTTAGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| cb50c99b715abf7cb58d3bfacc9a9a1b | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTTTAAGACAGGCGTGAAATCCCCGGGCTCAACCTGGGAACTGCGCTTGTGACTGGAAGGCTAGAGTATGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| 4e8d7a4662640b90817f015280cf5713 | TACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGCGTAAAGGGAGCGTAGGTGGATATTTAAGTGGGATGTGAAATACTCGGGCTTAACCTGGGTGCTGCATTCCAAACTGGATATCTAGAGTGCAGGAGAGGAAAGTAGAATTCCTAGTGTAGCGGTGAAATGCGTAGAGATTAGGAAGAATACCAGTGGCGAAGGCGACTTTCTGGACTGTAACTGACACTGAGGCTCGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002143
+
+**Table Description:** zhou_lab_27ws_bug_trap_reactor_2020_ASV_count.ndarray - Zhou Lab 16S ASV counts, 2020 Fields Lab packed-bed reactors inoculated from the 2019 27-well survey bug traps
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| community_date_comment_sampling | string | Yes | {"description": "date, comment=sampling"} |
+| community_description_comment_sample_type | string | Yes | {"description": "description, comment=sample type"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 36772
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | community_date_comment_sampling | community_description_comment_sample_type | replicate_series_experimental_context_technical_replicate_count_unit | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 1 | 14993 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 2 | 7884 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200131 | 2020-01-31 | liquid reactor effluent | 1 | 13021 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 1 | 2894 | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 2 | 8324 | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002144
+
+**Table Description:** zhou_lab_27ws_bug_trap_reactor_2020_ASV_taxonomy.ndarray - Zhou Lab 16S ASV taxonomy (SILVA 132), 2020 Fields Lab packed-bed reactors inoculated from the 2019 27-well survey bug traps
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| asv_confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 3589
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000351 | taxonomic domain | Bacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000252 | phylum | Proteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000253 | class | Gammaproteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000254 | order | Enterobacteriales | ENIGMA:0000101 | ENIGMA:0000154 |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000255 | family | Enterobacteriaceae | ENIGMA:0000101 | ENIGMA:0000154 |
+
+---
+
+## Table: ddt_brick0002145
+
+**Table Description:** adams_metals_27ws_bug_trap_2019.hndarray - Adams Lab ICP-MS acid-extractable element concentrations (52 elements, mg per kg dry sediment) in the 2019 27-well survey bug traps and their starting sediment
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| control_sys_oterm_id | string | Yes | {"description": "control, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| control_sys_oterm_name | string | Yes | {"description": "control"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| molecule_detection_limit_parts_per_million | double | Yes | {"description": "detection limit", "unit": "parts per million"} |
+| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
+| standard_deviation_measurement_concentration_milligram_per_kilogram | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "milligram per kilogram"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 2860
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_detection_limit_parts_per_million | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | below_relative_detection_limit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:30501 | beryllium atom | 4.570064095055915E-5 | 1.1561379254943824 | 0.1353687520692561 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:27560 | boron atom | 5.89769643386735E-4 | 4.356042701546581 | 0.1559073830305548 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:26708 | sodium atom | 0.016816804509727203 | 18.190284458025157 | 1.9367600664794666 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:25107 | magnesium atom | 0.001534344036925195 | 2981.5606837902938 | 125.46926055000455 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:28984 | aluminium atom | 0.0034072472363606545 | 10934.298478534265 | 45.54747641478123 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
 
 ---
 
@@ -25644,7 +28132,7 @@ Total Tables: 743
 | sdt_asv_id | string | No | {"description": "Unique identifier for each ASV/OTU (Primary key)", "type": "primary_key"} |
 | sdt_asv_name | string | No | {"description": "Unique name assigned to the ASV/OTU, usually md5sum", "type": "unique_key"} |
 
-**Total Rows:** 223704
+**Total Rows:** 225833
 
 ### Sample Data (5 rows)
 
@@ -25703,7 +28191,7 @@ Total Tables: 743
 | defined_sdt_strain_names | array<string> | Yes | {"description": "List of strains that comprise the community, if the community is defined", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
 | sdt_community_description | string | Yes | {"description": "Free-text field providing additional details or notes about the community"} |
 
-**Total Rows:** 4680
+**Total Rows:** 4788
 
 ### Sample Data (5 rows)
 
@@ -25728,7 +28216,7 @@ Total Tables: 743
 | sdt_condition_id | string | No | {"description": "Unique identifier for the condition (Primary key)", "type": "primary_key"} |
 | sdt_condition_name | string | No | {"description": "Unique text name describing the condition", "type": "unique_key"} |
 
-**Total Rows:** 5421
+**Total Rows:** 5424
 
 ### Sample Data (5 rows)
 
@@ -25927,7 +28415,7 @@ Total Tables: 743
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 65
+**Total Rows:** 69
 
 ### Sample Data (5 rows)
 
@@ -25958,7 +28446,7 @@ Total Tables: 743
 | sequencing_technology_sys_oterm_name | string | No | {"description": "Sequencing technology used (e.g., Illumina)"} |
 | link | string | No | {"description": "Link to the reads file (e.g., fastq)"} |
 
-**Total Rows:** 20717
+**Total Rows:** 20795
 
 ### Sample Data (5 rows)
 
@@ -25994,7 +28482,7 @@ Total Tables: 743
 | env_package_sys_oterm_name | string | No | {"description": "MIxS environmental package classification of the sample"} |
 | sdt_sample_description | string | Yes | {"description": "Free-form description or notes about the sample"} |
 
-**Total Rows:** 4588
+**Total Rows:** 4728
 
 ### Sample Data (5 rows)
 
@@ -26049,7 +28537,7 @@ Total Tables: 743
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 5497
+**Total Rows:** 5575
 
 ### Sample Data (5 rows)
 
@@ -26113,7 +28601,7 @@ Total Tables: 743
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 6127
+**Total Rows:** 6444
 
 ### Sample Data (5 rows)
 
@@ -26148,7 +28636,7 @@ Total Tables: 743
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 97425
+**Total Rows:** 98061
 
 ### Sample Data (5 rows)
 
@@ -26190,7 +28678,7 @@ Total Tables: 743
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 123469
+**Total Rows:** 124984
 
 ### Sample Data (5 rows)
 
@@ -26232,7 +28720,7 @@ Total Tables: 743
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 108176
+**Total Rows:** 109219
 
 ### Sample Data (5 rows)
 

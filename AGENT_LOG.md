@@ -1616,6 +1616,173 @@ Validation completed before live export:
   `ddt_brick0001853` (U1-SZ2 v3) returns nitrate 3,378 mg/L on 2024-10-10,
   the converted value of the restored 763 mg/L as N reading.
 
+## 2026-10-09 2024 SSO geochemistry import package (Chakraborty IC, TOC/TN; Stahl isotopes)
+
+- Built `coral_import/sso_geochemistry_20261009/` with
+  `tools/build_sso_geochemistry_2024_coral_import.py` from the Drive mirror
+  workbooks: four Chemical Measurement bricks, all passing CheckGeneric:
+  `chakraborty_ic_anions_sso_pump_test_2024` [17 samples x 3 anions x 3
+  technical replicates], `chakraborty_toc_tn_sso_pump_test_2024` [17 x 3],
+  `chakraborty_ic_anions_sso_pilot_time_series_2024` [38 x 3],
+  `stahl_nitrate_isotopes_sso_pump_test_2024` [17 x 2 analytical replicates].
+  IC concentrations are ppm as the anion (nitrate as NO3-); zero readings are
+  null with a `below, relative=detection limit` flag (18 IC cells, the TOC
+  zeros likewise). Dimension and value encodings learned: replicate series
+  <ME:0000005> int with count unit and `experimental context=technical
+  replicate`; boolean arrays and boolean scalar contexts are 0/1 integers in
+  the generics classes; `organic` context must be a boolean scalar.
+- Sample mapping: pump-test PRE and POST map to the morning `...ICTOC1` /
+  `...ISOTOPES1` and afternoon `...2` CORAL samples (verified by sampling
+  times); the M5-SZ3 0/100/200 L series maps to the 2024-03-29 samples. The
+  field workbook recorded the 15:02 200 L isotope sample as `ISOTOPES100`, so
+  `M5-SZ3-20240329-ISOTOPES200` is added as a static Sample with a Sampling
+  process. Time-series rows map by timepoint label (T1 = 09-09, T2 = 09-18);
+  the workbook Date Sampled column contradicts the label on six rows (L8
+  swapped, L9-SZ1 and U2-SZ1 duplicated), recorded in the build summary and
+  brick comment.
+- Four Assay Geochemistry process rows (Romy Chakraborty for IC and TOC/TN,
+  Kristopher Hunt for isotopes; Subsurface Observatory campaign) link the
+  samples to the bricks. Spot checks of eight cells against the workbooks
+  match. Awaiting owner import, then sync.
+
+## 2026-10-09 Legacy `ENIGMA Data` folder synced into the team drive
+
+- Compared the legacy My Drive `DataManagement_ENIGMA/ENIGMA Data` tree with
+  `3. Data_ENIGMA` and found the legacy folder still in active use (new
+  `2026_Timeseries` and `M5-VSZ Injection 20260410` folders, a live
+  `GenomeSamples_metadata` Sheet, a 2026-03 revision of the IWC metals
+  workbook) while the team-drive copies from the 2025-12-04 migration were
+  stale for about 16 files.
+- With the Google Drive connector: created the two missing team folders,
+  copied 27 files server-side (13 tracer logs and metadata, the Gantt
+  workbook, 13 replacements, the barcode mapping into three folders), then
+  trashed the 14 stale team copies. Google-native originals arrive as live
+  Docs/Sheets rather than docx/xlsx exports. The CPT model tree (4,976 files,
+  ~54 GB) was left for rclone. Details in
+  `GOOGLE_DRIVE_DATA_INVENTORY.md` section 6.
+
+## 2026-10-09 Lab questions re-derived from the source files
+
+- Six parallel reviews of the workbooks (hidden sheets, formulas, Gallery
+  calibration blocks, ICP-MS template legend, scanned field sheets, shipping
+  records, READMEs, FTP documents) answered 31 of the 35 draft questions.
+  Highlights: Baliga `U/l` is µg N/L (the sheet converts with /14 and
+  standards named `1000ugNNO2` read 995.65); Fields R1/R7/R8 roles come from
+  the scanned Integrated Sampling Plan; the Stahl `Identifier 1` is
+  well_MMDDYY_assay.bottle with R-code = assay number; the IWC SSO-1..28
+  crosswalk follows the metadata row order; the 2026-03 IWC metals workbook
+  is a value-identical Google re-save; earlier Zhou bricks loaded resampled
+  tables, not CleanData; SSOM6SED is Nanopore metagenomics with no amplicon
+  tables.
+- `coral_import/LAB_QUESTIONS_20261009.md` rewritten: 3 real questions
+  (2024-10-14 IC and time-series TOC/TN whereabouts, L8 T1/T2 direction,
+  missing colloid ASV fasta), 2 optional confirmations, 7 workbook errors to
+  report, and the evidence for every resolved item. Loading decisions added
+  as an addendum to `coral_import/IMPORT_PLAN_20261009.md`.
+
+## 2026-10-09 SSO batches A and B import package
+
+- Built `coral_import/sso_batch_ab_20261009/` with
+  `tools/build_sso_batch_ab_coral_import.py`: 14 bricks passing CheckGeneric.
+  Adams ICP-MS metals for the 2024 pump test [17 x 52], 2024 pilot time
+  series [38 x 52, the 2025-09 Final workbook joined by tube number], 2023
+  initial well characterization [28 x 52] and 2023 sediment cores [37 x 52,
+  mg/kg dry weight with dry mass and digest volume as sample variables];
+  variables are Sample - Blank concentration, SD, DL, BEC and a
+  below-detection flag for the template's auto-zeroed values. Baliga Gallery
+  ammonium (high- and low-range methods) and nitrite [57 x 2] in micromolar
+  from the undiluted injections (1+4 re-run where over range; error 30 and
+  negatives null with the below flag). Hazen AODC processed and raw bricks for
+  the 2024 pump test [17] and the 2023 IWC [28]. Hazen IWC field readings
+  [28, 18 variables]. Four Northen GNPS feature tables [770/136/303/220
+  features x 42 columns x 2 injections] with extraction blanks and QC as
+  control columns and best GNPS library match per feature.
+- Static: 28 `<well>-<zone>-<YYYYMMDD>-IWC` samples (depth = screen midpoint,
+  time = pump end) with Sampling processes; assay processes for geochemistry
+  (5), cell counts (2, protocol hazen-2016-aodc), environment (1) and
+  metabolites (4).
+- Validator constraints learned: in a heterogeneous brick every data variable
+  must be a valid dimension variable (rate and time elapsed are not), `time`
+  is string-typed (retention time stored as `time series` in minutes), and
+  CheckGeneric resolves units only from
+  `/h/jmc/data/enigma/clearinghouse/unit_standalone.obo` (no foot; depth to
+  water converted to meters). Null object refs with a control-name
+  dimension variable validate.
+- 2026-10-12: added an array comment to the four Adams metals bricks stating
+  that values (concentration, SD, DL, BEC) are on the original undiluted
+  sample basis, backed by a cation/anion charge balance of the 2024 pump test
+  against the Chakraborty IC data; package rebuilt, all 14 bricks pass
+  CheckGeneric.
+- 2026-10-12: shortened batch A/B variable names for the Lakehouse. Variable
+  and dimension-variable comments moved to array comments; field readings use
+  category start/end and string time variables (pump rate and notes live in
+  the Sample descriptions); dissolved-state context dropped; metals keep
+  concentration, SD, DL and below (BEC not loaded); Baliga uses short method
+  labels (high range, low range) without relative contexts; replicate
+  dimensions no longer carry the technical-replicate context. Longest
+  generated column name is now 76 characters (was over 200); all 14 bricks
+  pass CheckGeneric.
+- 2026-10-12: restored a short `relative` context on every flag (metals:
+  below detection limit; Baliga: below/above calibration range) and renamed
+  the field-reading categories to pump start / pump end so names are
+  self-explanatory; rebuilt, 14 bricks pass CheckGeneric.
+- 2026-10-12: replaced the invented `-IWC` names. Each of the 28 ports now
+  has a whole-pump sample `WELL-ZONE-YYYYMMDD` (carries the sonde readings,
+  stored once) plus `-METALS` and `-AODC` bottle samples, all outputs of one
+  Sampling process per port (the CORAL typedef only allows Location -> Sample
+  for Sampling, so bottles cannot be derived from the pump sample by a
+  process). 84 Sample rows, all matching `^[A-Z0-9-]+$`; metals and AODC
+  bricks reference the bottle samples; the Adams SSO-n numbering is checked
+  against the metadata row order at build time. Sample-naming rule (capitals,
+  digits and dashes only; never invent identifiers silently) recorded in the
+  coral-ndarray-generation skill. Checked the 2024 and 2025 SSO field bricks:
+  apart from bottle volume their per-bottle readings are exact duplicates;
+  left as is at the owner's request.
+- 2026-10-14: 2023 IWC sonde brick: conductivity, dissolved oxygen and
+  temperature for U1-SZ1 and U1-SZ2 (2023-07-03) set to null with an array
+  comment (near-zero conductivity, air-saturated oxygen, 25-31 C and heavy
+  drawdown indicate air in the flow cell; 2024-25 Aqua TROLL medians 706 and
+  4,922 uS/cm). Sonde nitrate taken as nitrate ion per the sheet, with the
+  TROLL 9500 as-N default and the 2024 IC comparison recorded in the
+  comment. Rebuilt; 14 bricks pass CheckGeneric.
+- 2026-10-14: 2023 IWC sonde brick now keyed by well Location, like the Aqua
+  TROLL bricks: dimension `environmental sample location` with the CORAL
+  Location (`SSO-L7`), the port (`L7-SZ2`), screen-midpoint depth and date;
+  linked by one Assay Environment process with the nine SSO well Locations
+  as inputs. The whole-pump samples were dropped, leaving 56 bottle samples
+  (`-METALS`, `-AODC`), two per Sampling process. All brick and process
+  sample references resolve; 14 bricks pass CheckGeneric. Package ready for
+  owner import.
+
+## 2026-10-16 Lakehouse sync sync-20261016-152847 and Spring 2019 batch C1 package
+
+- After the owner loaded batch A/B, exported CORAL (Sample +57: the 56 IWC
+  bottle samples and ISOTOPES200; Process +45) and downloaded the 18 new
+  bricks (Brick0001898 to Brick0001915: the 4 SSO geochemistry and 14 batch
+  A/B bricks); all staged sample names resolve in CORAL. Selection: 25 tables
+  (18 bricks plus ddt_ndarray, sdt_sample, sys_ddt_typedef, sys_oterm,
+  sys_process, sys_process_input, sys_process_output), no drops.
+- Built `coral_import/spring2019_batch_c1_20261016/`: Adams 2019 metals
+  [45 x 52] (concentration, SD, DL in uM; below = conc < DL, 382 cells) on the
+  R92 HNO3 bottles; Chakraborty TC/DOC/DIC/TN/DON/nitrate/nitrite/ammonium
+  [45] on the assay-13 filtered VOA bottles (R13, R131 in round 5 with R132
+  as an extra process input), nitrate and nitrite as the ion (confirmed by
+  the lab's own N conversion formulas), NH4-N converted to ammonium ion,
+  zeros null with below flags; Hazen AODC processed and raw [45] from the
+  complete 07112019 upload on R6. Added the unregistered
+  `MLSB5-2019-04-30-UF-R92` sample (the lab reports MLSB5_043019_9.2). The
+  C/N sheet's 'GW-823-E' on two dates is a typo for GW-823-D. All 4 bricks
+  pass CheckGeneric; spot checks match.
+- Sync sync-20261016-152847: import of all 25 tables succeeded and every
+  row count and table/column comment verified, but the quote check failed on
+  ddt_brick0001912/13/14 (molecule_description): GNPS exported 8 library
+  compound names wrapped in literal double quotes and the batch A/B builder
+  kept them. Fixed at the source: the builder now strips one wrapping quote
+  pair, and the C1 package carries `_v2` replacements for the three bricks
+  with Update Data processes. The FK-check and schema-publication stages of
+  this run did not run; the next sync (after C1 is loaded) will drop the
+  three superseded tables and complete verification.
+
 ## 2026-10-16 enigma.continuous_monitoring pipeline built (not yet loaded)
 
 - Added `continuous_monitoring/`, a daily, append-only lakehouse feed of the
@@ -1639,6 +1806,47 @@ Validation completed before live export:
 - Moved the monthly CORAL cron job from stout to dipa
   (`continuous_monitoring/run_monthly_coral.sh`); crontab backups are in
   `/h/jmc/crontab_backups/`.
+
+## 2026-10-16 Microtype corrections and ontology update ME:0000506-ME:0000512
+
+- Owner rule, recorded in the coral-ndarray-generation skill (SKILL.md and
+  references/model.md "Compound microtypes"): a variable's primary term is
+  the quantity measured or computed, later contexts only qualify it, and a
+  statistic must name what it summarizes. Standard deviations are now
+  `standard deviation; measurement = concentration`; AODC CV and mean per
+  field are `coefficient of variation` / `average; measurement = count;
+  category = cell`.
+- Staged `coral_import/ontology_update_20261016/` (owner installs with
+  `install_me0000506_0000512.sh`): retention time ME:0000506, mass-to-charge
+  ratio ME:0000507 (unit thomson ME:0000512), spectral library compound name
+  ME:0000508, spectral library match ID ME:0000509, spectral match score
+  ME:0000510, adduct ME:0000511. Validated with a CheckGenericProduction copy
+  compiled against a staged ontology directory.
+- Metabolomics features now carry m/z (thomson), retention time, CHEBI
+  `molecule from list` matched by InChIKey (129 of 221 GNPS-matched features)
+  plus InChIKey and formula as the reference compound, and the GNPS name,
+  spectrum ID, MQScore and adduct; GNPS `N/A` placeholders are null.
+- The batch C1 package now has 14 bricks: the 4 Spring 2019 bricks and `_v2`
+  replacements (Update Data processes) for the 4 Adams, 2 processed AODC and
+  4 metabolomics batch A/B bricks; the build asserts their measured values,
+  sample references and shapes equal v1.
+- Correction: CHEBI:326268 (1,4-butanediammonium, putrescine) is not a
+  mislabelled ammonium. All its uses in CORAL (131 exported brick CSVs, 66
+  current, the HTCP growth-plate bricks) carry the label
+  "1,4-butanediammonium" for a plate compound. Ammonium is CHEBI:28938 in
+  stahl_corepilot_acetylene, the Baliga 2024 brick and the C1 C/N brick.
+- 2026-10-16 review fixes: Spring 2019 Adams SD now `standard deviation;
+  measurement = concentration` (it had its own variable code); sediment v2
+  dimension variables are `weight; category = dry sediment digested` and
+  `volume; category = digest resuspension volume`; DOC, DIC and DON carry
+  `physiochemical state = dissolved` before `organic`, as in
+  chakraborty_c_n_27ws. GNPS names: 1 of 221 has a curator remark, 8 are
+  contaminant library entries and 3 are tagged TENTATIVE, so no comment
+  microtype. Every sediment core has two injections (tr1, tr2) in all four
+  runs, separately numbered vials run in randomized order. 14 bricks rebuilt
+  and validated.
+- 2026-10-16: added ENIGMA Campaign = Subsurface Observatory (as on their assay processes) to the 4 Adams and 4 metabolomics v2 bricks; GNPS adduct and names kept as given.
+- 2026-10-16: metabolomics v2 replicate dimension now carries experimental context = technical replicate; comment describes tr1/tr2 as separately numbered vials from the single core aliquot.
 
 ## 2026-10-16 continuous_monitoring: moved under the EDR tree; cadence and VZ/VSZ timestamp fixes
 
@@ -1705,6 +1913,28 @@ Validation completed before live export:
   Connect, where BERDL still routes jmc to the praba_kbase cluster. After a
   dipa reboot, the user must log into dipa once to unlock `id_rsa`.
 
+## 2026-10-19 CORAL sync after the C1 and nitrate loads; Spring 2019 batch C2 packaged
+
+- Sync `sync-20261019-161321` passed (rerun with `--resume` after a first
+  Spark readiness timeout): 175 tables imported to `enigma.coral`, 164 reviewed
+  obsolete brick tables dropped (154 Aqua TROLL v1/v2 nitrate bricks and ten
+  batch A/B bricks superseded by `_v2`), row counts and comments verified, no
+  quote-mangled values, 268 of 268 foreign-key checks passed, schema references
+  regenerated and copied to the dependent skills.
+- Built `coral_import/spring2019_batch_c2_20261019/`
+  (`tools/build_spring2019_batch_c2_coral_import.py`): six bricks (Elias
+  ferrozine, Fields counts, biomass production and water isotopes, Stahl
+  ammonia oxidation and isotopes, Hazen field readings), four new 2019-03-11
+  Fields samples with Sampling processes, and assay processes. All pass the
+  staged CheckGeneric; 13 value spot checks match the source cells.
+- New ontology update `coral_import/ontology_update_20261019` (ME:0000513
+  nanogram per milliliter per day, ME:0000514 biomass production rate) with
+  install script; it must be installed before the C2 bricks are loaded.
+- Source errors handled: 2019-06-03 delta 18O standard deviations (negative)
+  nulled; 2018-03-21 analysis date read as 2019; count date 07.03.18 read as
+  2019-07-03; malformed registry IDs (R161-168) ignored by using the WELL
+  column; NA field readings for 2019-05-01 Area 3 and round 5 omitted.
+
 ## 2026-10-20 continuous_monitoring: BERDL routing fixed; nitrate corrected; caught up
 
 - BERDL fixed the Spark Connect routing bug (jmc → praba_kbase); the report is
@@ -1717,3 +1947,215 @@ Validation completed before live export:
   newly appended nitrate values all match. No duplicate timestamps.
 - `cm_common.load_env_file` now lets `credentials.env` override inherited env:
   the dipa login shell exports an old expired `KBASE_AUTH_TOKEN`.
+- 2026-10-20: C2 review changes. Biomass production is now [46 samples x 2] with a
+  new `time since sample collection` dimension (ME:0000515, 24 and 48 h,
+  category incubation start), carbon is `elemental carbon` (every carbon
+  variable in current CORAL bricks uses CHEBI:33415), and Spring 2019 DO carries
+  state = dissolved. Added `hazen_field_sso_initial_well_characterization_2023_v2`
+  (DO state dissolved; depth-to-water top = top of casing, bottom = water surface;
+  port depth top = ground surface, bottom = screen midpoint (confirmed by the SSO Cheat Sheet, screen depths BGS); values identical to
+  v1) with an Update Data process. Ontology update is now ME:0000513-ME:0000515
+  (`install_me0000513_0000515.sh`, new post-install hashes). 7 bricks pass the
+  staged CheckGeneric.
+- 2026-10-20: added `pumptest_2025_field_measurements_v2` and
+  `oneoff_260609_sample_metadata_v2` (supersede Brick0001603 and Brick0001605,
+  Update Data processes) to the C2 package, rebuilt from the loaded brick CSVs
+  with values checked identical. Dissolved oxygen = dioxygen + state dissolved,
+  nitrate = molecule nitrate, the uninformative "source column" comments
+  removed, and the two 2025 pH variables carry instrument = pH meter / Aqua TROLL
+  (the sheet's merged header "AquaTROLL Measurements at End" covers columns I-N).
+  The 2023 sonde v2 port depth is top = ground surface, bottom = screen midpoint,
+  confirmed by the SSO Cheat Sheet (screen depths BGS).
+- 2026-10-20: dropped the Stahl 2019 N2O 'concentration' (sheet formula =area/1000, no volume or calibration); the brick keeps N2O delta 15N and delta 18O.
+- 2026-10-20: replaced my term 'registry' with '2019 Spring Master Spreadsheet' in all C2 brick comments and sample descriptions.
+- 2026-10-20: sonde v2 restructured to [28 ports x 2] with a time series dimension (category pump start / pump end); 8 variables instead of 16, values checked equal to v1 after interleaving; time is a 2-D string variable.
+
+## 2026-10-20 CORAL sync after the Spring 2019 batch C2 load
+
+- Sync `sync-20261020-124617` passed: 16 tables imported (9 new bricks
+  Brick0002084-0002092 plus ddt_ndarray, sdt_sample, sys_ddt_typedef, sys_oterm,
+  sys_process, sys_process_input, sys_process_output), 3 superseded brick tables
+  dropped (ddt_brick0001603, 0001605, 0001902), verification and foreign-key
+  checks passed, schema references republished. ME:0000513-0000515 present in
+  the exported ontology (hash 2a254f15...).
+
+## 2026-10-20 SSO hydrology package (manual DTW 2024, 2026 bromide tracer tests)
+
+- Built `coral_import/sso_hydrology_20261020/` with
+  `tools/build_sso_hydrology_coral_import.py`: `hazen_manual_dtw_sso_2024`
+  [37 ports x 6 dates], `hazen_manual_dtw_sso_pump_test_2024` [790 readings]
+  and 35 `hazen_temphion_*` probe bricks (tests 1-3), with one Assay
+  Environment process per brick. All 37 pass the staged CheckGeneric.
+- Not loaded: the raw 2024 pump-test TROLL logs (readme: do not use raw;
+  pressure corrections never posted; probes out of water during pumping), the
+  two undated PSI pressure logs, and the test-3 "M5-SZ2" file, which is a copy
+  of the M5-SZ1 log.
+- Repairs: test-1 duplicated DST hour (360 records per probe moved back 1 h);
+  test-3 M5-VSZ seconds rebuilt from record numbers (spreadsheet-resaved file).
+- Corrected the inventory: the 2024 DTW workbook has 6 surveys, the pump-test
+  sheet 790 readings.
+- 2026-10-20: withdrew lab question 3 (colloid fasta): SSO.DM.16S.Resamp.Seq.fasta has been on the Drive since 2024-10-08; only the tree file is missing.
+- 2026-10-20: sync `sync-20261020-150557` after the SSO hydrology load passed:
+  43 tables imported (37 new bricks Brick0002093-0002129 plus 6 system tables),
+  no drops, verification and foreign-key checks passed, schema references
+  republished.
+
+## 2026-10-20 Tracer clock check; SSO one-off 16S package (D1-D3)
+
+- Probe clock time zones checked: the M5-VSZ Level TROLL (verified clock) shows
+  the test-3 injection at 09:40-10:00 EDT as the field log says, and the M5-VSZ
+  probe reads a flat 12.4 ppm until 09:17 on its own clock, so the probe was on
+  EDT (in EST it would have read flat during the injection). Drive file-save
+  gaps (probe last record to save time) are about 64 min for test 2, 77 min for
+  test 3 and 131 min for test 1, which places test 2 with test 3 and test 1 one
+  hour earlier. The loaded EST/EDT assignments stand.
+- Built `coral_import/sso_oneoff_16s_20261020/`
+  (`tools/build_sso_oneoff_16s_coral_import.py`): colloids, FTP6 and FTP7 ASV
+  16S/count/taxonomy bricks (9, all pass the staged CheckGeneric), 24 Samples,
+  Communities and Reads, 1,956 OTUs, 40 Taxa, and Sampling, 16S Sequencing and
+  Classify OTUs processes. Colloid "Unclassified" treated as NA; mangled names
+  fixed as in the July taxonomy v2 bricks.
+- 2026-10-20: corrected the one-off taxonomy method to the ReadMe's "RDP naive
+  Bayesian classifier in DADA2, confidence 0.5, SILVA v138.1
+  (silva_nr99_v138.1_train_set)" and dropped protocol ning-lui-2021-qiime2 from
+  the Classify OTUs rows (that protocol describes the QIIME2 sklearn classifier,
+  Silva 138, confidence 0.7). Recorded the user's data-type rule (abundance vs
+  assignment, majority wins) and the method-source rule in the
+  coral-ndarray-generation skill.
+- 2026-10-20: added Protocol `li-ning-2024-dada2-silva138.1` to the one-off 16S
+  package (Protocol_additions_20261020.tsv, loaded first) with the ReadMes'
+  data-processing text, the amplicon method and a link to the FTP6 ReadMe; the
+  24 Classify OTUs rows now cite it. The pump-test ReadMe describes the same
+  pipeline with truncation 252/203, so its loaded processes would need their own
+  protocol if corrected.
+- 2026-10-26: confirmed all 24 one-off filter sample names appear verbatim in SSO_Metadata_One Off Sampling.xlsx (rows 107-148); skill now says to use field-sheet names verbatim when they meet ^[A-Z0-9-]+$ and documents the two SSO naming conventions.
+- 2026-10-26: colloid taxonomy brick no longer carries an all-null confidence variable (or the data-variables marker); FTP6/FTP7 keep confidence.
+- 2026-10-26: one-off bricks now carry a method only where they differ from the protocol (count bricks: resampling depth); 16S and taxonomy bricks have none. Skill records the rule.
+- 2026-10-26: removed Zhou Lab internal sample IDs from the one-off count-brick comments and sample descriptions (user: don't refer to lab internal IDs); skill updated.
+- 2026-10-26: relaxed the skill rule: ask before recording lab-internal IDs in CORAL (default leave out).
+- 2026-10-27: with the user's OK, staged the one-off 16S package on the CORAL hub:
+  scp of all 18 files in `coral_import/sso_oneoff_16s_20261020/files_to_import.txt`
+  (6 static TSVs, 3 process TSVs, 9 brick JSONs) to
+  `coral-enigma.jmcnet:/home/coral/prod/data_import/data/`; none existed there
+  beforehand, and all 18 sha256 checksums match the local files. Not imported yet.
+- 2026-10-27: with the user's OK, loaded the one-off 16S package into CORAL by
+  running its 19 import cells in a separate session kernel on the hub
+  (log: `coral_import/sso_oneoff_16s_20261020/reports/hub_import_log.txt`). No
+  errors ("Can not create a collection for type ..." is the loader's normal
+  message). A fresh static export confirms 1 Protocol, 40 Taxa, 1,956 OTUs, 24
+  Samples, 24 Communities, 24 Reads and 72 new processes; the Classify OTUs rows
+  cite li-ning-2024-dada2-silva138.1. `upload_new_data.ipynb` was not edited.
+
+## 2026-10-27 Zhou Lab 16S protocol fix package
+
+- Built `coral_import/zhou_16s_protocol_fix_20261027/`
+  (`tools/build_zhou_16s_protocol_fix.py`, template
+  `tools/zhou_16s_protocol_patch_template.js`): two new Protocols from the
+  pump-test (v20240722) and sediment (v20230726b) ReadMes; 40 16S Sequencing and
+  40 Classify OTUs processes for the 2024 pilot time series, whose Reads had no
+  processes; and an arangosh script that patches the protocol of 14 pump-test and
+  37 sediment Classify OTUs processes from ning-lui-2021-qiime2. Not staged or
+  loaded yet.
+- 2026-10-27: with the user's OK, staged the three protocol-fix files on the hub
+  (checksums verified) and ran its three import cells in a session kernel (log:
+  `coral_import/zhou_16s_protocol_fix_20261027/reports/hub_import_log.txt`). A
+  fresh export confirms both new Protocols and the 40 + 40 pilot time-series
+  processes (Classify OTUs -> Brick0000477/478/479, protocol
+  li-ning-2024-dada2-silva138.1); Process rows 97,758 -> 97,838. The 51
+  pump-test/sediment processes still cite ning-lui-2021-qiime2 until the user
+  runs the arangosh patch.
+- 2026-10-27: at the user's request, ran `patch_classify_otus_protocols.js` with
+  arangosh on coral-enigma.jmcnet (ENIGMA_PROD, root; password from .env
+  ARAGOSH_PASSWORD via a 0600 config in a private temp dir, deleted afterwards).
+  Dry run 51/51/0, then --apply: 14 pump-test processes now cite
+  li-ning-2024-pump-test-dada2-silva138.1 and 37 sediment processes
+  fan-ning-2023-dada2-silva138.1; recheck shows 0 pending. Backup:
+  `coral_import/zhou_16s_protocol_fix_20261027/reports/classify_otus_protocol_patch_backup_2026-10-27T20-44-53-610Z.json`.
+- 2026-10-27: per the user, created `upload_new_data_claude.ipynb` on the CORAL hub
+  (/home/coral/prod/notebooks) as the single record of Claude's hub actions: today's
+  two imports (cells with their outputs) and the arangosh protocol patch note. Future
+  imports append to it automatically (runner `hub_tools/run_import.py`).
+- 2026-10-27: sync-20261027-134534 completed (status passed, 21:12–21:24 UTC) with the refreshed
+  KBase token. 808 live tables before; 21 reloaded: Brick0002130–0002138 (SSO one-off 16S) plus
+  ddt_ndarray, sdt_asv, sdt_community, sdt_protocol, sdt_reads, sdt_sample, sdt_taxon,
+  sys_ddt_typedef, sys_oterm, sys_process, sys_process_input, sys_process_output. No obsolete
+  drops. Verification: 817 enabled tables present, 0 row-count or comment mismatches, 1113
+  obsolete absent; foreign keys 98/98 passed; schema references regenerated.
+- 2026-10-27: started D4 (RecycNec, `Enrichments/RecycNec/`). Findings before building: parent
+  `20251210_L7-SZ2_Isolations` has no CORAL sample (only 20251208-L7-SZ1/SZ2-UF-R1/R2 geochem
+  bottles; no Drive field record for 2025-12-10 L7, though TROLL downloads show crew at L8/L9 that
+  day). Run Bri_1-2 (192 libraries, 1,466 ASVs, sequenced 2026-02-13/03-25) mixes RecycNec (167)
+  and Hasan's Ground-Water-Cell-Wall-Enrichments (25). Defects: duplicate ID
+  cntrl-pyruva-7Ana-2-T4 (IT061/F1 and IT065/F5; F5 is probably the missing 7Aer-2-T4),
+  cntrl-pyruva-7Aer-1-T3 filed under the cell-wall campaign, Recyc-Arthro-7Ana-1-T4 has no reads,
+  15 names with "/" or spaces, one Location_1 typo (L7-SZ). Two taxonomies: SINA SILVA 138.2 (Jen,
+  used for SSOSTOR) and sintax RDP v18 (Morgan). Awaiting user decisions.
+- 2026-10-27: started D6 (27-well bug traps). Sources: Zhou `V210507ASV` (55 libraries = 54 traps +
+  starting-material control; resampled 13,313 reads/trap, ~2,400 ASVs; QIIME2 2019.7, DADA2,
+  silva-132-99-515-806 nb classifier, no matching CORAL protocol), field log and sample log "Bug
+  Traps" sheets (EU05, GW-835, FW106 x 6 deployment weeks x 4/6/8-week deployments; the IDs' "Rep" is
+  deployment length, not a replicate), and Adams ICP-MS bug-trap sediment metals (mg/kg, 54 traps +
+  control, 3 technical replicates). No bug-trap Sample/Community objects exist in CORAL. The plan's
+  "284 samples" was the metadata sheet's row count. FW106 6.3 material partly went to the MSU PBR
+  experiment (D7).
+- 2026-10-27: D6 scope expanded per user to D6 + Adams bug-trap metals + D7 (Fields PBR). Findings:
+  trap fill = "local", dried, sieved, autoclaved FRC sediment (FTP, Walker bug-trap manuscript
+  draft, 2025 poster); its collection site is not documented anywhere found (question for Katie
+  Walker). Trap depth estimate: the AT600 sondes sat 15.5/15.4 ft (EU05), 20.5/20.9 ft (GW-835)
+  and 40.5 ft (FW106) below top of casing (TROLL bricks 1931/1932/1936/1937/1934, sensor depth +
+  DTW); minus stickup (2.58/1.32/0.41 ft) = 12.9, 19.2-19.5, 40.1 ft BGS; well bottoms 20.22,
+  20.78, 45.0 ft BGS. D7: reactors 1-3 inoculated from traps 1.6.3/2.6.3/3.6.3 (retrieved
+  2019-12-02), run at MSU Jan-Apr 2020; 51 effluent + 3 filtered effluent + 9 endpoint sediment
+  libraries (58 amplified), QIIME2 2019.7 / SILVA 132, raw table only.
+- 2026-10-27: RecycNec parent samples found. FTP_One-Off Sampling.docx request 16 (Bri Finley,
+  Aim 2.1.1, fresh vs recycled necromass enrichments) and SSO_Metadata_One Off Sampling.xlsx
+  (request 16 rows): 20251208-L7-SZ1-UF-R1/R2 and 20251208-L7-SZ2-UF-R1/R2, 250 mL each,
+  "Enrichments", Bri Finley, shipped 2025-12-08. All four are already in CORAL (Sample0004571-4574),
+  so the "20251210_L7-SZ2_Isolations" inoculum label is not a separate sampling. Answers RecycNec
+  email questions 1-2 except which of the four samples fed which bottles.
+- 2026-10-27: built `coral_import/27ws_bug_traps_20261027/` (D6 + D7 + Adams bug-trap metals) with
+  `tools/build_27ws_bug_trap_coral_import.py`: 7 bricks (all CheckGenericStaged OK), 54 Samples,
+  112 Communities, 54 Reads, 3 Conditions, 173 OTUs, 38 Taxa, 1 Protocol; headers match the
+  typedef and every FK/process/brick reference resolves against the 2026-10-27 export plus staged
+  names. Starting-sediment control kept as an ID-less column/row (SSOSTOR style). Choices: clean
+  (not resampled) bug-trap counts because the lab's resample came from the raw table and dropped
+  the control; SILVA 132 ranks D_0-D_5 as in Brick0000012; trap duration as "time since
+  inoculation" (time elapsed is not a valid dimension variable). Awaiting brick review.
+- 2026-10-28: per the user, made `time elapsed` (ME:0000122) a valid dimension/dimension variable
+  in COMO (`coral_import/ontology_update_20261028/`; .obo +2 property lines, .txt `*` marker) and
+  installed it on stout (hashes 75f9ed58…, 193ff72d… verified). Bug-trap count brick now uses
+  time elapsed (weeks) for deployment length; sample descriptions carry the Hazen trap ID
+  (e.g. "Hazen Lab trap 1.1.1"). Package rebuilt, 7/7 CheckGeneric OK against the patched COMO.
+  Pending: copy COMO to coral-enigma and reload there.
+- 2026-10-28: COMO patch copied to coral-enigma (hashes verified) and reloaded with
+  `toolx.upload_ontologies()` via the hub record notebook; OTerm confirms ME:0000122 is now a
+  dimension/dimension variable. Three benign aro/UBERON duplicate-index errors (terms exist from envo).
+- 2026-10-28: added COMO term ME:0000516 `baseline control` (child of control; package
+  `coral_import/ontology_update_20261028_baseline_control/`), installed on stout and coral-enigma,
+  reloaded on the hub and verified in OTerm. Bug-trap count and metals bricks now mark the starting
+  sediment as baseline control; the `description` dimension variable was dropped (one value only).
+  Package rebuilt, 7/7 CheckGeneric OK.
+- 2026-10-28: bug-trap metals brick now carries the per-element method detection limit (ppm in the
+  digest, unconverted, from the FINAL sheet's "DL (final) (ppm)" row) as a molecule-dimension
+  variable; Te's workbook value is 0.0 although 6 Te results are <DL, so it is null with a note.
+  Taxonomy source comment corrected (clean file shows SILVA order 11-24 as '24-Nov' in 7 ASVs).
+- 2026-10-29: per the user, removed long variable contexts from the bug-trap package (detection
+  limit 229 chars, ASV confidence 50 chars; deployment contexts shortened to "deployment", reactor
+  date to "sampling"); the explanations moved to brick-level comments. Added the rule (contexts
+  become Lakehouse column names; keep them to a word or two) to the coral-ndarray-generation skill
+  guardrails. Rebuilt, 7/7 CheckGeneric OK.
+- 2026-10-29: per the user, reactor count brick remodeled as [634 ASV x 30 community x 3 replicate]
+  (replicate series, context technical replicate, as in Brick0000464): 30 reactor Communities
+  (24 effluent PBR<n>-<date>, 3 -FILTERED, 3 -SED) instead of 58; 32 empty cells are null (incl. the
+  2 failed libraries). Filtered effluent now has its own sample type. Spot checks against
+  V012522.esv.table.txt match; 7/7 CheckGeneric OK.
+- 2026-10-29: loaded `coral_import/27ws_bug_traps_20261027` into CORAL from the hub record notebook
+  (static files renamed `*_additions_27ws_bug_traps_20261027.tsv` to avoid clobbering the protocol-fix
+  `Protocol_additions_20261027.tsv` already in data_import/data; 19 files scp'd, hashes verified). All
+  20 cells ran clean. Fresh export verifies 1 protocol, 38 taxa, 173 OTUs, 3 conditions, 54 samples,
+  84 communities, 54 reads, and 223 processes (54 Sampling, 30 Enrichment, 84 16S Sequencing,
+  54 Classify OTUs, 1 Assay Geochemistry) linking Brick0002139-0002145.
+- 2026-10-29: sync-20261029-174321 passed: 20 tables loaded (Brick0002139-0002145 plus ddt_ndarray,
+  sdt_asv/community/condition/protocol/reads/sample/taxon, sys_ddt_typedef, sys_oterm, sys_process and
+  its input/output tables), no obsolete drops; row counts and comments verified, foreign keys checked,
+  schema references regenerated. D6/D7 and the two COMO changes are now in enigma.coral.

@@ -175,8 +175,8 @@ geochemical CPT data are **not** in CORAL.
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
 | `SSO Sediment Mastersheet.xlsx` (Sheet1 182×27, shipping, RAD) | Core inventory and sample assignment (metals, metabolomics, 16S, 18S) | in document + linked (FedEx) | samples in CORAL (`SSO-U1-C1-00` … 159 SSO sediment samples) |
-| `2023-Adams-Metals-sediment/2024-06-29_Adams-Lab_ENIGMA-SSO-Sediment_Metal-Data.xlsm` | ICP-MS metals on sediment extracts (Well Info 171 rows, runs 506×63) | in document | **not in CORAL (gap)** |
-| `2023-Northen-Metabolomics-sediment/` (`GNPS links….xlsx`, `data note….docx`, `Read Me.docx`, 2 × GNPS task folders with feature tables, `merged_results*.tsv`, mgf) | LC-MS metabolomics (C18 and HILIC) feature tables and GNPS annotations | in document (csv/tsv) + linked (gnps2.org tasks ×6, Google Docs/Drive) | **not in CORAL (gap)** |
+| `2023-Adams-Metals-sediment/2024-06-29_Adams-Lab_ENIGMA-SSO-Sediment_Metal-Data.xlsm` | ICP-MS metals on sediment extracts (Well Info 171 rows, runs 506×63) | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `2023-Northen-Metabolomics-sediment/` (`GNPS links….xlsx`, `data note….docx`, `Read Me.docx`, 2 × GNPS task folders with feature tables, `merged_results*.tsv`, mgf) | LC-MS metabolomics (C18 and HILIC) feature tables and GNPS annotations | in document (csv/tsv) + linked (gnps2.org tasks ×6, Google Docs/Drive) | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
 | `2023-Zhou_16s-sediment/` (ReadMe v20230726b, BarcodeMap, `SSO.Sediment.V230726ASV/`, raw fastq) | SSO sediment 16S ASVs | in document (csv/xlsx) + linked (OU protocol server 129.15.40.254) | in CORAL (`zhou_lab_sso_sediment_ASV_16S/count/taxonomy_v2`) |
 | `FTP_SSO Well Installation_20230217.docx` | Field test plan | linked (Smartsheet, enigma.lbl.gov) | n/a |
 
@@ -184,16 +184,16 @@ geochemical CPT data are **not** in CORAL.
 
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
-| `SSO_Initial Well Characterization metadata.xlsx` | Sample metadata, elevations/TOC (39 rows) | in document | **not in CORAL (gap)**: no 2023 IWC samples found (CORAL 2023 samples are Sept 2023 `20230913-M5-SZ2-*` only) |
-| `2023-Adams-Metals/2024-06-29_Adams-Lab_ENIGMA-SSO-Initial-GW_Metal-Data.xlsm` | ICP-MS metals, initial groundwater | in document | **not in CORAL (gap)** |
-| `2023-Hazen-AODC/2023-Hazen-AODC_SSO_IWC .xlsx` | AODC counts | in document | **not in CORAL (gap)** |
+| `SSO_Initial Well Characterization metadata.xlsx` | Sample metadata, elevations/TOC (39 rows) | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`): no 2023 IWC samples found (CORAL 2023 samples are Sept 2023 `20230913-M5-SZ2-*` only) |
+| `2023-Adams-Metals/2024-06-29_Adams-Lab_ENIGMA-SSO-Initial-GW_Metal-Data.xlsm` | ICP-MS metals, initial groundwater | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `2023-Hazen-AODC/2023-Hazen-AODC_SSO_IWC .xlsx` | AODC counts | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
 | `FTP_SSO Well Characterization_20230613.docx` | Plan | n/a | n/a |
 
 ### 2024_SSO, 2024_SSO_Borescope Characterization
 
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
-| `2024_SSO/DTW_ManualMeasurements_SSO.xlsx` | Manual depth-to-water (ft BGS / BTOC) per well-zone, Jan–? 2024 (26 dates) | in document | **not in CORAL (gap)** |
+| `2024_SSO/DTW_ManualMeasurements_SSO.xlsx` | Manual depth-to-water (ft BGS / BTOC) at 37 ports, 6 surveys 2024-01-31 to 2024-02-28 | in document | **not in CORAL (gap)** |
 | `Borescope Measurements/2024_SSO_Borescope Characterization_Metadata.xlsx`, `2024020*_<well>.docx` (36 `.log` + 36 `.pdf`) | Colloidal borescope flow-vector results (velocity/direction per depth) | in document (docx tables) + files in folder (log/pdf) + linked (Google Doc) | **not in CORAL (gap)** |
 | `FTP_SSO_2024_Borescope and Monitoring Install.docx` | Plan | linked (HydroVu, Drive) | n/a |
 
@@ -202,11 +202,11 @@ geochemical CPT data are **not** in CORAL.
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
 | `2024_Pump Test_ Metadata.xlsx` (METADATA 119×24, shipping) | Sample metadata with field measurements | in document + linked (Drive ×9) | in CORAL (`sso_pump_test_2024_environmental_measurements`, 112 rows; samples `20240212-…`) |
-| `Adams_Metals/2024-06-29_Adams-Lab_ENIGMA-SSO-Pump-Test_Metal-Data.xlsm` | ICP-MS metals | in document + linked (Google Sheet) | **not in CORAL (gap)** |
-| `Chakraborty_IC／TOC/20240412_SSO_pumptest_IC_full_w_rawdata.xlsx`, `20240416_TOC_TN_SSO_pumptest_corrected.xlsx`, ReadMe | IC anions (Cl, SO4, NO3), TOC/TN | in document + linked (Google Doc/Drive) | **not in CORAL (gap)** |
-| `Stahl_Isotopes/20240416_TOC_TN_IC_ISOTOPES_SSO_pumptest.xlsx` | Isotope data (35 rows) plus copies of IC/TOC | in document | **not in CORAL (gap)** |
-| `Hazen_AODC/AODC_pump test _UTK .xlsx` | AODC counts (30 rows) | in document | **not in CORAL (gap)** |
-| `Hazen_Field Data/Manual DTW BGS.xlsx` | Manual DTW during pumping (791 rows) | in document | **not in CORAL (gap)** |
+| `Adams_Metals/2024-06-29_Adams-Lab_ENIGMA-SSO-Pump-Test_Metal-Data.xlsm` | ICP-MS metals | in document + linked (Google Sheet) | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `Chakraborty_IC／TOC/20240412_SSO_pumptest_IC_full_w_rawdata.xlsx`, `20240416_TOC_TN_SSO_pumptest_corrected.xlsx`, ReadMe | IC anions (Cl, SO4, NO3), TOC/TN | in document + linked (Google Doc/Drive) | import package prepared 2026-10-09 (`coral_import/sso_geochemistry_20261009`) |
+| `Stahl_Isotopes/20240416_TOC_TN_IC_ISOTOPES_SSO_pumptest.xlsx` | Isotope data (35 rows) plus copies of IC/TOC | in document | import package prepared 2026-10-09 (`coral_import/sso_geochemistry_20261009`) |
+| `Hazen_AODC/AODC_pump test _UTK .xlsx` | AODC counts (30 rows) | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `Hazen_Field Data/Manual DTW BGS.xlsx` | Manual DTW during pumping (790 readings, 37 ports, 2024-03-13 to 03-29) | in document | **not in CORAL (gap)** |
 | `Hazen_TROLL Files/TROLL Files_Raw/<well-zone>_2024-04-16_*.csv` (27 files) + README | AquaTROLL/LevelTROLL logs during the April 2024 pump test | in document (csv) | **not in CORAL (gap)**: SSO sensor bricks begin 2024-09-04 (U1 VSZ) / 2024-10-03 (SZ) / 2024-12-20 (VSZ/VZ) |
 | `Zhou_16S/` (ReadMe v20240722, DNA info csv, CleanData, DataAnalysisResults) | Pump-test 16S ASVs | in document (csv) + linked (OU protocol server) | in CORAL (`zhou_lab_sso_pump_test_ASV_*`) |
 | `2024 FTP 2024 2.0_PumpTests.docx` | Plan | linked (Drive ×6) | n/a |
@@ -216,9 +216,9 @@ geochemical CPT data are **not** in CORAL.
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
 | `2024_Pilot Time Series_ Metadata.xlsx` (METADATA 255×28, Depth to Water 75×8) | Sample metadata, field readings, DTW | in document + linked (Drive ×9) | in CORAL (`sso_pilot_time_series_2024_environmental_measurements`, 211 rows); DTW sheet not confirmed |
-| `Adams_Metals/2024-10-09_…Pilot-Time-Series_Metal-Data(-Final).xlsm` (+ Archive, + copy in Pump Test folder) | ICP-MS metals | in document | **not in CORAL (gap)** |
-| `Baliga_Ammonia／Nitrite/202111_SSO samples.xlsx` | NH4/NO2 colorimetric assays (550 raw rows) | in document | **not in CORAL (gap)** |
-| `Chakraborty_Anions/20241220_IC_results_SSO_timeseries.xlsx` | IC anions | in document | **not in CORAL (gap)** |
+| `Adams_Metals/2024-10-09_…Pilot-Time-Series_Metal-Data(-Final).xlsm` (+ Archive, + copy in Pump Test folder) | ICP-MS metals | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `Baliga_Ammonia／Nitrite/202111_SSO samples.xlsx` | NH4/NO2 colorimetric assays (550 raw rows) | in document | import package prepared 2026-10-09 (`coral_import/sso_batch_ab_20261009`) |
+| `Chakraborty_Anions/20241220_IC_results_SSO_timeseries.xlsx` | IC anions | in document | import package prepared 2026-10-09 (`coral_import/sso_geochemistry_20261009`) |
 | `Zhou_16S/` (ReadMe 20241029, sample info, DNA conc, Clean/Raw/Resamp) | Time-series 16S ASVs | in document (csv) + linked (Drive, OU server) | in CORAL (`zhou_lab_sso_pilot_time_series_ASV_*`) |
 | `FTP_Pilot Time Series.docx` | Plan | linked (Drive ×7) | n/a |
 
@@ -426,6 +426,21 @@ differences were opened and compared sheet by sheet.
 | `2025_SSO_PumpTest2/Hazen - Field Data/TROLL Files - HydroVu/HydroVu_U2_2025-09-20_04-00-00_Export.xlsx` | Same header and rows; formatting only | in CORAL |
 | `2023_SSO_Drilling／Sediment Core/SSO Sediment Mastersheet.xlsx`, `…/SSO.Sediment.16S.BarcodeMapping-MiSeq20230714.20230818.xlsx`, `2023_SSO_Initial Well Characterization/2023-Adams-Metals/…Metal-Data.xlsm`, `Cone Penetrometer Sampling 2020/CPT Metadata FINAL/CPT_full_data*.xlsx`, `MEETING NOTES 2021/CPT MEETING NOTES INDEX.xlsx` | Same sheets and non-empty row counts; size/mtime differ only | as in sections 1 and 2 |
 | `FRC Well Metadata/All_Wells_ConstructionData_GoogleEarthTags.xlsx`, `ENIGMA Isolate List and Sequences/ENIGMA isolate data exported from CORAL*.xlsx`, `ENIGMA samples used for Isolation.xlsx`, `2019_Summer／Fall_27-Well Survey/Stahl - isotopes/Isotopes/README.txt` | **Team drive copy is newer** (2026-07 to 2026-09); My Drive copy is stale | in CORAL / exports |
+
+### Sync performed 2026-10-09 (Google Drive connector, server-side copies)
+
+The legacy-only and newer legacy files above were copied into the team drive
+`3. Data_ENIGMA` with the Drive connector; the stale team copies they replace
+were moved to the trash (recoverable), not deleted.
+
+| Action | Files |
+| --- | --- |
+| New folder `2026_SSO_Tracer Tests/M5-VSZ Injection 20260410/` | 12 bromide-probe csv logs and `M5-VSZ_KBrInjection_20260410_Metadata.xlsx` copied (13 files) |
+| New folder `2026_Timeseries/` | `Fall 2026 Gantt Chart.xlsx` copied |
+| Replaced (legacy copy in, team copy trashed) | `2023_SSO_Initial Well Characterization/2023-Adams-Metals/2024-06-29_Adams-Lab_ENIGMA-SSO-Initial-GW_Metal-Data.xlsm` (2026-03-27 version); `ENIGMA Isolate List and Sequences/GenomeBatches/GenomeSamples_metadata` (now the live Google Sheet, replacing the 2025-12 xlsx export); `2023_2024_2025_One-Off Sampliing/SSO_Metadata_One Off Sampling.xlsx` and `FTP_One-Off Sampling.docx`; `2025_SSO_PumpTest2/2025 FTP_PumpTests2_v2.docx`; `2025_SSO_PumpTest2/Hazen - Field Data/TROLL Files - HydroVu/HydroVu_U2_2025-09-20_04-00-00_Export.xlsx`; `MEETING NOTES 2021/CPT MEETING NOTES INDEX.xlsx`; `Highlights - Blank Form (2023).docx`; `SSO.Sediment.16S.BarcodeMapping-MiSeq20230714.20230818.xlsx` (three team folders); `Working document for CPT paper` and `CPT_full_data` and `SSO Sediment Mastersheet` (now Google Docs/Sheets, replacing docx/xlsx exports) |
+| Left alone | Isolate lists (231127/260109/260218), FTP docs and the sampling flowchart already on the team drive; `FTP_SSO Tracer Test 2025` (team 2026 folder copy current); Fields 2025 raw data (identical bytes); the 4,976-file CPT model tree (`source_overlapping/`, `cpt paper data/`), which is left for an rclone copy because of its size |
+
+The NFS mirror will show these changes after the next `rclone copy` refresh.
 
 Everything else in the My Drive copy is a byte-identical or export-drift
 duplicate of the team drive.

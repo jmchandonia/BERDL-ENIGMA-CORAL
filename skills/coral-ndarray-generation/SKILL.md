@@ -72,11 +72,38 @@ TSVs, also read `references/static-imports.md` before editing data.
 
 ## Guardrails
 
+- Keep variable and dimension-variable context short. Every context (term and
+  value) becomes part of the Lakehouse column name, so a long free-text comment
+  produces an unusable column. Use at most a word or two (for example
+  `comment = deployment`, `measurement = concentration`), and put explanations,
+  caveats and provenance in brick-level comments, the brick method, or the
+  protocol of the process that produced the brick.
+- Choose the brick data type by what most of its data are. Amplicon or OTU
+  count bricks are `Taxonomic Abundance <DA:0000028>`; bricks that assign taxa
+  to ASVs are `Taxonomic Assignment <DA:0000067>`. A brick holding both takes
+  the type of the majority of its data, usually abundance. The `data variables
+  type` marker matches the brick's data type.
+- Take method details (classifier, reference database release, thresholds)
+  from the lab's own documentation for that dataset, not from a CORAL protocol
+  or an earlier brick; attach a CORAL protocol only when its text describes the
+  method actually used.
+- Put the full method in a CORAL Protocol attached to the producing process.
+  A brick's `method` context records only what differs from that protocol or is
+  specific to the brick (for example the resampling depth of one ASV table);
+  omit the brick method when the protocol was followed as stated.
 - Keep ontology labels exactly as they appear in current OBO files.
+- Make the measured or computed quantity the primary term of each variable;
+  later context terms only qualify it. A statistic is primary and must name
+  what it summarizes (`standard deviation`; `measurement` = `concentration`).
+  See "Compound microtypes" in `references/model.md`.
 - Use JSON `null`, not fake terms such as `none`.
 - Mirror `object_ref` values into `string_values`.
 - Keep CURIEs in `oterm_refs` and original mapped source labels in
   `string_values`.
+- Sample names use only capital letters, digits and dashes (`^[A-Z0-9-]+$`);
+  use the field sheet's recorded name verbatim when it complies, and never
+  invent an identifier without reporting it. See
+  `references/static-imports.md`.
 - Keep stable unique names synchronized across static TSVs, bricks, process
   files, and audit artifacts.
 - Do not treat a passing `CheckGeneric` result as proof that a heterogeneous

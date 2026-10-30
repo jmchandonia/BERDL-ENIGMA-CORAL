@@ -53,10 +53,40 @@ scales when an appropriate UO term exists.
 - Keep row-level provenance aligned as a dimension variable.
 - Preserve timestamp timezone offsets and DST-distinguishable observations.
 
+## Compound microtypes
+
+A variable's primary term (its `value_type`) is the thing actually measured or
+computed; the context terms that follow only qualify it. A statistic is
+therefore primary, and its context says what it is a statistic of:
+
+- Standard deviation of a concentration: `standard deviation <ME:0000149>`;
+  `measurement <ME:0000120>` = `concentration <ME:0000129>`, in the
+  concentration's unit; not `concentration` with `statistic` = `standard
+  deviation`.
+- Coefficient of variation of AODC cell counts: `coefficient of variation
+  <ME:0000358>`; `measurement` = `count <ME:0000126>`; `category` = `cell`.
+- Mean cells per microscope field: `average <ME:0000147>`; `measurement` =
+  `count`; `category` = `cell`.
+
+Always name the measured quantity for `standard deviation`, `average`,
+`coefficient of variation` and other statistics; a bare statistic with only a
+unit is ambiguous. The `measurement` context takes any term under
+`measurement <ME:0000120>` as its value (concentration, count, ion intensity,
+...). Older bricks such as `adams_metals_27ws` used the reverse order
+(`concentration`; `statistic` = `standard deviation`); do not copy it.
+
+Use a specific microtype rather than a near miss: retention time is not
+`time series`, and an observed m/z is not `mass` or `exact mass` (a property of
+a reference compound). When no term fits, propose a new ontology term rather
+than overloading `description` or `comment`.
+
 ## Common pitfalls
 
 - Using stale ontology labels.
 - Omitting numeric units.
+- Making a qualifier the primary term, such as `concentration` with
+  `statistic` = `standard deviation` instead of `standard deviation` with
+  `measurement` = `concentration`.
 - Failing to mirror `object_ref` values.
 - Filling ID fields with unregistered source strings.
 - Reusing stale `.check` files.

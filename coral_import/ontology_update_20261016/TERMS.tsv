@@ -1,0 +1,8 @@
+id	name	parent	data_type	unit_constraint	definition	xref
+ME:0000506	retention time	ME:0000120	float	parent=UO:0000003	A time interval from the start of chromatography when an analyte exits a chromatographic column (PSI-MS MS:1000894).	MS:1000894
+ME:0000507	m/z	ME:0000120	float	units=UO:0000186	The quantity m/z: the mass of an ion in daltons divided by its charge number, a dimensionless value used as the abscissa of a mass spectrum (PSI-MS MS:1000040; not the physical ratio of mass to electric charge).	MS:1000040
+ME:0000508	spectral library compound name	ME:0000027	string		Name of the compound whose reference spectrum in a spectral library matched an observed spectrum, as given by the library.	
+ME:0000509	spectral library match ID	ME:0000026	string		Identifier of the reference spectrum in a spectral library that matched an observed spectrum, for example a GNPS spectrum ID.	
+ME:0000510	spectral match score	ME:0000120	float	units=UO:0000186	Similarity score between an observed spectrum and a matched library spectrum, for example the GNPS MQScore (modified cosine).	
+ME:0000511	adduct	ME:0000026	string		Ion species formed from a molecule in mass spectrometry, for example M+H or M-H, written as given by the source.	
+ME:0000512	MS1 feature area	ME:0000120	float	units=UO:0000186	Area of an LC-MS MS1 feature: the ion intensity of the feature's m/z integrated over its chromatographic peak, in instrument arbitrary units (PSI-MS MS:1001844).	MS:1001844

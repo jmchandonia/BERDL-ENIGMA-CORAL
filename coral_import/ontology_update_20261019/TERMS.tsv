@@ -1,0 +1,4 @@
+id	name	type	parent	units	definition
+ME:0000513	nanogram per milliliter per day	unit	units not in UO; UO:0000280 rate unit		nanogram per milliliter per day (synonym ng/mL/day).
+ME:0000514	biomass production rate	float	rate (ME:0000264)	nanogram per milliliter per day	Rate at which new microbial biomass is produced in a sample, as mass of an element (usually carbon) per volume per time; for example heterotrophic production estimated from 3H-leucine incorporation into protein. Related synonym: heterotrophic production.
+ME:0000515	time since sample collection	float	measurement (ME:0000120)	time units	Time between the collection of a sample and a later step applied to it, such as the start of an incubation, fixation or analysis.
