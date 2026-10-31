@@ -31,6 +31,22 @@ CANONICAL_ONTOLOGY_BY_PREFIX = {
     "UO": "uo",
 }
 
+# Small, ENIGMA-authored / unit ontologies included in sys_oterm *in full* (by
+# OBO file stem), not just where enigma.coral happens to reference a term.  This
+# makes every measurement, unit, data-type and process term resolvable by any
+# namespace in the ENIGMA lakehouse -- e.g. sso_staging / continuous_monitoring
+# microtypes -- so a newly minted term such as ME:0000517 (liter per minute) is
+# present without being referenced by a CORAL object first.  The large external
+# ontologies (chebi, envo, ncbitaxon, aro, mibig, mixs, continent, country) stay
+# reference-filtered so they do not bloat sys_oterm.
+FULL_INCLUDE_ONTOLOGIES = {
+    "context_measurement_ontology",
+    "uo",
+    "enigma_specific_ontology",
+    "data_type_ontology",
+    "process_ontology",
+}
+
 SYS_OTERM_SCHEMA = [
     {
         "column": "sys_oterm_id",
@@ -780,7 +796,7 @@ def prepare_coral_metadata(run_dir: Path, repo_root: Path | None = None) -> dict
     preferred_name = {t["name"]: t.get("preferred_name") or t["name"] for t in type_defs}
 
     table_schemas: dict[str, list[dict[str, Any]]] = {"sys_oterm": SYS_OTERM_SCHEMA}
-    table_comments: dict[str, str] = {"sys_oterm": "Ontology terms used in CORAL"}
+    table_comments: dict[str, str] = {"sys_oterm": "Ontology terms used across the ENIGMA lakehouse: the context-measurement, unit, ENIGMA-specific, data-type and process ontologies in full, plus CHEBI/ENVO/NCBITaxon/ARO/etc. terms referenced by CORAL data"}
     type_to_table_json: dict[str, str] = {}
     all_typedef_rows: list[dict[str, Any]] = []
 
@@ -830,6 +846,11 @@ def prepare_coral_metadata(run_dir: Path, repo_root: Path | None = None) -> dict
         ontology_terms, term_lookup, referenced_terms, fallback_term_names
     )
     included_terms = expand_with_ancestors(referenced_terms, term_lookup)
+    # Add every term from the small ENIGMA/unit ontologies, then re-expand so any
+    # cross-ontology parent (e.g. a UO class above an ME unit) is pulled in too.
+    for ontology_name in FULL_INCLUDE_ONTOLOGIES:
+        included_terms.update(ontology_terms.get(ontology_name, {}))
+    included_terms = expand_with_ancestors(included_terms, term_lookup)
     ontology_stats = write_sys_oterm(ontology_terms, included_terms, data_dir / "sys_oterm.tsv")
     used_ontologies = {ontology for ontology, stats in ontology_stats.items() if stats["included_terms"] > 0}
     staged = stage_source_files(run_dir, typedef_path, ontology_dir, used_ontologies)
