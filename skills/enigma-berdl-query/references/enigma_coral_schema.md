@@ -28586,7 +28586,7 @@ Total Tables: 824
 
 ## Table: sys_oterm
 
-**Table Description:** Ontology terms used in CORAL
+**Table Description:** Ontology terms used across the ENIGMA lakehouse: the context-measurement, unit, ENIGMA-specific, data-type and process ontologies in full, plus CHEBI/ENVO/NCBITaxon/ARO/etc. terms referenced by CORAL data
 
 ### Schema
 
@@ -28601,7 +28601,7 @@ Total Tables: 824
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 6444
+**Total Rows:** 7212
 
 ### Sample Data (5 rows)
 
