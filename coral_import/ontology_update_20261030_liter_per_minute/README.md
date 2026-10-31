@@ -43,10 +43,22 @@ ME term count: 505 → 506.
      `upload_new_data_claude.ipynb` on the coral-enigma hub (config skips the
      large ontologies). Confirm `OTerm` has `ME:0000517`. The three expected
      `cannot index term` UBERON/aro warnings are benign.
-2. **Lakehouse**: re-export CORAL and sync the `sys_oterm` table into
-   `enigma.coral` via `sync-coral-to-berdl` (the exporter pulls in the
-   `UO:0000270` parent automatically). Confirm `ME:0000517` and `UO:0000270`
-   are in `enigma.coral.sys_oterm`.
+2. **Lakehouse**: no immediate action, and a plain re-sync would be a no-op for
+   this term. `enigma.coral.sys_oterm` (table comment "Ontology terms used in
+   CORAL") is built by `sync-coral-to-berdl` from CURIEs that appear in
+   `enigma.coral` `*_sys_oterm_id` columns only — it is a reference-derived
+   projection, not the full ontology (e.g. the parent `UO:0000270` is not in it
+   today). `ME:0000517` is not referenced by any `enigma.coral` object yet, so
+   it enters `sys_oterm` automatically at the first sync *after* a CORAL object
+   uses it — i.e. the Dec-2026 sso_staging -> CORAL brick conversion. Until then
+   the durable record is the hub OTerm (step 1).
+   - `enigma.sso_staging.ddt_brick` does not depend on this: it stores the unit
+     id **and** name inline (`unit_sys_oterm_id` / `unit_sys_oterm_name`, no FK),
+     so it is self-describing.
+   - If the term must be visible in `enigma.coral.sys_oterm` before conversion,
+     force-ingest two rows (`ME:0000517` + its parent `UO:0000270`) — but a
+     later full sync rebuilds `sys_oterm` from references and drops unreferenced
+     rows, so this is a temporary patch, not durable.
 
-After install, `sso_schema.py` carries `UO`/`ME` id `ME:0000517` for
-`liter per minute` (no longer null).
+After install, `sso_schema.py` carries `ME:0000517` for `liter per minute`
+(no longer null) in the sso_staging `ddt_brick`.
