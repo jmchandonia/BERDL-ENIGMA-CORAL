@@ -33,7 +33,11 @@ import requests
 import sso_common as sso
 import sso_schema as schema
 
-CHUNK_ROWS = 20_000  # Spark Connect rejects large local relations (HTTP 413)
+CHUNK_ROWS = 20_000  # hard cap on rows per uploaded local relation
+CHUNK_BYTES = 400_000  # target bytes per uploaded chunk.  Spark Connect rejects
+# large local relations (HTTP 413), so size each chunk by the staged TSV's
+# bytes/row like cm_load, not a fixed row count -- a wide table (e.g. the 28-col
+# gas table) overflows the gateway at a fixed 20k rows.
 TOKEN_WARN_DAYS = 14
 KBASE_TOKEN_URL = "https://kbase.us/services/auth/api/V2/token"
 STALE_HOURS = float(os.environ.get("SSO_STALE_HOURS", "36"))  # gas trailer-wide silence alert
@@ -172,6 +176,7 @@ class Loader:
         self.spark = spark
         self.run_id = run_id
         self.dry_run = dry_run
+        self._tsv_bytes = 0  # staged TSV size of the table currently loading
 
     def sql(self, statement: str):
         if self.dry_run:
@@ -199,10 +204,19 @@ class Loader:
             self.sql(f"ALTER TABLE {sso.full_name(table)} ADD COLUMNS ({', '.join(column_ddl(c) for c in missing)})")
             log(f"added columns to {table}: {[c['name'] for c in missing]}")
 
+    def _chunk_rows(self, frame: pd.DataFrame) -> int:
+        """Rows per uploaded chunk, sized so each local relation stays well under
+        the Spark Connect gateway's few-MB limit (HTTP 413).  Mirrors cm_load:
+        scale by the staged TSV's bytes/row, falling back to a pandas memory
+        estimate when the byte size is unknown."""
+        n = max(1, len(frame))
+        nbytes = self._tsv_bytes or int(frame.memory_usage(deep=True).sum())
+        return max(200, min(CHUNK_ROWS, int(CHUNK_BYTES * n / max(nbytes, 1))))
+
     def _insert_chunks(self, frame: pd.DataFrame, columns: list[dict], select_sql, view="sso_stage"):
-        order = [c["name"] for c in columns]
-        for start in range(0, len(frame), CHUNK_ROWS):
-            chunk = frame.iloc[start:start + CHUNK_ROWS]
+        chunk_rows = self._chunk_rows(frame)
+        for start in range(0, len(frame), chunk_rows):
+            chunk = frame.iloc[start:start + chunk_rows]
             self.spark.createDataFrame(chunk, schema=spark_schema(columns)).createOrReplaceTempView(view)
             self.spark.sql(select_sql(view))
 
@@ -246,12 +260,16 @@ class Loader:
             log(f"[dry-run] would MERGE {len(frame)} rows into {table} on {key}")
             return {"staged": len(frame), "upserted": len(frame)}
         before = self.spark.table(target).count()
-        # Small tables: one view, one MERGE.
-        self.spark.createDataFrame(frame, schema=spark_schema(columns)).createOrReplaceTempView("sso_stage")
-        self.spark.sql(
-            f"MERGE INTO {target} t USING sso_stage s ON t.{sso.quoted(key)} = s.{sso.quoted(key)} "
-            f"WHEN MATCHED THEN UPDATE SET * WHEN NOT MATCHED THEN INSERT *"
-        )
+        # Chunk by bytes (the upsert key is unique, so per-chunk MERGEs are
+        # disjoint and safe) to keep each local relation under the 413 limit.
+        chunk_rows = self._chunk_rows(frame)
+        for start in range(0, len(frame), chunk_rows):
+            chunk = frame.iloc[start:start + chunk_rows]
+            self.spark.createDataFrame(chunk, schema=spark_schema(columns)).createOrReplaceTempView("sso_stage")
+            self.spark.sql(
+                f"MERGE INTO {target} t USING sso_stage s ON t.{sso.quoted(key)} = s.{sso.quoted(key)} "
+                f"WHEN MATCHED THEN UPDATE SET * WHEN NOT MATCHED THEN INSERT *"
+            )
         after = self.spark.table(target).count()
         return {"staged": len(frame), "upserted": len(frame), "inserted": after - before}
 
@@ -401,6 +419,7 @@ def main() -> None:
             loader.ensure_table(table, columns, spec["description"], existing)
             existing.add(table)
             frame = staged_frame(args.staging / info["tsv"], columns, run_id)
+            loader._tsv_bytes = (args.staging / info["tsv"]).stat().st_size
             mode = spec["load_mode"]
             if mode == "append_dedup":
                 res = loader.append_dedup(table, frame, columns, spec["dedup_key"])
