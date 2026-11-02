@@ -73,6 +73,24 @@ send_report() {  # $1 = subject; body on stdin
     } | /usr/sbin/sendmail -t 2>>"$LOG" || log "combined report send failed"
 }
 
+# ---- refresh the Google-Drive NFS mirror (before fetch; no proxy) ----
+# Additive `rclone copy` of the ENIGMA team-drive data tree into the local
+# mirror that sso_fetch rsyncs from, so data added to Drive since the last run
+# is picked up.  (continuous_monitoring pulls straight from the HydroVu/LI-COR
+# APIs and does not use this mirror.)  Non-fatal: on failure the existing mirror
+# is used and the run continues.  rclone talks to Google directly, so this runs
+# before the SOCKS proxy env is exported further below.
+MIRROR_ROOT=${ENIGMA_MIRROR_ROOT:-/data/backup/google-drive}
+MIRROR_SRC=${ENIGMA_MIRROR_SRC:-enigma_team_drive:/3. Data_ENIGMA/}
+MIRROR_DEST=${ENIGMA_MIRROR_DEST:-enigma_team_drive_data_enigma_backup}
+if command -v rclone >/dev/null 2>&1 && [ -d "$MIRROR_ROOT/$MIRROR_DEST" ]; then
+    log "drive mirror refresh"
+    ( cd "$MIRROR_ROOT" && rclone copy --max-depth 20 "$MIRROR_SRC" "$MIRROR_DEST/" -v ) \
+        >> "$LOG" 2>&1 || log "drive mirror refresh failed (continuing with existing mirror)"
+else
+    log "drive mirror refresh skipped (rclone or mirror dir missing: $MIRROR_ROOT/$MIRROR_DEST)"
+fi
+
 # ---- fetch + build (no proxy; must not go through the SOCKS tunnel) ----
 
 log "cm fetch"; "$CM_PY" "$CM_CODE/cm_fetch.py" >> "$LOG" 2>&1 || log "cm fetch failed (continuing)"
