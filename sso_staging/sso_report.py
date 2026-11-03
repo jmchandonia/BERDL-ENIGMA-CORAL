@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
-"""Format an sso_staging load result for the daily email.
+"""Format an sso_staging load result for the daily lakehouse email.
 
-Exposes helpers the combined reporter composes into one message:
-  subject_fragment(data) -> 'sso OK: gas +N, field N, reg N' (or ALERT ...)
-  body_section(data)     -> the sso block of the email body
-  has_alert(data)        -> True if anything needs attention (gas silent, new
-                            source columns, or held sample ids)
+Helpers the combined reporter (combined_report.py) composes into one message:
+  attention_items(data) -> [(label, short, detail)] things a human must look at:
+                           a failed load, a data file in the source folder the
+                           pipeline does not ingest, a new or missing source
+                           column, held sample ids.  "No new data" is never an
+                           item: the campaign sources arrive on an irregular
+                           schedule, so an unchanged table is expected.
+  has_alert(data)       -> bool(attention_items(data))
+  subject_fragment(data, prev) -> 'sso: field +18, gas/registry unchanged'
+  source_updates(data, prev)   -> ingested source files whose mtime changed
+  body_section(data, prev)     -> the sso block of the email body
+  load_state / new_state       -> report_state.json: last run's row counts and
+                                  source mtimes, so the report can show net change
 
 Standalone:
-  sso_report.py RESULT.json              print the full sso body
-  sso_report.py RESULT.json --subject    print a one-line subject
+  sso_report.py RESULT.json [--state report_state.json] [--subject]
 """
 
 from __future__ import annotations
@@ -18,91 +25,212 @@ import argparse
 import json
 from pathlib import Path
 
+ORDER = ["picarro_gas", "field_metadata", "sample_registry"]
+LABEL = {"picarro_gas": "gas", "field_metadata": "field", "sample_registry": "registry"}
+HOW = {"picarro_gas": "append", "field_metadata": "full refresh", "sample_registry": "merge by sample id"}
+SOURCE_NAME = {"picarro_gas": "gas CSV", "field_metadata": "Field Metadata", "sample_registry": "Assay Metadata"}
+
 
 def short_ts(ts) -> str:
     if not ts:
         return "n/a"
-    return str(ts).replace("T", " ")[:16]
+    s = str(ts).replace("T", " ")
+    return s[:16] if len(s) > 10 else s  # a bare '20261028' date stays as is
 
 
 def fmt_age(hours) -> str:
     if hours is None:
         return "?"
-    return f"{hours / 24:.1f}d" if hours >= 48 else f"{hours:.0f}h"
+    return f"{hours / 24:.1f} d" if hours >= 48 else f"{hours:.0f} h"
 
 
-def _drift_items(data: dict) -> list[tuple[str, list[str]]]:
-    out = []
-    for table, d in (data.get("drift") or {}).items():
-        new = (d or {}).get("new_columns") or []
-        if new:
-            out.append((table, new))
-    return out
+def fmt_size(n) -> str:
+    try:
+        n = float(n)
+    except (TypeError, ValueError):
+        return "?"
+    for unit in ("B", "KB", "MB", "GB"):
+        if n < 1024:
+            return f"{n:.0f} {unit}" if unit == "B" else f"{n:.1f} {unit}"
+        n /= 1024
+    return f"{n:.1f} TB"
+
+
+def _tables(data: dict) -> dict:
+    return data.get("tables") or {}
+
+
+def _sources(data: dict) -> dict:
+    return data.get("sources") or {}
 
 
 def _held_total(data: dict) -> int:
     return sum(len(v or []) for v in (data.get("held") or {}).values())
 
 
-def has_alert(data: dict) -> bool:
-    return bool(data.get("stale_tables")) or bool(_drift_items(data)) or _held_total(data) > 0
+def _drift(data: dict) -> list[tuple[str, str, list[str]]]:
+    out = []
+    for table, d in (data.get("drift") or {}).items():
+        for kind in ("new_columns", "missing_columns"):
+            cols = (d or {}).get(kind) or []
+            if cols:
+                out.append((table, kind, cols))
+    return out
 
 
-def subject_fragment(data: dict) -> str:
-    t = data.get("tables", {})
-    gas = (t.get("picarro_gas") or {}).get("appended", 0) or 0
-    field = (t.get("field_metadata") or {}).get("refreshed", 0) or 0
-    reg = (t.get("sample_registry") or {}).get("upserted", 0) or 0
-    core = f"sso gas +{gas:,}, field {field:,}, reg {reg:,}"
-    flags = []
-    if data.get("stale_tables"):
-        flags.append("gas SILENT")
-    if _drift_items(data):
-        flags.append("NEW COLUMNS")
-    if _held_total(data):
-        flags.append(f"{_held_total(data)} held")
-    return f"sso ALERT: {core} [{'; '.join(flags)}]" if flags else f"sso OK: {core}"
+def _error(data: dict) -> str:
+    try:
+        return str(json.loads(data.get("details") or "{}").get("error") or "")
+    except ValueError:
+        return ""
 
 
-def body_section(data: dict) -> str:
-    t = data.get("tables", {})
-    lines = ["==== enigma.sso_staging ===="]
+# --- what needs a human ---
 
-    if data.get("stale_tables"):
-        for name, info in data["stale_tables"].items():
-            lines.append(f"*** ALERT: {name} silent — last reading {short_ts(info.get('last_timestamp'))} "
-                         f"({fmt_age(info.get('age_hours'))} ago) ***")
-    drift = _drift_items(data)
-    if drift:
-        lines.append("*** NEW SOURCE COLUMNS — decide how to handle (not loaded): ***")
-        for table, cols in drift:
-            lines.append(f"    {table}: {', '.join(cols)}")
-
+def attention_items(data: dict) -> list[tuple[str, str, str]]:
+    items = []
     status = data.get("status", "?")
-    lines += [
-        f"Load:     {data.get('ingest_run_id', '?')}  ({data.get('mode', '?')}, {status})",
-        f"Finished: {data.get('finished_at', '?')}",
-    ]
+    if status != "ok":
+        err = _error(data)
+        items.append(("LOAD FAILED", "sso load failed",
+                      f"sso_staging load status {status!r}" + (f": {err[:200]}" if err else "")))
+    for u in _sources(data).get("unknown") or []:
+        name = Path(u["path"]).name
+        items.append(("NEW SOURCE FILE", f"new source file {name}",
+                      f"{u['path']} ({fmt_size(u.get('size'))}, modified {short_ts(u.get('mtime'))[:10]}) -- "
+                      "a data file the pipeline does not ingest.  Model it in sso_staging, or add its "
+                      "path to state/ignored_sources.json to stop this notice."))
+    for table, kind, cols in _drift(data):
+        src = SOURCE_NAME.get(table, table)
+        if kind == "new_columns":
+            label, what = "NEW COLUMN", "not loaded until sso_schema.py maps it"
+        else:
+            label, what = "MISSING COLUMN", "the parser expects it; those values now load empty"
+        items.append((label, f"{label.lower()} in {src}",
+                      f"{src}: {', '.join(repr(c) for c in cols)} -- {what}."))
+    held = _held_total(data)
+    if held:
+        items.append(("HELD SAMPLE IDS", f"{held} held sample id(s)",
+                      f"{held} sample id(s) not loaded (illegal character or duplicate) -- "
+                      "listed in the sso_staging section."))
+    return items
 
-    def row(name, verb, key):
+
+def has_alert(data: dict) -> bool:
+    return bool(attention_items(data))
+
+
+# --- report state (last run's counts + source mtimes) ---
+
+def load_state(path) -> dict:
+    try:
+        return json.loads(Path(path).read_text())
+    except (TypeError, FileNotFoundError, ValueError):
+        return {}
+
+
+def new_state(data: dict) -> dict:
+    return {
+        "ingest_run_id": data.get("ingest_run_id"),
+        "row_counts": {t: (v or {}).get("row_count") for t, v in _tables(data).items()},
+        "source_mtimes": {e["path"]: e.get("mtime") for e in (_sources(data).get("ingested") or [])},
+    }
+
+
+def _deltas(data: dict, prev: dict | None) -> dict:
+    before_all = (prev or {}).get("row_counts") or {}
+    out = {}
+    for t, v in _tables(data).items():
+        now, before = (v or {}).get("row_count"), before_all.get(t)
+        out[t] = (now, now - before if isinstance(now, int) and isinstance(before, int) else None)
+    return out
+
+
+def source_updates(data: dict, prev: dict | None) -> list[dict]:
+    prev_m = (prev or {}).get("source_mtimes") or {}
+    return [e for e in (_sources(data).get("ingested") or [])
+            if e.get("mtime") and e.get("mtime") != prev_m.get(e["path"])]
+
+
+# --- subject + body ---
+
+def subject_fragment(data: dict, prev: dict | None = None) -> str:
+    d = _deltas(data, prev)
+    grew, shrank, nostate, same = [], [], [], []
+    for t in ORDER + [t for t in d if t not in ORDER]:
+        if t not in d:
+            continue
+        now, delta = d[t]
+        lab = LABEL.get(t, t)
+        if delta is None:
+            nostate.append(f"{lab} {now:,} rows" if isinstance(now, int) else f"{lab} ?")
+        elif delta > 0:
+            grew.append(f"{lab} +{delta:,}")
+        elif delta < 0:
+            shrank.append(f"{lab} {delta:,}")
+        else:
+            same.append(lab)
+    parts = grew + shrank + nostate
+    if same:
+        parts.append("/".join(same) + " unchanged")
+    return "sso: " + (", ".join(parts) if parts else "no tables")
+
+
+def body_section(data: dict, prev: dict | None = None) -> str:
+    t, src = _tables(data), _sources(data)
+    prev_m = (prev or {}).get("source_mtimes") or {}
+    have_prev = bool(prev_m)
+    lines = ["==== enigma.sso_staging ===="]
+    lines.append(f"Load:  {data.get('ingest_run_id', '?')}  ({data.get('mode', '?')}, {data.get('status', '?')})"
+                 f"   finished {short_ts(data.get('finished_at'))} UTC")
+
+    if src:
+        lines += ["", "Sources (SSO campaign folder on the Drive mirror):"]
+        shown = (src.get("ingested") or []) + (src.get("unknown") or []) + (src.get("ignored") or [])
+        width = max((len(e["path"]) for e in shown), default=20)
+        stale = data.get("stale_tables") or {}
+        for e in src.get("ingested") or []:
+            mtime = short_ts(e.get("mtime"))[:10]
+            if not have_prev:
+                change = f"modified {mtime}"
+            elif e.get("mtime") != prev_m.get(e["path"]):
+                change = f"UPDATED (modified {mtime})"
+            else:
+                change = f"unchanged since {mtime}"
+            dest = f"-> {e.get('table')}" if e.get("read_this_run") else "(older gas file, not re-read)"
+            extra = ""
+            if e.get("table") == "picarro_gas" and e.get("read_this_run"):
+                last = (t.get("picarro_gas") or {}).get("last_timestamp")
+                age = (stale.get("picarro_gas") or {}).get("age_hours")
+                extra = f"; last reading {short_ts(last)}" + (f" ({fmt_age(age)} ago)" if age is not None else "")
+            lines.append(f"  {e['path']:<{width}}  {change} {dest}{extra}")
+        for e in src.get("unknown") or []:
+            lines.append(f"  {e['path']:<{width}}  NOT INGESTED -- data file, {fmt_size(e.get('size'))}, "
+                         f"modified {short_ts(e.get('mtime'))[:10]}   <-- ACTION")
+        for e in src.get("ignored") or []:
+            lines.append(f"  {e['path']:<{width}}  ignored (state/ignored_sources.json)")
+        docs = [Path(e["path"]).name for e in src.get("docs") or []]
+        if docs:
+            lines.append(f"  documentation: {', '.join(docs)}")
+
+    d = _deltas(data, prev)
+    lines += ["", "Tables:"]
+    for name in ORDER + [n for n in t if n not in ORDER]:
+        if name not in t:
+            continue
         info = t.get(name) or {}
-        n = info.get(key, 0) or 0
-        rc = info.get("row_count")
-        last = short_ts(info.get("last_timestamp"))
-        extra = ""
+        now, delta = d.get(name, (info.get("row_count"), None))
+        rows = f"{now:>9,} rows" if isinstance(now, int) else f"{'?':>9} rows"
         if name == "sample_registry" and info.get("inserted") is not None:
-            extra = f", {info['inserted']:,} new"
+            change = f"+{info['inserted']:,} new; existing rows merged"
+        elif delta is None:
+            change = "(no previous run to compare)" if not prev else "n/a"
+        else:
+            change = f"{delta:+,} since last run"
         if info.get("skipped"):
-            extra = f"  [SKIPPED: {info['skipped']}]"
-        return f"  {name:<16} {verb} {n:>7,}{extra}   (table now {rc if rc is not None else '?':>7,} rows, latest {last})"
-
-    lines += [
-        "",
-        "Tables:",
-        row("picarro_gas", "appended", "appended"),
-        row("field_metadata", "refreshed", "refreshed"),
-        row("sample_registry", "upserted", "upserted"),
-    ]
+            change += f"   [SKIPPED: {info['skipped']}]"
+        lines.append(f"  {name:<16} {rows}   {change}  ({HOW.get(name, '')})")
+    lines.append("Source files arrive on an irregular schedule; \"unchanged\" above is expected.")
 
     held = _held_total(data)
     if held:
@@ -123,10 +251,13 @@ def body_section(data: dict) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("result", type=Path)
+    ap.add_argument("--state", type=Path, default=None, help="report_state.json from the previous run")
     ap.add_argument("--subject", action="store_true")
     args = ap.parse_args()
     data = json.loads(args.result.read_text())
-    print(subject_fragment(data) if args.subject else body_section(data), end="" if not args.subject else "\n")
+    prev = load_state(args.state) if args.state else None
+    print(subject_fragment(data, prev) if args.subject else body_section(data, prev),
+          end="\n" if args.subject else "")
 
 
 if __name__ == "__main__":

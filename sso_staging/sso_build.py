@@ -36,6 +36,46 @@ import sso_schema as schema
 
 EASTERN = ZoneInfo("America/New_York")
 GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on epoch_time
+DOC_EXTENSIONS = {".txt", ".md", ".docx", ".doc", ".pdf", ".pptx"}  # documentation, not data
+
+
+def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path) -> dict:
+    """Every file under the fetched campaign folder, classified so the daily
+    report can raise ACTION for data files the pipeline does not ingest:
+
+      ingested  the gas CSV(s) + Field/Assay Metadata (with mtime/size, and
+                whether this run actually read them)
+      ignored   listed in <state>/ignored_sources.json -- a human decided to skip it
+      docs      README / docx / pdf ... -- documentation, reported quietly
+      unknown   anything else: a new data file or type.  Reported as ACTION on
+                every run until it is ingested or added to ignored_sources.json.
+    """
+    try:
+        ignored = set(json.loads((state_dir / "ignored_sources.json").read_text()))
+    except (FileNotFoundError, ValueError):
+        ignored = set()
+    known = {p.relative_to(source_dir).as_posix(): "picarro_gas" for p in source_dir.glob(sso.GAS_GLOB)}
+    known[sso.FIELD_FILE] = "field_metadata"
+    known[sso.ASSAY_FILE] = "sample_registry"
+    read_now = {p.relative_to(source_dir).as_posix() for p in gas_paths} | {sso.FIELD_FILE, sso.ASSAY_FILE}
+    out = {"ingested": [], "ignored": [], "docs": [], "unknown": []}
+    for p in sorted(source_dir.rglob("*")):
+        if not p.is_file() or p.name.startswith((".", "~$")):
+            continue
+        rel = p.relative_to(source_dir).as_posix()
+        st = p.stat()
+        entry = {"path": rel, "size": st.st_size,
+                 "mtime": datetime.fromtimestamp(st.st_mtime, tz=timezone.utc).isoformat(timespec="seconds")}
+        if rel in known:
+            entry.update(table=known[rel], read_this_run=rel in read_now)
+            out["ingested"].append(entry)
+        elif rel in ignored:
+            out["ignored"].append(entry)
+        elif p.suffix.lower() in DOC_EXTENSIONS:
+            out["docs"].append(entry)
+        else:
+            out["unknown"].append(entry)
+    return out
 BLANK_RUN_EOF = 500  # stop reading a sheet after this many consecutive blank rows
 
 import re
@@ -347,11 +387,19 @@ def main() -> None:
     manifest["held"]["sample_registry"] = held
     log(f"sample_registry: staged {len(reg_rows)} rows, held {len(held)}, unassigned {unassigned}")
 
+    # --- source folder inventory: un-ingested data files become ACTION items ---
+    manifest["sources"] = inventory_sources(source_dir, gas_paths, Path(args.state))
+    unknown = manifest["sources"]["unknown"]
+    if unknown:
+        log(f"sources: {len(unknown)} un-ingested data file(s): {[u['path'] for u in unknown]}")
+
     (args.out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
-    # Exit code 3 signals "loaded, but something needs a human" (new columns or held ids),
-    # mirroring cm_build.py's unknown-label convention so run_daily can note it.
-    flags = any(v["new_columns"] or v["missing_columns"] for v in manifest["drift"].values()) or bool(held)
+    # Exit code 3 signals "loaded, but something needs a human" (new/missing columns,
+    # held ids, or an un-ingested source file), mirroring cm_build.py's
+    # unknown-label convention so run_daily can note it.
+    flags = (any(v["new_columns"] or v["missing_columns"] for v in manifest["drift"].values())
+             or bool(held) or bool(unknown))
     sys.exit(3 if flags else 0)
 
 

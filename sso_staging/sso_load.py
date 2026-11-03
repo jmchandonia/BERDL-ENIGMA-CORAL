@@ -475,6 +475,7 @@ def _write_result(args, manifest, record, per_table, latest, token, run_id) -> N
                              "last_timestamp": (latest.get(t) or {}).get("last_timestamp")} for t in per_table}
     summary["drift"] = manifest.get("drift")
     summary["held"] = manifest.get("held")
+    summary["sources"] = manifest.get("sources")
     summary["stale_tables"] = stale
     summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
     summary["token_days_left"] = days

@@ -152,9 +152,10 @@ log "combined report"
 export CM_CODE_DIR="$CM_CODE"
 CM_ARGS=""
 [ -f "$CM_STAGE/load_result.json" ] && CM_ARGS="--cm $CM_STAGE/load_result.json --cm-state $CM_BASE/state/stale_reported.json"
-subject=$("$SSO_PY" "$SSO_CODE/combined_report.py" --sso "$SSO_STAGE/load_result.json" $CM_ARGS --subject 2>>"$LOG") \
-    || subject="[enigma daily] OK $RUN_ID"
-"$SSO_PY" "$SSO_CODE/combined_report.py" --sso "$SSO_STAGE/load_result.json" $CM_ARGS --commit 2>>"$LOG" | send_report "$subject"
+SSO_ARGS="--sso $SSO_STAGE/load_result.json --sso-state $SSO_BASE/state/report_state.json"
+subject=$("$SSO_PY" "$SSO_CODE/combined_report.py" $SSO_ARGS $CM_ARGS --subject 2>>"$LOG") \
+    || subject="[enigma lakehouse] $RUN_ID (report failed; see $LOG)"
+"$SSO_PY" "$SSO_CODE/combined_report.py" $SSO_ARGS $CM_ARGS --commit 2>>"$LOG" | send_report "$subject"
 
 grep -h "^WARNING" "$LOG"
 log "done"
