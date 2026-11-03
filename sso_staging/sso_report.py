@@ -96,10 +96,12 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
                       f"sso_staging load status {status!r}" + (f": {err[:200]}" if err else "")))
     for u in _sources(data).get("unknown") or []:
         name = Path(u["path"]).name
+        ignore_entry = json.dumps({"path": u["path"], "mtime": u.get("mtime")})
         items.append(("NEW SOURCE FILE", f"new source file {name}",
                       f"{u['path']} ({fmt_size(u.get('size'))}, modified {short_ts(u.get('mtime'))[:10]}) -- "
-                      "a data file the pipeline does not ingest.  Model it in sso_staging, or add its "
-                      "path to state/ignored_sources.json to stop this notice."))
+                      "a data file the pipeline does not ingest.  Model it in sso_staging, or add "
+                      f"{ignore_entry} to state/ignored_sources.json to stop this notice while the "
+                      "file is unchanged."))
     for table, kind, cols in _drift(data):
         src = SOURCE_NAME.get(table, table)
         if kind == "new_columns":

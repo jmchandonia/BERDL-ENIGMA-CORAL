@@ -45,15 +45,24 @@ def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path) 
 
       ingested  the gas CSV(s) + Field/Assay Metadata (with mtime/size, and
                 whether this run actually read them)
-      ignored   listed in <state>/ignored_sources.json -- a human decided to skip it
+      ignored   listed in <state>/ignored_sources.json -- a human decided to skip it.
+                An entry is a bare path (ignore always) or {"path", "mtime"}
+                (ignore only while the file is unchanged, so a file that later
+                gains data resurfaces as ACTION).
       docs      README / docx / pdf ... -- documentation, reported quietly
       unknown   anything else: a new data file or type.  Reported as ACTION on
                 every run until it is ingested or added to ignored_sources.json.
     """
     try:
-        ignored = set(json.loads((state_dir / "ignored_sources.json").read_text()))
+        raw = json.loads((state_dir / "ignored_sources.json").read_text())
     except (FileNotFoundError, ValueError):
-        ignored = set()
+        raw = []
+    ignored = {}  # path -> mtime it was ignored at (None = ignore regardless)
+    for item in raw if isinstance(raw, list) else []:
+        if isinstance(item, str):
+            ignored[item] = None
+        elif isinstance(item, dict) and item.get("path"):
+            ignored[item["path"]] = item.get("mtime")
     known = {p.relative_to(source_dir).as_posix(): "picarro_gas" for p in source_dir.glob(sso.GAS_GLOB)}
     known[sso.FIELD_FILE] = "field_metadata"
     known[sso.ASSAY_FILE] = "sample_registry"
@@ -69,7 +78,7 @@ def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path) 
         if rel in known:
             entry.update(table=known[rel], read_this_run=rel in read_now)
             out["ingested"].append(entry)
-        elif rel in ignored:
+        elif rel in ignored and ignored[rel] in (None, entry["mtime"]):
             out["ignored"].append(entry)
         elif p.suffix.lower() in DOC_EXTENSIONS:
             out["docs"].append(entry)
