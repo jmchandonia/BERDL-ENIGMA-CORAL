@@ -169,7 +169,25 @@ class Loader:
         self.spark = spark
         self.run_id = run_id
         self.dry_run = dry_run
-        self.column_map = {v["column"]: v for v in cm.load_column_map()["measurements"].values()}
+        self.column_map = {v["column"]: {**v, "label": k} for k, v in cm.load_column_map()["measurements"].items()}
+        self.source_headers = self._source_headers()
+
+    @staticmethod
+    def _source_headers() -> dict[str, list[str]]:
+        """label -> raw HydroVu/HOBO/LI-COR headers the builder's translation map
+        folds into it (best effort: aliases and special cases are not listed).
+        Recorded in the column comments so the lakehouse documents the mapping;
+        the mapping itself is defined by the builder, never by a live file."""
+        try:
+            b = cm.builder_module()
+            out: dict[str, list[str]] = {}
+            for raw, label in b.parse_translation_map().items():
+                if label:
+                    out.setdefault(label, []).append(raw)
+            return {k: sorted(v) for k, v in out.items()}
+        except Exception as exc:
+            log(f"WARNING: translation map unavailable; comments omit source_headers ({exc!r})")
+            return {}
 
     def sql(self, statement: str):
         if self.dry_run:
@@ -181,9 +199,51 @@ class Loader:
         rows = self.spark.sql(f"SHOW TABLES IN {'.'.join(f'`{p}`' for p in cm.NAMESPACE.split('.'))}").collect()
         return {row["tableName"] for row in rows}
 
-    def measurement_ddl(self, column: str) -> str:
+    def measurement_comment(self, column: str) -> str:
         spec = self.column_map[column]
-        return f"{quoted(column)} DOUBLE COMMENT {sql_string(comment(spec['description'], unit=spec.get('unit')))}"
+        return comment(spec["description"], unit=spec.get("unit"),
+                       source_label=spec.get("label"),
+                       source_headers=self.source_headers.get(spec.get("label")) or None)
+
+    def measurement_ddl(self, column: str) -> str:
+        return f"{quoted(column)} DOUBLE COMMENT {sql_string(self.measurement_comment(column))}"
+
+    # --- comments: detect drift daily, apply only on an explicit --sync-comments run ---
+
+    def expected_comment(self, column: str) -> str | None:
+        fixed = fixed_columns()
+        if column in fixed:
+            return fixed[column][1]
+        if column in self.column_map:
+            return self.measurement_comment(column)
+        return None  # a column the loader does not know: left alone
+
+    def comment_drift(self, table: str, description: str | None = None) -> list[dict]:
+        """Live column/table comments that differ from what the loader would
+        write.  Only reported (the daily email raises an ACTION); applied only
+        by an explicit --sync-comments run after the change is reviewed."""
+        drift = []
+        for f in self.spark.table(full_name(table)).schema.fields:
+            expected = self.expected_comment(f.name)
+            live = (f.metadata or {}).get("comment")
+            if expected is not None and live != expected:
+                drift.append({"column": f.name, "live": live, "expected": expected})
+        if description:
+            expected_table = f"{table} - {description}"
+            for r in self.spark.sql(f"DESCRIBE TABLE EXTENDED {full_name(table)}").collect():
+                if r["col_name"] == "Comment" and r["data_type"] != expected_table:
+                    drift.append({"column": None, "live": r["data_type"], "expected": expected_table})
+        return drift
+
+    def apply_comments(self, table: str, drift: list[dict]) -> int:
+        for d in drift:
+            if d["column"] is None:
+                self.sql(f"COMMENT ON TABLE {full_name(table)} IS {sql_string(d['expected'])}")
+            else:
+                self.sql(f"ALTER TABLE {full_name(table)} ALTER COLUMN {quoted(d['column'])} COMMENT {sql_string(d['expected'])}")
+        if drift:
+            log(f"{'would sync' if self.dry_run else 'synced'} {len(drift)} comment(s) on {table}")
+        return len(drift)
 
     def ensure_table(self, table: str, columns: list[str], description: str, existing: set[str]) -> None:
         fixed = fixed_columns()
@@ -352,7 +412,15 @@ def main() -> None:
     parser.add_argument("--tables", nargs="*", help="only load these tables")
     parser.add_argument("--wait-for-spark", type=int, default=0, help="seconds to keep retrying until Spark Connect answers")
     parser.add_argument("--check-staleness", action="store_true", help="flag tables whose latest reading has gone stale (normal daily runs only, not backfills)")
+    parser.add_argument("--sync-comments", action="store_true",
+                        help="apply the loader's column/table comments to EVERY existing data table (deliberate manual "
+                             "run; the daily run only reports comment drift as an ACTION item)")
+    parser.add_argument("--comments-only", action="store_true",
+                        help="with --sync-comments: sync column comments on every existing data table and exit without "
+                             "loading data (no ingest_runs row, no load_result.json)")
     args = parser.parse_args()
+    if args.comments_only and not args.sync_comments:
+        parser.error("--comments-only requires --sync-comments")
 
     cm.load_env_file(cm.credentials_file())
     token = os.environ.get("KBASE_AUTH_TOKEN") or os.environ.get("KB_AUTH_TOKEN")
@@ -362,7 +430,7 @@ def main() -> None:
     if warning:
         print(f"WARNING: {warning}", file=sys.stderr, flush=True)
 
-    manifest = json.loads((args.staging / "manifest.json").read_text())
+    manifest = json.loads((args.staging / "manifest.json").read_text()) if not args.comments_only else {"tables": {}}
     run_id = args.run_id or f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex[:6]}"
     started = datetime.now(timezone.utc)
     deadline = time.monotonic() + args.wait_for_spark
@@ -384,13 +452,39 @@ def main() -> None:
     per_table: dict[str, dict[str, int]] = {}
     latest: dict[str, dict] = {}
     status, error = "ok", None
+    comment_drift: dict[str, list[str]] = {}
+    comments_synced = 0
+    if args.comments_only:
+        for table in sorted(existing - {"table_metadata", "ingest_runs"}):
+            if args.tables and table not in args.tables:
+                continue
+            comments_synced += loader.apply_comments(table, loader.comment_drift(table))
+        log(f"comments-only: {comments_synced} comment(s) {'would be ' if args.dry_run else ''}synced")
+        return
+    if args.sync_comments:
+        # Deliberate, reviewed comment update across all data tables (column
+        # comments only; table descriptions come from the build manifest, so
+        # those are synced below for the tables in this manifest).
+        for table in sorted(existing - {"table_metadata", "ingest_runs"}):
+            if args.tables and table not in args.tables:
+                continue
+            comments_synced += loader.apply_comments(table, loader.comment_drift(table))
     try:
         for table, info in sorted(manifest["tables"].items()):
             if args.tables and table not in args.tables:
                 continue
             columns = list(info["columns"])
+            existed = table in existing
             loader.ensure_table(table, columns, info["metadata"]["description"], existing)
             existing.add(table)
+            if existed:
+                drift = loader.comment_drift(table, info["metadata"]["description"])
+                if drift and args.sync_comments:
+                    comments_synced += loader.apply_comments(table, drift)
+                elif drift:
+                    comment_drift[table] = [d["column"] or "(table comment)" for d in drift]
+                    log(f"WARNING: {table}: {len(drift)} comment(s) differ from the loader's (not applied; "
+                        f"review, then run cm_load.py --sync-comments)")
             started_table = time.monotonic()
             staged, appended = loader.append(table, args.staging / info["tsv"], columns)
             per_table[table] = {"staged": staged, "appended": appended}
@@ -428,6 +522,9 @@ def main() -> None:
         )
         summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
         summary["token_days_left"] = expires_days
+        summary["unknown_labels"] = manifest.get("unknown_labels") or {}  # tables held back by cm_build
+        summary["comment_drift"] = comment_drift  # {table: [column...]} not applied (ACTION)
+        summary["comments_synced"] = comments_synced
         # Staleness: on a normal run (not a backfill), flag any instrument whose
         # latest reading is older than its cadence allows -- it has gone silent.
         if args.check_staleness:

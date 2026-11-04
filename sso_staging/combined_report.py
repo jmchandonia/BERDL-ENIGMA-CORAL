@@ -11,8 +11,10 @@ this with both results.  Layout:
 
 What counts as ACTION: a load that failed or produced no result, a data file in
 the SSO source folder the pipeline does not ingest, a new or missing source
-column, held sample ids, a cm instrument that newly stopped reporting, a KBase
-token expiring soon.  No new sso data is NOT an action (irregular cadence), and
+column, held sample ids, a cm instrument that newly stopped reporting, a cm
+table held back because a source label is not in column_map.json, lakehouse
+comments that differ from the schema (never auto-applied), a KBase token
+expiring soon.  No new sso data is NOT an action (irregular cadence), and
 cm always appends rows, so neither is in the subject.
 
     combined_report.py --sso SSO_RESULT [--cm CM_RESULT] [--cm-state FILE]
@@ -78,10 +80,27 @@ def attention(cm_data, cm_diff, sso_data) -> tuple[list[tuple[str, str, str]], b
     if cm_data is None:
         items.append(("CM LOAD MISSING", "cm load missing", "no continuous_monitoring result this run"))
         failed = True
-    elif cm_diff and cm_diff.get("newly"):
-        names = sorted(cm_diff["newly"])
-        items.append(("CM NEWLY SILENT", f"{len(names)} cm instrument(s) newly silent",
-                      f"{len(names)} instrument(s) stopped reporting since the last report: {', '.join(names)}"))
+    else:
+        if cm_diff and cm_diff.get("newly"):
+            names = sorted(cm_diff["newly"])
+            items.append(("CM NEWLY SILENT", f"{len(names)} cm instrument(s) newly silent",
+                          f"{len(names)} instrument(s) stopped reporting since the last report: {', '.join(names)}"))
+        unknown = cm_data.get("unknown_labels")
+        if unknown is None:  # older load_result: only inside details
+            try:
+                unknown = json.loads(cm_data.get("details") or "{}").get("unknown_labels")
+            except ValueError:
+                unknown = None
+        for table, labels in sorted((unknown or {}).items()):
+            items.append(("CM NEW SOURCE LABEL", f"cm {table} held back (unknown label)",
+                          f"continuous_monitoring {table}: source label(s) not in column_map.json: "
+                          f"{', '.join(repr(l) for l in labels)} -- the whole table is HELD BACK (nothing loaded) "
+                          "until the label is mapped (build_column_map.py) or the source header is fixed."))
+        for table, cols in sorted((cm_data.get("comment_drift") or {}).items()):
+            items.append(("CM COMMENT DRIFT", f"{len(cols)} cm comment(s) in {table} differ",
+                          f"continuous_monitoring {table}: {len(cols)} column/table comment(s) differ from the "
+                          f"loader's ({', '.join(cols[:4])}{', ...' if len(cols) > 4 else ''}) -- NOT changed by "
+                          "the daily run; review, then run cm_load.py --sync-comments."))
     for data in (sso_data, cm_data):
         days, expires = (data or {}).get("token_days_left"), (data or {}).get("token_expires")
         if isinstance(days, int) and days < TOKEN_WARN_DAYS:

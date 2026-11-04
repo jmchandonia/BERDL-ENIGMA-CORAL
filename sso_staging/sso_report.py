@@ -5,7 +5,8 @@ Helpers the combined reporter (combined_report.py) composes into one message:
   attention_items(data) -> [(label, short, detail)] things a human must look at:
                            a failed load, a data file in the source folder the
                            pipeline does not ingest, a new or missing source
-                           column, held sample ids.  "No new data" is never an
+                           column, lakehouse comments that differ from the
+                           schema (never auto-applied), held sample ids.  "No new data" is never an
                            item: the campaign sources arrive on an irregular
                            schedule, so an unchanged table is expected.
   has_alert(data)       -> bool(attention_items(data))
@@ -112,6 +113,11 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
             label, what = "MISSING COLUMN", "the parser expects it; those values now load empty"
         items.append((label, f"{label.lower()} in {src}",
                       f"{src}: {', '.join(repr(c) for c in cols)} -- {what}."))
+    for table, cols in (data.get("comment_drift") or {}).items():
+        items.append(("COMMENT DRIFT", f"{len(cols)} comment(s) in {table} differ from schema",
+                      f"{table}: {len(cols)} column/table comment(s) in the lakehouse differ from sso_schema.py "
+                      f"({', '.join(cols[:4])}{', ...' if len(cols) > 4 else ''}) -- NOT changed by the daily run; "
+                      "review the schema change, then run sso_load.py --sync-comments."))
     held = _held_total(data)
     if held:
         items.append(("HELD SAMPLE IDS", f"{held} held sample id(s)",

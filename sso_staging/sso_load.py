@@ -206,6 +206,42 @@ class Loader:
             self.sql(f"ALTER TABLE {sso.full_name(table)} ADD COLUMNS ({', '.join(column_ddl(c) for c in missing)})")
             log(f"added columns to {table}: {[c['name'] for c in missing]}")
 
+    # --- comments: detect drift daily, apply only on an explicit --sync-comments run ---
+
+    def live_comments(self, table: str) -> tuple[str | None, dict[str, str | None]]:
+        """(table comment, {column: comment}) as stored in the lakehouse."""
+        cols = {f.name: (f.metadata or {}).get("comment") for f in self.spark.table(sso.full_name(table)).schema.fields}
+        tcomment = None
+        for r in self.spark.sql(f"DESCRIBE TABLE EXTENDED {sso.full_name(table)}").collect():
+            if r["col_name"] == "Comment":
+                tcomment = r["data_type"]
+        return tcomment, cols
+
+    def comment_drift(self, table: str, columns: list[dict], description: str) -> list[dict]:
+        """Columns (and the table) whose live comment differs from sso_schema.
+        Returned, never applied here: the daily email raises it as an ACTION so
+        a schema/comment change is discussed before the table is touched."""
+        tcomment, live = self.live_comments(table)
+        drift = []
+        expected_table = f"{table} - {description}"
+        if tcomment != expected_table:
+            drift.append({"column": None, "live": tcomment, "expected": expected_table})
+        for c in columns:
+            if c["name"] in live and live[c["name"]] != column_comment(c):
+                drift.append({"column": c["name"], "live": live[c["name"]], "expected": column_comment(c)})
+        return drift
+
+    def apply_comments(self, table: str, drift: list[dict]) -> int:
+        for d in drift:
+            if d["column"] is None:
+                self.sql(f"COMMENT ON TABLE {sso.full_name(table)} IS {sso.sql_string(d['expected'])}")
+            else:
+                self.sql(f"ALTER TABLE {sso.full_name(table)} ALTER COLUMN {sso.quoted(d['column'])} "
+                         f"COMMENT {sso.sql_string(d['expected'])}")
+        if drift:
+            log(f"{'would sync' if self.dry_run else 'synced'} {len(drift)} comment(s) on {table}")
+        return len(drift)
+
     def _chunk_rows(self, frame: pd.DataFrame) -> int:
         """Rows per uploaded chunk, sized so each local relation stays well under
         the Spark Connect gateway's few-MB limit (HTTP 413).  Mirrors cm_load:
@@ -382,7 +418,15 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--wait-for-spark", type=int, default=0)
     ap.add_argument("--check-staleness", action="store_true")
+    ap.add_argument("--sync-comments", action="store_true",
+                    help="apply sso_schema column/table comments to existing tables (deliberate manual "
+                         "run; the daily run only reports comment drift as an ACTION item)")
+    ap.add_argument("--comments-only", action="store_true",
+                    help="with --sync-comments: sync comments on every schema table and exit without loading data "
+                         "(no ingest_runs row, no load_result.json)")
     args = ap.parse_args()
+    if args.comments_only and not args.sync_comments:
+        ap.error("--comments-only requires --sync-comments")
 
     sso.load_env_file(sso.credentials_file())
     token = os.environ.get("KBASE_AUTH_TOKEN") or os.environ.get("KB_AUTH_TOKEN")
@@ -392,7 +436,7 @@ def main() -> None:
     if warning:
         print(f"WARNING: {warning}", file=sys.stderr, flush=True)
 
-    manifest = json.loads((args.staging / "manifest.json").read_text())
+    manifest = json.loads((args.staging / "manifest.json").read_text()) if not args.comments_only else {"tables": {}}
     run_id = args.run_id or f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex[:6]}"
     started = datetime.now(timezone.utc)
 
@@ -413,7 +457,16 @@ def main() -> None:
         spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {'.'.join(f'`{p}`' for p in sso.NAMESPACE.split('.'))}")
     existing = loader.existing_tables()
 
+    if args.comments_only:
+        n = 0
+        for table, spec in schema.TABLES.items():
+            if table in existing:
+                n += loader.apply_comments(table, loader.comment_drift(table, spec["columns"], spec["description"]))
+        log(f"comments-only: {n} comment(s) {'would be ' if args.dry_run else ''}synced")
+        return
+
     per_table, status, error = {}, "ok", None
+    comment_drift, comments_synced = {}, 0
     try:
         for table, info in manifest["tables"].items():
             spec = schema.TABLES[table]
@@ -421,6 +474,14 @@ def main() -> None:
             existed = table in existing
             loader.ensure_table(table, columns, spec["description"], existing)
             existing.add(table)
+            if existed:
+                drift = loader.comment_drift(table, columns, spec["description"])
+                if drift and args.sync_comments:
+                    comments_synced += loader.apply_comments(table, drift)
+                elif drift:
+                    comment_drift[table] = [d["column"] or "(table comment)" for d in drift]
+                    log(f"WARNING: {table}: {len(drift)} comment(s) differ from sso_schema (not applied; "
+                        f"review, then run with --sync-comments)")
             frame = staged_frame(args.staging / info["tsv"], columns, run_id)
             loader._tsv_bytes = (args.staging / info["tsv"]).stat().st_size
             mode = spec["load_mode"]
@@ -453,11 +514,12 @@ def main() -> None:
             loader.record_run(record, loader.existing_tables() if not args.dry_run else existing)
         except Exception as exc:
             print(f"could not record run: {exc!r}", file=sys.stderr)
-        _write_result(args, manifest, record, per_table, locals().get("latest", {}), token, run_id)
+        _write_result(args, manifest, record, per_table, locals().get("latest", {}), token, run_id,
+                      comment_drift, comments_synced)
     log(f"run {run_id}: {record['rows_written']} rows written across {len(per_table)} tables")
 
 
-def _write_result(args, manifest, record, per_table, latest, token, run_id) -> None:
+def _write_result(args, manifest, record, per_table, latest, token, run_id, comment_drift=None, comments_synced=0) -> None:
     expires_dt, days = token_expiry(token)
     stale = {}
     if args.check_staleness:
@@ -480,6 +542,8 @@ def _write_result(args, manifest, record, per_table, latest, token, run_id) -> N
     summary["held"] = manifest.get("held")
     summary["sources"] = manifest.get("sources")
     summary["stale_tables"] = stale
+    summary["comment_drift"] = comment_drift or {}  # {table: [column...]} not applied (ACTION)
+    summary["comments_synced"] = comments_synced
     summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
     summary["token_days_left"] = days
     (args.staging / "load_result.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")

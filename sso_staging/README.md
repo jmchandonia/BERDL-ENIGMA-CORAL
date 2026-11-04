@@ -71,6 +71,24 @@ wins for the same sample.  Ids that do not resolve to a registry sample are held
 and reported.  Anything in the folder that is not a workbook with that header
 is left to the source inventory, which raises it as an ACTION item.
 
+### Column comments record the source header; changes are alerts, not auto-edits
+
+Every column's JSON comment carries `source_column`, the source-file header it
+is parsed from (`TOC_ppm`, `Pump Time On`, ...).  The value comes from
+`sso_schema.py`, never from the live file.  If a source header changes,
+`sso_build.py` reports it as NEW/MISSING COLUMN (an ACTION in the email) and
+nothing in the lakehouse changes until the schema is edited by hand.  Likewise
+the daily load never rewrites comments: it compares the live comments with the
+schema and raises COMMENT DRIFT as an ACTION; after review, apply them with
+
+```
+sso_load.py --staging /any --sync-comments --comments-only
+```
+
+(continuous_monitoring works the same way: `source_label` + `source_headers`
+in its comments, CM COMMENT DRIFT / CM NEW SOURCE LABEL in the email,
+`cm_load.py --sync-comments --comments-only` to apply.)
+
 ## One combined daily email
 
 The requirement is a single email per day covering **both** loads.  `run_daily.sh`

@@ -206,8 +206,8 @@ FIELD_COLUMNS = [
     _fk_location(),
     {"name": "location", "src": "Well", "type": "STRING", "role": "dim",
      "desc": "well-port string, e.g. U1-SZ1 (EFPW wells have no zone)"},
-    {"name": "zone", "src": None, "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
-    {"name": "well", "src": None, "type": "STRING", "role": "dim", "desc": "well id, e.g. U1"},
+    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW (from Well)"},
+    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. U1 (from Well)"},
     {"name": "pump_time_on", "src": "Pump Time On", "type": "STRING", "role": "dim",
      "desc": "pump start HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
     {"name": "pump_time_off", "src": "Pump Time Off", "type": "STRING", "role": "dim",
@@ -244,9 +244,9 @@ REGISTRY_COLUMNS = [
     {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
     _fk_location(),
     {"name": "location", "src": "Well", "type": "STRING", "role": "dim", "desc": "well-port string, e.g. U1-SZ1"},
-    {"name": "zone", "src": None, "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
+    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW (from Well)"},
     {"name": "assay", "src": "Assay", "type": "STRING", "role": "dim", "desc": "raw manifest assay label, e.g. Anions, NitrateIso"},
-    {"name": "assay_token", "src": None, "type": "STRING", "role": "dim", "desc": "uppercased assay token used in the id, e.g. ANIONS"},
+    {"name": "assay_token", "src": "Assay", "type": "STRING", "role": "dim", "desc": "uppercased assay token used in the id, e.g. ANIONS"},
     {"name": "storage_condition", "src": "Storage Condition", "type": "STRING", "role": "dim", "desc": "e.g. '4C, acidified', '-80C'"},
     {"name": "sample_volume", "src": "Volume", "type": "STRING", "role": "dim", "desc": "planned sample volume as recorded, e.g. '30 mL' (registry attribute, not a measurement)"},
     {"name": "container", "src": "Container", "type": "STRING", "role": "dim", "desc": "container as recorded, e.g. '30 mL VOA vial', 'Restek Bags'"},
@@ -369,7 +369,12 @@ def measurement_columns(table: str) -> list[dict]:
 
 
 def column_comment_fields(col: dict) -> dict:
-    """The JSON-comment payload for a column (matches continuous_monitoring style)."""
+    """The JSON-comment payload for a column (matches continuous_monitoring style).
+    `source_column` names the source-file header the column is parsed from, so
+    the lakehouse records the mapping; the header is taken from THIS schema,
+    never from the live file -- a changed header is reported as drift by
+    sso_build (NEW/MISSING COLUMN), and the comment changes only when this
+    file is edited and the loader is run with --sync-comments."""
     if col["role"] == "measurement":
         ddt = col["ddt"]
         out = {"description": microtype_label(ddt), "unit": ddt["unit"]}
@@ -377,6 +382,8 @@ def column_comment_fields(col: dict) -> dict:
             out["unit_sys_oterm_id"] = ddt["unit_oterm"]
         if col.get("note"):
             out["note"] = col["note"]
+        if col.get("src"):
+            out["source_column"] = col["src"]  # the source-file header this column is parsed from
         return out
     out = {"description": col["desc"]}
     if col.get("unit"):
@@ -385,4 +392,6 @@ def column_comment_fields(col: dict) -> dict:
         out["type"] = "foreign_key" if col["role"] == "fk" else "primary_key"
         if col.get("references"):
             out["references"] = col["references"]
+    if col.get("src"):
+        out["source_column"] = col["src"]
     return out

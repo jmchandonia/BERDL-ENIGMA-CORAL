@@ -116,3 +116,15 @@ The first load was on 2026-10-16: 42 tables and 1,471,200 rows (ingest run
 
 `run_monthly_coral.sh` is the monthly CORAL conversion (`update_monthly.sh`).
 It moved from the stout crontab to dipa on 2026-10-16.
+
+## Column comments and comment drift (2026-11-04)
+
+Measurement column comments carry `source_label` (the normalized label the
+pipeline and the CORAL bricks key on, e.g. `air pressure, PSI`) and
+`source_headers` (the raw HydroVu/HOBO/LI-COR headers the builder's translation
+map folds into it).  These come from `column_map.json` and the builder, never
+from a live file.  A header the translation map does not know holds the whole
+table back in `cm_build.py` and is raised in the daily email as
+CM NEW SOURCE LABEL.  The daily load never rewrites comments: it reports any
+difference between the live comments and the loader's as CM COMMENT DRIFT; after
+review, apply with `cm_load.py --staging /any --sync-comments --comments-only`.
