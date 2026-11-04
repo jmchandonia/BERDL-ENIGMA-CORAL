@@ -32,6 +32,10 @@ NAMESPACE = os.environ.get("SSO_NAMESPACE", "enigma.sso_staging")
 GAS_GLOB = "Gas_Data/*_gas_data.csv"
 FIELD_FILE = "Field Metadata"       # Google-native xlsx, no extension on the mirror
 ASSAY_FILE = "Assay Metadata"       # Google-native xlsx, no extension on the mirror
+# Chakraborty-lab TOC/TN + ion-chromatography anion results: every workbook in
+# this subfolder is read (the lab may re-export under a new dated name or add a
+# sheet); rows are keyed by sample so later files/edits update earlier ones.
+TOC_DIR = "TOC_TN_Anions_Chakraborty"
 
 IDENTIFIER = re.compile(r"^[a-z][a-z0-9_]*$")       # lakehouse column / table names
 SAMPLE_ID_RE = re.compile(r"^[A-Z0-9-]+$")          # CORAL-legal sdt_sample_name / sdt_location_name
@@ -91,6 +95,26 @@ def spreadsheet_location(well_field: str) -> dict:
 
 
 # --- sample-id normalization (NAMING.md decision A: faithful uppercase) ---
+
+LAB_SAMPLE_ID_RE = re.compile(r"^(?P<well>[A-Za-z0-9]+)(?:-(?P<zone>SZ\d))?-(?P<mmddyy>\d{6})$")
+
+
+def parse_lab_sample_id(raw: str) -> dict | None:
+    """Chakraborty result-sheet ids are '<well>-<zone>-MMDDYY' (L7-SZ1-100626), or
+    '<well>-MMDDYY' for zone-less EFPW wells.  Returns well/zone/sample_date
+    (YYYYMMDD, 20xx) or None when the id does not have that shape."""
+    m = LAB_SAMPLE_ID_RE.fullmatch((raw or "").strip())
+    if not m:
+        return None
+    mm, dd, yy = m["mmddyy"][:2], m["mmddyy"][2:4], m["mmddyy"][4:]
+    if not (1 <= int(mm) <= 12 and 1 <= int(dd) <= 31):
+        return None
+    return {"well": m["well"].upper(), "zone": (m["zone"] or "").upper(), "sample_date": f"20{yy}{mm}{dd}"}
+
+
+def registry_sample_name(sample_date: str, well: str, zone: str, assay_token: str) -> str:
+    """The manifest's CORAL id for a sample: YYYYMMDD-WELL[-ZONE]-ASSAY."""
+    return "-".join(p for p in (sample_date, well, zone, assay_token) if p)
 
 def normalize_sample_id(raw: str) -> str:
     """Uppercase the manifest Sample ID.  Date/well/zone are already caps, so this

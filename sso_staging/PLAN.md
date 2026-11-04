@@ -132,6 +132,12 @@ Notes:
 (Assay **results** are NOT modeled yet — none exist. When a result file lands,
 results attach to `sample_registry` by `sdt_sample_name`.)
 
+## Table: `toc_tn_anions`  (upsert; key = sdt_sample_name) — added 2026-11-04
+
+First assay-result table: Chakraborty TOC/TN + IC anions (ppm) on the ANIONS
+samples; see `examples/toc_tn_anions.columns.md` for columns, microtypes and the
+held/drift rules.  Microtypes reuse the lab's 2024 SSO bricks (no minting).
+
 ## Bookkeeping tables (as in continuous_monitoring)
 
 - `table_metadata` — one row per data table: source, row count, first/last

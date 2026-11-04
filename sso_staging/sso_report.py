@@ -25,10 +25,12 @@ import argparse
 import json
 from pathlib import Path
 
-ORDER = ["picarro_gas", "field_metadata", "sample_registry"]
-LABEL = {"picarro_gas": "gas", "field_metadata": "field", "sample_registry": "registry"}
-HOW = {"picarro_gas": "append", "field_metadata": "full refresh", "sample_registry": "merge by sample id"}
-SOURCE_NAME = {"picarro_gas": "gas CSV", "field_metadata": "Field Metadata", "sample_registry": "Assay Metadata"}
+ORDER = ["picarro_gas", "field_metadata", "sample_registry", "toc_tn_anions"]
+LABEL = {"picarro_gas": "gas", "field_metadata": "field", "sample_registry": "registry", "toc_tn_anions": "toc/anions"}
+HOW = {"picarro_gas": "append", "field_metadata": "full refresh", "sample_registry": "merge by sample id",
+       "toc_tn_anions": "merge by sample id"}
+SOURCE_NAME = {"picarro_gas": "gas CSV", "field_metadata": "Field Metadata", "sample_registry": "Assay Metadata",
+               "toc_tn_anions": "TOC/TN/anion workbook"}
 
 
 def short_ts(ts) -> str:
@@ -223,7 +225,7 @@ def body_section(data: dict, prev: dict | None = None) -> str:
         info = t.get(name) or {}
         now, delta = d.get(name, (info.get("row_count"), None))
         rows = f"{now:>9,} rows" if isinstance(now, int) else f"{'?':>9} rows"
-        if name == "sample_registry" and info.get("inserted") is not None:
+        if info.get("inserted") is not None:  # upsert tables report inserts vs merged
             change = f"+{info['inserted']:,} new; existing rows merged"
         elif delta is None:
             change = "(no previous run to compare)" if not prev else "n/a"

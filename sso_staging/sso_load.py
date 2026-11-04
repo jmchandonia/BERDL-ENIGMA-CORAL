@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Load staged sso_staging TSVs into the BERDL lakehouse.
 
-Three load modes, dispatched from the manifest sso_build.py wrote:
+Four data tables, three load modes, dispatched from the manifest sso_build.py wrote:
   * picarro_gas    append + dedup on epoch_time (LEFT ANTI JOIN; re-ingesting a
                    cumulative export never duplicates rows).
   * field_metadata full refresh (DELETE + INSERT); a shrink-guard refuses to wipe
                    the table when the source suddenly has far fewer rows.
   * sample_registry upsert (MERGE) by sdt_sample_name; rows are updated in place,
                    never deleted, so a sample dropped from the manifest survives.
+  * toc_tn_anions  upsert (MERGE) by sdt_sample_name, same as the registry: new
+                   lab rows insert, edited rows update.
 
 Also rewrites three bookkeeping tables each run: ddt_brick (the COMO microtype per
 measurement column, from sso_schema), table_metadata (one row per data table) and
@@ -318,7 +320,8 @@ class Loader:
             "first_timestamp": "earliest time/date in the table", "last_timestamp": "latest time/date in the table",
             "updated_at": "time this row was written (UTC)",
         }
-        time_col = {"picarro_gas": "time_series_datetime", "field_metadata": "sample_date", "sample_registry": "sample_date"}
+        time_col = {"picarro_gas": "time_series_datetime", "field_metadata": "sample_date",
+                    "sample_registry": "sample_date", "toc_tn_anions": "sample_date"}
         latest, rows = {}, []
         for tbl, spec in schema.TABLES.items():
             if self.dry_run and tbl not in existing:

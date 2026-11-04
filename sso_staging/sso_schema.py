@@ -1,6 +1,6 @@
 """Authoritative schema for the enigma.sso_staging namespace.
 
-Single source of truth for all three data tables, their column names, types and
+Single source of truth for all four data tables, their column names, types and
 JSON comments, the per-measurement COMO microtype (recorded in `ddt_brick`), and
 the set of source-file columns we know how to map.  The parsers, the loader and
 the drift check all read from here, so the lakehouse schema and the review docs
@@ -36,11 +36,19 @@ MOLECULE_CHEBI = {
     "ammonia": "CHEBI:16134",
     "water": "CHEBI:15377",
     "dioxygen": "CHEBI:15379",
+    # aqueous chemistry (toc_tn_anions); same terms as the 2024 Chakraborty
+    # SSO bricks (coral_import/sso_geochemistry_20261009)
+    "elemental carbon": "CHEBI:33415",
+    "nitrogen atom": "CHEBI:25555",
+    "chloride": "CHEBI:17996",
+    "sulfate": "CHEBI:16189",
+    "nitrate": "CHEBI:17632",
 }
 
 UNIT_OTERM = {  # unit label -> sys_oterm id
     "parts per million by volume": "ME:0000348",
     "parts per billion": "UO:0000170",
+    "parts per million": "UO:0000169",
     "percent": "UO:0000187",
     "degree Celsius": "UO:0000027",
     "liter": "UO:0000099",
@@ -256,6 +264,65 @@ REGISTRY_KNOWN_SOURCE = {
 }
 
 # ======================================================================
+# toc_tn_anions  -- upsert (MERGE) by sdt_sample_name: Chakraborty-lab TOC/TN
+# and ion-chromatography anion results on the campaign's ANIONS samples (the
+# lab's 0.2 um syringe-filtered, 4C vial).  Microtypes match the lab's 2024 SSO
+# bricks (chakraborty_toc_tn_* / chakraborty_ic_anions_*): TOC = elemental
+# carbon, organic=1 (the organic token stays in the name because coral's
+# `..._elemental_carbon_parts_per_million` is TOTAL carbon); TN = nitrogen atom;
+# anions as the ion; all parts per million as the lab reports them.
+# ======================================================================
+
+TOC_COLUMNS = [
+    # Declared as a foreign key (like coral's brick tables), not a primary key:
+    # the results attach to a registry sample; one-row-per-sample is enforced by
+    # the upsert, and the FK checker can validate it against sample_registry.
+    {"name": "sdt_sample_name", "src": "SampleID", "type": "STRING", "role": "fk",
+     "desc": "environmental sample ID of the ANIONS sample the results belong to "
+             "(YYYYMMDD-WELL-ZONE-ANIONS, derived from the lab id <well>-<zone>-MMDDYY); upsert key",
+     "references": "sample_registry.sdt_sample_name"},
+    {"name": "source_sample_id", "src": "SampleID", "type": "STRING", "role": "dim",
+     "desc": "verbatim lab sample id, e.g. L7-SZ1-100626 (traceability)"},
+    {"name": "timepoint", "src": None, "type": "INT", "role": "dim",
+     "desc": "campaign timepoint 1-36 (from the sample registry)"},
+    {"name": "sample_date", "src": "Date Sampled", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    _fk_location(),
+    {"name": "location", "src": "Well", "type": "STRING", "role": "dim", "desc": "well-port string, e.g. L7-SZ1"},
+    {"name": "zone", "src": "Zone", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
+    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. L7"},
+    {"name": "preservation", "src": "Preservation", "type": "STRING", "role": "dim",
+     "desc": "sample preservation as recorded by the lab, e.g. '0.2um syringe filter'"},
+    {"name": "storage_condition", "src": "Storage", "type": "STRING", "role": "dim",
+     "desc": "sample storage as recorded by the lab, e.g. '4C'"},
+    {"name": "analysis_order", "src": "ORDER", "type": "INT", "role": "dim",
+     "desc": "lab run order of the sample (raw ORDER)"},
+
+    _meas("concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million",
+          "TOC_ppm", "concentration", "parts per million",
+          molecule="elemental carbon", context=[("organic", "1")],
+          note="total organic carbon of the 0.2 um filtered sample, as reported by the lab"),
+    _meas("concentration_molecule_from_list_nitrogen_atom_parts_per_million",
+          "TN_ppm", "concentration", "parts per million", molecule="nitrogen atom",
+          note="total nitrogen of the 0.2 um filtered sample, as reported by the lab"),
+    _meas("concentration_molecule_from_list_chloride_parts_per_million",
+          "Chloride_ppm", "concentration", "parts per million", molecule="chloride"),
+    _meas("concentration_molecule_from_list_sulfate_parts_per_million",
+          "Sulfate_ppm", "concentration", "parts per million", molecule="sulfate"),
+    _meas("concentration_molecule_from_list_nitrate_parts_per_million",
+          "Nitrate_ppm", "concentration", "parts per million", molecule="nitrate",
+          note="reported as the nitrate ion (NO3-)"),
+    *_bookkeeping(),
+]
+
+TOC_KNOWN_SOURCE = {
+    "ORDER", "SampleID", "Preservation", "Storage", "Date Sampled", "Well", "Zone",
+    "TOC_ppm", "TN_ppm", "Chloride_ppm", "Sulfate_ppm", "Nitrate_ppm",
+}
+# Headers that identify a workbook sheet as this layout (anything else in the
+# folder is left to the source inventory to flag).
+TOC_REQUIRED_SOURCE = {"SampleID", "TOC_ppm", "TN_ppm"}
+
+# ======================================================================
 
 TABLES = {
     "picarro_gas": {
@@ -283,6 +350,16 @@ TABLES = {
         "known_source": REGISTRY_KNOWN_SOURCE,
         "description": "Assay sample manifest; one row per physical sample (the staged form of "
                        "CORAL sdt_sample), upserted by sdt_sample_name",
+    },
+    "toc_tn_anions": {
+        "load_mode": "upsert",
+        "upsert_key": "sdt_sample_name",
+        "sheet": None,  # every workbook/sheet in the folder with the known header
+        "columns": TOC_COLUMNS,
+        "known_source": TOC_KNOWN_SOURCE,
+        "description": "Chakraborty lab TOC/TN and ion-chromatography anion (chloride, sulfate, "
+                       "nitrate) results, ppm, one row per ANIONS sample; upserted by sdt_sample_name "
+                       "from every workbook in the TOC_TN_Anions_Chakraborty source folder",
     },
 }
 

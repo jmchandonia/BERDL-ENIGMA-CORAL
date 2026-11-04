@@ -150,6 +150,20 @@ spreadsheet-backed tables (field metadata, sample registry) are **refreshed from
 source each run** (upsert/replace by key), while the gas stream stays
 append-with-dedup (instrument data that doesn't change once exported).
 
+## 4. Lab assay results — TOC/TN/anions (Chakraborty), added 2026-11-04
+
+`TOC_TN_Anions_Chakraborty/SSO_timeseries_102626` (Google Sheet, mirrored as
+`.xlsx`): Mingfei Chen's results sheet, copied there 2026-11-04 from Katie's
+legacy My-Drive `2026_SSO_Fall_Time Series/TOC/TN/ANION_Chakraborty` folder (the
+lab was asked to update only the team-drive copy).  One sheet, 12 columns:
+`ORDER, SampleID, Preservation, Storage, Date Sampled, Well, Zone, TOC_ppm,
+TN_ppm, Chloride_ppm, Sulfate_ppm, Nitrate_ppm`; 144 rows = 18 well-zones
+(L7/L8/L9/M4/M5/M6/U1/U2/U3 × SZ1/SZ2) × timepoints 1–8 (Oct 6–20).  `SampleID`
+is the lab's `<well>-<zone>-MMDDYY`, `Date Sampled` a numeric `MMDDYY`; all ids
+consistent with their Well/Zone/Date columns and all map to existing
+`...-ANIONS` registry samples.  No blanks or zeros.  Staged as `toc_tn_anions`
+(see `examples/toc_tn_anions.columns.md`).
+
 ## Narrative / model files (not data to ingest)
 
 `SSO Model Brief — 21 October 2026.pptx`, `PFLOTRANS-AI_BRIEF_oct21_2026`

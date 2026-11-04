@@ -16,6 +16,7 @@ per-table brick structures).  `sso_schema.py` is the authoritative schema.
 | `picarro_gas` | append + dedup on `epoch_time` | `epoch_time` | `Gas_Data/*_gas_data.csv` (Picarro/Firesting) |
 | `field_metadata` | **full refresh** (shrink-guarded) | — (multiple draws per timepoint×well) | `Field Metadata` sheet |
 | `sample_registry` | **upsert** (MERGE) | `sdt_sample_name` | `Assay Metadata` sheet (manifest) |
+| `toc_tn_anions` | **upsert** (MERGE) | `sdt_sample_name` (the ANIONS sample) | every workbook in `TOC_TN_Anions_Chakraborty/` (Chakraborty TOC/TN + IC anion results, ppm) |
 
 Bookkeeping tables (rewritten each run): `ddt_brick` (COMO microtype per
 measurement column — the oterm ids live here, never in column names),
@@ -32,7 +33,7 @@ append-with-dedup.
 ```
 sso_fetch.py    rsync the campaign subfolder out of the dipa Google-Drive mirror
                 (or `rclone copy` if SSO_RCLONE_REMOTE is set) into fetch/
-sso_build.py    parse the three sources -> staged TSVs + manifest.json
+sso_build.py    parse the four sources -> staged TSVs + manifest.json
 sso_load.py     create/append/refresh/upsert into enigma.sso_staging; write
                 ddt_brick / table_metadata / ingest_runs; emit load_result.json
 combined_report.py  compose ONE email covering cm + sso (see below)
@@ -58,6 +59,17 @@ instead of being guessed at or silently dropped.  Likewise, sample IDs that are
 not CORAL-legal after normalization (or duplicates) are **held** and reported,
 never rewritten; manifest placeholder ids (`--`, blank, `NA`, …) are skipped as
 "unassigned" (future slots), not held.
+
+### Assay results: the TOC/TN/anion folder
+
+`toc_tn_anions` is the first assay-result table.  `sso_build.py` reads **every**
+workbook (and every sheet with the expected header) in the campaign folder's
+`TOC_TN_Anions_Chakraborty/` subfolder, maps each lab id (`L7-SZ1-100626`) to
+the registry's `20261006-L7-SZ1-ANIONS` sample, and re-stages all rows each run;
+the MERGE inserts new samples and updates edited ones, and a newer workbook
+wins for the same sample.  Ids that do not resolve to a registry sample are held
+and reported.  Anything in the folder that is not a workbook with that header
+is left to the source inventory, which raises it as an ACTION item.
 
 ## One combined daily email
 

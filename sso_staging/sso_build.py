@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Parse the SSO campaign sources into staged TSVs + a manifest for sso_load.py.
 
-Three sources, three load modes (see sso_schema.py):
+Four sources, three load modes (see sso_schema.py):
   * picarro_gas    - Picarro/Firesting CSV -> append + dedup on epoch_time.
                      Incremental by default: only rows newer than the last loaded
                      epoch are staged (the loader's anti-join is the safety net).
   * field_metadata - 'Field Metadata' sheet -> full refresh (replace all rows).
   * sample_registry- 'Assay Metadata' sheet -> upsert (MERGE) by sdt_sample_name.
+  * toc_tn_anions  - every workbook in TOC_TN_Anions_Chakraborty/ -> upsert by
+                     sdt_sample_name (the ANIONS registry sample).  All rows are
+                     re-staged each run; MERGE makes new rows inserts and edited
+                     rows updates, so additions the lab makes are picked up daily.
 
 Schema drift: any source column we do not recognise is reported in the manifest
 (`drift`) and NOT loaded, so a new column added upstream is surfaced for a human
@@ -39,12 +43,13 @@ GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on epoch_tim
 DOC_EXTENSIONS = {".txt", ".md", ".docx", ".doc", ".pdf", ".pptx"}  # documentation, not data
 
 
-def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path) -> dict:
+def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path,
+                      extra_known: dict[str, str] | None = None) -> dict:
     """Every file under the fetched campaign folder, classified so the daily
     report can raise ACTION for data files the pipeline does not ingest:
 
-      ingested  the gas CSV(s) + Field/Assay Metadata (with mtime/size, and
-                whether this run actually read them)
+      ingested  the gas CSV(s), Field/Assay Metadata and the TOC/TN/anion
+                workbooks (with mtime/size, and whether this run read them)
       ignored   listed in <state>/ignored_sources.json -- a human decided to skip it.
                 An entry is a bare path (ignore always) or {"path", "mtime"}
                 (ignore only while the file is unchanged, so a file that later
@@ -66,7 +71,9 @@ def inventory_sources(source_dir: Path, gas_paths: list[Path], state_dir: Path) 
     known = {p.relative_to(source_dir).as_posix(): "picarro_gas" for p in source_dir.glob(sso.GAS_GLOB)}
     known[sso.FIELD_FILE] = "field_metadata"
     known[sso.ASSAY_FILE] = "sample_registry"
-    read_now = {p.relative_to(source_dir).as_posix() for p in gas_paths} | {sso.FIELD_FILE, sso.ASSAY_FILE}
+    known.update(extra_known or {})  # e.g. the TOC/TN/anion workbooks actually parsed this run
+    read_now = ({p.relative_to(source_dir).as_posix() for p in gas_paths} | {sso.FIELD_FILE, sso.ASSAY_FILE}
+                | set(extra_known or {}))
     out = {"ingested": [], "ignored": [], "docs": [], "unknown": []}
     for p in sorted(source_dir.rglob("*")):
         if not p.is_file() or p.name.startswith((".", "~$")):
@@ -315,6 +322,129 @@ def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
 
 
 # ----------------------------------------------------------------------
+# toc_tn_anions (Chakraborty result workbooks; every file in the folder)
+# ----------------------------------------------------------------------
+
+def _open_workbook(path: Path):
+    """openpyxl workbook for an xlsx (with or without extension), else None."""
+    import io
+    import openpyxl
+
+    if path.suffix.lower() in DOC_EXTENSIONS or path.name.startswith((".", "~$")):
+        return None
+    try:
+        return openpyxl.load_workbook(io.BytesIO(path.read_bytes()), read_only=True, data_only=True)
+    except Exception:  # BadZipFile / InvalidFileException / ...: not a workbook
+        return None  # (csv, image, ...): left for the source inventory to flag
+
+
+def iter_toc_sheets(folder: Path):
+    """Yield (path, sheet_title, header, records) for every worksheet in every
+    workbook under the folder whose header has the TOC/TN result columns.
+    Files are visited oldest-modified first so a newer export wins on MERGE."""
+    if not folder.is_dir():
+        return
+    for path in sorted((p for p in folder.rglob("*") if p.is_file()), key=lambda p: (p.stat().st_mtime, p.name)):
+        wb = _open_workbook(path)
+        if wb is None:
+            continue
+        for ws in wb.worksheets:
+            it = ws.iter_rows(values_only=True)
+            first = next(it, None)
+            if first is None:
+                continue
+            header = [("" if h is None else str(h).strip()) for h in first]
+            if not schema.TOC_REQUIRED_SOURCE <= set(header):
+                continue
+            records, blank_run = [], 0
+            for raw in it:
+                if all(c is None for c in raw):
+                    blank_run += 1
+                    if blank_run >= BLANK_RUN_EOF:
+                        break
+                    continue
+                blank_run = 0
+                records.append({header[i]: raw[i] for i in range(min(len(header), len(raw))) if header[i]})
+            yield path, ws.title, [h for h in header if h], records
+        wb.close()
+
+
+def read_toc(source_dir: Path, registry: dict[str, dict]) -> tuple[list[dict], dict, list[dict], dict[str, str]]:
+    """Parse the TOC/TN/anion workbooks.  Each lab id '<well>-<zone>-MMDDYY' is
+    mapped to the registry's ANIONS sample (YYYYMMDD-WELL-ZONE-ANIONS); the
+    timepoint comes from that registry row.  Rows whose id is malformed,
+    contradicts the sheet's own Well/Zone/Date columns, is not in the sample
+    registry, or repeats within one file are held and reported.  The same id in
+    a later (newer-mtime) file supersedes the earlier one.
+
+    Returns (rows, drift, held, {relative path: table} for every file parsed)."""
+    folder = source_dir / sso.TOC_DIR
+    by_id: dict[str, dict] = {}
+    held, parsed, actual_headers = [], {}, set()
+    for path, title, header, records in iter_toc_sheets(folder):
+        rel = path.relative_to(source_dir).as_posix()
+        parsed[rel] = "toc_tn_anions"
+        actual_headers |= set(header)
+        seen_in_file: dict[str, str] = {}
+        for rec in records:
+            raw_id = cell_to_str(rec.get("SampleID"))
+            if is_placeholder_id(raw_id):
+                continue
+            parts = sso.parse_lab_sample_id(raw_id)
+            if parts is None:
+                held.append({"source_sample_id": raw_id, "normalized": None, "source_file": path.name,
+                             "reason": "lab id is not <well>-<zone>-MMDDYY"})
+                continue
+            sheet_well = cell_to_str(rec.get("Well")).upper()
+            sheet_zone = cell_to_str(rec.get("Zone")).upper()
+            sheet_date = cell_to_str(rec.get("Date Sampled")).zfill(6)
+            sheet_date = f"20{sheet_date[4:6]}{sheet_date[:2]}{sheet_date[2:4]}" if len(sheet_date) == 6 and sheet_date.isdigit() else sheet_date
+            mismatch = [k for k, a, b in (("Well", sheet_well, parts["well"]), ("Zone", sheet_zone, parts["zone"]),
+                                          ("Date Sampled", sheet_date, parts["sample_date"])) if a and a != b]
+            if mismatch:
+                held.append({"source_sample_id": raw_id, "normalized": None, "source_file": path.name,
+                             "reason": f"id disagrees with the sheet's {', '.join(mismatch)} column(s)"})
+                continue
+            norm = sso.registry_sample_name(parts["sample_date"], parts["well"], parts["zone"], "ANIONS")
+            if not sso.legal_id(norm):
+                held.append({"source_sample_id": raw_id, "normalized": norm, "source_file": path.name,
+                             "reason": "illegal character for CORAL id"})
+                continue
+            if norm in seen_in_file:
+                held.append({"source_sample_id": raw_id, "normalized": norm, "source_file": path.name,
+                             "reason": f"duplicate id within {path.name} (also from {seen_in_file[norm]!r})"})
+                continue
+            seen_in_file[norm] = raw_id
+            reg = registry.get(norm)
+            if reg is None:
+                held.append({"source_sample_id": raw_id, "normalized": norm, "source_file": path.name,
+                             "reason": "no ANIONS sample with this id in the Assay Metadata manifest"})
+                continue
+            loc = sso.spreadsheet_location(f"{parts['well']}-{parts['zone']}" if parts["zone"] else parts["well"])
+            row = {
+                "sdt_sample_name": norm,
+                "source_sample_id": raw_id,
+                "timepoint": reg.get("timepoint", ""),
+                "sample_date": parts["sample_date"],
+                "sdt_location_name": loc["sdt_location_name"],
+                "location": loc["location"],
+                "zone": loc["zone"],
+                "well": loc["well"],
+                "preservation": cell_to_str(rec.get("Preservation")),
+                "storage_condition": cell_to_str(rec.get("Storage")),
+                "analysis_order": cell_to_str(rec.get("ORDER")),
+                "provenance": f"chakraborty toc/tn/anions {path.name} [{title}]",
+                "source_file": path.name,
+            }
+            for c in schema.TOC_COLUMNS:
+                if c["role"] == "measurement":
+                    row[c["name"]] = cell_to_str(rec.get(c["src"]))
+            by_id[norm] = row  # later file wins
+    d = drift(actual_headers, schema.TOC_KNOWN_SOURCE) if parsed else {"new_columns": [], "missing_columns": []}
+    return list(by_id.values()), d, held, parsed
+
+
+# ----------------------------------------------------------------------
 
 def write_tsv(out: Path, table: str, rows) -> str:
     names = [c["name"] for c in staged_columns(table)]
@@ -396,8 +526,23 @@ def main() -> None:
     manifest["held"]["sample_registry"] = held
     log(f"sample_registry: staged {len(reg_rows)} rows, held {len(held)}, unassigned {unassigned}")
 
+    # --- TOC/TN/anion results (every workbook in the lab's folder) ---
+    log(f"toc_tn_anions: reading {sso.TOC_DIR}/")
+    registry_index = {r["sdt_sample_name"]: r for r in reg_rows}
+    toc_rows, toc_drift, toc_held, toc_files = read_toc(source_dir, registry_index)
+    tsv = write_tsv(args.out, "toc_tn_anions", toc_rows)
+    manifest["tables"]["toc_tn_anions"] = {
+        "tsv": tsv, "load_mode": "upsert", "upsert_key": "sdt_sample_name", "rows": len(toc_rows),
+        "description": schema.TABLES["toc_tn_anions"]["description"],
+        "source_files": [Path(f).name for f in toc_files],
+    }
+    manifest["drift"]["toc_tn_anions"] = toc_drift
+    manifest["held"]["toc_tn_anions"] = toc_held
+    held = held + toc_held
+    log(f"toc_tn_anions: staged {len(toc_rows)} rows from {len(toc_files)} file(s), held {len(toc_held)}")
+
     # --- source folder inventory: un-ingested data files become ACTION items ---
-    manifest["sources"] = inventory_sources(source_dir, gas_paths, Path(args.state))
+    manifest["sources"] = inventory_sources(source_dir, gas_paths, Path(args.state), toc_files)
     unknown = manifest["sources"]["unknown"]
     if unknown:
         log(f"sources: {len(unknown)} un-ingested data file(s): {[u['path'] for u in unknown]}")
