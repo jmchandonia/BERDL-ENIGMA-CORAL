@@ -3,7 +3,7 @@
 
 Four sources, three load modes (see sso_schema.py):
   * picarro_gas    - Picarro/Firesting CSV -> append + dedup on (epoch_time,
-                     instrument).  Two analyzers run concurrently; each row is
+                     picarro_serial).  Two analyzers run concurrently; each row is
                      attributed to one (well-ports by the README port assignment
                      in sso_schema, reference channels by the column signature)
                      and the two rules are cross-checked: a disagreement means a
@@ -45,7 +45,7 @@ import sso_common as sso
 import sso_schema as schema
 
 EASTERN = ZoneInfo("America/New_York")
-GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on (epoch_time, instrument)
+GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on (epoch_time, picarro_serial)
 DOC_EXTENSIONS = {".txt", ".md", ".docx", ".doc", ".pdf", ".pptx"}  # documentation, not data
 
 
@@ -176,9 +176,10 @@ def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
     signature  : NH3_dry reported -> A, O2_% reported -> B (per row, from the CSV)
     assignment : well-port -> analyzer from schema.GAS_WELL_INSTRUMENT (the README table)
     Well rows take the assignment, reference rows the signature.  Returns
-    (instrument Series, keep mask, checks dict).  Rows are HELD (not staged) when
-    the assignment and the signature disagree (a port was moved: edit the
-    assignment, then re-stage with --full-gas) or when neither rule applies.
+    (picarro_serial Series, keep mask, checks dict).  Rows are HELD (not staged)
+    when the assignment and the signature disagree (a port was moved: edit the
+    assignment, then re-stage with --full-gas), when neither rule applies, or
+    when the row names neither a well-port nor a reference channel.
     """
     import numpy as np
 
@@ -193,12 +194,15 @@ def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
         sig = sig.mask(mask & sig.isna(), serial)
     sig = sig.mask(ambiguous, None)
 
-    is_well = frame["channel_type"] == "well"
-    assigned = frame["location"].map(schema.GAS_WELL_INSTRUMENT)
-    instrument = pd.Series(np.where(is_well & assigned.notna(), assigned, sig), index=raw.index, dtype=object)
+    well_port, ref = frame["well_port"], frame["reference_channel"]
+    is_well = well_port.notna()
+    channel = well_port.where(is_well, ref)  # the one name a row has, for reporting
+    assigned = well_port.map(schema.GAS_WELL_INSTRUMENT)
+    serial = pd.Series(np.where(is_well & assigned.notna(), assigned, sig), index=raw.index, dtype=object)
 
     conflict = is_well & assigned.notna() & sig.notna() & (assigned != sig)
-    unattributed = instrument.isna()
+    no_channel = channel.isna()
+    unattributed = serial.isna() | no_channel
     unknown_port = is_well & assigned.isna()
     keep = ~(conflict | unattributed)
 
@@ -209,21 +213,21 @@ def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
         return [{**dict(zip(cols, k if isinstance(k, tuple) else (k,))), "rows": int(n)} for k, n in g.items()]
 
     on_state = pd.to_numeric(frame["multiplexer_on_state"], errors="coerce")
-    expected_loc = pd.Series([
-        schema.GAS_PORT_LOCATION.get((i, int(o))) if (i is not None and pd.notna(o)) else None
-        for i, o in zip(instrument, on_state)], index=raw.index, dtype=object)
-    port_map_mismatch = keep & expected_loc.notna() & (expected_loc != frame["location"])
+    expected = pd.Series([
+        schema.GAS_PORT_CHANNEL.get((i, int(o))) if (i is not None and pd.notna(o)) else None
+        for i, o in zip(serial, on_state)], index=raw.index, dtype=object)
+    port_map_mismatch = keep & expected.notna() & (expected != channel)
 
     checks = {
-        "conflicts": tally(conflict, {"location": frame["location"], "assigned": assigned, "signature": sig}),
-        "unattributed": tally(unattributed & ~conflict, {"location": frame["location"], "channel_type": frame["channel_type"]}),
-        "unknown_ports": tally(unknown_port & keep, {"location": frame["location"], "instrument": instrument}),
-        "port_map_mismatch": tally(port_map_mismatch, {"instrument": instrument, "multiplexer_on_state": on_state,
-                                                       "location": frame["location"], "assigned_location": expected_loc}),
+        "conflicts": tally(conflict, {"well_port": well_port, "assigned": assigned, "signature": sig}),
+        "unattributed": tally(unattributed & ~conflict, {"channel": channel}),
+        "unknown_ports": tally(unknown_port & keep, {"well_port": well_port, "picarro_serial": serial}),
+        "port_map_mismatch": tally(port_map_mismatch, {"picarro_serial": serial, "multiplexer_on_state": on_state,
+                                                       "channel": channel, "assigned_channel": expected}),
         "rows_held": int((~keep).sum()),
-        "rows_by_instrument": {k: int(v) for k, v in instrument[keep].value_counts().items()},
+        "rows_by_serial": {k: int(v) for k, v in serial[keep].value_counts().items()},
     }
-    return instrument, keep, checks
+    return serial, keep, checks
 
 
 def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame, dict, float | None, dict]:
@@ -237,7 +241,7 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     d = drift(actual, schema.GAS_KNOWN_SOURCE)
     names = [c["name"] for c in staged_columns("picarro_gas")]
     empty_checks = {"conflicts": [], "unattributed": [], "unknown_ports": [], "port_map_mismatch": [],
-                    "rows_held": 0, "rows_by_instrument": {}}
+                    "rows_held": 0, "rows_by_serial": {}}
 
     epoch = pd.to_numeric(raw.get("EPOCH_TIME", pd.Series("", index=raw.index)), errors="coerce")
     mask = epoch.notna()
@@ -259,11 +263,12 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     # Round to ms so the ISO string matches the source TIME (avoids fp ns artifacts).
     dt = pd.to_datetime((epoch * 1000).round().astype("int64"), unit="ms", utc=True).dt.tz_convert(EASTERN)
     out["time_series_datetime"] = [t.isoformat() for t in dt]
+    channel = pd.Series(np.where(port != "", port, (well + "-" + depth).str.strip("-")), index=raw.index, dtype=object)
+    channel = channel.mask(channel == "", None)
     out["sdt_location_name"] = np.where(is_ref, None, np.where(is_efpw, well, "SSO-" + well))
-    out["location"] = np.where(port != "", port, (well + "-" + depth).str.strip("-"))
-    out["zone"] = np.where(is_ref, None, depth)
-    out["well"] = np.where(is_ref, None, well)
-    out["channel_type"] = np.where(is_ref, "reference", "well")
+    out["well_port"] = channel.where(~is_ref, None)
+    out["reference_channel"] = channel.where(is_ref, None)
+    out["zone"] = np.where(is_ref | (depth == ""), None, depth)
     for c in schema.GAS_COLUMNS:
         src = c.get("src")
         if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "Port", "Depth", "Well"):
@@ -271,8 +276,8 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     out["provenance"] = f"picarro csv {paths[-1].name}"
     out["source_file"] = paths[-1].name
 
-    instrument, keep, checks = gas_instrument_checks(out, raw)
-    out["instrument"] = instrument
+    serial, keep, checks = gas_instrument_checks(out, raw)
+    out["picarro_serial"] = serial
     out = out[keep]
 
     # The state advances past held rows too: once the assignment is fixed they
@@ -329,9 +334,8 @@ def read_field(path: Path) -> tuple[list[dict], dict]:
             "timepoint": cell_to_str(rec.get("Timepoint")),
             "sample_date": date,
             "sdt_location_name": loc["sdt_location_name"],
-            "location": loc["location"],
+            "well_port": loc["well_port"],
             "zone": loc["zone"],
-            "well": loc["well"],
             "pump_time_on": resolve_ampm(rec.get("Pump Time On")),
             "pump_time_off": resolve_ampm(rec.get("Pump Time Off")),
             "rate_instrument_pump_liter_per_minute": cell_to_str(rec.get("Pump Rate (L/min)")),
@@ -374,7 +378,7 @@ def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
             "timepoint": cell_to_str(rec.get("Timepoint")),
             "sample_date": cell_to_str(rec.get("Date")),
             "sdt_location_name": loc["sdt_location_name"],
-            "location": loc["location"],
+            "well_port": loc["well_port"],
             "zone": loc["zone"],
             "assay": assay,
             "assay_token": assay.upper(),
@@ -498,9 +502,8 @@ def read_toc(source_dir: Path, registry: dict[str, dict]) -> tuple[list[dict], d
                 "timepoint": reg.get("timepoint", ""),
                 "sample_date": parts["sample_date"],
                 "sdt_location_name": loc["sdt_location_name"],
-                "location": loc["location"],
+                "well_port": loc["well_port"],
                 "zone": loc["zone"],
-                "well": loc["well"],
                 "preservation": cell_to_str(rec.get("Preservation")),
                 "storage_condition": cell_to_str(rec.get("Storage")),
                 "analysis_order": cell_to_str(rec.get("ORDER")),
@@ -570,7 +573,7 @@ def main() -> None:
     manifest["gas_checks"] = gas_checks
     if max_epoch is not None:
         (args.out / "gas_state_pending.json").write_text(json.dumps({"last_epoch": max_epoch}) + "\n")
-    log(f"gas: staged {len(gas_rows)} rows {gas_checks['rows_by_instrument']}, held {gas_checks['rows_held']}")
+    log(f"gas: staged {len(gas_rows)} rows {gas_checks['rows_by_serial']}, held {gas_checks['rows_held']}")
     for kind in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"):
         if gas_checks[kind]:
             log(f"gas: {kind}: {gas_checks[kind]}")

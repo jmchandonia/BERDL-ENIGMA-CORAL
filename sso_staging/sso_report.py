@@ -150,7 +150,7 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
     gc = data.get("gas_checks") or {}
     if gc.get("conflicts"):
         held_rows = sum(c["rows"] for c in gc["conflicts"])
-        detail = "; ".join(f"{c['location']}: assigned {_label(c['assigned'])}, rows look like {_label(c['signature'])} "
+        detail = "; ".join(f"{c['well_port']}: assigned {_label(c['assigned'])}, rows look like {_label(c['signature'])} "
                            f"({c['rows']:,} rows)" for c in gc["conflicts"][:6])
         items.append(("GAS PORT MOVED?", f"{held_rows:,} gas rows held: analyzer attribution conflict",
                       f"picarro_gas: {detail} -- the README port assignment in sso_schema.py disagrees with the rows' "
@@ -158,20 +158,21 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
                       "update GAS_PORT_ASSIGNMENT (new valid_from), then re-stage with sso_build.py --full-gas."))
     if gc.get("unattributed"):
         n = sum(c["rows"] for c in gc["unattributed"])
-        detail = "; ".join(f"{c['location'] or '(blank)'} ({c['channel_type']}, {c['rows']:,} rows)" for c in gc["unattributed"][:6])
+        detail = "; ".join(f"{c['channel'] or '(no port or channel name)'} ({c['rows']:,} rows)" for c in gc["unattributed"][:6])
         items.append(("GAS ROWS UNATTRIBUTED", f"{n:,} gas rows held: no analyzer attribution",
                       f"picarro_gas: {detail} -- neither the port assignment nor the column signature (NH3_dry / O2_%) "
-                      "identifies the analyzer; HELD (not loaded).  Check the export with Kris; re-stage with --full-gas."))
+                      "identifies the analyzer, or the row names no well-port / reference channel; HELD (not loaded).  "
+                      "Check the export with Kris; re-stage with --full-gas."))
     if gc.get("unknown_ports"):
-        detail = "; ".join(f"{c['location']} -> {_label(c['instrument'])} ({c['rows']:,} rows)" for c in gc["unknown_ports"][:6])
-        items.append(("GAS NEW PORT", f"gas port(s) not in the assignment table: "
-                      f"{', '.join(c['location'] for c in gc['unknown_ports'][:4])}",
-                      f"picarro_gas: {detail} -- loaded with the analyzer from the column signature, but the port is not in "
-                      "GAS_PORT_ASSIGNMENT (sso_schema.py / instrument_port).  Add it after confirming with Kris."))
+        detail = "; ".join(f"{c['well_port']} -> {_label(c['picarro_serial'])} ({c['rows']:,} rows)" for c in gc["unknown_ports"][:6])
+        items.append(("GAS NEW PORT", f"gas well-port(s) not in the assignment table: "
+                      f"{', '.join(c['well_port'] for c in gc['unknown_ports'][:4])}",
+                      f"picarro_gas: {detail} -- loaded with the analyzer from the column signature, but the well-port is not "
+                      "in GAS_PORT_ASSIGNMENT (sso_schema.py).  Add it after confirming with Kris."))
     if gc.get("port_map_mismatch"):
-        detail = "; ".join(f"{_label(c['instrument'])} port {c['multiplexer_on_state']}: rows say {c['location']}, "
-                           f"README says {c['assigned_location']} ({c['rows']:,} rows)" for c in gc["port_map_mismatch"][:6])
-        items.append(("GAS PORT MAP", "multiplexer port -> location differs from the README table",
+        detail = "; ".join(f"{_label(c['picarro_serial'])} port {c['multiplexer_on_state']}: rows say {c['channel']}, "
+                           f"README says {c['assigned_channel']} ({c['rows']:,} rows)" for c in gc["port_map_mismatch"][:6])
+        items.append(("GAS PORT MAP", "multiplexer port -> well-port differs from the README table",
                       f"picarro_gas: {detail} -- rows are loaded as exported (Port column wins); update "
                       "GAS_PORT_ASSIGNMENT or ask Kris which is right."))
     held = _held_total(data)
@@ -301,7 +302,7 @@ def body_section(data: dict, prev: dict | None = None) -> str:
             change += f"   [SKIPPED: {info['skipped']}]"
         lines.append(f"  {name:<16} {rows}   {change}  ({HOW.get(name, '')})")
         if name == "picarro_gas" and data.get("instruments"):
-            by = (data.get("gas_checks") or {}).get("rows_by_instrument") or {}
+            by = (data.get("gas_checks") or {}).get("rows_by_serial") or {}
             for serial, v in sorted(data["instruments"].items(), key=lambda kv: (kv[1].get("label") or "~", kv[0])):
                 n = v.get("row_count")
                 staged = f", {by[serial]:,} staged this run (dedup decides)" if by.get(serial) else ""

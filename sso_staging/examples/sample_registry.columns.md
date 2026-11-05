@@ -9,7 +9,7 @@ here by `sdt_sample_name`.
 
 Unlike the other two tables it has **no COMO measurement columns** — it is a
 registry of attributes (like a CORAL static-object import), so there are no
-`ddt_brick` measurement rows. It carries FK columns in the coral/cm style so it
+`column_typedef` measurement rows (and no typedef rows at all: it becomes `sdt_sample`, a static type, not a brick). It carries FK columns in the coral/cm style so it
 joins cleanly to `picarro_gas`, `field_metadata`, and `enigma.coral`.
 
 Upsert key: `sdt_sample_name`.
@@ -23,7 +23,7 @@ Upsert key: `sdt_sample_name`.
 | `Timepoint` | `timepoint` | INT | campaign timepoint 1–36 |
 | `Date` | `sample_date` | STRING | `YYYYMMDD` |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
-| `Well` | `location` | STRING | port string `U1-SZ1` |
+| `Well` | `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |
 | `Assay` | `assay` | STRING | raw manifest assay label (e.g. `Anions`, `NitrateIso`) |
 | `Assay` (uppercased) | `assay_token` | STRING | token used in the ID (`ANIONS`, `NITRATEISO`) |

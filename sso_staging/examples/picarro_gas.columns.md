@@ -3,7 +3,7 @@
 Revised per user guidance (2026-10-29): **oterm ids and microtype context do
 NOT go in variable names**, and are NOT overloaded into column comments.
 Instead, data tables use short, readable column names, and a CORAL-style
-**`ddt_brick` metadata table** (analogue of `enigma.coral.ddt_ndarray`) carries
+**`column_typedef` metadata table** (a mirror of `enigma.coral.sys_ddt_typedef`) carries
 the structured microtype per measurement column: primary measurement oterm,
 molecule (CHEBI), method, context (incl. wet/dry basis), unit + unit oterm.
 This is also the lossless blueprint for the end-of-campaign CORAL conversion
@@ -12,13 +12,13 @@ This is also the lossless blueprint for the end-of-campaign CORAL conversion
 Data-table **column comments** stay lightweight, like continuous_monitoring:
 `{description, unit}` (+ `type`/`references` for FKs). Nothing more.
 
-## Data table: `picarro_gas` (append + dedup on `epoch_time` + `instrument`)
+## Data table: `picarro_gas` (append + dedup on `epoch_time` + `picarro_serial`)
 
 **Two analyzers (revised 2026-11-04).** Kris's updated `Gas_Data/README.txt`
 documents two Picarro G2508s running concurrently — A = `ORNL-EA-031620`,
 B = `ORNL-EA-007299` — each with its own Eosense 12-port multiplexer and
-Firesting probe. The analyzer serial is **data** (`instrument` column, part of
-the dedup key), not microtype context: `ddt_brick` keeps the free-text token
+Firesting probe. The analyzer serial is **data** (`picarro_serial` column, part
+of the dedup key), not microtype context: `column_typedef` keeps the free-text token
 `instrument=picarro`, so the derived column names below are unchanged, and at
 conversion each analyzer becomes its own brick with the serial as brick-level
 instrument context. Which analyzer reports which column:
@@ -42,10 +42,10 @@ against the live `enigma.coral` TCD gas columns before load.
 **Minimal-context rule (user, 2026-10-29):** a context token goes in the name
 ONLY where two columns would otherwise collide in the lakehouse. So `condition`
 is kept (wet/dry pairs collide on molecule+unit), `method` is dropped from every
-name (too long; lives in `ddt_brick`), and `instrument` (ME:0000012, free-text
+name (too long; lives in `column_typedef`), and `instrument` (ME:0000012, free-text
 `picarro`/`firesting`) is added ONLY to the dioxygen trio — the one place two
 instruments measure the same molecule+unit. The single-instrument species carry
-no instrument token. All oterm ids live in `ddt_brick`; the free-text `comment`
+no instrument token. All oterm ids live in `column_typedef`; the free-text `comment`
 property is never used in a name.
 
 | CSV col | Column (CORAL-derived, minimal) | unit (comment) |
@@ -74,14 +74,13 @@ matching how coral/cm populate `description`.
 | CSV col | Column | type | comment |
 |---|---|---|---|
 | `TIME` | `time_series_datetime` | STRING | datetime (ISO 8601 with UTC offset, America/New_York) |
-| `EPOCH_TIME` | `epoch_time` | DOUBLE | unix epoch seconds; dedup key together with `instrument` (the two analyzers can share an epoch) |
-| `Port` (assignment) / `NH3_dry`, `O2_%` (signature) | `instrument` | STRING | analyzer serial `ORNL-EA-031620` (A) or `ORNL-EA-007299` (B): well-ports per the README port assignment (`instrument_port`), reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B) |
-| `Well`+`Depth` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location.sdt_location_name; `SSO-<well>`; NULL for QC |
-| `Port` | `location` | STRING | port string `U2-SZ1` |
-| `Depth` | `zone` | STRING | `SZ1`/`SZ2` |
-| `Well` | `well` | STRING | `U2` |
-| (derived) | `channel_type` | STRING | `well` or `reference` (Drierite/Std/N2) |
-| `on_state` | `multiplexer_on_state` | INT | Eosense multiplexer live-port state, 1-12, per analyzer (`instrument_port` maps it) |
+| `EPOCH_TIME` | `epoch_time` | DOUBLE | unix epoch seconds; dedup key together with `picarro_serial` (the two analyzers can share an epoch) |
+| `Port` (assignment) / `NH3_dry`, `O2_%` (signature) | `picarro_serial` | STRING | analyzer serial `ORNL-EA-031620` (A) or `ORNL-EA-007299` (B): well-ports per the README port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`), reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B) |
+| `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location.sdt_location_name; `SSO-<well>`; NULL on reference rows |
+| `Port` | `well_port` | STRING | field well-port label `U2-SZ1`; NULL on reference rows. Named `well_port`, not `location`: in CORAL "location" means `sdt_location` |
+| `Port` | `reference_channel` | STRING | `Std` (span standard, port 10) / `N2` (UHP N2 blank, 11) / `Drierite` (ambient air dried through a Drierite column, 12 "Air"); NULL on well rows |
+| `Depth` | `zone` | STRING | `SZ1`/`SZ2`; NULL on reference rows |
+| `on_state` | `multiplexer_on_state` | INT | Eosense multiplexer live-port state, 1-12, per analyzer (`GAS_PORT_ASSIGNMENT` maps it) |
 | `set` | `cycle_set` | INT | Picarro cycle counter (counts per analyzer) |
 | `timedelta` | `port_seconds` | DOUBLE | seconds this port monitored (unit=second) |
 | `DateTime` | `firesting_datetime` | STRING | Firesting join time (traceability) |
@@ -90,33 +89,39 @@ matching how coral/cm populate `description`.
 | — | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
 | — | `ingested_at` | TIMESTAMP | append time (UTC) |
 
-## Metadata table: `instrument_port` (analyzer × multiplexer port; rewritten each run)
+## Port assignment (code, not a table): `sso_schema.GAS_PORT_ASSIGNMENT`
 
-The README's dated port tables, kept as code (`sso_schema.GAS_PORT_ASSIGNMENT`)
-and published so the attribution used for `instrument` is in the lakehouse.
-24 rows (2 analyzers × 12 ports), `valid_from = 2026-10-04T20:00:00-04:00`.
+The README's dated port tables ("as of 10/04/2026 20:00"), kept in the schema
+module (versioned in git) and used to attribute `picarro_serial`. Derivable from
+the data too: `SELECT DISTINCT picarro_serial, multiplexer_on_state, well_port,
+sdt_location_name FROM picarro_gas`.
 
-| Column | type | comment |
+| port | Picarro A `ORNL-EA-031620` | Picarro B `ORNL-EA-007299` |
 |---|---|---|
-| `instrument` | STRING | analyzer serial |
-| `instrument_label` | STRING | `A` / `B` as in the README |
-| `multiplexer_on_state` | INT | port 1-12 (= `picarro_gas.multiplexer_on_state`) |
-| `location` | STRING | `U2-SZ1` …, or the reference channel as named in `picarro_gas.location` (`Std` / `N2` / `Drierite`) |
-| `readme_label` | STRING | the README's text (`HighSTD` / `UHPN2` / `Air` for ports 10-12) |
-| `channel_type` | STRING | `well` or `reference` |
-| `valid_from` | STRING | start of this assignment |
-| `source_file` | STRING | `Gas_Data/README.txt (updated 2026-10-28)` |
+| 1–9 | U2-SZ1, U2-SZ2, M5-SZ1, M5-SZ2, M6-SZ1, M6-SZ2, L9-SZ1, L9-SZ2, L8-SZ2 | U1-SZ1, U1-SZ2, M4-SZ1, M4-SZ2, L7-SZ1, L7-SZ2, U3-SZ1, U3-SZ2, L8-SZ1 |
+| 10 / 11 / 12 | Std (HighSTD) / N2 (UHPN2) / Drierite (Air) | same |
 
 Every build cross-checks the signature against this table. A disagreement on a
 well-port (a moved port) HOLDS those rows and raises GAS PORT MOVED? in the
 email; a port not in the table raises GAS NEW PORT; an `on_state` whose README
-location differs from the row's `Port` raises GAS PORT MAP. Nothing is guessed.
+channel differs from the row's `Port` raises GAS PORT MAP. Nothing is guessed.
 
-## Metadata table: `ddt_brick` (one row per measurement column; mirrors ddt_ndarray)
+## Metadata table: `column_typedef` (mirrors `enigma.coral.sys_ddt_typedef`)
 
-Carries the structured CORAL microtype so the oterm ids live here, not in names.
-`context_metadata` is a JSON list of `[property, value]` pairs in ddt_ndarray's
-style; this is where the **wet/dry basis** lives (not in the column name).
+One row per brick-bound column of `picarro_gas`, `field_metadata` and
+`toc_tn_anions` (not `sample_registry`, which becomes `sdt_sample`, a static
+type). Same 15 columns as `sys_ddt_typedef` (`table_name` in place of
+`ddt_ndarray_id`; `berdl_column_name`, `berdl_column_data_type` = `variable` /
+`dimension_variable`, `scalar_type`, `foreign_key`, `comment` = microtype label,
+`unit_sys_oterm_id/name`, `dimension_number`, `dimension_oterm_id/name`,
+`variable_number`, `variable_oterm_id/name`, `original_csv_string` in CORAL's
+dump format) plus `molecule_sys_oterm_id/name`, `context_metadata` (JSON
+`[property, value]` pairs — where the **wet/dry basis** lives, not in the column
+name) and `note`. Dimension variables: `time_series_datetime` (time series /
+datetime, as Brick0000019), `sdt_location_name` (environmental sample location
+/ Environmental Sample Location ID, object_ref FK), and the instrument
+bookkeeping columns with NULL terms and a note saying what they become at
+conversion. Dimension/variable numbers are provisional. 51 rows today.
 
 All context values below are FREE-TEXT on string-typed properties (method
 ME:0000007, condition ME:0000006 — both `data_type=string`), so **nothing here
@@ -124,7 +129,7 @@ is minted**. Wet/dry basis = `condition=wet` / `condition=dry` (user, 2026-10-29
 CHEBI ids are CORAL's own (verified in schema dumps); molecule label follows
 CORAL (`dinitrogen oxide`, not nitrous oxide).
 
-Full `ddt_brick` rows — one per measurement column (scalar_type = float for all).
+Measurement (`variable`) rows — one per measurement column (scalar_type = float for all).
 Keyed by CSV source here for readability; the stored `column` value is the
 CORAL-derived name from the measurement table above.
 
@@ -144,11 +149,10 @@ CORAL-derived name from the measurement table above.
 | O2p_% | concentration ME:0000129 | dioxygen CHEBI:15379 | firesting | optical oxygen sensor | — | percent | UO:0000187 | note: Firesting FSO2-4 meter, OXROB3 probe, one per analyzer |
 | TrailerTemp_C | temperature ME:0000123 | — | firesting | — | — | degree Celsius | UO:0000027 |
 
-Proposed `ddt_brick` schema (STRING unless noted), mirroring `ddt_ndarray`:
-`table_name, column_name, description, value_type_sys_oterm_id,
-value_type_sys_oterm_name, molecule_sys_oterm_id, molecule_sys_oterm_name,
-method_sys_oterm_id, method_sys_oterm_name, context_metadata (JSON),
-unit_sys_oterm_id, unit_sys_oterm_name, scalar_type, withdrawn_date`.
+(Superseded 2026-11-05: the earlier `ddt_brick` table, which mirrored
+`ddt_ndarray` and carried a per-column `withdrawn_date`, was replaced by
+`column_typedef` above. `withdrawn_date` is a brick-level field in CORAL and is
+not kept per column.)
 
 (CHEBI ids above are the standard ones — nitrous oxide CHEBI:17045, dioxygen
 CHEBI:15379 — to be re-verified against the live CORAL `sys_oterm`/molecule set

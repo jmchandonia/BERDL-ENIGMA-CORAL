@@ -21,9 +21,19 @@ Design rules (locked 2026-10-29/30; see PLAN.md / NAMING.md):
     the context keeps the free-text token `instrument=picarro`, so the derived
     column names are unchanged, and at CORAL conversion each analyzer becomes
     its own brick with the serial as brick-level instrument context.
+  * `location` means sdt_location (SSO-U2) in CORAL and continuous_monitoring,
+    so the field team's well-port string (U2-SZ1) is `well_port`, never
+    `location`; the CORAL key is always `sdt_location_name`.
+  * `column_typedef` mirrors enigma.coral.sys_ddt_typedef (one row per
+    brick-bound column, variables and dimension variables) so conversion is a
+    copy with the brick id filled in.  TYPEDEF below assigns every dimension
+    column of a brick-bound table to a dimension and (where one exists) a COMO
+    term; a NULL term is the conversion to-do list, not an omission.
 """
 
 from __future__ import annotations
+
+import json
 
 # --- COMO / ontology ids (verified against live enigma.coral + CORAL ontologies 2026-10-30) ---
 
@@ -66,6 +76,26 @@ UNIT_OTERM = {  # unit label -> sys_oterm id
     # is_a UO:0000270 "volumetric flow rate unit" (not stock UO; UO only has
     # microliters per minute).  See coral_import/ontology_update_20261030_*.
     "liter per minute": "ME:0000517",
+}
+
+# context property terms, for column_typedef.original_csv_string (CORAL dump format)
+PROPERTY_OTERM = {
+    "instrument": "ME:0000012", "method": "ME:0000007", "condition": "ME:0000006", "organic": "ME:0000346",
+}
+MOLECULE_FROM_LIST = ("molecule from list", "ME:0000381")
+
+# dimension / dimension-variable terms used by column_typedef (the same ones the
+# Hazen time-series bricks and the 2024 Chakraborty SSO bricks carry)
+DIM_OTERM = {
+    "time series": "ME:0000004",
+    "environmental sample location": "ME:0000099",
+    "environmental sample": "ME:0000100",
+}
+VAR_OTERM = {
+    "datetime": "ME:0000180",
+    "Environmental Sample Location ID": "ME:0000228",
+    "environmental sample ID": "ME:0000102",
+    "date": "ME:0000009",
 }
 
 CRDS = [("method", "cavity ring-down spectroscopy")]  # Picarro context fragment
@@ -140,10 +170,12 @@ GAS_INSTRUMENTS = {
 
 # Multiplexer port assignments from Gas_Data/README.txt ("as of 10/04/2026 20:00").
 # Reference ports carry the README's label and the name the CSV's Port column
-# uses for the same channel (10 HighSTD = Std, 11 UHPN2 = N2, 12 Air = Drierite).
-# A port move or a new port is an ACTION in the daily email (sso_build
-# cross-checks every row's signature against this table); edit here, then
-# re-stage with sso_build.py --full-gas.
+# uses for the same channel (10 HighSTD = Std, 11 UHPN2 = N2, 12 Air = ambient
+# air dried through a Drierite column = Drierite).  This is the attribution
+# table for picarro_gas.picarro_serial; it lives here (versioned) and in the
+# docs, not in the lakehouse.  A port move or a new port is an ACTION in the
+# daily email (sso_build cross-checks every row's signature against it); edit
+# here, then re-stage with sso_build.py --full-gas.
 GAS_PORT_VALID_FROM = "2026-10-04T20:00:00-04:00"
 GAS_PORT_SOURCE = "Gas_Data/README.txt (updated 2026-10-28)"
 _REF_PORTS = [(10, "HighSTD", "Std"), (11, "UHPN2", "N2"), (12, "Air", "Drierite")]
@@ -152,29 +184,19 @@ _WELL_PORTS = {
     "ORNL-EA-007299": ["U1-SZ1", "U1-SZ2", "M4-SZ1", "M4-SZ2", "L7-SZ1", "L7-SZ2", "U3-SZ1", "U3-SZ2", "L8-SZ1"],
 }
 GAS_PORT_ASSIGNMENT = [
-    {"instrument": serial, "instrument_label": GAS_INSTRUMENTS[serial]["label"], "multiplexer_on_state": on_state,
-     "location": location, "readme_label": readme_label, "channel_type": channel_type,
+    {"picarro_serial": serial, "picarro_label": GAS_INSTRUMENTS[serial]["label"], "multiplexer_on_state": on_state,
+     "well_port": well_port, "reference_channel": reference_channel, "readme_label": readme_label,
      "valid_from": GAS_PORT_VALID_FROM, "source_file": GAS_PORT_SOURCE}
     for serial in GAS_INSTRUMENTS
-    for on_state, readme_label, location, channel_type in (
-        [(i + 1, loc, loc, "well") for i, loc in enumerate(_WELL_PORTS[serial])]
-        + [(n, rl, loc, "reference") for n, rl, loc in _REF_PORTS])
+    for on_state, readme_label, well_port, reference_channel in (
+        [(i + 1, wp, wp, None) for i, wp in enumerate(_WELL_PORTS[serial])]
+        + [(n, rl, None, ch) for n, rl, ch in _REF_PORTS])
 ]
 # well-port -> analyzer serial (reference channels exist on both, so they are not here)
-GAS_WELL_INSTRUMENT = {a["location"]: a["instrument"] for a in GAS_PORT_ASSIGNMENT if a["channel_type"] == "well"}
-# (serial, multiplexer port) -> location, for the on_state cross-check
-GAS_PORT_LOCATION = {(a["instrument"], a["multiplexer_on_state"]): a["location"] for a in GAS_PORT_ASSIGNMENT}
-
-INSTRUMENT_PORT_COLUMNS = {  # the instrument_port bookkeeping table (rewritten each run from the above)
-    "instrument": ("STRING", "Picarro G2508 analyzer serial"),
-    "instrument_label": ("STRING", "campaign shorthand for the analyzer (A / B) as used in Gas_Data/README.txt"),
-    "multiplexer_on_state": ("INT", "Eosense multiplexer port 1-12 on this analyzer (picarro_gas.multiplexer_on_state)"),
-    "location": ("STRING", "well-port (U2-SZ1) or reference channel as named in picarro_gas.location (Std / N2 / Drierite)"),
-    "readme_label": ("STRING", "port description as written in Gas_Data/README.txt (HighSTD / UHPN2 / Air for the reference ports)"),
-    "channel_type": ("STRING", "well or reference"),
-    "valid_from": ("STRING", "start of this assignment (ISO 8601, America/New_York)"),
-    "source_file": ("STRING", "where the assignment was published"),
-}
+GAS_WELL_INSTRUMENT = {a["well_port"]: a["picarro_serial"] for a in GAS_PORT_ASSIGNMENT if a["well_port"]}
+# (serial, multiplexer port) -> well-port or reference channel, for the on_state cross-check
+GAS_PORT_CHANNEL = {(a["picarro_serial"], a["multiplexer_on_state"]): a["well_port"] or a["reference_channel"]
+                    for a in GAS_PORT_ASSIGNMENT}
 
 GAS_COLUMNS = [
     {"name": "time_series_datetime", "src": "TIME", "type": "STRING", "role": "dim",
@@ -182,10 +204,11 @@ GAS_COLUMNS = [
     {"name": "epoch_time", "src": "EPOCH_TIME", "type": "DOUBLE", "role": "key",
      "desc": "unix epoch seconds; dedup key together with instrument (the two analyzers run "
              "concurrently and can report the same epoch)"},
-    {"name": "instrument", "src": "Port (assignment) / NH3_dry, O2_% (signature)", "type": "STRING", "role": "key",
+    {"name": "picarro_serial", "src": "Port (assignment) / NH3_dry, O2_% (signature)", "type": "STRING", "role": "key",
      "desc": "Picarro G2508 analyzer serial that produced the row: ORNL-EA-031620 (Picarro A) or "
-             "ORNL-EA-007299 (Picarro B).  Well-ports per the dated port assignment (instrument_port); "
-             "reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B)"},
+             "ORNL-EA-007299 (Picarro B).  Well-ports per the dated port assignment in sso_schema.py "
+             "(Gas_Data/README.txt); reference channels per the row's column signature "
+             "(NH3_dry reported = A, O2_% reported = B).  Part of the dedup key"},
 
     _meas("concentration_molecule_from_list_dinitrogen_oxide_condition_wet_parts_per_million_by_volume",
           "N2O_ppm", "concentration", "parts per million by volume",
@@ -232,15 +255,15 @@ GAS_COLUMNS = [
           context=[("instrument", "firesting")]),
 
     _fk_location(),
-    {"name": "location", "src": "Port", "type": "STRING", "role": "dim",
-     "desc": "well-port string, e.g. U2-SZ1 (raw Port); QC channel name for reference channels"},
-    {"name": "zone", "src": "Depth", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2 (raw Depth)"},
-    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. U2 (raw Well)"},
-    {"name": "channel_type", "src": None, "type": "STRING", "role": "dim",
-     "desc": "well (a sampled well-port) or reference (Drierite/Std/N2 QC channel)"},
+    {"name": "well_port", "src": "Port", "type": "STRING", "role": "dim",
+     "desc": "sampled well-port as the field team writes it, e.g. U2-SZ1 (raw Port); NULL on reference-channel rows"},
+    {"name": "reference_channel", "src": "Port", "type": "STRING", "role": "dim",
+     "desc": "QC channel on reference rows: Std (span standard, multiplexer port 10), N2 (UHP nitrogen blank, 11), "
+             "Drierite (ambient air dried through a Drierite column, 12); NULL on well-port rows"},
+    {"name": "zone", "src": "Depth", "type": "STRING", "role": "dim", "desc": "sampling zone of the well-port, SZ1 or SZ2 (raw Depth)"},
     {"name": "multiplexer_on_state", "src": "on_state", "type": "INT", "role": "dim",
      "desc": "Eosense multiplexer live-port state, 1-12; each analyzer has its own multiplexer "
-             "(see instrument_port for the port -> location table)"},
+             "(port -> well-port table in sso_schema.py, from Gas_Data/README.txt)"},
     {"name": "cycle_set", "src": "set", "type": "INT", "role": "dim", "desc": "Picarro cycle counter (raw set); counts separately on each analyzer"},
     {"name": "port_seconds", "src": "timedelta", "type": "DOUBLE", "role": "dim",
      "desc": "seconds this port had been monitored (raw timedelta)", "unit": "second"},
@@ -268,10 +291,9 @@ FIELD_COLUMNS = [
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
     {"name": "sample_date", "src": "Date (YYYYMMDD)", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
     _fk_location(),
-    {"name": "location", "src": "Well", "type": "STRING", "role": "dim",
-     "desc": "well-port string, e.g. U1-SZ1 (EFPW wells have no zone)"},
-    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW (from Well)"},
-    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. U1 (from Well)"},
+    {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim",
+     "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW wells have no zone: EFPW02)"},
+    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
     {"name": "pump_time_on", "src": "Pump Time On", "type": "STRING", "role": "dim",
      "desc": "pump start HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
     {"name": "pump_time_off", "src": "Pump Time Off", "type": "STRING", "role": "dim",
@@ -307,8 +329,8 @@ REGISTRY_COLUMNS = [
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
     {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
     _fk_location(),
-    {"name": "location", "src": "Well", "type": "STRING", "role": "dim", "desc": "well-port string, e.g. U1-SZ1"},
-    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW (from Well)"},
+    {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW02 for the EFPW wells)"},
+    {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
     {"name": "assay", "src": "Assay", "type": "STRING", "role": "dim", "desc": "raw manifest assay label, e.g. Anions, NitrateIso"},
     {"name": "assay_token", "src": "Assay", "type": "STRING", "role": "dim", "desc": "uppercased assay token used in the id, e.g. ANIONS"},
     {"name": "storage_condition", "src": "Storage Condition", "type": "STRING", "role": "dim", "desc": "e.g. '4C, acidified', '-80C'"},
@@ -351,9 +373,8 @@ TOC_COLUMNS = [
      "desc": "campaign timepoint 1-36 (from the sample registry)"},
     {"name": "sample_date", "src": "Date Sampled", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
     _fk_location(),
-    {"name": "location", "src": "Well", "type": "STRING", "role": "dim", "desc": "well-port string, e.g. L7-SZ1"},
-    {"name": "zone", "src": "Zone", "type": "STRING", "role": "dim", "desc": "port zone, SZ1 or SZ2; empty for EFPW"},
-    {"name": "well", "src": "Well", "type": "STRING", "role": "dim", "desc": "well id, e.g. L7"},
+    {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. L7-SZ1"},
+    {"name": "zone", "src": "Zone", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2"},
     {"name": "preservation", "src": "Preservation", "type": "STRING", "role": "dim",
      "desc": "sample preservation as recorded by the lab, e.g. '0.2um syringe filter'"},
     {"name": "storage_condition", "src": "Storage", "type": "STRING", "role": "dim",
@@ -391,7 +412,8 @@ TOC_REQUIRED_SOURCE = {"SampleID", "TOC_ppm", "TN_ppm"}
 TABLES = {
     "picarro_gas": {
         "load_mode": "append_dedup",
-        "dedup_key": ["epoch_time", "instrument"],
+        "dedup_key": ["epoch_time", "picarro_serial"],
+        "brick": True,
         "sheet": None,  # CSV
         "columns": GAS_COLUMNS,
         "known_source": GAS_KNOWN_SOURCE,
@@ -401,6 +423,7 @@ TABLES = {
     },
     "field_metadata": {
         "load_mode": "full_refresh",
+        "brick": True,
         "sheet": "Field Metadata",
         "columns": FIELD_COLUMNS,
         "known_source": FIELD_KNOWN_SOURCE,
@@ -410,6 +433,7 @@ TABLES = {
     "sample_registry": {
         "load_mode": "upsert",
         "upsert_key": "sdt_sample_name",
+        "brick": False,  # becomes sdt_sample rows (a static type), not a brick: no column_typedef rows
         "sheet": "Assay Metadata",
         "columns": REGISTRY_COLUMNS,
         "known_source": REGISTRY_KNOWN_SOURCE,
@@ -419,6 +443,7 @@ TABLES = {
     "toc_tn_anions": {
         "load_mode": "upsert",
         "upsert_key": "sdt_sample_name",
+        "brick": True,
         "sheet": None,  # every workbook/sheet in the folder with the known header
         "columns": TOC_COLUMNS,
         "known_source": TOC_KNOWN_SOURCE,
@@ -427,6 +452,153 @@ TABLES = {
                        "from every workbook in the TOC_TN_Anions_Chakraborty source folder",
     },
 }
+
+
+# ======================================================================
+# column_typedef  -- the sys_ddt_typedef rows these tables become.
+# Every non-measurement, non-bookkeeping column of a brick-bound table must be
+# assigned here (import fails otherwise), to a dimension and, where a COMO term
+# exists, a dimension-variable term.  A column with no term keeps a note saying
+# what it becomes at conversion.  Dimension / variable numbers are provisional.
+# ======================================================================
+
+TYPEDEF = {
+    "picarro_gas": {
+        "time_series_datetime": {"dim": "time series", "var": "datetime"},
+        "epoch_time": {"dim": "time series", "note": "unix-epoch form of time_series_datetime; dropped at conversion"},
+        "picarro_serial": {"dim": "time series", "note": "becomes brick-level context instrument <ME:0000012> "
+                           "(one brick per analyzer) at conversion"},
+        "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
+        "well_port": {"dim": "environmental sample location", "note": "field label <well>-<zone>; redundant with "
+                      "sdt_location_name + zone at conversion"},
+        "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone of the well; no COMO term yet "
+                 "(the 2024 SSO bricks carry it inside the sample id)"},
+        "reference_channel": {"dim": "time series", "note": "QC channel (Std/N2/Drierite); reference rows become a "
+                              "separate QC brick or are dropped at conversion"},
+        "multiplexer_on_state": {"dim": "time series", "note": "Eosense multiplexer port; instrument bookkeeping, dropped at conversion"},
+        "cycle_set": {"dim": "time series", "note": "Picarro cycle counter; instrument bookkeeping, dropped at conversion"},
+        "port_seconds": {"dim": "time series", "note": "seconds on port; instrument bookkeeping, dropped at conversion"},
+        "firesting_datetime": {"dim": "time series", "note": "Firesting join timestamp; traceability only, dropped at conversion"},
+    },
+    "field_metadata": {
+        "timepoint": {"dim": "time series", "note": "campaign timepoint 1-36; no COMO term yet (candidate: brick-level context)"},
+        "sample_date": {"dim": "time series", "var": "date"},
+        "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
+        "well_port": {"dim": "environmental sample location", "note": "field label; redundant with sdt_location_name + zone"},
+        "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone; no COMO term yet"},
+        "pump_time_on": {"dim": "time series", "note": "clock time; no COMO term, candidate: datetime with sample_date"},
+        "pump_time_off": {"dim": "time series", "note": "clock time; no COMO term, candidate: datetime with sample_date"},
+        "field_notes": {"dim": "time series", "note": "free text; becomes the brick's comment context or is dropped"},
+    },
+    "toc_tn_anions": {
+        "sdt_sample_name": {"dim": "environmental sample", "var": "environmental sample ID"},
+        "source_sample_id": {"dim": "environmental sample", "note": "lab's own id; traceability, dropped at conversion"},
+        "timepoint": {"dim": "environmental sample", "note": "campaign timepoint; sample attribute, no COMO term yet"},
+        "sample_date": {"dim": "environmental sample", "var": "date"},
+        "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
+        "well_port": {"dim": "environmental sample location", "note": "field label; redundant with sdt_location_name + zone"},
+        "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone; no COMO term yet"},
+        "preservation": {"dim": "environmental sample", "note": "sample attribute; becomes brick-level context at conversion"},
+        "storage_condition": {"dim": "environmental sample", "note": "sample attribute; becomes brick-level context at conversion"},
+        "analysis_order": {"dim": "environmental sample", "note": "lab run order; dropped at conversion"},
+    },
+}
+
+# Mirrors enigma.coral.sys_ddt_typedef (same names, comments and STRING types),
+# with table_name in place of ddt_ndarray_id and four additions at the end.
+COLUMN_TYPEDEF_COLUMNS = {
+    "table_name": {"description": "staging table that becomes the brick (ddt_ndarray_id is assigned at CORAL conversion)"},
+    "berdl_column_name": {"description": "BERDL column name"},
+    "berdl_column_data_type": {"description": "BERDL column data type, variable or dimension_variable"},
+    "scalar_type": {"description": "Scalar type"},
+    "foreign_key": {"description": "Foreign key reference"},
+    "comment": {"description": "Column comment (the CORAL microtype label)"},
+    "unit_sys_oterm_id": {"description": "Unit, ontology term CURIE", "type": "foreign_key",
+                          "references": "enigma.coral.sys_oterm.sys_oterm_id"},
+    "unit_sys_oterm_name": {"description": "Unit"},
+    "dimension_number": {"description": "Dimension number, starting at 1, for dimension variables (provisional until CORAL conversion)"},
+    "dimension_oterm_id": {"description": "Dimension data type, ontology term CURIE", "type": "foreign_key",
+                           "references": "enigma.coral.sys_oterm.sys_oterm_id"},
+    "dimension_oterm_name": {"description": "Dimension data type"},
+    "variable_number": {"description": "Variable number within a dimension, numbered starting at 1 (provisional until CORAL conversion)"},
+    "variable_oterm_id": {"description": "Dimension variable data type, ontology term CURIE", "type": "foreign_key",
+                          "references": "enigma.coral.sys_oterm.sys_oterm_id"},
+    "variable_oterm_name": {"description": "Dimension variable data type"},
+    "original_csv_string": {"description": "Representation of this variable in CORAL's data-dump CSV format, generated from the microtype"},
+    # additions (sys_ddt_typedef folds these into comment / original_csv_string)
+    "molecule_sys_oterm_id": {"description": "molecule, ontology term CURIE (CHEBI), for concentration variables",
+                              "type": "foreign_key", "references": "enigma.coral.sys_oterm.sys_oterm_id"},
+    "molecule_sys_oterm_name": {"description": "molecule name"},
+    "context_metadata": {"description": "JSON list of [property, value] context pairs (free-text method/condition/instrument)"},
+    "note": {"description": "human note: what the column becomes at conversion, instrument caveats"},
+}
+
+_SCALAR = {"DOUBLE": "float", "INT": "int", "STRING": "string", "TIMESTAMP": "string"}
+
+
+def _oterm_token(name: str, oterm_id: str | None) -> str:
+    return f"{name} <{oterm_id}>" if oterm_id else name
+
+
+def measurement_csv_string(n: int, ddt: dict) -> str:
+    """CORAL dump format, e.g.
+    '1,concentration <ME:0000129>,molecule from list <ME:0000381>,methane <CHEBI:16183>,
+     instrument <ME:0000012>,picarro,...,parts per million by volume <ME:0000348>'."""
+    parts = [str(n), _oterm_token(ddt["value_type"], ddt["value_oterm"])]
+    if ddt.get("molecule"):
+        parts += [_oterm_token(*MOLECULE_FROM_LIST), _oterm_token(ddt["molecule"], ddt["molecule_chebi"])]
+    for prop, val in ddt["context"]:
+        parts += [_oterm_token(prop, PROPERTY_OTERM.get(prop)), str(val)]
+    parts.append(_oterm_token(ddt["unit"], ddt["unit_oterm"]))
+    return ",".join(parts)
+
+
+def typedef_rows() -> list[dict]:
+    """One row per brick-bound column (variables first, then dimension variables
+    in TYPEDEF order), shaped like sys_ddt_typedef."""
+    rows = []
+    for table, spec in TABLES.items():
+        if not spec.get("brick"):
+            continue
+        cols = {c["name"]: c for c in spec["columns"]}
+        book = {c["name"] for c in _bookkeeping()}
+        dims = list(dict.fromkeys(v["dim"] for v in TYPEDEF.get(table, {}).values()))
+        expected = [n for n, c in cols.items() if c["role"] != "measurement" and n not in book]
+        missing = [n for n in expected if n not in TYPEDEF.get(table, {})]
+        if missing:
+            raise ValueError(f"TYPEDEF[{table!r}] lacks {missing}")
+        for n, col in enumerate(measurement_columns(table), 1):
+            d = col["ddt"]
+            rows.append({
+                "table_name": table, "berdl_column_name": col["name"], "berdl_column_data_type": "variable",
+                "scalar_type": "float", "foreign_key": None, "comment": microtype_label(d),
+                "unit_sys_oterm_id": d["unit_oterm"], "unit_sys_oterm_name": d["unit"],
+                "dimension_number": None, "dimension_oterm_id": None, "dimension_oterm_name": None,
+                "variable_number": str(n), "variable_oterm_id": d["value_oterm"], "variable_oterm_name": d["value_type"],
+                "original_csv_string": measurement_csv_string(n, d),
+                "molecule_sys_oterm_id": d["molecule_chebi"], "molecule_sys_oterm_name": d["molecule"],
+                "context_metadata": json.dumps(d["context"]), "note": col.get("note"),
+            })
+        counter = {dim: 0 for dim in dims}
+        for name in expected:
+            td, col = TYPEDEF[table][name], cols[name]
+            dim, var = td["dim"], td.get("var")
+            counter[dim] += 1
+            dim_no, var_no = dims.index(dim) + 1, counter[dim]
+            fk = col.get("references") if col["role"] in ("fk", "pk_fk") else None
+            rows.append({
+                "table_name": table, "berdl_column_name": name, "berdl_column_data_type": "dimension_variable",
+                "scalar_type": "object_ref" if fk else _SCALAR[col["type"]], "foreign_key": fk,
+                "comment": var or col["desc"], "unit_sys_oterm_id": None, "unit_sys_oterm_name": col.get("unit"),
+                "dimension_number": str(dim_no), "dimension_oterm_id": DIM_OTERM[dim], "dimension_oterm_name": dim,
+                "variable_number": str(var_no), "variable_oterm_id": VAR_OTERM[var] if var else None,
+                "variable_oterm_name": var,
+                "original_csv_string": (f"dmeta,{dim_no + 1},{_oterm_token(dim, DIM_OTERM[dim])},"
+                                        f"{_oterm_token(var, VAR_OTERM[var])}") if var else None,
+                "molecule_sys_oterm_id": None, "molecule_sys_oterm_name": None, "context_metadata": None,
+                "note": td.get("note"),
+            })
+    return rows
 
 
 def measurement_columns(table: str) -> list[dict]:

@@ -71,27 +71,27 @@ def _sdt_from_well(well: str) -> str:
 
 
 def gas_location(well: str, depth: str, port: str) -> dict:
-    """Map a Picarro row's Well/Depth/Port to location fields.
-
-    QC/reference channels (Drierite/Std/N2) carry no sdt_location.
+    """Map a Picarro row's Well/Depth/Port to location fields (the vectorized
+    parser in sso_build applies the same rules).  QC/reference channels
+    (Drierite/Std/N2) carry no sdt_location and no well_port.
     """
     well = (well or "").strip()
     depth = (depth or "").strip()
     port = (port or "").strip()
     if well in QC_CHANNELS or port in QC_CHANNELS or not well:
-        return {"sdt_location_name": None, "location": port or well, "zone": None,
-                "well": None, "channel_type": "reference"}
-    return {"sdt_location_name": _sdt_from_well(well), "location": port or f"{well}-{depth}".strip("-"),
-            "zone": depth or None, "well": well, "channel_type": "well"}
+        return {"sdt_location_name": None, "well_port": None, "reference_channel": port or well or None, "zone": None}
+    return {"sdt_location_name": _sdt_from_well(well), "well_port": port or f"{well}-{depth}".strip("-"),
+            "reference_channel": None, "zone": depth or None}
 
 
 def spreadsheet_location(well_field: str) -> dict:
-    """Map a spreadsheet 'Well' value ('U1-SZ1' or 'EFPW02') to location fields."""
+    """Map a spreadsheet 'Well' value ('U1-SZ1' or 'EFPW02') to location fields.
+    `location` in CORAL means sdt_location, so the field label is `well_port`."""
     raw = (well_field or "").strip()
     if raw.upper().startswith("EFPW"):
-        return {"sdt_location_name": raw, "location": raw, "zone": "", "well": raw}
+        return {"sdt_location_name": raw, "well_port": raw, "zone": ""}
     well, _, zone = raw.partition("-")
-    return {"sdt_location_name": _sdt_from_well(well), "location": raw, "zone": zone, "well": well}
+    return {"sdt_location_name": _sdt_from_well(well), "well_port": raw, "zone": zone}
 
 
 # --- sample-id normalization (NAMING.md decision A: faithful uppercase) ---

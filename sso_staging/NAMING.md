@@ -45,8 +45,10 @@ tables with unknown measurement labels. The validator also checks uniqueness of
   `SSO-L7`, `SSO-L8`, `SSO-L9`.
 - EFPW wells verbatim, **no** `SSO-` prefix, zeros kept: `EFPW02`, `EFPW03`.
   (TODO: confirm EFPW02/EFPW03 are registered `sdt_location`, or stage additions.)
-- The port/zone (`SZ1`/`SZ2`) is **not** in the location — CORAL carries it as a
-  separate `location` **string** variable, value `U1-SZ1`.
+- The port/zone (`SZ1`/`SZ2`) is **not** in the location — it is carried as the
+  separate `zone` column, and the field team's label `U1-SZ1` as `well_port`.
+  The word `location` is never used for it: in CORAL and continuous_monitoring
+  "location" means `sdt_location` (renamed 2026-11-05).
 
 ## Mapping applied on ingest (all three staging tables)
 
@@ -91,5 +93,5 @@ foreign-key conventions** as those namespaces:
   `source_file`, `ingest_run_id`, `ingested_at`, plus `table_metadata` and
   `ingest_runs` tables.
 - **Dimension/context strings** (zone/port `U1-SZ1`, multiplexer `on_state`,
-  cycle `set`, QC `channel_type`) are plain STRING columns with descriptive
+  cycle `set`, QC `reference_channel`) are plain STRING columns with descriptive
   comments, following the CORAL "context variable" style.

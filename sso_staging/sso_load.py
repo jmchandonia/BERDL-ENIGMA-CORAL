@@ -2,7 +2,7 @@
 """Load staged sso_staging TSVs into the BERDL lakehouse.
 
 Four data tables, three load modes, dispatched from the manifest sso_build.py wrote:
-  * picarro_gas    append + dedup on (epoch_time, instrument) (null-safe LEFT ANTI JOIN; re-ingesting a
+  * picarro_gas    append + dedup on (epoch_time, picarro_serial) (null-safe LEFT ANTI JOIN; re-ingesting a
                    cumulative export never duplicates rows).
   * field_metadata full refresh (DELETE + INSERT); a shrink-guard refuses to wipe
                    the table when the source suddenly has far fewer rows.
@@ -11,7 +11,7 @@ Four data tables, three load modes, dispatched from the manifest sso_build.py wr
   * toc_tn_anions  upsert (MERGE) by sdt_sample_name, same as the registry: new
                    lab rows insert, edited rows update.
 
-Also rewrites three bookkeeping tables each run: ddt_brick (the COMO microtype per
+Also rewrites three bookkeeping tables each run: column_typedef (the sys_ddt_typedef rows per
 measurement column, from sso_schema), table_metadata (one row per data table) and
 ingest_runs (one row per load, appended).  Writes load_result.json for the report.
 
@@ -331,46 +331,15 @@ class Loader:
 
     # --- bookkeeping tables ---
 
-    def write_ddt_brick(self, existing: set[str]) -> None:
-        table = "ddt_brick"
-        specs = {
-            "table_name": "STRING", "column_name": "STRING", "description": "STRING",
-            "value_type_sys_oterm_id": "STRING", "value_type_sys_oterm_name": "STRING",
-            "molecule_sys_oterm_id": "STRING", "molecule_sys_oterm_name": "STRING",
-            "context_metadata": "STRING", "unit_sys_oterm_id": "STRING", "unit_sys_oterm_name": "STRING",
-            "scalar_type": "STRING", "note": "STRING", "withdrawn_date": "STRING",
-        }
-        comments = {
-            "table_name": "data table this column lives in", "column_name": "column name in the data table",
-            "description": "CORAL microtype label", "value_type_sys_oterm_id": "measurement term id (ME:)",
-            "value_type_sys_oterm_name": "measurement term name", "molecule_sys_oterm_id": "molecule id (CHEBI:)",
-            "molecule_sys_oterm_name": "molecule name", "context_metadata": "JSON list of [property, value] context pairs (free-text method/condition/instrument)",
-            "unit_sys_oterm_id": "unit term id (null if not yet minted)", "unit_sys_oterm_name": "unit name",
-            "scalar_type": "stored scalar type", "note": "human note", "withdrawn_date": "withdrawal date, or null",
-        }
-        rows = []
-        for tbl, spec in schema.TABLES.items():
-            for col in schema.measurement_columns(tbl):
-                d = col["ddt"]
-                rows.append({
-                    "table_name": tbl, "column_name": col["name"], "description": schema.microtype_label(d),
-                    "value_type_sys_oterm_id": d["value_oterm"], "value_type_sys_oterm_name": d["value_type"],
-                    "molecule_sys_oterm_id": d["molecule_chebi"], "molecule_sys_oterm_name": d["molecule"],
-                    "context_metadata": json.dumps(d["context"]), "unit_sys_oterm_id": d["unit_oterm"],
-                    "unit_sys_oterm_name": d["unit"], "scalar_type": "float", "note": col.get("note"),
-                    "withdrawn_date": None,
-                })
-        self._rewrite(table, specs, comments, rows, existing, "ddt_brick - COMO microtype per measurement column")
-
-    def write_instrument_port(self, existing: set[str]) -> None:
-        """The analyzer <-> multiplexer-port assignment (sso_schema.GAS_PORT_ASSIGNMENT),
-        rewritten each run so the lakehouse carries the table the gas rows were
-        attributed with."""
-        specs = {k: v[0] for k, v in schema.INSTRUMENT_PORT_COLUMNS.items()}
-        comments = {k: v[1] for k, v in schema.INSTRUMENT_PORT_COLUMNS.items()}
-        self._rewrite("instrument_port", specs, comments, schema.GAS_PORT_ASSIGNMENT, existing,
-                      "instrument_port - Picarro analyzer serial x Eosense multiplexer port -> well-port / reference "
-                      "channel, as published in Gas_Data/README.txt; picarro_gas.instrument is attributed with this table")
+    def write_column_typedef(self, existing: set[str]) -> None:
+        """One row per brick-bound column, shaped like enigma.coral.sys_ddt_typedef
+        (see sso_schema.TYPEDEF / COLUMN_TYPEDEF_COLUMNS); rewritten each run."""
+        specs = {k: "STRING" for k in schema.COLUMN_TYPEDEF_COLUMNS}
+        self._rewrite("column_typedef", specs, schema.COLUMN_TYPEDEF_COLUMNS, schema.typedef_rows(), existing,
+                      "column_typedef - the enigma.coral.sys_ddt_typedef rows the sso_staging tables become: one row "
+                      "per brick-bound column (measurement variables and dimension variables) with its COMO terms, "
+                      "unit, foreign key and CORAL dump string; dimension/variable numbers are provisional until "
+                      "conversion; a NULL term marks a column still to be mapped or dropped at conversion")
 
     def write_table_metadata(self, per_table: dict, manifest: dict, existing: set[str]) -> dict:
         table = "table_metadata"
@@ -395,13 +364,13 @@ class Loader:
                 f"SELECT count(*) n, min({sso.quoted(tc)}) lo, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)}"
             ).collect()[0]
             latest[tbl] = {"row_count": int(stats["n"]), "last_timestamp": stats["hi"]}
-            if tbl == "picarro_gas" and "instrument" in self.spark.table(sso.full_name(tbl)).columns:
+            if tbl == "picarro_gas" and "picarro_serial" in self.spark.table(sso.full_name(tbl)).columns:
                 latest[tbl]["instruments"] = {
-                    r["instrument"]: {"row_count": int(r["n"]), "last_timestamp": r["hi"],
-                                      "label": schema.GAS_INSTRUMENTS.get(r["instrument"], {}).get("label")}
+                    r["picarro_serial"]: {"row_count": int(r["n"]), "last_timestamp": r["hi"],
+                                          "label": schema.GAS_INSTRUMENTS.get(r["picarro_serial"], {}).get("label")}
                     for r in self.spark.sql(
-                        f"SELECT instrument, count(*) n, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)} "
-                        f"GROUP BY instrument ORDER BY instrument").collect()}
+                        f"SELECT picarro_serial, count(*) n, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)} "
+                        f"GROUP BY picarro_serial ORDER BY picarro_serial").collect()}
             rows.append({
                 "table_name": tbl, "description": spec["description"], "load_mode": spec["load_mode"],
                 "source_files": json.dumps(manifest["tables"].get(tbl, {}).get("source_files", [])),
@@ -432,8 +401,14 @@ class Loader:
             return
         from pyspark.sql import types as T
 
+        def ccomment(c):
+            fields = dict(comments[c]) if isinstance(comments[c], dict) else {"description": comments[c]}
+            if c == pk:
+                fields["type"] = "primary_key"
+            return sso.comment(fields.pop("description"), **fields)
+
         if table not in existing:
-            ddl = ", ".join(f"{sso.quoted(c)} {specs[c]} COMMENT {sso.sql_string(sso.comment(comments[c], **({'type': 'primary_key'} if c == pk else {})))}" for c in specs)
+            ddl = ", ".join(f"{sso.quoted(c)} {specs[c]} COMMENT {sso.sql_string(ccomment(c))}" for c in specs)
             self.spark.sql(f"CREATE TABLE {sso.full_name(table)} ({ddl}) USING iceberg COMMENT {sso.sql_string(table_comment)}")
             existing.add(table)
         kind = {"STRING": T.StringType(), "INT": T.LongType(), "BIGINT": T.LongType(), "TIMESTAMP": T.TimestampType()}
@@ -512,6 +487,11 @@ def main() -> None:
         log(f"comments-only: {n} comment(s) {'would be ' if args.dry_run else ''}synced")
         return
 
+    if "ingest_runs" in existing and not args.dry_run:
+        used = spark.sql(f"SELECT count(*) n FROM {sso.full_name('ingest_runs')} WHERE ingest_run_id = {sso.sql_string(run_id)}").collect()[0]["n"]
+        if used:
+            sys.exit(f"ingest_run_id {run_id!r} is already in ingest_runs (its primary key); pick a new --run-id")
+
     per_table, status, error = {}, "ok", None
     comment_drift, comments_synced, schema_drift = {}, 0, {}
     try:
@@ -548,8 +528,7 @@ def main() -> None:
                 raise ValueError(f"unknown load_mode {mode!r}")
             per_table[table] = res
             log(f"{table} [{mode}]: {res}")
-        loader.write_ddt_brick(existing)
-        loader.write_instrument_port(existing)
+        loader.write_column_typedef(existing)
         latest = loader.write_table_metadata(per_table, manifest, existing)
     except Exception as exc:
         status, error = "error", repr(exc)

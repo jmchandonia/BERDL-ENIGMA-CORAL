@@ -6,7 +6,7 @@ style, for conversion to CORAL bricks at campaign end (Dec 2026).
 
 ## Principles (settled)
 
-- **Append+dedup** (on `epoch_time` + `instrument`) for instrument data that never changes once
+- **Append+dedup** (on `epoch_time` + `picarro_serial`) for instrument data that never changes once
   exported (`picarro_gas`); **refresh-from-source** for the spreadsheet-backed
   tables, because sso_staging permits in-place edits when the source sheet
   changes. Mechanism differs by whether a stable key exists: `field_metadata` =
@@ -69,7 +69,7 @@ Notes:
   `concentration_molecule_from_list_dinitrogen_oxide_method_crds_parts_per_million_by_volume`,
   with JSON comment `{description, unit, unit_sys_oterm_id}`.
 
-## Table: `picarro_gas`  (append + dedup on `epoch_time` + `instrument`)
+## Table: `picarro_gas`  (append + dedup on `epoch_time` + `picarro_serial`)
 
 Two Picarro G2508 analyzers run concurrently (A = ORNL-EA-031620, B =
 ORNL-EA-007299; learned 2026-11-04 from Kris's updated README), so `epoch_time`
@@ -78,15 +78,14 @@ alone is not unique.  The serial is data, not microtype context.
 | Column | Type | Comment / role |
 |---|---|---|
 | `time_series_datetime` | STRING | field time, ISO 8601 + offset (America/New_York); from `TIME` |
-| `epoch_time` | DOUBLE | unix epoch s (dedup key with `instrument`); from `EPOCH_TIME` |
-| `instrument` | STRING | analyzer serial `ORNL-EA-031620` (A) / `ORNL-EA-007299` (B); well-ports from the README port assignment (`instrument_port`), reference channels from the NH3_dry / O2_% column signature |
+| `epoch_time` | DOUBLE | unix epoch s (dedup key with `picarro_serial`); from `EPOCH_TIME` |
+| `picarro_serial` | STRING | analyzer serial `ORNL-EA-031620` (A) / `ORNL-EA-007299` (B); well-ports from the README port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`), reference channels from the NH3_dry / O2_% column signature |
 | gas measurement columns | DOUBLE | the 11 species columns above, COMO-named + commented |
 | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>` (NULL for QC channels) |
-| `location` | STRING | CORAL port string, e.g. `U2-SZ1` (raw `Port`) |
+| `well_port` | STRING | field well-port label, e.g. `U2-SZ1` (raw `Port`); NULL on reference rows.  Not `location`: that word means `sdt_location` in CORAL |
+| `reference_channel` | STRING | `Std` / `N2` / `Drierite` on reference rows; NULL on well rows |
 | `zone` | STRING | `SZ1`/`SZ2` (raw `Depth`) |
-| `well` | STRING | `U2` (raw `Well`) |
-| `channel_type` | STRING | `well` or `reference` (Drierite/Std/N2) |
-| `multiplexer_on_state` | INT | raw `on_state` (1-12, per analyzer; `instrument_port` maps it) |
+| `multiplexer_on_state` | INT | raw `on_state` (1-12, per analyzer; `GAS_PORT_ASSIGNMENT` maps it) |
 | `cycle_set` | INT | raw `set` (counts per analyzer) |
 | `port_seconds` | DOUBLE | raw `timedelta` (s this port monitored) |
 | `firesting_datetime` | STRING | raw `DateTime` (join key), kept for traceability |
@@ -102,7 +101,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `timepoint` | INT | campaign timepoint 1–36 |
 | `sample_date` | STRING | `YYYYMMDD` (raw `Date`) |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` (EFPW verbatim) |
-| `location` | STRING | port string `U1-SZ1` |
+| `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `zone` | STRING | `SZ1`/`SZ2` (empty for EFPW) |
 | `pump_time_on` / `pump_time_off` | STRING | datetimes after AM/PM resolution (field hours 1–6 → PM) |
 | `rate_instrument_pump_liter_per_minute` | DOUBLE | COMO rate, instrument=pump; unit `liter per minute` (MINT, only mint in namespace) |
@@ -121,7 +120,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `timepoint` | INT | |
 | `sample_date` | STRING | `YYYYMMDD` |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` |
-| `location` | STRING | port string |
+| `well_port` | STRING | field well-port label |
 | `zone` | STRING | |
 | `assay` | STRING | raw manifest assay label |
 | `assay_token` | STRING | uppercased token used in the ID |
@@ -169,7 +168,7 @@ held/drift rules.  Microtypes reuse the lab's 2024 SSO bricks (no minting).
    27 impossible negative durations into 0 and matches volume÷rate to ~12% median
    error. Earliest genuine AM draw is 7:00; no pre-07:00 draws.
 5. `sdt_sample_name` for `picarro_gas`/`field_metadata`: leave NULL (keyed on
-   location + time/timepoint), attach sample IDs only in `sample_registry`.
+   well-port + time/timepoint), attach sample IDs only in `sample_registry`.
 6. ~~`NH3_dry` unit / bag mass net-vs-gross~~ — DONE (2026-10-30): `NH3_dry` is
    dry-basis **ppb** (dry/wet = 1.018, normal water correction); bag mass is
    **gross/as-weighed** (~102 g, bag-dominated), not net gas mass. See INVENTORY.

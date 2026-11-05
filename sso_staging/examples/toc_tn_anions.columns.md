@@ -24,7 +24,7 @@ campaign-end conversion is mechanical.
 | — (registry) | `timepoint` | INT | campaign timepoint, looked up from the registry row |
 | `Date Sampled` | `sample_date` | STRING | `YYYYMMDD` (sheet value is numeric `MMDDYY`) |
 | `Well`/`Zone` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>` |
-| `Well`/`Zone` | `location` / `zone` / `well` | STRING | `L7-SZ1` / `SZ1` / `L7` |
+| `Well`/`Zone` | `well_port` / `zone` | STRING | `L7-SZ1` / `SZ1` (the well itself is `sdt_location_name` = `SSO-L7`) |
 | `Preservation` | `preservation` | STRING | e.g. `0.2um syringe filter` |
 | `Storage` | `storage_condition` | STRING | e.g. `4C` |
 | `ORDER` | `analysis_order` | INT | lab run order |

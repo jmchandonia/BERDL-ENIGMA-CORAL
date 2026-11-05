@@ -13,15 +13,21 @@ per-table brick structures).  `sso_schema.py` is the authoritative schema.
 
 | Table | Load mode | Key | Source |
 |---|---|---|---|
-| `picarro_gas` | append + dedup on (`epoch_time`, `instrument`) | `epoch_time` + `instrument` (analyzer serial) | `Gas_Data/*_gas_data.csv` (two Picarro G2508s + Firesting) |
+| `picarro_gas` | append + dedup on (`epoch_time`, `picarro_serial`) | `epoch_time` + `picarro_serial` | `Gas_Data/*_gas_data.csv` (two Picarro G2508s + Firesting) |
 | `field_metadata` | **full refresh** (shrink-guarded) | — (multiple draws per timepoint×well) | `Field Metadata` sheet |
 | `sample_registry` | **upsert** (MERGE) | `sdt_sample_name` | `Assay Metadata` sheet (manifest) |
 | `toc_tn_anions` | **upsert** (MERGE) | `sdt_sample_name` (the ANIONS sample) | every workbook in `TOC_TN_Anions_Chakraborty/` (Chakraborty TOC/TN + IC anion results, ppm) |
 
-Bookkeeping tables (rewritten each run): `ddt_brick` (COMO microtype per
-measurement column — the oterm ids live here, never in column names),
-`instrument_port` (analyzer serial × multiplexer port → well-port, from Kris's
-README; see below), `table_metadata`, `ingest_runs`.
+Bookkeeping tables (rewritten each run): `column_typedef` (the
+`enigma.coral.sys_ddt_typedef` rows these tables become: one row per
+brick-bound column with its COMO terms, unit, FK and CORAL dump string — the
+oterm ids live here, never in column names), `table_metadata`, `ingest_runs`.
+
+Naming: `location` means `sdt_location` in CORAL and continuous_monitoring, so
+the field team's well-port label (`U2-SZ1`) is **`well_port`** everywhere here
+and the CORAL key is always **`sdt_location_name`** (`SSO-U2`); `zone` (SZ1/SZ2)
+is the only other location-ish column.  Picarro reference rows carry
+`reference_channel` (Std / N2 / Drierite) and a NULL `well_port`.
 
 Load semantics differ from the neighbours on purpose: continuous_monitoring is
 append-only, CORAL is withdraw+replace, **sso_staging may modify rows in place**
@@ -36,7 +42,7 @@ sso_fetch.py    rsync the campaign subfolder out of the dipa Google-Drive mirror
                 (or `rclone copy` if SSO_RCLONE_REMOTE is set) into fetch/
 sso_build.py    parse the four sources -> staged TSVs + manifest.json
 sso_load.py     create/append/refresh/upsert into enigma.sso_staging; write
-                ddt_brick / table_metadata / ingest_runs; emit load_result.json
+                column_typedef / table_metadata / ingest_runs; emit load_result.json
 combined_report.py  compose ONE email covering cm + sso (see below)
 run_daily.sh    orchestrate both namespaces in one tunnel/spawn, send one email
 ```
@@ -46,26 +52,29 @@ run_daily.sh    orchestrate both namespaces in one tunnel/spawn, send one email
 Two Picarro G2508 analyzers run concurrently (`Gas_Data/README.txt`, updated
 2026-10-28): **A = ORNL-EA-031620** and **B = ORNL-EA-007299**, each with its own
 Eosense 12-port multiplexer and Firesting O2 probe, so two rows can share an
-`epoch_time`.  Every row carries the analyzer serial in `instrument` and the
-dedup key is (`epoch_time`, `instrument`).  Attribution: well-ports use the
-README's dated port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`, published as
-the `instrument_port` table); reference channels (Std / N2 / Drierite) use the
+`epoch_time`.  Every row carries the analyzer serial in `picarro_serial` and the
+dedup key is (`epoch_time`, `picarro_serial`).  Attribution: well-ports use the
+README's dated port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`, versioned in
+git, not a lakehouse table); reference channels (Std / N2 / Drierite) use the
 row's column signature (`NH3_dry` reported = A, `O2_%` reported = B, each
 analyzer reports exactly one).  The build cross-checks the two rules on every
 row: a well-port whose rows carry the other analyzer's signature means a port
 was moved, so those rows are **held** and the email raises GAS PORT MOVED?
 (also GAS ROWS UNATTRIBUTED, GAS NEW PORT, GAS PORT MAP).  Edit the assignment
 after confirming with Kris, then re-stage with `--full-gas`.  The serial is data,
-not microtype context (`ddt_brick` keeps `instrument=picarro`), so at CORAL
+not microtype context (`column_typedef` keeps `instrument=picarro`), so at CORAL
 conversion each analyzer becomes its own brick with the serial as brick-level
 context.  (`sso_migrate_instrument.py` is the one-time 2026-11-04 backfill that
-attributed the 945,384 rows loaded before the column existed.)
+attributed the 945,384 rows loaded before the column existed;
+`sso_migrate_20261105_names.py` the one-time rename to `well_port` /
+`picarro_serial` / `reference_channel` and the drop of `well`, `channel_type`,
+`ddt_brick`, `instrument_port`.)
 
 ### Gas file: "handle both" until Kris's protocol is settled
 
 `sso_build.py` loads the **newest** `*_gas_data.csv` by default and, incrementally,
 stages only rows newer than the last loaded `epoch_time` (tracked in
-`state/gas_state.json`); the loader's anti-join on (`epoch_time`, `instrument`)
+`state/gas_state.json`); the loader's anti-join on (`epoch_time`, `picarro_serial`)
 is the dedup safety net, so re-ingesting a cumulative re-export never duplicates
 rows.  Flags:
 `--gas-file FILE` (a specific file), `--all-gas-files` (concatenate every CSV),

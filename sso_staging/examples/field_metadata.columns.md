@@ -3,7 +3,7 @@
 One row per sampling draw (timepoint × well). **Refresh-from-source**, because
 the source sheet (Katie's `Field Metadata.xlsx`) is edited in place as the
 campaign proceeds. Same conventions as `picarro_gas`: CORAL-derived measurement
-column names (minimal context), oterm ids in `ddt_brick`, FK columns identical to
+column names (minimal context), oterm ids in `column_typedef`, FK columns identical to
 coral/continuous_monitoring.
 
 **Load mode = full refresh** (replace all rows each run), NOT upsert-by-key:
@@ -34,7 +34,7 @@ so `pump` is not minted.
 `pH`; it reads oddly but matches how the generator appends the unit. Flag at
 CORAL-conversion review if a cleaner column is wanted.)
 
-### `ddt_brick` rows (scalar_type = float)
+### `column_typedef` rows (scalar_type = float)
 
 | Source col | value_type (measurement) | instrument | unit | unit oterm |
 |---|---|---|---|---|
@@ -70,9 +70,8 @@ mass column ever appears. No Kris email needed.
 | `Field Metadata Timepoint` | `timepoint` | INT | campaign timepoint 1–36 (upsert key) |
 | `Date (YYYYMMDD)` | `sample_date` | STRING | `YYYYMMDD` |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
-| `Well` | `location` | STRING | port string `U1-SZ1` (upsert key); EFPW has no zone |
+| `Well` | `well_port` | STRING | field well-port label `U1-SZ1`; EFPW has no zone (`EFPW02`).  Not `location`, which means `sdt_location` in CORAL |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |
-| `Well` | `well` | STRING | `U1` |
 | `Pump Time On` | `pump_time_on` | STRING | datetime after AM/PM resolution (field hours 1–6 → PM) |
 | `Pump Time Off` | `pump_time_off` | STRING | datetime after AM/PM resolution |
 | `Field Notes` | `field_notes` | STRING | free text |

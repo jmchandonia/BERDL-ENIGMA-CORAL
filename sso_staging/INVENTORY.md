@@ -94,11 +94,11 @@ read the 1.6 KB README and wrongly concluded "one instrument, time-shared"):
   desiccant column, the dry-air zero/baseline channel; `Std` = span standard;
   `N2` = UHP nitrogen blank (rare).
 
-→ Decision: **one table** (`picarro_gas`) with an `instrument` column (analyzer
-serial) + well/zone/port dimensions + channel-type flag, dedup on
-(`epoch_time`, `instrument`); the port assignment is kept as code
-(`sso_schema.GAS_PORT_ASSIGNMENT`) and published as `instrument_port`; a port
-moved since 10/04 20:00 shows up as a GAS PORT MOVED? action.
+→ Decision: **one table** (`picarro_gas`) with `picarro_serial` (analyzer
+serial), `sdt_location_name` + `well_port` + `zone` for well rows and
+`reference_channel` for QC rows, dedup on (`epoch_time`, `picarro_serial`); the
+port assignment is kept as code (`sso_schema.GAS_PORT_ASSIGNMENT`), not as a
+table; a port moved since 10/04 20:00 shows up as a GAS PORT MOVED? action.
 
 ## 2. Field / sample metadata (Katie)
 
