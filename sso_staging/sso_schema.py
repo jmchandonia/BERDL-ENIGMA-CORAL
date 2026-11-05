@@ -14,6 +14,13 @@ Design rules (locked 2026-10-29/30; see PLAN.md / NAMING.md):
     so their values are not minted.  The one minted term in the namespace is the
     `liter per minute` unit, added to the COMO ontology as ME:0000517
     (coral_import/ontology_update_20261030_liter_per_minute).
+  * Two Picarro G2508 analyzers run concurrently (A = ORNL-EA-031620, B =
+    ORNL-EA-007299; Gas_Data/README.txt, 2026-10-28), each with its own Eosense
+    12-port multiplexer and Firesting O2 probe.  The analyzer serial is DATA
+    (`picarro_gas.instrument`, part of the dedup key), not microtype context:
+    the context keeps the free-text token `instrument=picarro`, so the derived
+    column names are unchanged, and at CORAL conversion each analyzer becomes
+    its own brick with the serial as brick-level instrument context.
 """
 
 from __future__ import annotations
@@ -119,14 +126,66 @@ def _bookkeeping():
 
 
 # ======================================================================
-# picarro_gas  -- append + dedup on epoch_time
+# picarro_gas  -- append + dedup on (epoch_time, instrument)
 # ======================================================================
+
+# The two analyzers and the per-row column signature that tells them apart
+# (verified on the 2026-10-28 export: every row reports exactly one of the two).
+GAS_INSTRUMENTS = {
+    "ORNL-EA-031620": {"label": "A", "model": "Picarro G2508", "signature": "NH3_dry",
+                       "note": "reports NH3_dry; no internal O2 probe (O2_% / O2_dry_% empty)"},
+    "ORNL-EA-007299": {"label": "B", "model": "Picarro G2508", "signature": "O2_%",
+                       "note": "internal O2 probe (O2_% / O2_dry_%); NH3_dry empty"},
+}
+
+# Multiplexer port assignments from Gas_Data/README.txt ("as of 10/04/2026 20:00").
+# Reference ports carry the README's label and the name the CSV's Port column
+# uses for the same channel (10 HighSTD = Std, 11 UHPN2 = N2, 12 Air = Drierite).
+# A port move or a new port is an ACTION in the daily email (sso_build
+# cross-checks every row's signature against this table); edit here, then
+# re-stage with sso_build.py --full-gas.
+GAS_PORT_VALID_FROM = "2026-10-04T20:00:00-04:00"
+GAS_PORT_SOURCE = "Gas_Data/README.txt (updated 2026-10-28)"
+_REF_PORTS = [(10, "HighSTD", "Std"), (11, "UHPN2", "N2"), (12, "Air", "Drierite")]
+_WELL_PORTS = {
+    "ORNL-EA-031620": ["U2-SZ1", "U2-SZ2", "M5-SZ1", "M5-SZ2", "M6-SZ1", "M6-SZ2", "L9-SZ1", "L9-SZ2", "L8-SZ2"],
+    "ORNL-EA-007299": ["U1-SZ1", "U1-SZ2", "M4-SZ1", "M4-SZ2", "L7-SZ1", "L7-SZ2", "U3-SZ1", "U3-SZ2", "L8-SZ1"],
+}
+GAS_PORT_ASSIGNMENT = [
+    {"instrument": serial, "instrument_label": GAS_INSTRUMENTS[serial]["label"], "multiplexer_on_state": on_state,
+     "location": location, "readme_label": readme_label, "channel_type": channel_type,
+     "valid_from": GAS_PORT_VALID_FROM, "source_file": GAS_PORT_SOURCE}
+    for serial in GAS_INSTRUMENTS
+    for on_state, readme_label, location, channel_type in (
+        [(i + 1, loc, loc, "well") for i, loc in enumerate(_WELL_PORTS[serial])]
+        + [(n, rl, loc, "reference") for n, rl, loc in _REF_PORTS])
+]
+# well-port -> analyzer serial (reference channels exist on both, so they are not here)
+GAS_WELL_INSTRUMENT = {a["location"]: a["instrument"] for a in GAS_PORT_ASSIGNMENT if a["channel_type"] == "well"}
+# (serial, multiplexer port) -> location, for the on_state cross-check
+GAS_PORT_LOCATION = {(a["instrument"], a["multiplexer_on_state"]): a["location"] for a in GAS_PORT_ASSIGNMENT}
+
+INSTRUMENT_PORT_COLUMNS = {  # the instrument_port bookkeeping table (rewritten each run from the above)
+    "instrument": ("STRING", "Picarro G2508 analyzer serial"),
+    "instrument_label": ("STRING", "campaign shorthand for the analyzer (A / B) as used in Gas_Data/README.txt"),
+    "multiplexer_on_state": ("INT", "Eosense multiplexer port 1-12 on this analyzer (picarro_gas.multiplexer_on_state)"),
+    "location": ("STRING", "well-port (U2-SZ1) or reference channel as named in picarro_gas.location (Std / N2 / Drierite)"),
+    "readme_label": ("STRING", "port description as written in Gas_Data/README.txt (HighSTD / UHPN2 / Air for the reference ports)"),
+    "channel_type": ("STRING", "well or reference"),
+    "valid_from": ("STRING", "start of this assignment (ISO 8601, America/New_York)"),
+    "source_file": ("STRING", "where the assignment was published"),
+}
 
 GAS_COLUMNS = [
     {"name": "time_series_datetime", "src": "TIME", "type": "STRING", "role": "dim",
      "desc": "datetime (ISO 8601 with UTC offset, America/New_York)"},
     {"name": "epoch_time", "src": "EPOCH_TIME", "type": "DOUBLE", "role": "key",
-     "desc": "unix epoch seconds; dedup key (one multiplexer port is live at a time)"},
+     "desc": "unix epoch seconds; dedup key together with instrument (the two analyzers run "
+             "concurrently and can report the same epoch)"},
+    {"name": "instrument", "src": "Port (assignment) / NH3_dry, O2_% (signature)", "type": "STRING", "role": "key",
+     "desc": "Picarro G2508 analyzer serial that produced the row: ORNL-EA-031620 (Picarro A) or "
+             "ORNL-EA-007299 (Picarro B).  Well-ports per the dated port assignment (instrument_port); "
+             "reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B)"},
 
     _meas("concentration_molecule_from_list_dinitrogen_oxide_condition_wet_parts_per_million_by_volume",
           "N2O_ppm", "concentration", "parts per million by volume",
@@ -151,19 +210,23 @@ GAS_COLUMNS = [
           molecule="ammonia", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
     _meas("concentration_molecule_from_list_ammonia_condition_dry_parts_per_billion",
           "NH3_dry", "concentration", "parts per billion",
-          molecule="ammonia", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+          molecule="ammonia", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")],
+          note="reported only by analyzer A (ORNL-EA-031620); empty on analyzer B rows"),
     _meas("concentration_molecule_from_list_water_percent",
           "H2O_%", "concentration", "percent",
           molecule="water", context=[("instrument", "picarro"), *CRDS]),
     _meas("concentration_molecule_from_list_dioxygen_instrument_picarro_condition_wet_percent",
           "O2_%", "concentration", "percent",
-          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")]),
+          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "wet")],
+          note="internal O2 probe of analyzer B (ORNL-EA-007299) only; empty on analyzer A rows"),
     _meas("concentration_molecule_from_list_dioxygen_instrument_picarro_condition_dry_percent",
           "O2_dry_%", "concentration", "percent",
-          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")]),
+          molecule="dioxygen", context=[("instrument", "picarro"), *CRDS, ("condition", "dry")],
+          note="internal O2 probe of analyzer B (ORNL-EA-007299) only; empty on analyzer A rows"),
     _meas("concentration_molecule_from_list_dioxygen_instrument_firesting_percent",
           "O2p_%", "concentration", "percent",
-          molecule="dioxygen", context=[("instrument", "firesting"), ("method", "optical oxygen sensor")]),
+          molecule="dioxygen", context=[("instrument", "firesting"), ("method", "optical oxygen sensor")],
+          note="Firesting FSO2-4 meter, OXROB3 probe in the serum bottle of each analyzer's system (one probe per analyzer)"),
     _meas("temperature_degree_celsius",
           "TrailerTemp_C", "temperature", "degree Celsius",
           context=[("instrument", "firesting")]),
@@ -176,8 +239,9 @@ GAS_COLUMNS = [
     {"name": "channel_type", "src": None, "type": "STRING", "role": "dim",
      "desc": "well (a sampled well-port) or reference (Drierite/Std/N2 QC channel)"},
     {"name": "multiplexer_on_state", "src": "on_state", "type": "INT", "role": "dim",
-     "desc": "Eosense multiplexer live-port state"},
-    {"name": "cycle_set", "src": "set", "type": "INT", "role": "dim", "desc": "Picarro cycle counter (raw set)"},
+     "desc": "Eosense multiplexer live-port state, 1-12; each analyzer has its own multiplexer "
+             "(see instrument_port for the port -> location table)"},
+    {"name": "cycle_set", "src": "set", "type": "INT", "role": "dim", "desc": "Picarro cycle counter (raw set); counts separately on each analyzer"},
     {"name": "port_seconds", "src": "timedelta", "type": "DOUBLE", "role": "dim",
      "desc": "seconds this port had been monitored (raw timedelta)", "unit": "second"},
     {"name": "firesting_datetime", "src": "DateTime", "type": "STRING", "role": "dim",
@@ -327,12 +391,13 @@ TOC_REQUIRED_SOURCE = {"SampleID", "TOC_ppm", "TN_ppm"}
 TABLES = {
     "picarro_gas": {
         "load_mode": "append_dedup",
-        "dedup_key": "epoch_time",
+        "dedup_key": ["epoch_time", "instrument"],
         "sheet": None,  # CSV
         "columns": GAS_COLUMNS,
         "known_source": GAS_KNOWN_SOURCE,
-        "description": "Picarro CRDS + Eosense multiplexer + Firesting O2 gas monitoring; "
-                       "one row per analyzer cycle step, tagged with the live well-port",
+        "description": "Gas monitoring by two Picarro G2508 CRDS analyzers (A ORNL-EA-031620, B ORNL-EA-007299), "
+                       "each with its own Eosense 12-port multiplexer and Firesting O2 probe; one row per analyzer "
+                       "cycle step, tagged with the analyzer serial and the live well-port",
     },
     "field_metadata": {
         "load_mode": "full_refresh",

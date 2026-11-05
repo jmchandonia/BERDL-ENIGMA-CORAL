@@ -6,7 +6,7 @@ style, for conversion to CORAL bricks at campaign end (Dec 2026).
 
 ## Principles (settled)
 
-- **Append+dedup** (on `epoch_time`) for instrument data that never changes once
+- **Append+dedup** (on `epoch_time` + `instrument`) for instrument data that never changes once
   exported (`picarro_gas`); **refresh-from-source** for the spreadsheet-backed
   tables, because sso_staging permits in-place edits when the source sheet
   changes. Mechanism differs by whether a stable key exists: `field_metadata` =
@@ -69,20 +69,25 @@ Notes:
   `concentration_molecule_from_list_dinitrogen_oxide_method_crds_parts_per_million_by_volume`,
   with JSON comment `{description, unit, unit_sys_oterm_id}`.
 
-## Table: `picarro_gas`  (append + dedup on `epoch_time`)
+## Table: `picarro_gas`  (append + dedup on `epoch_time` + `instrument`)
+
+Two Picarro G2508 analyzers run concurrently (A = ORNL-EA-031620, B =
+ORNL-EA-007299; learned 2026-11-04 from Kris's updated README), so `epoch_time`
+alone is not unique.  The serial is data, not microtype context.
 
 | Column | Type | Comment / role |
 |---|---|---|
 | `time_series_datetime` | STRING | field time, ISO 8601 + offset (America/New_York); from `TIME` |
-| `epoch_time` | DOUBLE | unix epoch s (dedup key); from `EPOCH_TIME` |
+| `epoch_time` | DOUBLE | unix epoch s (dedup key with `instrument`); from `EPOCH_TIME` |
+| `instrument` | STRING | analyzer serial `ORNL-EA-031620` (A) / `ORNL-EA-007299` (B); well-ports from the README port assignment (`instrument_port`), reference channels from the NH3_dry / O2_% column signature |
 | gas measurement columns | DOUBLE | the 11 species columns above, COMO-named + commented |
 | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>` (NULL for QC channels) |
 | `location` | STRING | CORAL port string, e.g. `U2-SZ1` (raw `Port`) |
 | `zone` | STRING | `SZ1`/`SZ2` (raw `Depth`) |
 | `well` | STRING | `U2` (raw `Well`) |
 | `channel_type` | STRING | `well` or `reference` (Drierite/Std/N2) |
-| `multiplexer_on_state` | INT | raw `on_state` |
-| `cycle_set` | INT | raw `set` |
+| `multiplexer_on_state` | INT | raw `on_state` (1-12, per analyzer; `instrument_port` maps it) |
+| `cycle_set` | INT | raw `set` (counts per analyzer) |
 | `port_seconds` | DOUBLE | raw `timedelta` (s this port monitored) |
 | `firesting_datetime` | STRING | raw `DateTime` (join key), kept for traceability |
 | `provenance` | STRING | `picarro csv` + source file date |

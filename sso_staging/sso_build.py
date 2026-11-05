@@ -2,9 +2,15 @@
 """Parse the SSO campaign sources into staged TSVs + a manifest for sso_load.py.
 
 Four sources, three load modes (see sso_schema.py):
-  * picarro_gas    - Picarro/Firesting CSV -> append + dedup on epoch_time.
-                     Incremental by default: only rows newer than the last loaded
-                     epoch are staged (the loader's anti-join is the safety net).
+  * picarro_gas    - Picarro/Firesting CSV -> append + dedup on (epoch_time,
+                     instrument).  Two analyzers run concurrently; each row is
+                     attributed to one (well-ports by the README port assignment
+                     in sso_schema, reference channels by the column signature)
+                     and the two rules are cross-checked: a disagreement means a
+                     port was moved, so those rows are HELD and reported, never
+                     guessed.  Incremental by default: only rows newer than the
+                     last loaded epoch are staged (the loader's anti-join is the
+                     safety net).
   * field_metadata - 'Field Metadata' sheet -> full refresh (replace all rows).
   * sample_registry- 'Assay Metadata' sheet -> upsert (MERGE) by sdt_sample_name.
   * toc_tn_anions  - every workbook in TOC_TN_Anions_Chakraborty/ -> upsert by
@@ -39,7 +45,7 @@ import sso_common as sso
 import sso_schema as schema
 
 EASTERN = ZoneInfo("America/New_York")
-GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on epoch_time
+GAS_OVERLAP_S = 2.0  # restage a hair of overlap; the loader dedups on (epoch_time, instrument)
 DOC_EXTENSIONS = {".txt", ".md", ".docx", ".doc", ".pdf", ".pptx"}  # documentation, not data
 
 
@@ -164,8 +170,65 @@ def pick_gas_file(source_dir: Path, gas_file: str | None) -> Path:
     return matches[-1]  # names sort by date; newest last
 
 
-def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame, dict, float | None]:
-    """Vectorized: one row per analyzer cycle step, only rows newer than last_epoch."""
+def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
+    """Attribute every gas row to an analyzer and cross-check the two rules.
+
+    signature  : NH3_dry reported -> A, O2_% reported -> B (per row, from the CSV)
+    assignment : well-port -> analyzer from schema.GAS_WELL_INSTRUMENT (the README table)
+    Well rows take the assignment, reference rows the signature.  Returns
+    (instrument Series, keep mask, checks dict).  Rows are HELD (not staged) when
+    the assignment and the signature disagree (a port was moved: edit the
+    assignment, then re-stage with --full-gas) or when neither rule applies.
+    """
+    import numpy as np
+
+    def present(col):
+        return raw[col].str.strip() != "" if col in raw else pd.Series(False, index=raw.index)
+
+    by_sig = {serial: present(meta["signature"]) for serial, meta in schema.GAS_INSTRUMENTS.items()}
+    sig = pd.Series(None, index=raw.index, dtype=object)
+    ambiguous = pd.Series(False, index=raw.index)
+    for serial, mask in by_sig.items():
+        ambiguous |= mask & sig.notna()
+        sig = sig.mask(mask & sig.isna(), serial)
+    sig = sig.mask(ambiguous, None)
+
+    is_well = frame["channel_type"] == "well"
+    assigned = frame["location"].map(schema.GAS_WELL_INSTRUMENT)
+    instrument = pd.Series(np.where(is_well & assigned.notna(), assigned, sig), index=raw.index, dtype=object)
+
+    conflict = is_well & assigned.notna() & sig.notna() & (assigned != sig)
+    unattributed = instrument.isna()
+    unknown_port = is_well & assigned.isna()
+    keep = ~(conflict | unattributed)
+
+    def tally(mask, cols):
+        if not mask.any():
+            return []
+        g = pd.DataFrame({c: v[mask] for c, v in cols.items()}).fillna("").groupby(list(cols)).size()
+        return [{**dict(zip(cols, k if isinstance(k, tuple) else (k,))), "rows": int(n)} for k, n in g.items()]
+
+    on_state = pd.to_numeric(frame["multiplexer_on_state"], errors="coerce")
+    expected_loc = pd.Series([
+        schema.GAS_PORT_LOCATION.get((i, int(o))) if (i is not None and pd.notna(o)) else None
+        for i, o in zip(instrument, on_state)], index=raw.index, dtype=object)
+    port_map_mismatch = keep & expected_loc.notna() & (expected_loc != frame["location"])
+
+    checks = {
+        "conflicts": tally(conflict, {"location": frame["location"], "assigned": assigned, "signature": sig}),
+        "unattributed": tally(unattributed & ~conflict, {"location": frame["location"], "channel_type": frame["channel_type"]}),
+        "unknown_ports": tally(unknown_port & keep, {"location": frame["location"], "instrument": instrument}),
+        "port_map_mismatch": tally(port_map_mismatch, {"instrument": instrument, "multiplexer_on_state": on_state,
+                                                       "location": frame["location"], "assigned_location": expected_loc}),
+        "rows_held": int((~keep).sum()),
+        "rows_by_instrument": {k: int(v) for k, v in instrument[keep].value_counts().items()},
+    }
+    return instrument, keep, checks
+
+
+def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame, dict, float | None, dict]:
+    """Vectorized: one row per analyzer cycle step, only rows newer than last_epoch.
+    Returns (rows, drift, max_epoch, instrument checks)."""
     import numpy as np
 
     frames = [pd.read_csv(p, dtype=str, keep_default_na=False) for p in paths]
@@ -173,6 +236,8 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     actual = {c for c in raw.columns if c and not c.startswith("Unnamed")}
     d = drift(actual, schema.GAS_KNOWN_SOURCE)
     names = [c["name"] for c in staged_columns("picarro_gas")]
+    empty_checks = {"conflicts": [], "unattributed": [], "unknown_ports": [], "port_map_mismatch": [],
+                    "rows_held": 0, "rows_by_instrument": {}}
 
     epoch = pd.to_numeric(raw.get("EPOCH_TIME", pd.Series("", index=raw.index)), errors="coerce")
     mask = epoch.notna()
@@ -180,7 +245,7 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
         mask &= epoch > (last_epoch - GAS_OVERLAP_S)
     raw, epoch = raw[mask].copy(), epoch[mask]
     if raw.empty:
-        return pd.DataFrame(columns=names), d, last_epoch
+        return pd.DataFrame(columns=names), d, last_epoch, empty_checks
 
     def col(name):
         return raw[name].str.strip() if name in raw else pd.Series("", index=raw.index)
@@ -206,8 +271,14 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     out["provenance"] = f"picarro csv {paths[-1].name}"
     out["source_file"] = paths[-1].name
 
+    instrument, keep, checks = gas_instrument_checks(out, raw)
+    out["instrument"] = instrument
+    out = out[keep]
+
+    # The state advances past held rows too: once the assignment is fixed they
+    # come back with --full-gas (the loader's anti-join makes that safe).
     max_epoch = max(last_epoch if last_epoch is not None else float("-inf"), float(epoch.max()))
-    return out.reindex(columns=names), d, max_epoch
+    return out.reindex(columns=names), d, max_epoch, checks
 
 
 # ----------------------------------------------------------------------
@@ -488,17 +559,21 @@ def main() -> None:
     else:
         gas_paths = [pick_gas_file(source_dir, args.gas_file)]
     log(f"gas: reading {[p.name for p in gas_paths]} (last_epoch={last_epoch})")
-    gas_rows, gas_drift, max_epoch = read_gas(gas_paths, last_epoch)
+    gas_rows, gas_drift, max_epoch, gas_checks = read_gas(gas_paths, last_epoch)
     tsv = write_tsv(args.out, "picarro_gas", gas_rows)
     manifest["tables"]["picarro_gas"] = {
-        "tsv": tsv, "load_mode": "append_dedup", "dedup_key": "epoch_time",
+        "tsv": tsv, "load_mode": "append_dedup", "dedup_key": schema.TABLES["picarro_gas"]["dedup_key"],
         "rows": len(gas_rows), "description": schema.TABLES["picarro_gas"]["description"],
         "source_files": [p.name for p in gas_paths],
     }
     manifest["drift"]["picarro_gas"] = gas_drift
+    manifest["gas_checks"] = gas_checks
     if max_epoch is not None:
         (args.out / "gas_state_pending.json").write_text(json.dumps({"last_epoch": max_epoch}) + "\n")
-    log(f"gas: staged {len(gas_rows)} rows")
+    log(f"gas: staged {len(gas_rows)} rows {gas_checks['rows_by_instrument']}, held {gas_checks['rows_held']}")
+    for kind in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"):
+        if gas_checks[kind]:
+            log(f"gas: {kind}: {gas_checks[kind]}")
 
     # --- field metadata ---
     field_path = source_dir / sso.FIELD_FILE
@@ -552,8 +627,9 @@ def main() -> None:
     # Exit code 3 signals "loaded, but something needs a human" (new/missing columns,
     # held ids, or an un-ingested source file), mirroring cm_build.py's
     # unknown-label convention so run_daily can note it.
+    gas_flags = any(gas_checks[k] for k in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"))
     flags = (any(v["new_columns"] or v["missing_columns"] for v in manifest["drift"].values())
-             or bool(held) or bool(unknown))
+             or bool(held) or bool(unknown) or gas_flags)
     sys.exit(3 if flags else 0)
 
 

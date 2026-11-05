@@ -12,7 +12,23 @@ This is also the lossless blueprint for the end-of-campaign CORAL conversion
 Data-table **column comments** stay lightweight, like continuous_monitoring:
 `{description, unit}` (+ `type`/`references` for FKs). Nothing more.
 
-## Data table: `picarro_gas` (append + dedup on `epoch_time`)
+## Data table: `picarro_gas` (append + dedup on `epoch_time` + `instrument`)
+
+**Two analyzers (revised 2026-11-04).** Kris's updated `Gas_Data/README.txt`
+documents two Picarro G2508s running concurrently — A = `ORNL-EA-031620`,
+B = `ORNL-EA-007299` — each with its own Eosense 12-port multiplexer and
+Firesting probe. The analyzer serial is **data** (`instrument` column, part of
+the dedup key), not microtype context: `ddt_brick` keeps the free-text token
+`instrument=picarro`, so the derived column names below are unchanged, and at
+conversion each analyzer becomes its own brick with the serial as brick-level
+instrument context. Which analyzer reports which column:
+
+| column(s) | A `ORNL-EA-031620` | B `ORNL-EA-007299` |
+|---|---|---|
+| N2O, CO2, CH4 (wet + dry), NH3_ppb, H2O_% | yes | yes |
+| `NH3_dry` | **yes** | empty |
+| `O2_%`, `O2_dry_%` (internal O2 probe) | empty | **yes** |
+| `O2p_%` (Firesting, one probe per system), `TrailerTemp_C` (shared) | yes | yes |
 
 ### Measurement columns (DOUBLE) — CORAL-style derived names
 
@@ -58,20 +74,43 @@ matching how coral/cm populate `description`.
 | CSV col | Column | type | comment |
 |---|---|---|---|
 | `TIME` | `time_series_datetime` | STRING | datetime (ISO 8601 with UTC offset, America/New_York) |
-| `EPOCH_TIME` | `epoch_time` | DOUBLE | unix epoch seconds; dedup key |
+| `EPOCH_TIME` | `epoch_time` | DOUBLE | unix epoch seconds; dedup key together with `instrument` (the two analyzers can share an epoch) |
+| `Port` (assignment) / `NH3_dry`, `O2_%` (signature) | `instrument` | STRING | analyzer serial `ORNL-EA-031620` (A) or `ORNL-EA-007299` (B): well-ports per the README port assignment (`instrument_port`), reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B) |
 | `Well`+`Depth` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location.sdt_location_name; `SSO-<well>`; NULL for QC |
 | `Port` | `location` | STRING | port string `U2-SZ1` |
 | `Depth` | `zone` | STRING | `SZ1`/`SZ2` |
 | `Well` | `well` | STRING | `U2` |
 | (derived) | `channel_type` | STRING | `well` or `reference` (Drierite/Std/N2) |
-| `on_state` | `multiplexer_on_state` | INT | Eosense multiplexer live-port state |
-| `set` | `cycle_set` | INT | Picarro cycle counter |
+| `on_state` | `multiplexer_on_state` | INT | Eosense multiplexer live-port state, 1-12, per analyzer (`instrument_port` maps it) |
+| `set` | `cycle_set` | INT | Picarro cycle counter (counts per analyzer) |
 | `timedelta` | `port_seconds` | DOUBLE | seconds this port monitored (unit=second) |
 | `DateTime` | `firesting_datetime` | STRING | Firesting join time (traceability) |
 | — | `provenance` | STRING | `picarro csv` + source file date |
 | — | `source_file` | STRING | CSV filename |
 | — | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
 | — | `ingested_at` | TIMESTAMP | append time (UTC) |
+
+## Metadata table: `instrument_port` (analyzer × multiplexer port; rewritten each run)
+
+The README's dated port tables, kept as code (`sso_schema.GAS_PORT_ASSIGNMENT`)
+and published so the attribution used for `instrument` is in the lakehouse.
+24 rows (2 analyzers × 12 ports), `valid_from = 2026-10-04T20:00:00-04:00`.
+
+| Column | type | comment |
+|---|---|---|
+| `instrument` | STRING | analyzer serial |
+| `instrument_label` | STRING | `A` / `B` as in the README |
+| `multiplexer_on_state` | INT | port 1-12 (= `picarro_gas.multiplexer_on_state`) |
+| `location` | STRING | `U2-SZ1` …, or the reference channel as named in `picarro_gas.location` (`Std` / `N2` / `Drierite`) |
+| `readme_label` | STRING | the README's text (`HighSTD` / `UHPN2` / `Air` for ports 10-12) |
+| `channel_type` | STRING | `well` or `reference` |
+| `valid_from` | STRING | start of this assignment |
+| `source_file` | STRING | `Gas_Data/README.txt (updated 2026-10-28)` |
+
+Every build cross-checks the signature against this table. A disagreement on a
+well-port (a moved port) HOLDS those rows and raises GAS PORT MOVED? in the
+email; a port not in the table raises GAS NEW PORT; an `on_state` whose README
+location differs from the row's `Port` raises GAS PORT MAP. Nothing is guessed.
 
 ## Metadata table: `ddt_brick` (one row per measurement column; mirrors ddt_ndarray)
 
@@ -89,8 +128,8 @@ Full `ddt_brick` rows — one per measurement column (scalar_type = float for al
 Keyed by CSV source here for readability; the stored `column` value is the
 CORAL-derived name from the measurement table above.
 
-| CSV source | value_type (measurement) | molecule (CHEBI) | instrument | method | condition | unit | unit oterm |
-|---|---|---|---|---|---|---|---|
+| CSV source | value_type (measurement) | molecule (CHEBI) | instrument | method | condition | unit | unit oterm | note |
+|---|---|---|---|---|---|---|---|---|
 | N2O_ppm | concentration ME:0000129 | dinitrogen oxide CHEBI:17045 | picarro | cavity ring-down spectroscopy | wet | parts per million by volume | ME:0000348 |
 | N2O_dry_ppm | concentration ME:0000129 | dinitrogen oxide CHEBI:17045 | picarro | cavity ring-down spectroscopy | dry | parts per million by volume | ME:0000348 |
 | CO2_ppm | concentration ME:0000129 | carbon dioxide CHEBI:16526 | picarro | cavity ring-down spectroscopy | wet | parts per million by volume | ME:0000348 |
@@ -98,11 +137,11 @@ CORAL-derived name from the measurement table above.
 | CH4_ppm | concentration ME:0000129 | methane CHEBI:16183 | picarro | cavity ring-down spectroscopy | wet | parts per million by volume | ME:0000348 |
 | CH4_dry_ppm | concentration ME:0000129 | methane CHEBI:16183 | picarro | cavity ring-down spectroscopy | dry | parts per million by volume | ME:0000348 |
 | NH3_ppb | concentration ME:0000129 | ammonia CHEBI:16134 | picarro | cavity ring-down spectroscopy | wet | parts per billion | UO:0000170 |
-| NH3_dry | concentration ME:0000129 | ammonia CHEBI:16134 | picarro | cavity ring-down spectroscopy | dry | parts per billion | UO:0000170 |
+| NH3_dry | concentration ME:0000129 | ammonia CHEBI:16134 | picarro | cavity ring-down spectroscopy | dry | parts per billion | UO:0000170 | note: analyzer A only |
 | H2O_% | concentration ME:0000129 | water CHEBI:15377 | picarro | cavity ring-down spectroscopy | — | percent | UO:0000187 |
-| O2_% | concentration ME:0000129 | dioxygen CHEBI:15379 | picarro | cavity ring-down spectroscopy | wet | percent | UO:0000187 |
-| O2_dry_% | concentration ME:0000129 | dioxygen CHEBI:15379 | picarro | cavity ring-down spectroscopy | dry | percent | UO:0000187 |
-| O2p_% | concentration ME:0000129 | dioxygen CHEBI:15379 | firesting | optical oxygen sensor | — | percent | UO:0000187 |
+| O2_% | concentration ME:0000129 | dioxygen CHEBI:15379 | picarro | cavity ring-down spectroscopy | wet | percent | UO:0000187 | note: analyzer B's internal O2 probe only |
+| O2_dry_% | concentration ME:0000129 | dioxygen CHEBI:15379 | picarro | cavity ring-down spectroscopy | dry | percent | UO:0000187 | note: analyzer B's internal O2 probe only |
+| O2p_% | concentration ME:0000129 | dioxygen CHEBI:15379 | firesting | optical oxygen sensor | — | percent | UO:0000187 | note: Firesting FSO2-4 meter, OXROB3 probe, one per analyzer |
 | TrailerTemp_C | temperature ME:0000123 | — | firesting | — | — | degree Celsius | UO:0000027 |
 
 Proposed `ddt_brick` schema (STRING unless noted), mirroring `ddt_ndarray`:

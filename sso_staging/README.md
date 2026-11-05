@@ -13,14 +13,15 @@ per-table brick structures).  `sso_schema.py` is the authoritative schema.
 
 | Table | Load mode | Key | Source |
 |---|---|---|---|
-| `picarro_gas` | append + dedup on `epoch_time` | `epoch_time` | `Gas_Data/*_gas_data.csv` (Picarro/Firesting) |
+| `picarro_gas` | append + dedup on (`epoch_time`, `instrument`) | `epoch_time` + `instrument` (analyzer serial) | `Gas_Data/*_gas_data.csv` (two Picarro G2508s + Firesting) |
 | `field_metadata` | **full refresh** (shrink-guarded) | — (multiple draws per timepoint×well) | `Field Metadata` sheet |
 | `sample_registry` | **upsert** (MERGE) | `sdt_sample_name` | `Assay Metadata` sheet (manifest) |
 | `toc_tn_anions` | **upsert** (MERGE) | `sdt_sample_name` (the ANIONS sample) | every workbook in `TOC_TN_Anions_Chakraborty/` (Chakraborty TOC/TN + IC anion results, ppm) |
 
 Bookkeeping tables (rewritten each run): `ddt_brick` (COMO microtype per
 measurement column — the oterm ids live here, never in column names),
-`table_metadata`, `ingest_runs`.
+`instrument_port` (analyzer serial × multiplexer port → well-port, from Kris's
+README; see below), `table_metadata`, `ingest_runs`.
 
 Load semantics differ from the neighbours on purpose: continuous_monitoring is
 append-only, CORAL is withdraw+replace, **sso_staging may modify rows in place**
@@ -40,12 +41,33 @@ combined_report.py  compose ONE email covering cm + sso (see below)
 run_daily.sh    orchestrate both namespaces in one tunnel/spawn, send one email
 ```
 
+### Gas: two analyzers, one table
+
+Two Picarro G2508 analyzers run concurrently (`Gas_Data/README.txt`, updated
+2026-10-28): **A = ORNL-EA-031620** and **B = ORNL-EA-007299**, each with its own
+Eosense 12-port multiplexer and Firesting O2 probe, so two rows can share an
+`epoch_time`.  Every row carries the analyzer serial in `instrument` and the
+dedup key is (`epoch_time`, `instrument`).  Attribution: well-ports use the
+README's dated port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`, published as
+the `instrument_port` table); reference channels (Std / N2 / Drierite) use the
+row's column signature (`NH3_dry` reported = A, `O2_%` reported = B, each
+analyzer reports exactly one).  The build cross-checks the two rules on every
+row: a well-port whose rows carry the other analyzer's signature means a port
+was moved, so those rows are **held** and the email raises GAS PORT MOVED?
+(also GAS ROWS UNATTRIBUTED, GAS NEW PORT, GAS PORT MAP).  Edit the assignment
+after confirming with Kris, then re-stage with `--full-gas`.  The serial is data,
+not microtype context (`ddt_brick` keeps `instrument=picarro`), so at CORAL
+conversion each analyzer becomes its own brick with the serial as brick-level
+context.  (`sso_migrate_instrument.py` is the one-time 2026-11-04 backfill that
+attributed the 945,384 rows loaded before the column existed.)
+
 ### Gas file: "handle both" until Kris's protocol is settled
 
 `sso_build.py` loads the **newest** `*_gas_data.csv` by default and, incrementally,
 stages only rows newer than the last loaded `epoch_time` (tracked in
-`state/gas_state.json`); the loader's anti-join on `epoch_time` is the dedup
-safety net, so re-ingesting a cumulative re-export never duplicates rows.  Flags:
+`state/gas_state.json`); the loader's anti-join on (`epoch_time`, `instrument`)
+is the dedup safety net, so re-ingesting a cumulative re-export never duplicates
+rows.  Flags:
 `--gas-file FILE` (a specific file), `--all-gas-files` (concatenate every CSV),
 `--full-gas` (ignore the last-epoch state and stage everything, e.g. a backfill).
 Whichever way Kris ends up delivering the exports, these cover it.
@@ -78,11 +100,14 @@ is parsed from (`TOC_ppm`, `Pump Time On`, ...).  The value comes from
 `sso_schema.py`, never from the live file.  If a source header changes,
 `sso_build.py` reports it as NEW/MISSING COLUMN (an ACTION in the email) and
 nothing in the lakehouse changes until the schema is edited by hand.  Likewise
-the daily load never rewrites comments: it compares the live comments with the
-schema and raises COMMENT DRIFT as an ACTION; after review, apply them with
+the daily load never rewrites comments or alters a table: it compares the live
+comments with the schema and raises COMMENT DRIFT as an ACTION, and if the live
+table lacks a column the schema defines it skips that table and raises TABLE
+LACKS COLUMN.  After review, apply them with
 
 ```
 sso_load.py --staging /any --sync-comments --comments-only
+sso_load.py --staging /any --add-columns          # then backfill the new column
 ```
 
 (continuous_monitoring works the same way: `source_label` + `source_headers`

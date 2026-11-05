@@ -12,11 +12,14 @@ timepoints (every 2 days), 9 SSO wells × SZ1/SZ2 ports + EFPW02/EFPW03.
 | File | Size | Notes |
 |---|---|---|
 | `2026_10_28_gas_data.csv` | 207 MB | Cumulative campaign file, data through ~2026-10-28 |
-| `README.txt` | 1.6 KB | Column spec + provenance |
+| `README.txt` | 2.9 KB | Column spec + provenance; **updated 2026-10-28 11:33** with the two-analyzer port tables (the 1.6 KB first version had none) |
 
-Produced from the collab notebook `DataCompiler.ipynb`. One timestamped row per
-Picarro cycle step; the Eosense multiplexer visits one port at a time, so each
-row is tagged with the port being monitored. Near-continuous (Firesting O2 every
+Produced from the collab notebook `DataCompiler.ipynb`. **Two Picarro G2508
+analyzers run concurrently** — A = `ORNL-EA-031620`, B = `ORNL-EA-007299` — each
+with its own Eosense 12-port multiplexer (eos-mx) and Firesting FSO2-4 / OXROB3
+O2 probe (README; confirmed by Katie and Kris 2026-11-04). One timestamped row
+per analyzer cycle step; each multiplexer visits one port at a time, so each row
+is tagged with the port being monitored. Near-continuous (Firesting O2 every
 30 s; Picarro faster). Delivered as periodic (≈weekly) re-exported cumulative
 CSVs named by date.
 
@@ -64,19 +67,38 @@ file header over the README prose list.
 - **3 QC/reference channels**: `Drierite` (desiccant zero), `Std` (span gas),
   `N2` (nitrogen blank — run only occasionally).
 
-Key facts for the table-shape decision:
-- **One physical instrument, time-shared** (Picarro + Eosense multiplexer +
-  Firesting). `on_state` = which port is live.
+Key facts for the table-shape decision (corrected 2026-11-04; the first pass
+read the 1.6 KB README and wrongly concluded "one instrument, time-shared"):
+- **Two analyzers, concurrent.** `on_state` = which port is live on *that*
+  analyzer's multiplexer; the README port tables (as of 10/04/2026 20:00):
+
+  | port | Picarro A `ORNL-EA-031620` | Picarro B `ORNL-EA-007299` |
+  |---|---|---|
+  | 1–9 | U2-SZ1, U2-SZ2, M5-SZ1, M5-SZ2, M6-SZ1, M6-SZ2, L9-SZ1, L9-SZ2, L8-SZ2 | U1-SZ1, U1-SZ2, M4-SZ1, M4-SZ2, L7-SZ1, L7-SZ2, U3-SZ1, U3-SZ2, L8-SZ1 |
+  | 10 / 11 / 12 | HighSTD / UHPN2 / Air (CSV: `Std` / `N2` / `Drierite`) | same |
+
+- **Column signature identifies the analyzer on every row**: A reports
+  `NH3_dry` and never `O2_%`/`O2_dry_%`; B has the internal O2 probe
+  (`O2_%`/`O2_dry_%`) and never `NH3_dry`. Verified on the 2026-10-28 file:
+  659,190 A rows / 286,194 B rows, no row with both or neither, and every
+  well-port's signature matches the README table. (So "O2 came online later /
+  NH3_dry only early" was a misreading of two instruments' column sets.)
+- **`EPOCH_TIME` is NOT unique**: 945,384 rows, 945,252 distinct epochs (132
+  shared by an A row and a B row); (`EPOCH_TIME`, analyzer) is unique.
 - **No independent port dropouts.** After the setup day (10-04, partial), every
   well-port reports on every sampling day.
 - **Outages are trailer-wide**, e.g. the whole trailer is silent 10-10 → 10-15.
-  A single staleness check on one table catches this.
-- **All ports share columns** (same analyzer). Only campaign-wide config drift:
-  O2_%/O2_dry_% came online after the start; NH3_dry only early.
+- `TrailerTemp_C` is one shared feed; `O2p_%` is one Firesting probe per system;
+  `set` counts separately on each analyzer. `Drierite` = anhydrous calcium
+  sulfate desiccant, i.e. the dry-air zero/baseline channel (README calls it
+  "Air"); `Std` = span standard; `N2` = UHP nitrogen blank (rare).
 
-→ Decision: model gas as **one table** (`picarro_gas`) with well/zone/port
-dimension columns + a channel-type flag (well vs Drierite/Std/N2), not per-port
-tables. Dedup on `EPOCH_TIME` (one port live at a time, so it's unique).
+→ Decision: **one table** (`picarro_gas`) with an `instrument` column (analyzer
+serial) + well/zone/port dimensions + channel-type flag, dedup on
+(`epoch_time`, `instrument`); the port assignment is kept as code
+(`sso_schema.GAS_PORT_ASSIGNMENT`) and published as `instrument_port`. Open
+question for Kris: README port 12 says "Air" while the CSV labels it
+`Drierite`; and whether any port has moved since 10/04 20:00.
 
 ## 2. Field / sample metadata (Katie)
 

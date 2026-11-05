@@ -2,7 +2,7 @@
 """Load staged sso_staging TSVs into the BERDL lakehouse.
 
 Four data tables, three load modes, dispatched from the manifest sso_build.py wrote:
-  * picarro_gas    append + dedup on epoch_time (LEFT ANTI JOIN; re-ingesting a
+  * picarro_gas    append + dedup on (epoch_time, instrument) (null-safe LEFT ANTI JOIN; re-ingesting a
                    cumulative export never duplicates rows).
   * field_metadata full refresh (DELETE + INSERT); a shrink-guard refuses to wipe
                    the table when the source suddenly has far fewer rows.
@@ -193,18 +193,34 @@ class Loader:
         except Exception:
             return set()
 
-    def ensure_table(self, table: str, columns: list[dict], description: str, existing: set[str]) -> None:
+    def ensure_table(self, table: str, columns: list[dict], description: str, existing: set[str]) -> list[str]:
+        """Create a missing table.  For an existing table, return the schema
+        columns the live table lacks: the daily run never ALTERs a table on its
+        own (it reports the gap as an ACTION and skips the load); add them
+        deliberately with --add-columns."""
         if table not in existing:
             ddl = ", ".join(column_ddl(c) for c in columns)
             self.sql(f"CREATE TABLE {sso.full_name(table)} ({ddl}) USING iceberg "
                      f"COMMENT {sso.sql_string(f'{table} - {description}')}")
             log(f"{'would create' if self.dry_run else 'created'} {table}")
-            return
+            return []
         current = set(self.spark.table(sso.full_name(table)).columns)
-        missing = [c for c in columns if c["name"] not in current]
+        return [c["name"] for c in columns if c["name"] not in current]
+
+    def add_columns(self, table: str, columns: list[dict], missing: list[str]) -> int:
+        """Deliberate schema migration: add the missing schema columns to a live
+        table, each positioned after its schema predecessor (nullable, so
+        existing rows need a separate backfill)."""
+        names = [c["name"] for c in columns]
+        for c in columns:
+            if c["name"] not in missing:
+                continue
+            i = names.index(c["name"])
+            position = f" AFTER {sso.quoted(names[i - 1])}" if i else " FIRST"
+            self.sql(f"ALTER TABLE {sso.full_name(table)} ADD COLUMN {column_ddl(c)}{position}")
         if missing:
-            self.sql(f"ALTER TABLE {sso.full_name(table)} ADD COLUMNS ({', '.join(column_ddl(c) for c in missing)})")
-            log(f"added columns to {table}: {[c['name'] for c in missing]}")
+            log(f"{'would add' if self.dry_run else 'added'} column(s) to {table}: {missing}")
+        return len(missing)
 
     # --- comments: detect drift daily, apply only on an explicit --sync-comments run ---
 
@@ -258,18 +274,20 @@ class Loader:
             self.spark.createDataFrame(chunk, schema=spark_schema(columns)).createOrReplaceTempView(view)
             self.spark.sql(select_sql(view))
 
-    def append_dedup(self, table: str, frame: pd.DataFrame, columns: list[dict], key: str) -> dict:
+    def append_dedup(self, table: str, frame: pd.DataFrame, columns: list[dict], key) -> dict:
+        keys = [key] if isinstance(key, str) else list(key)
         target = sso.full_name(table)
         if self.dry_run:
-            log(f"[dry-run] would append up to {len(frame)} rows to {table} (dedup on {key})")
+            log(f"[dry-run] would append up to {len(frame)} rows to {table} (dedup on {keys})")
             return {"staged": len(frame), "appended": len(frame)}
         before = self.spark.table(target).count()
         cols = ", ".join(sso.quoted(c["name"]) for c in columns)
+        on = " AND ".join(f"t.{sso.quoted(k)} <=> s.{sso.quoted(k)}" for k in keys)  # null-safe
 
         def select(view):
             sel = f"SELECT {', '.join('s.' + sso.quoted(c['name']) for c in columns)} FROM {view} s"
             if before:
-                sel += f" LEFT ANTI JOIN {target} t ON t.{sso.quoted(key)} = s.{sso.quoted(key)}"
+                sel += f" LEFT ANTI JOIN {target} t ON {on}"
             return f"INSERT INTO {target} ({cols}) {sel}"
 
         self._insert_chunks(frame, columns, select)
@@ -344,6 +362,16 @@ class Loader:
                 })
         self._rewrite(table, specs, comments, rows, existing, "ddt_brick - COMO microtype per measurement column")
 
+    def write_instrument_port(self, existing: set[str]) -> None:
+        """The analyzer <-> multiplexer-port assignment (sso_schema.GAS_PORT_ASSIGNMENT),
+        rewritten each run so the lakehouse carries the table the gas rows were
+        attributed with."""
+        specs = {k: v[0] for k, v in schema.INSTRUMENT_PORT_COLUMNS.items()}
+        comments = {k: v[1] for k, v in schema.INSTRUMENT_PORT_COLUMNS.items()}
+        self._rewrite("instrument_port", specs, comments, schema.GAS_PORT_ASSIGNMENT, existing,
+                      "instrument_port - Picarro analyzer serial x Eosense multiplexer port -> well-port / reference "
+                      "channel, as published in Gas_Data/README.txt; picarro_gas.instrument is attributed with this table")
+
     def write_table_metadata(self, per_table: dict, manifest: dict, existing: set[str]) -> dict:
         table = "table_metadata"
         specs = {
@@ -367,6 +395,13 @@ class Loader:
                 f"SELECT count(*) n, min({sso.quoted(tc)}) lo, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)}"
             ).collect()[0]
             latest[tbl] = {"row_count": int(stats["n"]), "last_timestamp": stats["hi"]}
+            if tbl == "picarro_gas" and "instrument" in self.spark.table(sso.full_name(tbl)).columns:
+                latest[tbl]["instruments"] = {
+                    r["instrument"]: {"row_count": int(r["n"]), "last_timestamp": r["hi"],
+                                      "label": schema.GAS_INSTRUMENTS.get(r["instrument"], {}).get("label")}
+                    for r in self.spark.sql(
+                        f"SELECT instrument, count(*) n, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)} "
+                        f"GROUP BY instrument ORDER BY instrument").collect()}
             rows.append({
                 "table_name": tbl, "description": spec["description"], "load_mode": spec["load_mode"],
                 "source_files": json.dumps(manifest["tables"].get(tbl, {}).get("source_files", [])),
@@ -401,7 +436,7 @@ class Loader:
             ddl = ", ".join(f"{sso.quoted(c)} {specs[c]} COMMENT {sso.sql_string(sso.comment(comments[c], **({'type': 'primary_key'} if c == pk else {})))}" for c in specs)
             self.spark.sql(f"CREATE TABLE {sso.full_name(table)} ({ddl}) USING iceberg COMMENT {sso.sql_string(table_comment)}")
             existing.add(table)
-        kind = {"STRING": T.StringType(), "BIGINT": T.LongType(), "TIMESTAMP": T.TimestampType()}
+        kind = {"STRING": T.StringType(), "INT": T.LongType(), "BIGINT": T.LongType(), "TIMESTAMP": T.TimestampType()}
         sschema = T.StructType([T.StructField(c, kind[specs[c]], True) for c in specs])
         frame = pd.DataFrame([{c: r.get(c) for c in specs} for r in rows], columns=list(specs))
         frame = frame.astype(object).where(pd.notna(frame), None)
@@ -424,6 +459,10 @@ def main() -> None:
     ap.add_argument("--comments-only", action="store_true",
                     help="with --sync-comments: sync comments on every schema table and exit without loading data "
                          "(no ingest_runs row, no load_result.json)")
+    ap.add_argument("--add-columns", action="store_true",
+                    help="deliberate schema migration: ALTER every existing schema table to add the columns it lacks "
+                         "(nullable; backfill separately), then exit without loading.  The daily run only reports "
+                         "a missing column as an ACTION and skips that table.")
     args = ap.parse_args()
     if args.comments_only and not args.sync_comments:
         ap.error("--comments-only requires --sync-comments")
@@ -436,7 +475,8 @@ def main() -> None:
     if warning:
         print(f"WARNING: {warning}", file=sys.stderr, flush=True)
 
-    manifest = json.loads((args.staging / "manifest.json").read_text()) if not args.comments_only else {"tables": {}}
+    maintenance = args.comments_only or args.add_columns
+    manifest = json.loads((args.staging / "manifest.json").read_text()) if not maintenance else {"tables": {}}
     run_id = args.run_id or f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}-{uuid.uuid4().hex[:6]}"
     started = datetime.now(timezone.utc)
 
@@ -457,6 +497,13 @@ def main() -> None:
         spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {'.'.join(f'`{p}`' for p in sso.NAMESPACE.split('.'))}")
     existing = loader.existing_tables()
 
+    if args.add_columns:
+        n = 0
+        for table, spec in schema.TABLES.items():
+            if table in existing:
+                n += loader.add_columns(table, spec["columns"], loader.ensure_table(table, spec["columns"], spec["description"], existing))
+        log(f"add-columns: {n} column(s) {'would be ' if args.dry_run else ''}added")
+        return
     if args.comments_only:
         n = 0
         for table, spec in schema.TABLES.items():
@@ -466,14 +513,20 @@ def main() -> None:
         return
 
     per_table, status, error = {}, "ok", None
-    comment_drift, comments_synced = {}, 0
+    comment_drift, comments_synced, schema_drift = {}, 0, {}
     try:
         for table, info in manifest["tables"].items():
             spec = schema.TABLES[table]
             columns = spec["columns"]
             existed = table in existing
-            loader.ensure_table(table, columns, spec["description"], existing)
+            missing = loader.ensure_table(table, columns, spec["description"], existing)
             existing.add(table)
+            if missing:
+                schema_drift[table] = missing
+                per_table[table] = {"staged": info.get("rows", 0), "skipped": f"live table lacks column(s) {missing}; "
+                                    "run sso_load.py --add-columns after review"}
+                log(f"WARNING: {table}: {per_table[table]['skipped']}")
+                continue
             if existed:
                 drift = loader.comment_drift(table, columns, spec["description"])
                 if drift and args.sync_comments:
@@ -496,6 +549,7 @@ def main() -> None:
             per_table[table] = res
             log(f"{table} [{mode}]: {res}")
         loader.write_ddt_brick(existing)
+        loader.write_instrument_port(existing)
         latest = loader.write_table_metadata(per_table, manifest, existing)
     except Exception as exc:
         status, error = "error", repr(exc)
@@ -515,26 +569,31 @@ def main() -> None:
         except Exception as exc:
             print(f"could not record run: {exc!r}", file=sys.stderr)
         _write_result(args, manifest, record, per_table, locals().get("latest", {}), token, run_id,
-                      comment_drift, comments_synced)
+                      comment_drift, comments_synced, schema_drift)
     log(f"run {run_id}: {record['rows_written']} rows written across {len(per_table)} tables")
 
 
-def _write_result(args, manifest, record, per_table, latest, token, run_id, comment_drift=None, comments_synced=0) -> None:
+def _age_hours(last) -> float | None:
+    try:
+        last_dt = datetime.fromisoformat(str(last))
+    except (TypeError, ValueError):
+        return None
+    if last_dt.tzinfo is None:
+        last_dt = last_dt.replace(tzinfo=timezone.utc)
+    return round((datetime.now(timezone.utc) - last_dt).total_seconds() / 3600, 1)
+
+
+def _write_result(args, manifest, record, per_table, latest, token, run_id, comment_drift=None, comments_synced=0,
+                  schema_drift=None) -> None:
     expires_dt, days = token_expiry(token)
-    stale = {}
+    stale, instruments = {}, {}
+    info = latest.get("picarro_gas") or {}
+    for serial, v in (info.get("instruments") or {}).items():  # per-analyzer last reading (and age)
+        instruments[serial] = {**v, "age_hours": _age_hours(v.get("last_timestamp"))}
     if args.check_staleness:
-        info = latest.get("picarro_gas") or {}
-        last = info.get("last_timestamp")
-        if last:
-            try:
-                last_dt = datetime.fromisoformat(str(last))
-                if last_dt.tzinfo is None:
-                    last_dt = last_dt.replace(tzinfo=timezone.utc)
-                age = (datetime.now(timezone.utc) - last_dt).total_seconds() / 3600
-                if age > STALE_HOURS:
-                    stale["picarro_gas"] = {"last_timestamp": last, "age_hours": round(age, 1)}
-            except ValueError:
-                pass
+        age = _age_hours(info.get("last_timestamp"))
+        if age is not None and age > STALE_HOURS:
+            stale["picarro_gas"] = {"last_timestamp": info.get("last_timestamp"), "age_hours": age}
     summary = dict(record)
     summary["tables"] = {t: {**per_table[t], "row_count": (latest.get(t) or {}).get("row_count"),
                              "last_timestamp": (latest.get(t) or {}).get("last_timestamp")} for t in per_table}
@@ -544,6 +603,9 @@ def _write_result(args, manifest, record, per_table, latest, token, run_id, comm
     summary["stale_tables"] = stale
     summary["comment_drift"] = comment_drift or {}  # {table: [column...]} not applied (ACTION)
     summary["comments_synced"] = comments_synced
+    summary["schema_drift"] = schema_drift or {}  # {table: [missing column...]} table skipped (ACTION)
+    summary["gas_checks"] = manifest.get("gas_checks") or {}
+    summary["instruments"] = instruments
     summary["token_expires"] = f"{expires_dt:%Y-%m-%d}" if expires_dt else None
     summary["token_days_left"] = days
     (args.staging / "load_result.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
