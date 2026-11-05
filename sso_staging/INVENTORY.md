@@ -89,16 +89,16 @@ read the 1.6 KB README and wrongly concluded "one instrument, time-shared"):
   well-port reports on every sampling day.
 - **Outages are trailer-wide**, e.g. the whole trailer is silent 10-10 → 10-15.
 - `TrailerTemp_C` is one shared feed; `O2p_%` is one Firesting probe per system;
-  `set` counts separately on each analyzer. `Drierite` = anhydrous calcium
-  sulfate desiccant, i.e. the dry-air zero/baseline channel (README calls it
-  "Air"); `Std` = span standard; `N2` = UHP nitrogen blank (rare).
+  `set` counts separately on each analyzer. `Drierite` = the README's port 12
+  "Air": ambient air drawn through a Drierite (anhydrous calcium sulfate)
+  desiccant column, the dry-air zero/baseline channel; `Std` = span standard;
+  `N2` = UHP nitrogen blank (rare).
 
 → Decision: **one table** (`picarro_gas`) with an `instrument` column (analyzer
 serial) + well/zone/port dimensions + channel-type flag, dedup on
 (`epoch_time`, `instrument`); the port assignment is kept as code
-(`sso_schema.GAS_PORT_ASSIGNMENT`) and published as `instrument_port`. Open
-question for Kris: README port 12 says "Air" while the CSV labels it
-`Drierite`; and whether any port has moved since 10/04 20:00.
+(`sso_schema.GAS_PORT_ASSIGNMENT`) and published as `instrument_port`; a port
+moved since 10/04 20:00 shows up as a GAS PORT MOVED? action.
 
 ## 2. Field / sample metadata (Katie)
 
