@@ -68,14 +68,18 @@ mass column ever appears. No Kris email needed.
 | Source col | Column | type | comment |
 |---|---|---|---|
 | `Field Metadata Timepoint` | `timepoint` | INT | campaign timepoint 1–36 (upsert key) |
-| `Date (YYYYMMDD)` | `sample_date` | STRING | `YYYYMMDD` |
+| `Date (YYYYMMDD)` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; source is `YYYYMMDD`) |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
 | `Well` | `well_port` | STRING | field well-port label `U1-SZ1`; EFPW has no zone (`EFPW02`).  Not `location`, which means `sdt_location` in CORAL |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |
-| `Pump Time On` | `pump_time_on` | STRING | datetime after AM/PM resolution (field hours 1–6 → PM) |
-| `Pump Time Off` | `pump_time_off` | STRING | datetime after AM/PM resolution |
+| `Pump Time On` | `pump_time_on` | STRING | field-sheet clock time `HH:MM:SS` after AM/PM resolution (field hours 1–6 → PM) |
+| `Pump Time Off` | `pump_time_off` | STRING | field-sheet clock time after AM/PM resolution |
+| `Date (YYYYMMDD)` + `Pump Time On` | `pump_on_datetime` | STRING | pump start as an instant: ISO 8601 with UTC offset, America/New_York, millisecond precision (`2026-10-06T08:31:00.000-04:00`); comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring via `to_timestamp()` |
+| `Date (YYYYMMDD)` + `Pump Time Off` | `pump_off_datetime` | STRING | pump stop, same form |
 | `Field Notes` | `field_notes` | STRING | free text |
 | — | `provenance` / `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping (FK on ingest_run_id) |
 
 Note: `pump_time_on/off` are operational context (clock times), not COMO
-measurements → plain STRING, like other context variables.
+measurements → plain STRING, like other context variables.  The derived
+`pump_on_datetime` / `pump_off_datetime` carry the COMO `datetime` term
+(ME:0000180) in `column_typedef` and are the pump window on the shared timeline.

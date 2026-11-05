@@ -21,7 +21,7 @@ Upsert key: `sdt_sample_name`.
 | `Sample ID` (normalized) | `sdt_sample_name` | STRING | **PK + FK** → enigma.coral.sdt_sample.sdt_sample_name; normalized CORAL ID `YYYYMMDD-WELL-ZONE-ASSAY`, validated `^[A-Z0-9-]+$` |
 | `Sample ID` (raw) | `source_sample_id` | STRING | verbatim manifest ID, for traceability |
 | `Timepoint` | `timepoint` | INT | campaign timepoint 1–36 |
-| `Date` | `sample_date` | STRING | `YYYYMMDD` |
+| `Date` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; the manifest writes `YYYYMMDD`, kept inside the sample id) |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
 | `Well` | `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |

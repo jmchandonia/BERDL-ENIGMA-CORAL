@@ -77,7 +77,7 @@ alone is not unique.  The serial is data, not microtype context.
 
 | Column | Type | Comment / role |
 |---|---|---|
-| `time_series_datetime` | STRING | field time, ISO 8601 + offset (America/New_York); from `TIME` |
+| `time_series_datetime` | STRING | field time, ISO 8601 + offset (America/New_York), millisecond precision `2026-10-06T14:00:00.000-04:00` (the CORAL / continuous_monitoring form); derived from `EPOCH_TIME` (equal to `TIME` on every row) |
 | `epoch_time` | DOUBLE | unix epoch s (dedup key with `picarro_serial`); from `EPOCH_TIME` |
 | `picarro_serial` | STRING | analyzer serial `ORNL-EA-031620` (A) / `ORNL-EA-007299` (B); well-ports from the README port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`), reference channels from the NH3_dry / O2_% column signature |
 | gas measurement columns | DOUBLE | the 11 species columns above, COMO-named + commented |
@@ -88,7 +88,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `multiplexer_on_state` | INT | raw `on_state` (1-12, per analyzer; `GAS_PORT_ASSIGNMENT` maps it) |
 | `cycle_set` | INT | raw `set` (counts per analyzer) |
 | `port_seconds` | DOUBLE | raw `timedelta` (s this port monitored) |
-| `firesting_datetime` | STRING | raw `DateTime` (join key), kept for traceability |
+| `firesting_datetime` | STRING | `DateTime` (the Firesting clock, Eastern wall clock) in the same ISO form with the row's offset; traceability of the join |
 | `provenance` | STRING | `picarro csv` + source file date |
 | `source_file` | STRING | CSV filename |
 | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
@@ -99,11 +99,12 @@ alone is not unique.  The serial is data, not microtype context.
 | Column | Type | Role |
 |---|---|---|
 | `timepoint` | INT | campaign timepoint 1–36 |
-| `sample_date` | STRING | `YYYYMMDD` (raw `Date`) |
+| `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; raw `Date` is `YYYYMMDD`) |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` (EFPW verbatim) |
 | `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `zone` | STRING | `SZ1`/`SZ2` (empty for EFPW) |
-| `pump_time_on` / `pump_time_off` | STRING | datetimes after AM/PM resolution (field hours 1–6 → PM) |
+| `pump_time_on` / `pump_time_off` | STRING | field-sheet clock times after AM/PM resolution (field hours 1–6 → PM) |
+| `pump_on_datetime` / `pump_off_datetime` | STRING | the pump window as instants: `sample_date` + clock time in America/New_York, ISO 8601 + offset, millisecond precision — comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring |
 | `rate_instrument_pump_liter_per_minute` | DOUBLE | COMO rate, instrument=pump; unit `liter per minute` (MINT, only mint in namespace) |
 | `volume_liter` | DOUBLE | COMO volume (EXISTS; liter UO:0000099) |
 | `ph_ph` | DOUBLE | COMO pH (EXISTS; UO:0000196); instrument dropped from name |
@@ -118,7 +119,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `sdt_sample_name` | STRING | FK → enigma.coral.sdt_sample; normalized CORAL ID `YYYYMMDD-WELL-ZONE-ASSAY` |
 | `source_sample_id` | STRING | raw manifest Sample ID (traceability) |
 | `timepoint` | INT | |
-| `sample_date` | STRING | `YYYYMMDD` |
+| `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form) |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` |
 | `well_port` | STRING | field well-port label |
 | `zone` | STRING | |

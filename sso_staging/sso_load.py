@@ -360,8 +360,11 @@ class Loader:
             if self.dry_run and tbl not in existing:
                 continue
             tc = time_col[tbl]
+            # Order by the parsed instant, never the string: ISO strings with an
+            # offset mis-sort across the DST change (01:45-04:00 > 01:15-05:00).
+            q, inst = sso.quoted(tc), f"to_timestamp({sso.quoted(tc)})"
             stats = self.spark.sql(
-                f"SELECT count(*) n, min({sso.quoted(tc)}) lo, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)}"
+                f"SELECT count(*) n, min_by({q}, {inst}) lo, max_by({q}, {inst}) hi FROM {sso.full_name(tbl)}"
             ).collect()[0]
             latest[tbl] = {"row_count": int(stats["n"]), "last_timestamp": stats["hi"]}
             if tbl == "picarro_gas" and "picarro_serial" in self.spark.table(sso.full_name(tbl)).columns:
@@ -369,7 +372,7 @@ class Loader:
                     r["picarro_serial"]: {"row_count": int(r["n"]), "last_timestamp": r["hi"],
                                           "label": schema.GAS_INSTRUMENTS.get(r["picarro_serial"], {}).get("label")}
                     for r in self.spark.sql(
-                        f"SELECT picarro_serial, count(*) n, max({sso.quoted(tc)}) hi FROM {sso.full_name(tbl)} "
+                        f"SELECT picarro_serial, count(*) n, max_by({q}, {inst}) hi FROM {sso.full_name(tbl)} "
                         f"GROUP BY picarro_serial ORDER BY picarro_serial").collect()}
             rows.append({
                 "table_name": tbl, "description": spec["description"], "load_mode": spec["load_mode"],

@@ -137,6 +137,24 @@ def cell_to_str(value) -> str:
     return str(value).strip()
 
 
+def iso_date(value: str) -> str:
+    """YYYYMMDD -> YYYY-MM-DD (the CORAL date form); anything else is returned as is."""
+    s = (value or "").strip()
+    return f"{s[:4]}-{s[4:6]}-{s[6:]}" if len(s) == 8 and s.isdigit() else s
+
+
+def iso_local(date_iso: str, hms: str) -> str:
+    """Date (YYYY-MM-DD) + clock time (HH:MM[:SS]) in America/New_York -> ISO 8601
+    with UTC offset at millisecond precision (the CORAL / continuous_monitoring
+    form of time_series_datetime).  Empty when either part is missing or malformed."""
+    if not date_iso or not hms:
+        return ""
+    try:
+        return datetime.fromisoformat(f"{date_iso}T{hms}").replace(tzinfo=EASTERN).isoformat(timespec="milliseconds")
+    except ValueError:
+        return ""
+
+
 def resolve_ampm(value) -> str:
     """Field clock: hours 1-6 are PM (verified from data 2026-10-30; no pre-07:00 draws)."""
     if not isinstance(value, time):
@@ -262,7 +280,13 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     out["epoch_time"] = raw["EPOCH_TIME"].values
     # Round to ms so the ISO string matches the source TIME (avoids fp ns artifacts).
     dt = pd.to_datetime((epoch * 1000).round().astype("int64"), unit="ms", utc=True).dt.tz_convert(EASTERN)
-    out["time_series_datetime"] = [t.isoformat() for t in dt]
+    out["time_series_datetime"] = [t.isoformat(timespec="milliseconds") for t in dt]
+    # Firesting DateTime is Eastern wall clock with no offset; give it the row's own
+    # offset (the two clocks agree to within 30 s, so this is unambiguous even in
+    # the fall-back hour) and the same ISO form as time_series_datetime.
+    fs = pd.to_datetime(col("DateTime"), format="%Y-%m-%d %H:%M:%S", errors="coerce")
+    offset = pd.Series([t.isoformat()[-6:] for t in dt], index=raw.index)
+    out["firesting_datetime"] = np.where(fs.notna(), fs.dt.strftime("%Y-%m-%dT%H:%M:%S.000") + offset, "")
     channel = pd.Series(np.where(port != "", port, (well + "-" + depth).str.strip("-")), index=raw.index, dtype=object)
     channel = channel.mask(channel == "", None)
     out["sdt_location_name"] = np.where(is_ref, None, np.where(is_efpw, well, "SSO-" + well))
@@ -271,7 +295,7 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     out["zone"] = np.where(is_ref | (depth == ""), None, depth)
     for c in schema.GAS_COLUMNS:
         src = c.get("src")
-        if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "Port", "Depth", "Well"):
+        if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "DateTime", "Port", "Depth", "Well"):
             out[c["name"]] = raw[src].values if src in raw else ""
     out["provenance"] = f"picarro csv {paths[-1].name}"
     out["source_file"] = paths[-1].name
@@ -322,7 +346,7 @@ def read_field(path: Path) -> tuple[list[dict], dict]:
     rows = []
     for rec in records:
         well = cell_to_str(rec.get("Well"))
-        date = cell_to_str(rec.get("Date (YYYYMMDD)"))
+        date = iso_date(cell_to_str(rec.get("Date (YYYYMMDD)")))
         # Keep only rows with actual field data; skip pre-seeded calendar/blank rows.
         has_data = any(cell_to_str(rec.get(k)) for k in (
             "Pump Time On", "Pump Time Off", "Pump Rate (L/min)", "Total Volume (L)",
@@ -338,6 +362,8 @@ def read_field(path: Path) -> tuple[list[dict], dict]:
             "zone": loc["zone"],
             "pump_time_on": resolve_ampm(rec.get("Pump Time On")),
             "pump_time_off": resolve_ampm(rec.get("Pump Time Off")),
+            "pump_on_datetime": iso_local(date, resolve_ampm(rec.get("Pump Time On"))),
+            "pump_off_datetime": iso_local(date, resolve_ampm(rec.get("Pump Time Off"))),
             "rate_instrument_pump_liter_per_minute": cell_to_str(rec.get("Pump Rate (L/min)")),
             "volume_liter": cell_to_str(rec.get("Total Volume (L)")),
             "ph_ph": cell_to_str(rec.get("In-field pH")),
@@ -376,7 +402,7 @@ def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
             "sdt_sample_name": norm,
             "source_sample_id": raw_id,
             "timepoint": cell_to_str(rec.get("Timepoint")),
-            "sample_date": cell_to_str(rec.get("Date")),
+            "sample_date": iso_date(cell_to_str(rec.get("Date"))),
             "sdt_location_name": loc["sdt_location_name"],
             "well_port": loc["well_port"],
             "zone": loc["zone"],
@@ -500,7 +526,7 @@ def read_toc(source_dir: Path, registry: dict[str, dict]) -> tuple[list[dict], d
                 "sdt_sample_name": norm,
                 "source_sample_id": raw_id,
                 "timepoint": reg.get("timepoint", ""),
-                "sample_date": parts["sample_date"],
+                "sample_date": iso_date(parts["sample_date"]),
                 "sdt_location_name": loc["sdt_location_name"],
                 "well_port": loc["well_port"],
                 "zone": loc["zone"],

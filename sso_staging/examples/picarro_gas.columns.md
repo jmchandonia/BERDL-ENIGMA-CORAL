@@ -73,7 +73,7 @@ matching how coral/cm populate `description`.
 
 | CSV col | Column | type | comment |
 |---|---|---|---|
-| `TIME` | `time_series_datetime` | STRING | datetime (ISO 8601 with UTC offset, America/New_York) |
+| `TIME` | `time_series_datetime` | STRING | datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision `2026-10-06T14:00:00.000-04:00`, the continuous_monitoring / CORAL form); derived from `EPOCH_TIME`, which equals `TIME` on every row; compare with `to_timestamp()` |
 | `EPOCH_TIME` | `epoch_time` | DOUBLE | unix epoch seconds; dedup key together with `picarro_serial` (the two analyzers can share an epoch) |
 | `Port` (assignment) / `NH3_dry`, `O2_%` (signature) | `picarro_serial` | STRING | analyzer serial `ORNL-EA-031620` (A) or `ORNL-EA-007299` (B): well-ports per the README port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`), reference channels per the row's column signature (NH3_dry reported = A, O2_% reported = B) |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location.sdt_location_name; `SSO-<well>`; NULL on reference rows |
@@ -83,7 +83,7 @@ matching how coral/cm populate `description`.
 | `on_state` | `multiplexer_on_state` | INT | Eosense multiplexer live-port state, 1-12, per analyzer (`GAS_PORT_ASSIGNMENT` maps it) |
 | `set` | `cycle_set` | INT | Picarro cycle counter (counts per analyzer) |
 | `timedelta` | `port_seconds` | DOUBLE | seconds this port monitored (unit=second) |
-| `DateTime` | `firesting_datetime` | STRING | Firesting join time (traceability) |
+| `DateTime` | `firesting_datetime` | STRING | Firesting clock reading joined onto the row (30 s cadence; Eastern wall clock in the source), same ISO form with the row's offset; traceability of the join |
 | — | `provenance` | STRING | `picarro csv` + source file date |
 | — | `source_file` | STRING | CSV filename |
 | — | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
@@ -121,7 +121,7 @@ name) and `note`. Dimension variables: `time_series_datetime` (time series /
 datetime, as Brick0000019), `sdt_location_name` (environmental sample location
 / Environmental Sample Location ID, object_ref FK), and the instrument
 bookkeeping columns with NULL terms and a note saying what they become at
-conversion. Dimension/variable numbers are provisional. 51 rows today.
+conversion. Dimension/variable numbers are provisional. 53 rows today (the two pump datetimes added 2026-11-05).
 
 All context values below are FREE-TEXT on string-typed properties (method
 ME:0000007, condition ME:0000006 — both `data_type=string`), so **nothing here

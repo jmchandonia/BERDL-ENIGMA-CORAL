@@ -22,7 +22,7 @@ campaign-end conversion is mechanical.
 | `SampleID` (mapped) | `sdt_sample_name` | STRING | **FK** → `sample_registry.sdt_sample_name` (upsert key); lab id `L7-SZ1-100626` (`<well>-<zone>-MMDDYY`) → `20261006-L7-SZ1-ANIONS` |
 | `SampleID` (raw) | `source_sample_id` | STRING | verbatim lab id |
 | — (registry) | `timepoint` | INT | campaign timepoint, looked up from the registry row |
-| `Date Sampled` | `sample_date` | STRING | `YYYYMMDD` (sheet value is numeric `MMDDYY`) |
+| `Date Sampled` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; from the lab id's `MMDDYY`, checked against the sheet's numeric `MMDDYY`) |
 | `Well`/`Zone` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>` |
 | `Well`/`Zone` | `well_port` / `zone` | STRING | `L7-SZ1` / `SZ1` (the well itself is `sdt_location_name` = `SSO-L7`) |
 | `Preservation` | `preservation` | STRING | e.g. `0.2um syringe filter` |

@@ -29,6 +29,17 @@ and the CORAL key is always **`sdt_location_name`** (`SSO-U2`); `zone` (SZ1/SZ2)
 is the only other location-ish column.  Picarro reference rows carry
 `reference_channel` (Std / N2 / Drierite) and a NULL `well_port`.
 
+Time: every datetime column in both namespaces (`time_series_datetime` here and
+in continuous_monitoring, `firesting_datetime`, `pump_on_datetime` /
+`pump_off_datetime`) is an ISO 8601 string with the Eastern UTC offset at
+millisecond precision, `2026-10-06T14:00:00.000-04:00`, the form the CORAL
+bricks use; `picarro_gas.epoch_time` is the same instant as unix seconds.
+Compare them with `to_timestamp()` (then `date_trunc` / `window` to align
+cadences; `unix_timestamp(to_timestamp(x))` equals `epoch_time`), never as
+strings: `01:45:00-04:00` sorts after `01:15:00-05:00` in the fall-back hour.
+`sample_date` is `YYYY-MM-DD`, the CORAL date form.
+(`sso_migrate_20261105_datetimes.py` is the one-time normalization.)
+
 Load semantics differ from the neighbours on purpose: continuous_monitoring is
 append-only, CORAL is withdraw+replace, **sso_staging may modify rows in place**
 when a source spreadsheet is edited — hence full-refresh / upsert for the two

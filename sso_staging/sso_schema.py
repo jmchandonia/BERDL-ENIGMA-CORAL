@@ -200,7 +200,9 @@ GAS_PORT_CHANNEL = {(a["picarro_serial"], a["multiplexer_on_state"]): a["well_po
 
 GAS_COLUMNS = [
     {"name": "time_series_datetime", "src": "TIME", "type": "STRING", "role": "dim",
-     "desc": "datetime (ISO 8601 with UTC offset, America/New_York)"},
+     "desc": "datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision, e.g. "
+             "2026-10-06T14:00:00.000-04:00, the same form as continuous_monitoring and the CORAL bricks); "
+             "the same instant as epoch_time; compare with to_timestamp(), not as strings"},
     {"name": "epoch_time", "src": "EPOCH_TIME", "type": "DOUBLE", "role": "key",
      "desc": "unix epoch seconds; dedup key together with instrument (the two analyzers run "
              "concurrently and can report the same epoch)"},
@@ -268,7 +270,8 @@ GAS_COLUMNS = [
     {"name": "port_seconds", "src": "timedelta", "type": "DOUBLE", "role": "dim",
      "desc": "seconds this port had been monitored (raw timedelta)", "unit": "second"},
     {"name": "firesting_datetime", "src": "DateTime", "type": "STRING", "role": "dim",
-     "desc": "Firesting time used to join the frames (traceability)"},
+     "desc": "Firesting clock reading joined onto the row (30 s cadence), as ISO 8601 with the row's UTC "
+             "offset (the source DateTime is Eastern wall clock); traceability of the join only"},
     *_bookkeeping(),
 ]
 
@@ -289,15 +292,26 @@ GAS_KNOWN_SOURCE = {
 
 FIELD_COLUMNS = [
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
-    {"name": "sample_date", "src": "Date (YYYYMMDD)", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    {"name": "sample_date", "src": "Date (YYYYMMDD)", "type": "STRING", "role": "dim",
+     "desc": "sample date, YYYY-MM-DD (CORAL date form; the source writes YYYYMMDD)"},
     _fk_location(),
     {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim",
      "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW wells have no zone: EFPW02)"},
     {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
     {"name": "pump_time_on", "src": "Pump Time On", "type": "STRING", "role": "dim",
-     "desc": "pump start HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
+     "desc": "pump start HH:MM:SS as written on the field sheet, AM/PM resolved (field clock hours 1-6 read "
+             "as PM); the instant is pump_on_datetime"},
     {"name": "pump_time_off", "src": "Pump Time Off", "type": "STRING", "role": "dim",
-     "desc": "pump stop HH:MM:SS, AM/PM resolved (field clock hours 1-6 read as PM)"},
+     "desc": "pump stop HH:MM:SS as written on the field sheet, AM/PM resolved (field clock hours 1-6 read "
+             "as PM); the instant is pump_off_datetime"},
+    {"name": "pump_on_datetime", "src": "Date (YYYYMMDD) + Pump Time On", "type": "STRING", "role": "dim",
+     "desc": "pump start as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision): "
+             "sample_date + pump_time_on; comparable with time_series_datetime in picarro_gas and "
+             "continuous_monitoring via to_timestamp()"},
+    {"name": "pump_off_datetime", "src": "Date (YYYYMMDD) + Pump Time Off", "type": "STRING", "role": "dim",
+     "desc": "pump stop as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision): "
+             "sample_date + pump_time_off; comparable with time_series_datetime in picarro_gas and "
+             "continuous_monitoring via to_timestamp()"},
 
     _meas("rate_instrument_pump_liter_per_minute", "Pump Rate (L/min)", "rate", "liter per minute",
           context=[("instrument", "pump")]),
@@ -327,7 +341,8 @@ REGISTRY_COLUMNS = [
     {"name": "source_sample_id", "src": "Sample ID", "type": "STRING", "role": "dim",
      "desc": "verbatim manifest Sample ID (traceability)"},
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
-    {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim",
+     "desc": "sample date, YYYY-MM-DD (CORAL date form; the manifest writes YYYYMMDD, which the sample id keeps)"},
     _fk_location(),
     {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW02 for the EFPW wells)"},
     {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
@@ -371,7 +386,8 @@ TOC_COLUMNS = [
      "desc": "verbatim lab sample id, e.g. L7-SZ1-100626 (traceability)"},
     {"name": "timepoint", "src": None, "type": "INT", "role": "dim",
      "desc": "campaign timepoint 1-36 (from the sample registry)"},
-    {"name": "sample_date", "src": "Date Sampled", "type": "STRING", "role": "dim", "desc": "sample date, YYYYMMDD"},
+    {"name": "sample_date", "src": "Date Sampled", "type": "STRING", "role": "dim",
+     "desc": "sample date, YYYY-MM-DD (CORAL date form; from the lab id's MMDDYY, checked against Date Sampled)"},
     _fk_location(),
     {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. L7-SZ1"},
     {"name": "zone", "src": "Zone", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2"},
@@ -486,8 +502,10 @@ TYPEDEF = {
         "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
         "well_port": {"dim": "environmental sample location", "note": "field label; redundant with sdt_location_name + zone"},
         "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone; no COMO term yet"},
-        "pump_time_on": {"dim": "time series", "note": "clock time; no COMO term, candidate: datetime with sample_date"},
-        "pump_time_off": {"dim": "time series", "note": "clock time; no COMO term, candidate: datetime with sample_date"},
+        "pump_time_on": {"dim": "time series", "note": "field-sheet clock time; the instant is pump_on_datetime; dropped at conversion"},
+        "pump_time_off": {"dim": "time series", "note": "field-sheet clock time; the instant is pump_off_datetime; dropped at conversion"},
+        "pump_on_datetime": {"dim": "time series", "var": "datetime", "note": "pump start"},
+        "pump_off_datetime": {"dim": "time series", "var": "datetime", "note": "pump stop"},
         "field_notes": {"dim": "time series", "note": "free text; becomes the brick's comment context or is dropped"},
     },
     "toc_tn_anions": {

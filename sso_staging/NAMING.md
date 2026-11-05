@@ -78,8 +78,12 @@ foreign-key conventions** as those namespaces:
     (sample_registry is keyed on this; field_metadata / gas can carry it too
     once a draw's samples are registered.)
   - `ingest_run_id` STRING — `{"type":"foreign_key","references":"ingest_runs.ingest_run_id"}`
-- **Timestamps**: gas uses `time_series_datetime` STRING (ISO 8601 with offset,
-  America/New_York) — identical to continuous_monitoring.
+- **Timestamps**: every datetime column (`time_series_datetime`, `firesting_datetime`,
+  `pump_on_datetime` / `pump_off_datetime`) is STRING, ISO 8601 with the Eastern UTC
+  offset at millisecond precision — `2026-10-06T14:00:00.000-04:00` — identical to
+  continuous_monitoring and the CORAL bricks; compare with `to_timestamp()`, never as
+  strings (the fall-back hour mis-sorts).  Dates (`sample_date`) are `YYYY-MM-DD`, the
+  CORAL `date` form; the `YYYYMMDD` form survives only inside sample ids.
 - **Measurement columns** use the CORAL brick column scheme: snake_case name
   built from the COMO measurement label + unit (as in
   `continuous_monitoring/column_map.json`), with a JSON comment carrying
