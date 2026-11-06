@@ -221,3 +221,20 @@ CORAL as Brick0002139-0002145: bug-trap 16S sequences, counts and taxonomy, Adam
 and the Fields packed-bed reactor 16S sequences, counts and taxonomy. COMO gained `time elapsed` as a
 dimension variable and the new term `baseline control` (ME:0000516) for it. D4 waits on Mingfei Chen;
 the bug-trap starting sediment's FRC source is a question for Katie Walker. Lakehouse sync pending.
+
+## Status 2026-11-05: CPT physical data loaded (Brick0002160-0002162)
+
+`coral_import/cpt_physical_20261105/` (built by `tools/build_cpt_physical_coral_import.py`) is in CORAL:
+`hazen_fugro_cpt_profiles_area3_2020` (28,589 Fugro piezocone readings at 94 bores: tip resistance, sleeve
+friction, u2 pore pressure in tsf, Robertson 1986 soil behavior type as ontology terms),
+`hazen_fugro_cpt_soundings_area3_2020` (per-bore start time, cone serial, depth reached, ground elevation) and
+`hazen_manual_water_level_area3_cpt_2020` (74 top-of-casing depth-to-water readings, 15 and 20 October 2020).
+New Locations CPT65 and FW-025/122/131/132/130-40/130-44/133; Protocols `fugro-piezocone-cpt-frc-area3-2020`
+and `manual-water-level-tape-frc-area3-2020`; processes Process0223185-0223186. Ontology: new
+`robertson_soil_behavior_type.obo` and COMO ME:0000518 (`coral_import/ontology_update_20261104_cpt`).
+Decisions: Fugro's per-bore CSVs are the source (the ProbeData sheet duplicates rows); friction ratio dropped
+(derived, clipped); UTM coordinates not stored; water-level elevations derivable from Brick0001698; the five
+"TG" readings and the two FW114 phantom-port readings excluded. The Revil resistivity data are a 2011 ERT survey
+and wait for their own campaign. Remaining CPT items: 2024 borescope results; Putt's sediment metadata depths
+(held for Jinwoo).
+

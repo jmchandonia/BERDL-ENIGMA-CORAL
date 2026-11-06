@@ -28,6 +28,7 @@ CANONICAL_ONTOLOGY_BY_PREFIX = {
     "ME": "context_measurement_ontology",
     "NCBITAXON": "ncbitaxon",
     "PROCESS": "process_ontology",
+    "SBT": "robertson_soil_behavior_type",
     "UO": "uo",
 }
 
@@ -45,6 +46,7 @@ FULL_INCLUDE_ONTOLOGIES = {
     "enigma_specific_ontology",
     "data_type_ontology",
     "process_ontology",
+    "robertson_soil_behavior_type",
 }
 
 SYS_OTERM_SCHEMA = [
@@ -663,12 +665,50 @@ def replace_id_prefix(value: str, old_prefix: str, new_prefix: str, is_array: bo
     return re.sub(f"^{re.escape(old_prefix)}", new_prefix, value)
 
 
+IMAGES_MANIFEST_ENV = "EDR_IMAGES_MANIFEST"
+IMAGES_MANIFEST_DEFAULT = Path("/mnt/net/dipa.jmcnet/data/edr/images/manifest.tsv")
+IMAGES_REPOSITORY_PREFIX = "enigma-data-repository/images/"
+_images_manifest_cache: dict[str, dict[str, str]] | None = None
+
+
+def load_images_manifest() -> dict[str, dict[str, str]]:
+    """CORAL Image name -> manifest row of the EDR images collection (edr/images/manifest.tsv)."""
+    global _images_manifest_cache
+    if _images_manifest_cache is None:
+        path = Path(os.environ.get(IMAGES_MANIFEST_ENV, str(IMAGES_MANIFEST_DEFAULT)))
+        if not path.exists():
+            raise FileNotFoundError(f"EDR images manifest not found: {path} (set {IMAGES_MANIFEST_ENV})")
+        rows = {}
+        with path.open(newline="", encoding="utf-8") as handle:
+            for entry in csv.DictReader(handle, delimiter="\t"):
+                rows[entry["coral_image_name"]] = entry
+                if not (path.parent / entry["path"]).is_file():
+                    raise FileNotFoundError(f"EDR images manifest lists a missing file: {entry['path']}")
+        _images_manifest_cache = rows
+    return _images_manifest_cache
+
+
+def image_repository_link(image_name: str) -> str:
+    """Lakehouse link of a CORAL Image: the file's path in the EDR images collection.
+
+    CORAL itself serves images from a flat store as /images/<name>; the EDR keeps them in
+    <lab>_<subject>_<technique> subfolders, so the manifest decides the folder. A CORAL Image
+    without a manifest row is an error: every Lakehouse link must name an existing file.
+    """
+    entry = load_images_manifest().get(image_name)
+    if entry is None:
+        raise KeyError(f"CORAL Image {image_name!r} has no row in the EDR images manifest")
+    return IMAGES_REPOSITORY_PREFIX + entry["path"]
+
+
 def normalize_static_row(row: dict[str, str], tdef: dict[str, Any], table_name: str, schema: list[dict[str, Any]],
                          term_mappings: list[dict[str, Any]], type_to_table: dict[str, str],
                          preferred_name: dict[str, str], units_lookup: dict[str, str]) -> dict[str, str]:
     working = {}
     for key, value in row.items():
         working[key] = normalize_repository_text(value)
+    if tdef.get("name") == "Image" and working.get("name"):
+        working["link"] = image_repository_link(working["name"])
     final: dict[str, str] = {}
     schema_cols = {col["column"]: col for col in schema}
 

@@ -27,6 +27,22 @@ KNOWN_CORAL_VALUE_CORRECTIONS = {
         "sdt_sample_name": {"None": ""},
         "sdt_location_name": {"None": ""},
     },
+    # The same lowercase "anaerobic" recurs in the superseding isolation_conditions
+    # bricks of later isolate updates (one FW305-130 row); fix it at the source in
+    # the isolate-update builder, and add the new brick ID here until then.
+    "Brick0002146": {
+        "sdt_condition_name": {
+            (
+                "anaerobic = 0; media name = LB, concentration = 25.0 "
+                "(fold dilution); media name = Sediment Extract; "
+                "temperature = 30.0 (degree Celsius)"
+            ): (
+                "Anaerobic = 0; media name = LB, concentration = 25.0 "
+                "(fold dilution); media name = Sediment Extract; "
+                "temperature = 30.0 (degree Celsius)"
+            ),
+        },
+    },
     "Brick0000510": {
         "sdt_condition_name": {
             (
@@ -271,7 +287,18 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--previous-run-dir", required=True, type=Path)
+    parser.add_argument(
+        "--force-convert-file",
+        type=Path,
+        help="Brick IDs (one per line) to convert again even when prior artifacts could be reused, "
+        "e.g. after a converter algorithm change that affects only some bricks",
+    )
     args = parser.parse_args()
+    force_convert = set()
+    if args.force_convert_file:
+        force_convert = {
+            line.strip() for line in args.force_convert_file.read_text().splitlines() if line.strip()
+        }
 
     run_dir = args.run_dir.resolve()
     previous_run = args.previous_run_dir.resolve()
@@ -303,7 +330,10 @@ def main() -> int:
             previous_raw.is_file()
             and all(path.is_file() and path.stat().st_size > 0 for path in previous_artifacts.values())
         )
-        if can_reuse:
+        if brick_id in force_convert:
+            raw_hashes[brick_id] = _sha256(raw_path)
+            to_convert.append(raw_path)
+        elif can_reuse:
             raw_hashes[brick_id] = previous_hashes.get(brick_id) or _sha256(previous_raw)
             reused_normalization[brick_id] = _reuse_artifacts(
                 previous_run,
@@ -401,6 +431,7 @@ def main() -> int:
         "raw_bricks": len(raw_paths),
         "reused": len(reused),
         "resumed": len(resumed),
+        "forced": sorted(force_convert),
         "converted": sum(row["status"] == "converted" for row in results),
         "failed": len(failures),
         "reused_bricks": reused,

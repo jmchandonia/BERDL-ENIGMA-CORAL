@@ -65,6 +65,26 @@ path remains available only for a cluster that still accepts Delta.
 - Never change a declared foreign-key target type in the BERDL importer to make
   values pass validation. When CORAL declares the wrong object type, require a
   corrected superseding brick and update-data provenance in CORAL.
+- `sdt_image.link` is not CORAL's `/images/<name>`: the sync looks each Image up in the EDR
+  images manifest (`dipa:/data/edr/images/manifest.tsv`, override with `EDR_IMAGES_MANIFEST`)
+  and writes `enigma-data-repository/images/<lab>_<subject>_<technique>/<name>`. A CORAL Image
+  without a manifest row, or a manifest row without a file, fails the build; add the file and
+  its manifest row (and run the EDR `sync_berdl.sh`) before syncing.
+- CORAL's CSV export omits data cells that are null, so a dimension entry whose
+  every value is null is absent from the data block. `convert_bricks.py` writes
+  those entries back as rows with empty value columns (an unmeasured sample,
+  date, taxonomic rank, molecule...), so a brick table keeps the brick's shape
+  and `value IS NULL` means "not measured". The one exception: when a
+  `replicate series <ME:0000005>` dimension `r` and another dimension `d` exist
+  such that no exported cell has the entry's (d, r) index pair, that replicate
+  was never run and no row is written (ASV count tables carry rows only for
+  performed replicates; AODC raw bricks only for counted microscope fields).
+- A term value exported by CORAL as `null <CURIE>` means the CORAL service's
+  in-memory ontology index predates the term's ontology file (it is rebuilt only
+  at service start). `convert_bricks.extract_values` replaces such names from the
+  staged OBO term map; a new ontology file also needs the hub's
+  `upload_config.json`, `CheckGenericProduction.java`, `CANONICAL_ONTOLOGY_BY_PREFIX`
+  and `FULL_INCLUDE_ONTOLOGIES` in `coral_metadata.py`, and a CORAL service restart.
 - Build `sys_oterm` from terms referenced by static/system data, schemas, and
   ontology-ID columns in brick TSVs. Emit each CURIE exactly once, preferring
   its native ontology over copies bundled in imported or stub OBO modules.
@@ -174,7 +194,9 @@ command or require the user to source `.env` manually.
      available. It hard-links converted artifacts for reused immutable brick
      inputs with complete sidecars and converts every new brick. Atomic
      derived-column rewrites break the current-run link without mutating the
-     prior baseline.
+     prior baseline. After a converter algorithm change, pass
+     `--force-convert-file <brick IDs>` to convert the affected bricks again;
+     their changed table hashes then select them for reload.
    - Keep bounded importer-side source-value corrections keyed by exact brick
      ID, exact column, and exact full source value. Include changed-cell counts
      in `reports/brick_preparation.json`; a broad match is a failed preflight.

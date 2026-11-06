@@ -2159,3 +2159,200 @@ Validation completed before live export:
   sdt_asv/community/condition/protocol/reads/sample/taxon, sys_ddt_typedef, sys_oterm, sys_process and
   its input/output tables), no obsolete drops; row counts and comments verified, foreign keys checked,
   schema references regenerated. D6/D7 and the two COMO changes are now in enigma.coral.
+- 2026-10-30: refreshed GOOGLE_DRIVE_DATA_INVENTORY.md (status column on the section 5 gap table;
+  stale per-section cells now point at the loaded packages). Started CPT batch: Hazen AODC on 32 CPT
+  sediments (the "894 rows" in the inventory was wrong; the sheet's "Cells/ml" is cells per gram by
+  its formula) and Chakraborty water-extractable DOC on 30 sediments (Northen extraction, ppm in
+  extract). All map to existing CORAL CPT samples; DOC has two depth typos (CPT10 C 605 for 305,
+  CPT63 B 387.35 for 382.35).
+- 2026-10-30: CPT depth review (no CORAL change). CORAL's CPT sample names and depths both came
+  from CPT_SED_full_data_05032021.xlsx, whose Depth(decimal ft) column is misaligned for 7 rows
+  (CPT15<->CPT59 crossed, CPT21-A and CPT56C copied from neighbours). Names (tube labels, Oct 2020)
+  and Putt's metadata/dissertation agree for CPT15 A/B, CPT21 A, CPT59 A/B. CPT56C: CORAL 0.91 m
+  is wrong, true value 549 (name) or ~510 (Putt). CPT47 B/C: CORAL 11.49/13.53 m and the labels
+  are impossible (refusal 10.76-11.2 m, one 45 cm core at 883-945 cm per Putt, Fig. 5.2). Written
+  up in coral_import/CPT_DEPTH_REVIEW_20261030.md with a recommendation to confirm with Putt/Walker
+  before editing. Sources copied to scratchpad cpt/depth/ (cross_tab.txt).
+- 2026-10-30: CPT depth review extended with an independent texture test (dissertation Table 5.2
+  particle size vs Fugro SBT at each candidate depth; Jinwoo Im's notebooks only re-use Putt's
+  metadata). Supports the names in every testable case, never the compilation-sheet depths, and
+  549 over 505 for CPT56C. Review doc now carries a proposed depth-only correction table for the 7
+  samples; awaiting the user's decision.
+- 2026-11-02: CPT depth review revised. The five CPT15/21/59 sheet depths are the five label
+  depths sorted and misattached (Putt-independent); CPT56C's 91 cm belongs to CPT56DSED-ZV-D91.
+  CPT47 B/C correction withdrawn: labels and the sheet (typed in feet) agree on 37.7/44.4 ft,
+  wells within 5 m are bored to 47-51 ft, only Putt says 883-945 cm; CORAL keeps its values pending
+  confirmation. User to email Jinwoo Im (plain-text draft with Drive links).
+- 2026-11-02: user emailed Jinwoo Im about CPT47; all CPT depth corrections (6 known + CPT47 B/C)
+  deferred until his reply so they are patched together. Pending list recorded in memory
+  (coral-fixes-pending) and in coral_import/CPT_DEPTH_REVIEW_20261030.md. Continuing with the
+  CPT AODC/DOC package (joins on names, not depths) and the EDR images folder.
+- 2026-11-02: scanned the Drive mirror for image data (1,170 files, 13.8 GB) and wrote
+  coral_import/IMAGE_COLLECTION_PLAN_20261102.md: proposed `edr/images/<lab>_<subject>_<technique>/`
+  with a manifest driving the Lakehouse link rewrite; existing sets (95 Walian isolate EM, 70 Hazen
+  AODC micrographs incl. 4 CPT, 57 core photos) plus pending sets (173 Walian groundwater EM, 45
+  Spring 2019 AODC, 11 CPT sediment TEM + 1 thin-section dm4, micro-CT 10 slices + 405-slice stack,
+  101 CPT field photos). Awaiting the user's review before touching the EDR.
+- 2026-11-02: built dipa:/data/edr/images/ (walian_isolate_em 95, hazen_aodc_micrograph 70 incl.
+  the 4 pending CPT files, hazen_core_photo 57; manifest.tsv, README, scripts/), verified every
+  file's size against CORAL's Image records, retired isolate_images/ (one staging duplicate
+  checked and removed), updated index.html. Added `image_repository_link` to coral_metadata.py:
+  sdt_image.link now comes from the manifest and the build fails on an unmapped Image. Started
+  sync_berdl.sh to mirror the EDR to MinIO (log in scratchpad sync_berdl_images.log).
+- 2026-11-02: loaded the CPT package into CORAL (Brick0002157-0002159, Image0000219-0000222, 2 assay
+  processes) and, per the user, 4 Image processes (Sample -> Image) for the micrographs; notebook
+  now 91 cells. The export also contained the user's 2026-10-30 isolate update (Brick0002146-2156
+  superseding 11 bricks, +58 strains, +26 genomes, +40 reads, +9 conditions). Lakehouse sync
+  sync-20261102-154352: 25 tables loaded; the first verify failed only because the 11 superseded
+  tables were still present (drop run blocked by the permission classifier, then a relative-path
+  bug); re-running with drops. User rule recorded: always drop obsolete tables (memory
+  lakehouse-drop-obsolete). run_sync_pipeline.py now resolves a relative --drop-table-file
+  against the run directory.
+- 2026-11-02: sync-20261102-154352 passed on the third run: 25 tables (CPT bricks 2157-2159, the
+  user's isolate update bricks 2146-2156, sdt_image with EDR links, sdt_strain/genome/reads/
+  condition, sys_* tables), 11 superseded isolate brick tables dropped, foreign keys clean after a
+  bounded capitalization correction for Brick0002146 (one FW305-130 condition name; same defect as
+  its predecessor Brick0000510, should be fixed in the isolate-update builder), schema references
+  regenerated. Image provenance processes for the 4 CPT micrographs loaded (next sync picks them up).
+- 2026-11-02: EDR mirror pass1 finished (10.8 GiB transferred, incl. images/). Verified in MinIO:
+  all 222 manifest files present with matching sizes, no extras, and all 222 sdt_image links in
+  the synced Lakehouse table resolve to a MinIO object (scratchpad minio_images.tsv).
+- 2026-11-03: EDR mirror (sync_berdl.sh, started 2026-11-02 15:30) finished all three passes at
+  23:57; MinIO now holds the full `images/` tree (228 objects: 222 image files, manifest, README,
+  4 scripts). Correction to the 2026-11-02 note: sync_berdl.sh only runs `rclone copy` and has no
+  delete stage, so the retired `isolate_images/` prefix (99 objects: the same 95 TIFFs now under
+  `images/walian_isolate_em/`, plus manifest.tsv and 3 script files now under `images/scripts/`)
+  is still in the bucket. Nothing in the Lakehouse references it (all 222 sdt_image links resolve
+  under `images/`); removal left for the user's OK.
+- 2026-11-03: per the user, added a fourth stage `pass3-delete-removed-files` to
+  dipa:/data/edr/sync_berdl.sh: a Python walk of the source with the mirror's exclusions (shared
+  with the symlink-stage builder as `walk_source`) is compared with `rclone lsf` of the bucket;
+  objects absent from the source are deleted with `rclone delete --files-from-raw`. Guards: empty
+  source or remote listing aborts; more than MAX_DELETE (default 2000) objects refuses and leaves
+  LOG_DIR/edr_delete_removed_files.txt for review; `--delete-dry-run`, `--no-delete`,
+  `--start-at pass3`. Dry run against the live bucket (2,456,967 source files, 2,473,504 objects,
+  2h10m, mostly the listing through the SOCKS tunnel): 16,598 objects to delete, all old paths of
+  genomes since moved to genome_processing_withdrawn (12 GW821-FHT05* genomes, FW101-FHT13B04,
+  and the superseded FW106-PBR-LB-2-11.1 assembly), whose withdrawn copies are already mirrored.
+  Correction to 2026-11-02: `isolate_images/` was never removed from the EDR (99 files; the TIFFs
+  and scripts are byte-identical to the images/ copies), so it is still mirrored. Deletion of
+  the 16.6k objects and removal of isolate_images/ await the user's OK (MAX_DELETE must be raised
+  for the one-off cleanup).
+- 2026-11-03: Lakehouse sync sync-20261103-153558 passed: 4 tables reloaded (sys_process +4 rows:
+  the CPT Image processes Process0223181-0223184 and the user's edited Isolation processes
+  Process0154916/0154922; sys_process_input/output; sdt_strain with two strains flagged
+  "obsolete; renamed to GW822-..."), no new obsolete bricks, 45/45 foreign keys, schema references
+  republished. 827 live tables before; all 1,927 bricks reused from the prior run.
+- 2026-11-03: bucket cleanup run finished 16:51: 16,699 objects deleted (16,598 withdrawn-genome
+  duplicates, 99 isolate_images/, 2 stale sso_staging __pycache__ files), no rclone errors.
+- 2026-11-03: compared niya's EDR master (/auto/sahara/namib/home/gtl/enigma-data-repository; all
+  other niya paths are symlinks to it) with dipa:/data/edr via a full `rsync -avn --itemize-changes`
+  dry run in copy.sh's direction plus a script-file inventory. Dipa-side changes a plain copy.sh
+  would overwrite: sync_berdl.sh and index.html (both mine), and 45 live continuous-monitoring
+  files (fetch/hydrovu + licor JSON for 2026-10-28, state/*.json, hydrovu combined CSVs for
+  2026-08 and 2026-10) whose niya copies are stale snapshots. Only on dipa: images/ collection and
+  sso_staging/code/. Only on niya: isolate_images/ (99 files) and 4,315 new genome_processing
+  files (17 genomes) plus run_antismash-8.0.pl edited today. Recommended copy.sh with -u and
+  --exclude /isolate_images/; dry-run output in scratchpad niya/rsync_dryrun.txt.
+- 2026-11-04: per the user, copied dipa-only files to niya's EDR master: sync_berdl.sh, index.html,
+  images/ (228 files) and field_automated_measurements/sso_staging/code/ (18 files, __pycache__
+  excluded; only credentials.env.example, no secrets). User is deleting isolate_images/ on niya
+  and will run copy.sh (recommended with -u).
+- 2026-11-04 (later): added `toc_tn_anions` to enigma.sso_staging (144 rows, Chakraborty TOC/TN +
+  IC anions on the ANIONS samples; commit b37a0e5), then source-header column comments + drift-as-alert
+  in both namespaces (commit 77aa204; 64 sso + 220 cm comments synced once by hand). Deployed to
+  dipa code/ and rsynced the same code dirs to niya's EDR master (sso_staging/code: 7 files,
+  continuous_monitoring/code: cm_load.py + README.md; md5 verified) so copy.sh will not revert them.
+- 2026-11-04 (evening): remodeled `picarro_gas` for TWO Picarro G2508 analyzers (A ORNL-EA-031620,
+  B ORNL-EA-007299; Kris's README updated 10-28, confirmed by Katie/Kris) after my one-instrument
+  reading proved wrong: new `instrument` column (serial), dedup key (epoch_time, instrument), port
+  assignment kept as code and published as `instrument_port` (24 rows), build cross-checks signature
+  vs assignment (conflicts HELD + email ACTION), per-analyzer last-reading line, ddt_brick notes
+  (NH3_dry = A only, O2_% = B only). Live migration: `sso_load.py --add-columns` (new deliberate
+  flag; the daily run no longer ALTERs tables silently), `sso_migrate_instrument.py` backfilled all
+  945,384 rows (659,190 A / 286,194 B, 0 null, keys unique), 8 comments synced, zero drift after.
+  Deployed to dipa and niya.
+- 2026-11-05: naming review of enigma.sso_staging with the user, applied live: `location` ->
+  `well_port` in all four data tables (CORAL's "location" is sdt_location), `well` dropped,
+  `instrument` -> `picarro_serial`, new `reference_channel` (Std/N2/Drierite; well_port NULL on
+  those 213,301 rows), `channel_type` dropped; `instrument_port` dropped (assignment stays in
+  sso_schema); `ddt_brick` replaced by `column_typedef`, a mirror of sys_ddt_typedef (51 rows:
+  variables + dimension variables with COMO terms, FK, CORAL dump string, + molecule/context/note;
+  sample_registry excluded). Loader now refuses a reused ingest_run_id. `sso_migrate_20261105_names.py`
+  (dry run, apply, VERIFY OK), 10 comments synced, zero drift. Deployed to dipa and niya.
+- 2026-11-05 (evening): datetime review across continuous_monitoring + sso_staging. All three stores
+  (cm, CORAL bricks, picarro_gas) already use ISO 8601 + Eastern offset strings; the problems were
+  format drift and zone-less columns. Applied live (`sso_migrate_20261105_datetimes.py`, VERIFY OK):
+  picarro_gas.time_series_datetime normalized to the 29-char millisecond form (was 25/32 chars from
+  Python isoformat), firesting_datetime given the row's offset in the same form, sample_date ->
+  YYYY-MM-DD in field/registry/toc (CORAL `date` form), new field_metadata.pump_on_datetime /
+  pump_off_datetime (sample_date + clock time, America/New_York; COMO datetime in column_typedef,
+  now 53 rows), loader takes first/last on the parsed instant (min_by/max_by) instead of string
+  min/max (mis-sorts in the fall-back hour). 7 comments synced, zero drift. Source check: the CSV's
+  TIME equals EPOCH_TIME in Eastern on all 945,384 rows; Firesting DateTime is a separate clock
+  within +/-30 s. Deployed to dipa and niya. Note: hazen_aquatroll600_sso_u2_sz1 has only a few
+  readings/day since 2026-10-02 (cm side, not touched).
+- 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
+  corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
+  102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
+  rows are CORAL's `CPT26BS/59CS/63AS/69AS/73AS` (same coordinates), and `CPT-65` (8.68 m probe
+  bore with a ProbeData profile) has no CORAL location (only `CPT65S`). ProbeData: 50,035 rows,
+  94 bores (Borehole, Depth_M, Friction, Piezo, Ratio, SBT, Tip).
+- 2026-11-05: CPT physical package loaded. Designed with the user: Fugro raw CSVs (94 bores, 28,589
+  readings) as source; compound microtypes (pressure/method=CPT tip resistance, pressure/method=CPT
+  sleeve friction, water pressure/method=CPT piezocone u2/relative=atmospheric pressure); soil behavior
+  type as oterm_ref values from the new robertson_soil_behavior_type.obo (SBT, 27 terms, registered in
+  the hub upload_config, CheckGenericProduction and the sync prefix map); COMO ME:0000518 ton per square
+  foot; friction ratio dropped (derived, clipped at 10); per-bore brick with datetime (ISO, -04:00),
+  instrument/category=serial number, depth to end of sounding, ground elevation; water levels from the
+  AREA 3 field master with Putt's renames, 7 of 81 rows excluded (5 undefined "TG" datum, 2 FW114 phantom
+  ports), elevations left to Brick0001698 (Putt's TOC elevations agree with it to 0.05 ft; the 2 ft
+  discrepancies were against the older FvN workbook). Ontologies installed on stout and coral-enigma and
+  reloaded (notebook now 103 cells); Brick0002160-0002162, Location0000598-0000605, Protocol0000070-71,
+  Process0223185-86 verified by AQL. tools/build_cpt_physical_coral_import.py; Lakehouse sync started.
+- 2026-11-05: sync-20261105-153237 export named every soil-behavior-type value `null <SBT:...>`: the CORAL
+  web service resolves term names from an in-memory ontology index built at startup, so a newly registered
+  ontology file is invisible to it until the service restarts (a new term inside an existing ontology,
+  ME:0000516, exported fine). Patched /h/jmc/src/CORAL/convert/spark-minio/convert_bricks.py
+  (`extract_values` takes the OBO term map and replaces an empty/"null" exported name with the OBO name;
+  three call sites pass `term_map`), reconverted Brick0002160-0002162 and re-ran the dry run and table
+  selection (11 changed tables, no obsolete drops). The coral-enigma CORAL service still needs a restart
+  before the CORAL UI shows the SBT names.
+- 2026-11-05: Lakehouse sync sync-20261105-153237 passed: 11 tables (ddt_brick0002160 28,589 rows,
+  ddt_brick0002161 94, ddt_brick0002162 72, ddt_ndarray 1,930, sdt_location 604, sdt_protocol 71,
+  sys_ddt_typedef, sys_oterm 7,241 incl. the 27 SBT terms and ME:0000518, sys_process and links),
+  66/66 foreign keys, no obsolete drops, schema references republished. ddt_brick0002162 has 72 of the
+  brick's 74 readings: CORAL's CSV export omits all-null data cells (FW-101-50 and FW-102-20, 'NW') and
+  convert_bricks.py emits only exported data rows, so dimension entries whose every value is null vanish
+  from every Lakehouse brick table (long-standing behaviour, raised with the user).
+- 2026-11-05: converter fix for all-null dimension entries (per the user): convert_bricks.py now emits a
+  row for every dimension entry missing from CORAL's data block (dims 2..N for heterogeneous bricks, all
+  dims otherwise; `_dmeta_only_row`), capped by MAX_NULL_FILL_ROWS = 1,000,000 so the four giant sparse
+  ASV count tables (Brick0000014/451/464/476, 145M absent cells) stay sparse with a warning. Regression:
+  Brick0000077/0002157/0000053 unchanged, Brick0002162 72 -> 74, Brick0002093 (2024 SSO DTW) 136 -> 222.
+  Scan of the 806 current brick tables: 51 are short of their brick's shape; 47 rebuild candidates
+  (719k rows to add) listed in sync-20261105-153237/ingest/null_fill_rebuild_candidates.txt.
+- 2026-11-06: sync-20261105-153237 re-run after the converter fix: ddt_brick0002162 now 74 rows (the two
+  'NW' readings present with null depth), 66/66 foreign keys; the other ten tables reloaded unchanged.
+- 2026-11-06: investigated the "sparse" ASV count tables with the user: zeros are stored and exported
+  (Brick0000476: 79.6M zero cells; the normalized v3 writes 0.0); the absent cells are the replicate-2/3
+  slices of communities run once, written as explicit null by DumpOTUJSON6.java by design. Decision:
+  the converter fills every absent dimension entry with an all-null row except entries explained by an
+  empty (other dimension, replicate series) index pair; the 1M-row cap is gone. Rule implemented in
+  convert_bricks.py (`_replicate_dims`, `_absent_entries`), documented in the sync skill; 46 brick tables
+  to rebuild (giants unchanged by construction).
+- 2026-11-06: replicate rule verified (10-brick regression incl. Brick0000014: unchanged, 12.4M
+  replicate slots left out, 84 s); prepare_brick_tables.py gained --force-convert-file; the 47
+  short bricks reconverted (37 gain rows: 34 existing tables + the 3 CPT bricks already loaded; 10 had
+  only replicate gaps and are unchanged); pipeline started for 45 tables.
+- 2026-11-06: rebuild sync fixes on the way: (1) run_sync_pipeline.py Spark readiness probe timeout
+  45 s -> 180 s (a cold BERDL session took 109 s to answer SELECT 1; two runs died there without
+  writing); (2) the reload of ddt_brick0000081 (hazen_field_100ws) failed with CAST_INVALID_INPUT: three
+  "tracking number" comment columns hold 12-digit values in columns inferred as int (the original load
+  predates ANSI casts); convert_bricks.infer_scalar_type now returns "long" when any integer exceeds
+  int32 (declared int -> inferred long counts as compatible), giving LongType/BIGINT; only that brick is
+  affected among the 45 changed tables.
+- 2026-11-06: rebuild sync passed (sync-20261105-153237, run 6): 45 tables (37 brick tables now at
+  the brick's full shape minus never-run replicate slots, e.g. ddt_brick0001670 670,980,
+  ddt_brick0002093 222, ddt_brick0000081 209 with three BIGINT tracking-number columns; plus the 8
+  static/system tables), 168/168 foreign keys, schema references republished.

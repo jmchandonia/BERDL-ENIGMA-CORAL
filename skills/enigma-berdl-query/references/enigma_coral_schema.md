@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 824
+Total Tables: 830
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 824
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1913
+**Total Rows:** 1930
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 824
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9613
+**Total Rows:** 9712
 
 ### Sample Data (5 rows)
 
@@ -162,7 +162,7 @@ Total Tables: 824
 | concentration_molecule_from_list_elemental_carbon_organic_1_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=elemental carbon, Organic=1", "unit": "milligram per kilogram"} |
 | concentration_molecule_from_list_nitrogen_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=nitrogen atom", "unit": "milligram per kilogram"} |
 
-**Total Rows:** 300
+**Total Rows:** 449
 
 ### Sample Data (5 rows)
 
@@ -251,7 +251,7 @@ Total Tables: 824
 | replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
 | concentration_micromolar | double | Yes | {"description": "concentration", "unit": "micromolar"} |
 
-**Total Rows:** 52884
+**Total Rows:** 53352
 
 ### Sample Data (5 rows)
 
@@ -279,7 +279,7 @@ Total Tables: 824
 | algorithm_parameter_confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 319159
+**Total Rows:** 598848
 
 ### Sample Data (5 rows)
 
@@ -307,7 +307,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 52846
+**Total Rows:** 60264
 
 ### Sample Data (5 rows)
 
@@ -386,7 +386,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 85202
+**Total Rows:** 153528
 
 ### Sample Data (5 rows)
 
@@ -1338,7 +1338,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 7
+**Total Rows:** 8
 
 ### Sample Data (5 rows)
 
@@ -1789,7 +1789,7 @@ Total Tables: 824
 | volume_category_water_sample_volume_liter | double | Yes | {"description": "volume, Category=water sample volume", "unit": "liter"} |
 | mass_category_soil_sample_mass_gram | double | Yes | {"description": "mass, Category=soil sample mass", "unit": "gram"} |
 
-**Total Rows:** 320
+**Total Rows:** 384
 
 ### Sample Data (5 rows)
 
@@ -1818,7 +1818,7 @@ Total Tables: 824
 | amount_molecule_from_list_sulfide_2_nanomole | double | Yes | {"description": "amount, Molecule from list=sulfide(2-)", "unit": "nanomole"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, Relative=detection limit"} |
 
-**Total Rows:** 306
+**Total Rows:** 585
 
 ### Sample Data (5 rows)
 
@@ -1847,7 +1847,7 @@ Total Tables: 824
 | amount_molecule_from_list_sulfide_2_nanomole | double | Yes | {"description": "amount, Molecule from list=sulfide(2-)", "unit": "nanomole"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, Relative=detection limit"} |
 
-**Total Rows:** 1072
+**Total Rows:** 1440
 
 ### Sample Data (5 rows)
 
@@ -2221,15 +2221,15 @@ Total Tables: 824
 | comment_description_metals_qual_qualifier_detect_detection_limit_qual_sr | string | Yes | {"description": "comment, Description=Metals qual = qualifier detect = detection limit qual_Sr"} |
 | comment_description_metals_qual_qualifier_detect_detection_limit_comments | string | Yes | {"description": "comment, Description=Metals qual = qualifier detect = detection limit Comments"} |
 | comment_description_metals_qual_qualifier_detect_detection_limit_qual_ba | string | Yes | {"description": "comment, Description=Metals qual = qualifier detect = detection limit qual_Ba"} |
-| comment_description_single_cell_tracking | int | Yes | {"description": "comment, Description=Single Cell Tracking"} |
+| comment_description_single_cell_tracking | bigint | Yes | {"description": "comment, Description=Single Cell Tracking"} |
 | comment_description_single_cell_date_shipped | string | Yes | {"description": "comment, Description=Single Cell Date Shipped"} |
 | comment_description_single_cell_receiving_lab | string | Yes | {"description": "comment, Description=Single Cell Receiving Lab"} |
-| comment_description_culture_tracking_number | int | Yes | {"description": "comment, Description=Culture Tracking number"} |
+| comment_description_culture_tracking_number | bigint | Yes | {"description": "comment, Description=Culture Tracking number"} |
 | comment_description_culture_date_shipped | string | Yes | {"description": "comment, Description=Culture Date Shipped"} |
 | concentration_molecule_from_list_helium_0_method_passive_diffusive_samplers_parts_per_million_by_volume | double | Yes | {"description": "concentration, Molecule from list=helium(0), Method=passive diffusive samplers", "unit": "parts per million by volume"} |
 | concentration_molecule_from_list_neon_atom_method_passive_diffusive_samplers_parts_per_million_by_volume | double | Yes | {"description": "concentration, Molecule from list=neon atom, Method=passive diffusive samplers", "unit": "parts per million by volume"} |
 | concentration_category_fixed_gases_physiochemical_state_gas_method_passive_diffusive_samplers_parts_per_million_by_volume | double | Yes | {"description": "concentration, Category=fixed gases, State=gas, Method=passive diffusive samplers", "unit": "parts per million by volume"} |
-| comment_description_transition_metals_tracking_number | int | Yes | {"description": "comment, Description=Transition Metals Tracking number"} |
+| comment_description_transition_metals_tracking_number | bigint | Yes | {"description": "comment, Description=Transition Metals Tracking number"} |
 | comment_description_transition_metals_date_shipped | string | Yes | {"description": "comment, Description=Transition Metals Date Shipped"} |
 | comment_description_transition_metals_receiving_lab | string | Yes | {"description": "comment, Description=Transition Metals Receiving Lab"} |
 | concentration_molecule_from_list_aluminium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=aluminium atom", "unit": "milligram per liter"} |
@@ -2272,7 +2272,7 @@ Total Tables: 824
 | comment_description_anions_comments | string | Yes | {"description": "comment, Description=Anions Comments"} |
 | comment_description_metals_qual_qualifier_detect_detection_limit_qual_u | string | Yes | {"description": "comment, Description=Metals qual = qualifier detect = detection limit qual_U"} |
 
-**Total Rows:** 148
+**Total Rows:** 209
 
 ### Sample Data (5 rows)
 
@@ -2304,7 +2304,7 @@ Total Tables: 824
 | salinity_practical_salinity_unit | double | Yes | {"description": "salinity", "unit": "practical salinity unit"} |
 | concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=nitrate", "unit": "milligram per liter"} |
 
-**Total Rows:** 2237
+**Total Rows:** 2240
 
 ### Sample Data (5 rows)
 
@@ -2366,32 +2366,6 @@ Total Tables: 824
 | GW271-XG3 | 1 | 0 |
 | GW271-XG4 | 1 | 1 |
 | GW271-XG5 | 1 | 1 |
-
----
-
-## Table: ddt_brick0000433
-
-**Table Description:** isolate_comments_240613.hndarray - Comments for ENIGMA isolate strains, as of 2024-06-13
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| comment_description_field_experiment | string | Yes | {"description": "comment, Description=Field/Experiment"} |
-| comment_description_groundwater_sediment | string | Yes | {"description": "comment, Description=Groundwater/Sediment"} |
-
-**Total Rows:** 2229
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | comment_description_field_experiment | comment_description_groundwater_sediment |
-|---|---|---|
-| FW106-XG1 | Field | Groundwater |
-| FW115-XG2 | Field | Groundwater |
-| GW271-XG3 | Field | Groundwater |
-| GW271-XG4 | Field | Groundwater |
-| GW271-XG5 | Field | Groundwater |
 
 ---
 
@@ -2704,119 +2678,6 @@ Total Tables: 824
 
 ---
 
-## Table: ddt_brick0000481
-
-**Table Description:** isolation_condition_details_250116.hndarray - Chemical and Physical details of isolation conditions, as of 2025-01-16
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| anaerobic | boolean | Yes | {"description": "anaerobic"} |
-| aphotic | boolean | Yes | {"description": "aphotic"} |
-| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
-| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
-| media_addition_category_media_addition_1 | string | Yes | {"description": "media addition, Category=media addition 1"} |
-| molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_id | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 1, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_name | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 1"} |
-| concentration_context_media_addition_category_media_addition_1_percent | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 1", "unit": "percent"} |
-| concentration_context_media_addition_category_media_addition_1_millimolar | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 1", "unit": "millimolar"} |
-| concentration_context_media_addition_category_media_addition_1_microgram_per_milliliter | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 1", "unit": "microgram per milliliter"} |
-| concentration_context_media_addition_category_media_addition_1_fold_dilution | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 1", "unit": "fold dilution"} |
-| concentration_context_media_addition_category_media_addition_1_mass_volume_percentage | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 1", "unit": "mass volume percentage"} |
-| media_addition_category_media_addition_2 | string | Yes | {"description": "media addition, Category=media addition 2"} |
-| molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_id | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 2, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_name | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 2"} |
-| concentration_context_media_addition_category_media_addition_2_percent | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 2", "unit": "percent"} |
-| concentration_context_media_addition_category_media_addition_2_millimolar | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 2", "unit": "millimolar"} |
-| concentration_context_media_addition_category_media_addition_2_microgram_per_milliliter | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 2", "unit": "microgram per milliliter"} |
-| concentration_context_media_addition_category_media_addition_2_fold_dilution | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 2", "unit": "fold dilution"} |
-| concentration_context_media_addition_category_media_addition_2_mass_volume_percentage | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 2", "unit": "mass volume percentage"} |
-| media_addition_category_media_addition_3 | string | Yes | {"description": "media addition, Category=media addition 3"} |
-| molecule_from_list_context_media_addition_category_media_addition_3_sys_oterm_id | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 3, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| molecule_from_list_context_media_addition_category_media_addition_3_sys_oterm_name | string | Yes | {"description": "molecule from list, Context=media addition, Category=media addition 3"} |
-| concentration_context_media_addition_category_media_addition_3_percent | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 3", "unit": "percent"} |
-| concentration_context_media_addition_category_media_addition_3_millimolar | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 3", "unit": "millimolar"} |
-| concentration_context_media_addition_category_media_addition_3_microgram_per_milliliter | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 3", "unit": "microgram per milliliter"} |
-| concentration_context_media_addition_category_media_addition_3_fold_dilution | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 3", "unit": "fold dilution"} |
-| concentration_context_media_addition_category_media_addition_3_mass_volume_percentage | double | Yes | {"description": "concentration, Context=media addition, Category=media addition 3", "unit": "mass volume percentage"} |
-| media_name_category_media_1 | string | Yes | {"description": "media name, Category=media 1"} |
-| context_media_category_media_1_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=media 1", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_media_1_percent | double | Yes | {"description": "concentration, Context=media, Category=media 1", "unit": "percent"} |
-| concentration_context_media_category_media_1_millimolar | double | Yes | {"description": "concentration, Context=media, Category=media 1", "unit": "millimolar"} |
-| concentration_context_media_category_media_1_milligram_per_milliliter | double | Yes | {"description": "concentration, Context=media, Category=media 1", "unit": "milligram per milliliter"} |
-| concentration_context_media_category_media_1_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=media 1", "unit": "fold dilution"} |
-| media_name_category_media_2 | string | Yes | {"description": "media name, Category=media 2"} |
-| context_media_category_media_2_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=media 2", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_media_2_percent | double | Yes | {"description": "concentration, Context=media, Category=media 2", "unit": "percent"} |
-| concentration_context_media_category_media_2_millimolar | double | Yes | {"description": "concentration, Context=media, Category=media 2", "unit": "millimolar"} |
-| concentration_context_media_category_media_2_milligram_per_milliliter | double | Yes | {"description": "concentration, Context=media, Category=media 2", "unit": "milligram per milliliter"} |
-| concentration_context_media_category_media_2_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=media 2", "unit": "fold dilution"} |
-| media_name_category_media_3 | string | Yes | {"description": "media name, Category=media 3"} |
-| context_media_category_media_3_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=media 3", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_media_3_percent | double | Yes | {"description": "concentration, Context=media, Category=media 3", "unit": "percent"} |
-| concentration_context_media_category_media_3_millimolar | double | Yes | {"description": "concentration, Context=media, Category=media 3", "unit": "millimolar"} |
-| concentration_context_media_category_media_3_milligram_per_milliliter | double | Yes | {"description": "concentration, Context=media, Category=media 3", "unit": "milligram per milliliter"} |
-| concentration_context_media_category_media_3_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=media 3", "unit": "fold dilution"} |
-| media_name_category_media_4 | string | Yes | {"description": "media name, Category=media 4"} |
-| context_media_category_media_4_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=media 4", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_media_4_percent | double | Yes | {"description": "concentration, Context=media, Category=media 4", "unit": "percent"} |
-| concentration_context_media_category_media_4_millimolar | double | Yes | {"description": "concentration, Context=media, Category=media 4", "unit": "millimolar"} |
-| concentration_context_media_category_media_4_milligram_per_milliliter | double | Yes | {"description": "concentration, Context=media, Category=media 4", "unit": "milligram per milliliter"} |
-| concentration_context_media_category_media_4_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=media 4", "unit": "fold dilution"} |
-| media_name_category_media_5 | string | Yes | {"description": "media name, Category=media 5"} |
-| context_media_category_media_5_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=media 5", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_media_5_percent | double | Yes | {"description": "concentration, Context=media, Category=media 5", "unit": "percent"} |
-| concentration_context_media_category_media_5_millimolar | double | Yes | {"description": "concentration, Context=media, Category=media 5", "unit": "millimolar"} |
-| concentration_context_media_category_media_5_milligram_per_milliliter | double | Yes | {"description": "concentration, Context=media, Category=media 5", "unit": "milligram per milliliter"} |
-| concentration_context_media_category_media_5_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=media 5", "unit": "fold dilution"} |
-| comment | string | Yes | {"description": "comment"} |
-| time_since_inoculation_growth_stage_enrichment_growth_day | double | Yes | {"description": "time since inoculation, Growth Stage=enrichment growth", "unit": "day"} |
-| temperature_growth_stage_enrichment_growth_degree_celsius | double | Yes | {"description": "temperature, Growth Stage=enrichment growth", "unit": "degree Celsius"} |
-| media_name_category_preincubation_media_growth_stage_enrichment_growth | string | Yes | {"description": "media name, Category=preincubation media, Growth Stage=enrichment growth"} |
-| context_media_category_preincubation_media_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, Context=media, Category=preincubation media, Growth Stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| concentration_context_media_category_preincubation_media_fold_dilution | double | Yes | {"description": "concentration, Context=media, Category=preincubation media", "unit": "fold dilution"} |
-
-**Total Rows:** 318
-
-### Sample Data (5 rows)
-
-| sdt_condition_name | anaerobic | aphotic | ph_ph | temperature_degree_celsius | media_addition_category_media_addition_1 | molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_name | concentration_context_media_addition_category_media_addition_1_percent | concentration_context_media_addition_category_media_addition_1_millimolar | concentration_context_media_addition_category_media_addition_1_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_1_fold_dilution | concentration_context_media_addition_category_media_addition_1_mass_volume_percentage | media_addition_category_media_addition_2 | molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_name | concentration_context_media_addition_category_media_addition_2_percent | concentration_context_media_addition_category_media_addition_2_millimolar | concentration_context_media_addition_category_media_addition_2_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_2_fold_dilution | concentration_context_media_addition_category_media_addition_2_mass_volume_percentage | media_addition_category_media_addition_3 | molecule_from_list_context_media_addition_category_media_addition_3_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_3_sys_oterm_name | concentration_context_media_addition_category_media_addition_3_percent | concentration_context_media_addition_category_media_addition_3_millimolar | concentration_context_media_addition_category_media_addition_3_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_3_fold_dilution | concentration_context_media_addition_category_media_addition_3_mass_volume_percentage | media_name_category_media_1 | context_media_category_media_1_sdt_condition_name | concentration_context_media_category_media_1_percent | concentration_context_media_category_media_1_millimolar | concentration_context_media_category_media_1_milligram_per_milliliter | concentration_context_media_category_media_1_fold_dilution | media_name_category_media_2 | context_media_category_media_2_sdt_condition_name | concentration_context_media_category_media_2_percent | concentration_context_media_category_media_2_millimolar | concentration_context_media_category_media_2_milligram_per_milliliter | concentration_context_media_category_media_2_fold_dilution | media_name_category_media_3 | context_media_category_media_3_sdt_condition_name | concentration_context_media_category_media_3_percent | concentration_context_media_category_media_3_millimolar | concentration_context_media_category_media_3_milligram_per_milliliter | concentration_context_media_category_media_3_fold_dilution | media_name_category_media_4 | context_media_category_media_4_sdt_condition_name | concentration_context_media_category_media_4_percent | concentration_context_media_category_media_4_millimolar | concentration_context_media_category_media_4_milligram_per_milliliter | concentration_context_media_category_media_4_fold_dilution | media_name_category_media_5 | context_media_category_media_5_sdt_condition_name | concentration_context_media_category_media_5_percent | concentration_context_media_category_media_5_millimolar | concentration_context_media_category_media_5_milligram_per_milliliter | concentration_context_media_category_media_5_fold_dilution | comment | time_since_inoculation_growth_stage_enrichment_growth_day | temperature_growth_stage_enrichment_growth_degree_celsius | media_name_category_preincubation_media_growth_stage_enrichment_growth | context_media_category_preincubation_media_growth_stage_enrichment_growth_sdt_condition_name | concentration_context_media_category_preincubation_media_fold_dilution |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Anaerobic = 0; Aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | 0 | 1 | NULL | 25.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | R2A | R2A | NULL | NULL | NULL | 25.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| Anaerobic = 0; media name = LB; temperature = 30.0 (degree Celsius) | 0 | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | LB | LB | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| Anaerobic = 0; media name = Eugon Broth; temperature = 30.0 (degree Celsius) | 0 | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Eugon Broth | Eugon Broth | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| Anaerobic = 0; media name = R2A; temperature = 30.0 (degree Celsius) | 0 | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | R2A | R2A | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| Anaerobic = 0; media addition = Mn; media name = LB; temperature = 30.0 (degree Celsius) | 0 | NULL | NULL | 30.0 | Mn | CHEBI:18291 | manganese atom | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | LB | LB | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-
----
-
-## Table: ddt_brick0000498
-
-**Table Description:** isolate_obsolete_ids_250728.ndarray - Obsolete IDs for ENIGMA isolate strains, as of 2025-07-28
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_name_obsolete_1 | string | Yes | {"description": "strain name, Obsolete=1"} |
-
-**Total Rows:** 70
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_name_obsolete_1 |
-|---|---|
-| GW101-3H11 | acidovorax_3H11 |
-| FHTAMBA | GW101-3H11-AA |
-| GW247-26LB | denitro1 |
-| FW507-4G11 | Cup4G11 |
-| FW507-4G11 | 4G11 |
-
----
-
 ## Table: ddt_brick0000509
 
 **Table Description:** hazen_pH_2022.ndarray - Hazen pH measurements on 2022 field samples
@@ -2839,121 +2700,6 @@ Total Tables: 824
 | EFPW05-3-15-22 | 5.38 |
 | EFPW06-3-15-22 | 6.4 |
 | FW012-3-15-22 | 6.28 |
-
----
-
-## Table: ddt_brick0000510
-
-**Table Description:** isolation_conditions_251112.hndarray - Isolation conditions for each ENIGMA isolate strain, as of 2025-11-12
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
-| description_comment_original_condition_description | string | Yes | {"description": "description, comment=Original Condition Description"} |
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| date_comment_sampling_date | string | Yes | {"description": "date, comment=Sampling Date"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab"} |
-
-**Total Rows:** 3151
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
-|---|---|---|---|---|---|---|---|---|---|
-| FW305-130 | Anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
-| FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-| FW507-4D12 | anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | R2A | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
-
----
-
-## Table: ddt_brick0000517
-
-**Table Description:** isolate_environment_map_260108.hndarray - ENIGMA isolate strains mapped to Shotgun Metagenomic Samples as of 2026-01-08
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, statistic=average, comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
-| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, statistic=average, comment=average percent identity of aligned reads", "unit": "percent"} |
-| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
-
-**Total Rows:** 4361
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
-|---|---|---|---|---|---|
-| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
-| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
-| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.3 | 3.730473 | 99.3451 | 89.5223 |
-| 20240529-EFP01-F01 | DP16D-E2 | DP16D-E2.1 | 1.834835 | 96.9795 | 58.741699999999994 |
-
----
-
-## Table: ddt_brick0000523
-
-**Table Description:** isolate_availability_260205.hndarray - Availability of ENIGMA isolate strains, as of 2026-02-05
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| availability | boolean | Yes | {"description": "availability"} |
-| comment_context_availability | string | Yes | {"description": "comment, context=availability"} |
-
-**Total Rows:** 3151
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | availability | comment_context_availability |
-|---|---|---|
-| FW305-130 | 1 | NULL |
-| FW305-BF6 | 1 | NULL |
-| FW104-L1 | 1 | NULL |
-| FW507-19G05 | 1 | NULL |
-| FW507-4D12 | 1 | NULL |
-
----
-
-## Table: ddt_brick0000524
-
-**Table Description:** isolate_classification_260205.hndarray - 16S classification based NCBI database search for each ENIGMA isolate strain, as of 2026-02-05
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| taxonomic_level_order_sdt_taxon_name | string | Yes | {"description": "taxon ID, taxonomic level=order", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| description_comment_closest_relative_in_ncbi_16s_rrna_gene_database | string | Yes | {"description": "description, comment=Closest relative in NCBI: 16S rRNA Gene Database"} |
-| sequence_similarity_method_blast_percent | double | Yes | {"description": "sequence similarity, method=BLAST", "unit": "percent"} |
-
-**Total Rows:** 3151
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | taxonomic_level_order_sdt_taxon_name | description_comment_closest_relative_in_ncbi_16s_rrna_gene_database | sequence_similarity_method_blast_percent |
-|---|---|---|---|
-| FW305-130 | Actinomycetales | Nocardia coeliaca strain DSM 44595 | 99.0 |
-| FW305-BF6 | Bacillales | Bacillus acidicelar strain CBD 119 | 99.0 |
-| FW104-L1 | Bacillales | Bacillus anthracis str. Ames | 99.0 |
-| FW507-19G05 | Bacillales | Bacillus cereus ATCC 14579 | 99.0 |
-| FW507-4D12 | Bacillales | Bacillus cereus strain ATCC 14579 | 99.0 |
 
 ---
 
@@ -15840,7 +15586,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 30551
+**Total Rows:** 32796
 
 ### Sample Data (5 rows)
 
@@ -15946,7 +15692,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 5048
+**Total Rows:** 5286
 
 ### Sample Data (5 rows)
 
@@ -17683,7 +17429,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 8715
+**Total Rows:** 10290
 
 ### Sample Data (5 rows)
 
@@ -17781,7 +17527,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 4610
+**Total Rows:** 5466
 
 ### Sample Data (5 rows)
 
@@ -17880,7 +17626,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 4067
+**Total Rows:** 6036
 
 ### Sample Data (5 rows)
 
@@ -17978,7 +17724,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 9302
+**Total Rows:** 16092
 
 ### Sample Data (5 rows)
 
@@ -18162,7 +17908,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 627241
+**Total Rows:** 670980
 
 ### Sample Data (5 rows)
 
@@ -18189,7 +17935,7 @@ Total Tables: 824
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 
-**Total Rows:** 108842
+**Total Rows:** 164206
 
 ### Sample Data (5 rows)
 
@@ -18217,7 +17963,7 @@ Total Tables: 824
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 | confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
 
-**Total Rows:** 56696
+**Total Rows:** 66024
 
 ### Sample Data (5 rows)
 
@@ -18245,7 +17991,7 @@ Total Tables: 824
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 | confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
 
-**Total Rows:** 56497
+**Total Rows:** 65786
 
 ### Sample Data (5 rows)
 
@@ -19037,128 +18783,6 @@ Total Tables: 824
 
 ---
 
-## Table: ddt_brick0001721
-
-**Table Description:** isolate_classification_gtdb_260921.ndarray - GTDB-Tk 2.7.2 classification of each ENIGMA isolate strain with a genome, as of 2026-09-21
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
-| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
-| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-
-**Total Rows:** 9046
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
-|---|---|---|---|---|
-| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
-| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
-| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
-| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
-| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
-
----
-
-## Table: ddt_brick0001722
-
-**Table Description:** isolate_sequence_and_quality_arkin_260921.hndarray - Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-09-21
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
-| link_context_genome | string | Yes | {"description": "link, context=genome"} |
-| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
-| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
-| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
-| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
-| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
-| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
-| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
-
-**Total Rows:** 1499
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | link_context_read_set | link_context_genome | sdt_genome_name | sdt_sample_name | sdt_location_name | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | DP16D-L5.1 | DP16D-06-17-14 | DP16D | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
-| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.3/ | DP16D-R1.3 | DP16D-06-17-14 | DP16D | 124 | 6688 | 100.0 | 1.17 | 125507 | NULL | 0.001443 |
-| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | DP16D-T1.1 | DP16D-06-17-14 | DP16D | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
-| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | EB106-05-01-XG146.2 | EB106-05-01 | EB-106 | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
-| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | EB106-05-01-XG201.3 | EB106-05-01 | EB-106 | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
-
----
-
-## Table: ddt_brick0001723
-
-**Table Description:** isolate_genbank_links_260921.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-09-21
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| availability_sequence_type_genome_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=genome sequence, database=GenBank"} |
-| availability_sequence_type_16s_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=16S sequence, database=GenBank"} |
-| link_sequence_type_genome_sequence_database_genbank | string | Yes | {"description": "link, sequence type=genome sequence, database=GenBank"} |
-| strain_name_database_genbank | string | Yes | {"description": "strain name, database=GenBank"} |
-| link_sequence_type_16s_sequence_database_genbank | string | Yes | {"description": "link, sequence type=16S sequence, database=GenBank"} |
-
-**Total Rows:** 1438
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | availability_sequence_type_genome_sequence_database_genbank | availability_sequence_type_16s_sequence_database_genbank | link_sequence_type_genome_sequence_database_genbank | strain_name_database_genbank | link_sequence_type_16s_sequence_database_genbank |
-|---|---|---|---|---|---|
-| FW305-130 | 1 | 0 | GCF_058788335.1 | FW305-130 | NULL |
-| FW507-14D1A | 1 | 0 | GCF_058781295.1 | FW507-14D1A | NULL |
-| FW507-14D01 | 1 | 0 | GCF_058781345.1 | FW507-14D01 | NULL |
-| FW510-T9 | 1 | 0 | GCF_058781025.1 | FW510-T9 | NULL |
-| FW301-21C12A | 1 | 0 | GCF_058788915.1 | FW301-21C12A | NULL |
-
----
-
-## Table: ddt_brick0001724
-
-**Table Description:** isolate_16S_sanger_260917.ndarray - Isolate 16S Sequences from Sanger sequencing, as of 2026-09-17
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
-| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
-| sequence | string | Yes | {"description": "sequence"} |
-
-**Total Rows:** 3090
-
-### Sample Data (5 rows)
-
-| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
-|---|---|---|---|---|---|
-| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
-| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
-| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
-| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
-| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
-
----
-
 ## Table: ddt_brick0001729
 
 **Table Description:** gapmind_genome_pathway_completeness_20260924.ndarray - GapMind amino-acid biosynthesis and carbon-catabolism pathway completeness categories for 3,047 ENIGMA isolate genomes
@@ -19465,7 +19089,7 @@ Total Tables: 824
 | count_context_protein_count_unit | int | Yes | {"description": "count, context=protein", "unit": "count unit"} |
 | sequence_identity_percent | double | Yes | {"description": "sequence identity", "unit": "percent"} |
 
-**Total Rows:** 1839
+**Total Rows:** 47872
 
 ### Sample Data (5 rows)
 
@@ -19804,7 +19428,7 @@ Total Tables: 824
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 44
+**Total Rows:** 45
 
 ### Sample Data (5 rows)
 
@@ -26329,7 +25953,7 @@ Total Tables: 824
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 48
+**Total Rows:** 92
 
 ### Sample Data (5 rows)
 
@@ -26394,7 +26018,7 @@ Total Tables: 824
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 11
+**Total Rows:** 14
 
 ### Sample Data (5 rows)
 
@@ -26560,7 +26184,7 @@ Total Tables: 824
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 136
+**Total Rows:** 222
 
 ### Sample Data (5 rows)
 
@@ -27698,7 +27322,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 23665
+**Total Rows:** 36911
 
 ### Sample Data (5 rows)
 
@@ -27783,7 +27407,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 21402
+**Total Rows:** 31591
 
 ### Sample Data (5 rows)
 
@@ -27868,7 +27492,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 16531
+**Total Rows:** 24199
 
 ### Sample Data (5 rows)
 
@@ -27957,7 +27581,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 13338
+**Total Rows:** 14358
 
 ### Sample Data (5 rows)
 
@@ -28045,7 +27669,7 @@ Total Tables: 824
 | enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
-**Total Rows:** 3589
+**Total Rows:** 3804
 
 ### Sample Data (5 rows)
 
@@ -28090,6 +27714,619 @@ Total Tables: 824
 | EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:26708 | sodium atom | 0.016816804509727203 | 18.190284458025157 | 1.9367600664794666 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
 | EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:25107 | magnesium atom | 0.001534344036925195 | 2981.5606837902938 | 125.46926055000455 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
 | EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:28984 | aluminium atom | 0.0034072472363606545 | 10934.298478534265 | 45.54747641478123 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+
+---
+
+## Table: ddt_brick0002146
+
+**Table Description:** isolation_conditions_261030.hndarray - Isolation conditions for each ENIGMA isolate strain, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| description_comment_original_condition_description | string | Yes | {"description": "description, comment=Original Condition Description"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| date_comment_sampling_date | string | Yes | {"description": "date, comment=Sampling Date"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_campaign_sys_oterm_name | string | Yes | {"description": "ENIGMA Campaign"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab"} |
+
+**Total Rows:** 3196
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | sdt_condition_name | description_comment_original_condition_description | sdt_sample_name | date_comment_sampling_date | sdt_location_name | enigma_campaign_sys_oterm_id | enigma_campaign_sys_oterm_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_name |
+|---|---|---|---|---|---|---|---|---|---|
+| FW305-130 | Anaerobic = 0; media name = LB, concentration = 25.0 (fold dilution); media name = Sediment Extract; temperature = 30.0 (degree Celsius) | Sediment extract to 1/25 LB, aerobic, 30°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW305-BF6 | anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | filter on  1/25 R2A, aerobic, aphotic, 25°C | FW305-021115-2 | 2015-02-11 | FW-305 | ENIGMA:0000027 | Natural Organic Matter | ENIGMA:0000053 | Chakraborty Lab |
+| FW104-L1 | anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | LB | FW104-67-11-14-12 | 2012-11-14 | FW-104 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-19G05 | anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | Eugon | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+| FW507-4D12 | anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | R2A | FW507-49-11-26-12 | 2012-11-26 | FW-507 | ENIGMA:0000003 | 100 Well Survey | ENIGMA:0000053 | Chakraborty Lab |
+
+---
+
+## Table: ddt_brick0002147
+
+**Table Description:** isolation_condition_details_261030.hndarray - Chemical and Physical details of isolation conditions, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_condition_name | string | Yes | {"description": "condition ID", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| anaerobic | boolean | Yes | {"description": "anaerobic"} |
+| aphotic | boolean | Yes | {"description": "aphotic"} |
+| microaerobic | boolean | Yes | {"description": "microaerobic"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| media_addition_category_media_addition_1 | string | Yes | {"description": "media addition, category=media addition 1"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1"} |
+| concentration_context_media_addition_category_media_addition_1_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 1", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_1_fold_dilution | double | Yes | {"description": "concentration, context=media addition, category=media addition 1", "unit": "fold dilution"} |
+| media_addition_category_media_addition_2 | string | Yes | {"description": "media addition, category=media addition 2"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2"} |
+| concentration_context_media_addition_category_media_addition_2_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 2", "unit": "millimolar"} |
+| media_name_category_media_1 | string | Yes | {"description": "media name, category=media 1"} |
+| context_media_category_media_1_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 1", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_1_percent | double | Yes | {"description": "concentration, context=media, category=media 1", "unit": "percent"} |
+| concentration_context_media_category_media_1_millimolar | double | Yes | {"description": "concentration, context=media, category=media 1", "unit": "millimolar"} |
+| concentration_context_media_category_media_1_milligram_per_milliliter | double | Yes | {"description": "concentration, context=media, category=media 1", "unit": "milligram per milliliter"} |
+| concentration_context_media_category_media_1_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 1", "unit": "fold dilution"} |
+| media_name_category_media_2 | string | Yes | {"description": "media name, category=media 2"} |
+| context_media_category_media_2_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 2", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_2_percent | double | Yes | {"description": "concentration, context=media, category=media 2", "unit": "percent"} |
+| concentration_context_media_category_media_2_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 2", "unit": "fold dilution"} |
+| media_name_category_media_3 | string | Yes | {"description": "media name, category=media 3"} |
+| context_media_category_media_3_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 3", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| aphotic_growth_stage_enrichment_growth | boolean | Yes | {"description": "aphotic, growth stage=enrichment growth"} |
+| ph_growth_stage_enrichment_growth_ph | double | Yes | {"description": "pH, growth stage=enrichment growth", "unit": "pH"} |
+| temperature_growth_stage_enrichment_growth_degree_celsius | double | Yes | {"description": "temperature, growth stage=enrichment growth", "unit": "degree Celsius"} |
+| time_since_inoculation_growth_stage_enrichment_growth_day | double | Yes | {"description": "time since inoculation, growth stage=enrichment growth", "unit": "day"} |
+| culture_vessel_growth_stage_enrichment_growth | string | Yes | {"description": "culture vessel, growth stage=enrichment growth"} |
+| media_addition_category_media_addition_1_growth_stage_enrichment_growth | string | Yes | {"description": "media addition, category=media addition 1, growth stage=enrichment growth"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=enrichment growth, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=enrichment growth"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_percent | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=enrichment growth", "unit": "percent"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=enrichment growth", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_microgram_per_milliliter | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=enrichment growth", "unit": "microgram per milliliter"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_fold_dilution | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=enrichment growth", "unit": "fold dilution"} |
+| media_addition_category_media_addition_2_growth_stage_enrichment_growth | string | Yes | {"description": "media addition, category=media addition 2, growth stage=enrichment growth"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=enrichment growth, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=enrichment growth"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_percent | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=enrichment growth", "unit": "percent"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=enrichment growth", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_microgram_per_milliliter | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=enrichment growth", "unit": "microgram per milliliter"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=enrichment growth", "unit": "mass volume percentage"} |
+| media_addition_category_media_addition_3_growth_stage_enrichment_growth | string | Yes | {"description": "media addition, category=media addition 3, growth stage=enrichment growth"} |
+| molecule_from_list_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 3, growth stage=enrichment growth, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 3, growth stage=enrichment growth"} |
+| concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 3, growth stage=enrichment growth", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_fold_dilution | double | Yes | {"description": "concentration, context=media addition, category=media addition 3, growth stage=enrichment growth", "unit": "fold dilution"} |
+| concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 3, growth stage=enrichment growth", "unit": "mass volume percentage"} |
+| media_addition_category_media_addition_4_growth_stage_enrichment_growth | string | Yes | {"description": "media addition, category=media addition 4, growth stage=enrichment growth"} |
+| media_name_category_media_1_growth_stage_enrichment_growth | string | Yes | {"description": "media name, category=media 1, growth stage=enrichment growth"} |
+| context_media_category_media_1_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 1, growth stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_1_growth_stage_enrichment_growth_millimolar | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=enrichment growth", "unit": "millimolar"} |
+| concentration_context_media_category_media_1_growth_stage_enrichment_growth_milligram_per_milliliter | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=enrichment growth", "unit": "milligram per milliliter"} |
+| concentration_context_media_category_media_1_growth_stage_enrichment_growth_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=enrichment growth", "unit": "fold dilution"} |
+| media_name_category_media_2_growth_stage_enrichment_growth | string | Yes | {"description": "media name, category=media 2, growth stage=enrichment growth"} |
+| context_media_category_media_2_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 2, growth stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_2_growth_stage_enrichment_growth_percent | double | Yes | {"description": "concentration, context=media, category=media 2, growth stage=enrichment growth", "unit": "percent"} |
+| concentration_context_media_category_media_2_growth_stage_enrichment_growth_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 2, growth stage=enrichment growth", "unit": "fold dilution"} |
+| media_name_category_media_3_growth_stage_enrichment_growth | string | Yes | {"description": "media name, category=media 3, growth stage=enrichment growth"} |
+| context_media_category_media_3_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 3, growth stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_3_growth_stage_enrichment_growth_percent | double | Yes | {"description": "concentration, context=media, category=media 3, growth stage=enrichment growth", "unit": "percent"} |
+| media_name_category_media_4_growth_stage_enrichment_growth | string | Yes | {"description": "media name, category=media 4, growth stage=enrichment growth"} |
+| context_media_category_media_4_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 4, growth stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_4_growth_stage_enrichment_growth_percent | double | Yes | {"description": "concentration, context=media, category=media 4, growth stage=enrichment growth", "unit": "percent"} |
+| media_name_category_media_5_growth_stage_enrichment_growth | string | Yes | {"description": "media name, category=media 5, growth stage=enrichment growth"} |
+| context_media_category_media_5_growth_stage_enrichment_growth_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 5, growth stage=enrichment growth", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| comment_growth_stage_enrichment_growth | string | Yes | {"description": "comment, growth stage=enrichment growth"} |
+| anaerobic_growth_stage_colony_formation_on_solid_media | boolean | Yes | {"description": "anaerobic, growth stage=colony formation on solid media"} |
+| ph_growth_stage_colony_formation_on_solid_media_ph | double | Yes | {"description": "pH, growth stage=colony formation on solid media", "unit": "pH"} |
+| temperature_growth_stage_colony_formation_on_solid_media_degree_celsius | double | Yes | {"description": "temperature, growth stage=colony formation on solid media", "unit": "degree Celsius"} |
+| culture_vessel_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "culture vessel, growth stage=colony formation on solid media"} |
+| media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "media addition, category=media addition 1, growth stage=colony formation on solid media"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=colony formation on solid media, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=colony formation on solid media"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_percent | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=colony formation on solid media", "unit": "percent"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=colony formation on solid media", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_microgram_per_milliliter | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=colony formation on solid media", "unit": "microgram per milliliter"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=colony formation on solid media", "unit": "mass volume percentage"} |
+| media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "media addition, category=media addition 2, growth stage=colony formation on solid media"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=colony formation on solid media, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=colony formation on solid media"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=colony formation on solid media", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_microgram_per_milliliter | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=colony formation on solid media", "unit": "microgram per milliliter"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=colony formation on solid media", "unit": "mass volume percentage"} |
+| media_addition_category_media_addition_3_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "media addition, category=media addition 3, growth stage=colony formation on solid media"} |
+| concentration_context_media_addition_category_media_addition_3_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 3, growth stage=colony formation on solid media", "unit": "mass volume percentage"} |
+| media_name_category_media_1_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "media name, category=media 1, growth stage=colony formation on solid media"} |
+| context_media_category_media_1_growth_stage_colony_formation_on_solid_media_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 1, growth stage=colony formation on solid media", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_percent | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=colony formation on solid media", "unit": "percent"} |
+| concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_millimolar | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=colony formation on solid media", "unit": "millimolar"} |
+| concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_milligram_per_milliliter | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=colony formation on solid media", "unit": "milligram per milliliter"} |
+| concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=colony formation on solid media", "unit": "fold dilution"} |
+| comment_growth_stage_colony_formation_on_solid_media | string | Yes | {"description": "comment, growth stage=colony formation on solid media"} |
+| anaerobic_growth_stage_single_colony_growth_in_liquid_media | boolean | Yes | {"description": "anaerobic, growth stage=single colony growth in liquid media"} |
+| aphotic_growth_stage_single_colony_growth_in_liquid_media | boolean | Yes | {"description": "aphotic, growth stage=single colony growth in liquid media"} |
+| ph_growth_stage_single_colony_growth_in_liquid_media_ph | double | Yes | {"description": "pH, growth stage=single colony growth in liquid media", "unit": "pH"} |
+| temperature_growth_stage_single_colony_growth_in_liquid_media_degree_celsius | double | Yes | {"description": "temperature, growth stage=single colony growth in liquid media", "unit": "degree Celsius"} |
+| media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media | string | Yes | {"description": "media addition, category=media addition 1, growth stage=single colony growth in liquid media"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=single colony growth in liquid media, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 1, growth stage=single colony growth in liquid media"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=single colony growth in liquid media", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_microgram_per_milliliter | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=single colony growth in liquid media", "unit": "microgram per milliliter"} |
+| concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_fold_dilution | double | Yes | {"description": "concentration, context=media addition, category=media addition 1, growth stage=single colony growth in liquid media", "unit": "fold dilution"} |
+| media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media | string | Yes | {"description": "media addition, category=media addition 2, growth stage=single colony growth in liquid media"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_id | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=single colony growth in liquid media, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_name | string | Yes | {"description": "molecule from list, context=media addition, category=media addition 2, growth stage=single colony growth in liquid media"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_millimolar | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=single colony growth in liquid media", "unit": "millimolar"} |
+| concentration_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 2, growth stage=single colony growth in liquid media", "unit": "mass volume percentage"} |
+| media_addition_category_media_addition_3_growth_stage_single_colony_growth_in_liquid_media | string | Yes | {"description": "media addition, category=media addition 3, growth stage=single colony growth in liquid media"} |
+| concentration_context_media_addition_category_media_addition_3_growth_stage_single_colony_growth_in_liquid_media_mass_volume_percentage | double | Yes | {"description": "concentration, context=media addition, category=media addition 3, growth stage=single colony growth in liquid media", "unit": "mass volume percentage"} |
+| media_name_category_media_1_growth_stage_single_colony_growth_in_liquid_media | string | Yes | {"description": "media name, category=media 1, growth stage=single colony growth in liquid media"} |
+| context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_sdt_condition_name | string | Yes | {"description": "condition ID, context=media, category=media 1, growth stage=single colony growth in liquid media", "type": "foreign_key", "references": "sdt_condition.sdt_condition_name"} |
+| concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_millimolar | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=single colony growth in liquid media", "unit": "millimolar"} |
+| concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_milligram_per_milliliter | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=single colony growth in liquid media", "unit": "milligram per milliliter"} |
+| concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_fold_dilution | double | Yes | {"description": "concentration, context=media, category=media 1, growth stage=single colony growth in liquid media", "unit": "fold dilution"} |
+| comment_growth_stage_single_colony_growth_in_liquid_media | string | Yes | {"description": "comment, growth stage=single colony growth in liquid media"} |
+
+**Total Rows:** 306
+
+### Sample Data (5 rows)
+
+| sdt_condition_name | anaerobic | aphotic | microaerobic | ph_ph | temperature_degree_celsius | media_addition_category_media_addition_1 | molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_1_sys_oterm_name | concentration_context_media_addition_category_media_addition_1_millimolar | concentration_context_media_addition_category_media_addition_1_fold_dilution | media_addition_category_media_addition_2 | molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_2_sys_oterm_name | concentration_context_media_addition_category_media_addition_2_millimolar | media_name_category_media_1 | context_media_category_media_1_sdt_condition_name | concentration_context_media_category_media_1_percent | concentration_context_media_category_media_1_millimolar | concentration_context_media_category_media_1_milligram_per_milliliter | concentration_context_media_category_media_1_fold_dilution | media_name_category_media_2 | context_media_category_media_2_sdt_condition_name | concentration_context_media_category_media_2_percent | concentration_context_media_category_media_2_fold_dilution | media_name_category_media_3 | context_media_category_media_3_sdt_condition_name | aphotic_growth_stage_enrichment_growth | ph_growth_stage_enrichment_growth_ph | temperature_growth_stage_enrichment_growth_degree_celsius | time_since_inoculation_growth_stage_enrichment_growth_day | culture_vessel_growth_stage_enrichment_growth | media_addition_category_media_addition_1_growth_stage_enrichment_growth | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_sys_oterm_name | concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_percent | concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_millimolar | concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_1_growth_stage_enrichment_growth_fold_dilution | media_addition_category_media_addition_2_growth_stage_enrichment_growth | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_sys_oterm_name | concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_percent | concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_millimolar | concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_2_growth_stage_enrichment_growth_mass_volume_percentage | media_addition_category_media_addition_3_growth_stage_enrichment_growth | molecule_from_list_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_sys_oterm_name | concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_millimolar | concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_fold_dilution | concentration_context_media_addition_category_media_addition_3_growth_stage_enrichment_growth_mass_volume_percentage | media_addition_category_media_addition_4_growth_stage_enrichment_growth | media_name_category_media_1_growth_stage_enrichment_growth | context_media_category_media_1_growth_stage_enrichment_growth_sdt_condition_name | concentration_context_media_category_media_1_growth_stage_enrichment_growth_millimolar | concentration_context_media_category_media_1_growth_stage_enrichment_growth_milligram_per_milliliter | concentration_context_media_category_media_1_growth_stage_enrichment_growth_fold_dilution | media_name_category_media_2_growth_stage_enrichment_growth | context_media_category_media_2_growth_stage_enrichment_growth_sdt_condition_name | concentration_context_media_category_media_2_growth_stage_enrichment_growth_percent | concentration_context_media_category_media_2_growth_stage_enrichment_growth_fold_dilution | media_name_category_media_3_growth_stage_enrichment_growth | context_media_category_media_3_growth_stage_enrichment_growth_sdt_condition_name | concentration_context_media_category_media_3_growth_stage_enrichment_growth_percent | media_name_category_media_4_growth_stage_enrichment_growth | context_media_category_media_4_growth_stage_enrichment_growth_sdt_condition_name | concentration_context_media_category_media_4_growth_stage_enrichment_growth_percent | media_name_category_media_5_growth_stage_enrichment_growth | context_media_category_media_5_growth_stage_enrichment_growth_sdt_condition_name | comment_growth_stage_enrichment_growth | anaerobic_growth_stage_colony_formation_on_solid_media | ph_growth_stage_colony_formation_on_solid_media_ph | temperature_growth_stage_colony_formation_on_solid_media_degree_celsius | culture_vessel_growth_stage_colony_formation_on_solid_media | media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_sys_oterm_name | concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_percent | concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_millimolar | concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_1_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_sys_oterm_name | concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_millimolar | concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_2_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | media_addition_category_media_addition_3_growth_stage_colony_formation_on_solid_media | concentration_context_media_addition_category_media_addition_3_growth_stage_colony_formation_on_solid_media_mass_volume_percentage | media_name_category_media_1_growth_stage_colony_formation_on_solid_media | context_media_category_media_1_growth_stage_colony_formation_on_solid_media_sdt_condition_name | concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_percent | concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_millimolar | concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_milligram_per_milliliter | concentration_context_media_category_media_1_growth_stage_colony_formation_on_solid_media_fold_dilution | comment_growth_stage_colony_formation_on_solid_media | anaerobic_growth_stage_single_colony_growth_in_liquid_media | aphotic_growth_stage_single_colony_growth_in_liquid_media | ph_growth_stage_single_colony_growth_in_liquid_media_ph | temperature_growth_stage_single_colony_growth_in_liquid_media_degree_celsius | media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_name | concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_millimolar | concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_microgram_per_milliliter | concentration_context_media_addition_category_media_addition_1_growth_stage_single_colony_growth_in_liquid_media_fold_dilution | media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_id | molecule_from_list_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_sys_oterm_name | concentration_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_millimolar | concentration_context_media_addition_category_media_addition_2_growth_stage_single_colony_growth_in_liquid_media_mass_volume_percentage | media_addition_category_media_addition_3_growth_stage_single_colony_growth_in_liquid_media | concentration_context_media_addition_category_media_addition_3_growth_stage_single_colony_growth_in_liquid_media_mass_volume_percentage | media_name_category_media_1_growth_stage_single_colony_growth_in_liquid_media | context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_sdt_condition_name | concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_millimolar | concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_milligram_per_milliliter | concentration_context_media_category_media_1_growth_stage_single_colony_growth_in_liquid_media_fold_dilution | comment_growth_stage_single_colony_growth_in_liquid_media |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| anaerobic = 0; aphotic = 1; media name = R2A, concentration = 25.0 (fold dilution); temperature = 25.0 (degree Celsius) | 0 | 1 | NULL | NULL | 25.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | R2A | R2A | NULL | NULL | NULL | 25.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| anaerobic = 0; media name = LB, growth stage = colony formation on solid media; media name = LB, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | 0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | LB | LB | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | LB | LB | NULL | NULL | NULL | NULL |
+| anaerobic = 0; media name = Eugon Broth, growth stage = colony formation on solid media; media name = Eugon Broth, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | 0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Eugon Broth | Eugon Broth | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Eugon Broth | Eugon Broth | NULL | NULL | NULL | NULL |
+| anaerobic = 0; media name = R2A, growth stage = colony formation on solid media; media name = R2A, growth stage = single colony grown in liquid media; temperature = 30.0 (degree Celsius), growth stage = colony formation on solid media; temperature = 30.0 (degree Celsius), growth stage = single colony grown in liquid media | 0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | R2A | R2A | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 30.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | R2A | R2A | NULL | NULL | NULL | NULL |
+| anaerobic = 0; media addition = Mn; media name = LB; temperature = 30.0 (degree Celsius) | 0 | NULL | NULL | NULL | 30.0 | Mn | CHEBI:18291 | manganese atom | NULL | NULL | NULL | NULL | NULL | NULL | LB | LB | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+
+---
+
+## Table: ddt_brick0002148
+
+**Table Description:** isolate_classification_261030.hndarray - 16S classification based NCBI database search for each ENIGMA isolate strain, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| taxonomic_level_order_sdt_taxon_name | string | Yes | {"description": "taxon ID, taxonomic level=order", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| description_comment_closest_relative_in_ncbi_16s_rrna_gene_database | string | Yes | {"description": "description, comment=Closest relative in NCBI: 16S rRNA Gene Database"} |
+| sequence_similarity_method_blast_percent | double | Yes | {"description": "sequence similarity, method=BLAST", "unit": "percent"} |
+
+**Total Rows:** 3196
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | taxonomic_level_order_sdt_taxon_name | description_comment_closest_relative_in_ncbi_16s_rrna_gene_database | sequence_similarity_method_blast_percent |
+|---|---|---|---|
+| FW305-130 | Actinomycetales | Nocardia coeliaca strain DSM 44595 | 99.0 |
+| FW305-BF6 | Bacillales | Bacillus acidicelar strain CBD 119 | 99.0 |
+| FW104-L1 | Bacillales | Bacillus anthracis str. Ames | 99.0 |
+| FW507-19G05 | Bacillales | Bacillus cereus ATCC 14579 | 99.0 |
+| FW507-4D12 | Bacillales | Bacillus cereus strain ATCC 14579 | 99.0 |
+
+---
+
+## Table: ddt_brick0002149
+
+**Table Description:** isolate_classification_gtdb_261030.ndarray - GTDB-Tk 2.7.2 classification of each ENIGMA isolate strain with a genome, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_relative_evolutionary_divergence_dimensionless_unit | double | Yes | {"description": "relative evolutionary divergence", "unit": "dimensionless unit"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 9345
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_relative_evolutionary_divergence_dimensionless_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| FW305-130 | NULL | ME:0000351 | taxonomic domain | Bacteria |
+| FW305-130 | NULL | ME:0000252 | phylum | Actinomycetota |
+| FW305-130 | NULL | ME:0000253 | class | Actinomycetes |
+| FW305-130 | NULL | ME:0000254 | order | Mycobacteriales |
+| FW305-130 | NULL | ME:0000255 | family | Mycobacteriaceae |
+
+---
+
+## Table: ddt_brick0002150
+
+**Table Description:** isolate_16S_sanger_261030.ndarray - Isolate 16S Sequences from Sanger sequencing, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sequence_type_sys_oterm_id | string | Yes | {"description": "sequence type, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| sequence_type_sys_oterm_name | string | Yes | {"description": "sequence type"} |
+| strand_sys_oterm_id | string | Yes | {"description": "strand, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| strand_sys_oterm_name | string | Yes | {"description": "strand"} |
+| sequence | string | Yes | {"description": "sequence"} |
+
+**Total Rows:** 6236
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | sequence_type_sys_oterm_id | sequence_type_sys_oterm_name | strand_sys_oterm_id | strand_sys_oterm_name | sequence |
+|---|---|---|---|---|---|
+| FW305-130 | ME:0000190 | 16S sequence | ME:0000187 | forward | GCAGTCGAGCGGTAAGGCCTTTCGGGGTACACGAGCGGCGAACGGGTGAGTAACACGTGGGTGATCTGCCCTGCACTTCGGGATAAGCCTGGGAAACTGGGTCTAATACCGGATATGACCTCAGGTTGCATGACTTGGGGTGGAAAGATTTATCGGTGCAGGATGGGCCCGCGGCCTATCAGCTTGTTGGTGGGGTAATGGCCTACCAAGGCGACGACGGGTAGCCGACCTGAGAGGGTGACCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGACGGCCTTCGGGTTGTAAACCTCTTTCAGCAGGGACGAAGCGCAAGTGACGGTACCTGCAGAAGAAGCACCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGTGCAAGCGTTGTCCGGAATTACTGGGCGTAAAGAGTTCGTAGGCGGTTTGTCGCGTCGTTTGTGAAAACCAGCAGCTCAACTGCTGGCTTGCAGGCGATACGGGCAGACTTGAGTACTGCAGGGGAGACTGGAATTCCTGGTGTAGCGGTGAAATGCGCAGATATCAGGAGGAACACCGGTGGCGAAGGCGGGTCTCTGGGCAGTAACTGACGCTGAGGAACGAAAGCGTGGGTAGCGAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGGTGGGCGCTAGGTGTGGGTTCCTTCCACGGAATCCGTGCCGTAGCTAACGCATTAAGCGCCCCGCCTGGGGAGTACGGCCGCAAGGCTAAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGCGGAGCATGTGGATTAATTCGATGCAACGCGAAGAACCTTACCTGGGGTTTGACATATACCGGAAAGCTGCAGAGATGTGGCCCCCCTTGTGGTCGGTATACAGGTGGTGCATGGCTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCCTATCTTATGTTGCCAGCACGTTATGGTGGGGACTCGTAAGAGACTGCCGGGGTCAACTCGGAGGAAGGTGGGGACGACGTCAAGTCATCATGCCCCTTATGTCCAGGGCTTCACACATGCTACAATGGCCAGTACAGAGGGCTGCGAGACCGTGAGGTGGAGCGAATCCCTTAAAGCTGGTCTCAGTTCGGATCGGGGTCTGCAACTCGACCCCGTGAAGTNGGAGTCGCTAGTAATCGCAGATCAGCAACGCTGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACGTCATGAAAGTCGGTAACACCCGAAGCCGGTGGCT |
+| FW305-BF6 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGGACTTGTAGGAGCTTGCTCCTGCAGGTTAGCGGCGGACGGGTGAGTAACACGTGGGCAACCTACCTGTAAGACTGGGATAACTTCGGGAAACCGGAGCTAATACCGGATGACATAAAGGAACTCCTGTTCCTTTATTGAAAGATGGCTTCGGCTATCACTTACAGATGGGCCCGCGGCGCAGTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCGACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAACGATGAAGGCCTTCGGGTCGTAAAGTTCTGTTGTTAGGGAAGAACAAGTGCTAGTTAAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTGTCCGGAATTATTGGGCGTAAAGCGCGCGCAGGCGGTTTCTTAAGTCTGATGTGAAAGCCCCCGGCTCAACCGGGGAGGGTCATTGGAAACTGGGAAACTTGAGTGCAGAAGAGGAAAGTGGAATTCCAAGTGTAGCGGTGAAATGCGTAGAGATTTGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGTCGCAAGACTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGTGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTTCCCTTCGGGGACAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTNGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCAGCATTTAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGATAGTACAAAGGGTTGCAAGACCGCGAGGTGGAGCTAATCCCATAAAACTATTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCCGGAATCACTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGNTTGTAACACCCGAAGTCGGTNGGGTA |
+| FW104-L1 | ME:0000190 | 16S sequence | ME:0000187 | forward | GTCGAGCGAATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACCGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGACAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGG |
+| FW507-19G05 | ME:0000190 | 16S sequence | ME:0000187 | forward | TGCAGTCGAGCGATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGGGGAAGGGAGAGAAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGG |
+| FW507-4D12 | ME:0000190 | 16S sequence | ME:0000187 | forward | GAAGCATCGCAGCTATACATGCAGTCGAGCGNATGGATTAAGAGCTTGCTCTTATGAAGTTAGCGGCGGACGGGTGAGTAACACGTGGGTAACCTGCCCATAAGACTGGGATAACTCCGGGAAACCGGGGCTAATACCGGATAACATTTTGAACTGCATGGTTCGAAATTGAAAGGCGGCTTCGGCTGTCACTTATGGATGGACCCGCGTCGCATTAGCTAGTTGGTGAGGTAACGGCTCACCAAGGCAACGATGCGTAGCCGACCTGAGAGGGTGATCGGCCACACTGGGACTGAGACACGGCCCAGACTCCTACGGGAGGCAGCAGTAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCCGCAAGGCTGAAACTCAAAGGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTCGAAGCAACGCGAAGAACCTTACCAGGTCTTGACATCCTCTGAAAACCCTAGAGATAGGGCTTCTCCTTCGGGAGCAGAGTGACAGGTGGTGCATGGTTGTCGTCAGCTCGTGTCGTGAGATGTTGGGTTAAGTCCCGCAACGAGCGCAACCCTTGATCTTAGTTGCCATCATTAAGTTGGGCACTCTAAGGTGACTGCCGGTGACAAACCGGAGGAAGGTGGGGATGACGTCAAATCATCATGCCCCTTATGACCTGGGCTACACACGTGCTACAATGGACGGTACAAAGAGCTGCAAGACCGCGAGGTGGAGCTAATCTCATAAAACCGTTCTCAGTTCGGATTGTAGGCTGCAACTCGCCTACATGAAGCTGGAATCGCTAGTAATCGCGGATCAGCATGCCGCGGTGAATACGTTCCCGGGCCTTGTACACACCGCCCGTCACACCACGAGAGTTTGTAACACCCGAAGTCGGTGGGGTAACCTTTTTGGAGCCAGCCGCCTAAGTGACAGAGTT |
+
+---
+
+## Table: ddt_brick0002151
+
+**Table Description:** isolate_genbank_links_261030.hndarray - GenBank links for ENIGMA isolate strains, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| availability_sequence_type_genome_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=genome sequence, database=GenBank"} |
+| availability_sequence_type_16s_sequence_database_genbank | boolean | Yes | {"description": "availability, sequence type=16S sequence, database=GenBank"} |
+| link_sequence_type_genome_sequence_database_genbank | string | Yes | {"description": "link, sequence type=genome sequence, database=GenBank"} |
+| strain_name_database_genbank | string | Yes | {"description": "strain name, database=GenBank"} |
+| link_sequence_type_16s_sequence_database_genbank | string | Yes | {"description": "link, sequence type=16S sequence, database=GenBank"} |
+
+**Total Rows:** 1438
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | availability_sequence_type_genome_sequence_database_genbank | availability_sequence_type_16s_sequence_database_genbank | link_sequence_type_genome_sequence_database_genbank | strain_name_database_genbank | link_sequence_type_16s_sequence_database_genbank |
+|---|---|---|---|---|---|
+| FW305-130 | 1 | 0 | GCF_058788335.1 | FW305-130 | NULL |
+| FW507-14D1A | 1 | 0 | GCF_058781295.1 | FW507-14D1A | NULL |
+| FW507-14D01 | 1 | 0 | GCF_058781345.1 | FW507-14D01 | NULL |
+| FW510-T9 | 1 | 0 | GCF_058781025.1 | FW510-T9 | NULL |
+| FW301-21C12A | 1 | 0 | GCF_058788915.1 | FW301-21C12A | NULL |
+
+---
+
+## Table: ddt_brick0002152
+
+**Table Description:** isolate_availability_261030.hndarray - Availability of ENIGMA isolate strains, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| availability | boolean | Yes | {"description": "availability"} |
+| comment_context_availability | string | Yes | {"description": "comment, context=availability"} |
+
+**Total Rows:** 3196
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | availability | comment_context_availability |
+|---|---|---|
+| FW305-130 | 1 | NULL |
+| FW305-BF6 | 1 | NULL |
+| FW104-L1 | 1 | NULL |
+| FW507-19G05 | 1 | NULL |
+| FW507-4D12 | 1 | NULL |
+
+---
+
+## Table: ddt_brick0002153
+
+**Table Description:** isolate_obsolete_ids_261030.ndarray - Obsolete IDs for ENIGMA isolate strains, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| strain_name_obsolete_1 | string | Yes | {"description": "strain name, obsolete=1"} |
+
+**Total Rows:** 83
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | strain_name_obsolete_1 |
+|---|---|
+| GW101-3H11 | acidovorax_3H11 |
+| FHTAMBA | GW101-3H11-AA |
+| GW247-26LB | denitro1 |
+| FW507-4G11 | Cup4G11 |
+| FW507-4G11 | 4G11 |
+
+---
+
+## Table: ddt_brick0002154
+
+**Table Description:** isolate_comments_261030.hndarray - Comments for ENIGMA isolate strains, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| comment_description_field_experiment | string | Yes | {"description": "comment, description=Field/Experiment"} |
+| comment_description_groundwater_sediment | string | Yes | {"description": "comment, description=Groundwater/Sediment"} |
+
+**Total Rows:** 2260
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | comment_description_field_experiment | comment_description_groundwater_sediment |
+|---|---|---|
+| FW106-XG1 | Field | Groundwater |
+| FW115-XG2 | Field | Groundwater |
+| GW271-XG3 | Field | Groundwater |
+| GW271-XG4 | Field | Groundwater |
+| GW271-XG5 | Field | Groundwater |
+
+---
+
+## Table: ddt_brick0002155
+
+**Table Description:** isolate_sequence_and_quality_arkin_261030.hndarray - Links to ENIGMA isolate sequence data and quality assessment on Arkin Lab servers, as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| link_context_read_set | string | Yes | {"description": "link, context=read set"} |
+| link_context_genome | string | Yes | {"description": "link, context=genome"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| count_context_contig_count_unit | int | Yes | {"description": "count, context=contig", "unit": "count unit"} |
+| count_context_gene_count_unit | int | Yes | {"description": "count, context=gene", "unit": "count unit"} |
+| genome_completeness_method_checkm_percent | double | Yes | {"description": "genome completeness, method=CheckM", "unit": "percent"} |
+| genome_contamination_method_checkm_percent | double | Yes | {"description": "genome contamination, method=CheckM", "unit": "percent"} |
+| genome_n50_method_checkm_count_unit | int | Yes | {"description": "genome N50, method=CheckM", "unit": "count unit"} |
+| read_coverage_statistic_average_count_unit | double | Yes | {"description": "read coverage, statistic=average", "unit": "count unit"} |
+| jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site | double | Yes | {"description": "Jukes-Cantor distance, comment=Between Sanger 16S and genomic 16S", "unit": "substitutions per site"} |
+
+**Total Rows:** 1499
+
+### Sample Data (5 rows)
+
+| sdt_strain_name | link_context_read_set | link_context_genome | sdt_genome_name | sdt_sample_name | sdt_location_name | count_context_contig_count_unit | count_context_gene_count_unit | genome_completeness_method_checkm_percent | genome_contamination_method_checkm_percent | genome_n50_method_checkm_count_unit | read_coverage_statistic_average_count_unit | jukes_cantor_distance_comment_between_sanger_16s_and_genomic_16s_substitutions_per_site |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| DP16D-L5 | enigma-data-repository/genome_processing/DP16D-L5/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-L5/assembliesAndAnnotations/DP16D-L5.1/ | DP16D-L5.1 | DP16D-06-17-14 | DP16D | 195 | 6173 | 100.0 | 0.13 | 82462 | 36.8525042466849 | 0.003856 |
+| DP16D-R1 | enigma-data-repository/genome_processing/DP16D-R1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-R1/assembliesAndAnnotations/DP16D-R1.3/ | DP16D-R1.3 | DP16D-06-17-14 | DP16D | 124 | 6688 | 100.0 | 1.17 | 125507 | NULL | 0.001443 |
+| DP16D-T1 | enigma-data-repository/genome_processing/DP16D-T1/reads/illumina/ | enigma-data-repository/genome_processing/DP16D-T1/assembliesAndAnnotations/DP16D-T1.1/ | DP16D-T1.1 | DP16D-06-17-14 | DP16D | 244 | 6184 | 100.0 | 0.58 | 55204 | 15.862196823815403 | 0.001434 |
+| EB106-05-01-XG146 | enigma-data-repository/genome_processing/EB106-05-01-XG146/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG146/assembliesAndAnnotations/EB106-05-01-XG146.2/ | EB106-05-01-XG146.2 | EB106-05-01 | EB-106 | 3 | 7019 | 100.0 | 0.2 | 4112771 | NULL | 0.002177 |
+| EB106-05-01-XG201 | enigma-data-repository/genome_processing/EB106-05-01-XG201/reads/pacbio/ | enigma-data-repository/genome_processing/EB106-05-01-XG201/assembliesAndAnnotations/EB106-05-01-XG201.3/ | EB106-05-01-XG201.3 | EB106-05-01 | EB-106 | 3 | 4582 | 100.0 | 0.01 | 4825625 | NULL | 0.00247 |
+
+---
+
+## Table: ddt_brick0002156
+
+**Table Description:** isolate_environment_map_261030.hndarray - ENIGMA isolate strains mapped to Shotgun Metagenomic Samples as of 2026-10-30
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| sdt_strain_name | string | Yes | {"description": "strain ID", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
+| sdt_genome_name | string | Yes | {"description": "genome ID", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
+| read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | double | Yes | {"description": "read coverage, statistic=average, comment=cov80 average coverage after trimming highest and lowest 10 percent", "unit": "count unit"} |
+| sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | double | Yes | {"description": "sequence identity, statistic=average, comment=average percent identity of aligned reads", "unit": "percent"} |
+| read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent | double | Yes | {"description": "read coverage, comment=percent of 1kb chunks of genome covered by at least one read", "unit": "percent"} |
+
+**Total Rows:** 82106
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | sdt_strain_name | sdt_genome_name | read_coverage_statistic_average_comment_cov80_average_coverage_after_trimming_highest_and_lowest_10_percent_count_unit | sequence_identity_statistic_average_comment_average_percent_identity_of_aligned_reads_percent | read_coverage_comment_percent_of_1kb_chunks_of_genome_covered_by_at_least_one_read_percent |
+|---|---|---|---|---|---|
+| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.1 | 3.671087 | 99.3486 | 89.6596 |
+| 20240529-EFP01-F01 | CPT15-335-S11 | CPT15-335-S11.3 | 3.671455 | 99.3483 | 89.6596 |
+| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.1 | 3.689159 | 99.35079999999999 | 89.2848 |
+| 20240529-EFP01-F01 | CPT15-335-S12 | CPT15-335-S12.3 | 3.689159 | 99.3501 | 89.2848 |
+| 20240529-EFP01-F01 | CPT15-335-S13 | CPT15-335-S13.1 | 3.674033 | 99.34920000000001 | 89.6854 |
+
+---
+
+## Table: ddt_brick0002157
+
+**Table Description:** hazen_aodc_cpt_sediment_2020.hndarray - Hazen Lab acridine orange direct counts (cells per gram) on 2020 CPT sediment samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_weight_category_subsample_gram | double | Yes | {"description": "weight, category=subsample", "unit": "gram"} |
+| environmental_sample_weight_category_filtered_gram | double | Yes | {"description": "weight, category=filtered", "unit": "gram"} |
+| sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
+| count_category_cell_cells_per_gram | double | Yes | {"description": "count, category=cell", "unit": "cells per gram"} |
+| coefficient_of_variation_measurement_count_percent | double | Yes | {"description": "coefficient of variation, measurement=count", "unit": "percent"} |
+| average_measurement_count_cells_per_well | double | Yes | {"description": "average, measurement=count", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 32
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | count_category_cell_cells_per_gram | coefficient_of_variation_measurement_count_percent | average_measurement_count_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1436302.309 | 7.213122508 | 12.4 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DB274 | 1.13 | 0.113 | NULL | 407765.5285 | 51.91911982 | 3.9 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DC305 | 0.97 | 0.097 | NULL | 1096213.435 | 37.67961102 | 9.0 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT15SED-ZC-DB366 | 0.98 | 0.098 | NULL | 916245.5152 | 22.01736912 | 7.6 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT15SED-ZV-DA335 | 1.04 | 0.104 | NULL | 749781.8816 | 31.41885054 | 6.6 | ENIGMA:0000165 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0002158
+
+**Table Description:** hazen_aodc_raw_cpt_sediment_2020.ndarray - Hazen Lab acridine orange direct counts, raw field counts, on 2020 CPT sediment samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_weight_category_subsample_gram | double | Yes | {"description": "weight, category=subsample", "unit": "gram"} |
+| environmental_sample_weight_category_filtered_gram | double | Yes | {"description": "weight, category=filtered", "unit": "gram"} |
+| sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| count_category_cell_cells_per_well | int | Yes | {"description": "count, category=cell", "unit": "cells per well"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 230
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | replicate_series_count_unit | count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1 | 11 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 2 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 3 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 4 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 5 | 12 | ENIGMA:0000165 | ENIGMA:0000067 |
+
+---
+
+## Table: ddt_brick0002159
+
+**Table Description:** chakraborty_doc_cpt_sediment_2020.hndarray - Chakraborty Lab water-extractable dissolved organic carbon (ppm in the extract) of 2020 CPT sediment samples
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=1", "unit": "parts per million"} |
+| standard_deviation_measurement_concentration_parts_per_million | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "parts per million"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 30
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | standard_deviation_measurement_concentration_parts_per_million | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|
+| CPT10SED-ZU-DA244 | 0.96 | 0.02 | ENIGMA:0000165 | ENIGMA:0000053 |
+| CPT10SED-ZU-DB274 | 0.73 | 0.29 | ENIGMA:0000165 | ENIGMA:0000053 |
+| CPT10SED-ZU-DC305 | 0.91 | 0.37 | ENIGMA:0000165 | ENIGMA:0000053 |
+| CPT15SED-ZC-DB366 | 0.2 | 0.18 | ENIGMA:0000165 | ENIGMA:0000053 |
+| CPT15SED-ZV-DA335 | 0.79 | 0.26 | ENIGMA:0000165 | ENIGMA:0000053 |
+
+---
+
+## Table: ddt_brick0002160
+
+**Table Description:** hazen_fugro_cpt_profiles_area3_2020.hndarray - Fugro piezocone penetration test profiles at 94 CPT bores in FRC Area 3, 13-27 October 2020: cone tip resistance, sleeve friction, u2 pore pressure and Robertson 1986 soil behavior type at each 2 cm push interval, from Fugro's per-bore CSV exports in native units (feet, tons per square foot)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| depth_top_ground_surface_foot | double | Yes | {"description": "depth, top=ground surface", "unit": "foot"} |
+| pressure_method_cpt_tip_resistance_ton_per_square_foot | double | Yes | {"description": "pressure, method=CPT tip resistance", "unit": "ton per square foot"} |
+| pressure_method_cpt_sleeve_friction_ton_per_square_foot | double | Yes | {"description": "pressure, method=CPT sleeve friction", "unit": "ton per square foot"} |
+| water_pressure_method_cpt_piezocone_u2_relative_atmospheric_pressure_ton_per_square_foot | double | Yes | {"description": "water pressure, method=CPT piezocone u2, relative=atmospheric pressure", "unit": "ton per square foot"} |
+| soil_behavior_type_classification_sys_oterm_id | string | Yes | {"description": "soil behavior type classification, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| soil_behavior_type_classification_sys_oterm_name | string | Yes | {"description": "soil behavior type classification"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 28589
+
+### Sample Data (5 rows)
+
+| sdt_location_name | depth_top_ground_surface_foot | pressure_method_cpt_tip_resistance_ton_per_square_foot | pressure_method_cpt_sleeve_friction_ton_per_square_foot | water_pressure_method_cpt_piezocone_u2_relative_atmospheric_pressure_ton_per_square_foot | soil_behavior_type_classification_sys_oterm_id | soil_behavior_type_classification_sys_oterm_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| CPT1 | 0.07 | 14.9298 | 0.0 | 0.0029 | SBT:0000011 | out of range (Robertson 1986 zone 0) | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT1 | 0.13 | 26.7886 | 0.1041 | -9.0E-4 | SBT:0000018 | silty sand to sandy silt (Robertson 1986 zone 7) | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT1 | 0.2 | 41.4357 | 0.1304 | -0.0067 | SBT:0000019 | sand to silty sand (Robertson 1986 zone 8) | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT1 | 0.26 | 118.0207 | 0.2694 | -0.0028 | SBT:0000020 | sand (Robertson 1986 zone 9) | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT1 | 0.33 | 153.4169 | 0.4545 | -0.0166 | SBT:0000021 | gravelly sand to sand (Robertson 1986 zone 10) | ENIGMA:0000165 | ENIGMA:0000066 |
+
+---
+
+## Table: ddt_brick0002161
+
+**Table Description:** hazen_fugro_cpt_soundings_area3_2020.hndarray - Per-bore summary of the 94 Fugro piezocone soundings in FRC Area 3, 13-27 October 2020: start time, cone serial number, depth reached and ground-surface elevation; companion to hazen_fugro_cpt_profiles_area3_2020
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| datetime | string | Yes | {"description": "datetime"} |
+| instrument_category_serial_number | int | Yes | {"description": "instrument, category=serial number"} |
+| depth_top_ground_surface_bottom_end_of_sounding_foot | double | Yes | {"description": "depth, top=ground surface, bottom=end of sounding", "unit": "foot"} |
+| elevation_relative_mean_sea_level_meter | double | Yes | {"description": "elevation, relative=mean sea level", "unit": "meter"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 94
+
+### Sample Data (5 rows)
+
+| sdt_location_name | datetime | instrument_category_serial_number | depth_top_ground_surface_bottom_end_of_sounding_foot | elevation_relative_mean_sea_level_meter | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|
+| CPT1 | 2020-10-13T09:04:11-04:00 | 2111 | 14.76 | 308.73 | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT2 | 2020-10-13T11:27:21-04:00 | 2422 | 3.02 | 308.519 | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT3 | 2020-10-18T10:39:45-04:00 | 2874 | 14.63 | 308.315 | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT4 | 2020-10-15T13:53:54-04:00 | 2422 | 12.86 | 308.496 | ENIGMA:0000165 | ENIGMA:0000066 |
+| CPT5 | 2020-10-18T11:25:55-04:00 | 2874 | 17.32 | 308.407 | ENIGMA:0000165 | ENIGMA:0000066 |
+
+---
+
+## Table: ddt_brick0002162
+
+**Table Description:** hazen_manual_water_level_area3_cpt_2020.hndarray - Manual depth to water below the top of casing in 64 FRC Area 3 wells, multiport-sampler ports and SG piezometers on 15 and 20 October 2020 (Putt & Kelly, Hazen Lab) during the cone penetrometer survey; 74 readings from the field master sheet
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_location | string | Yes | {"description": "location"} |
+| environmental_sample_location_datetime | string | Yes | {"description": "datetime"} |
+| depth_top_top_of_casing_bottom_water_surface_foot | double | Yes | {"description": "depth, top=top of casing, bottom=water surface", "unit": "foot"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 74
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_datetime | depth_top_top_of_casing_bottom_water_surface_foot | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|
+| SG007-1 | SG007-1 | 2020-10-15 | 3.0 | ENIGMA:0000165 | ENIGMA:0000066 |
+| FW-007 | FW007 | 2020-10-15 | 8.79 | ENIGMA:0000165 | ENIGMA:0000066 |
+| SG008-1 | SG008-1 | 2020-10-15 | 3.08 | ENIGMA:0000165 | ENIGMA:0000066 |
+| FW-008 | FW008 | 2020-10-15 | 8.38 | ENIGMA:0000165 | ENIGMA:0000066 |
+| FW-009 | FW009 | 2020-10-15 | 10.55 | ENIGMA:0000165 | ENIGMA:0000066 |
 
 ---
 
@@ -28216,7 +28453,7 @@ Total Tables: 824
 | sdt_condition_id | string | No | {"description": "Unique identifier for the condition (Primary key)", "type": "primary_key"} |
 | sdt_condition_name | string | No | {"description": "Unique text name describing the condition", "type": "unique_key"} |
 
-**Total Rows:** 5424
+**Total Rows:** 5433
 
 ### Sample Data (5 rows)
 
@@ -28322,7 +28559,7 @@ Total Tables: 824
 | n_features_count_unit | int | No | {"description": "Number of annotated features (e.g., genes) in the genome", "unit": "count unit"} |
 | link | string | No | {"description": "Link to where the genome itself is actually stored"} |
 
-**Total Rows:** 7769
+**Total Rows:** 7795
 
 ### Sample Data (5 rows)
 
@@ -28352,17 +28589,17 @@ Total Tables: 824
 | dimensions | string | Yes | {"description": "Image dimensions (e.g., width \u00d7 height) expressed in pixels", "unit": "image resolution unit"} |
 | link | string | Yes | {"description": "URL or file path linking to the stored image"} |
 
-**Total Rows:** 218
+**Total Rows:** 222
 
 ### Sample Data (5 rows)
 
 | sdt_image_id | sdt_image_name | sdt_image_description | mime_type | size_byte | dimensions | link |
 |---|---|---|---|---|---|---|
-| Image0000001 | EB106-02-01-aodc.jpg | EB106-02-01 AODC image | image/jpeg | 609611 | 2560,1920 | /images/EB106-02-01-aodc.jpg |
-| Image0000002 | EB106-02-02-aodc.jpg | EB106-02-02 AODC image | image/jpeg | 650292 | 2560,1920 | /images/EB106-02-02-aodc.jpg |
-| Image0000003 | EB106-02-03-aodc.jpg | EB106-02-03 AODC image | image/jpeg | 683078 | 2560,1920 | /images/EB106-02-03-aodc.jpg |
-| Image0000004 | EB106-03-01-aodc.jpg | EB106-03-01 AODC image | image/jpeg | 610700 | 2560,1920 | /images/EB106-03-01-aodc.jpg |
-| Image0000005 | EB106-03-02-aodc.jpg | EB106-03-02 AODC image | image/jpeg | 687540 | 2560,1920 | /images/EB106-03-02-aodc.jpg |
+| Image0000001 | EB106-02-01-aodc.jpg | EB106-02-01 AODC image | image/jpeg | 609611 | 2560,1920 | enigma-data-repository/images/hazen_aodc_micrograph/EB106-02-01-aodc.jpg |
+| Image0000002 | EB106-02-02-aodc.jpg | EB106-02-02 AODC image | image/jpeg | 650292 | 2560,1920 | enigma-data-repository/images/hazen_aodc_micrograph/EB106-02-02-aodc.jpg |
+| Image0000003 | EB106-02-03-aodc.jpg | EB106-02-03 AODC image | image/jpeg | 683078 | 2560,1920 | enigma-data-repository/images/hazen_aodc_micrograph/EB106-02-03-aodc.jpg |
+| Image0000004 | EB106-03-01-aodc.jpg | EB106-03-01 AODC image | image/jpeg | 610700 | 2560,1920 | enigma-data-repository/images/hazen_aodc_micrograph/EB106-03-01-aodc.jpg |
+| Image0000005 | EB106-03-02-aodc.jpg | EB106-03-02 AODC image | image/jpeg | 687540 | 2560,1920 | enigma-data-repository/images/hazen_aodc_micrograph/EB106-03-02-aodc.jpg |
 
 ---
 
@@ -28388,7 +28625,7 @@ Total Tables: 824
 | feature_sys_oterm_id | string | Yes | {"description": "Environmental or geographic feature at the location, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | feature_sys_oterm_name | string | Yes | {"description": "Environmental or geographic feature at the location"} |
 
-**Total Rows:** 596
+**Total Rows:** 604
 
 ### Sample Data (5 rows)
 
@@ -28415,7 +28652,7 @@ Total Tables: 824
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 69
+**Total Rows:** 71
 
 ### Sample Data (5 rows)
 
@@ -28446,7 +28683,7 @@ Total Tables: 824
 | sequencing_technology_sys_oterm_name | string | No | {"description": "Sequencing technology used (e.g., Illumina)"} |
 | link | string | No | {"description": "Link to the reads file (e.g., fastq)"} |
 
-**Total Rows:** 20795
+**Total Rows:** 20835
 
 ### Sample Data (5 rows)
 
@@ -28511,7 +28748,7 @@ Total Tables: 824
 | derived_from_sdt_strain_name | string | Yes | {"description": "Name of the parent strain from which this strain was derived, if created by genetic modification or similar process", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
 | sdt_gene_names_changed | array<string> | Yes | {"description": "List of gene identifiers that have been altered in this strain, if created by genetic modification, if known", "type": "foreign_key", "references": "sdt_gene.sdt_gene_name"} |
 
-**Total Rows:** 3154
+**Total Rows:** 3212
 
 ### Sample Data (5 rows)
 
@@ -28601,7 +28838,7 @@ Total Tables: 824
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 7212
+**Total Rows:** 7241
 
 ### Sample Data (5 rows)
 
@@ -28636,7 +28873,7 @@ Total Tables: 824
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 98061
+**Total Rows:** 101302
 
 ### Sample Data (5 rows)
 
@@ -28678,7 +28915,7 @@ Total Tables: 824
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 124984
+**Total Rows:** 128461
 
 ### Sample Data (5 rows)
 
@@ -28720,7 +28957,7 @@ Total Tables: 824
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 109219
+**Total Rows:** 112482
 
 ### Sample Data (5 rows)
 

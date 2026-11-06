@@ -234,7 +234,7 @@ def _wait_for_spark_readiness(
             env=os.environ.copy(),
             capture_output=True,
             text=True,
-            timeout=45,
+            timeout=180,  # a cold BERDL Spark session can take ~2 min to answer SELECT 1
         )
         if completed.returncode == 0:
             print("[spark-readiness] passed", flush=True)
@@ -432,7 +432,10 @@ def main() -> int:
     if not table_file.is_file():
         raise FileNotFoundError(f"Changed-table list is absent: {table_file}")
     if args.drop_table_file:
-        drop_table_file = args.drop_table_file.resolve()
+        drop_table_file = args.drop_table_file
+        if not drop_table_file.is_absolute() and not drop_table_file.is_file():
+            drop_table_file = args.run_dir / drop_table_file  # the skill documents the path relative to the run directory
+        drop_table_file = drop_table_file.resolve()
     else:
         candidates = [
             args.run_dir / "ingest" / "live_obsolete_tables.txt",
