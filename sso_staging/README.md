@@ -14,9 +14,9 @@ per-table brick structures).  `sso_schema.py` is the authoritative schema.
 | Table | Load mode | Key | Source |
 |---|---|---|---|
 | `picarro_gas` | append + dedup on (`epoch_time`, `picarro_serial`) | `epoch_time` + `picarro_serial` | `Gas_Data/*_gas_data.csv` (two Picarro G2508s + Firesting) |
-| `field_metadata` | **full refresh** (shrink-guarded) | — (multiple draws per timepoint×well) | `Field Metadata` sheet |
-| `sample_registry` | **upsert** (MERGE) | `sdt_sample_name` | `Assay Metadata` sheet (manifest) |
-| `toc_tn_anions` | **upsert** (MERGE) | `sdt_sample_name` (the ANIONS sample) | every workbook in `TOC_TN_Anions_Chakraborty/` (Chakraborty TOC/TN + IC anion results, ppm) |
+| `field_metadata` | **full refresh** (shrink-guarded) | `field_draw_id` (one pumped draw: date + well-port + pump start) | `Field Metadata` sheet |
+| `sample_registry` | **upsert** (MERGE) | `sdt_sample_name`; FK `field_draw_id` | `Assay Metadata` sheet (manifest) |
+| `toc_tn_anions` | **upsert** (MERGE) | `sdt_sample_name` (the ANIONS sample); FKs `sdt_location_name`, `field_draw_id` | every workbook in `TOC_TN_Anions_Chakraborty/` (Chakraborty TOC/TN + IC anion results, ppm) |
 
 Bookkeeping tables (rewritten each run): `column_typedef` (the
 `enigma.coral.sys_ddt_typedef` rows these tables become: one row per
@@ -39,6 +39,32 @@ cadences; `unix_timestamp(to_timestamp(x))` equals `epoch_time`), never as
 strings: `01:45:00-04:00` sorts after `01:15:00-05:00` in the fall-back hour.
 `sample_date` is `YYYY-MM-DD`, the CORAL date form.
 (`sso_migrate_20261105_datetimes.py` is the one-time normalization.)
+
+### Joining the tables
+
+Every sample links to the pumped draw it came from.  `field_metadata` is keyed
+by `field_draw_id` (`20261006-L7-SZ1-0832`: date, well-port, pump start);
+`sample_registry` and every result table carry it as a foreign key, filled at
+build time by sample date + well-port.  A day with several draws of one
+well-port leaves the key NULL and raises SAMPLE DRAW AMBIGUOUS in the email
+until `state/draw_overrides.json` (`{"<sdt_sample_name>": "<field_draw_id>"}`)
+records which draw filled which sample.  The approximate sampling time is the
+draw's `pump_off_datetime`:
+
+```sql
+SELECT t.sdt_sample_name, f.pump_off_datetime AS approx_sample_datetime, t.*
+FROM enigma.sso_staging.toc_tn_anions t
+JOIN enigma.sso_staging.field_metadata f ON f.field_draw_id = t.field_draw_id
+```
+
+Result tables carry only their keys (`sdt_sample_name`, `sdt_location_name`,
+`field_draw_id`) and measurements; timepoint, date, well-port, zone and the
+sample's storage come from `sample_registry` by `sdt_sample_name`.  Redundancy
+review 2026-11-06: columns derivable from another column or table were dropped
+(`assay_token`, the verbatim ids, `provenance`, the raw pump clock times);
+`well_port` and `timepoint` stay deliberately (CORAL's SSO bricks carry the
+well-port label as a dimension variable, and the timepoint survives a schedule
+slip).  `sso_migrate_20261106_links.py` is the one-time migration.
 
 Load semantics differ from the neighbours on purpose: continuous_monitoring is
 append-only, CORAL is withdraw+replace, **sso_staging may modify rows in place**

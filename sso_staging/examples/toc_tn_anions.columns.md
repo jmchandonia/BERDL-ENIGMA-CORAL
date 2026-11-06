@@ -20,22 +20,24 @@ campaign-end conversion is mechanical.
 | Source (lab sheet) | Column | type | role / comment |
 |---|---|---|---|
 | `SampleID` (mapped) | `sdt_sample_name` | STRING | **FK** → `sample_registry.sdt_sample_name` (upsert key); lab id `L7-SZ1-100626` (`<well>-<zone>-MMDDYY`) → `20261006-L7-SZ1-ANIONS` |
-| `SampleID` (raw) | `source_sample_id` | STRING | verbatim lab id |
-| — (registry) | `timepoint` | INT | campaign timepoint, looked up from the registry row |
-| `Date Sampled` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; from the lab id's `MMDDYY`, checked against the sheet's numeric `MMDDYY`) |
-| `Well`/`Zone` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>` |
-| `Well`/`Zone` | `well_port` / `zone` | STRING | `L7-SZ1` / `SZ1` (the well itself is `sdt_location_name` = `SSO-L7`) |
-| `Preservation` | `preservation` | STRING | e.g. `0.2um syringe filter` |
-| `Storage` | `storage_condition` | STRING | e.g. `4C` |
+| — (registry) | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`, from the sample's registry row |
+| — (registry) | `field_draw_id` | STRING | FK → `field_metadata`: the draw the sample came from; `pump_off_datetime` there is the approximate sampling time |
+| `Preservation` | `preservation` | STRING | e.g. `0.2um syringe filter` (the one lab-side prep fact not in the registry) |
 | `ORDER` | `analysis_order` | INT | lab run order |
 | `TOC_ppm` | `concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million` | DOUBLE | concentration, molecule from list=elemental carbon (CHEBI:33415), organic=1; ppm (UO:0000169) |
 | `TN_ppm` | `concentration_molecule_from_list_nitrogen_atom_parts_per_million` | DOUBLE | concentration, molecule from list=nitrogen atom (CHEBI:25555); ppm |
 | `Chloride_ppm` | `concentration_molecule_from_list_chloride_parts_per_million` | DOUBLE | chloride CHEBI:17996; ppm |
 | `Sulfate_ppm` | `concentration_molecule_from_list_sulfate_parts_per_million` | DOUBLE | sulfate CHEBI:16189; ppm |
 | `Nitrate_ppm` | `concentration_molecule_from_list_nitrate_parts_per_million` | DOUBLE | nitrate CHEBI:17632 (as NO3⁻); ppm |
-| — | `provenance` / `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping |
+| — | `source_file` (`<workbook> [<sheet>]`) / `ingest_run_id` / `ingested_at` | | bookkeeping |
 
 ## Decisions
+
+- **Keys + measurements only (2026-11-06).** Timepoint, date, well-port, zone
+  and storage are the registry's; the lab id (`L7-SZ1-100626`) is a deterministic
+  rewrite of the sample id, so it is not stored either (held ids are reported
+  verbatim).  The sheet's `Well`/`Zone`/`Date Sampled` are still cross-checked
+  against the id at build time.
 
 - **Which sample.** TOC/TN and anions share one row per lab id and the lab's
   preservation/storage match the registry's `Anions` assay (Chakraborty, 4C,

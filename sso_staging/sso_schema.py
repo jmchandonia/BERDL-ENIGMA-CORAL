@@ -144,10 +144,9 @@ def _fk_location():
 
 def _bookkeeping():
     return [
-        {"name": "provenance", "src": None, "type": "STRING", "role": "book",
-         "desc": "data source and source-file date"},
         {"name": "source_file", "src": None, "type": "STRING", "role": "book",
-         "desc": "raw source file name the row was built from"},
+         "desc": "source file the row was built from (workbook name, plus the sheet in brackets when a "
+                 "folder of workbooks is read)"},
         {"name": "ingest_run_id", "src": None, "type": "STRING", "role": "fk",
          "desc": "load that wrote the row", "references": "ingest_runs.ingest_run_id"},
         {"name": "ingested_at", "src": None, "type": "TIMESTAMP", "role": "book",
@@ -290,28 +289,29 @@ GAS_KNOWN_SOURCE = {
 # timepoint x well can have several draws); shrink-guarded.
 # ======================================================================
 
+def _fk_draw(desc: str) -> dict:
+    return {"name": "field_draw_id", "src": None, "type": "STRING", "role": "fk", "desc": desc,
+            "references": "field_metadata.field_draw_id"}
+
+
 FIELD_COLUMNS = [
+    {"name": "field_draw_id", "src": "Date (YYYYMMDD) + Well + Pump Time On", "type": "STRING", "role": "pk",
+     "desc": "the pumped draw: YYYYMMDD-<well-port>-HHMM of the pump start in America/New_York, e.g. "
+             "20261006-L7-SZ1-0832 (CORAL-legal id; the join key from sample_registry and the result tables)"},
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
-    {"name": "sample_date", "src": "Date (YYYYMMDD)", "type": "STRING", "role": "dim",
-     "desc": "sample date, YYYY-MM-DD (CORAL date form; the source writes YYYYMMDD)"},
     _fk_location(),
     {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim",
      "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW wells have no zone: EFPW02)"},
     {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
-    {"name": "pump_time_on", "src": "Pump Time On", "type": "STRING", "role": "dim",
-     "desc": "pump start HH:MM:SS as written on the field sheet, AM/PM resolved (field clock hours 1-6 read "
-             "as PM); the instant is pump_on_datetime"},
-    {"name": "pump_time_off", "src": "Pump Time Off", "type": "STRING", "role": "dim",
-     "desc": "pump stop HH:MM:SS as written on the field sheet, AM/PM resolved (field clock hours 1-6 read "
-             "as PM); the instant is pump_off_datetime"},
     {"name": "pump_on_datetime", "src": "Date (YYYYMMDD) + Pump Time On", "type": "STRING", "role": "dim",
-     "desc": "pump start as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision): "
-             "sample_date + pump_time_on; comparable with time_series_datetime in picarro_gas and "
+     "desc": "pump start as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision), "
+             "the sheet's date + clock time with AM/PM resolved (field clock hours 1-6 read as PM); the "
+             "sample date is its date part; comparable with time_series_datetime in picarro_gas and "
              "continuous_monitoring via to_timestamp()"},
     {"name": "pump_off_datetime", "src": "Date (YYYYMMDD) + Pump Time Off", "type": "STRING", "role": "dim",
-     "desc": "pump stop as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision): "
-             "sample_date + pump_time_off; comparable with time_series_datetime in picarro_gas and "
-             "continuous_monitoring via to_timestamp()"},
+     "desc": "pump stop as a datetime (ISO 8601 with UTC offset, America/New_York, millisecond precision), "
+             "same derivation as pump_on_datetime; the closest proxy for when the draw's samples were "
+             "filled"},
 
     _meas("rate_instrument_pump_liter_per_minute", "Pump Rate (L/min)", "rate", "liter per minute",
           context=[("instrument", "pump")]),
@@ -338,16 +338,18 @@ REGISTRY_COLUMNS = [
     {"name": "sdt_sample_name", "src": "Sample ID", "type": "STRING", "role": "pk_fk",
      "desc": "environmental sample ID; normalized CORAL id (assay token uppercased), validated ^[A-Z0-9-]+$",
      "references": "enigma.coral.sdt_sample.sdt_sample_name"},
-    {"name": "source_sample_id", "src": "Sample ID", "type": "STRING", "role": "dim",
-     "desc": "verbatim manifest Sample ID (traceability)"},
     {"name": "timepoint", "src": "Timepoint", "type": "INT", "role": "dim", "desc": "campaign timepoint 1-36"},
     {"name": "sample_date", "src": "Date", "type": "STRING", "role": "dim",
-     "desc": "sample date, YYYY-MM-DD (CORAL date form; the manifest writes YYYYMMDD, which the sample id keeps)"},
+     "desc": "sample date, YYYY-MM-DD (CORAL date form; the manifest writes YYYYMMDD, which the sample id keeps); "
+             "the collection instant is the linked draw's pump window (field_draw_id)"},
     _fk_location(),
     {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. U1-SZ1 (EFPW02 for the EFPW wells)"},
     {"name": "zone", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2; NULL for EFPW (from Well)"},
-    {"name": "assay", "src": "Assay", "type": "STRING", "role": "dim", "desc": "raw manifest assay label, e.g. Anions, NitrateIso"},
-    {"name": "assay_token", "src": "Assay", "type": "STRING", "role": "dim", "desc": "uppercased assay token used in the id, e.g. ANIONS"},
+    _fk_draw("the field_metadata draw the sample was taken from, matched by sample date + well-port "
+             "(or state/draw_overrides.json when a day has several draws of the same well-port); NULL until "
+             "the field sheet logs the draw, or while the match is ambiguous (reported as an ACTION)"),
+    {"name": "assay", "src": "Assay", "type": "STRING", "role": "dim",
+     "desc": "manifest assay label, e.g. Anions, NitrateIso (uppercased, it is the last segment of sdt_sample_name)"},
     {"name": "storage_condition", "src": "Storage Condition", "type": "STRING", "role": "dim", "desc": "e.g. '4C, acidified', '-80C'"},
     {"name": "sample_volume", "src": "Volume", "type": "STRING", "role": "dim", "desc": "planned sample volume as recorded, e.g. '30 mL' (registry attribute, not a measurement)"},
     {"name": "container", "src": "Container", "type": "STRING", "role": "dim", "desc": "container as recorded, e.g. '30 mL VOA vial', 'Restek Bags'"},
@@ -382,19 +384,11 @@ TOC_COLUMNS = [
      "desc": "environmental sample ID of the ANIONS sample the results belong to "
              "(YYYYMMDD-WELL-ZONE-ANIONS, derived from the lab id <well>-<zone>-MMDDYY); upsert key",
      "references": "sample_registry.sdt_sample_name"},
-    {"name": "source_sample_id", "src": "SampleID", "type": "STRING", "role": "dim",
-     "desc": "verbatim lab sample id, e.g. L7-SZ1-100626 (traceability)"},
-    {"name": "timepoint", "src": None, "type": "INT", "role": "dim",
-     "desc": "campaign timepoint 1-36 (from the sample registry)"},
-    {"name": "sample_date", "src": "Date Sampled", "type": "STRING", "role": "dim",
-     "desc": "sample date, YYYY-MM-DD (CORAL date form; from the lab id's MMDDYY, checked against Date Sampled)"},
     _fk_location(),
-    {"name": "well_port", "src": "Well", "type": "STRING", "role": "dim", "desc": "sampled well-port as the field team writes it, e.g. L7-SZ1"},
-    {"name": "zone", "src": "Zone", "type": "STRING", "role": "dim", "desc": "sampling zone, SZ1 or SZ2"},
+    _fk_draw("the draw the sample came from, copied from the sample's registry row; join to field_metadata "
+             "for the pump window (pump_off_datetime is the approximate sampling time)"),
     {"name": "preservation", "src": "Preservation", "type": "STRING", "role": "dim",
      "desc": "sample preservation as recorded by the lab, e.g. '0.2um syringe filter'"},
-    {"name": "storage_condition", "src": "Storage", "type": "STRING", "role": "dim",
-     "desc": "sample storage as recorded by the lab, e.g. '4C'"},
     {"name": "analysis_order", "src": "ORDER", "type": "INT", "role": "dim",
      "desc": "lab run order of the sample (raw ORDER)"},
 
@@ -443,8 +437,8 @@ TABLES = {
         "sheet": "Field Metadata",
         "columns": FIELD_COLUMNS,
         "known_source": FIELD_KNOWN_SOURCE,
-        "description": "Per-draw field log (timepoint x well-port): pump times/rate/volume, "
-                       "in-field pH, Restek bag mass; refreshed in full from the source sheet",
+        "description": "Per-draw field log keyed by field_draw_id (one pumped draw of a well-port): pump "
+                       "window, rate, volume, in-field pH, Restek bag mass; refreshed in full from the source sheet",
     },
     "sample_registry": {
         "load_mode": "upsert",
@@ -454,7 +448,7 @@ TABLES = {
         "columns": REGISTRY_COLUMNS,
         "known_source": REGISTRY_KNOWN_SOURCE,
         "description": "Assay sample manifest; one row per physical sample (the staged form of "
-                       "CORAL sdt_sample), upserted by sdt_sample_name",
+                       "CORAL sdt_sample), upserted by sdt_sample_name, linked to its draw by field_draw_id",
     },
     "toc_tn_anions": {
         "load_mode": "upsert",
@@ -465,7 +459,8 @@ TABLES = {
         "known_source": TOC_KNOWN_SOURCE,
         "description": "Chakraborty lab TOC/TN and ion-chromatography anion (chloride, sulfate, "
                        "nitrate) results, ppm, one row per ANIONS sample; upserted by sdt_sample_name "
-                       "from every workbook in the TOC_TN_Anions_Chakraborty source folder",
+                       "from every workbook in the TOC_TN_Anions_Chakraborty source folder; sample context "
+                       "via sample_registry, sampling time via field_metadata",
     },
 }
 
@@ -497,27 +492,22 @@ TYPEDEF = {
         "firesting_datetime": {"dim": "time series", "note": "Firesting join timestamp; traceability only, dropped at conversion"},
     },
     "field_metadata": {
+        "field_draw_id": {"dim": "time series", "note": "staging key of the draw; dropped at conversion (the draw is "
+                          "identified by sdt_location_name + pump_on_datetime)"},
         "timepoint": {"dim": "time series", "note": "campaign timepoint 1-36; no COMO term yet (candidate: brick-level context)"},
-        "sample_date": {"dim": "time series", "var": "date"},
         "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
         "well_port": {"dim": "environmental sample location", "note": "field label; redundant with sdt_location_name + zone"},
         "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone; no COMO term yet"},
-        "pump_time_on": {"dim": "time series", "note": "field-sheet clock time; the instant is pump_on_datetime; dropped at conversion"},
-        "pump_time_off": {"dim": "time series", "note": "field-sheet clock time; the instant is pump_off_datetime; dropped at conversion"},
         "pump_on_datetime": {"dim": "time series", "var": "datetime", "note": "pump start"},
         "pump_off_datetime": {"dim": "time series", "var": "datetime", "note": "pump stop"},
         "field_notes": {"dim": "time series", "note": "free text; becomes the brick's comment context or is dropped"},
     },
     "toc_tn_anions": {
         "sdt_sample_name": {"dim": "environmental sample", "var": "environmental sample ID"},
-        "source_sample_id": {"dim": "environmental sample", "note": "lab's own id; traceability, dropped at conversion"},
-        "timepoint": {"dim": "environmental sample", "note": "campaign timepoint; sample attribute, no COMO term yet"},
-        "sample_date": {"dim": "environmental sample", "var": "date"},
         "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
-        "well_port": {"dim": "environmental sample location", "note": "field label; redundant with sdt_location_name + zone"},
-        "zone": {"dim": "environmental sample location", "note": "SZ1/SZ2 sampling zone; no COMO term yet"},
+        "field_draw_id": {"dim": "environmental sample", "note": "link to the draw; at conversion the sample's datetime "
+                          "context (pump_off_datetime) or dropped"},
         "preservation": {"dim": "environmental sample", "note": "sample attribute; becomes brick-level context at conversion"},
-        "storage_condition": {"dim": "environmental sample", "note": "sample attribute; becomes brick-level context at conversion"},
         "analysis_order": {"dim": "environmental sample", "note": "lab run order; dropped at conversion"},
     },
 }
@@ -643,7 +633,7 @@ def column_comment_fields(col: dict) -> dict:
     out = {"description": col["desc"]}
     if col.get("unit"):
         out["unit"] = col["unit"]
-    if col["role"] in ("fk", "pk_fk"):
+    if col["role"] in ("fk", "pk_fk", "pk"):
         out["type"] = "foreign_key" if col["role"] == "fk" else "primary_key"
         if col.get("references"):
             out["references"] = col["references"]

@@ -353,16 +353,20 @@ class Loader:
             "first_timestamp": "earliest time/date in the table", "last_timestamp": "latest time/date in the table",
             "updated_at": "time this row was written (UTC)",
         }
-        time_col = {"picarro_gas": "time_series_datetime", "field_metadata": "sample_date",
-                    "sample_registry": "sample_date", "toc_tn_anions": "sample_date"}
+        # (value shown in table_metadata, instant it is ordered by) per table; a
+        # result table carries no date of its own, so its sample id's date is used.
+        time_col = {"picarro_gas": ("time_series_datetime", "to_timestamp(time_series_datetime)"),
+                    "field_metadata": ("pump_on_datetime", "to_timestamp(pump_on_datetime)"),
+                    "sample_registry": ("sample_date", "to_date(sample_date)"),
+                    "toc_tn_anions": ("date_format(to_date(substr(sdt_sample_name, 1, 8), 'yyyyMMdd'), 'yyyy-MM-dd')",
+                                      "to_date(substr(sdt_sample_name, 1, 8), 'yyyyMMdd')")}
         latest, rows = {}, []
         for tbl, spec in schema.TABLES.items():
             if self.dry_run and tbl not in existing:
                 continue
-            tc = time_col[tbl]
             # Order by the parsed instant, never the string: ISO strings with an
             # offset mis-sort across the DST change (01:45-04:00 > 01:15-05:00).
-            q, inst = sso.quoted(tc), f"to_timestamp({sso.quoted(tc)})"
+            q, inst = time_col[tbl]
             stats = self.spark.sql(
                 f"SELECT count(*) n, min_by({q}, {inst}) lo, max_by({q}, {inst}) hi FROM {sso.full_name(tbl)}"
             ).collect()[0]
@@ -581,6 +585,7 @@ def _write_result(args, manifest, record, per_table, latest, token, run_id, comm
                              "last_timestamp": (latest.get(t) or {}).get("last_timestamp")} for t in per_table}
     summary["drift"] = manifest.get("drift")
     summary["held"] = manifest.get("held")
+    summary["draw_ambiguous"] = manifest.get("draw_ambiguous") or []
     summary["sources"] = manifest.get("sources")
     summary["stale_tables"] = stale
     summary["comment_drift"] = comment_drift or {}  # {table: [column...]} not applied (ACTION)

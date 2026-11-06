@@ -155,6 +155,18 @@ def iso_local(date_iso: str, hms: str) -> str:
         return ""
 
 
+def draw_id(date_iso: str, well_port: str, hms: str) -> str:
+    """field_metadata key: YYYYMMDD-<well-port>-HHMM of the pump start (CORAL-legal)."""
+    return f"{date_iso.replace('-', '')}-{well_port}-{hms[:2]}{hms[3:5]}"
+
+
+def load_draw_overrides(state_dir: Path) -> dict[str, str]:
+    """state/draw_overrides.json: {sdt_sample_name: field_draw_id} for samples whose
+    day has several draws of the same well-port (settled with the field team)."""
+    path = Path(state_dir) / "draw_overrides.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
 def resolve_ampm(value) -> str:
     """Field clock: hours 1-6 are PM (verified from data 2026-10-30; no pre-07:00 draws)."""
     if not isinstance(value, time):
@@ -297,7 +309,6 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
         src = c.get("src")
         if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "DateTime", "Port", "Depth", "Well"):
             out[c["name"]] = raw[src].values if src in raw else ""
-    out["provenance"] = f"picarro csv {paths[-1].name}"
     out["source_file"] = paths[-1].name
 
     serial, keep, checks = gas_instrument_checks(out, raw)
@@ -340,10 +351,12 @@ def read_sheet(path: Path, sheet: str) -> tuple[list[str], list[dict]]:
     return [h for h in header if h], records
 
 
-def read_field(path: Path) -> tuple[list[dict], dict]:
+def read_field(path: Path) -> tuple[list[dict], dict, list[dict]]:
+    """Returns (rows, drift, held).  A draw is keyed by date + well-port + pump start,
+    so a row without a pump start time (or a duplicate key) is held and reported."""
     header, records = read_sheet(path, schema.TABLES["field_metadata"]["sheet"])
     d = drift(set(header), schema.FIELD_KNOWN_SOURCE)
-    rows = []
+    rows, held, seen = [], [], {}
     for rec in records:
         well = cell_to_str(rec.get("Well"))
         date = iso_date(cell_to_str(rec.get("Date (YYYYMMDD)")))
@@ -354,29 +367,64 @@ def read_field(path: Path) -> tuple[list[dict], dict]:
         if not well or not date or not has_data:
             continue
         loc = sso.spreadsheet_location(well)
+        on, off = resolve_ampm(rec.get("Pump Time On")), resolve_ampm(rec.get("Pump Time Off"))
+        if not iso_local(date, on):
+            held.append({"source_sample_id": f"{date} {loc['well_port']}", "normalized": None,
+                         "reason": f"field draw without a usable pump start time ({on!r}); the draw cannot be keyed"})
+            continue
+        key = draw_id(date, loc["well_port"], on)
+        if key in seen:
+            held.append({"source_sample_id": f"{date} {loc['well_port']}", "normalized": key,
+                         "reason": "two field rows with the same date, well-port and pump start"})
+            continue
+        seen[key] = True
         row = {
+            "field_draw_id": key,
             "timepoint": cell_to_str(rec.get("Timepoint")),
-            "sample_date": date,
             "sdt_location_name": loc["sdt_location_name"],
             "well_port": loc["well_port"],
             "zone": loc["zone"],
-            "pump_time_on": resolve_ampm(rec.get("Pump Time On")),
-            "pump_time_off": resolve_ampm(rec.get("Pump Time Off")),
-            "pump_on_datetime": iso_local(date, resolve_ampm(rec.get("Pump Time On"))),
-            "pump_off_datetime": iso_local(date, resolve_ampm(rec.get("Pump Time Off"))),
+            "pump_on_datetime": iso_local(date, on),
+            "pump_off_datetime": iso_local(date, off),
             "rate_instrument_pump_liter_per_minute": cell_to_str(rec.get("Pump Rate (L/min)")),
             "volume_liter": cell_to_str(rec.get("Total Volume (L)")),
             "ph_ph": cell_to_str(rec.get("In-field pH")),
             "mass_gram": cell_to_str(rec.get("Restek Bag Mass (g)")),
             "field_notes": cell_to_str(rec.get("Field Notes")),
-            "provenance": f"field metadata {path.name}",
             "source_file": path.name,
         }
         rows.append(row)
-    return rows, d
+    return rows, d, held
 
 
-def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
+def link_draws(field_rows: list[dict], overrides: dict[str, str]):
+    """Returns (resolve, ambiguous): resolve(sample_name, date, well_port) -> field_draw_id
+    or "" when no draw is logged yet or several match without an override; the
+    ambiguous list collects the unresolved cases for the email."""
+    by_key: dict[tuple[str, str], list[str]] = {}
+    for r in field_rows:
+        by_key.setdefault((r["pump_on_datetime"][:10], r["well_port"]), []).append(r["field_draw_id"])
+    known = {r["field_draw_id"] for r in field_rows}
+    ambiguous: list[dict] = []
+
+    def resolve(sample_name: str, date_iso: str, well_port: str) -> str:
+        if sample_name in overrides:
+            if overrides[sample_name] in known:
+                return overrides[sample_name]
+            ambiguous.append({"sdt_sample_name": sample_name, "candidates": by_key.get((date_iso, well_port), []),
+                              "reason": f"draw_overrides.json names {overrides[sample_name]!r}, which is not a logged draw"})
+            return ""
+        cands = by_key.get((date_iso, well_port), [])
+        if len(cands) == 1:
+            return cands[0]
+        if len(cands) > 1:
+            ambiguous.append({"sdt_sample_name": sample_name, "candidates": cands,
+                              "reason": "several draws of this well-port that day; add the sample to state/draw_overrides.json"})
+        return ""
+    return resolve, ambiguous
+
+
+def read_registry(path: Path, resolve_draw) -> tuple[list[dict], dict, list[dict], int]:
     header, records = read_sheet(path, schema.TABLES["sample_registry"]["sheet"])
     d = drift(set(header), schema.REGISTRY_KNOWN_SOURCE)
     rows, held, seen = [], [], {}
@@ -398,16 +446,16 @@ def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
         well = cell_to_str(rec.get("Well"))
         loc = sso.spreadsheet_location(well)
         assay = cell_to_str(rec.get("Assay"))
+        date = iso_date(cell_to_str(rec.get("Date")))
         rows.append({
             "sdt_sample_name": norm,
-            "source_sample_id": raw_id,
             "timepoint": cell_to_str(rec.get("Timepoint")),
-            "sample_date": iso_date(cell_to_str(rec.get("Date"))),
+            "sample_date": date,
             "sdt_location_name": loc["sdt_location_name"],
             "well_port": loc["well_port"],
             "zone": loc["zone"],
+            "field_draw_id": resolve_draw(norm, date, loc["well_port"]),
             "assay": assay,
-            "assay_token": assay.upper(),
             "storage_condition": cell_to_str(rec.get("Storage Condition")),
             "sample_volume": cell_to_str(rec.get("Volume")),
             "container": cell_to_str(rec.get("Container")),
@@ -416,7 +464,6 @@ def read_registry(path: Path) -> tuple[list[dict], dict, list[dict]]:
             "ship_date": cell_to_str(rec.get("Ship Date")),
             "tracking_number": cell_to_str(rec.get("Tracking #")),
             "notes": cell_to_str(rec.get("Notes")),
-            "provenance": f"assay manifest {path.name}",
             "source_file": path.name,
         })
     return rows, d, held, unassigned
@@ -521,20 +568,13 @@ def read_toc(source_dir: Path, registry: dict[str, dict]) -> tuple[list[dict], d
                 held.append({"source_sample_id": raw_id, "normalized": norm, "source_file": path.name,
                              "reason": "no ANIONS sample with this id in the Assay Metadata manifest"})
                 continue
-            loc = sso.spreadsheet_location(f"{parts['well']}-{parts['zone']}" if parts["zone"] else parts["well"])
             row = {
                 "sdt_sample_name": norm,
-                "source_sample_id": raw_id,
-                "timepoint": reg.get("timepoint", ""),
-                "sample_date": iso_date(parts["sample_date"]),
-                "sdt_location_name": loc["sdt_location_name"],
-                "well_port": loc["well_port"],
-                "zone": loc["zone"],
+                "sdt_location_name": reg["sdt_location_name"],
+                "field_draw_id": reg.get("field_draw_id", ""),
                 "preservation": cell_to_str(rec.get("Preservation")),
-                "storage_condition": cell_to_str(rec.get("Storage")),
                 "analysis_order": cell_to_str(rec.get("ORDER")),
-                "provenance": f"chakraborty toc/tn/anions {path.name} [{title}]",
-                "source_file": path.name,
+                "source_file": f"{path.name} [{title}]",
             }
             for c in schema.TOC_COLUMNS:
                 if c["role"] == "measurement":
@@ -607,19 +647,21 @@ def main() -> None:
     # --- field metadata ---
     field_path = source_dir / sso.FIELD_FILE
     log(f"field_metadata: reading {field_path.name}")
-    field_rows, field_drift = read_field(field_path)
+    field_rows, field_drift, field_held = read_field(field_path)
     tsv = write_tsv(args.out, "field_metadata", field_rows)
     manifest["tables"]["field_metadata"] = {
         "tsv": tsv, "load_mode": "full_refresh", "rows": len(field_rows),
         "description": schema.TABLES["field_metadata"]["description"], "source_files": [field_path.name],
     }
     manifest["drift"]["field_metadata"] = field_drift
-    log(f"field_metadata: staged {len(field_rows)} rows")
+    manifest["held"]["field_metadata"] = field_held
+    log(f"field_metadata: staged {len(field_rows)} rows, held {len(field_held)}")
+    resolve_draw, ambiguous = link_draws(field_rows, load_draw_overrides(args.state))
 
     # --- sample registry ---
     assay_path = source_dir / sso.ASSAY_FILE
     log(f"sample_registry: reading {assay_path.name}")
-    reg_rows, reg_drift, held, unassigned = read_registry(assay_path)
+    reg_rows, reg_drift, held, unassigned = read_registry(assay_path, resolve_draw)
     tsv = write_tsv(args.out, "sample_registry", reg_rows)
     manifest["tables"]["sample_registry"] = {
         "tsv": tsv, "load_mode": "upsert", "upsert_key": "sdt_sample_name", "rows": len(reg_rows),
@@ -628,7 +670,11 @@ def main() -> None:
     }
     manifest["drift"]["sample_registry"] = reg_drift
     manifest["held"]["sample_registry"] = held
-    log(f"sample_registry: staged {len(reg_rows)} rows, held {len(held)}, unassigned {unassigned}")
+    manifest["draw_ambiguous"] = ambiguous
+    linked = sum(1 for r in reg_rows if r["field_draw_id"])
+    log(f"sample_registry: staged {len(reg_rows)} rows, held {len(held)}, unassigned {unassigned}, "
+        f"linked to a draw {linked}, ambiguous {len(ambiguous)}")
+    held = field_held + held
 
     # --- TOC/TN/anion results (every workbook in the lab's folder) ---
     log(f"toc_tn_anions: reading {sso.TOC_DIR}/")
@@ -658,7 +704,7 @@ def main() -> None:
     # unknown-label convention so run_daily can note it.
     gas_flags = any(gas_checks[k] for k in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"))
     flags = (any(v["new_columns"] or v["missing_columns"] for v in manifest["drift"].values())
-             or bool(held) or bool(unknown) or gas_flags)
+             or bool(held) or bool(unknown) or gas_flags or bool(ambiguous))
     sys.exit(3 if flags else 0)
 
 

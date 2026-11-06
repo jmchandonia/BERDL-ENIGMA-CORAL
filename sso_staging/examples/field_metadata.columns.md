@@ -1,6 +1,6 @@
 # Example brick-like structure: `enigma.sso_staging.field_metadata`
 
-One row per sampling draw (timepoint × well). **Refresh-from-source**, because
+One row per pumped draw, keyed by `field_draw_id`. **Refresh-from-source**, because
 the source sheet (Katie's `Field Metadata.xlsx`) is edited in place as the
 campaign proceeds. Same conventions as `picarro_gas`: CORAL-derived measurement
 column names (minimal context), oterm ids in `column_typedef`, FK columns identical to
@@ -9,7 +9,10 @@ coral/continuous_monitoring.
 **Load mode = full refresh** (replace all rows each run), NOT upsert-by-key:
 verified in the data (2026-10-30) that a single (timepoint, well) can have
 **several draws** — e.g. timepoint 1 at U1-SZ1 has two rows (a 15 L draw and a
-0.4 L accidental pump) — so there is no stable unique key to upsert on. The
+0.4 L accidental pump).  Since 2026-11-06 each draw has a key, `field_draw_id`
+(`20261006-U1-SZ1-0831`: date, well-port, pump start), which `sample_registry`
+and the result tables reference; a row without a pump start cannot be keyed and
+is held.  Full refresh is kept because the sheet is edited in place. The
 loader replaces the table from source each run, guarded by a shrink-check that
 refuses to wipe the table if the source suddenly has far fewer rows. The parser
 keeps only rows with actual field data (pre-seeded calendar rows are dropped).
@@ -67,19 +70,18 @@ mass column ever appears. No Kris email needed.
 
 | Source col | Column | type | comment |
 |---|---|---|---|
-| `Field Metadata Timepoint` | `timepoint` | INT | campaign timepoint 1–36 (upsert key) |
-| `Date (YYYYMMDD)` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; source is `YYYYMMDD`) |
+| `Date (YYYYMMDD)` + `Well` + `Pump Time On` | `field_draw_id` | STRING | **PK** `YYYYMMDD-<well-port>-HHMM` (`20261006-L7-SZ1-0832`) |
+| `Field Metadata Timepoint` | `timepoint` | INT | campaign timepoint 1–36 |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
 | `Well` | `well_port` | STRING | field well-port label `U1-SZ1`; EFPW has no zone (`EFPW02`).  Not `location`, which means `sdt_location` in CORAL |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |
-| `Pump Time On` | `pump_time_on` | STRING | field-sheet clock time `HH:MM:SS` after AM/PM resolution (field hours 1–6 → PM) |
-| `Pump Time Off` | `pump_time_off` | STRING | field-sheet clock time after AM/PM resolution |
-| `Date (YYYYMMDD)` + `Pump Time On` | `pump_on_datetime` | STRING | pump start as an instant: ISO 8601 with UTC offset, America/New_York, millisecond precision (`2026-10-06T08:31:00.000-04:00`); comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring via `to_timestamp()` |
+| `Date (YYYYMMDD)` + `Pump Time On` | `pump_on_datetime` | STRING | pump start as an instant (AM/PM resolved: field hours 1–6 → PM): ISO 8601 with UTC offset, America/New_York, millisecond precision (`2026-10-06T08:31:00.000-04:00`); its date part is the sample date; comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring via `to_timestamp()` |
 | `Date (YYYYMMDD)` + `Pump Time Off` | `pump_off_datetime` | STRING | pump stop, same form |
 | `Field Notes` | `field_notes` | STRING | free text |
-| — | `provenance` / `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping (FK on ingest_run_id) |
+| — | `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping (FK on ingest_run_id) |
 
-Note: `pump_time_on/off` are operational context (clock times), not COMO
-measurements → plain STRING, like other context variables.  The derived
-`pump_on_datetime` / `pump_off_datetime` carry the COMO `datetime` term
-(ME:0000180) in `column_typedef` and are the pump window on the shared timeline.
+Note: `pump_on_datetime` / `pump_off_datetime` carry the COMO `datetime` term
+(ME:0000180) in `column_typedef` and are the pump window on the shared timeline;
+`pump_off_datetime` is the approximate sampling time of every sample linked to
+the draw.  The raw clock-time columns were dropped 2026-11-06 (fully contained
+in the datetimes).

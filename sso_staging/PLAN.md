@@ -10,8 +10,8 @@ style, for conversion to CORAL bricks at campaign end (Dec 2026).
   exported (`picarro_gas`); **refresh-from-source** for the spreadsheet-backed
   tables, because sso_staging permits in-place edits when the source sheet
   changes. Mechanism differs by whether a stable key exists: `field_metadata` =
-  **full refresh** (shrink-guarded; a timepoint×well can have several draws, so
-  no unique key); `sample_registry` = **upsert (MERGE)** on `sdt_sample_name`.
+  **full refresh** (shrink-guarded; keyed by `field_draw_id`, one pumped draw, since a
+  timepoint×well can have several); `sample_registry` = **upsert (MERGE)** on `sdt_sample_name`.
 - **CORAL-legal IDs** (`^[A-Z0-9-]+$`, validated, offenders held + reported);
   faithful-uppercase assay tokens; locations `SSO-<well>` with zone as a string.
 - **Same BERDL column names / JSON comments / FK targets as coral +
@@ -89,7 +89,6 @@ alone is not unique.  The serial is data, not microtype context.
 | `cycle_set` | INT | raw `set` (counts per analyzer) |
 | `port_seconds` | DOUBLE | raw `timedelta` (s this port monitored) |
 | `firesting_datetime` | STRING | `DateTime` (the Firesting clock, Eastern wall clock) in the same ISO form with the row's offset; traceability of the join |
-| `provenance` | STRING | `picarro csv` + source file date |
 | `source_file` | STRING | CSV filename |
 | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
 | `ingested_at` | TIMESTAMP | append time (UTC) |
@@ -98,33 +97,31 @@ alone is not unique.  The serial is data, not microtype context.
 
 | Column | Type | Role |
 |---|---|---|
+| `field_draw_id` | STRING | **PK**: `YYYYMMDD-<well-port>-HHMM` of the pump start (`20261006-L7-SZ1-0832`); the key every sample links to |
 | `timepoint` | INT | campaign timepoint 1–36 |
-| `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; raw `Date` is `YYYYMMDD`) |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` (EFPW verbatim) |
 | `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `zone` | STRING | `SZ1`/`SZ2` (empty for EFPW) |
-| `pump_time_on` / `pump_time_off` | STRING | field-sheet clock times after AM/PM resolution (field hours 1–6 → PM) |
-| `pump_on_datetime` / `pump_off_datetime` | STRING | the pump window as instants: `sample_date` + clock time in America/New_York, ISO 8601 + offset, millisecond precision — comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring |
+| `pump_on_datetime` / `pump_off_datetime` | STRING | the pump window as instants: the sheet's date + clock time (AM/PM resolved, field hours 1–6 → PM) in America/New_York, ISO 8601 + offset, millisecond precision — comparable with `time_series_datetime` in `picarro_gas` and continuous_monitoring |
 | `rate_instrument_pump_liter_per_minute` | DOUBLE | COMO rate, instrument=pump; unit `liter per minute` (MINT, only mint in namespace) |
 | `volume_liter` | DOUBLE | COMO volume (EXISTS; liter UO:0000099) |
 | `ph_ph` | DOUBLE | COMO pH (EXISTS; UO:0000196); instrument dropped from name |
 | `mass_gram` | DOUBLE | COMO mass (EXISTS; gram UO:0000021) — collected-gas sample mass |
 | `field_notes` | STRING | free text |
-| `provenance`/`source_file`/`ingest_run_id`/`ingested_at` | | bookkeeping |
+| `source_file`/`ingest_run_id`/`ingested_at` | | bookkeeping |
 
 ## Table: `sample_registry`  (refresh-from-source; key = sdt_sample_name)
 
 | Column | Type | Role |
 |---|---|---|
 | `sdt_sample_name` | STRING | FK → enigma.coral.sdt_sample; normalized CORAL ID `YYYYMMDD-WELL-ZONE-ASSAY` |
-| `source_sample_id` | STRING | raw manifest Sample ID (traceability) |
 | `timepoint` | INT | |
 | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form) |
 | `sdt_location_name` | STRING | FK; `SSO-<well>` |
 | `well_port` | STRING | field well-port label |
 | `zone` | STRING | |
-| `assay` | STRING | raw manifest assay label |
-| `assay_token` | STRING | uppercased token used in the ID |
+| `field_draw_id` | STRING | FK → `field_metadata`; NULL until the draw is logged or while ambiguous (override file) |
+| `assay` | STRING | manifest assay label (uppercased = last id segment) |
 | `storage_condition` | STRING | |
 | `volume` | STRING | as recorded (e.g. `30 mL`) |
 | `container` | STRING | |
@@ -132,7 +129,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `pi` | STRING | |
 | `ship_date` | STRING | |
 | `tracking_number` | STRING | |
-| `provenance`/`source_file`/`ingest_run_id`/`ingested_at` | | bookkeeping |
+| `source_file`/`ingest_run_id`/`ingested_at` | | bookkeeping |
 
 (Assay **results** are NOT modeled yet — none exist. When a result file lands,
 results attach to `sample_registry` by `sdt_sample_name`.)

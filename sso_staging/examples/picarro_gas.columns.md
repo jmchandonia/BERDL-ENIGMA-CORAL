@@ -84,7 +84,6 @@ matching how coral/cm populate `description`.
 | `set` | `cycle_set` | INT | Picarro cycle counter (counts per analyzer) |
 | `timedelta` | `port_seconds` | DOUBLE | seconds this port monitored (unit=second) |
 | `DateTime` | `firesting_datetime` | STRING | Firesting clock reading joined onto the row (30 s cadence; Eastern wall clock in the source), same ISO form with the row's offset; traceability of the join |
-| — | `provenance` | STRING | `picarro csv` + source file date |
 | — | `source_file` | STRING | CSV filename |
 | — | `ingest_run_id` | STRING | FK → ingest_runs.ingest_run_id |
 | — | `ingested_at` | TIMESTAMP | append time (UTC) |
@@ -121,7 +120,7 @@ name) and `note`. Dimension variables: `time_series_datetime` (time series /
 datetime, as Brick0000019), `sdt_location_name` (environmental sample location
 / Environmental Sample Location ID, object_ref FK), and the instrument
 bookkeeping columns with NULL terms and a note saying what they become at
-conversion. Dimension/variable numbers are provisional. 53 rows today (the two pump datetimes added 2026-11-05).
+conversion. Dimension/variable numbers are provisional. 46 rows today (after the 2026-11-06 redundancy review).
 
 All context values below are FREE-TEXT on string-typed properties (method
 ME:0000007, condition ME:0000006 — both `data_type=string`), so **nothing here

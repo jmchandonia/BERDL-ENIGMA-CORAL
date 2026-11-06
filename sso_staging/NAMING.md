@@ -93,9 +93,12 @@ foreign-key conventions** as those namespaces:
   COMO microtypes where they exist; any missing microtype/unit is **minted in
   COMO and recorded** (cf. `coral_import/ontology_update_20261028/`), not
   invented ad hoc in the column comment.
-- **Bookkeeping columns** mirror continuous_monitoring: `provenance`,
-  `source_file`, `ingest_run_id`, `ingested_at`, plus `table_metadata` and
-  `ingest_runs` tables.
+- **Bookkeeping columns** mirror continuous_monitoring: `source_file`,
+  `ingest_run_id`, `ingested_at` (no `provenance`: here it was always a fixed
+  label + `source_file`), plus `table_metadata` and `ingest_runs` tables.
+- **Draw key**: `field_draw_id` = `YYYYMMDD-<well-port>-HHMM` of the pump start
+  (CORAL-legal), primary key of `field_metadata`, foreign key in `sample_registry`
+  and every result table.  Result tables carry keys + measurements only.
 - **Dimension/context strings** (zone/port `U1-SZ1`, multiplexer `on_state`,
   cycle `set`, QC `reference_channel`) are plain STRING columns with descriptive
   comments, following the CORAL "context variable" style.

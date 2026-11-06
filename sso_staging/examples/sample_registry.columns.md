@@ -19,14 +19,13 @@ Upsert key: `sdt_sample_name`.
 | Source (manifest) | Column | type | role / comment |
 |---|---|---|---|
 | `Sample ID` (normalized) | `sdt_sample_name` | STRING | **PK + FK** → enigma.coral.sdt_sample.sdt_sample_name; normalized CORAL ID `YYYYMMDD-WELL-ZONE-ASSAY`, validated `^[A-Z0-9-]+$` |
-| `Sample ID` (raw) | `source_sample_id` | STRING | verbatim manifest ID, for traceability |
 | `Timepoint` | `timepoint` | INT | campaign timepoint 1–36 |
 | `Date` | `sample_date` | STRING | `YYYY-MM-DD` (CORAL date form; the manifest writes `YYYYMMDD`, kept inside the sample id) |
 | `Well` | `sdt_location_name` | STRING | FK → enigma.coral.sdt_location; `SSO-<well>`; EFPW verbatim |
 | `Well` | `well_port` | STRING | field well-port label `U1-SZ1` (`EFPW02` for EFPW) |
 | `Well` | `zone` | STRING | `SZ1`/`SZ2`; empty for EFPW |
-| `Assay` | `assay` | STRING | raw manifest assay label (e.g. `Anions`, `NitrateIso`) |
-| `Assay` (uppercased) | `assay_token` | STRING | token used in the ID (`ANIONS`, `NITRATEISO`) |
+| `Date` + `Well` → field sheet | `field_draw_id` | STRING | **FK** → `field_metadata.field_draw_id`: the draw the sample came from (one draw that day for the well-port; several → NULL + SAMPLE DRAW AMBIGUOUS until `state/draw_overrides.json` settles it; none yet → NULL) |
+| `Assay` | `assay` | STRING | manifest assay label (`Anions`, `NitrateIso`); uppercased it is the last segment of the id |
 | `Storage Condition` | `storage_condition` | STRING | e.g. `4C, acidified`, `-80C` |
 | `Volume` | `sample_volume` | STRING | as recorded (`30 mL`, `5 L`) — registry attribute, not a measurement |
 | `Container` | `container` | STRING | e.g. `30 mL VOA vial`, `Restek Bags`, `15 mL falcon` |
@@ -35,7 +34,7 @@ Upsert key: `sdt_sample_name`.
 | `Ship Date` | `ship_date` | STRING | `YYYYMMDD` or empty |
 | `Tracking #` | `tracking_number` | STRING | shipment tracking, or empty |
 | `Notes` | `notes` | STRING | free text (in-field pH appears here for pH rows) |
-| — | `provenance` / `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping |
+| — | `source_file` / `ingest_run_id` / `ingested_at` | | bookkeeping |
 
 ## ID normalization (enforced on ingest; see NAMING.md)
 
@@ -45,7 +44,8 @@ Upsert key: `sdt_sample_name`.
 - Validate every `sdt_sample_name` against `^[A-Z0-9-]+$` after uppercasing;
   **hold + report** any ID with an illegal char (underscore, space, period, …),
   never silently rewrite. Check uniqueness within the batch.
-- `source_sample_id` keeps the raw manifest string for audit.
+- The raw manifest string differs from the id only by case, so it is not stored
+  (held ids are reported verbatim in the email).
 
 ## Notes
 

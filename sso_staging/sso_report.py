@@ -178,8 +178,19 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
     held = _held_total(data)
     if held:
         items.append(("HELD SAMPLE IDS", f"{held} held sample id(s)",
-                      f"{held} sample id(s) not loaded (illegal character or duplicate) -- "
-                      "listed in the sso_staging section."))
+                      f"{held} sample id(s) / field draws not loaded (illegal character, duplicate, or a draw "
+                      "without a pump start) -- listed in the sso_staging section."))
+    amb = data.get("draw_ambiguous") or []
+    if amb:
+        by_day: dict[str, set] = {}
+        for a in amb:
+            for c in a.get("candidates") or []:
+                by_day.setdefault(c[:8] + " " + c[9:-5], set()).add(c)
+        detail = "; ".join(f"{k}: {len(v)} draws" for k, v in sorted(by_day.items())[:6])
+        items.append(("SAMPLE DRAW AMBIGUOUS", f"{len(amb)} sample(s) match several field draws",
+                      f"sample_registry: {len(amb)} sample(s) have field_draw_id NULL because their well-port was "
+                      f"pumped more than once that day ({detail}).  Ask the field team which draw filled each "
+                      "sample and record it in state/draw_overrides.json ({\"<sdt_sample_name>\": \"<field_draw_id>\"})."))
     return items
 
 
@@ -321,6 +332,13 @@ def body_section(data: dict, prev: dict | None = None) -> str:
                 lines.append(f"    {it.get('source_sample_id')!r}: {it.get('reason')}")
             if len(items or []) > 10:
                 lines.append(f"    ... and {len(items) - 10} more")
+    amb = data.get("draw_ambiguous") or []
+    if amb:
+        lines += ["", f"Samples not linked to a field draw (ambiguous): {len(amb)}"]
+        for a in amb[:12]:
+            lines.append(f"    {a['sdt_sample_name']}: {', '.join(a.get('candidates') or [])}")
+        if len(amb) > 12:
+            lines.append(f"    ... and {len(amb) - 12} more")
 
     expires, days = data.get("token_expires"), data.get("token_days_left")
     if expires:
