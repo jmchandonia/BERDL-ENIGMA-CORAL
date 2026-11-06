@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 830
+Total Tables: 831
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 830
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1930
+**Total Rows:** 1931
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 830
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9712
+**Total Rows:** 9717
 
 ### Sample Data (5 rows)
 
@@ -28330,6 +28330,34 @@ Total Tables: 830
 
 ---
 
+## Table: ddt_brick0002163
+
+**Table Description:** walian_em_groundwater_counts_spring2019.hndarray - Walian Lab transmission electron microscopy tallies of groundwater from GW821E, MLSB5 and FW100-20 at the five Spring 2019 Integrated Sampling timepoints: average observations per EM grid window of microbes, large cells, ultra-small cells and phage
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| category | string | Yes | {"description": "category"} |
+| average_measurement_count_relative_em_grid_window_count_unit | double | Yes | {"description": "average, measurement=count, relative=EM grid window", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 60
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | category | average_measurement_count_relative_em_grid_window_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R11 | microbes | 6.4 | ENIGMA:0000100 | ENIGMA:0000152 |
+| GW821E-2019-03-18-UF-R11 | large cells | 8.67 | ENIGMA:0000100 | ENIGMA:0000152 |
+| GW821E-2019-03-18-UF-R11 | ultra-small cells | 3.17 | ENIGMA:0000100 | ENIGMA:0000152 |
+| GW821E-2019-03-18-UF-R11 | phage | 2.33 | ENIGMA:0000100 | ENIGMA:0000152 |
+| GW821E-2019-04-01-UF-R11 | microbes | 2.0 | ENIGMA:0000100 | ENIGMA:0000152 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -28341,7 +28369,7 @@ Total Tables: 830
 | sdt_assembly_id | string | No | {"description": "Unique text identifier for the assembly (Primary key)", "type": "primary_key"} |
 | sdt_assembly_name | string | No | {"description": "Unique name for the assembly", "type": "unique_key"} |
 | sdt_strain_name | string | Yes | {"description": "Strain name from which the assembly was derived (foreign key to Strain.name).", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| n_contigs_count_unit | int | No | {"description": "Number of contigs in the assembly", "unit": "count unit"} |
+| n_contigs_count_unit | bigint | No | {"description": "Number of contigs in the assembly", "unit": "count unit"} |
 | link | string | No | {"description": "Reference to the actual assembly data"} |
 
 **Total Rows:** 3427
@@ -28478,7 +28506,7 @@ Total Tables: 830
 | sdt_dubseq_library_id | string | No | {"description": "Unique DubSeq library identifier (Primary key)", "type": "primary_key"} |
 | sdt_dubseq_library_name | string | No | {"description": "Unique, human-readable name of the DubSeq library", "type": "unique_key"} |
 | sdt_genome_name | string | No | {"description": "Foreign key to the associated genome (Genome.name) from which the library was derived", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
-| n_fragments_count_unit | int | Yes | {"description": "Number of unique DNA fragments in the library", "unit": "count unit"} |
+| n_fragments_count_unit | bigint | Yes | {"description": "Number of unique DNA fragments in the library", "unit": "count unit"} |
 
 **Total Rows:** 3
 
@@ -28524,10 +28552,10 @@ Total Tables: 830
 | sdt_gene_name | string | No | {"description": "Unique external identifier for the gene", "type": "unique_key"} |
 | sdt_genome_name | string | No | {"description": "Name of the genome to which the gene belongs (foreign key)", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
 | aliases | array<string> | Yes | {"description": "List of alternative names or identifiers for the gene"} |
-| contig_number_count_unit | int | No | {"description": "Contigs are indexed starting at 1, as in KBase", "unit": "count unit"} |
+| contig_number_count_unit | bigint | No | {"description": "Contigs are indexed starting at 1, as in KBase", "unit": "count unit"} |
 | strand | string | No | {"description": "DNA strand of the gene (+ for forward, - for reverse)"} |
-| start_base_pair | int | No | {"description": "Genomic start coordinate on the contig, indexed starting at 1 as in KBase", "unit": "base pair"} |
-| stop_base_pair | int | No | {"description": "Genomic stop coordinate in base pairs", "unit": "base pair"} |
+| start_base_pair | bigint | No | {"description": "Genomic start coordinate on the contig, indexed starting at 1 as in KBase", "unit": "base pair"} |
+| stop_base_pair | bigint | No | {"description": "Genomic stop coordinate in base pairs", "unit": "base pair"} |
 | function | string | Yes | {"description": "Annotated biological function of the gene"} |
 
 **Total Rows:** 125914
@@ -28555,8 +28583,8 @@ Total Tables: 830
 | sdt_genome_id | string | No | {"description": "Unique identifier for the genome (Primary key)", "type": "primary_key"} |
 | sdt_genome_name | string | No | {"description": "Unique name of the genome", "type": "unique_key"} |
 | sdt_strain_name | string | Yes | {"description": "Name of the microbial strain associated with the genome (foreign key)", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
-| n_contigs_count_unit | int | No | {"description": "Number of contigs in the genome assembly", "unit": "count unit"} |
-| n_features_count_unit | int | No | {"description": "Number of annotated features (e.g., genes) in the genome", "unit": "count unit"} |
+| n_contigs_count_unit | bigint | No | {"description": "Number of contigs in the genome assembly", "unit": "count unit"} |
+| n_features_count_unit | bigint | No | {"description": "Number of annotated features (e.g., genes) in the genome", "unit": "count unit"} |
 | link | string | No | {"description": "Link to where the genome itself is actually stored"} |
 
 **Total Rows:** 7795
@@ -28585,11 +28613,11 @@ Total Tables: 830
 | sdt_image_name | string | No | {"description": "Unique name (e.g., filename) for the image.", "type": "unique_key"} |
 | sdt_image_description | string | Yes | {"description": "Textual description of the image"} |
 | mime_type | string | Yes | {"description": "MIME type specifying the image file format (e.g., image/jpeg)"} |
-| size_byte | int | Yes | {"description": "File size of the image measured in bytes", "unit": "byte"} |
+| size_byte | bigint | Yes | {"description": "File size of the image measured in bytes", "unit": "byte"} |
 | dimensions | string | Yes | {"description": "Image dimensions (e.g., width \u00d7 height) expressed in pixels", "unit": "image resolution unit"} |
 | link | string | Yes | {"description": "URL or file path linking to the stored image"} |
 
-**Total Rows:** 222
+**Total Rows:** 353
 
 ### Sample Data (5 rows)
 
@@ -28652,7 +28680,7 @@ Total Tables: 830
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 71
+**Total Rows:** 74
 
 ### Sample Data (5 rows)
 
@@ -28676,7 +28704,7 @@ Total Tables: 830
 |-------------|-----------|----------|----------|
 | sdt_reads_id | string | No | {"description": "Unique identifier for each reads dataset (Primary key)", "type": "primary_key"} |
 | sdt_reads_name | string | No | {"description": "Unique name for the reads", "type": "unique_key"} |
-| read_count_count_unit | int | No | {"description": "Number of reads", "unit": "count unit"} |
+| read_count_count_unit | bigint | No | {"description": "Number of reads", "unit": "count unit"} |
 | read_type_sys_oterm_id | string | No | {"description": "Category of reads (e.g., single-end, paired-end), ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | read_type_sys_oterm_name | string | No | {"description": "Category of reads (e.g., single-end, paired-end)"} |
 | sequencing_technology_sys_oterm_id | string | No | {"description": "Sequencing technology used (e.g., Illumina), ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
@@ -28719,7 +28747,7 @@ Total Tables: 830
 | env_package_sys_oterm_name | string | No | {"description": "MIxS environmental package classification of the sample"} |
 | sdt_sample_description | string | Yes | {"description": "Free-form description or notes about the sample"} |
 
-**Total Rows:** 4728
+**Total Rows:** 4731
 
 ### Sample Data (5 rows)
 
@@ -28800,10 +28828,10 @@ Total Tables: 830
 | sdt_tnseq_library_name | string | No | {"description": "Unique, human-readable name of the TnSeq library", "type": "unique_key"} |
 | sdt_genome_name | string | No | {"description": "Foreign key to the associated genome (Genome.name) from which the library was derived", "type": "foreign_key", "references": "sdt_genome.sdt_genome_name"} |
 | primers_model | string | No | {"description": "Type of primers used to generate the library"} |
-| n_mapped_reads_count_unit | int | Yes | {"description": "Number of reads that mapped to the reference genome", "unit": "count unit"} |
-| n_barcodes_count_unit | int | Yes | {"description": "Total number of distinct barcode sequences detected in the library", "unit": "count unit"} |
-| n_usable_barcodes_count_unit | int | Yes | {"description": "Number of barcodes deemed usable after quality filtering", "unit": "count unit"} |
-| n_insertion_locations_count_unit | int | Yes | {"description": "Number of distinct transposon insertion sites identified in the library", "unit": "count unit"} |
+| n_mapped_reads_count_unit | bigint | Yes | {"description": "Number of reads that mapped to the reference genome", "unit": "count unit"} |
+| n_barcodes_count_unit | bigint | Yes | {"description": "Total number of distinct barcode sequences detected in the library", "unit": "count unit"} |
+| n_usable_barcodes_count_unit | bigint | Yes | {"description": "Number of barcodes deemed usable after quality filtering", "unit": "count unit"} |
+| n_insertion_locations_count_unit | bigint | Yes | {"description": "Number of distinct transposon insertion sites identified in the library", "unit": "count unit"} |
 | hit_rate_essential_ratio | double | Yes | {"description": "Proportion of essential genes with at least one transposon insertion", "unit": "ratio"} |
 | hit_rate_other_ratio | double | Yes | {"description": "Proportion of non-essential (other) genes with at least one transposon insertion", "unit": "ratio"} |
 
@@ -28873,7 +28901,7 @@ Total Tables: 830
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 101302
+**Total Rows:** 101434
 
 ### Sample Data (5 rows)
 
@@ -28915,7 +28943,7 @@ Total Tables: 830
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 128461
+**Total Rows:** 128607
 
 ### Sample Data (5 rows)
 
@@ -28957,7 +28985,7 @@ Total Tables: 830
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 112482
+**Total Rows:** 112614
 
 ### Sample Data (5 rows)
 

@@ -1,0 +1,4 @@
+name	location	depth	elevation	date	time	timezone	material	env_package	description
+MLSB5-2019-04-16-UF-R11	MLSB5-14.8	4.347972		2019-04-16			ground water <ENVO:00002041>	water <MIxS:0000017>	Walian/Hazen
+MLSB5-2019-04-30-UF-R11	MLSB5-14.8	4.347972		2019-04-30			ground water <ENVO:00002041>	water <MIxS:0000017>	Walian/Hazen
+MLSB5-2019-05-14-UF-R11	MLSB5-14.8	4.347972		2019-05-14			ground water <ENVO:00002041>	water <MIxS:0000017>	Walian/Hazen

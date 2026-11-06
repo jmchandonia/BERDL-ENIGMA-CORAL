@@ -22,7 +22,7 @@
 | variable_oterm_name | string | Yes |
 | original_csv_string | string | Yes |
 
-**Total Rows:** 9712
+**Total Rows:** 9717
 
 ## Data
 
@@ -9234,6 +9234,9 @@
 | Brick0002162 | sdt_location_name | dimension_variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | 1 | ME:0000099 | environmental sample location | 1 | ME:0000228 | environmental sample location ID | dmeta,1,environmental sample location <ME:0000099>,environmental sample location ID <ME:0000228> |
 | Brick0002162 | environmental_sample_location_location | dimension_variable | string | NULL | location | NULL | NULL | 1 | ME:0000099 | environmental sample location | 2 | ME:0000210 | location | dmeta,1,environmental sample location <ME:0000099>,location <ME:0000210> |
 | Brick0002162 | environmental_sample_location_datetime | dimension_variable | string | NULL | datetime | NULL | NULL | 1 | ME:0000099 | environmental sample location | 3 | ME:0000180 | datetime | dmeta,1,environmental sample location <ME:0000099>,datetime <ME:0000180> |
+| Brick0002163 | average_measurement_count_relative_em_grid_window_count_unit | variable | float | NULL | average, measurement=count, relative=EM grid window | UO:0000189 | count unit | NULL | NULL | NULL | 1 | ME:0000147 | average | values,average <ME:0000147>,measurement <ME:0000120>,count <ME:0000126>,relative <ME:0000020>,EM grid window,count unit <UO:0000189> |
+| Brick0002163 | sdt_sample_name | dimension_variable | object_ref | sdt_sample.sdt_sample_name | environmental sample ID | NULL | NULL | 1 | ME:0000100 | environmental sample | 1 | ME:0000102 | environmental sample ID | dmeta,1,environmental sample <ME:0000100>,environmental sample ID <ME:0000102> |
+| Brick0002163 | category | dimension_variable | string | NULL | category | NULL | NULL | 2 | ME:0000013 | category | 1 | ME:0000013 | category | dmeta,2,category <ME:0000013>,category <ME:0000013> |
 | Brick0000019 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,FW-024 |
 | Brick0000020 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,GP01-30 |
 | Brick0000021 | sdt_location_name | variable | object_ref | sdt_location.sdt_location_name | environmental sample location ID | NULL | NULL | NULL | NULL | NULL | NULL | ME:0000228 | Environmental Sample Location ID | array_context,Environmental Sample Location ID <ME:0000228>,FW-304 |
@@ -9740,3 +9743,5 @@
 | Brick0002161 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | variable | oterm_ref | sys_oterm.sys_oterm_id | ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE | NULL | NULL | NULL | NULL | NULL | NULL | ENIGMA:0000029 | ENIGMA Labs and Personnel | array_context,ENIGMA Labs and Personnel <ENIGMA:0000029>,ENIGMA:0000066 |
 | Brick0002162 | enigma_campaign_sys_oterm_id | variable | oterm_ref | sys_oterm.sys_oterm_id | ENIGMA Campaign, ontology term CURIE | NULL | NULL | NULL | NULL | NULL | NULL | ENIGMA:0000002 | ENIGMA Campaign | array_context,ENIGMA Campaign <ENIGMA:0000002>,ENIGMA:0000165 |
 | Brick0002162 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | variable | oterm_ref | sys_oterm.sys_oterm_id | ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE | NULL | NULL | NULL | NULL | NULL | NULL | ENIGMA:0000029 | ENIGMA Labs and Personnel | array_context,ENIGMA Labs and Personnel <ENIGMA:0000029>,ENIGMA:0000066 |
+| Brick0002163 | enigma_campaign_sys_oterm_id | variable | oterm_ref | sys_oterm.sys_oterm_id | ENIGMA Campaign, ontology term CURIE | NULL | NULL | NULL | NULL | NULL | NULL | ENIGMA:0000002 | ENIGMA Campaign | array_context,ENIGMA Campaign <ENIGMA:0000002>,ENIGMA:0000100 |
+| Brick0002163 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | variable | oterm_ref | sys_oterm.sys_oterm_id | ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE | NULL | NULL | NULL | NULL | NULL | NULL | ENIGMA:0000029 | ENIGMA Labs and Personnel | array_context,ENIGMA Labs and Personnel <ENIGMA:0000029>,ENIGMA:0000152 |

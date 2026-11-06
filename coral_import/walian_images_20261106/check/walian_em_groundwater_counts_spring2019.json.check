@@ -1,0 +1,15 @@
+property: data variables type <ME:0000293> = Microbial Abundance <DA:0000018>
+property: ENIGMA Campaign <ENIGMA:0000002> = Spring 2019 Integrated Sampling <ENIGMA:0000100>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Walian Lab <ENIGMA:0000152>
+property: comment <ME:0000011> = Source: 'GW imaging stats.xlsx', sent by Peter Walian to John-Marc Chandonia on 2020-04-17 (copy in the package's source/ folder), described by him as the average number of microbes per EM grid window observed in groundwater from three wells over the five Spring 2019 timepoints; the raw observation tallies are in a student lab notebook at Donner
+property: comment <ME:0000011> = Category 'microbes' is the sheet's unlabelled upper table (columns headed only GW821, MLS and 'Area3 FW100'); it is not the sum of the other categories (for GW821E it is below 'large cells' alone). 'large cells', 'ultra-small cells' and 'phage' are the three tables headed 'Valerie results (entries below are average observations per EM grid window for each of the 5 sampling dates)', labelled 'large cells', 'UMBs' and 'Phage'; the FW100 column of the large-cells table carries the remark 'small large!'
+property: comment <ME:0000011> = Samples are the Walian/Hazen R11 EM bottles of the master field sheet (the three MLSB5 R11 samples of 04-16, 04-30 and 05-14 are added with this package); FW100-20 dates follow the sampling days of that well
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 15
+dim: category <ME:0000013>
+dim_var: category <ME:0000013>
+dim_size: 4
+data_var: average <ME:0000147>; measurement <ME:0000120> = count <ME:0000126>; relative <ME:0000020> = EM grid window (count unit <UO:0000189>)
+composite_microtype: average, measurement=count, relative=EM grid window, count unit
+Generic is OK!

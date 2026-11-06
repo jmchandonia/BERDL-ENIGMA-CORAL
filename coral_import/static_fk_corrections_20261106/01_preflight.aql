@@ -1,0 +1,7 @@
+// Read-only preflight: the one SDT_Assembly row that references a Strain that does not exist.
+LET strain_names = (FOR s IN SDT_Strain RETURN s.name)
+RETURN {
+  target: DOCUMENT("SDT_Assembly/Assembly0000241"),
+  strain_mt66_exists: FIRST(FOR s IN SDT_Strain FILTER s.name == "MT66" RETURN s._key) != null,
+  orphan_assembly_rows: (FOR a IN SDT_Assembly FILTER a.strain NOT IN strain_names RETURN { id: a._key, name: a.name, strain: a.strain })
+}

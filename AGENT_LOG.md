@@ -2292,6 +2292,22 @@ Validation completed before live export:
   TIME equals EPOCH_TIME in Eastern on all 945,384 rows; Firesting DateTime is a separate clock
   within +/-30 s. Deployed to dipa and niya. Note: hazen_aquatroll600_sso_u2_sz1 has only a few
   readings/day since 2026-10-02 (cm side, not touched).
+- 2026-11-06: join/redundancy review of enigma.sso_staging with the user, applied live
+  (`sso_migrate_20261106_links.py`, VERIFY OK; 11 comments synced; load 20261106T213736Z-links OK).
+  New `field_draw_id` (YYYYMMDD-<well-port>-HHMM of the pump start, e.g. 20261006-L7-SZ1-0832):
+  primary key of field_metadata, FK in sample_registry (matched by date + well-port; several draws
+  -> NULL + SAMPLE DRAW AMBIGUOUS email ACTION + state/draw_overrides.json) and in result tables.
+  Dropped as derivable/constant: field sample_date, pump_time_on/off; registry assay_token,
+  source_sample_id; toc source_sample_id, storage_condition, timepoint, sample_date, well_port, zone;
+  provenance everywhere (always label + source_file; toc source_file now carries the sheet name).
+  Kept deliberately: well_port (CORAL's SSO bricks carry it as a dimension variable) and timepoint
+  (survives a schedule slip) in registry + field. Result tables = keys + measurements. Oct 6
+  overrides written with the user's OK (no need to ask Kris/Katie): U1-SZ1 all 11 samples -> 0831
+  draw (second row 0.4 L "No samples collected"); M4-SZ1 F01/F8 -> 0941 recollection (5 L filter
+  draw), other 9 -> 0841. Live: 2,783 of 8,090 samples linked (the rest are future slots or
+  unlogged draws), 0 orphans, 144/144 toc rows linked, column_typedef 46 rows, zero drift. One
+  failed run row (20261106T213637Z-links, table_metadata asked toc for sample_date) left in
+  ingest_runs. Deployed to dipa and niya.
 - 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
   corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
   102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
@@ -2356,3 +2372,30 @@ Validation completed before live export:
   the brick's full shape minus never-run replicate slots, e.g. ddt_brick0001670 670,980,
   ddt_brick0002093 222, ddt_brick0000081 209 with three BIGINT tracking-number columns; plus the 8
   static/system tables), 168/168 foreign keys, schema references republished.
+- 2026-11-06: image tranche. Findings: the full pilot-core micro-CT data (14 ALS 8.3.2 reconstructions,
+  2,160 slices each, 742 GB, tomopy scripts) are in ~/data/enigma/walian/microCT (Peter Walian's HDD,
+  Dec 2019; /h is 100% full) - being moved to dipa:/data/edr/images/walian_sediment_microct/ by an ssh
+  pull on dipa (ipa's uplink caps at ~7-9 MB/s, ~1 day); "Gregs messing around" copies deleted per the
+  user. The dm4 is a 2024 Tecnai low-mag image of "E16A2 grid A6" (unknown sample; not loaded). Spring
+  2019 groundwater EM = Walian/Hazen R11 bottles; Peter's 2020-04-17 "GW imaging stats.xlsx" (from the
+  mailbox) became Brick0002163. The 36 numbered AODC images = sample numbers of the upload workbook
+  (user agreed). Package coral_import/walian_images_20261106 loaded: Samples MLSB5-2019-04-16/04-30/
+  05-14-UF-R11 (Sample0004848-50), Protocol0000072-74, Image0000223-0000353 (131), Brick0002163,
+  Image processes (11 TEM, 24 micro-CT, 51 groundwater, 45 AODC) + Assay Cell Counts; notebook 114
+  cells. EDR: 152 files copied on dipa, 131 manifest rows (in_coral), 14 stack folders pre-created;
+  README updated. coral_metadata.load_images_manifest accepts directories.
+- 2026-11-06: sync-20261106-140801 for the image package: first run failed on sdt_image because the
+  micro-CT stack sizes (5.7e10 bytes) overflow INT; coral_metadata.schema_type now maps CORAL `int` to
+  BIGINT for static/system tables (seven sdt_* tables with int columns reload once with the new type).
+  The manifest check also needed the ten selected slices placed in the EDR stack folders ahead of the
+  rsync (identical files; rsync skips them).
+- 2026-11-06: sync-20261106-140801 loaded all 15 tables but failed the FK gate on a pre-existing CORAL
+  defect: SDT_Assembly Assembly0000241 (MT66-resequenced.contigs) -> Strain "MT66-resequenced" (does
+  not exist; twin of the Genome0000241 fix of 2026-10-01). With the user's OK applied the guarded
+  one-row AQL update (strain -> MT66) via a hub session kernel, verified 0 orphans, recorded it in the
+  notebook; coral_import/static_fk_corrections_20261106. Re-exporting for a fresh sync run.
+- 2026-11-06: sync-20261106-145216 after the Assembly correction: sdt_assembly reloaded (3,427 rows),
+  1/1 foreign key, schema references republished (the image package's tables went in with
+  sync-20261106-140801: ddt_brick0002163 60 rows, sdt_image 353 incl. 14 stack links to EDR folders,
+  sdt_sample 4,731, sdt_protocol 74, process tables; seven static tables now BIGINT-typed). Micro-CT
+  copy to dipa at ~18 MB/s; verification, local deletion, niya replica and the EDR->MinIO mirror follow.

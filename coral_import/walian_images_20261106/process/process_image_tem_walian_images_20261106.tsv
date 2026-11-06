@@ -1,0 +1,12 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT10SED-ZU-DA244	Image: CPT10SED-ZU-DA244-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT19SED-ZC-DB411	Image: CPT19SED-ZC-DB411-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT21SED-ZC-DC366	Image: CPT21SED-ZC-DC366-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT26SED-ZC-DC579	Image: CPT26SED-ZC-DC579-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT52SED-ZC-DB324	Image: CPT52SED-ZC-DB324-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT63SED-ZC-DA366	Image: CPT63SED-ZC-DA366-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT63SED-ZS-DB382	Image: CPT63SED-ZS-DB382-tem-1.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT63SED-ZS-DB382	Image: CPT63SED-ZS-DB382-tem-2.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT65SED-ZC-DB409	Image: CPT65SED-ZC-DB409-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT69SED-ZS-DB579	Image: CPT69SED-ZS-DB579-tem.jpg
+Image <PROCESS:0000047>	Walian Lab <ENIGMA:0000152>	Cone Penetrometer Survey <ENIGMA:0000165>	walian-tem-cpt-sediment-wash-2021	2021-05-29	2021-05-29	Sample: CPT15SED-ZC-DB366	Image: CPT15SED-ZC-DB366-tem.jpg

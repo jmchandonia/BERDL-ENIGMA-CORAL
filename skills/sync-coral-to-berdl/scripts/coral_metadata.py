@@ -192,7 +192,7 @@ def schema_type(scalar_type: str) -> str:
     if st in {"text", "term"}:
         return "STRING"
     if st == "int":
-        return "INT"
+        return "BIGINT"  # CORAL ints are unbounded (Image.size of a micro-CT stack is 5.7e10)
     if st in {"float", "double"}:
         return "DOUBLE"
     if st == "bool":
@@ -682,7 +682,7 @@ def load_images_manifest() -> dict[str, dict[str, str]]:
         with path.open(newline="", encoding="utf-8") as handle:
             for entry in csv.DictReader(handle, delimiter="\t"):
                 rows[entry["coral_image_name"]] = entry
-                if not (path.parent / entry["path"]).is_file():
+                if not (path.parent / entry["path"]).exists():  # a file, or a directory for an image stack
                     raise FileNotFoundError(f"EDR images manifest lists a missing file: {entry['path']}")
         _images_manifest_cache = rows
     return _images_manifest_cache

@@ -1,0 +1,268 @@
+{
+ "name": "walian_em_groundwater_counts_spring2019.hndarray",
+ "description": "Walian Lab transmission electron microscopy tallies of groundwater from GW821E, MLSB5 and FW100-20 at the five Spring 2019 Integrated Sampling timepoints: average observations per EM grid window of microbes, large cells, ultra-small cells and phage",
+ "data_type": {
+  "term_name": "Microbial Abundance",
+  "oterm_ref": "DA:0000018",
+  "oterm_name": "Microbial Abundance"
+ },
+ "array_context": [
+  {
+   "value_type": {
+    "term_name": "data variables type",
+    "oterm_ref": "ME:0000293",
+    "oterm_name": "data variables type"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "DA:0000018",
+    "string_value": "Microbial Abundance"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "ENIGMA Campaign",
+    "oterm_ref": "ENIGMA:0000002",
+    "oterm_name": "ENIGMA Campaign"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "ENIGMA:0000100",
+    "string_value": "Spring 2019 Integrated Sampling"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "ENIGMA Labs and Personnel",
+    "oterm_ref": "ENIGMA:0000029",
+    "oterm_name": "ENIGMA Labs and Personnel"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "ENIGMA:0000152",
+    "string_value": "Walian Lab"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Source: 'GW imaging stats.xlsx', sent by Peter Walian to John-Marc Chandonia on 2020-04-17 (copy in the package's source/ folder), described by him as the average number of microbes per EM grid window observed in groundwater from three wells over the five Spring 2019 timepoints; the raw observation tallies are in a student lab notebook at Donner"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Category 'microbes' is the sheet's unlabelled upper table (columns headed only GW821, MLS and 'Area3 FW100'); it is not the sum of the other categories (for GW821E it is below 'large cells' alone). 'large cells', 'ultra-small cells' and 'phage' are the three tables headed 'Valerie results (entries below are average observations per EM grid window for each of the 5 sampling dates)', labelled 'large cells', 'UMBs' and 'Phage'; the FW100 column of the large-cells table carries the remark 'small large!'"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Samples are the Walian/Hazen R11 EM bottles of the master field sheet (the three MLSB5 R11 samples of 04-16, 04-30 and 05-14 are added with this package); FW100-20 dates follow the sampling days of that well"
+   }
+  }
+ ],
+ "n_dimensions": 2,
+ "dim_context": [
+  {
+   "data_type": {
+    "term_name": "environmental sample",
+    "oterm_ref": "ME:0000100",
+    "oterm_name": "environmental sample"
+   },
+   "size": 15,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "environmental sample ID",
+      "oterm_ref": "ME:0000102",
+      "oterm_name": "environmental sample ID"
+     },
+     "values": {
+      "scalar_type": "object_ref",
+      "object_refs": [
+       "GW821E-2019-03-18-UF-R11",
+       "GW821E-2019-04-01-UF-R11",
+       "GW821E-2019-04-15-UF-R11",
+       "GW821E-2019-04-29-UF-R11",
+       "GW821E-2019-05-13-UF-R11",
+       "MLSB5-2019-03-19-UF-R11",
+       "MLSB5-2019-04-02-UF-R11",
+       "MLSB5-2019-04-16-UF-R11",
+       "MLSB5-2019-04-30-UF-R11",
+       "MLSB5-2019-05-14-UF-R11",
+       "FW100-20-2019-03-20-UF-R11",
+       "FW100-20-2019-04-03-UF-R11",
+       "FW100-20-2019-04-17-UF-R11",
+       "FW100-20-2019-05-01-UF-R11",
+       "FW100-20-2019-05-15-UF-R11"
+      ],
+      "string_values": [
+       "GW821E-2019-03-18-UF-R11",
+       "GW821E-2019-04-01-UF-R11",
+       "GW821E-2019-04-15-UF-R11",
+       "GW821E-2019-04-29-UF-R11",
+       "GW821E-2019-05-13-UF-R11",
+       "MLSB5-2019-03-19-UF-R11",
+       "MLSB5-2019-04-02-UF-R11",
+       "MLSB5-2019-04-16-UF-R11",
+       "MLSB5-2019-04-30-UF-R11",
+       "MLSB5-2019-05-14-UF-R11",
+       "FW100-20-2019-03-20-UF-R11",
+       "FW100-20-2019-04-03-UF-R11",
+       "FW100-20-2019-04-17-UF-R11",
+       "FW100-20-2019-05-01-UF-R11",
+       "FW100-20-2019-05-15-UF-R11"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "data_type": {
+    "term_name": "category",
+    "oterm_ref": "ME:0000013",
+    "oterm_name": "category"
+   },
+   "size": 4,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "category",
+      "oterm_ref": "ME:0000013",
+      "oterm_name": "category"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "microbes",
+       "large cells",
+       "ultra-small cells",
+       "phage"
+      ]
+     },
+     "value_context": []
+    }
+   ]
+  }
+ ],
+ "typed_values": [
+  {
+   "value_type": {
+    "term_name": "average",
+    "oterm_ref": "ME:0000147",
+    "oterm_name": "average"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     6.4,
+     8.67,
+     3.17,
+     2.33,
+     2.0,
+     3.66,
+     1.83,
+     1.5,
+     3.6,
+     3.17,
+     1.33,
+     0.5,
+     1.8,
+     4.0,
+     1.0,
+     1.33,
+     6.1,
+     5.5,
+     1.33,
+     3.67,
+     1.0,
+     1.17,
+     2.33,
+     0.67,
+     2.4,
+     0.83,
+     3.5,
+     0.5,
+     1.4,
+     3.0,
+     5.17,
+     4.5,
+     2.5,
+     1.83,
+     3.33,
+     0.33,
+     1.5,
+     2.0,
+     3.33,
+     2.67,
+     4.67,
+     4.67,
+     1.0,
+     0.0,
+     1.17,
+     1.17,
+     0.17,
+     0.0,
+     3.33,
+     3.33,
+     1.0,
+     0.0,
+     4.17,
+     4.17,
+     0.83,
+     0.0,
+     2.5,
+     2.5,
+     0.0,
+     0.0
+    ]
+   },
+   "value_units": {
+    "term_name": "count unit",
+    "oterm_ref": "UO:0000189",
+    "oterm_name": "count unit"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000126",
+      "string_value": "count"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "EM grid window"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -48,7 +48,7 @@ session scratchpad under `gdrive/` (`index.jsonl`, `documents.tsv`,
 | --- | --- | --- | --- |
 | `Pilot Project Data Log.xlsx` | Index of lab results: FvN nitrate respiration (N2O/NH4), Majumder SRB silver-wire assays, others (15 rows) | linked (Google Drive file ids ×10) | partly: Stahl acetylene (`stahl_corepilot_acetylene`), Wall sulfide (`wall_corepilot_sulfide_106/271`) are in CORAL; the linked raw FvN and Majumder files were not resolvable from the mirror. |
 | `ENIGMA Field Sample data from Hazen Lab.docx` | Pointer document | linked (enigma.lbl.gov/data/field, Dropbox `ENIGMA_ORNL_FieldSampling`, Drive) | n/a (100WS field data already in `hazen_field_100ws`, `hazen_insitu_100ws`, `hazen_insitu_hach_100ws`) |
-| 415 `.tiff`, `.dm4`, 9 `.xls`, 9 `fastq.gz` in folder | EM images and raw amplicon reads for pilot cores | files in folder | images: not in CORAL; reads: Zhou OTU tables in CORAL (`zhou_otu_count_corepilot_106/271`, `zhou_otu_id_corepilot`) |
+| 415 `.tiff`, `.dm4`, 9 `.xls`, 9 `fastq.gz` in folder | EM images and raw amplicon reads for pilot cores | files in folder | micro-CT **loaded** 2026-11-06 (all 14 ALS 8.3.2 reconstructions, 742 GB from ~/data/enigma/walian/microCT, as EDR stacks + 10 slices; the Drive holds a subset); the `.dm4` (2024 Tecnai image of 'E16A2 grid A6', sample unknown) not loaded; reads: Zhou OTU tables in CORAL (`zhou_otu_count_corepilot_106/271`, `zhou_otu_id_corepilot`) |
 
 Core Pilot lab data confirmed in CORAL: Adams metals, Hazen XRF (major/trace/U),
 Hazen AODC (raw + processed), Fields DAPI/BONCAT, Northen raw metabolomics,
@@ -87,7 +87,7 @@ and the Zhou ASV tables, but **no lab-measurement bricks** for this campaign.
 | `Fields Lab/2019SpringSampling_activity_FieldsLab.xlsx` | Per-mL / per-cell activity (ng C/mL/d) | in document | in CORAL (batch C2) |
 | `Fields Lab/2019SpringSampling_18O_2H.xlsx` | Water δ18O / δ2H | in document | in CORAL (batch C2) |
 | `Fields Lab/Spring2019_FieldSampling_DataCompilation.xlsx` | Cross-lab compilation (Fields, Elias, Chakraborty, Adams, Hazen) with STDEV | in document | not in CORAL (derived) |
-| `Hazen Lab/AODC/AODC_Active Sampling 2019_*.xlsx` (3 versions) | AODC counts, 905 rows | in document | in CORAL (batch C1, processed and raw) |
+| `Hazen Lab/AODC/AODC_Active Sampling 2019_*.xlsx` (3 versions) | AODC counts, 905 rows | in document | in CORAL (batch C1, processed and raw); the 45 micrographs loaded 2026-11-06 (36 mapped by workbook sample number) |
 | `Stahl Lab/190618_StableIsotopes_AO_FvN.xlsx` | Ammonia-oxidation stable isotope assays | in document | in CORAL (batch C2) |
 | `Hazen Lab/Field Sheets/2019 Spring Master Spreadsheet(-Metadata).xlsx`, `samples shipped.xlsx` | Sample log incl. DO/ORP/cond/temp field readings | in document | samples in CORAL; field readings not confirmed in a brick |
 | `Hazen Lab/Rad Protection Group_Isotope activity analysis/` (Analysis Log + pdf) | Radiological activity reports | files in folder (pdf) | not in CORAL |
@@ -127,7 +127,7 @@ geochemical CPT data are **not** in CORAL.
 | `AODC 2020 CPT/CPT_sediments_AODC_04062021.xlsx` | AODC on CPT sediments (32 samples, up to 10 fields each; plus 4 micrographs) | in document | **loaded** 2026-11-02 (Brick0002157-0002158, Image0000219-0000222) |
 | `Chakraborty CPT DOC data/waterextract_TOC_Northenmethod.xlsx` + README | Water-extractable DOC (30 samples, mean and SD) | in document | **loaded** 2026-11-02 (Brick0002159) |
 | `Dataset_Revil_et_al./general_files/Resistivity profiles with coord.xlsx` (+ h5/csv) | Electrical resistivity pseudo-sections P1–P17, October 2011 survey (relative coordinates) | in document | deferred: 2011 survey, needs its own campaign and georeferencing |
-| `CPT EM imaging/Readme for CPT imaging.docx` + images | EM images of CPT sediments | files in folder (jpg/tif) | not in CORAL |
+| `CPT EM imaging/Readme for CPT imaging.docx` + images | EM images of CPT sediments | files in folder (jpg/tif) | **loaded** 2026-11-06 (11 Image objects, Walian Lab) |
 | `Zhou lab 16S sequencing/V211127ASV/` (+ ReadMes v20210422/0530/1127, `CPT_metadata_Zhoulab.xlsx`) | CPT sediment ASVs, iCAMP/NST/neutral-model outputs | in document (csv) + linked (Dropbox) | ASVs in CORAL (combined brick); ecological-model outputs are derived |
 | `…/2020 CPT Fugro/Field Samples_Pilot_Spring_27Well_CPTcor.xlsx` | Cross-campaign sample tracking (Pilot, Spring, 27WS, CPT) | in document + linked (Drive ×25, Docs ×4) | samples in CORAL |
 | `…/FTP For SSO Installation/SSO Screens.xlsx`, `Y-12 New Wells.xlsx`, `SSO sediment analysis/SSO Sediment Mastersheet.xlsx`, `SSO_SedimentSampleCollection.xlsx` | SSO well screens, survey coordinates, sediment core inventory | in document | well construction in CORAL (`hazen_oak_ridge_well_construction_data_v3`); core inventory: samples in CORAL |
@@ -325,7 +325,7 @@ No CORAL campaign or sample names correspond to this reactor study.
 | --- | --- | --- | --- |
 | `Walian_EM_isolates.xlsx` (List_All 119×28, Ongoing, Experiments), `Walian_EM_isolates_JMC.xlsx` | EM morphology per isolate (shape, size, S-layer, flagella, …) with image links | in document + linked (Google Drive image files ×110) | partly in CORAL (`isolate_image_data_221011_v2`, 94 rows); 25 newer rows and the image files not |
 | `Images_Subfolders_Intermediate spreadsheets/Isolate Atlas Listing*.xlsx` | Atlas listing (163 rows) | in document + linked (Google Sheet) | partly (same brick) |
-| `Images_Groundwater/<category>/*.tif` (277) | EM images of groundwater cells/viruses by morphotype | files in folder | not in CORAL |
+| `Images_Groundwater/<category>/*.tif` (277) | EM images of groundwater cells/viruses by morphotype | files in folder | 51 Spring 2019 / MLSB6 crops **loaded** 2026-11-06 (R11 samples; Peter Walian's stats sheet = Brick0002163); 122 method-trial crops (FW215/FW213 2018, UMB grids) not stored |
 
 ### PPI data
 

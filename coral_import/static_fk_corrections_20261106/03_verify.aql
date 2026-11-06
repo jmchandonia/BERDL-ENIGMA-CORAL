@@ -1,0 +1,7 @@
+// Read-only verification. Success: assembly_ok = true, orphan_assembly_rows = 0.
+LET strain_names = (FOR s IN SDT_Strain RETURN s.name)
+LET a = DOCUMENT("SDT_Assembly/Assembly0000241")
+RETURN {
+  assembly_ok: a != null AND a.strain == "MT66",
+  orphan_assembly_rows: LENGTH(FOR x IN SDT_Assembly FILTER x.strain NOT IN strain_names RETURN 1)
+}

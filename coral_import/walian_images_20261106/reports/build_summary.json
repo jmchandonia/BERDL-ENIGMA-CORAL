@@ -1,0 +1,585 @@
+{
+ "release": "20261106",
+ "images": {
+  "tem": 11,
+  "microct_stacks": 14,
+  "microct_slices": 10,
+  "groundwater": 51,
+  "aodc_spring2019": 45
+ },
+ "new_samples": [
+  "MLSB5-2019-04-16-UF-R11",
+  "MLSB5-2019-04-30-UF-R11",
+  "MLSB5-2019-05-14-UF-R11"
+ ],
+ "brick": {
+  "name": "walian_em_groundwater_counts_spring2019.hndarray",
+  "shape": [
+   15,
+   4
+  ]
+ },
+ "groundwater_skipped": [
+  [
+   "MLS thin2 spores 0010.tif",
+   "Bacterial Spores"
+  ],
+  [
+   "MLS thin2 spores 0011.tif",
+   "Bacterial Spores"
+  ],
+  [
+   "MLS thin2 spores 0014.tif",
+   "Bacterial Spores"
+  ],
+  [
+   "MLS thin grid 0011.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "MLS thin grid 0013.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "MLS thin grid 0022.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "MLS thin grid3 0002.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "MLS thin grid3 0003.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "UMB thin 4 G3 0006.tif",
+   "Cell-cell interactions"
+  ],
+  [
+   "FW215 4 conc UA 0015.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "FW215 4 conc UA 0018.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "FW215 recheck 0005.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "FW215 recheck 0007.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "FW215 std Mg grid 0003.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "GW821 4 01rvs 0005.tif",
+   "Extracellular Structures"
+  ],
+  [
+   "New FW215 wash 0008.tif",
+   "FW215 global view"
+  ],
+  [
+   "0.2um UMB revisit 0003.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "0.2um no wash 0009.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "0_2um UMB revisit 0003.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "EVO216r 0003.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "FW215 3 unconc 0001.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "FW215 3 unconc 0002.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "FW215 4 conc UA 0009.tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "FW215 H2O exch recheck 0004 .tif",
+   "Large cell (>1um)"
+  ],
+  [
+   "FW215 4 conc UA 0002.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "FW215 4 conc UA 0005.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "FW215 H2O ex Mg grid 0003.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "FW215 conc 1 MG rvs 0001.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0001.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "FW215 wash 0005.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "New FW215 wash 0005.tif",
+   "Mid-sized cell"
+  ],
+  [
+   "0.2um UMB revisit 0009.tif",
+   "Myovirus"
+  ],
+  [
+   "Orig 215 4 5 18 0.2 no rinse 0010.tif",
+   "Myovirus"
+  ],
+  [
+   "Orig 215 grid 4 5 18 0.2 no rinse 0010.tif",
+   "Myovirus"
+  ],
+  [
+   "FW215 std Mg grid 0008.tif",
+   "Other Virus (archaeal)"
+  ],
+  [
+   "UMB thin 3 0007.tif",
+   "Other Virus (archaeal)"
+  ],
+  [
+   "UMB thin1 0008.tif",
+   "Other Virus (archaeal)"
+  ],
+  [
+   "UMB thin1 0009.tif",
+   "Other Virus (archaeal)"
+  ],
+  [
+   "UMB thin3 0008.tif",
+   "Other Virus (giant)"
+  ],
+  [
+   "FW215 4 conc UA 0001.tif",
+   "Other Viruses (filamentous)"
+  ],
+  [
+   "FW215 recheck 0007.tif",
+   "Other Viruses (filamentous)"
+  ],
+  [
+   "FW215 std Mg grid 0002.tif",
+   "Other Viruses (filamentous)"
+  ],
+  [
+   "New FW215 wash 0008.tif",
+   "Other Viruses (filamentous)"
+  ],
+  [
+   "Large virus 0002.tif",
+   "Other Viruses (giant hex like)"
+  ],
+  [
+   "Large virus 0006.tif",
+   "Other Viruses (giant hex like)"
+  ],
+  [
+   "FW215 new no rinse 0001.tif",
+   "Other Viruses (star-like)"
+  ],
+  [
+   "FW215 3 preUA 0001.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "FW215 H2O exch recheck 0003.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "FW215 preUA 0007.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "FW215 recheck 0006.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "FW215 std Mg grid 0001.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "FW215recheck 0006.tif",
+   "Other viruses (enveloped?)"
+  ],
+  [
+   "0.2um UMB revisit 0007.tif",
+   "Podovirus"
+  ],
+  [
+   "0.2um UMB revisit 0012.tif",
+   "Podovirus"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0013.tif",
+   "Podovirus"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0014.tif",
+   "Podovirus"
+  ],
+  [
+   "UMB thin2 0005.tif",
+   "Protists"
+  ],
+  [
+   "0.2um UMB revisit 0008.tif",
+   "Siphovirus"
+  ],
+  [
+   "0.2um UMB revisit 0014.tif",
+   "Siphovirus"
+  ],
+  [
+   "0_2um UMB revisit 0014.tif",
+   "Siphovirus"
+  ],
+  [
+   "0_2um UMB revisti 0008.tif",
+   "Siphovirus"
+  ],
+  [
+   "Large virus 0003.tif",
+   "Siphovirus"
+  ],
+  [
+   "Orig 215 grid 4 5 18 0.2 no rinse 0009.tif",
+   "Siphovirus"
+  ],
+  [
+   "Orig 215 grid 4 5 18 02 no rinse 0009.tif",
+   "Siphovirus"
+  ],
+  [
+   "UMB thin 1 0004.tif",
+   "Storage Structures"
+  ],
+  [
+   "L8 SZ2 0003.tif",
+   "Tailocin"
+  ],
+  [
+   "FW215 4 conc UA 0014.tif",
+   "Ultra-small cell (odd)"
+  ],
+  [
+   "FW215 H2O EX 2UA 0015.tif",
+   "Ultra-small cell (odd)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0004.tif",
+   "Ultra-small cell (odd)"
+  ],
+  [
+   "FW215 4 conc UA 0005.tif",
+   "Ultra-small cell (oval w:pili)"
+  ],
+  [
+   "FW215 std Mg grid 0011.tif",
+   "Ultra-small cell (oval w:pili)"
+  ],
+  [
+   "New FW215 wash 0007.tif",
+   "Ultra-small cell (oval w:pili)"
+  ],
+  [
+   "FW215 4 conc UA 0011.tif",
+   "Ultra-small cell (oval)"
+  ],
+  [
+   "FW215 std Mg grid 0013.tif",
+   "Ultra-small cell (oval)"
+  ],
+  [
+   "UMB search MLS 4 30 0002.tif",
+   "Ultra-small cell (oval)"
+  ],
+  [
+   "UMB search MLS 4 30 0005.tif",
+   "Ultra-small cell (oval)"
+  ],
+  [
+   "0.2um UMB revisit 0009.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "0.2um UMB revisit 0011.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "0.2um no wash 0010.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW213 20000 x 0001.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW213 20000x0003.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 3 preUA 0005.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 3 preUA 0009.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0003.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0008.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0010.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0013.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0016.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 4 conc UA 0017.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 H2O exch recheck 0002.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 H2O exch recheck 0005.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0009.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0010.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0015.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 recheck 0001.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 recheck 0002.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 recheck 0008.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 recheck 0010.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 std Mg grid 0005.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 std Mg grid 0007.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 std Mg grid 0012.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0001.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0003.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0006.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0007.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0011.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "UMB search MLS 4 30 0012.tif",
+   "Ultra-small cell (type 1)"
+  ],
+  [
+   "FW215 3 preUA 0004.tif",
+   "Ultra-small cell (type 2)"
+  ],
+  [
+   "FW215 3 preUA 0006.tif",
+   "Ultra-small cell (type 2)"
+  ],
+  [
+   "FW215 3 preUA 0010.tif",
+   "Ultra-small cell (type 2)"
+  ],
+  [
+   "FW215 4 conc UA 0006.tif",
+   "Ultra-small cell (type 2)"
+  ],
+  [
+   "FW215 4 conc UA 0012.tif",
+   "Ultra-small cell (type 2)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0006.tif",
+   "Ultra-small cell (type1:type2, S layer)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0011.tif",
+   "Ultra-small cell (type1:type2, S layer)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0012.tif",
+   "Ultra-small cell (type1:type2, S layer)"
+  ],
+  [
+   "FW215 std Mg grid 0009.tif",
+   "Ultra-small cell (type1:type2, S layer)"
+  ],
+  [
+   "New FW215 wash 0009.tif",
+   "Ultra-small cell (type1:type2, S layer)"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0006.tif",
+   "Ultra-small cells w:viruses"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0007.tif",
+   "Ultra-small cells w:viruses"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0008.tif",
+   "Ultra-small cells w:viruses"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0017.tif",
+   "Ultra-small cells w:viruses"
+  ],
+  [
+   "FW215 conc 1 Mg rvs 0018.tif",
+   "Ultra-small cells w:viruses"
+  ]
+ ],
+ "gw_values": {
+  "GW821E-2019-03-18-UF-R11|microbes": 6.4,
+  "GW821E-2019-04-01-UF-R11|microbes": 2.0,
+  "GW821E-2019-04-15-UF-R11|microbes": 3.6,
+  "GW821E-2019-04-29-UF-R11|microbes": 1.8,
+  "GW821E-2019-05-13-UF-R11|microbes": 6.1,
+  "MLSB5-2019-03-19-UF-R11|microbes": 1.0,
+  "MLSB5-2019-04-02-UF-R11|microbes": 2.4,
+  "MLSB5-2019-04-16-UF-R11|microbes": 1.4,
+  "MLSB5-2019-04-30-UF-R11|microbes": 2.5,
+  "MLSB5-2019-05-14-UF-R11|microbes": 1.5,
+  "FW100-20-2019-03-20-UF-R11|microbes": 4.67,
+  "FW100-20-2019-04-03-UF-R11|microbes": 1.17,
+  "FW100-20-2019-04-17-UF-R11|microbes": 3.33,
+  "FW100-20-2019-05-01-UF-R11|microbes": 4.17,
+  "FW100-20-2019-05-15-UF-R11|microbes": 2.5,
+  "GW821E-2019-03-18-UF-R11|large cells": 8.67,
+  "GW821E-2019-04-01-UF-R11|large cells": 3.66,
+  "GW821E-2019-04-15-UF-R11|large cells": 3.17,
+  "GW821E-2019-04-29-UF-R11|large cells": 4.0,
+  "GW821E-2019-05-13-UF-R11|large cells": 5.5,
+  "MLSB5-2019-03-19-UF-R11|large cells": 1.17,
+  "MLSB5-2019-04-02-UF-R11|large cells": 0.83,
+  "MLSB5-2019-04-16-UF-R11|large cells": 3.0,
+  "MLSB5-2019-04-30-UF-R11|large cells": 1.83,
+  "MLSB5-2019-05-14-UF-R11|large cells": 2.0,
+  "FW100-20-2019-03-20-UF-R11|large cells": 4.67,
+  "FW100-20-2019-04-03-UF-R11|large cells": 1.17,
+  "FW100-20-2019-04-17-UF-R11|large cells": 3.33,
+  "FW100-20-2019-05-01-UF-R11|large cells": 4.17,
+  "FW100-20-2019-05-15-UF-R11|large cells": 2.5,
+  "GW821E-2019-03-18-UF-R11|ultra-small cells": 3.17,
+  "GW821E-2019-04-01-UF-R11|ultra-small cells": 1.83,
+  "GW821E-2019-04-15-UF-R11|ultra-small cells": 1.33,
+  "GW821E-2019-04-29-UF-R11|ultra-small cells": 1.0,
+  "GW821E-2019-05-13-UF-R11|ultra-small cells": 1.33,
+  "MLSB5-2019-03-19-UF-R11|ultra-small cells": 2.33,
+  "MLSB5-2019-04-02-UF-R11|ultra-small cells": 3.5,
+  "MLSB5-2019-04-16-UF-R11|ultra-small cells": 5.17,
+  "MLSB5-2019-04-30-UF-R11|ultra-small cells": 3.33,
+  "MLSB5-2019-05-14-UF-R11|ultra-small cells": 3.33,
+  "FW100-20-2019-03-20-UF-R11|ultra-small cells": 1.0,
+  "FW100-20-2019-04-03-UF-R11|ultra-small cells": 0.17,
+  "FW100-20-2019-04-17-UF-R11|ultra-small cells": 1.0,
+  "FW100-20-2019-05-01-UF-R11|ultra-small cells": 0.83,
+  "FW100-20-2019-05-15-UF-R11|ultra-small cells": 0.0,
+  "GW821E-2019-03-18-UF-R11|phage": 2.33,
+  "GW821E-2019-04-01-UF-R11|phage": 1.5,
+  "GW821E-2019-04-15-UF-R11|phage": 0.5,
+  "GW821E-2019-04-29-UF-R11|phage": 1.33,
+  "GW821E-2019-05-13-UF-R11|phage": 3.67,
+  "MLSB5-2019-03-19-UF-R11|phage": 0.67,
+  "MLSB5-2019-04-02-UF-R11|phage": 0.5,
+  "MLSB5-2019-04-16-UF-R11|phage": 4.5,
+  "MLSB5-2019-04-30-UF-R11|phage": 0.33,
+  "MLSB5-2019-05-14-UF-R11|phage": 2.67,
+  "FW100-20-2019-03-20-UF-R11|phage": 0.0,
+  "FW100-20-2019-04-03-UF-R11|phage": 0.0,
+  "FW100-20-2019-04-17-UF-R11|phage": 0.0,
+  "FW100-20-2019-05-01-UF-R11|phage": 0.0,
+  "FW100-20-2019-05-15-UF-R11|phage": 0.0
+ },
+ "hashes": {
+  "static/Sample_additions_walian_images_20261106.tsv": "5f6d40efd579b1e9976b3696b21ac3cad2b5aea337308e0a192f4769a4772e26",
+  "static/Protocol_additions_walian_images_20261106.tsv": "27017e93be1db87b9a847d1e1d2fd270a1abb5f28792037a61ab6146b5944cb1",
+  "static/Image_additions_walian_images_20261106.tsv": "e55767ed1106fda710386f333953e86ba13121cebd0f0211207568a8418ad285",
+  "json/walian_em_groundwater_counts_spring2019.json": "da06205435f38381a99ce264882acd882aa8e2dd2a05223c6e568ee6cf188c38",
+  "process/process_image_tem_walian_images_20261106.tsv": "98b2d3d83393b9072b2e9da0470af5a285a39b76752261cc9f4b1bf7485acc9d",
+  "process/process_image_microct_walian_images_20261106.tsv": "da4cf3fbf33af6cc42008166a5e4d63f881a60d3ff00bde6641ac7996e19eb86",
+  "process/process_image_groundwater_walian_images_20261106.tsv": "912fc1c8777c7820aecb5bd8a8c95585d412b3570847a6ceacc677c91de1847d",
+  "process/process_image_aodc_walian_images_20261106.tsv": "c691b7099a5b509674346a1fbc1ce45f33a43f93df452f059dc101c123b4f66c",
+  "process/process_assay_cell_counts_walian_images_20261106.tsv": "38b69cc633505eefd24d1122ffc641eff3e9cc9423847e317618f4d3e0ad4046"
+ }
+}

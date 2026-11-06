@@ -1,0 +1,11 @@
+// Guarded update: SDT_Assembly Assembly0000241 (MT66-resequenced.contigs) points at the
+// non-existent Strain "MT66-resequenced"; the other copies of the same KBase object
+// (Assembly0001356 39899/MT66-resequenced.contigs, Assembly0002201) use Strain "MT66", as does
+// Genome0000241 since the 2026-10-01 correction. No write happens unless the document still
+// carries the expected old value.
+LET doc = DOCUMENT("SDT_Assembly/Assembly0000241")
+LET strain_mt66 = FIRST(FOR s IN SDT_Strain FILTER s.name == "MT66" RETURN s._key)
+FILTER doc != null AND doc.name == "MT66-resequenced.contigs" AND doc.strain == "MT66-resequenced" AND strain_mt66 != null
+UPDATE doc WITH { strain: "MT66" } IN SDT_Assembly
+OPTIONS { mergeObjects: true, keepNull: false, ignoreRevs: false }
+RETURN { id: NEW._key, name: NEW.name, old_strain: OLD.strain, new_strain: NEW.strain }

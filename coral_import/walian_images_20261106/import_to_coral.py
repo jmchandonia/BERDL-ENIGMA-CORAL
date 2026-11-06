@@ -1,0 +1,10 @@
+# Stage files_to_import.txt in data_import/data and images_to_install.txt in data_store/images first
+toolx.update_core('Sample_additions_walian_images_20261106.tsv', 'Sample')
+toolx.update_core('Protocol_additions_walian_images_20261106.tsv', 'Protocol')
+toolx.update_core('Image_additions_walian_images_20261106.tsv', 'Image')
+toolx.upload_brick('walian_em_groundwater_counts_spring2019.json')
+toolx.upload_process('Image', 'process_image_tem_walian_images_20261106.tsv')
+toolx.upload_process('Image', 'process_image_microct_walian_images_20261106.tsv')
+toolx.upload_process('Image', 'process_image_groundwater_walian_images_20261106.tsv')
+toolx.upload_process('Image', 'process_image_aodc_walian_images_20261106.tsv')
+toolx.upload_process('Assay Cell Counts', 'process_assay_cell_counts_walian_images_20261106.tsv')

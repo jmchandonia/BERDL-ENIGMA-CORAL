@@ -238,3 +238,14 @@ Decisions: Fugro's per-bore CSVs are the source (the ProbeData sheet duplicates 
 and wait for their own campaign. Remaining CPT items: 2024 borescope results; Putt's sediment metadata depths
 (held for Jinwoo).
 
+## Status 2026-11-06: Walian image sets and Spring 2019 EM tallies loaded (Brick0002163, Image0000223-0000353)
+
+`coral_import/walian_images_20261106/` (built by `tools/build_walian_images_coral_import.py`): 11 CPT sediment
+TEM images, 14 micro-CT reconstruction stacks + 10 slices (ALS 8.3.2, 2017; the full 742 GB from Peter Walian's
+2019 hard drive, moved from ~/data to the EDR), 51 Spring 2019 groundwater EM morphotype crops (R11 bottles;
+three MLSB5 R11 samples added), 45 Spring 2019 AODC micrographs (36 mapped by workbook sample number), and
+`walian_em_groundwater_counts_spring2019` from Peter Walian's 2020-04-17 stats sheet. Not loaded: CPT field
+photos (user decision), 122 groundwater EM method-trial crops, the 2024 dm4 (sample "E16A2" unknown).
+Remaining image items: newer Atlas isolate images (isolate-update thread; names are typos of existing strains
+except GW821-HT25A08 and GW458-12-10-14-LB3).
+

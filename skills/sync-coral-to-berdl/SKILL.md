@@ -70,6 +70,9 @@ path remains available only for a cluster that still accepts Delta.
   and writes `enigma-data-repository/images/<lab>_<subject>_<technique>/<name>`. A CORAL Image
   without a manifest row, or a manifest row without a file, fails the build; add the file and
   its manifest row (and run the EDR `sync_berdl.sh`) before syncing.
+- Static/system table schemas map CORAL `int` to `BIGINT` (CORAL ints are
+  unbounded; `sdt_image.size_byte` holds multi-gigabyte image stacks) and the
+  brick converter infers `long` for integer columns beyond 32 bits.
 - CORAL's CSV export omits data cells that are null, so a dimension entry whose
   every value is null is absent from the data block. `convert_bricks.py` writes
   those entries back as rows with empty value columns (an unmeasured sample,
