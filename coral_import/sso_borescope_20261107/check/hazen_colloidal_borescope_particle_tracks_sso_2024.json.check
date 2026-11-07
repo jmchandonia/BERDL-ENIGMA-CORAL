@@ -1,0 +1,17 @@
+property: data variables type <ME:0000293> = Physical Measurement <DA:0000002>
+property: ENIGMA Campaign <ENIGMA:0000002> = Subsurface Observatory <ENIGMA:0000166>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Hazen Lab <ENIGMA:0000066>
+property: instrument <ME:0000012> = Geotech colloidal borescope
+property: comment <ME:0000011> = Source: the 36 borescope log files in ENIGMA team Google Drive 2024_SSO_Borescope Characterization/Borescope Measurements (YYYYMMDD_<well>-<zone>-<depth ft BTOC>[_Pref].log): one line per tracked colloid with the camera clock (local EST, UTC-5), its azimuth (degrees clockwise from north), speed (um/s) and the number of particles in the frame. Well (location ID), port (location), depth below ground surface and the date of the timestamp identify the measurement; hazen_colloidal_borescope_flow_vectors_sso_2024 holds its casing height, start time, weather and the software's summary
+dim: time series <ME:0000004>
+dim_var: environmental sample location ID <ME:0000228>
+dim_var: location <ME:0000210>
+dim_var: depth <ME:0000219>; top <ME:0000311> = ground surface; bottom <ME:0000312> = borescope (foot <ME:0000310>)
+composite_microtype: depth, top=ground surface, bottom=borescope, foot
+dim_var: datetime <ME:0000180>
+dim_size: 52036
+data_var: azimuth <ME:0000520> (degree <UO:0000185>)
+data_var: velocity <ME:0000519> (micrometer per second <ME:0000521>)
+data_var: count <ME:0000126>; category <ME:0000013> = particles in frame (count unit <UO:0000189>)
+composite_microtype: count, category=particles in frame, count unit
+Generic is OK!

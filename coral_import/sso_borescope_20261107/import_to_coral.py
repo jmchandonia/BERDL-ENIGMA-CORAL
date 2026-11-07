@@ -1,0 +1,5 @@
+# Run on the CORAL hub after staging files_to_import.txt in data_import/data and reloading COMO (coral_import/ontology_update_20261107_borescope)
+toolx.update_core('Protocol_additions_sso_borescope_20261107.tsv', 'Protocol')
+toolx.upload_brick('hazen_colloidal_borescope_flow_vectors_sso_2024.json')
+toolx.upload_brick('hazen_colloidal_borescope_particle_tracks_sso_2024.json')
+toolx.upload_process('Assay Environment', 'process_assay_environment_sso_borescope_20261107.tsv')

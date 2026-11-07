@@ -1,0 +1,53 @@
+property: data variables type <ME:0000293> = Physical Measurement <DA:0000002>
+property: ENIGMA Campaign <ENIGMA:0000002> = Subsurface Observatory <ENIGMA:0000166>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Hazen Lab <ENIGMA:0000066>
+property: instrument <ME:0000012> = Geotech colloidal borescope
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive 2024_SSO_Borescope Characterization/Borescope Measurements: the borescope software's 'Well Analysis Summary' PDF of each measurement (flow vector, direction and speed statistics, data points, start/end time) and the campaign metadata workbook (ports, depths, casing heights, weather, preferential-flow call, samplers). Field test plan: ENIGMA team Google Drive 2024_SSO_Borescope Characterization/FTP_SSO_2024_Borescope and Monitoring Install.docx
+property: comment <ME:0000011> = One row per attempted measurement, identified by well (location ID), port (location), borescope depth below ground surface (feet) and field date: the borescope was stepped 1 ft at a time below the top of casing, so depth BGS = that whole-foot depth minus the port's casing height above ground, which is recorded here. Start time is local EST (UTC-5). Flow vector azimuth (degrees clockwise from north, direction of travel) and velocity (um/s) are the software's estimate; they are null for the two measurements the software judged unreliable (M5-SZ1-21 on 02-08, M5-SZ3-30 on 02-09) and for the three attempts where no colloids were seen (L9-SZ1-18 01-31, L9-SZ2-24 and M4-SZ2-27 02-05), which have no log. The average, median, minimum, maximum and standard deviation of azimuth and velocity over all tracked particles are the software's arithmetic statistics; 'tracked particles' is its data-point count. 'preferential flow' is the samplers' call (the _Pref log files)
+property: comment <ME:0000011> = Workbook discrepancies resolved in favour of the software summaries: 20240205_M4-SZ2-24: workbook says 'No colloids seen' but the log has 1161 readings and the summary a flow vector 335.48/116.93; the summary values are used; 20240226_M5-SZ1-24: workbook vector/speed 191.27/556.84 = the summary's average direction/speed; flow vector used here 321.65/65.84; 20240226_M5-SZ2-26: workbook vector/speed 131.16/197.46 = the summary's average direction/speed; flow vector used here 57.61/73.06; 20240226_M5-SZ2-27: workbook vector/speed 184.04/412.55 = the summary's average direction/speed; flow vector used here 5.32/16.2; 20240226_M5-SZ3-30: workbook vector/speed 214.77/167.89 = the summary's average direction/speed; flow vector used here 234.32/99.19; 20240226_M5-SZ3-31: workbook vector/speed 216.13/180.02 = the summary's average direction/speed; flow vector used here 324.31/72.96; 20240226_M5-SZ3-32: workbook vector/speed 168.72/177.06 = the summary's average direction/speed; flow vector used here 150.98/54.29; 20240226_M5-SZ3-33: workbook vector/speed 167.23/719.26 = the summary's average direction/speed; flow vector used here 102.21/29.15; 20240226_M5-SZ3-35: workbook vector/speed 185.55/174.61 = the summary's average direction/speed; flow vector used here 164.98/38.2; 20240226_M5-SZ3-36: workbook vector/speed 184.41/155.61 = the summary's average direction/speed; flow vector used here 160.15/31.87
+property: comment <ME:0000011> = 'tracked particles' is the summary's data-point count; for 9 measurements the log file (all of whose lines are in the particle-tracks brick) has more lines, by 1-4 lines except M5-SZ2-26 on 02-26 where the summary stops at 4096 points: 20240205_L9-SZ2-26 log 3266 lines, summary 3265 data points; 20240208_M5-SZ1-18 log 418 lines, summary 415 data points; 20240208_M5-SZ2-24 log 2084 lines, summary 2080 data points; 20240209_M5-SZ3-30 log 159 lines, summary 155 data points; 20240209_M5-SZ3-31 log 1351 lines, summary 1350 data points; 20240209_M5-SZ3-32 log 173 lines, summary 170 data points; 20240209_M5-SZ3-34 log 1126 lines, summary 1124 data points; 20240209_M5-SZ3-36 log 129 lines, summary 125 data points; 20240226_M5-SZ2-26 log 5588 lines, summary 4096 data points
+property: comment <ME:0000011> = The individual particle tracks are in hazen_colloidal_borescope_particle_tracks_sso_2024, keyed by the same well, port, depth and date
+dim: environmental sample location <ME:0000099>
+dim_var: environmental sample location ID <ME:0000228>
+dim_var: location <ME:0000210>
+dim_var: depth <ME:0000219>; top <ME:0000311> = ground surface; bottom <ME:0000312> = borescope (foot <ME:0000310>)
+composite_microtype: depth, top=ground surface, bottom=borescope, foot
+dim_var: datetime <ME:0000180>
+dim_var: elevation <ME:0000220>; instrument <ME:0000012> = casing; top <ME:0000311> = casing top; bottom <ME:0000312> = ground surface (foot <ME:0000310>)
+composite_microtype: elevation, instrument=casing, top=casing top, bottom=ground surface, foot
+dim_var: comment <ME:0000011>; category <ME:0000013> = weather
+composite_microtype: comment, category=weather
+dim_var: category <ME:0000013>; category <ME:0000013> = preferential flow
+composite_microtype: category, category=preferential flow
+dim_var: comment <ME:0000011>; category <ME:0000013> = samplers
+composite_microtype: comment, category=samplers
+dim_var: comment <ME:0000011>; category <ME:0000013> = source file
+composite_microtype: comment, category=source file
+dim_size: 39
+data_var: azimuth <ME:0000520>; method <ME:0000007> = borescope flow vector (degree <UO:0000185>)
+composite_microtype: azimuth, method=borescope flow vector, degree
+data_var: velocity <ME:0000519>; method <ME:0000007> = borescope flow vector (micrometer per second <ME:0000521>)
+composite_microtype: velocity, method=borescope flow vector, micrometer per second
+data_var: average <ME:0000147>; measurement <ME:0000120> = azimuth <ME:0000520> (degree <UO:0000185>)
+composite_microtype: average, measurement=azimuth, degree
+data_var: median <ME:0000153>; measurement <ME:0000120> = azimuth <ME:0000520> (degree <UO:0000185>)
+composite_microtype: median, measurement=azimuth, degree
+data_var: minimum <ME:0000151>; measurement <ME:0000120> = azimuth <ME:0000520> (degree <UO:0000185>)
+composite_microtype: minimum, measurement=azimuth, degree
+data_var: maximum <ME:0000152>; measurement <ME:0000120> = azimuth <ME:0000520> (degree <UO:0000185>)
+composite_microtype: maximum, measurement=azimuth, degree
+data_var: standard deviation <ME:0000149>; measurement <ME:0000120> = azimuth <ME:0000520> (degree <UO:0000185>)
+composite_microtype: standard deviation, measurement=azimuth, degree
+data_var: average <ME:0000147>; measurement <ME:0000120> = velocity <ME:0000519> (micrometer per second <ME:0000521>)
+composite_microtype: average, measurement=velocity, micrometer per second
+data_var: median <ME:0000153>; measurement <ME:0000120> = velocity <ME:0000519> (micrometer per second <ME:0000521>)
+composite_microtype: median, measurement=velocity, micrometer per second
+data_var: minimum <ME:0000151>; measurement <ME:0000120> = velocity <ME:0000519> (micrometer per second <ME:0000521>)
+composite_microtype: minimum, measurement=velocity, micrometer per second
+data_var: maximum <ME:0000152>; measurement <ME:0000120> = velocity <ME:0000519> (micrometer per second <ME:0000521>)
+composite_microtype: maximum, measurement=velocity, micrometer per second
+data_var: standard deviation <ME:0000149>; measurement <ME:0000120> = velocity <ME:0000519> (micrometer per second <ME:0000521>)
+composite_microtype: standard deviation, measurement=velocity, micrometer per second
+data_var: count <ME:0000126>; category <ME:0000013> = tracked particles (count unit <UO:0000189>)
+composite_microtype: count, category=tracked particles, count unit
+Generic is OK!

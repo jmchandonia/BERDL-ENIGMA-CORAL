@@ -194,7 +194,7 @@ geochemical CPT data are **not** in CORAL.
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
 | `2024_SSO/DTW_ManualMeasurements_SSO.xlsx` | Manual depth-to-water (ft BGS / BTOC) at 37 ports, 6 surveys 2024-01-31 to 2024-02-28 | in document | in CORAL (`hazen_manual_dtw_sso_2024`) |
-| `Borescope Measurements/2024_SSO_Borescope Characterization_Metadata.xlsx`, `2024020*_<well>.docx` (36 `.log` + 36 `.pdf`) | Colloidal borescope flow-vector results (velocity/direction per depth) | in document (docx tables) + files in folder (log/pdf) + linked (Google Doc) | **not in CORAL (gap)** |
+| `Borescope Measurements/2024_SSO_Borescope Characterization_Metadata.xlsx`, `2024020*_<well>.docx` (36 `.log` + 36 `.pdf`) | Colloidal borescope flow-vector results (velocity/direction per depth) | in document (docx tables) + files in folder (log/pdf) + linked (Google Doc) | in CORAL (`hazen_colloidal_borescope_flow_vectors_sso_2024` Brick0002164, 39 measurements; `hazen_colloidal_borescope_particle_tracks_sso_2024` Brick0002165, 52,036 tracks; 2026-11-07) |
 | `FTP_SSO_2024_Borescope and Monitoring Install.docx` | Plan | linked (HydroVu, Drive) | n/a |
 
 ### 2024_SSO_Pump Test
@@ -354,7 +354,7 @@ Ordered roughly by how self-contained the source tables are.
 | 3 | 2024 SSO Pilot Time Series lab data: Adams metals, Baliga NH4/NO2, Chakraborty IC | `2024_SSO_Pilot Time Series/…` | yes | **loaded** (batch A/B and geochemistry 2024); TOC/TN and 2024-10-14 IC asked of the Chakraborty lab |
 | 4 | 2023 SSO sediment: Adams ICP-MS metals; Northen LC-MS metabolomics (GNPS) | `2023_SSO_Drilling／Sediment Core/2023-Adams-…`, `2023-Northen-…` | yes (sediment samples exist) | **loaded** (batch B2) |
 | 5 | 2023 SSO Initial Well Characterization: metadata, Adams metals, Hazen AODC | `2023_SSO_Initial Well Characterization/` | no samples found | **loaded** (batch B1, 28 ports) |
-| 6 | 2024 manual DTW and 2024 colloidal borescope results | `2024_SSO/DTW_ManualMeasurements_SSO.xlsx`, `2024_SSO_Borescope Characterization/` | locations exist | manual DTW **loaded** (hydrology 2026-10-20); borescope 2024 still a gap (next after CPT) |
+| 6 | 2024 manual DTW and 2024 colloidal borescope results | `2024_SSO/DTW_ManualMeasurements_SSO.xlsx`, `2024_SSO_Borescope Characterization/` | locations exist | manual DTW **loaded** (hydrology 2026-10-20); borescope **loaded** (2026-11-07, Brick0002164-0002165) |
 | 7 | 2026 bromide tracer breakthrough logs (26 csv) | `2026_SSO_Tracer Tests/` | locations exist | **loaded** (hydrology 2026-10-20, 35 TempHion logs incl. M5-VSZ) |
 | 8 | CPT physical data: Fugro probe profiles (50k rows), lithology, water levels, resistivity; CPT sediment AODC and water-extractable DOC | `2020_Cone Penetrometer Sampling/CPT Metadata FINAL/`, `…/AREA 3/`, `AODC 2020 CPT/`, `Chakraborty CPT DOC data/`, `Dataset_Revil_et_al./` | yes (CPT locations/samples) | **loaded** except borescope: probe profiles, soundings and Oct 2020 water levels (2026-11-05), AODC and DOC (2026-11-02); Revil resistivity deferred (2011 survey) |
 | 9 | 27-Well bug-trap 16S and Fields PBR 16S | `2019_Summer／Fall_27-Well Survey/Zhou - 16S sequencing Bug trap samples/`, `Fields - PBR/` | yes | **loaded** (27ws bug traps + PBR, 2026-10-29, Brick0002139-0002145) |

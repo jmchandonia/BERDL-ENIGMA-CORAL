@@ -235,8 +235,8 @@ and `manual-water-level-tape-frc-area3-2020`; processes Process0223185-0223186. 
 Decisions: Fugro's per-bore CSVs are the source (the ProbeData sheet duplicates rows); friction ratio dropped
 (derived, clipped); UTM coordinates not stored; water-level elevations derivable from Brick0001698; the five
 "TG" readings and the two FW114 phantom-port readings excluded. The Revil resistivity data are a 2011 ERT survey
-and wait for their own campaign. Remaining CPT items: 2024 borescope results; Putt's sediment metadata depths
-(held for Jinwoo).
+and wait for their own campaign. Remaining CPT items: Putt's sediment metadata depths (held for Jinwoo); the 2024 SSO borescope results
+were loaded 2026-11-07 (see below).
 
 ## Status 2026-11-06: Walian image sets and Spring 2019 EM tallies loaded (Brick0002163, Image0000223-0000353)
 
@@ -249,3 +249,20 @@ photos (user decision), 122 groundwater EM method-trial crops, the 2024 dm4 (sam
 Remaining image items: newer Atlas isolate images (isolate-update thread; names are typos of existing strains
 except GW821-HT25A08 and GW458-12-10-14-LB3).
 
+
+## Status 2026-11-07: 2024 SSO colloidal borescope loaded (Brick0002164-0002165)
+
+`coral_import/sso_borescope_20261107/` (built by `tools/build_sso_borescope_coral_import.py`):
+`hazen_colloidal_borescope_flow_vectors_sso_2024` (Brick0002164: 39 attempted measurements in SSO-M4/M5/L9 ports
+SZ1-SZ3 at 1-ft steps, 2024-01-31 to 02-26; the software's flow-vector azimuth and velocity, five statistics each,
+tracked-particle count, casing height, weather, preferential-flow call, samplers, source log file) and
+`hazen_colloidal_borescope_particle_tracks_sso_2024` (Brick0002165: 52,036 log lines, azimuth, velocity and
+particles in frame). Protocol0000075 `hazen-colloidal-borescope-sso-2024`; Process0223319 (Assay Environment).
+Decisions: no Samples (modelled like the sonde bricks: Location + port + depth + datetime, no `description` key);
+depth stored below ground surface only (BTOC step minus the per-port casing height, which the brick records);
+statistics and flow vectors taken from the 36 software summaries, not the workbook (the nine 02-26 workbook rows
+hold averages instead of flow vectors; M4-SZ2-24 is mislabelled "no colloids"); 2 unreliable measurements keep
+statistics with null vectors; 3 no-colloid attempts are rows with nulls. COMO patch
+`coral_import/ontology_update_20261107_borescope`: ME:0000519 velocity, ME:0000520 azimuth, ME:0000521 micrometer
+per second, wind speed/direction re-parented, median/minimum/maximum made valid dimension variables. The FTP's 63
+April-May 2023 measurements are not on the Drive (ask Hazen Lab).

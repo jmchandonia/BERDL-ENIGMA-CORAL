@@ -2399,3 +2399,12 @@ Validation completed before live export:
   sync-20261106-140801: ddt_brick0002163 60 rows, sdt_image 353 incl. 14 stack links to EDR folders,
   sdt_sample 4,731, sdt_protocol 74, process tables; seven static tables now BIGINT-typed). Micro-CT
   copy to dipa at ~18 MB/s; verification, local deletion, niya replica and the EDR->MinIO mirror follow.
+- 2026-11-07: 2024 SSO colloidal borescope. COMO patch (velocity ME:0000519, azimuth ME:0000520, micrometer
+  per second ME:0000521; wind speed under velocity, wind direction under azimuth; median/minimum/maximum gain
+  is_valid_dimension_variable because a heterogeneous brick's data variables validate as a dimension) installed
+  on stout and coral-enigma and reloaded with toolx.upload_ontologies (the three benign UBERON errors only).
+  Package coral_import/sso_borescope_20261107 loaded: Brick0002164 (39 flow vectors), Brick0002165 (52,036
+  particle tracks), Protocol0000075, Process0223319; notebook 125 cells. Design per the user: no Samples, key =
+  Location + port + depth BGS + date (no description join), BGS only with casing height kept, statistics from the
+  36 software summaries (workbook 02-26 rows hold averages; M4-SZ2-24 mislabelled), nine logs have 1-4 more lines
+  than the summary's data points (M5-SZ2-26 02-26: 5,588 vs a 4,096 cap).

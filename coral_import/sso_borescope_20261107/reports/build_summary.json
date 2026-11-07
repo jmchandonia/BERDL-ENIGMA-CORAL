@@ -1,0 +1,34 @@
+{
+ "release": "20261107",
+ "measurements": 39,
+ "with_log": 36,
+ "flow_vectors": 34,
+ "tracks": 52036,
+ "workbook_notes": [
+  "20240205_M4-SZ2-24: workbook says 'No colloids seen' but the log has 1161 readings and the summary a flow vector 335.48/116.93; the summary values are used",
+  "20240226_M5-SZ1-24: workbook vector/speed 191.27/556.84 = the summary's average direction/speed; flow vector used here 321.65/65.84",
+  "20240226_M5-SZ2-26: workbook vector/speed 131.16/197.46 = the summary's average direction/speed; flow vector used here 57.61/73.06",
+  "20240226_M5-SZ2-27: workbook vector/speed 184.04/412.55 = the summary's average direction/speed; flow vector used here 5.32/16.2",
+  "20240226_M5-SZ3-30: workbook vector/speed 214.77/167.89 = the summary's average direction/speed; flow vector used here 234.32/99.19",
+  "20240226_M5-SZ3-31: workbook vector/speed 216.13/180.02 = the summary's average direction/speed; flow vector used here 324.31/72.96",
+  "20240226_M5-SZ3-32: workbook vector/speed 168.72/177.06 = the summary's average direction/speed; flow vector used here 150.98/54.29",
+  "20240226_M5-SZ3-33: workbook vector/speed 167.23/719.26 = the summary's average direction/speed; flow vector used here 102.21/29.15",
+  "20240226_M5-SZ3-35: workbook vector/speed 185.55/174.61 = the summary's average direction/speed; flow vector used here 164.98/38.2",
+  "20240226_M5-SZ3-36: workbook vector/speed 184.41/155.61 = the summary's average direction/speed; flow vector used here 160.15/31.87",
+  "20240205_L9-SZ2-26 log 3266 lines, summary 3265 data points",
+  "20240208_M5-SZ1-18 log 418 lines, summary 415 data points",
+  "20240208_M5-SZ2-24 log 2084 lines, summary 2080 data points",
+  "20240209_M5-SZ3-30 log 159 lines, summary 155 data points",
+  "20240209_M5-SZ3-31 log 1351 lines, summary 1350 data points",
+  "20240209_M5-SZ3-32 log 173 lines, summary 170 data points",
+  "20240209_M5-SZ3-34 log 1126 lines, summary 1124 data points",
+  "20240209_M5-SZ3-36 log 129 lines, summary 125 data points",
+  "20240226_M5-SZ2-26 log 5588 lines, summary 4096 data points"
+ ],
+ "hashes": {
+  "static/Protocol_additions_sso_borescope_20261107.tsv": "b5991a440a52630fbdac92f0ddd5650ae019afd898dba0992bb11ff1dde18ae5",
+  "json/hazen_colloidal_borescope_flow_vectors_sso_2024.json": "0bf55295e2e0c21f6e4efec17c325747c1a9371a8cdb42c056136a47b4cbc4e2",
+  "json/hazen_colloidal_borescope_particle_tracks_sso_2024.json": "de1ccfa3df223b5f8776497b6263ed56e03db7d8dee0b1b3fef67b5e81a49d74",
+  "process/process_assay_environment_sso_borescope_20261107.tsv": "c1f53dc2b7d85dbf850482e2da1f19df86569ad8342303b0dadbcc678289de81"
+ }
+}

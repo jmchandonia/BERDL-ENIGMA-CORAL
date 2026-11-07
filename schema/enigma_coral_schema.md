@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 831
+Total Tables: 833
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 831
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1931
+**Total Rows:** 1933
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 831
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9717
+**Total Rows:** 9750
 
 ### Sample Data (5 rows)
 
@@ -28358,6 +28358,85 @@ Total Tables: 831
 
 ---
 
+## Table: ddt_brick0002164
+
+**Table Description:** hazen_colloidal_borescope_flow_vectors_sso_2024.hndarray - Hazen Lab colloidal-borescope groundwater flow vectors in SSO wells M4, M5 and L9 (screens SZ1-SZ3, 1-ft steps), 31 January to 26 February 2024: flow azimuth and velocity with direction and speed statistics for 39 attempted measurements
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| environmental_sample_location_location | string | Yes | {"description": "location"} |
+| environmental_sample_location_depth_top_ground_surface_bottom_borescope_foot | double | Yes | {"description": "depth, top=ground surface, bottom=borescope", "unit": "foot"} |
+| environmental_sample_location_datetime | string | Yes | {"description": "datetime"} |
+| environmental_sample_location_elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | double | Yes | {"description": "elevation, instrument=casing, top=casing top, bottom=ground surface", "unit": "foot"} |
+| environmental_sample_location_comment_category_weather | string | Yes | {"description": "comment, category=weather"} |
+| environmental_sample_location_category_category_preferential_flow | string | Yes | {"description": "category, category=preferential flow"} |
+| environmental_sample_location_comment_category_samplers | string | Yes | {"description": "comment, category=samplers"} |
+| environmental_sample_location_comment_category_source_file | string | Yes | {"description": "comment, category=source file"} |
+| azimuth_method_borescope_flow_vector_degree | double | Yes | {"description": "azimuth, method=borescope flow vector", "unit": "degree"} |
+| velocity_method_borescope_flow_vector_micrometer_per_second | double | Yes | {"description": "velocity, method=borescope flow vector", "unit": "micrometer per second"} |
+| average_measurement_azimuth_degree | double | Yes | {"description": "average, measurement=azimuth", "unit": "degree"} |
+| median_measurement_azimuth_degree | double | Yes | {"description": "median, measurement=azimuth", "unit": "degree"} |
+| minimum_measurement_azimuth_degree | double | Yes | {"description": "minimum, measurement=azimuth", "unit": "degree"} |
+| maximum_measurement_azimuth_degree | double | Yes | {"description": "maximum, measurement=azimuth", "unit": "degree"} |
+| standard_deviation_measurement_azimuth_degree | double | Yes | {"description": "standard deviation, measurement=azimuth", "unit": "degree"} |
+| average_measurement_velocity_micrometer_per_second | double | Yes | {"description": "average, measurement=velocity", "unit": "micrometer per second"} |
+| median_measurement_velocity_micrometer_per_second | double | Yes | {"description": "median, measurement=velocity", "unit": "micrometer per second"} |
+| minimum_measurement_velocity_micrometer_per_second | double | Yes | {"description": "minimum, measurement=velocity", "unit": "micrometer per second"} |
+| maximum_measurement_velocity_micrometer_per_second | double | Yes | {"description": "maximum, measurement=velocity", "unit": "micrometer per second"} |
+| standard_deviation_measurement_velocity_micrometer_per_second | double | Yes | {"description": "standard deviation, measurement=velocity", "unit": "micrometer per second"} |
+| count_category_tracked_particles_count_unit | int | Yes | {"description": "count, category=tracked particles", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 39
+
+### Sample Data (5 rows)
+
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_borescope_foot | environmental_sample_location_datetime | environmental_sample_location_elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | environmental_sample_location_comment_category_weather | environmental_sample_location_category_category_preferential_flow | environmental_sample_location_comment_category_samplers | environmental_sample_location_comment_category_source_file | azimuth_method_borescope_flow_vector_degree | velocity_method_borescope_flow_vector_micrometer_per_second | average_measurement_azimuth_degree | median_measurement_azimuth_degree | minimum_measurement_azimuth_degree | maximum_measurement_azimuth_degree | standard_deviation_measurement_azimuth_degree | average_measurement_velocity_micrometer_per_second | median_measurement_velocity_micrometer_per_second | minimum_measurement_velocity_micrometer_per_second | maximum_measurement_velocity_micrometer_per_second | standard_deviation_measurement_velocity_micrometer_per_second | count_category_tracked_particles_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SSO-M4 | M4-SZ1 | 15.06 | 2024-01-31T12:20:48-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-18_Pref.log | 224.08 | 201.02 | 223.09 | 216.41 | 10.0 | 349.44 | 38.94 | 245.14 | 222.4 | 106.53 | 1096.0 | 97.58 | 634 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-M4 | M4-SZ1 | 16.06 | 2024-01-31T13:18:07-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-19_Pref.log | 176.8 | 345.77 | 177.23 | 177.07 | 42.17 | 265.11 | 22.12 | 368.43 | 367.84 | 152.91 | 3728.69 | 113.72 | 1445 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-M4 | M4-SZ1 | 17.06 | 2024-01-31T13:36:44-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-20_Pref.log | 154.29 | 91.43 | 151.07 | 169.36 | 3.85 | 326.66 | 70.74 | 203.0 | 183.22 | 81.23 | 4717.74 | 156.67 | 1955 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-M4 | M4-SZ1 | 18.06 | 2024-01-31T14:04:49-05:00 | 2.94 | sunny | no | Katie Fitzgerald Walker | 20240131_M4-SZ1-21.log | 209.75 | 25.38 | 213.78 | 169.15 | 44.66 | 356.52 | 101.26 | 174.07 | 157.05 | 91.38 | 2597.17 | 115.52 | 709 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 2.52 | sunny | no | Katie Fitzgerald Walker | 20240131_L9-SZ1-19.log | 80.23 | 200.31 | 125.95 | 102.37 | 0.42 | 353.07 | 89.75 | 301.38 | 209.59 | 93.75 | 2237.6 | 258.35 | 129 | ENIGMA:0000166 | ENIGMA:0000066 |
+
+---
+
+## Table: ddt_brick0002165
+
+**Table Description:** hazen_colloidal_borescope_particle_tracks_sso_2024.hndarray - Hazen Lab colloidal-borescope particle tracks in SSO wells M4, M5 and L9, 31 January to 26 February 2024: azimuth, speed and particles in frame for every tracked colloid (52036 readings in 36 measurements)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+| time_series_location | string | Yes | {"description": "location"} |
+| time_series_depth_top_ground_surface_bottom_borescope_foot | double | Yes | {"description": "depth, top=ground surface, bottom=borescope", "unit": "foot"} |
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| azimuth_degree | double | Yes | {"description": "azimuth", "unit": "degree"} |
+| velocity_micrometer_per_second | double | Yes | {"description": "velocity", "unit": "micrometer per second"} |
+| count_category_particles_in_frame_count_unit | int | Yes | {"description": "count, category=particles in frame", "unit": "count unit"} |
+| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+
+**Total Rows:** 52036
+
+### Sample Data (5 rows)
+
+| sdt_location_name | time_series_location | time_series_depth_top_ground_surface_bottom_borescope_foot | time_series_datetime | azimuth_degree | velocity_micrometer_per_second | count_category_particles_in_frame_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
+|---|---|---|---|---|---|---|---|---|
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 48.1 | 657.1 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 46.3 | 923.7 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 62.4 | 574.4 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 73.6 | 712.0 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 63.3 | 776.8 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -28680,7 +28759,7 @@ Total Tables: 831
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 74
+**Total Rows:** 75
 
 ### Sample Data (5 rows)
 
@@ -28866,7 +28945,7 @@ Total Tables: 831
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 7241
+**Total Rows:** 7244
 
 ### Sample Data (5 rows)
 
@@ -28901,7 +28980,7 @@ Total Tables: 831
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 101434
+**Total Rows:** 101435
 
 ### Sample Data (5 rows)
 
@@ -28943,7 +29022,7 @@ Total Tables: 831
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 128607
+**Total Rows:** 128610
 
 ### Sample Data (5 rows)
 
@@ -28985,7 +29064,7 @@ Total Tables: 831
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 112614
+**Total Rows:** 112616
 
 ### Sample Data (5 rows)
 

@@ -1,0 +1,1658 @@
+{
+ "name": "hazen_colloidal_borescope_flow_vectors_sso_2024.hndarray",
+ "description": "Hazen Lab colloidal-borescope groundwater flow vectors in SSO wells M4, M5 and L9 (screens SZ1-SZ3, 1-ft steps), 31 January to 26 February 2024: flow azimuth and velocity with direction and speed statistics for 39 attempted measurements",
+ "data_type": {
+  "term_name": "Physical Measurement",
+  "oterm_ref": "DA:0000002",
+  "oterm_name": "Physical Measurement"
+ },
+ "array_context": [
+  {
+   "value_type": {
+    "term_name": "data variables type",
+    "oterm_ref": "ME:0000293",
+    "oterm_name": "data variables type"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "DA:0000002",
+    "string_value": "Physical Measurement"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "ENIGMA Campaign",
+    "oterm_ref": "ENIGMA:0000002",
+    "oterm_name": "ENIGMA Campaign"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "ENIGMA:0000166",
+    "string_value": "Subsurface Observatory"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "ENIGMA Labs and Personnel",
+    "oterm_ref": "ENIGMA:0000029",
+    "oterm_name": "ENIGMA Labs and Personnel"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "ENIGMA:0000066",
+    "string_value": "Hazen Lab"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "instrument",
+    "oterm_ref": "ME:0000012",
+    "oterm_name": "instrument"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Geotech colloidal borescope"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Source: ENIGMA team Google Drive 2024_SSO_Borescope Characterization/Borescope Measurements: the borescope software's 'Well Analysis Summary' PDF of each measurement (flow vector, direction and speed statistics, data points, start/end time) and the campaign metadata workbook (ports, depths, casing heights, weather, preferential-flow call, samplers). Field test plan: ENIGMA team Google Drive 2024_SSO_Borescope Characterization/FTP_SSO_2024_Borescope and Monitoring Install.docx"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "One row per attempted measurement, identified by well (location ID), port (location), borescope depth below ground surface (feet) and field date: the borescope was stepped 1 ft at a time below the top of casing, so depth BGS = that whole-foot depth minus the port's casing height above ground, which is recorded here. Start time is local EST (UTC-5). Flow vector azimuth (degrees clockwise from north, direction of travel) and velocity (um/s) are the software's estimate; they are null for the two measurements the software judged unreliable (M5-SZ1-21 on 02-08, M5-SZ3-30 on 02-09) and for the three attempts where no colloids were seen (L9-SZ1-18 01-31, L9-SZ2-24 and M4-SZ2-27 02-05), which have no log. The average, median, minimum, maximum and standard deviation of azimuth and velocity over all tracked particles are the software's arithmetic statistics; 'tracked particles' is its data-point count. 'preferential flow' is the samplers' call (the _Pref log files)"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Workbook discrepancies resolved in favour of the software summaries: 20240205_M4-SZ2-24: workbook says 'No colloids seen' but the log has 1161 readings and the summary a flow vector 335.48/116.93; the summary values are used; 20240226_M5-SZ1-24: workbook vector/speed 191.27/556.84 = the summary's average direction/speed; flow vector used here 321.65/65.84; 20240226_M5-SZ2-26: workbook vector/speed 131.16/197.46 = the summary's average direction/speed; flow vector used here 57.61/73.06; 20240226_M5-SZ2-27: workbook vector/speed 184.04/412.55 = the summary's average direction/speed; flow vector used here 5.32/16.2; 20240226_M5-SZ3-30: workbook vector/speed 214.77/167.89 = the summary's average direction/speed; flow vector used here 234.32/99.19; 20240226_M5-SZ3-31: workbook vector/speed 216.13/180.02 = the summary's average direction/speed; flow vector used here 324.31/72.96; 20240226_M5-SZ3-32: workbook vector/speed 168.72/177.06 = the summary's average direction/speed; flow vector used here 150.98/54.29; 20240226_M5-SZ3-33: workbook vector/speed 167.23/719.26 = the summary's average direction/speed; flow vector used here 102.21/29.15; 20240226_M5-SZ3-35: workbook vector/speed 185.55/174.61 = the summary's average direction/speed; flow vector used here 164.98/38.2; 20240226_M5-SZ3-36: workbook vector/speed 184.41/155.61 = the summary's average direction/speed; flow vector used here 160.15/31.87"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "'tracked particles' is the summary's data-point count; for 9 measurements the log file (all of whose lines are in the particle-tracks brick) has more lines, by 1-4 lines except M5-SZ2-26 on 02-26 where the summary stops at 4096 points: 20240205_L9-SZ2-26 log 3266 lines, summary 3265 data points; 20240208_M5-SZ1-18 log 418 lines, summary 415 data points; 20240208_M5-SZ2-24 log 2084 lines, summary 2080 data points; 20240209_M5-SZ3-30 log 159 lines, summary 155 data points; 20240209_M5-SZ3-31 log 1351 lines, summary 1350 data points; 20240209_M5-SZ3-32 log 173 lines, summary 170 data points; 20240209_M5-SZ3-34 log 1126 lines, summary 1124 data points; 20240209_M5-SZ3-36 log 129 lines, summary 125 data points; 20240226_M5-SZ2-26 log 5588 lines, summary 4096 data points"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "The individual particle tracks are in hazen_colloidal_borescope_particle_tracks_sso_2024, keyed by the same well, port, depth and date"
+   }
+  }
+ ],
+ "n_dimensions": 1,
+ "dim_context": [
+  {
+   "data_type": {
+    "term_name": "environmental sample location",
+    "oterm_ref": "ME:0000099",
+    "oterm_name": "environmental sample location"
+   },
+   "size": 39,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "environmental sample location ID",
+      "oterm_ref": "ME:0000228",
+      "oterm_name": "environmental sample location ID"
+     },
+     "values": {
+      "scalar_type": "object_ref",
+      "object_refs": [
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5"
+      ],
+      "string_values": [
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-L9",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M4",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5",
+       "SSO-M5"
+      ]
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "location",
+      "oterm_ref": "ME:0000210",
+      "oterm_name": "location"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "M4-SZ1",
+       "M4-SZ1",
+       "M4-SZ1",
+       "M4-SZ1",
+       "L9-SZ1",
+       "L9-SZ1",
+       "L9-SZ1",
+       "L9-SZ2",
+       "L9-SZ2",
+       "L9-SZ2",
+       "L9-SZ2",
+       "M4-SZ2",
+       "M4-SZ2",
+       "M4-SZ2",
+       "M4-SZ2",
+       "M5-SZ1",
+       "M5-SZ1",
+       "M5-SZ1",
+       "M5-SZ1",
+       "M5-SZ2",
+       "M5-SZ2",
+       "M5-SZ2",
+       "M5-SZ2",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ1",
+       "M5-SZ2",
+       "M5-SZ2",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3",
+       "M5-SZ3"
+      ]
+     },
+     "value_context": []
+    },
+    {
+     "value_type": {
+      "term_name": "depth",
+      "oterm_ref": "ME:0000219",
+      "oterm_name": "depth"
+     },
+     "values": {
+      "scalar_type": "float",
+      "float_values": [
+       15.06,
+       16.06,
+       17.06,
+       18.06,
+       15.48,
+       16.48,
+       17.48,
+       21.44,
+       22.44,
+       23.44,
+       24.44,
+       20.95,
+       21.95,
+       22.95,
+       23.95,
+       15.75,
+       16.75,
+       17.75,
+       18.75,
+       21.7,
+       22.7,
+       23.7,
+       24.7,
+       27.23,
+       28.23,
+       29.23,
+       30.23,
+       31.23,
+       32.23,
+       33.23,
+       21.75,
+       23.7,
+       24.7,
+       27.23,
+       28.23,
+       29.23,
+       30.23,
+       32.23,
+       33.23
+      ]
+     },
+     "value_units": {
+      "term_name": "foot",
+      "oterm_ref": "ME:0000310",
+      "oterm_name": "foot"
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "top",
+        "oterm_ref": "ME:0000311",
+        "oterm_name": "top"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "ground surface"
+       }
+      },
+      {
+       "value_type": {
+        "term_name": "bottom",
+        "oterm_ref": "ME:0000312",
+        "oterm_name": "bottom"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "borescope"
+       }
+      }
+     ]
+    },
+    {
+     "value_type": {
+      "term_name": "datetime",
+      "oterm_ref": "ME:0000180",
+      "oterm_name": "datetime"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "2024-01-31T12:20:48-05:00",
+       "2024-01-31T13:18:07-05:00",
+       "2024-01-31T13:36:44-05:00",
+       "2024-01-31T14:04:49-05:00",
+       "2024-01-31",
+       "2024-01-31T14:59:13-05:00",
+       "2024-01-31T15:27:24-05:00",
+       "2024-02-05",
+       "2024-02-05T11:27:14-05:00",
+       "2024-02-05T12:05:08-05:00",
+       "2024-02-05T12:38:14-05:00",
+       "2024-02-05T13:25:32-05:00",
+       "2024-02-05T13:45:52-05:00",
+       "2024-02-05T14:05:47-05:00",
+       "2024-02-05",
+       "2024-02-08T10:45:53-05:00",
+       "2024-02-08T11:22:27-05:00",
+       "2024-02-08T11:57:45-05:00",
+       "2024-02-08T13:12:48-05:00",
+       "2024-02-08T13:48:50-05:00",
+       "2024-02-08T14:19:57-05:00",
+       "2024-02-08T14:51:21-05:00",
+       "2024-02-08T15:22:21-05:00",
+       "2024-02-09T13:41:11-05:00",
+       "2024-02-09T14:07:37-05:00",
+       "2024-02-09T14:32:11-05:00",
+       "2024-02-09T14:58:40-05:00",
+       "2024-02-09T15:24:49-05:00",
+       "2024-02-09T15:55:19-05:00",
+       "2024-02-09T16:24:33-05:00",
+       "2024-02-26T11:16:35-05:00",
+       "2024-02-26T12:38:40-05:00",
+       "2024-02-26T13:09:37-05:00",
+       "2024-02-26T13:58:45-05:00",
+       "2024-02-26T14:24:26-05:00",
+       "2024-02-26T14:55:30-05:00",
+       "2024-02-26T15:19:37-05:00",
+       "2024-02-26T16:16:12-05:00",
+       "2024-02-26T16:39:54-05:00"
+      ]
+     },
+     "value_context": []
+    },
+    {
+     "value_type": {
+      "term_name": "elevation",
+      "oterm_ref": "ME:0000220",
+      "oterm_name": "elevation"
+     },
+     "values": {
+      "scalar_type": "float",
+      "float_values": [
+       2.94,
+       2.94,
+       2.94,
+       2.94,
+       2.52,
+       2.52,
+       2.52,
+       2.56,
+       2.56,
+       2.56,
+       2.56,
+       3.05,
+       3.05,
+       3.05,
+       3.05,
+       2.25,
+       2.25,
+       2.25,
+       2.25,
+       2.3,
+       2.3,
+       2.3,
+       2.3,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.25,
+       2.3,
+       2.3,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.77,
+       2.77
+      ]
+     },
+     "value_units": {
+      "term_name": "foot",
+      "oterm_ref": "ME:0000310",
+      "oterm_name": "foot"
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "instrument",
+        "oterm_ref": "ME:0000012",
+        "oterm_name": "instrument"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "casing"
+       }
+      },
+      {
+       "value_type": {
+        "term_name": "top",
+        "oterm_ref": "ME:0000311",
+        "oterm_name": "top"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "casing top"
+       }
+      },
+      {
+       "value_type": {
+        "term_name": "bottom",
+        "oterm_ref": "ME:0000312",
+        "oterm_name": "bottom"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "ground surface"
+       }
+      }
+     ]
+    },
+    {
+     "value_type": {
+      "term_name": "comment",
+      "oterm_ref": "ME:0000011",
+      "oterm_name": "comment"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "Heavy rainfall",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny",
+       "sunny"
+      ]
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "category",
+        "oterm_ref": "ME:0000013",
+        "oterm_name": "category"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "weather"
+       }
+      }
+     ]
+    },
+    {
+     "value_type": {
+      "term_name": "category",
+      "oterm_ref": "ME:0000013",
+      "oterm_name": "category"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "yes",
+       "yes",
+       "yes",
+       "no",
+       null,
+       "no",
+       "yes",
+       null,
+       "no",
+       "no",
+       "no",
+       null,
+       "no",
+       "no",
+       null,
+       "no",
+       "yes",
+       "no",
+       null,
+       "yes",
+       "yes",
+       "yes",
+       "no",
+       null,
+       "no",
+       "no",
+       "no",
+       "yes",
+       "no",
+       "no",
+       "no",
+       "no",
+       "no",
+       "yes",
+       "no",
+       "yes",
+       "no",
+       "yes",
+       "yes"
+      ]
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "category",
+        "oterm_ref": "ME:0000013",
+        "oterm_name": "category"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "preferential flow"
+       }
+      }
+     ]
+    },
+    {
+     "value_type": {
+      "term_name": "comment",
+      "oterm_ref": "ME:0000011",
+      "oterm_name": "comment"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Dominique Joyner, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker",
+       "Katie Fitzgerald Walker, Summer Hatmaker"
+      ]
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "category",
+        "oterm_ref": "ME:0000013",
+        "oterm_name": "category"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "samplers"
+       }
+      }
+     ]
+    },
+    {
+     "value_type": {
+      "term_name": "comment",
+      "oterm_ref": "ME:0000011",
+      "oterm_name": "comment"
+     },
+     "values": {
+      "scalar_type": "string",
+      "string_values": [
+       "20240131_M4-SZ1-18_Pref.log",
+       "20240131_M4-SZ1-19_Pref.log",
+       "20240131_M4-SZ1-20_Pref.log",
+       "20240131_M4-SZ1-21.log",
+       null,
+       "20240131_L9-SZ1-19.log",
+       "20240131_L9-SZ1-20_Pref.log",
+       null,
+       "20240205_L9-SZ2-25.log",
+       "20240205_L9-SZ2-26.log",
+       "20240205_L9-SZ2-27.log",
+       "20240205_M4-SZ2-24.log",
+       "20240205_M4-SZ2-25.log",
+       "20240205_M4-SZ2-26.log",
+       null,
+       "20240208_M5-SZ1-18.log",
+       "20240208_M5-SZ1-19_Pref.log",
+       "20240208_M5-SZ1-20.log",
+       "20240208_M5-SZ1-21.log",
+       "20240208_M5-SZ2-24_Pref.log",
+       "20240208_M5-SZ2-25_Pref.log",
+       "20240208_M5-SZ2-26_Pref.log",
+       "20240208_M5-SZ2-27.log",
+       "20240209_M5-SZ3-30.log",
+       "20240209_M5-SZ3-31.log",
+       "20240209_M5-SZ3-32.log",
+       "20240209_M5-SZ3-33.log",
+       "20240209_M5-SZ3-34_Pref.log",
+       "20240209_M5-SZ3-35.log",
+       "20240209_M5-SZ3-36.log",
+       "20240226_M5-SZ1-24.log",
+       "20240226_M5-SZ2-26.log",
+       "20240226_M5-SZ2-27.log",
+       "20240226_M5-SZ3-30_Pref.log",
+       "20240226_M5-SZ3-31.log",
+       "20240226_M5-SZ3-32_Pref.log",
+       "20240226_M5-SZ3-33.log",
+       "20240226_M5-SZ3-35_Pref.log",
+       "20240226_M5-SZ3-36_Pref.log"
+      ]
+     },
+     "value_context": [
+      {
+       "value_type": {
+        "term_name": "category",
+        "oterm_ref": "ME:0000013",
+        "oterm_name": "category"
+       },
+       "value": {
+        "scalar_type": "string",
+        "string_value": "source file"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "typed_values": [
+  {
+   "value_type": {
+    "term_name": "azimuth",
+    "oterm_ref": "ME:0000520",
+    "oterm_name": "azimuth"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     224.08,
+     176.8,
+     154.29,
+     209.75,
+     null,
+     80.23,
+     113.53,
+     null,
+     277.25,
+     310.57,
+     49.41,
+     335.48,
+     278.6,
+     228.31,
+     null,
+     239.34,
+     92.56,
+     44.39,
+     null,
+     280.16,
+     227.47,
+     157.66,
+     171.98,
+     null,
+     235.33,
+     18.79,
+     45.93,
+     72.25,
+     123.84,
+     317.97,
+     321.65,
+     57.61,
+     5.32,
+     234.32,
+     324.31,
+     150.98,
+     102.21,
+     164.98,
+     160.15
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "borescope flow vector"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "velocity",
+    "oterm_ref": "ME:0000519",
+    "oterm_name": "velocity"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     201.02,
+     345.77,
+     91.43,
+     25.38,
+     null,
+     200.31,
+     211.68,
+     null,
+     55.0,
+     104.07,
+     97.82,
+     116.93,
+     42.59,
+     37.85,
+     null,
+     54.04,
+     6.35,
+     323.73,
+     null,
+     151.45,
+     75.57,
+     112.68,
+     87.54,
+     null,
+     21.99,
+     38.57,
+     195.03,
+     137.05,
+     9.91,
+     29.22,
+     65.84,
+     73.06,
+     16.2,
+     99.19,
+     72.96,
+     54.29,
+     29.15,
+     38.2,
+     31.87
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "borescope flow vector"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "average",
+    "oterm_ref": "ME:0000147",
+    "oterm_name": "average"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     223.09,
+     177.23,
+     151.07,
+     213.78,
+     null,
+     125.95,
+     114.92,
+     null,
+     233.84,
+     223.38,
+     153.27,
+     201.08,
+     203.48,
+     198.42,
+     null,
+     237.43,
+     127.95,
+     164.47,
+     156.88,
+     278.53,
+     227.56,
+     157.53,
+     164.47,
+     181.93,
+     193.74,
+     166.78,
+     96.26,
+     117.52,
+     182.71,
+     196.11,
+     191.27,
+     131.16,
+     184.04,
+     214.77,
+     216.13,
+     168.72,
+     167.23,
+     185.55,
+     184.41
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000520",
+      "string_value": "azimuth"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "median",
+    "oterm_ref": "ME:0000153",
+    "oterm_name": "median"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     216.41,
+     177.07,
+     169.36,
+     169.15,
+     null,
+     102.37,
+     113.0,
+     null,
+     278.43,
+     281.0,
+     132.69,
+     282.43,
+     225.19,
+     178.81,
+     null,
+     240.81,
+     130.49,
+     147.36,
+     174.28,
+     278.37,
+     213.32,
+     157.68,
+     174.13,
+     177.82,
+     176.11,
+     171.6,
+     58.37,
+     90.13,
+     173.38,
+     201.02,
+     187.15,
+     110.19,
+     184.67,
+     234.0,
+     272.0,
+     169.0,
+     152.96,
+     165.29,
+     168.91
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000520",
+      "string_value": "azimuth"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "minimum",
+    "oterm_ref": "ME:0000151",
+    "oterm_name": "minimum"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     10.0,
+     42.17,
+     3.85,
+     44.66,
+     null,
+     0.42,
+     51.07,
+     null,
+     2.89,
+     0.92,
+     0.51,
+     0.13,
+     14.27,
+     24.08,
+     null,
+     6.44,
+     0.69,
+     0.05,
+     0.63,
+     1.11,
+     1.35,
+     21.34,
+     0.04,
+     2.5,
+     0.36,
+     1.28,
+     0.03,
+     1.58,
+     1.38,
+     6.38,
+     1.14,
+     0.19,
+     0.03,
+     0.87,
+     1.42,
+     0.04,
+     0.19,
+     0.39,
+     0.18
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000520",
+      "string_value": "azimuth"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "maximum",
+    "oterm_ref": "ME:0000152",
+    "oterm_name": "maximum"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     349.44,
+     265.11,
+     326.66,
+     356.52,
+     null,
+     353.07,
+     355.33,
+     null,
+     344.85,
+     359.96,
+     353.39,
+     359.13,
+     356.07,
+     359.67,
+     null,
+     358.93,
+     359.96,
+     359.98,
+     359.91,
+     358.57,
+     357.19,
+     344.19,
+     359.7,
+     356.36,
+     359.94,
+     359.66,
+     359.38,
+     359.7,
+     359.7,
+     357.31,
+     359.96,
+     359.94,
+     359.81,
+     359.11,
+     358.53,
+     359.08,
+     359.93,
+     359.87,
+     359.93
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000520",
+      "string_value": "azimuth"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "standard deviation",
+    "oterm_ref": "ME:0000149",
+    "oterm_name": "standard deviation"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     38.94,
+     22.12,
+     70.74,
+     101.26,
+     null,
+     89.75,
+     30.12,
+     null,
+     83.32,
+     114.33,
+     105.85,
+     132.54,
+     102.12,
+     110.42,
+     null,
+     80.93,
+     92.61,
+     115.32,
+     99.2,
+     35.82,
+     67.82,
+     47.63,
+     92.41,
+     106.0,
+     104.18,
+     108.67,
+     95.59,
+     91.08,
+     100.49,
+     104.56,
+     107.15,
+     104.14,
+     106.22,
+     70.58,
+     124.82,
+     77.62,
+     99.24,
+     100.2,
+     102.75
+    ]
+   },
+   "value_units": {
+    "term_name": "degree",
+    "oterm_ref": "UO:0000185",
+    "oterm_name": "degree"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000520",
+      "string_value": "azimuth"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "average",
+    "oterm_ref": "ME:0000147",
+    "oterm_name": "average"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     245.14,
+     368.43,
+     203.0,
+     174.07,
+     null,
+     301.38,
+     250.87,
+     null,
+     166.64,
+     210.25,
+     551.33,
+     747.46,
+     306.15,
+     314.5,
+     null,
+     173.89,
+     187.25,
+     696.66,
+     1684.32,
+     208.16,
+     169.8,
+     182.31,
+     848.38,
+     324.45,
+     786.87,
+     313.87,
+     467.03,
+     452.16,
+     436.6,
+     390.9,
+     556.84,
+     197.46,
+     412.55,
+     167.89,
+     180.02,
+     177.06,
+     719.26,
+     174.61,
+     155.61
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000519",
+      "string_value": "velocity"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "median",
+    "oterm_ref": "ME:0000153",
+    "oterm_name": "median"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     222.4,
+     367.84,
+     183.22,
+     157.05,
+     null,
+     209.59,
+     219.29,
+     null,
+     132.67,
+     155.57,
+     463.34,
+     167.64,
+     267.43,
+     263.64,
+     null,
+     133.33,
+     169.2,
+     238.24,
+     1469.66,
+     155.77,
+     157.05,
+     139.69,
+     670.82,
+     273.58,
+     662.94,
+     250.29,
+     318.32,
+     197.6,
+     386.77,
+     344.0,
+     440.0,
+     151.52,
+     179.67,
+     145.83,
+     133.33,
+     145.53,
+     582.46,
+     150.32,
+     138.39
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000519",
+      "string_value": "velocity"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "minimum",
+    "oterm_ref": "ME:0000151",
+    "oterm_name": "minimum"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     106.53,
+     152.91,
+     81.23,
+     91.38,
+     null,
+     93.75,
+     79.64,
+     null,
+     53.26,
+     55.41,
+     89.88,
+     55.41,
+     106.69,
+     127.0,
+     null,
+     62.5,
+     62.5,
+     62.5,
+     62.5,
+     62.5,
+     62.5,
+     55.8,
+     49.64,
+     109.33,
+     70.83,
+     121.76,
+     80.04,
+     70.83,
+     92.35,
+     92.13,
+     77.51,
+     34.93,
+     57.34,
+     55.41,
+     45.69,
+     55.41,
+     63.74,
+     83.98,
+     83.79
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000519",
+      "string_value": "velocity"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "maximum",
+    "oterm_ref": "ME:0000152",
+    "oterm_name": "maximum"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     1096.0,
+     3728.69,
+     4717.74,
+     2597.17,
+     null,
+     2237.6,
+     2081.79,
+     null,
+     4009.88,
+     4985.54,
+     3126.89,
+     4993.26,
+     850.39,
+     780.9,
+     null,
+     3859.49,
+     4275.6,
+     4952.69,
+     4975.66,
+     4897.69,
+     4329.34,
+     4492.36,
+     4977.19,
+     2052.85,
+     4698.34,
+     1021.82,
+     3077.7,
+     4983.28,
+     1840.76,
+     1918.24,
+     4862.79,
+     4926.65,
+     4859.01,
+     4737.15,
+     4814.13,
+     4637.42,
+     4899.66,
+     642.49,
+     624.94
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000519",
+      "string_value": "velocity"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "standard deviation",
+    "oterm_ref": "ME:0000149",
+    "oterm_name": "standard deviation"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     97.58,
+     113.72,
+     156.67,
+     115.52,
+     null,
+     258.35,
+     163.65,
+     null,
+     286.45,
+     399.25,
+     426.5,
+     1111.5,
+     160.17,
+     163.8,
+     null,
+     364.41,
+     180.43,
+     895.1,
+     1181.55,
+     366.18,
+     154.9,
+     327.46,
+     668.34,
+     224.69,
+     578.27,
+     172.46,
+     397.97,
+     777.58,
+     272.15,
+     310.24,
+     584.14,
+     344.42,
+     597.39,
+     245.55,
+     378.08,
+     312.47,
+     544.55,
+     80.18,
+     59.46
+    ]
+   },
+   "value_units": {
+    "term_name": "micrometer per second",
+    "oterm_ref": "ME:0000521",
+    "oterm_name": "micrometer per second"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000519",
+      "string_value": "velocity"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "count",
+    "oterm_ref": "ME:0000126",
+    "oterm_name": "count"
+   },
+   "values": {
+    "scalar_type": "int",
+    "int_values": [
+     634,
+     1445,
+     1955,
+     709,
+     null,
+     129,
+     229,
+     null,
+     505,
+     3265,
+     152,
+     1161,
+     71,
+     37,
+     null,
+     415,
+     3615,
+     1541,
+     3422,
+     2080,
+     2005,
+     1138,
+     1877,
+     155,
+     1350,
+     170,
+     1053,
+     1124,
+     690,
+     125,
+     399,
+     4096,
+     3351,
+     781,
+     1850,
+     3969,
+     3779,
+     624,
+     621
+    ]
+   },
+   "value_units": {
+    "term_name": "count unit",
+    "oterm_ref": "UO:0000189",
+    "oterm_name": "count unit"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "category",
+      "oterm_ref": "ME:0000013",
+      "oterm_name": "category"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "tracked particles"
+     }
+    }
+   ]
+  }
+ ]
+}

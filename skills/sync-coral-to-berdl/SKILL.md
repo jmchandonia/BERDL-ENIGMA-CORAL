@@ -88,6 +88,12 @@ path remains available only for a cluster that still accepts Delta.
   staged OBO term map; a new ontology file also needs the hub's
   `upload_config.json`, `CheckGenericProduction.java`, `CANONICAL_ONTOLOGY_BY_PREFIX`
   and `FULL_INCLUDE_ONTOLOGIES` in `coral_metadata.py`, and a CORAL service restart.
+- `convert_bricks.is_compatible_type_conversion` keeps a CORAL `string` variable
+  as a string column when its values look boolean (`yes`/`no`, `0`/`1`): Spark
+  cannot cast those into a BooleanType column. Numeric-looking string variables
+  are still narrowed to integer/double (thousands of loaded comment/description
+  columns rely on it); a statistic used as a primary data-variable term in a
+  heterogeneous brick needs `is_valid_dimension_variable` in COMO.
 - Build `sys_oterm` from terms referenced by static/system data, schemas, and
   ontology-ID columns in brick TSVs. Emit each CURIE exactly once, preferring
   its native ontology over copies bundled in imported or stub OBO modules.

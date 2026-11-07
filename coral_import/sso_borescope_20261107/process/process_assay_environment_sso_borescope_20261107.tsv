@@ -1,0 +1,2 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Subsurface Observatory <ENIGMA:0000166>	hazen-colloidal-borescope-sso-2024	2024-01-31	2024-02-26	Location: SSO-L9, Location: SSO-M4, Location: SSO-M5	Generic: hazen_colloidal_borescope_flow_vectors_sso_2024.hndarray, Generic: hazen_colloidal_borescope_particle_tracks_sso_2024.hndarray
