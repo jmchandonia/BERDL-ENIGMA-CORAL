@@ -1,0 +1,18 @@
+property: ENIGMA Campaign <ENIGMA:0000002> = Core Pilot <ENIGMA:0000021>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Zhou Lab <ENIGMA:0000090>
+property: instrument <ME:0000012> = GeoChip 5.0 180K
+property: comment <ME:0000011> = Value: the IEG pipeline's processed signal of each probe in each sample (normalized by control spots and by the sample's total, filtered by signal-to-noise ratio 2.0, coefficient of variation 0.8 and normalized signal 100, log-transformed and scaled to the same total per sample; file suffix T5S2.log.RA); dimensionless. A value of 0 means the probe did not pass the detection filters in that sample (3,553,460 of 5,154,947 cells; 1,601,487 detections). The array has about 180,000 spots and every one of the 105,203 probes listed here is detected in at least one sample, so a probe absent from this brick was most likely not detected in any sample (inferred; the ReadMe does not say). The ReadMe does not state the log base; other papers using the IEG GeoChip pipeline describe a natural log. Because each sample is rescaled to a common total after the log step, the stored values do not depend on the base
+property: comment <ME:0000011> = Probe dimension: microarray probe name = the designer's GenBank GI number of the target gene, or an IEG in-house identifier for 43 probes (e.g. iegcoxL25, iegHydrogenase21, iegHydrogenase5); gene symbol = the gene or gene family; GeoChip gene category = the deepest term of the probe's category / subcategory 1 / subcategory 2 path in the GEOCHIP ontology (a path whose finer levels the designers left 'NA' maps to its category or subcategory term). The taxonomy of each probe's target sequence is in zhou_lab_corepilot_2017_geochip5_taxonomy, keyed by the same probe name
+property: comment <ME:0000011> = The ontology term names are the file's category labels, reworded where a label only makes sense with its parent (the source label is kept as a synonym), after trimming whitespace, merging case variants to one spelling and restoring a mangled dash ('acetyl¨CCoA' -> 'acetyl-CoA'). Near-duplicate paths were merged and typos corrected: Nitoaromatics -> Nitroaromatics (1319 probes); Assimilation and N Assimilation -> N assimilation (271); Polycyclic aromatics moved under Aromatics (14); effector -> effector protein (4); Other under Aromatics -> Other aromatics (3); typr III secretion system -> type III secretion system (1); adhesion -> adherence (1); Sequestration -> Sequester under Multiple metals (1)
+property: comment <ME:0000011> = Communities are the existing pilot core sediment communities EB<well>-<section>-<sample> (Zhou sample ID EB1060201 = EB106-02-01); 49 of the 59 pilot core samples yielded qualified labeled DNA
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive FRC_Microarray/2017_Pilot_Core_GeoChip_JoeLab/Pilot.core.GeoChip.T5S2.log.RA.csv (ReadMe_PilotCoreGeoChip-171025-DN.docx in the same folder)
+dim: gene <ME:0000059>
+dim_var: microarray probe name <ME:0000522>
+dim_var: gene symbol <ME:0000523>
+dim_var: GeoChip gene category <GEOCHIP:0000002>
+dim_size: 105203
+dim: community <ME:0000231>
+dim_var: community ID <ME:0000233>
+dim_size: 49
+data_var: hybridization intensity <ME:0000130> (dimensionless unit <UO:0000186>)
+Generic is OK!

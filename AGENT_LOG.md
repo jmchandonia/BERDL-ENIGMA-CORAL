@@ -2408,3 +2408,26 @@ Validation completed before live export:
   Location + port + depth BGS + date (no description join), BGS only with casing height kept, statistics from the
   36 software summaries (workbook 02-26 rows hold averages; M4-SZ2-24 mislabelled), nine logs have 1-4 more lines
   than the summary's data points (M5-SZ2-26 02-26: 5,588 vs a 4,096 cap).
+- 2026-11-07: micro-CT move completed. The dipa copy (/data/edr/images/walian_sediment_microct, 14 RECON
+  folders, 30,268 files, 792.7 GB) verified against the home copy by per-folder counts/bytes and spot
+  checksums; the whole EDR images/ tree replicated dipa -> niya
+  (/auto/sahara/namib/home/gtl/enigma-data-repository/images, 4 h at ~50 MB/s) and verified per folder;
+  then ~/data/enigma/walian/microCT deleted (ipa /h now 97%, 769 GB free). EDR->MinIO mirror
+  (sync_berdl.sh) started on dipa afterwards.
+- 2026-11-10: Brick0000450 zhou_lab_27_well_survey_ASV_16S found to be a row-identical duplicate of Brick0000015
+  zhou_27ws_ESV_16S (re-dumped Sept 2024 for the combined OTU list and uploaded in hub notebook cell 23 despite
+  the log's "don't upload again"); withdrawn with the user's OK (coral_import/withdraw_duplicate_brick0000450_20261110,
+  notebook 128 cells). The next sync drops ddt_brick0000450. Sync change staged for that sync: campaign and
+  personnel array context no longer materialized as columns (sync-coral-to-berdl/CONTEXT_COLUMNS_PLAN_20261110.md).
+- 2026-11-10: 2017 Pilot Core ITS + GeoChip loaded. Ontology update ontology_update_20261107_corepilot installed on
+  stout and coral-enigma (COMO ME:0000522 microarray probe name, ME:0000523 gene symbol, hybridization intensity
+  flags; PROCESS:0000054 Microarray Hybridization; new GEOCHIP ontology, 254 terms incl. 55 ChEBI xrefs, registered
+  in the hub upload_config.json as `geochip`); reloaded. Note: the scratchpad validator dir had symlinks into
+  stout's ontology dir, so the process ontology reached stout early on 2026-11-06 (harmless, now replaced by a copy).
+  Package corepilot_its_geochip_20261107 loaded: Brick0002166-0002170, Protocol0000076-77, 53 Reads, 10,820 Taxa,
+  1,330 OTUs, ITS Sequencing / Classify OTUs (53 each) / Microarray Hybridization processes; notebook 145 cells.
+- 2026-11-10: sync-20261110-162303: 116 tables reloaded (5 new bricks incl. the 5.15M-row GeoChip table; 101 brick
+  tables without the campaign/personnel context columns; sdt_taxon, sdt_asv, sdt_reads, sdt_protocol, sys tables),
+  ddt_brick0000450 dropped, 213/213 foreign keys after disabling Spark broadcast joins in check_foreign_keys.py
+  (the first FK run failed with "Not enough memory to build and broadcast the table"). Only Brick0002146 keeps
+  campaign/personnel columns (real variables); 329 current bricks keep sdt_location_name.

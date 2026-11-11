@@ -1,0 +1,15 @@
+property: ENIGMA Campaign <ENIGMA:0000002> = Core Pilot <ENIGMA:0000021>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Zhou Lab <ENIGMA:0000090>
+property: comment <ME:0000011> = OTUs are named by the MD5 of their representative sequence (as the Zhou Lab ASV sets are); the lab's labels OTU1..OTU1330 are kept as 'source OTU label'
+property: comment <ME:0000011> = Variable: taxon ID (a CORAL Taxon) for kingdom to species as named by the classifier; levels the classifier left as 'unclassified_<parent>' are null (OTUs unclassified at: Order 620, Family 782, Genus 857, Species 1048, Class 523, Phylum 270). Species are the Warcup binomials as given, 37 of which carry a different genus name than the genus level (synonyms in the trainset, e.g. genus Pezoloma with species Rhizoscyphus ericae). The source has no per-level confidence values
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive FRC Sequence Data/Zhou Lab/Pilot.ITS.sequencing.ENIGMA.version171101/AllDetectedSamples/ENITS.V171101.All.Classification.csv
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_var: description <ME:0000202>; category <ME:0000013> = source OTU label
+composite_microtype: description, category=source OTU label
+dim_size: 1330
+dim: taxonomic level <ME:0000090>
+dim_var: taxonomic level <ME:0000090>
+dim_size: 7
+data_var: taxon ID <ME:0000047>
+Generic is OK!

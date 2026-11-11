@@ -1,0 +1,12 @@
+property: ENIGMA Campaign <ENIGMA:0000002> = Core Pilot <ENIGMA:0000021>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Zhou Lab <ENIGMA:0000090>
+property: comment <ME:0000011> = OTUs are named by the MD5 of their representative sequence (as the Zhou Lab ASV sets are); the lab's labels OTU1..OTU1330 are kept as 'source OTU label'
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive FRC Sequence Data/Zhou Lab/Pilot.ITS.sequencing.ENIGMA.version171101/AllDetectedSamples/ENITS.V171101.All.Rep_Seq.fasta
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_var: description <ME:0000202>; category <ME:0000013> = source OTU label
+composite_microtype: description, category=source OTU label
+dim_size: 1330
+data_var: sequence <ME:0000282>; sequence type <ME:0000189> = ITS-2 sequence <ME:0000194>
+composite_microtype: sequence, sequence type=ITS-2 sequence
+Generic is OK!

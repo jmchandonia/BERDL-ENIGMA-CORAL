@@ -29,7 +29,8 @@ public class CheckGenericProduction {
                 "/home/coral/prod/data_import/ontologies/unit_standalone.obo",
                 "/home/coral/prod/data_import/ontologies/aro.obo",
                 "/home/coral/prod/data_import/ontologies/mibig.obo",
-                "/home/coral/prod/data_import/ontologies/robertson_soil_behavior_type.obo"
+                "/home/coral/prod/data_import/ontologies/robertson_soil_behavior_type.obo",
+                "/home/coral/prod/data_import/ontologies/geochip_functional_gene_category.obo"
             ));
 
             ObjectMapper mapper = new ObjectMapper();

@@ -1,0 +1,13 @@
+property: ENIGMA Campaign <ENIGMA:0000002> = Core Pilot <ENIGMA:0000021>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Zhou Lab <ENIGMA:0000090>
+property: instrument <ME:0000012> = GeoChip 5.0 180K
+property: comment <ME:0000011> = Variable: taxon ID (a CORAL Taxon) for the ranks of the file's Lineage column (superkingdom as taxonomic domain, kingdom, phylum, class, order, family, genus, species; a rank absent from the lineage is null) and, as the unranked level, the file's Organism column (the NCBI organism name of the target sequence, often strain-level). 565 probes have lineage NA, 296 no organism, and 81 an organism or lineage fragment left by a comma split or an HTML entity in the file (e.g. '16]', 'Ostreococcus &apos'), stored as null. Probes are the same 105,203 as in zhou_lab_corepilot_2017_geochip5, keyed by microarray probe name
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive FRC_Microarray/2017_Pilot_Core_GeoChip_JoeLab/Pilot.core.GeoChip.T5S2.log.RA.csv, columns Organism and Lineage
+dim: gene <ME:0000059>
+dim_var: microarray probe name <ME:0000522>
+dim_size: 105203
+dim: taxonomic level <ME:0000090>
+dim_var: taxonomic level <ME:0000090>
+dim_size: 9
+data_var: taxon ID <ME:0000047>
+Generic is OK!

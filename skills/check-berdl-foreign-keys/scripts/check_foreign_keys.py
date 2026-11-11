@@ -172,10 +172,20 @@ def _make_spark(app_name: str):
     return spark
 
 
+def _disable_broadcast_joins(spark):
+    """Large source tables (e.g. a 5-million-row GeoChip brick) made Spark broadcast a join side too big for the
+    workers ("Not enough memory to build and broadcast the table"); sort-merge joins are fine for these checks."""
+    try:
+        spark.conf.set("spark.sql.autoBroadcastJoinThreshold", "-1")
+    except Exception as exc:  # keep the check running if the server refuses the setting
+        print(f"[foreign keys] could not disable broadcast joins: {exc}", flush=True)
+    return spark
+
+
 class SparkReader:
     def __init__(self, app_name: str):
         self.app_name = app_name
-        self.spark = _make_spark(app_name)
+        self.spark = _disable_broadcast_joins(_make_spark(app_name))
 
     def collect(self, sql: str):
         for attempt in range(1, 5):
@@ -193,7 +203,7 @@ class SparkReader:
                 if not reconnectable or attempt == 4:
                     raise
                 print(f"[retry {attempt}/3] reconnecting to BERDL", flush=True)
-                self.spark = _make_spark(self.app_name)
+                self.spark = _disable_broadcast_joins(_make_spark(self.app_name))
         raise AssertionError("unreachable")
 
     def schema(self, full_table: str) -> dict[str, str]:

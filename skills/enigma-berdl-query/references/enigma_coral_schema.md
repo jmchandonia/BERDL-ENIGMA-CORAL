@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 833
+Total Tables: 837
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 833
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1933
+**Total Rows:** 1938
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 833
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9750
+**Total Rows:** 9575
 
 ### Sample Data (5 rows)
 
@@ -1208,20 +1208,18 @@ Total Tables: 833
 | ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
 | conductivity_millisiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "millisiemen per centimeter"} |
 | sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 42
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | position_relative_within_sample_sys_oterm_id | position_relative_within_sample_sys_oterm_name | depth_centimeter | ph_ph | conductivity_millisiemen_per_centimeter | sdt_image_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| EB106-02-01 | ME:0000311 | top | 91.0 | 12.62 | 7.53 | EB106-02-01-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB106-02-02 | ME:0000311 | top | 114.0 | 8.75 | 4.94 | EB106-02-02-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB106-02-03 | ME:0000311 | top | 137.0 | 8.26 | 4.930000000000001 | EB106-02-03-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB106-03-01 | ME:0000311 | top | 183.0 | 7.87 | 5.03 | EB106-03-01-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB106-03-02 | ME:0000311 | top | 198.0 | 3.8499999999999996 | 4.58 | EB106-03-02-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
+| sdt_sample_name | position_relative_within_sample_sys_oterm_id | position_relative_within_sample_sys_oterm_name | depth_centimeter | ph_ph | conductivity_millisiemen_per_centimeter | sdt_image_name |
+|---|---|---|---|---|---|---|
+| EB106-02-01 | ME:0000311 | top | 91.0 | 12.62 | 7.53 | EB106-02-01-Top.png |
+| EB106-02-02 | ME:0000311 | top | 114.0 | 8.75 | 4.94 | EB106-02-02-Top.png |
+| EB106-02-03 | ME:0000311 | top | 137.0 | 8.26 | 4.930000000000001 | EB106-02-03-Top.png |
+| EB106-03-01 | ME:0000311 | top | 183.0 | 7.87 | 5.03 | EB106-03-01-Top.png |
+| EB106-03-02 | ME:0000311 | top | 198.0 | 3.8499999999999996 | 4.58 | EB106-03-02-Top.png |
 
 ---
 
@@ -1240,20 +1238,18 @@ Total Tables: 833
 | ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
 | conductivity_millisiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "millisiemen per centimeter"} |
 | sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 15
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | position_relative_within_sample_sys_oterm_id | position_relative_within_sample_sys_oterm_name | depth_centimeter | ph_ph | conductivity_millisiemen_per_centimeter | sdt_image_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| EB271-02-02 | ME:0000311 | top | 114.0 | 7.48 | 5.1499999999999995 | EB271-02-02-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB271-02-03 | ME:0000311 | top | 137.0 | 6.71 | 4.72 | EB271-02-03-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB271-03-01 | ME:0000311 | top | 183.0 | 7.41 | 4.76 | EB271-03-01-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB271-03-02 | ME:0000311 | top | 206.0 | 6.55 | 4.79 | EB271-03-02-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
-| EB271-03-03 | ME:0000311 | top | 229.0 | 5.619999999999999 | 5.35 | EB271-03-03-Top.png | ENIGMA:0000021 | ENIGMA:0000097 |
+| sdt_sample_name | position_relative_within_sample_sys_oterm_id | position_relative_within_sample_sys_oterm_name | depth_centimeter | ph_ph | conductivity_millisiemen_per_centimeter | sdt_image_name |
+|---|---|---|---|---|---|---|
+| EB271-02-02 | ME:0000311 | top | 114.0 | 7.48 | 5.1499999999999995 | EB271-02-02-Top.png |
+| EB271-02-03 | ME:0000311 | top | 137.0 | 6.71 | 4.72 | EB271-02-03-Top.png |
+| EB271-03-01 | ME:0000311 | top | 183.0 | 7.41 | 4.76 | EB271-03-01-Top.png |
+| EB271-03-02 | ME:0000311 | top | 206.0 | 6.55 | 4.79 | EB271-03-02-Top.png |
+| EB271-03-03 | ME:0000311 | top | 229.0 | 5.619999999999999 | 5.35 | EB271-03-03-Top.png |
 
 ---
 
@@ -1273,20 +1269,18 @@ Total Tables: 833
 | count_category_cell_cells_per_gram | int | Yes | {"description": "count, Category=cell", "unit": "cells per gram"} |
 | coefficient_of_variation_category_counts_percent | double | Yes | {"description": "coefficient of variation, Category=counts", "unit": "percent"} |
 | average_category_cell_counts_per_field_cells_per_well | double | Yes | {"description": "average, Category=cell counts per field", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 56
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_gram | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|
-| EB271-02-01 | 6.4 | 0.064 | 10X dil | EB271-02-01-aodc.jpg | 49900000 | 19.3996130163384 | 270.33333333333303 | ENIGMA:0000021 | ENIGMA:0000067 |
-| EB271-02-02 | 4.5 | 0.045 | 10X dil | EB271-02-02-aodc.jpg | 9400000 | 43.4265470131732 | 35.8 | ENIGMA:0000021 | ENIGMA:0000067 |
-| EB271-02-03 | 3.9 | 0.039 | Large Clumps, 10X dil | EB271-02-03-aodc.jpg | 22600000 | 22.917940111510504 | 74.6 | ENIGMA:0000021 | ENIGMA:0000067 |
-| EB271-03-01 | 3.5 | 0.034999999999999996 | 10X dil | EB271-03-01-aodc.jpg | 21700000 | 15.434501415887201 | 64.4 | ENIGMA:0000021 | ENIGMA:0000067 |
-| EB271-03-02 | 4.3 | 0.043000000000000003 | large cells, 10X dil | EB271-03-02-aodc.jpg | 3680000 | 12.487463082598099 | 13.4 | ENIGMA:0000021 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_gram | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well |
+|---|---|---|---|---|---|---|---|
+| EB271-02-01 | 6.4 | 0.064 | 10X dil | EB271-02-01-aodc.jpg | 49900000 | 19.3996130163384 | 270.33333333333303 |
+| EB271-02-02 | 4.5 | 0.045 | 10X dil | EB271-02-02-aodc.jpg | 9400000 | 43.4265470131732 | 35.8 |
+| EB271-02-03 | 3.9 | 0.039 | Large Clumps, 10X dil | EB271-02-03-aodc.jpg | 22600000 | 22.917940111510504 | 74.6 |
+| EB271-03-01 | 3.5 | 0.034999999999999996 | 10X dil | EB271-03-01-aodc.jpg | 21700000 | 15.434501415887201 | 64.4 |
+| EB271-03-02 | 4.3 | 0.043000000000000003 | large cells, 10X dil | EB271-03-02-aodc.jpg | 3680000 | 12.487463082598099 | 13.4 |
 
 ---
 
@@ -1305,18 +1299,16 @@ Total Tables: 833
 | count_category_cell_cells_per_milliliter | int | Yes | {"description": "count, Category=cell", "unit": "cells per milliliter"} |
 | coefficient_of_variation_category_counts_percent | double | Yes | {"description": "coefficient of variation, Category=counts", "unit": "percent"} |
 | average_category_cell_counts_per_field_cells_per_well | double | Yes | {"description": "average, Category=cell counts per field", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 3
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_milliliter | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| FW106-04-05-17 | 1.0 | NULL | FW106-2017-04-05-1ml-aodc.jpg | 513000 | 27.8697089662831 | 43.4 | ENIGMA:0000021 | ENIGMA:0000067 |
-| FW115-24-04-05-17 | 1.0 | NULL | FW115-24-2017-04-05-1ml-aodc.jpg | 851000 | 21.5389755823206 | 72.0 | ENIGMA:0000021 | ENIGMA:0000067 |
-| GW271-03-29-17 | 1.0 | NULL | GW271-2017-03-29-1ml-aodc.jpg | 369000 | 19.416834911360198 | 31.2 | ENIGMA:0000021 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_milliliter | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well |
+|---|---|---|---|---|---|---|
+| FW106-04-05-17 | 1.0 | NULL | FW106-2017-04-05-1ml-aodc.jpg | 513000 | 27.8697089662831 | 43.4 |
+| FW115-24-04-05-17 | 1.0 | NULL | FW115-24-2017-04-05-1ml-aodc.jpg | 851000 | 21.5389755823206 | 72.0 |
+| GW271-03-29-17 | 1.0 | NULL | GW271-2017-03-29-1ml-aodc.jpg | 369000 | 19.416834911360198 | 31.2 |
 
 ---
 
@@ -1335,20 +1327,18 @@ Total Tables: 833
 | count_category_cell_cells_per_milliliter | int | Yes | {"description": "count, Category=cell", "unit": "cells per milliliter"} |
 | coefficient_of_variation_category_counts_percent | double | Yes | {"description": "coefficient of variation, Category=counts", "unit": "percent"} |
 | average_category_cell_counts_per_field_cells_per_well | double | Yes | {"description": "average, Category=cell counts per field", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 8
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_milliliter | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| FW106-11-16-16 | 1.0 | 1ml filtered | FW106-2016-11-16-1ml-aodc.jpg | 624000 | 15.583335174791099 | 52.8 | ENIGMA:0000018 | ENIGMA:0000067 |
-| GW105-11-18-16 | 1.0 | 1ml lots of sediment background | GW105-2016-11-18-1ml-aodc.jpg | 428000 | 30.8478326522511 | 36.2 | ENIGMA:0000018 | ENIGMA:0000067 |
-| FW301-11-21-16 | 1.0 | 1ml filtered | FW301-2016-11-21-1ml-aodc.jpg | 106000 | 43.50866712766939 | 9.0 | ENIGMA:0000018 | ENIGMA:0000067 |
-| GW384-11-17-16 | 1.0 | 1ml filtered | GW384-2016-11-17-1ml-aodc.jpg | 83900 | 24.3498638119999 | 7.1 | ENIGMA:0000018 | ENIGMA:0000067 |
-| FW106-11-16-16 | 10.0 | 10ml clumping | FW106-2016-11-16-10ml-aodc.jpg | 131000 | 37.1564302556558 | 110.6 | ENIGMA:0000018 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_category_diluted_sample_volume_milliliter | environmental_sample_comment | sdt_image_name | count_category_cell_cells_per_milliliter | coefficient_of_variation_category_counts_percent | average_category_cell_counts_per_field_cells_per_well |
+|---|---|---|---|---|---|---|
+| FW106-11-16-16 | 1.0 | 1ml filtered | FW106-2016-11-16-1ml-aodc.jpg | 624000 | 15.583335174791099 | 52.8 |
+| GW105-11-18-16 | 1.0 | 1ml lots of sediment background | GW105-2016-11-18-1ml-aodc.jpg | 428000 | 30.8478326522511 | 36.2 |
+| FW301-11-21-16 | 1.0 | 1ml filtered | FW301-2016-11-21-1ml-aodc.jpg | 106000 | 43.50866712766939 | 9.0 |
+| GW384-11-17-16 | 1.0 | 1ml filtered | GW384-2016-11-17-1ml-aodc.jpg | 83900 | 24.3498638119999 | 7.1 |
+| FW106-11-16-16 | 10.0 | 10ml clumping | FW106-2016-11-16-10ml-aodc.jpg | 131000 | 37.1564302556558 | 110.6 |
 
 ---
 
@@ -1631,20 +1621,18 @@ Total Tables: 833
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_statistic_average_count_unit | int | Yes | {"description": "count, Statistic=average", "unit": "count unit"} |
 | count_statistic_standard_deviation_count_unit | int | Yes | {"description": "count, Statistic=standard deviation", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 14
 
 ### Sample Data (5 rows)
 
-| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| EB271-02-01 DAPI community | 27300000 | 5970000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-02-02 DAPI community | 69400000 | 9960000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-02-03 DAPI community | 23900000 | 5810000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-03-01 DAPI community | 23300000 | 9450000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-03-02 DAPI community | 25400000 | 4960000 | ENIGMA:0000021 | ENIGMA:0000065 |
+| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit |
+|---|---|---|
+| EB271-02-01 DAPI community | 27300000 | 5970000 |
+| EB271-02-02 DAPI community | 69400000 | 9960000 |
+| EB271-02-03 DAPI community | 23900000 | 5810000 |
+| EB271-03-01 DAPI community | 23300000 | 9450000 |
+| EB271-03-02 DAPI community | 25400000 | 4960000 |
 
 ---
 
@@ -1659,20 +1647,18 @@ Total Tables: 833
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_statistic_average_count_unit | int | Yes | {"description": "count, Statistic=average", "unit": "count unit"} |
 | count_statistic_standard_deviation_count_unit | int | Yes | {"description": "count, Statistic=standard deviation", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 42
 
 ### Sample Data (5 rows)
 
-| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| EB106-02-01 DAPI community | 10900000 | 1270000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-02-02 DAPI community | 10900000 | 933000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-02-03 DAPI community | 30700000 | 6280000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-03-01 DAPI community | 11100000 | 1990000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-03-02 DAPI community | 10700000 | 2340000 | ENIGMA:0000021 | ENIGMA:0000065 |
+| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit |
+|---|---|---|
+| EB106-02-01 DAPI community | 10900000 | 1270000 |
+| EB106-02-02 DAPI community | 10900000 | 933000 |
+| EB106-02-03 DAPI community | 30700000 | 6280000 |
+| EB106-03-01 DAPI community | 11100000 | 1990000 |
+| EB106-03-02 DAPI community | 10700000 | 2340000 |
 
 ---
 
@@ -1687,20 +1673,18 @@ Total Tables: 833
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_statistic_average_count_unit | int | Yes | {"description": "count, Statistic=average", "unit": "count unit"} |
 | count_statistic_standard_deviation_count_unit | int | Yes | {"description": "count, Statistic=standard deviation", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 14
 
 ### Sample Data (5 rows)
 
-| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| EB271-02-01 BONCAT community | 15400000 | 4360000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-02-02 BONCAT community | 48000000 | 7980000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-02-03 BONCAT community | 8470000 | 2210000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-03-01 BONCAT community | 9260000 | 5180000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB271-03-02 BONCAT community | 687000 | 687000 | ENIGMA:0000021 | ENIGMA:0000065 |
+| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit |
+|---|---|---|
+| EB271-02-01 BONCAT community | 15400000 | 4360000 |
+| EB271-02-02 BONCAT community | 48000000 | 7980000 |
+| EB271-02-03 BONCAT community | 8470000 | 2210000 |
+| EB271-03-01 BONCAT community | 9260000 | 5180000 |
+| EB271-03-02 BONCAT community | 687000 | 687000 |
 
 ---
 
@@ -1715,20 +1699,18 @@ Total Tables: 833
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_statistic_average_count_unit | int | Yes | {"description": "count, Statistic=average", "unit": "count unit"} |
 | count_statistic_standard_deviation_count_unit | int | Yes | {"description": "count, Statistic=standard deviation", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 42
 
 ### Sample Data (5 rows)
 
-| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| EB106-02-01 BONCAT community | 1270000 | 115000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-02-02 BONCAT community | 1250000 | 229000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-02-03 BONCAT community | 19800000 | 4110000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-03-01 BONCAT community | 758000 | 129000 | ENIGMA:0000021 | ENIGMA:0000065 |
-| EB106-03-02 BONCAT community | 1580000 | 635000 | ENIGMA:0000021 | ENIGMA:0000065 |
+| sdt_community_name | count_statistic_average_count_unit | count_statistic_standard_deviation_count_unit |
+|---|---|---|
+| EB106-02-01 BONCAT community | 1270000 | 115000 |
+| EB106-02-02 BONCAT community | 1250000 | 229000 |
+| EB106-02-03 BONCAT community | 19800000 | 4110000 |
+| EB106-03-01 BONCAT community | 758000 | 129000 |
+| EB106-03-02 BONCAT community | 1580000 | 635000 |
 
 ---
 
@@ -2391,31 +2373,6 @@ Total Tables: 833
 | 00016b3f9336de72610ed87b72ac3d95 | TACGTAGGGGGCCAGCGTTGTTCGGAATTACTGGGCGTAAAGAGCGCGTAGGCGGCGCGGCAGGTTCGGTGTGAAATCTCCCGGCTCAACCGGGAGGGGTCGCCGAAAACGGCCGTGCTGGAGTACGGGAAAGGGGAGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGATATCGGGAGGAACACCAGCGGCGAAGGCGGCTCCCTGGACCGTAACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACAGG |
 | 0001d123420b59585627edf5a1292ae8 | TACGAAGGGGGCTAGCGTTGTTCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGCTTTGTAAGTCGGGGGTGAAAGCCTGTGGCTCAACCACAGAATTGCCTTCGATACTGCATGGCTTGAGACCGGAAGAGGTAAGTGGAACTGCGAGTGTAGAGGTGAAATTCGTAGATATTCGCAAGAACACCAGTGGCGAAGGCGGCTTACTGGTCCGGTTCTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
 | 0002e23136e6cd739d6e18fc54367752 | TACGGAGAGTGCAAGCATTAATCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGAAGGATAAGTCAGATGTGAAATTCCAAAGCTCAACTTTGGAGCTGCATTTGAAACTGTCTTTCTAGAGGGTTGACGGAGAAAACGGAATTCCACGTGTAGCGGTGAAATGCGTAGATATGTGGAAGAACATCGGTGGCGAAAGCGGTTTTCTAGTTTATACCTGACGCTGAGGCGCGAGAGCAAGGGGAGCAAACAGG |
-
----
-
-## Table: ddt_brick0000450
-
-**Table Description:** zhou_lab_27_well_survey_ASV_16S.ndarray - Zhou Lab 27 Well Survey ASV 16S Sequences
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
-| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, Sequence Type=16S sequence"} |
-
-**Total Rows:** 14917
-
-### Sample Data (5 rows)
-
-| sdt_asv_name | sequence_sequence_type_16s_sequence |
-|---|---|
-| 0001d123420b59585627edf5a1292ae8 | TACGAAGGGGGCTAGCGTTGTTCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGCTTTGTAAGTCGGGGGTGAAAGCCTGTGGCTCAACCACAGAATTGCCTTCGATACTGCATGGCTTGAGACCGGAAGAGGTAAGTGGAACTGCGAGTGTAGAGGTGAAATTCGTAGATATTCGCAAGAACACCAGTGGCGAAGGCGGCTTACTGGTCCGGTTCTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG |
-| 00066ef93c307f980d7c3cc6012e380c | TACGTGGGGTGCAAGCGTTATCCGGATTTATTGGGCGTAAAGCGTTTCGTAGGCGATTACTTAAGTTATACTTCAAAGATCAGAGCTTAACTTTGGGAAGGGGTGTAATACTGAGTGGATTGAAATACTTCGGAGCTACTGGAACTATCGATGTAGGGGTGAAATCCGTTGATATCGATAGGAACTCCAAGGGCGAAGGCAGGTAGCTAGAAACTATTTGACGCTGAGGAACGACAGCTAGGGGAGCGAAAGGG |
-| 00080fb58fb904142ae481f7d7770259 | TACGGAGGGTGCAAGCGTTGTTCGGAATTATTGGGCGTAAAGCGCGTGTAGGCGGTTGATTAAGTCTGATGTGAAAGCCCAGGGCTTAACCCTGGAAGTGCATTGGATACTGGTCGACTAGAGGACGAGAGAGGAAAGTGGAATTAATGGTGTAGGGGTGAAATCCGTAGATATCATTAGGAACATCTGTGGCGAAGGCGGCTTTCTGGCTCGTTTCTGACGCTGAGACGCGAAAGCGTGGGGAGCAAACAGG |
-| 000b67fd460465b2285c0932b352aee2 | TACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGAGCACGTAGGTGGTTAGGTGAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGATACTGCCTGGCTAGAGTTTGGTAGAGGGAAGTGGAATTCCACATGTAGCGGTGAAATGCGTAGAGATGTGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCAAAACTGACACTGAGGTGCGAAAGCGTGGGTAGCAAACAGG |
-| 002597380ec40da68af2362f47542f89 | TACAGAGACCTCAAGCATTATCCGGATTCATTGGGCGTAAAGGGTCCGCAGGTGGCCGTTCACGTCACTGGTTAAATTTCGGGGCTCAACCCTGAAACCGCCAGCGATACGGTTCGGCTCGAGCATGGGAGAGGCAAGCGGAATTACCGGTGTAGTAGTAAAATGCGTTAATATCGGTAAGAACACCAAATGCGAAGGCAGCTTGCTGGAACATTGCTGACACTCAGGGACGAAAGCGTGGGTAGCGAAAGGG |
 
 ---
 
@@ -19117,19 +19074,18 @@ Total Tables: 833
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | concentration_parts_per_million | double | Yes | {"description": "concentration", "unit": "parts per million"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 153
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_parts_per_million | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 1 | 41.135 | 0 | ENIGMA:0000054 |
-| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 2 | 32.14 | 0 | ENIGMA:0000054 |
-| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 3 | 34.44 | 0 | ENIGMA:0000054 |
-| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 1 | 337.0 | 0 | ENIGMA:0000054 |
-| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 2 | 261.745 | 0 | ENIGMA:0000054 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_parts_per_million | below_relative_detection_limit |
+|---|---|---|---|---|---|
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 1 | 41.135 | 0 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 2 | 32.14 | 0 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:17996 | chloride | 3 | 34.44 | 0 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 1 | 337.0 | 0 |
+| U2-SZ2-20240319-ICTOC2 | CHEBI:16189 | sulfate | 2 | 261.745 | 0 |
 
 ---
 
@@ -19146,19 +19102,18 @@ Total Tables: 833
 | concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, organic=1", "unit": "parts per million"} |
 | below_relative_detection_limit_molecule_from_list_elemental_carbon_organic_1 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=elemental carbon, organic=1"} |
 | concentration_molecule_from_list_nitrogen_atom_parts_per_million | double | Yes | {"description": "concentration, molecule from list=nitrogen atom", "unit": "parts per million"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 51
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million | below_relative_detection_limit_molecule_from_list_elemental_carbon_organic_1 | concentration_molecule_from_list_nitrogen_atom_parts_per_million | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|
-| L8-SZ1-20240314-ICTOC2 | 1 | 4.3771 | 0 | 4.0286 | ENIGMA:0000054 |
-| L8-SZ1-20240314-ICTOC2 | 2 | 5.7257 | 0 | 3.7143 | ENIGMA:0000054 |
-| L8-SZ1-20240314-ICTOC1 | 1 | 2.9086 | 0 | 3.5371 | ENIGMA:0000054 |
-| L8-SZ1-20240314-ICTOC1 | 3 | 0.1486 | 0 | 3.8914 | ENIGMA:0000054 |
-| L8-SZ2-20240320-ICTOC2 | 1 | 4.4514 | 0 | 1.9143 | ENIGMA:0000054 |
+| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_elemental_carbon_organic_1_parts_per_million | below_relative_detection_limit_molecule_from_list_elemental_carbon_organic_1 | concentration_molecule_from_list_nitrogen_atom_parts_per_million |
+|---|---|---|---|---|
+| L8-SZ1-20240314-ICTOC2 | 1 | 4.3771 | 0 | 4.0286 |
+| L8-SZ1-20240314-ICTOC2 | 2 | 5.7257 | 0 | 3.7143 |
+| L8-SZ1-20240314-ICTOC1 | 1 | 2.9086 | 0 | 3.5371 |
+| L8-SZ1-20240314-ICTOC1 | 3 | 0.1486 | 0 | 3.8914 |
+| L8-SZ2-20240320-ICTOC2 | 1 | 4.4514 | 0 | 1.9143 |
 
 ---
 
@@ -19175,19 +19130,18 @@ Total Tables: 833
 | molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
 | concentration_parts_per_million | double | Yes | {"description": "concentration", "unit": "parts per million"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 114
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_parts_per_million | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|
-| L7-SZ1-20240909-ICTOC | CHEBI:16189 | sulfate | 76.37 | 0 | ENIGMA:0000054 |
-| L7-SZ1-20240909-ICTOC | CHEBI:17632 | nitrate | 4.53 | 0 | ENIGMA:0000054 |
-| L7-SZ1-20240918-ICTOC | CHEBI:16189 | sulfate | 77.85 | 0 | ENIGMA:0000054 |
-| L7-SZ1-20240918-ICTOC | CHEBI:17632 | nitrate | 2.475 | 0 | ENIGMA:0000054 |
-| L7-SZ2-20240909-ICTOC | CHEBI:16189 | sulfate | 71.105 | 0 | ENIGMA:0000054 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_parts_per_million | below_relative_detection_limit |
+|---|---|---|---|---|
+| L7-SZ1-20240909-ICTOC | CHEBI:16189 | sulfate | 76.37 | 0 |
+| L7-SZ1-20240909-ICTOC | CHEBI:17632 | nitrate | 4.53 | 0 |
+| L7-SZ1-20240918-ICTOC | CHEBI:16189 | sulfate | 77.85 | 0 |
+| L7-SZ1-20240918-ICTOC | CHEBI:17632 | nitrate | 2.475 | 0 |
+| L7-SZ2-20240909-ICTOC | CHEBI:16189 | sulfate | 71.105 | 0 |
 
 ---
 
@@ -19204,19 +19158,18 @@ Total Tables: 833
 | concentration_molecule_from_list_nitrate_micromolar | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "micromolar"} |
 | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=nitrogen-15 atom", "unit": "parts per thousand"} |
 | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=nitrate, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 34
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_nitrate_micromolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|
-| L8-SZ1-20240314-ISOTOPES2 | 1 | 33.171 | 13.711 | 10.04 | ENIGMA:0000164 |
-| L8-SZ1-20240314-ISOTOPES2 | 2 | 32.277 | 14.045 | 10.82 | ENIGMA:0000164 |
-| L8-SZ1-20240314-ISOTOPES1 | 1 | 37.74 | 13.907 | 9.71 | ENIGMA:0000164 |
-| L8-SZ1-20240314-ISOTOPES1 | 2 | 37.473 | 14.217 | 10.584 | ENIGMA:0000164 |
-| L8-SZ2-20240320-ISOTOPES2 | 1 | 32.778 | 14.076 | 9.365 | ENIGMA:0000164 |
+| sdt_sample_name | replicate_series_experimental_context_technical_replicate_count_unit | concentration_molecule_from_list_nitrate_micromolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand |
+|---|---|---|---|---|
+| L8-SZ1-20240314-ISOTOPES2 | 1 | 33.171 | 13.711 | 10.04 |
+| L8-SZ1-20240314-ISOTOPES2 | 2 | 32.277 | 14.045 | 10.82 |
+| L8-SZ1-20240314-ISOTOPES1 | 1 | 37.74 | 13.907 | 9.71 |
+| L8-SZ1-20240314-ISOTOPES1 | 2 | 37.473 | 14.217 | 10.584 |
+| L8-SZ2-20240320-ISOTOPES2 | 1 | 32.778 | 14.076 | 9.365 |
 
 ---
 
@@ -19236,19 +19189,18 @@ Total Tables: 833
 | below_relative_calibration_range_molecule_from_list_ammonium_method_low_range | boolean | Yes | {"description": "below, relative=calibration range, molecule from list=ammonium, method=low range"} |
 | concentration_molecule_from_list_nitrite_micromolar | double | Yes | {"description": "concentration, molecule from list=nitrite", "unit": "micromolar"} |
 | below_relative_calibration_range_molecule_from_list_nitrite | boolean | Yes | {"description": "below, relative=calibration range, molecule from list=nitrite"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 59
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | replicate_series_count_unit | concentration_molecule_from_list_ammonium_method_high_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_high_range | concentration_molecule_from_list_ammonium_method_low_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_low_range | concentration_molecule_from_list_nitrite_micromolar | below_relative_calibration_range_molecule_from_list_nitrite | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| U1-SZ1-20240909-NH3NO2 | 1 | 1.0409 | 0 | NULL | 1 | 0.1234 | 0 | ENIGMA:0000044 |
-| U1-SZ1-20240909-NH3NO2 | 2 | 3.2791 | 0 | 0.9337 | 0 | 0.1668 | 0 | ENIGMA:0000044 |
-| M5-SZ2-20240909-NH3NO2 | 1 | 2.0875 | 0 | 1.0381 | 0 | 2.0519 | 0 | ENIGMA:0000044 |
-| M5-SZ3-20240909-NH3NO2 | 1 | 2.0561 | 0 | 0.4808 | 0 | 0.4914 | 0 | ENIGMA:0000044 |
-| M6-SZ1-20240909-NH3NO2 | 1 | 6.2255 | 0 | 4.3175 | 0 | NULL | 1 | ENIGMA:0000044 |
+| sdt_sample_name | replicate_series_count_unit | concentration_molecule_from_list_ammonium_method_high_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_high_range | concentration_molecule_from_list_ammonium_method_low_range_micromolar | below_relative_calibration_range_molecule_from_list_ammonium_method_low_range | concentration_molecule_from_list_nitrite_micromolar | below_relative_calibration_range_molecule_from_list_nitrite |
+|---|---|---|---|---|---|---|---|
+| U1-SZ1-20240909-NH3NO2 | 1 | 1.0409 | 0 | NULL | 1 | 0.1234 | 0 |
+| U1-SZ1-20240909-NH3NO2 | 2 | 3.2791 | 0 | 0.9337 | 0 | 0.1668 | 0 |
+| M5-SZ2-20240909-NH3NO2 | 1 | 2.0875 | 0 | 1.0381 | 0 | 2.0519 | 0 |
+| M5-SZ3-20240909-NH3NO2 | 1 | 2.0561 | 0 | 0.4808 | 0 | 0.4914 | 0 |
+| M6-SZ1-20240909-NH3NO2 | 1 | 6.2255 | 0 | 4.3175 | 0 | NULL | 1 |
 
 ---
 
@@ -19265,20 +19217,18 @@ Total Tables: 833
 | environmental_sample_comment | string | Yes | {"description": "comment"} |
 | replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
 | count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 85
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 1 | 28 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 2 | 19 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 3 | 22 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 4 | 23 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 5 | 23 | ENIGMA:0000166 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well |
+|---|---|---|---|---|
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 1 | 28 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 2 | 19 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 3 | 22 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 4 | 23 |
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 5 | 23 |
 
 ---
 
@@ -19295,20 +19245,18 @@ Total Tables: 833
 | environmental_sample_comment | string | Yes | {"description": "comment"} |
 | replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
 | count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 145
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 1 | 13 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 2 | 15 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 3 | 24 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 4 | 21 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 5 | 27 | ENIGMA:0000166 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well |
+|---|---|---|---|---|
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 1 | 13 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 2 | 15 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 3 | 24 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 4 | 21 |
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 5 | 27 |
 
 ---
 
@@ -19327,20 +19275,18 @@ Total Tables: 833
 | standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
 | detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 2340
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| GW821E-2019-03-18-UF-R92 | CHEBI:30501 | beryllium atom | 0.006891594034591052 | 7.198042287555368E-4 | 7.3371462676554E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R92 | CHEBI:27560 | boron atom | 1.043795384526683 | 0.03070548271403609 | 0.010727242398948763 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R92 | CHEBI:26708 | sodium atom | 99.05800344336397 | 1.775534274400087 | 0.9198665337908479 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R92 | CHEBI:25107 | magnesium atom | 144.8032397833085 | 2.4285750202097667 | 0.06154594646551375 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R92 | CHEBI:28984 | aluminium atom | 15.026304713275529 | 0.21043514623733037 | 8.712042138416755E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000100 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit |
+|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R92 | CHEBI:30501 | beryllium atom | 0.006891594034591052 | 7.198042287555368E-4 | 7.3371462676554E-4 | 0 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:27560 | boron atom | 1.043795384526683 | 0.03070548271403609 | 0.010727242398948763 | 0 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:26708 | sodium atom | 99.05800344336397 | 1.775534274400087 | 0.9198665337908479 | 0 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:25107 | magnesium atom | 144.8032397833085 | 2.4285750202097667 | 0.06154594646551375 | 0 |
+| GW821E-2019-03-18-UF-R92 | CHEBI:28984 | aluminium atom | 15.026304713275529 | 0.21043514623733037 | 8.712042138416755E-4 | 0 |
 
 ---
 
@@ -19364,20 +19310,18 @@ Total Tables: 833
 | below_relative_detection_limit_molecule_from_list_nitrite | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrite"} |
 | concentration_molecule_from_list_ammonium_parts_per_million | double | Yes | {"description": "concentration, molecule from list=ammonium", "unit": "parts per million"} |
 | below_relative_detection_limit_molecule_from_list_ammonium | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=ammonium"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 45
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_parts_per_million | concentration_molecule_from_list_nitrogen_atom_parts_per_million | concentration_molecule_from_list_nitrogen_atom_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_nitrate_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrate | concentration_molecule_from_list_nitrite_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrite | concentration_molecule_from_list_ammonium_parts_per_million | below_relative_detection_limit_molecule_from_list_ammonium | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| GW821E-2019-03-18-F02-R13 | 19.959 | 3.937 | 16.022 | 0.119 | 0.0559522413551187 | 0.2791 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
-| GW821E-2019-04-01-F02-R13 | 19.505 | 1.063 | 18.442 | 0.089 | 0.045740789034415016 | 0.1915 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
-| GW821E-2019-04-15-F02-R13 | 14.629 | 0.86 | 13.769 | 0.057 | 0.010420108088231739 | 0.2062 | 0 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
-| GW821E-2019-04-29-F02-R13 | 20.1105 | 0.415 | 19.6955 | 0.112 | 0.0564444444444445 | NULL | 1 | NULL | 1 | 0.07155 | 0 | ENIGMA:0000054 | ENIGMA:0000100 |
-| GW821E-2019-05-13-F02-R131 | 18.726 | 1.002 | 17.724 | 0.116 | 0.116 | NULL | 1 | NULL | 1 | NULL | 1 | ENIGMA:0000054 | ENIGMA:0000100 |
+| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_parts_per_million | concentration_molecule_from_list_nitrogen_atom_parts_per_million | concentration_molecule_from_list_nitrogen_atom_physiochemical_state_dissolved_organic_1_parts_per_million | concentration_molecule_from_list_nitrate_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrate | concentration_molecule_from_list_nitrite_parts_per_million | below_relative_detection_limit_molecule_from_list_nitrite | concentration_molecule_from_list_ammonium_parts_per_million | below_relative_detection_limit_molecule_from_list_ammonium |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-F02-R13 | 19.959 | 3.937 | 16.022 | 0.119 | 0.0559522413551187 | 0.2791 | 0 | NULL | 1 | NULL | 1 |
+| GW821E-2019-04-01-F02-R13 | 19.505 | 1.063 | 18.442 | 0.089 | 0.045740789034415016 | 0.1915 | 0 | NULL | 1 | NULL | 1 |
+| GW821E-2019-04-15-F02-R13 | 14.629 | 0.86 | 13.769 | 0.057 | 0.010420108088231739 | 0.2062 | 0 | NULL | 1 | NULL | 1 |
+| GW821E-2019-04-29-F02-R13 | 20.1105 | 0.415 | 19.6955 | 0.112 | 0.0564444444444445 | NULL | 1 | NULL | 1 | 0.07155 | 0 |
+| GW821E-2019-05-13-F02-R131 | 18.726 | 1.002 | 17.724 | 0.116 | 0.116 | NULL | 1 | NULL | 1 | NULL | 1 |
 
 ---
 
@@ -19394,20 +19338,18 @@ Total Tables: 833
 | environmental_sample_comment | string | Yes | {"description": "comment"} |
 | replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
 | count_category_cell_method_aodc_cells_per_well | int | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per well"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 250
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 1 | 29 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 2 | 63 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 3 | 69 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 4 | 121 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 5 | 97 | ENIGMA:0000067 | ENIGMA:0000100 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | replicate_series_count_unit | count_category_cell_method_aodc_cells_per_well |
+|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 1 | 29 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 2 | 63 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 3 | 69 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 4 | 121 |
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 5 | 97 |
 
 ---
 
@@ -19425,20 +19367,18 @@ Total Tables: 833
 | count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
 | coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
 | average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 45
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 89555.7656 | 46.14020615 | 75.8 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R6 | 10.0 | 10ml filtered | 71833.64839 | 44.65695266 | 60.8 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-04-15-UF-R6 | 10.0 | 10ml filtered | 21502.83554 | 18.79410041 | 18.2 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-04-29-UF-R6 | 10.0 | 10ml filtered | 12051.0397 | 18.85821967 | 10.2 | ENIGMA:0000067 | ENIGMA:0000100 |
-| GW821E-2019-05-13-UF-R6 | 10.0 | 10ml filtered | 77032.13611 | 16.28224789 | 65.2 | ENIGMA:0000067 | ENIGMA:0000100 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well |
+|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R6 | 10.0 | 10ml filtered | 89555.7656 | 46.14020615 | 75.8 |
+| GW821E-2019-04-01-UF-R6 | 10.0 | 10ml filtered | 71833.64839 | 44.65695266 | 60.8 |
+| GW821E-2019-04-15-UF-R6 | 10.0 | 10ml filtered | 21502.83554 | 18.79410041 | 18.2 |
+| GW821E-2019-04-29-UF-R6 | 10.0 | 10ml filtered | 12051.0397 | 18.85821967 | 10.2 |
+| GW821E-2019-05-13-UF-R6 | 10.0 | 10ml filtered | 77032.13611 | 16.28224789 | 65.2 |
 
 ---
 
@@ -19457,20 +19397,18 @@ Total Tables: 833
 | standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
 | detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 884
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| L8-SZ1-20240314-METALS1 | CHEBI:30501 | beryllium atom | 0.003 | 1.1111111111111112E-4 | 1.8888888888888888E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L8-SZ1-20240314-METALS1 | CHEBI:27560 | boron atom | 6.845 | 0.13527272727272727 | 0.002990909090909091 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L8-SZ1-20240314-METALS1 | CHEBI:26708 | sodium atom | 248.68508695652173 | 5.982391304347826 | 7.187695652173914 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L8-SZ1-20240314-METALS1 | CHEBI:25107 | magnesium atom | 605.702625 | 19.730458333333335 | 0.14379166666666668 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L8-SZ1-20240314-METALS1 | CHEBI:28984 | aluminium atom | 19.97962962962963 | 2.6772592592592592 | 0.32601851851851854 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit |
+|---|---|---|---|---|---|---|
+| L8-SZ1-20240314-METALS1 | CHEBI:30501 | beryllium atom | 0.003 | 1.1111111111111112E-4 | 1.8888888888888888E-4 | 0 |
+| L8-SZ1-20240314-METALS1 | CHEBI:27560 | boron atom | 6.845 | 0.13527272727272727 | 0.002990909090909091 | 0 |
+| L8-SZ1-20240314-METALS1 | CHEBI:26708 | sodium atom | 248.68508695652173 | 5.982391304347826 | 7.187695652173914 | 0 |
+| L8-SZ1-20240314-METALS1 | CHEBI:25107 | magnesium atom | 605.702625 | 19.730458333333335 | 0.14379166666666668 | 0 |
+| L8-SZ1-20240314-METALS1 | CHEBI:28984 | aluminium atom | 19.97962962962963 | 2.6772592592592592 | 0.32601851851851854 | 0 |
 
 ---
 
@@ -19489,20 +19427,18 @@ Total Tables: 833
 | standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
 | detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 1976
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| U1-SZ1-20240909-METALS | CHEBI:30501 | beryllium atom | 5.555555555555556E-4 | 1.1111111111111112E-4 | 8.888888888888889E-5 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| U1-SZ1-20240909-METALS | CHEBI:27560 | boron atom | 10.595454545454546 | 0.42263636363636364 | 0.0042636363636363635 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| U1-SZ1-20240909-METALS | CHEBI:26708 | sodium atom | 871.6094347826087 | 19.227695652173914 | 17.253008695652174 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| U1-SZ1-20240909-METALS | CHEBI:25107 | magnesium atom | 638.3781250000001 | 15.809916666666666 | 0.6432916666666667 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| U1-SZ1-20240909-METALS | CHEBI:28984 | aluminium atom | 5.195592592592593 | 0.35240740740740745 | 0.7714814814814814 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit |
+|---|---|---|---|---|---|---|
+| U1-SZ1-20240909-METALS | CHEBI:30501 | beryllium atom | 5.555555555555556E-4 | 1.1111111111111112E-4 | 8.888888888888889E-5 | 0 |
+| U1-SZ1-20240909-METALS | CHEBI:27560 | boron atom | 10.595454545454546 | 0.42263636363636364 | 0.0042636363636363635 | 0 |
+| U1-SZ1-20240909-METALS | CHEBI:26708 | sodium atom | 871.6094347826087 | 19.227695652173914 | 17.253008695652174 | 0 |
+| U1-SZ1-20240909-METALS | CHEBI:25107 | magnesium atom | 638.3781250000001 | 15.809916666666666 | 0.6432916666666667 | 0 |
+| U1-SZ1-20240909-METALS | CHEBI:28984 | aluminium atom | 5.195592592592593 | 0.35240740740740745 | 0.7714814814814814 | 0 |
 
 ---
 
@@ -19521,20 +19457,18 @@ Total Tables: 833
 | standard_deviation_measurement_concentration_micromolar | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "micromolar"} |
 | detection_limit_micromolar | double | Yes | {"description": "detection limit", "unit": "micromolar"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 1456
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| L7-SZ2-20230626-METALS | CHEBI:30501 | beryllium atom | 0.0012222222222222222 | 1.1111111111111112E-4 | 1.7777777777777779E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L7-SZ2-20230626-METALS | CHEBI:27560 | boron atom | 9.579636363636364 | 0.016727272727272726 | 6.090909090909091E-4 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L7-SZ2-20230626-METALS | CHEBI:26708 | sodium atom | 693.4703043478261 | 22.453434782608696 | 13.716365217391305 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L7-SZ2-20230626-METALS | CHEBI:25107 | magnesium atom | 526.1085416666666 | 15.764958333333333 | 0.2939083333333333 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| L7-SZ2-20230626-METALS | CHEBI:28984 | aluminium atom | 0.0 | 0.31333333333333335 | 0.8958148148148148 | 1 | ENIGMA:0000103 | ENIGMA:0000166 |
+| sdt_sample_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_micromolar | standard_deviation_measurement_concentration_micromolar | detection_limit_micromolar | below_relative_detection_limit |
+|---|---|---|---|---|---|---|
+| L7-SZ2-20230626-METALS | CHEBI:30501 | beryllium atom | 0.0012222222222222222 | 1.1111111111111112E-4 | 1.7777777777777779E-4 | 0 |
+| L7-SZ2-20230626-METALS | CHEBI:27560 | boron atom | 9.579636363636364 | 0.016727272727272726 | 6.090909090909091E-4 | 0 |
+| L7-SZ2-20230626-METALS | CHEBI:26708 | sodium atom | 693.4703043478261 | 22.453434782608696 | 13.716365217391305 | 0 |
+| L7-SZ2-20230626-METALS | CHEBI:25107 | magnesium atom | 526.1085416666666 | 15.764958333333333 | 0.2939083333333333 | 0 |
+| L7-SZ2-20230626-METALS | CHEBI:28984 | aluminium atom | 0.0 | 0.31333333333333335 | 0.8958148148148148 | 1 |
 
 ---
 
@@ -19555,20 +19489,18 @@ Total Tables: 833
 | standard_deviation_measurement_concentration_milligram_per_kilogram | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "milligram per kilogram"} |
 | detection_limit_milligram_per_kilogram | double | Yes | {"description": "detection limit", "unit": "milligram per kilogram"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 1924
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_weight_category_dry_sediment_digested_gram | environmental_sample_volume_category_digest_resuspension_volume_liter | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | detection_limit_milligram_per_kilogram | below_relative_detection_limit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|
-| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:30501 | beryllium atom | 1.1980198019802004 | 0.021782178217821822 | 0.0031 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:27560 | boron atom | 4.355775577557764 | 0.20198019801980235 | 0.2349 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:26708 | sodium atom | 91.31980198019819 | 2.2435643564356478 | 0.689 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:25107 | magnesium atom | 7842.753135313547 | 152.71089108910923 | 6.301700000000001 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
-| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:28984 | aluminium atom | 19090.256765676604 | 322.136633663367 | 22.6475 | 0 | ENIGMA:0000103 | ENIGMA:0000166 |
+| sdt_sample_name | environmental_sample_weight_category_dry_sediment_digested_gram | environmental_sample_volume_category_digest_resuspension_volume_liter | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | detection_limit_milligram_per_kilogram | below_relative_detection_limit |
+|---|---|---|---|---|---|---|---|---|
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:30501 | beryllium atom | 1.1980198019802004 | 0.021782178217821822 | 0.0031 | 0 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:27560 | boron atom | 4.355775577557764 | 0.20198019801980235 | 0.2349 | 0 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:26708 | sodium atom | 91.31980198019819 | 2.2435643564356478 | 0.689 | 0 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:25107 | magnesium atom | 7842.753135313547 | 152.71089108910923 | 6.301700000000001 | 0 |
+| SSO-U1-C3-00 | 0.2524999999999995 | 0.01 | CHEBI:28984 | aluminium atom | 19090.256765676604 | 322.136633663367 | 22.6475 | 0 |
 
 ---
 
@@ -19586,20 +19518,18 @@ Total Tables: 833
 | count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
 | coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
 | average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 17
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 271739.13043478265 | 14.08856673566926 | 23.0 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ2-20240319-AODC1 | 1.0 | 1ml clear filter | 106332.7032136106 | 35.136418446315325 | 9.0 | ENIGMA:0000166 | ENIGMA:0000067 |
-| M5-SZ1-20240318-AODC1 | 1.0 | 1ml clear filter | 215028.35538752362 | 27.582198676947545 | 18.2 | ENIGMA:0000166 | ENIGMA:0000067 |
-| M5-SZ2-20240321-AODC1 | 1.0 | 1ml clear filter | 274102.07939508505 | 20.536429740640706 | 23.2 | ENIGMA:0000166 | ENIGMA:0000067 |
-| M5-SZ3-20240328-AODC1 | 1.0 | 1ml filtered | 203213.61058601135 | 30.041885308753045 | 17.2 | ENIGMA:0000166 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well |
+|---|---|---|---|---|---|
+| U2-SZ1-20240313-AODC1 | 1.0 | 1ml clear filter | 271739.13043478265 | 14.08856673566926 | 23.0 |
+| U2-SZ2-20240319-AODC1 | 1.0 | 1ml clear filter | 106332.7032136106 | 35.136418446315325 | 9.0 |
+| M5-SZ1-20240318-AODC1 | 1.0 | 1ml clear filter | 215028.35538752362 | 27.582198676947545 | 18.2 |
+| M5-SZ2-20240321-AODC1 | 1.0 | 1ml clear filter | 274102.07939508505 | 20.536429740640706 | 23.2 |
+| M5-SZ3-20240328-AODC1 | 1.0 | 1ml filtered | 203213.61058601135 | 30.041885308753045 | 17.2 |
 
 ---
 
@@ -19617,20 +19547,18 @@ Total Tables: 833
 | count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
 | coefficient_of_variation_measurement_count_category_cell_percent | double | Yes | {"description": "coefficient of variation, measurement=count, category=cell", "unit": "percent"} |
 | average_measurement_count_category_cell_cells_per_well | double | Yes | {"description": "average, measurement=count, category=cell", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 28
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 29.58039891549808 | 20.0 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-SZ1-20230703-AODC | 1.0 | 1ml filtered | 342627.5992438564 | 30.55180197701612 | 29.0 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U1-SZ2-20230703-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 40.2768199119819 | 20.0 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-VSZ-20230711-AODC | 1.0 | 1ml filtered | 222117.20226843102 | 29.472117398287374 | 18.8 | ENIGMA:0000166 | ENIGMA:0000067 |
-| U2-SZ1-20230705-AODC | 1.0 | 1ml filtered | 229206.04914933836 | 28.373935968088432 | 19.4 | ENIGMA:0000166 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_volume_milliliter | environmental_sample_comment | count_category_cell_method_aodc_cells_per_milliliter | coefficient_of_variation_measurement_count_category_cell_percent | average_measurement_count_category_cell_cells_per_well |
+|---|---|---|---|---|---|
+| U1-VSZ-20230711-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 29.58039891549808 | 20.0 |
+| U1-SZ1-20230703-AODC | 1.0 | 1ml filtered | 342627.5992438564 | 30.55180197701612 | 29.0 |
+| U1-SZ2-20230703-AODC | 1.0 | 1ml filtered | 236294.89603024576 | 40.2768199119819 | 20.0 |
+| U2-VSZ-20230711-AODC | 1.0 | 1ml filtered | 222117.20226843102 | 29.472117398287374 | 18.8 |
+| U2-SZ1-20230705-AODC | 1.0 | 1ml filtered | 229206.04914933836 | 28.373935968088432 | 19.4 |
 
 ---
 
@@ -19661,20 +19589,18 @@ Total Tables: 833
 | environmental_sample_control_name | string | Yes | {"description": "control name"} |
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 60830
 
 ### Sample Data (5 rows)
 
-| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 189592.5 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 299610.1 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 571396.2 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 887428.1 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 1119338.4 | ENIGMA:0000072 | ENIGMA:0000166 |
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 189592.5 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 299610.1 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 571396.2 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 887428.1 |
+| 251 | 82.01378384697281 | 0.32276314 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 1119338.4 |
 
 ---
 
@@ -19705,20 +19631,18 @@ Total Tables: 833
 | environmental_sample_control_name | string | Yes | {"description": "control name"} |
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 10744
 
 ### Sample Data (5 rows)
 
-| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 110032.29 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 161028.44 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 39243.812 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 35039.324 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 48394.56 | ENIGMA:0000072 | ENIGMA:0000166 |
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 110032.29 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 161028.44 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 39243.812 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 35039.324 |
+| 1730 | 127.0764140746177 | 2.9917443 | ME:0000387 | negative polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 48394.56 |
 
 ---
 
@@ -19749,20 +19673,18 @@ Total Tables: 833
 | environmental_sample_control_name | string | Yes | {"description": "control name"} |
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 23937
 
 ### Sample Data (5 rows)
 
-| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 0.0 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 0.0 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 174.76102 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 219.65651 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 141.9996 | ENIGMA:0000072 | ENIGMA:0000166 |
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 0.0 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 0.0 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 174.76102 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 219.65651 |
+| 5422 | 90.52586758841048 | 17.201952 | ME:0000386 | positive polarity | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 141.9996 |
 
 ---
 
@@ -19793,20 +19715,18 @@ Total Tables: 833
 | environmental_sample_control_name | string | Yes | {"description": "control name"} |
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | ms1_feature_area_dimensionless_unit | double | Yes | {"description": "MS1 feature area", "unit": "dimensionless unit"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 17380
 
 ### Sample Data (5 rows)
 
-| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 146946.9 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 83556.99 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 9577.214 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 7204.3657 | ENIGMA:0000072 | ENIGMA:0000166 |
-| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 11704.822 | ENIGMA:0000072 | ENIGMA:0000166 |
+| molecule_index_count_unit | molecule_m_z_dimensionless_unit | molecule_retention_time_minute | ionization_mode_sys_oterm_id | ionization_mode_sys_oterm_name | chemical_context_reference_compound_sys_oterm_id | chemical_context_reference_compound_sys_oterm_name | inchikey_chemical_context_reference_compound | molecular_formula_chemical_context_reference_compound | spectral_library_compound_name | molecule_spectral_library_match_id | molecule_spectral_match_score_dimensionless_unit | molecule_adduct | sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | environmental_sample_control_name | replicate_series_experimental_context_technical_replicate_count_unit | ms1_feature_area_dimensionless_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 1 | 146946.9 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C3-00 | NULL | NULL | NULL | 2 | 83556.99 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 1 | 9577.214 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C5-00 | NULL | NULL | NULL | 2 | 7204.3657 |
+| 786 | 121.02919090757324 | 0.87202 | ME:0000387 | negative polarity | CHEBI:17597 | 4-hydroxybenzaldehyde | RGHHSNMVTDWUBI-UHFFFAOYSA-N | C7H6O2 | 4-hydroxybenzaldehyde CollisionEnergy:205060 | CCMSLIB00010118511 | 0.866456 | M-H | SSO-U1-C7-00 | NULL | NULL | NULL | 1 | 11704.822 |
 
 ---
 
@@ -25891,20 +25811,18 @@ Total Tables: 833
 | concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron(2+)", "unit": "milligram per liter"} |
 | standard_deviation_measurement_concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "standard deviation, measurement=concentration, molecule from list=iron(2+)", "unit": "milligram per liter"} |
 | below_relative_detection_limit_molecule_from_list_iron_2 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=iron(2+)"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 44
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | concentration_molecule_from_list_iron_atom_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_atom_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_atom | concentration_molecule_from_list_iron_3_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_3_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_3 | concentration_molecule_from_list_iron_2_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_2_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_2 | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| GW821E-2019-03-18-UF-R5 | 0.22 | 0.05 | 0 | 0.12 | 0.05 | 0 | 0.1 | 0.0 | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R5 | 0.11937119999999998 | NULL | 0 | 0.05578559999999999 | NULL | 0 | 0.06358559999999999 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
-| GW821E-2019-04-15-UF-R5 | 0.12866879999999997 | NULL | 0 | 0.046487999999999974 | NULL | 0 | 0.0821808 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
-| GW823D-2019-03-18-UF-R5 | 0.1565616 | NULL | 0 | 0.139464 | NULL | 0 | 0.017097599999999998 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
-| GW823D-2019-04-15-UF-R5 | 0.1751568 | NULL | 0 | 0.1673568 | NULL | 0 | 0.0078 | NULL | 0 | ENIGMA:0000127 | ENIGMA:0000100 |
+| sdt_sample_name | concentration_molecule_from_list_iron_atom_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_atom_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_atom | concentration_molecule_from_list_iron_3_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_3_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_3 | concentration_molecule_from_list_iron_2_milligram_per_liter | standard_deviation_measurement_concentration_molecule_from_list_iron_2_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_2 |
+|---|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-03-18-UF-R5 | 0.22 | 0.05 | 0 | 0.12 | 0.05 | 0 | 0.1 | 0.0 | 0 |
+| GW821E-2019-04-01-UF-R5 | 0.11937119999999998 | NULL | 0 | 0.05578559999999999 | NULL | 0 | 0.06358559999999999 | NULL | 0 |
+| GW821E-2019-04-15-UF-R5 | 0.12866879999999997 | NULL | 0 | 0.046487999999999974 | NULL | 0 | 0.0821808 | NULL | 0 |
+| GW823D-2019-03-18-UF-R5 | 0.1565616 | NULL | 0 | 0.139464 | NULL | 0 | 0.017097599999999998 | NULL | 0 |
+| GW823D-2019-04-15-UF-R5 | 0.1751568 | NULL | 0 | 0.1673568 | NULL | 0 | 0.0078 | NULL | 0 |
 
 ---
 
@@ -25921,20 +25839,18 @@ Total Tables: 833
 | environmental_sample_date_category_count_date | string | Yes | {"description": "date, category=count date"} |
 | count_category_cell_method_sybr_gold_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=SYBR Gold", "unit": "cells per milliliter"} |
 | standard_deviation_measurement_count_category_cell_method_sybr_gold_cells_per_milliliter | double | Yes | {"description": "standard deviation, measurement=count, category=cell, method=SYBR Gold", "unit": "cells per milliliter"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 64
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_date_category_fixation_date | environmental_sample_date_category_count_date | count_category_cell_method_sybr_gold_cells_per_milliliter | standard_deviation_measurement_count_category_cell_method_sybr_gold_cells_per_milliliter | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| GW821E-2019-03-11-UF-R1 | 2019-03-13 | 2019-07-24 | 1.58E7 | 2380000.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R7 | 2019-03-18 | 2019-06-17 | 5641502.244057235 | 645198.0144675873 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R7 | 2019-04-01 | 2019-06-17 | 6112328.064723711 | 252648.14867702386 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-15-UF-R7 | 2019-04-15 | 2019-06-19 | 9420000.0 | 143000.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-29-UF-R1 | 2019-04-30 | 2019-06-17 | 6684045.13267586 | 600599.5870072771 | ENIGMA:0000129 | ENIGMA:0000100 |
+| sdt_sample_name | environmental_sample_date_category_fixation_date | environmental_sample_date_category_count_date | count_category_cell_method_sybr_gold_cells_per_milliliter | standard_deviation_measurement_count_category_cell_method_sybr_gold_cells_per_milliliter |
+|---|---|---|---|---|
+| GW821E-2019-03-11-UF-R1 | 2019-03-13 | 2019-07-24 | 1.58E7 | 2380000.0 |
+| GW821E-2019-03-18-UF-R7 | 2019-03-18 | 2019-06-17 | 5641502.244057235 | 645198.0144675873 |
+| GW821E-2019-04-01-UF-R7 | 2019-04-01 | 2019-06-17 | 6112328.064723711 | 252648.14867702386 |
+| GW821E-2019-04-15-UF-R7 | 2019-04-15 | 2019-06-19 | 9420000.0 | 143000.0 |
+| GW821E-2019-04-29-UF-R1 | 2019-04-30 | 2019-06-17 | 6684045.13267586 | 600599.5870072771 |
 
 ---
 
@@ -25950,20 +25866,18 @@ Total Tables: 833
 | time_since_sample_collection_category_incubation_start_hour | double | Yes | {"description": "time since sample collection, category=incubation start", "unit": "hour"} |
 | biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | double | Yes | {"description": "biomass production rate, molecule from list=elemental carbon", "unit": "nanogram per milliliter per day"} |
 | standard_deviation_measurement_biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | double | Yes | {"description": "standard deviation, measurement=biomass production rate, molecule from list=elemental carbon", "unit": "nanogram per milliliter per day"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 92
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | time_since_sample_collection_category_incubation_start_hour | biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | standard_deviation_measurement_biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| GW821E-2019-03-11-UF-R1 | 48.0 | 357.870281098546 | 51.804315171515256 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R1 | 24.0 | 160.0485441033926 | 39.10020398858612 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R1 | 24.0 | 160.7929085621971 | 5.059064577405062 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R1 | 48.0 | 278.97567754442645 | 36.844136230349534 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-15-UF-R1 | 24.0 | 25.18940064620356 | 1.8944727202614389 | ENIGMA:0000129 | ENIGMA:0000100 |
+| sdt_sample_name | time_since_sample_collection_category_incubation_start_hour | biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day | standard_deviation_measurement_biomass_production_rate_molecule_from_list_elemental_carbon_nanogram_per_milliliter_per_day |
+|---|---|---|---|
+| GW821E-2019-03-11-UF-R1 | 48.0 | 357.870281098546 | 51.804315171515256 |
+| GW821E-2019-03-18-UF-R1 | 24.0 | 160.0485441033926 | 39.10020398858612 |
+| GW821E-2019-04-01-UF-R1 | 24.0 | 160.7929085621971 | 5.059064577405062 |
+| GW821E-2019-04-01-UF-R1 | 48.0 | 278.97567754442645 | 36.844136230349534 |
+| GW821E-2019-04-15-UF-R1 | 24.0 | 25.18940064620356 | 1.8944727202614389 |
 
 ---
 
@@ -25981,20 +25895,18 @@ Total Tables: 833
 | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "standard deviation, measurement=isotope ratio, molecule from list=water, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
 | isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=water, isotope=deuterium atom", "unit": "parts per thousand"} |
 | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | double | Yes | {"description": "standard deviation, measurement=isotope ratio, molecule from list=water, isotope=deuterium atom", "unit": "parts per thousand"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 46
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_date_category_analysis_date | isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| GW821E-2019-03-11-UF-R8 | 2019-03-21 | -6.383595 | 0.1 | -37.73831 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-03-18-UF-R8 | 2019-03-21 | -6.346244 | 0.1 | -36.213002 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R8 | 2019-04-24 | -6.359386 | 0.12 | -35.304796 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-15-UF-R8 | 2019-04-24 | -6.225738 | 0.12 | -36.581541 | 1.0 | ENIGMA:0000129 | ENIGMA:0000100 |
-| GW821E-2019-04-29-UF-R8 | 2019-06-03 | -6.364182 | NULL | -35.805444 | 2.0 | ENIGMA:0000129 | ENIGMA:0000100 |
+| sdt_sample_name | environmental_sample_date_category_analysis_date | isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand | standard_deviation_measurement_isotope_ratio_molecule_from_list_water_isotope_deuterium_atom_parts_per_thousand |
+|---|---|---|---|---|---|
+| GW821E-2019-03-11-UF-R8 | 2019-03-21 | -6.383595 | 0.1 | -37.73831 | 1.0 |
+| GW821E-2019-03-18-UF-R8 | 2019-03-21 | -6.346244 | 0.1 | -36.213002 | 1.0 |
+| GW821E-2019-04-01-UF-R8 | 2019-04-24 | -6.359386 | 0.12 | -35.304796 | 1.0 |
+| GW821E-2019-04-15-UF-R8 | 2019-04-24 | -6.225738 | 0.12 | -36.581541 | 1.0 |
+| GW821E-2019-04-29-UF-R8 | 2019-06-03 | -6.364182 | NULL | -35.805444 | 2.0 |
 
 ---
 
@@ -26015,20 +25927,18 @@ Total Tables: 833
 | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_nitrogen_15_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=dinitrogen oxide, physiochemical state=dissolved, isotope=nitrogen-15 atom", "unit": "parts per thousand"} |
 | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_oxygen_18_atom_parts_per_thousand | double | Yes | {"description": "isotope ratio, molecule from list=dinitrogen oxide, physiochemical state=dissolved, isotope=oxygen-18 atom", "unit": "parts per thousand"} |
 | concentration_molecule_from_list_ammonia_chemical_context_oxidation_nanomolar | double | Yes | {"description": "concentration, molecule from list=ammonia, chemical context=oxidation", "unit": "nanomolar"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 14
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | concentration_molecule_from_list_nitrate_millimolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_oxygen_18_atom_parts_per_thousand | concentration_molecule_from_list_ammonia_chemical_context_oxidation_nanomolar | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|
-| GW821E-2019-04-01-UF-R21 | NULL | NULL | 0.724 | 15.863 | 17.701 | NULL | NULL | 5.358312592 | ENIGMA:0000164 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R22 | NULL | NULL | 0.816 | 14.457 | 11.392 | NULL | NULL | 1.776592892 | ENIGMA:0000164 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R23 | NULL | NULL | 0.768 | 14.369 | 16.705 | NULL | NULL | 1.420988975 | ENIGMA:0000164 | ENIGMA:0000100 |
-| GW821E-2019-04-01-UF-R24 | ME:0000284 | negative control | 0.802 | 13.871 | 19.531 | NULL | NULL | NULL | ENIGMA:0000164 | ENIGMA:0000100 |
-| MLSB5-2019-04-02-UF-R21 | NULL | NULL | 0.965 | 14.778 | 12.286 | NULL | NULL | 0.3836288293 | ENIGMA:0000164 | ENIGMA:0000100 |
+| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | concentration_molecule_from_list_nitrate_millimolar | isotope_ratio_molecule_from_list_nitrate_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_nitrate_isotope_oxygen_18_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_nitrogen_15_atom_parts_per_thousand | isotope_ratio_molecule_from_list_dinitrogen_oxide_physiochemical_state_dissolved_isotope_oxygen_18_atom_parts_per_thousand | concentration_molecule_from_list_ammonia_chemical_context_oxidation_nanomolar |
+|---|---|---|---|---|---|---|---|---|
+| GW821E-2019-04-01-UF-R21 | NULL | NULL | 0.724 | 15.863 | 17.701 | NULL | NULL | 5.358312592 |
+| GW821E-2019-04-01-UF-R22 | NULL | NULL | 0.816 | 14.457 | 11.392 | NULL | NULL | 1.776592892 |
+| GW821E-2019-04-01-UF-R23 | NULL | NULL | 0.768 | 14.369 | 16.705 | NULL | NULL | 1.420988975 |
+| GW821E-2019-04-01-UF-R24 | ME:0000284 | negative control | 0.802 | 13.871 | 19.531 | NULL | NULL | NULL |
+| MLSB5-2019-04-02-UF-R21 | NULL | NULL | 0.965 | 14.778 | 12.286 | NULL | NULL | 0.3836288293 |
 
 ---
 
@@ -26048,20 +25958,18 @@ Total Tables: 833
 | conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 33
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_date | environmental_sample_location_time | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | ph_ph | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|
-| GW-821E | 2019-03-18 | 10:04 | 2.19 | 124.0 | 89.61 | 13.65 | 6.18 | ENIGMA:0000066 | ENIGMA:0000100 |
-| GW-821E | 2019-04-01 | 11:34 | 1.16 | 101.0 | 113.5 | 13.88 | 6.6 | ENIGMA:0000066 | ENIGMA:0000100 |
-| GW-821E | 2019-04-15 | 10:14 | 2.044 | 314.996 | 59.279 | 13.257 | 6.045 | ENIGMA:0000066 | ENIGMA:0000100 |
-| GW-821E | 2019-04-29 | 10:16 | 1.149 | 197.025 | 78.073 | 19.938 | 6.368 | ENIGMA:0000066 | ENIGMA:0000100 |
-| GW-822E | 2019-03-18 | 10:26 | 1.94 | 52.0 | 147.6 | 14.8 | 6.49 | ENIGMA:0000066 | ENIGMA:0000100 |
+| sdt_location_name | environmental_sample_location_date | environmental_sample_location_time | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | ph_ph |
+|---|---|---|---|---|---|---|---|
+| GW-821E | 2019-03-18 | 10:04 | 2.19 | 124.0 | 89.61 | 13.65 | 6.18 |
+| GW-821E | 2019-04-01 | 11:34 | 1.16 | 101.0 | 113.5 | 13.88 | 6.6 |
+| GW-821E | 2019-04-15 | 10:14 | 2.044 | 314.996 | 59.279 | 13.257 | 6.045 |
+| GW-821E | 2019-04-29 | 10:16 | 1.149 | 197.025 | 78.073 | 19.938 | 6.368 |
+| GW-822E | 2019-03-18 | 10:26 | 1.94 | 52.0 | 147.6 | 14.8 | 6.49 |
 
 ---
 
@@ -26086,20 +25994,18 @@ Total Tables: 833
 | concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
 | depth_top_top_of_casing_bottom_water_surface_meter | double | Yes | {"description": "depth, top=top of casing, bottom=water surface", "unit": "meter"} |
 | time | string | Yes | {"description": "time"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 56
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_meter | environmental_sample_location_date | time_series_category | ph_ph | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_dioxygen_physiochemical_state_dissolved_percent | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_nitrate_milligram_per_liter | depth_top_top_of_casing_bottom_water_surface_meter | time | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump start | 6.7 | 2.4 | 26.1 | 647.0 | 18.3 | 10.27 | 3.4747 | 09:30 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump end | 6.6 | 2.3 | 24.5 | 661.0 | 18.5 | 10.77 | 3.871 | 10:00 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump start | 6.87 | 2.4 | 26.0 | 635.0 | 19.9 | 11.12 | 3.3223 | 10:45 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump end | 6.74 | 2.3 | 24.6 | 641.0 | 19.3 | 11.43 | 3.749 | 11:14 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-L7 | L7-VSZ | 3.5052 | 2023-06-26 | pump start | 6.6 | 2.7 | 33.2 | 651.0 | 26.3 | 12.1 | 3.3071 | 11:45 | ENIGMA:0000066 | ENIGMA:0000166 |
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_meter | environmental_sample_location_date | time_series_category | ph_ph | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | saturation_molecule_from_list_dioxygen_physiochemical_state_dissolved_percent | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_nitrate_milligram_per_liter | depth_top_top_of_casing_bottom_water_surface_meter | time |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump start | 6.7 | 2.4 | 26.1 | 647.0 | 18.3 | 10.27 | 3.4747 | 09:30 |
+| SSO-L7 | L7-SZ2 | 7.0104 | 2023-06-26 | pump end | 6.6 | 2.3 | 24.5 | 661.0 | 18.5 | 10.77 | 3.871 | 10:00 |
+| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump start | 6.87 | 2.4 | 26.0 | 635.0 | 19.9 | 11.12 | 3.3223 | 10:45 |
+| SSO-L7 | L7-SZ1 | 5.1816 | 2023-06-26 | pump end | 6.74 | 2.3 | 24.6 | 641.0 | 19.3 | 11.43 | 3.749 | 11:14 |
+| SSO-L7 | L7-VSZ | 3.5052 | 2023-06-26 | pump start | 6.6 | 2.7 | 33.2 | 651.0 | 26.3 | 12.1 | 3.3071 | 11:45 |
 
 ---
 
@@ -26120,19 +26026,18 @@ Total Tables: 833
 | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 127
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | volume_milliliter | ph_instrument_ph_meter_ph | ph_instrument_aqua_troll_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|
-| 20250922-U2-SZ2-AODC | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
-| 20250922-U2-SZ2-COUNT-UF | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
-| 20250922-U2-SZ2-COUNT-8F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
-| 20250922-U2-SZ2-COUNT-01F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
-| 20250922-U2-SZ2-ACTIVITY-UF | 50.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 | ENIGMA:0000166 |
+| sdt_sample_name | volume_milliliter | ph_instrument_ph_meter_ph | ph_instrument_aqua_troll_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter |
+|---|---|---|---|---|---|---|---|---|
+| 20250922-U2-SZ2-AODC | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
+| 20250922-U2-SZ2-COUNT-UF | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
+| 20250922-U2-SZ2-COUNT-8F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
+| 20250922-U2-SZ2-COUNT-01F | 10.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
+| 20250922-U2-SZ2-ACTIVITY-UF | 50.0 | 5.58 | 5.52 | 2079.9 | 17.51 | 0.0 | NULL | 317.8 |
 
 ---
 
@@ -26152,19 +26057,18 @@ Total Tables: 833
 | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=dioxygen, physiochemical state=dissolved", "unit": "milligram per liter"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 185
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | volume_milliliter | ph_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| 20230913-M5-SZ2-F10-R1 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
-| 20230913-M5-SZ2-F10-R2 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
-| 20230913-M5-SZ2-F10-R3 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
-| 20230913-M5-SZ2-F10-R4 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
-| 20230913-M5-SZ2-F10-R5 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 | ENIGMA:0000166 |
+| sdt_sample_name | volume_milliliter | ph_ph | conductivity_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_dioxygen_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | concentration_molecule_from_list_nitrate_milligram_per_liter |
+|---|---|---|---|---|---|---|---|
+| 20230913-M5-SZ2-F10-R1 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
+| 20230913-M5-SZ2-F10-R2 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
+| 20230913-M5-SZ2-F10-R3 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
+| 20230913-M5-SZ2-F10-R4 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
+| 20230913-M5-SZ2-F10-R5 | 500.0 | 6.01 | 813.07 | 17.75 | NULL | -108.14 | 30.569 |
 
 ---
 
@@ -26181,20 +26085,18 @@ Total Tables: 833
 | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen midpoint", "unit": "foot"} |
 | time_series_date | string | Yes | {"description": "date"} |
 | depth_top_ground_surface_bottom_water_surface_foot | double | Yes | {"description": "depth, top=ground surface, bottom=water surface", "unit": "foot"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 222
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | time_series_date | depth_top_ground_surface_bottom_water_surface_foot | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| SSO-U1 | U1-VZ | 7.5 | 2024-01-31 | 4.6 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-02-05 | 7.2 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-02-08 | 8.5 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-02-26 | 7.74 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VSZ | 11.5 | 2024-01-31 | 4.61 | ENIGMA:0000066 | ENIGMA:0000166 |
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | time_series_date | depth_top_ground_surface_bottom_water_surface_foot |
+|---|---|---|---|---|
+| SSO-U1 | U1-VZ | 7.5 | 2024-01-31 | 4.6 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-05 | 7.2 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-08 | 8.5 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-02-26 | 7.74 |
+| SSO-U1 | U1-VSZ | 11.5 | 2024-01-31 | 4.61 |
 
 ---
 
@@ -26211,20 +26113,18 @@ Total Tables: 833
 | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | double | Yes | {"description": "depth, top=ground surface, bottom=screen midpoint", "unit": "foot"} |
 | environmental_sample_location_datetime | string | Yes | {"description": "datetime"} |
 | depth_top_ground_surface_bottom_water_surface_foot | double | Yes | {"description": "depth, top=ground surface, bottom=water surface", "unit": "foot"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 790
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | environmental_sample_location_datetime | depth_top_ground_surface_bottom_water_surface_foot | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T09:45:00-04:00 | 6.66 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T14:59:00-04:00 | 7.51 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T09:04:00-04:00 | 7.87 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T13:49:00-04:00 | 7.96 | ENIGMA:0000066 | ENIGMA:0000166 |
-| SSO-U1 | U1-VZ | 7.5 | 2024-03-18T09:19:00-04:00 | 6.58 | ENIGMA:0000066 | ENIGMA:0000166 |
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_screen_midpoint_foot | environmental_sample_location_datetime | depth_top_ground_surface_bottom_water_surface_foot |
+|---|---|---|---|---|
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T09:45:00-04:00 | 6.66 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-13T14:59:00-04:00 | 7.51 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T09:04:00-04:00 | 7.87 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-14T13:49:00-04:00 | 7.96 |
+| SSO-U1 | U1-VZ | 7.5 | 2024-03-18T09:19:00-04:00 | 6.58 |
 
 ---
 
@@ -26240,20 +26140,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173338
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:23:21-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:23:31-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:23:41-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:23:51-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:24:01-05:00 | 15.11 | 0.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:23:21-05:00 | 15.11 | 0.2 | SSO-L8 |
+| 2026-02-17T11:23:31-05:00 | 15.11 | 0.2 | SSO-L8 |
+| 2026-02-17T11:23:41-05:00 | 15.11 | 0.2 | SSO-L8 |
+| 2026-02-17T11:23:51-05:00 | 15.11 | 0.2 | SSO-L8 |
+| 2026-02-17T11:24:01-05:00 | 15.11 | 0.2 | SSO-L8 |
 
 ---
 
@@ -26270,20 +26168,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173253
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-02-17T11:21:48-05:00 | 16.75 | 0.8 | -29.8 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:21:58-05:00 | 16.75 | 0.8 | -30.6 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:22:08-05:00 | 16.75 | 0.8 | -31.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:22:18-05:00 | 16.75 | 0.8 | -31.3 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:22:28-05:00 | 16.74 | 0.8 | -31.5 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-02-17T11:21:48-05:00 | 16.75 | 0.8 | -29.8 | SSO-L8 |
+| 2026-02-17T11:21:58-05:00 | 16.75 | 0.8 | -30.6 | SSO-L8 |
+| 2026-02-17T11:22:08-05:00 | 16.75 | 0.8 | -31.1 | SSO-L8 |
+| 2026-02-17T11:22:18-05:00 | 16.75 | 0.8 | -31.3 | SSO-L8 |
+| 2026-02-17T11:22:28-05:00 | 16.74 | 0.8 | -31.5 | SSO-L8 |
 
 ---
 
@@ -26299,20 +26195,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173033
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:46:11-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:46:21-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:46:31-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:46:41-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:46:51-05:00 | 15.35 | 0.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:46:11-05:00 | 15.35 | 0.7 | SSO-L9 |
+| 2026-02-17T11:46:21-05:00 | 15.35 | 0.7 | SSO-L9 |
+| 2026-02-17T11:46:31-05:00 | 15.35 | 0.7 | SSO-L9 |
+| 2026-02-17T11:46:41-05:00 | 15.35 | 0.7 | SSO-L9 |
+| 2026-02-17T11:46:51-05:00 | 15.35 | 0.7 | SSO-L9 |
 
 ---
 
@@ -26329,20 +26223,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 172824
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-02-17T11:50:35-05:00 | 14.88 | 10.9 | 69.9 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:50:45-05:00 | 15.05 | 12.0 | 114.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:50:55-05:00 | 15.2 | 12.6 | 114.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:51:05-05:00 | 15.34 | 12.6 | 110.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:51:15-05:00 | 15.46 | 12.8 | 107.2 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-02-17T11:50:35-05:00 | 14.88 | 10.9 | 69.9 | SSO-L9 |
+| 2026-02-17T11:50:45-05:00 | 15.05 | 12.0 | 114.1 | SSO-L9 |
+| 2026-02-17T11:50:55-05:00 | 15.2 | 12.6 | 114.5 | SSO-L9 |
+| 2026-02-17T11:51:05-05:00 | 15.34 | 12.6 | 110.6 | SSO-L9 |
+| 2026-02-17T11:51:15-05:00 | 15.46 | 12.8 | 107.2 | SSO-L9 |
 
 ---
 
@@ -26358,20 +26250,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173656
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:38:50-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:39:00-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:39:10-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:39:20-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:39:30-05:00 | 15.02 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:38:50-05:00 | 15.02 | 0.2 | SSO-M5 |
+| 2026-02-17T11:39:00-05:00 | 15.02 | 0.2 | SSO-M5 |
+| 2026-02-17T11:39:10-05:00 | 15.02 | 0.2 | SSO-M5 |
+| 2026-02-17T11:39:20-05:00 | 15.02 | 0.2 | SSO-M5 |
+| 2026-02-17T11:39:30-05:00 | 15.02 | 0.2 | SSO-M5 |
 
 ---
 
@@ -26387,20 +26277,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173747
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:36:39-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:36:49-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:36:59-05:00 | 16.46 | 6.0 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:37:09-05:00 | 16.45 | 5.8 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:37:19-05:00 | 16.45 | 5.7 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:36:39-05:00 | 16.46 | 6.0 | SSO-M5 |
+| 2026-02-17T11:36:49-05:00 | 16.46 | 6.0 | SSO-M5 |
+| 2026-02-17T11:36:59-05:00 | 16.46 | 6.0 | SSO-M5 |
+| 2026-02-17T11:37:09-05:00 | 16.45 | 5.8 | SSO-M5 |
+| 2026-02-17T11:37:19-05:00 | 16.45 | 5.7 | SSO-M5 |
 
 ---
 
@@ -26416,20 +26304,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173677
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:43:42-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:43:52-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:44:02-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:44:12-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:44:22-05:00 | 16.09 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:43:42-05:00 | 16.09 | 0.1 | SSO-M6 |
+| 2026-02-17T11:43:52-05:00 | 16.09 | 0.1 | SSO-M6 |
+| 2026-02-17T11:44:02-05:00 | 16.09 | 0.1 | SSO-M6 |
+| 2026-02-17T11:44:12-05:00 | 16.09 | 0.1 | SSO-M6 |
+| 2026-02-17T11:44:22-05:00 | 16.09 | 0.1 | SSO-M6 |
 
 ---
 
@@ -26445,20 +26331,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173589
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:41:44-05:00 | 17.3 | 7.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:41:54-05:00 | 17.31 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:42:04-05:00 | 17.31 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:42:14-05:00 | 17.32 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:42:24-05:00 | 17.33 | 7.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:41:44-05:00 | 17.3 | 7.1 | SSO-M6 |
+| 2026-02-17T11:41:54-05:00 | 17.31 | 7.0 | SSO-M6 |
+| 2026-02-17T11:42:04-05:00 | 17.31 | 7.0 | SSO-M6 |
+| 2026-02-17T11:42:14-05:00 | 17.32 | 7.0 | SSO-M6 |
+| 2026-02-17T11:42:24-05:00 | 17.33 | 7.0 | SSO-M6 |
 
 ---
 
@@ -26474,20 +26358,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173444
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:40:25-05:00 | 16.43 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:40:35-05:00 | 16.44 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:40:45-05:00 | 16.43 | 3.1 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:40:55-05:00 | 16.43 | 3.0 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:41:05-05:00 | 16.43 | 3.0 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:40:25-05:00 | 16.43 | 3.1 | SSO-U2 |
+| 2026-02-17T11:40:35-05:00 | 16.44 | 3.1 | SSO-U2 |
+| 2026-02-17T11:40:45-05:00 | 16.43 | 3.1 | SSO-U2 |
+| 2026-02-17T11:40:55-05:00 | 16.43 | 3.0 | SSO-U2 |
+| 2026-02-17T11:41:05-05:00 | 16.43 | 3.0 | SSO-U2 |
 
 ---
 
@@ -26503,20 +26385,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 154512
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:38:14-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:38:24-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:38:34-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:38:44-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:38:54-05:00 | 17.53 | 2.8 | SSO-U2 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:38:14-05:00 | 17.53 | 2.8 | SSO-U2 |
+| 2026-02-17T11:38:24-05:00 | 17.53 | 2.8 | SSO-U2 |
+| 2026-02-17T11:38:34-05:00 | 17.53 | 2.8 | SSO-U2 |
+| 2026-02-17T11:38:44-05:00 | 17.53 | 2.8 | SSO-U2 |
+| 2026-02-17T11:38:54-05:00 | 17.53 | 2.8 | SSO-U2 |
 
 ---
 
@@ -26532,20 +26412,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173297
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-02-17T11:48:03-05:00 | 15.97 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:48:13-05:00 | 15.98 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:48:23-05:00 | 15.97 | 6.2 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:48:33-05:00 | 15.98 | 1.0 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:48:43-05:00 | 15.98 | 1.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-02-17T11:48:03-05:00 | 15.97 | 1.1 | SSO-U3 |
+| 2026-02-17T11:48:13-05:00 | 15.98 | 1.1 | SSO-U3 |
+| 2026-02-17T11:48:23-05:00 | 15.97 | 6.2 | SSO-U3 |
+| 2026-02-17T11:48:33-05:00 | 15.98 | 1.0 | SSO-U3 |
+| 2026-02-17T11:48:43-05:00 | 15.98 | 1.1 | SSO-U3 |
 
 ---
 
@@ -26562,20 +26440,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 173325
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-02-17T11:46:57-05:00 | 17.33 | 0.6 | -75.5 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:47:07-05:00 | 17.33 | 0.6 | -74.1 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:47:17-05:00 | 17.33 | 0.6 | -72.7 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:47:27-05:00 | 17.33 | 0.6 | -71.9 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-02-17T11:47:37-05:00 | 17.33 | 0.6 | -71.3 | SSO-U3 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-02-17T11:46:57-05:00 | 17.33 | 0.6 | -75.5 | SSO-U3 |
+| 2026-02-17T11:47:07-05:00 | 17.33 | 0.6 | -74.1 | SSO-U3 |
+| 2026-02-17T11:47:17-05:00 | 17.33 | 0.6 | -72.7 | SSO-U3 |
+| 2026-02-17T11:47:27-05:00 | 17.33 | 0.6 | -71.9 | SSO-U3 |
+| 2026-02-17T11:47:37-05:00 | 17.33 | 0.6 | -71.3 | SSO-U3 |
 
 ---
 
@@ -26591,20 +26467,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 59013
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T14:25:26-04:00 | 15.02 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:25:36-04:00 | 14.94 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:25:46-04:00 | 14.86 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:25:56-04:00 | 14.8 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:26:06-04:00 | 14.74 | 0.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T14:25:26-04:00 | 15.02 | 0.3 | SSO-L7 |
+| 2026-03-09T14:25:36-04:00 | 14.94 | 0.3 | SSO-L7 |
+| 2026-03-09T14:25:46-04:00 | 14.86 | 0.3 | SSO-L7 |
+| 2026-03-09T14:25:56-04:00 | 14.8 | 0.3 | SSO-L7 |
+| 2026-03-09T14:26:06-04:00 | 14.74 | 0.3 | SSO-L7 |
 
 ---
 
@@ -26621,20 +26495,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58559
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-03-09T15:33:55-04:00 | 15.94 | 7.9 | -120.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:34:05-04:00 | 15.92 | 7.8 | -120.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:34:15-04:00 | 15.9 | 7.6 | -119.3 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:34:25-04:00 | 15.89 | 7.5 | -118.6 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:34:35-04:00 | 15.88 | 7.4 | -118.0 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-03-09T15:33:55-04:00 | 15.94 | 7.9 | -120.0 | SSO-L7 |
+| 2026-03-09T15:34:05-04:00 | 15.92 | 7.8 | -120.0 | SSO-L7 |
+| 2026-03-09T15:34:15-04:00 | 15.9 | 7.6 | -119.3 | SSO-L7 |
+| 2026-03-09T15:34:25-04:00 | 15.89 | 7.5 | -118.6 | SSO-L7 |
+| 2026-03-09T15:34:35-04:00 | 15.88 | 7.4 | -118.0 | SSO-L7 |
 
 ---
 
@@ -26650,20 +26522,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 59234
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T14:09:44-04:00 | 14.69 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:09:54-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:10:04-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:10:14-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:10:24-04:00 | 14.68 | 0.0 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T14:09:44-04:00 | 14.69 | 0.0 | SSO-L8 |
+| 2026-03-09T14:09:54-04:00 | 14.68 | 0.0 | SSO-L8 |
+| 2026-03-09T14:10:04-04:00 | 14.68 | 0.0 | SSO-L8 |
+| 2026-03-09T14:10:14-04:00 | 14.68 | 0.0 | SSO-L8 |
+| 2026-03-09T14:10:24-04:00 | 14.68 | 0.0 | SSO-L8 |
 
 ---
 
@@ -26680,20 +26550,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 59395
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-03-09T13:52:36-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:52:46-04:00 | 16.07 | 0.0 | 165.7 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:52:56-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:53:06-04:00 | 16.07 | 0.0 | 166.7 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:53:16-04:00 | 16.07 | 0.0 | 167.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-03-09T13:52:36-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 |
+| 2026-03-09T13:52:46-04:00 | 16.07 | 0.0 | 165.7 | SSO-L8 |
+| 2026-03-09T13:52:56-04:00 | 16.07 | 0.0 | 166.2 | SSO-L8 |
+| 2026-03-09T13:53:06-04:00 | 16.07 | 0.0 | 166.7 | SSO-L8 |
+| 2026-03-09T13:53:16-04:00 | 16.07 | 0.0 | 167.1 | SSO-L8 |
 
 ---
 
@@ -26709,20 +26577,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 69483
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T13:37:10-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:37:20-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:37:30-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:37:40-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:37:50-04:00 | 14.98 | 0.1 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T13:37:10-04:00 | 14.98 | 0.1 | SSO-L9 |
+| 2026-03-09T13:37:20-04:00 | 14.98 | 0.1 | SSO-L9 |
+| 2026-03-09T13:37:30-04:00 | 14.98 | 0.1 | SSO-L9 |
+| 2026-03-09T13:37:40-04:00 | 14.98 | 0.1 | SSO-L9 |
+| 2026-03-09T13:37:50-04:00 | 14.98 | 0.1 | SSO-L9 |
 
 ---
 
@@ -26739,20 +26605,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 69591
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-03-09T13:24:26-04:00 | 16.61 | 0.0 | 1.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:24:36-04:00 | 16.61 | 0.0 | 31.7 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:24:46-04:00 | 16.61 | 0.0 | 17.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:24:56-04:00 | 16.61 | 0.0 | 5.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T13:25:06-04:00 | 16.61 | 0.0 | -5.5 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-03-09T13:24:26-04:00 | 16.61 | 0.0 | 1.6 | SSO-L9 |
+| 2026-03-09T13:24:36-04:00 | 16.61 | 0.0 | 31.7 | SSO-L9 |
+| 2026-03-09T13:24:46-04:00 | 16.61 | 0.0 | 17.5 | SSO-L9 |
+| 2026-03-09T13:24:56-04:00 | 16.61 | 0.0 | 5.5 | SSO-L9 |
+| 2026-03-09T13:25:06-04:00 | 16.61 | 0.0 | -5.5 | SSO-L9 |
 
 ---
 
@@ -26768,20 +26632,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58837
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T14:43:15-04:00 | 15.86 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:43:25-04:00 | 15.82 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:43:35-04:00 | 15.78 | 7.1 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:43:45-04:00 | 15.75 | 7.0 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:43:55-04:00 | 15.72 | 7.0 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T14:43:15-04:00 | 15.86 | 7.1 | SSO-M4 |
+| 2026-03-09T14:43:25-04:00 | 15.82 | 7.1 | SSO-M4 |
+| 2026-03-09T14:43:35-04:00 | 15.78 | 7.1 | SSO-M4 |
+| 2026-03-09T14:43:45-04:00 | 15.75 | 7.0 | SSO-M4 |
+| 2026-03-09T14:43:55-04:00 | 15.72 | 7.0 | SSO-M4 |
 
 ---
 
@@ -26797,20 +26659,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58704
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T14:59:45-04:00 | 16.36 | 2.7 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T14:59:55-04:00 | 16.36 | 2.7 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:00:05-04:00 | 16.36 | 2.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:00:15-04:00 | 16.36 | 2.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:00:25-04:00 | 16.36 | 2.9 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T14:59:45-04:00 | 16.36 | 2.7 | SSO-M4 |
+| 2026-03-09T14:59:55-04:00 | 16.36 | 2.7 | SSO-M4 |
+| 2026-03-09T15:00:05-04:00 | 16.36 | 2.8 | SSO-M4 |
+| 2026-03-09T15:00:15-04:00 | 16.36 | 2.8 | SSO-M4 |
+| 2026-03-09T15:00:25-04:00 | 16.36 | 2.9 | SSO-M4 |
 
 ---
 
@@ -26826,20 +26686,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58817
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T15:13:33-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:13:43-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:13:53-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:14:03-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:14:13-04:00 | 15.07 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T15:13:33-04:00 | 15.07 | 0.1 | SSO-M5 |
+| 2026-03-09T15:13:43-04:00 | 15.07 | 0.1 | SSO-M5 |
+| 2026-03-09T15:13:53-04:00 | 15.07 | 0.1 | SSO-M5 |
+| 2026-03-09T15:14:03-04:00 | 15.07 | 0.1 | SSO-M5 |
+| 2026-03-09T15:14:13-04:00 | 15.07 | 0.1 | SSO-M5 |
 
 ---
 
@@ -26855,20 +26713,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58708
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T15:26:13-04:00 | 15.88 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:26:23-04:00 | 15.88 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:26:33-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:26:43-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:26:53-04:00 | 15.87 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T15:26:13-04:00 | 15.88 | 0.2 | SSO-M5 |
+| 2026-03-09T15:26:23-04:00 | 15.88 | 0.2 | SSO-M5 |
+| 2026-03-09T15:26:33-04:00 | 15.87 | 0.2 | SSO-M5 |
+| 2026-03-09T15:26:43-04:00 | 15.87 | 0.2 | SSO-M5 |
+| 2026-03-09T15:26:53-04:00 | 15.87 | 0.2 | SSO-M5 |
 
 ---
 
@@ -26884,20 +26740,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 58777
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T15:09:36-04:00 | 16.38 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:09:46-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:09:56-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:10:06-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:10:16-04:00 | 16.39 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T15:09:36-04:00 | 16.38 | 0.1 | SSO-M5 |
+| 2026-03-09T15:09:46-04:00 | 16.39 | 0.1 | SSO-M5 |
+| 2026-03-09T15:09:56-04:00 | 16.39 | 0.1 | SSO-M5 |
+| 2026-03-09T15:10:06-04:00 | 16.39 | 0.1 | SSO-M5 |
+| 2026-03-09T15:10:16-04:00 | 16.39 | 0.1 | SSO-M5 |
 
 ---
 
@@ -26913,20 +26767,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 68807
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-03-09T15:21:39-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:21:49-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:21:59-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:22:09-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-03-09T15:22:19-04:00 | 15.14 | 0.0 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-03-09T15:21:39-04:00 | 15.14 | 0.0 | SSO-M6 |
+| 2026-03-09T15:21:49-04:00 | 15.14 | 0.0 | SSO-M6 |
+| 2026-03-09T15:21:59-04:00 | 15.14 | 0.0 | SSO-M6 |
+| 2026-03-09T15:22:09-04:00 | 15.14 | 0.0 | SSO-M6 |
+| 2026-03-09T15:22:19-04:00 | 15.14 | 0.0 | SSO-M6 |
 
 ---
 
@@ -26942,20 +26794,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277670
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:33:01-04:00 | 14.93 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:33:11-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:33:21-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:33:31-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:33:41-04:00 | 14.94 | 0.1 | SSO-L7 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:33:01-04:00 | 14.93 | 0.1 | SSO-L7 |
+| 2026-04-09T10:33:11-04:00 | 14.94 | 0.1 | SSO-L7 |
+| 2026-04-09T10:33:21-04:00 | 14.94 | 0.1 | SSO-L7 |
+| 2026-04-09T10:33:31-04:00 | 14.94 | 0.1 | SSO-L7 |
+| 2026-04-09T10:33:41-04:00 | 14.94 | 0.1 | SSO-L7 |
 
 ---
 
@@ -26971,20 +26821,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277911
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:31:46-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:31:56-04:00 | 14.86 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:32:06-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:32:16-04:00 | 14.85 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:32:26-04:00 | 14.86 | 0.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:31:46-04:00 | 14.85 | 0.1 | SSO-L8 |
+| 2026-04-09T10:31:56-04:00 | 14.86 | 0.1 | SSO-L8 |
+| 2026-04-09T10:32:06-04:00 | 14.85 | 0.1 | SSO-L8 |
+| 2026-04-09T10:32:16-04:00 | 14.85 | 0.1 | SSO-L8 |
+| 2026-04-09T10:32:26-04:00 | 14.86 | 0.1 | SSO-L8 |
 
 ---
 
@@ -27001,20 +26849,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277789
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-04-09T10:30:38-04:00 | 15.94 | 0.0 | 264.1 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:30:48-04:00 | 15.94 | 0.0 | 263.6 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:30:58-04:00 | 15.93 | 0.0 | 263.4 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:31:08-04:00 | 15.93 | 0.0 | 263.3 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:31:18-04:00 | 15.93 | 0.0 | 263.2 | SSO-L8 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-04-09T10:30:38-04:00 | 15.94 | 0.0 | 264.1 | SSO-L8 |
+| 2026-04-09T10:30:48-04:00 | 15.94 | 0.0 | 263.6 | SSO-L8 |
+| 2026-04-09T10:30:58-04:00 | 15.93 | 0.0 | 263.4 | SSO-L8 |
+| 2026-04-09T10:31:08-04:00 | 15.93 | 0.0 | 263.3 | SSO-L8 |
+| 2026-04-09T10:31:18-04:00 | 15.93 | 0.0 | 263.2 | SSO-L8 |
 
 ---
 
@@ -27030,20 +26876,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 278029
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:29:36-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:29:46-04:00 | 15.28 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:29:56-04:00 | 15.28 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:30:06-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:30:16-04:00 | 15.29 | 0.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:29:36-04:00 | 15.29 | 0.3 | SSO-L9 |
+| 2026-04-09T10:29:46-04:00 | 15.28 | 0.3 | SSO-L9 |
+| 2026-04-09T10:29:56-04:00 | 15.28 | 0.3 | SSO-L9 |
+| 2026-04-09T10:30:06-04:00 | 15.29 | 0.3 | SSO-L9 |
+| 2026-04-09T10:30:16-04:00 | 15.29 | 0.3 | SSO-L9 |
 
 ---
 
@@ -27060,20 +26904,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 278213
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-04-09T10:28:37-04:00 | 16.36 | 0.0 | 91.2 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:28:47-04:00 | 16.37 | 0.0 | 131.9 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:28:57-04:00 | 16.37 | 0.0 | 126.6 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:29:07-04:00 | 16.37 | 0.0 | 122.3 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:29:17-04:00 | 16.37 | 0.0 | 118.8 | SSO-L9 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-04-09T10:28:37-04:00 | 16.36 | 0.0 | 91.2 | SSO-L9 |
+| 2026-04-09T10:28:47-04:00 | 16.37 | 0.0 | 131.9 | SSO-L9 |
+| 2026-04-09T10:28:57-04:00 | 16.37 | 0.0 | 126.6 | SSO-L9 |
+| 2026-04-09T10:29:07-04:00 | 16.37 | 0.0 | 122.3 | SSO-L9 |
+| 2026-04-09T10:29:17-04:00 | 16.37 | 0.0 | 118.8 | SSO-L9 |
 
 ---
 
@@ -27089,20 +26931,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277430
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:55:32-04:00 | 18.39 | 7.8 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:55:42-04:00 | 18.14 | 7.6 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:55:52-04:00 | 17.92 | 7.5 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:56:02-04:00 | 17.71 | 7.4 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:56:12-04:00 | 17.52 | 7.3 | SSO-M4 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:55:32-04:00 | 18.39 | 7.8 | SSO-M4 |
+| 2026-04-09T10:55:42-04:00 | 18.14 | 7.6 | SSO-M4 |
+| 2026-04-09T10:55:52-04:00 | 17.92 | 7.5 | SSO-M4 |
+| 2026-04-09T10:56:02-04:00 | 17.71 | 7.4 | SSO-M4 |
+| 2026-04-09T10:56:12-04:00 | 17.52 | 7.3 | SSO-M4 |
 
 ---
 
@@ -27118,20 +26958,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277692
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:53:26-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:53:36-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:53:46-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:53:56-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:54:06-04:00 | 15.18 | 0.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:53:26-04:00 | 15.18 | 0.2 | SSO-M5 |
+| 2026-04-09T10:53:36-04:00 | 15.18 | 0.2 | SSO-M5 |
+| 2026-04-09T10:53:46-04:00 | 15.18 | 0.2 | SSO-M5 |
+| 2026-04-09T10:53:56-04:00 | 15.18 | 0.2 | SSO-M5 |
+| 2026-04-09T10:54:06-04:00 | 15.18 | 0.2 | SSO-M5 |
 
 ---
 
@@ -27147,20 +26985,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277887
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:57:23-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:57:33-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:57:43-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:57:53-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:58:03-04:00 | 16.36 | 0.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:57:23-04:00 | 16.36 | 0.1 | SSO-M5 |
+| 2026-04-09T10:57:33-04:00 | 16.36 | 0.1 | SSO-M5 |
+| 2026-04-09T10:57:43-04:00 | 16.36 | 0.1 | SSO-M5 |
+| 2026-04-09T10:57:53-04:00 | 16.36 | 0.1 | SSO-M5 |
+| 2026-04-09T10:58:03-04:00 | 16.36 | 0.1 | SSO-M5 |
 
 ---
 
@@ -27176,20 +27012,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 277574
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:50:44-04:00 | 14.4 | 1.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:50:54-04:00 | 14.4 | 7.1 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:51:04-04:00 | 14.4 | 7.8 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:51:14-04:00 | 14.4 | 7.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:51:24-04:00 | 14.4 | 7.2 | SSO-M5 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:50:44-04:00 | 14.4 | 1.2 | SSO-M5 |
+| 2026-04-09T10:50:54-04:00 | 14.4 | 7.1 | SSO-M5 |
+| 2026-04-09T10:51:04-04:00 | 14.4 | 7.8 | SSO-M5 |
+| 2026-04-09T10:51:14-04:00 | 14.4 | 7.2 | SSO-M5 |
+| 2026-04-09T10:51:24-04:00 | 14.4 | 7.2 | SSO-M5 |
 
 ---
 
@@ -27205,20 +27039,18 @@ Total Tables: 833
 | temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 278345
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|
-| 2026-04-09T10:27:24-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:27:34-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:27:44-04:00 | 15.27 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:27:54-04:00 | 15.28 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:28:04-04:00 | 15.28 | 0.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | sdt_location_name |
+|---|---|---|---|
+| 2026-04-09T10:27:24-04:00 | 15.27 | 0.1 | SSO-M6 |
+| 2026-04-09T10:27:34-04:00 | 15.27 | 0.1 | SSO-M6 |
+| 2026-04-09T10:27:44-04:00 | 15.27 | 0.1 | SSO-M6 |
+| 2026-04-09T10:27:54-04:00 | 15.28 | 0.1 | SSO-M6 |
+| 2026-04-09T10:28:04-04:00 | 15.28 | 0.1 | SSO-M6 |
 
 ---
 
@@ -27235,20 +27067,18 @@ Total Tables: 833
 | concentration_molecule_from_list_bromide_parts_per_million | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "parts per million"} |
 | redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
 | sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 278413
 
 ### Sample Data (5 rows)
 
-| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | enigma_campaign_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 2026-04-09T10:25:31-04:00 | 16.15 | 0.3 | 88.5 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:25:41-04:00 | 16.15 | 0.3 | 108.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:25:51-04:00 | 16.15 | 0.3 | 116.1 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:26:01-04:00 | 16.15 | 0.3 | 104.6 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
-| 2026-04-09T10:26:11-04:00 | 16.15 | 0.3 | 97.8 | SSO-M6 | ENIGMA:0000135 | ENIGMA:0000166 |
+| time_series_datetime | temperature_degree_celsius | concentration_molecule_from_list_bromide_parts_per_million | redox_potential_millivolt | sdt_location_name |
+|---|---|---|---|---|
+| 2026-04-09T10:25:31-04:00 | 16.15 | 0.3 | 88.5 | SSO-M6 |
+| 2026-04-09T10:25:41-04:00 | 16.15 | 0.3 | 108.1 | SSO-M6 |
+| 2026-04-09T10:25:51-04:00 | 16.15 | 0.3 | 116.1 | SSO-M6 |
+| 2026-04-09T10:26:01-04:00 | 16.15 | 0.3 | 104.6 | SSO-M6 |
+| 2026-04-09T10:26:11-04:00 | 16.15 | 0.3 | 97.8 | SSO-M6 |
 
 ---
 
@@ -27262,20 +27092,18 @@ Total Tables: 833
 |-------------|-----------|----------|----------|
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 5273
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|
-| e9d6145e68007c14026e66332ae3ee96 | TACCAGCACCTCGAGTGGTCAGGACGTTTATTGGGCCTAAAGCATCCGTAGCCGGCTTTGCAAGTCTTCGGTTAAATCCACCTGCTCAACAGATGGGCCGCTGGAGATACTACAAAGCTAGGGAGTGGGAGAGGCAGACGGTATTCAGTGGGTAGGGGTAAAATCCTCTGATCCATTGAGGACCACCAGTGGCGAAGGCGGTCTGCCAGAACACGTTCGACGGTGAGGGATGAAAGCTGGGGGAGCAAACCGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| b63edd27d66cb22a08a048ce4e488c09 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGCTTTTTAAGTGAGATGTGTAATCCCTGAGCTCAACTTGGGAACTGCATCTCATACTGGGAGGCTAGAGTACTGGAGAGGGTGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| d12833fed8673a8d32d1adc368a01538 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTGTTTAAGTCTGTCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGATGGATACTGGGCAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| dda2f81232ee68b118d784e5e746a144 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTATTTAAGTCTGCCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGGTGGATACTGGATAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | TACCAGCACCTCGAGTGGTCAGGACGTTTATTGGGCCTAAAGCATCCGTAGCCGGCTTTGCAAGTCTTCGGTTAAATCCACCTGCTCAACAGATGGGCCGCTGGAGATACTACAAAGCTAGGGAGTGGGAGAGGCAGACGGTATTCAGTGGGTAGGGGTAAAATCCTCTGATCCATTGAGGACCACCAGTGGCGAAGGCGGTCTGCCAGAACACGTTCGACGGTGAGGGATGAAAGCTGGGGGAGCAAACCGG |
+| b63edd27d66cb22a08a048ce4e488c09 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGCTTTTTAAGTGAGATGTGTAATCCCTGAGCTCAACTTGGGAACTGCATCTCATACTGGGAGGCTAGAGTACTGGAGAGGGTGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG |
+| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| d12833fed8673a8d32d1adc368a01538 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTGTTTAAGTCTGTCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGATGGATACTGGGCAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG |
+| dda2f81232ee68b118d784e5e746a144 | TACGAAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGGGTGCGTAGGCGGTTATTTAAGTCTGCCGTGAAATCCCCGGGCTCAACCTGGGAATGGCGGTGGATACTGGATAGCTAGAGTGTGTCAGAGGATGGTGGAATTCCCGGTGTAGCGGTGAAATGCGTAGAGATCGGGAGGAACATCAGTGGCGAAGGCGGCCATCTGGGACAACACTGACGCTGAAGCACGAAAGCGTGGGGAGCAAACAGG |
 
 ---
 
@@ -27290,20 +27118,18 @@ Total Tables: 833
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 42184
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F01 | 1 | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F8 | 48 | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F01 | 105 | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F8 | 21 | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | 20240529-M5-SZ2-F01 | 1168 | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sdt_community_name | count_count_unit |
+|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F01 | 1 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-EFP01-F8 | 48 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F01 | 105 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-L8-SZ2-F8 | 21 |
+| e9d6145e68007c14026e66332ae3ee96 | 20240529-M5-SZ2-F01 | 1168 |
 
 ---
 
@@ -27319,20 +27145,18 @@ Total Tables: 833
 | taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 36911
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000351 | taxonomic domain | Archaea | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000252 | phylum | Crenarchaeota | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000253 | class | Nitrososphaeria | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000254 | order | Nitrosotaleales | ENIGMA:0000166 | ENIGMA:0000092 |
-| e9d6145e68007c14026e66332ae3ee96 | ME:0000255 | family | Nitrosotaleaceae | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000351 | taxonomic domain | Archaea |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000252 | phylum | Crenarchaeota |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000253 | class | Nitrososphaeria |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000254 | order | Nitrosotaleales |
+| e9d6145e68007c14026e66332ae3ee96 | ME:0000255 | family | Nitrosotaleaceae |
 
 ---
 
@@ -27346,20 +27170,18 @@ Total Tables: 833
 |-------------|-----------|----------|----------|
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 4513
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|
-| 000b67fd460465b2285c0932b352aee2 | TACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGAGCACGTAGGTGGTTAGGTGAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGATACTGCCTGGCTAGAGTTTGGTAGAGGGAAGTGGAATTCCACATGTAGCGGTGAAATGCGTAGAGATGTGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCAAAACTGACACTGAGGTGCGAAAGCGTGGGTAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0013aacacdba8495d504237c6334ddfb | TACGGAGGGTGCGAGCGTTGTCCGGAATCATTGGGCGTAAAGCGCACGTAGGCGGTTCTTTAAGTCTCATGGTGAAAGGCTGGGGCTCAACCCCAAGCATGCCGGGGATACTGGAGGACTGGAGACAGGTAGAGGCCAGCGGAATTCCGGGTGTAGCGGTGGAATGCGTAGAGATCCGGAAGAACACCGGAGGCGAAGGCGGCTGGCTGGACCTGATCTGACGCTGAGGTGCGAAAGCGTGGGGAGCGAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0015c5366c3012ea504174b29ace1dcc | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGCTCGTAGGCGGTTCGAAAAGTCAGATGTGAAATCCCACAGCTTAACTGTGGAACTGCATCTGAAACTCTCGAACTAGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACATCAGTCGCGAAGGCGCTTTACTGGATCACTACTGACGCTGAGGGGCGAAAGCTAGGGGAGCAAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 003d0470f23082c7bf6de11e71a56898 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTCTGCAAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCGTTTGAAACTACGGAGCTAGAGTGCGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGACACTGACGCTCAGGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| 000b67fd460465b2285c0932b352aee2 | TACAGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGAGCACGTAGGTGGTTAGGTGAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGATACTGCCTGGCTAGAGTTTGGTAGAGGGAAGTGGAATTCCACATGTAGCGGTGAAATGCGTAGAGATGTGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCAAAACTGACACTGAGGTGCGAAAGCGTGGGTAGCAAACAGG |
+| 0013aacacdba8495d504237c6334ddfb | TACGGAGGGTGCGAGCGTTGTCCGGAATCATTGGGCGTAAAGCGCACGTAGGCGGTTCTTTAAGTCTCATGGTGAAAGGCTGGGGCTCAACCCCAAGCATGCCGGGGATACTGGAGGACTGGAGACAGGTAGAGGCCAGCGGAATTCCGGGTGTAGCGGTGGAATGCGTAGAGATCCGGAAGAACACCGGAGGCGAAGGCGGCTGGCTGGACCTGATCTGACGCTGAGGTGCGAAAGCGTGGGGAGCGAACAGG |
+| 0015c5366c3012ea504174b29ace1dcc | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGCTCGTAGGCGGTTCGAAAAGTCAGATGTGAAATCCCACAGCTTAACTGTGGAACTGCATCTGAAACTCTCGAACTAGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACATCAGTCGCGAAGGCGCTTTACTGGATCACTACTGACGCTGAGGGGCGAAAGCTAGGGGAGCAAACGGG |
+| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG |
+| 003d0470f23082c7bf6de11e71a56898 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTCTGCAAGTCAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCGTTTGAAACTACGGAGCTAGAGTGCGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGACACTGACGCTCAGGCACGAAAGCGTGGGGAGCAAACAGG |
 
 ---
 
@@ -27374,20 +27196,18 @@ Total Tables: 833
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 54156
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F8 | 4 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F8 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | 20240812-U3-SZ1-F8 | 3 | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sdt_community_name | count_count_unit |
+|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F8 | 4 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U1-SZ1-F01 | 0 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F8 | 0 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U2-SZ1-F01 | 0 |
+| 000b67fd460465b2285c0932b352aee2 | 20240812-U3-SZ1-F8 | 3 |
 
 ---
 
@@ -27404,20 +27224,18 @@ Total Tables: 833
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 | confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 31591
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 000b67fd460465b2285c0932b352aee2 | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000252 | phylum | Proteobacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000253 | class | Gammaproteobacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000254 | order | Acidiferrobacterales | 0.9 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 000b67fd460465b2285c0932b352aee2 | ME:0000255 | family | Acidiferrobacteraceae | 0.9 | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
+|---|---|---|---|---|
+| 000b67fd460465b2285c0932b352aee2 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000252 | phylum | Proteobacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000253 | class | Gammaproteobacteria | 1.0 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000254 | order | Acidiferrobacterales | 0.9 |
+| 000b67fd460465b2285c0932b352aee2 | ME:0000255 | family | Acidiferrobacteraceae | 0.9 |
 
 ---
 
@@ -27431,20 +27249,18 @@ Total Tables: 833
 |-------------|-----------|----------|----------|
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 3457
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|
-| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | TACAGAGGGTGCGAGCGTTAATCGGAGTTACTGGGCGTAAAGGGCGCGTAGGCGGTGAGATGAGTGTGATGTGAAAGCCCCGGGCTTAACCTGGGAAGCGCATCGCAAACTATCTGACTGGAGTATATGAGAGGGTGGCGGAATTTCCGGTGTAGCGGTGAAATGCGTAGAGATCGGAAGGAACGTCGATGGCGAAGGCAGCCACCTGGCATAATACTGACGCTGAGGCGCGAAAGCGTGGGGAGCGAACAGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0044710531f11498f3fdc9d98ce0e4cd | GACGTAGGGGGCGAGCGTTGCCCGGATTCACTGGGCGTAAAGCGCGTGTAGGCGGTTTGTTAAGTCGGATGTGAAATCTTCGGGCTCAACCCGGAAATTGCATCCGATACTGGCAGACTTGAGGACGGTAGGGGCCGGTGGAATTCCCGGTGTACCGGTGAAATGGATAGATATCGGGAGGAACACCAGTGGCGAAGGCGGCCGGCTGGGCCGATCCTGACGCTGAGACGCGAAAGCCAGGGGAGCGAACCGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0054450c62e5609403033267aeed502c | AACGTAGGACACAAGCGTTATCCGGAGTTACTGGGCGTAAAGGGCGTGTAGGCGGATTGGTAAGTCTATTCTGAAAGCTTCTGGCTAAACTGGAAGAGGCGAATGGAGACTGTCAGTCTAGAGTGAGGAAGAGGAAAGTGGAATTCCGCGTGTAGTGGTGAAATGCGTAGAGATGCGGAGGAACACCAGTGGCGAAAGCGGCTTTCTGGTCCTTAACTGACGCTGAGGCGCGAAAGCATGGGGAGCGAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
-| 00609ab1c084bcda8c880fbcea5ad2d8 | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGTCCGTAGGCGGTTTGGATAGTCGGGTGTGAAATCCCACAGCTTAACTGTGGAACTGCATTCGATACTTCCAGACTGGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACACCAGTCGCGAAGGCGCTTTACTGGCTCACAACTGACGCTGAGGGACGAAAGCTAGGGGAGCAAACGGG | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | AACGTAGGAGGCAAGCGTTATCCGGATTTACTGGGCGTAAAGGGCGTGCAGGTGGCTGTGTAAGTGGTGCGTGAAAGCGCTCGGCTCAACCGGGCGAGGGCGTGCCAAACTGCACAACTAGAAACAGACAGAGGCAAGTGGAATTCGGGGTGTAGTGGTGAAATGCGTAGAGATCCCGAGGAACTCCTGTGGCGAAGGCGACTTGCTGGGTCTGGTTTGACACTCAGACGCGAAAGCATGGGGAGCGAACGGG |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | TACAGAGGGTGCGAGCGTTAATCGGAGTTACTGGGCGTAAAGGGCGCGTAGGCGGTGAGATGAGTGTGATGTGAAAGCCCCGGGCTTAACCTGGGAAGCGCATCGCAAACTATCTGACTGGAGTATATGAGAGGGTGGCGGAATTTCCGGTGTAGCGGTGAAATGCGTAGAGATCGGAAGGAACGTCGATGGCGAAGGCAGCCACCTGGCATAATACTGACGCTGAGGCGCGAAAGCGTGGGGAGCGAACAGG |
+| 0044710531f11498f3fdc9d98ce0e4cd | GACGTAGGGGGCGAGCGTTGCCCGGATTCACTGGGCGTAAAGCGCGTGTAGGCGGTTTGTTAAGTCGGATGTGAAATCTTCGGGCTCAACCCGGAAATTGCATCCGATACTGGCAGACTTGAGGACGGTAGGGGCCGGTGGAATTCCCGGTGTACCGGTGAAATGGATAGATATCGGGAGGAACACCAGTGGCGAAGGCGGCCGGCTGGGCCGATCCTGACGCTGAGACGCGAAAGCCAGGGGAGCGAACCGG |
+| 0054450c62e5609403033267aeed502c | AACGTAGGACACAAGCGTTATCCGGAGTTACTGGGCGTAAAGGGCGTGTAGGCGGATTGGTAAGTCTATTCTGAAAGCTTCTGGCTAAACTGGAAGAGGCGAATGGAGACTGTCAGTCTAGAGTGAGGAAGAGGAAAGTGGAATTCCGCGTGTAGTGGTGAAATGCGTAGAGATGCGGAGGAACACCAGTGGCGAAAGCGGCTTTCTGGTCCTTAACTGACGCTGAGGCGCGAAAGCATGGGGAGCGAACGGG |
+| 00609ab1c084bcda8c880fbcea5ad2d8 | TACAGAGGTGGCAAGCGTTGTTCGGATTTATTGGGCGTAAAGGGTCCGTAGGCGGTTTGGATAGTCGGGTGTGAAATCCCACAGCTTAACTGTGGAACTGCATTCGATACTTCCAGACTGGAGTGTGAGAGGGGTAAAGGGAATTCCCGGTGTAAGGGTGAAATCTGCAGAGATCGGGAAGAACACCAGTCGCGAAGGCGCTTTACTGGCTCACAACTGACGCTGAGGGACGAAAGCTAGGGGAGCAAACGGG |
 
 ---
 
@@ -27459,20 +27275,18 @@ Total Tables: 833
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
 | count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 13828
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F8 | 18 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F8 | 10 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F01 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | 20240820-U1-VSZ-F8 | 0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | sdt_community_name | count_count_unit |
+|---|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F8 | 18 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-U1-VSZ-F01 | 0 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F8 | 10 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | 20240820-M4-SZ1-F01 | 0 |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | 20240820-U1-VSZ-F8 | 0 |
 
 ---
 
@@ -27489,20 +27303,18 @@ Total Tables: 833
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
 | confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 24199
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000252 | phylum | Chloroflexi | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000253 | class | Anaerolineae | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000254 | order | SBR1031 | 0.99 | ENIGMA:0000166 | ENIGMA:0000092 |
-| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | ME:0000351 | taxonomic domain | Bacteria | 1.0 | ENIGMA:0000166 | ENIGMA:0000092 |
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
+|---|---|---|---|---|
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000252 | phylum | Chloroflexi | 0.99 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000253 | class | Anaerolineae | 0.99 |
+| 0016e5c5e6aba81612fdd8d45d47e671 | ME:0000254 | order | SBR1031 | 0.99 |
+| 0037cbd3eb6eaf9cba6a4c2b7d866d1f | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
 
 ---
 
@@ -27516,20 +27328,18 @@ Total Tables: 833
 |-------------|-----------|----------|----------|
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 2393
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|
-| 177f4c684a350910811cb3f7b3b40714 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACAGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 0a9495dc2a22f1eefcd9e4e4ebd2617f | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACGGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 7388c0129a2d5b00352f79fe73678eb5 | TACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGCAAGACAGAGGTGAAATCCCCGGGCTTAACCTGGGAACTGCCTTTGTGACTGCACGGCTAGAGTGTGTCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGATAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 070fc272903ae7ea02e3a26448029004 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGTTTTTTAAGTCAGATGTGTAATCCCCGAGCTCAACTTGGGAACTGCATCTGAGACTGGAAGGCTAGAGTACTGGAGAGGGTGGTGGAATTCCTCGTGTAGCGGTGAAATGCGTAGAGATGAGGAGGAACACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 821890c6f07a73ce116233563e148775 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGACAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGTGACTGCAAGGCTAGAGTATGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACAGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| 0a9495dc2a22f1eefcd9e4e4ebd2617f | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGTAAGACAGGTGTGAAATCCCCGGGCTTAACCTGGGAACTGCGCTTGTGACTGCACGGCTAGAGTACGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCGATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| 7388c0129a2d5b00352f79fe73678eb5 | TACGTAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTGTGCAAGACAGAGGTGAAATCCCCGGGCTTAACCTGGGAACTGCCTTTGTGACTGCACGGCTAGAGTGTGTCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGATATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGATAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| 070fc272903ae7ea02e3a26448029004 | TACAGAGGGGGCAAGCGTTATTCGGAATTATTGGGCGTAAAGGGCGCGTAGGCGGTTTTTTAAGTCAGATGTGTAATCCCCGAGCTCAACTTGGGAACTGCATCTGAGACTGGAAGGCTAGAGTACTGGAGAGGGTGGTGGAATTCCTCGTGTAGCGGTGAAATGCGTAGAGATGAGGAGGAACACCAGTGGCGAAGGCGGCCACCTGGACAGTAACTGACGCTGAGGCGCGAAAGTGTGGGTAGCAAACAGG |
+| 821890c6f07a73ce116233563e148775 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTGTAAGACAGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTTGTGACTGCAAGGCTAGAGTATGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
 
 ---
 
@@ -27548,20 +27358,18 @@ Total Tables: 833
 | community_date_comment_deployment | string | Yes | {"description": "date, comment=deployment"} |
 | community_time_elapsed_comment_deployment_week | double | Yes | {"description": "time elapsed, comment=deployment", "unit": "week"} |
 | count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 131615
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | control_sys_oterm_id | control_sys_oterm_name | community_date_comment_deployment | community_time_elapsed_comment_deployment_week | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| 177f4c684a350910811cb3f7b3b40714 | EU05-20190906-TP1-R1 | NULL | NULL | 2019-08-08 | 4.0 | 11530 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | EU05-20190919-TP1-R2 | NULL | NULL | 2019-08-08 | 6.0 | 14607 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | EU05-20191003-TP1-R3 | NULL | NULL | 2019-08-08 | 8.0 | 5614 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | EU05-20190912-TP2-R1 | NULL | NULL | 2019-08-15 | 4.0 | 11803 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | EU05-20190926-TP2-R2 | NULL | NULL | 2019-08-15 | 6.0 | 6409 | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | sdt_community_name | control_sys_oterm_id | control_sys_oterm_name | community_date_comment_deployment | community_time_elapsed_comment_deployment_week | count_count_unit |
+|---|---|---|---|---|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190906-TP1-R1 | NULL | NULL | 2019-08-08 | 4.0 | 11530 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190919-TP1-R2 | NULL | NULL | 2019-08-08 | 6.0 | 14607 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20191003-TP1-R3 | NULL | NULL | 2019-08-08 | 8.0 | 5614 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190912-TP2-R1 | NULL | NULL | 2019-08-15 | 4.0 | 11803 |
+| 177f4c684a350910811cb3f7b3b40714 | EU05-20190926-TP2-R2 | NULL | NULL | 2019-08-15 | 6.0 | 6409 |
 
 ---
 
@@ -27578,20 +27386,18 @@ Total Tables: 833
 | taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 14358
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000351 | taxonomic domain | Bacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000252 | phylum | Proteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000253 | class | Gammaproteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000254 | order | Betaproteobacteriales | ENIGMA:0000101 | ENIGMA:0000154 |
-| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000255 | family | Rhodocyclaceae | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000351 | taxonomic domain | Bacteria |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000252 | phylum | Proteobacteria |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000253 | class | Gammaproteobacteria |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000254 | order | Betaproteobacteriales |
+| 177f4c684a350910811cb3f7b3b40714 | 0.975143 | ME:0000255 | family | Rhodocyclaceae |
 
 ---
 
@@ -27605,20 +27411,18 @@ Total Tables: 833
 |-------------|-----------|----------|----------|
 | sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
 | sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 634
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sequence_sequence_type_16s_sequence | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|
-| 945184b6386c192c0066e0a98a154780 | TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGCACGCAGGCGGTCTGTCAAGTCGGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTCGAAACTGGCAGGCTAGAGTCTTGTAGAGGGGGGTAGAATTCCAGGTGTAGCGGTGAAATGCGTAGAGATCTGGAGGAATACCGGTGGCGAAGGCGGCCCCCTGGACAAAGACTGACGCTCAGGTGCGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| dd78b6b4c49b1a8c83214298dd4f9716 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTCGTAAGACAGACGTGAAATCCCCGGGCTCAACCTGGGAACTGCGTTTGTGACTGCGAGGCTAGAGTACGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGTTAGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| cb50c99b715abf7cb58d3bfacc9a9a1b | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTTTAAGACAGGCGTGAAATCCCCGGGCTCAACCTGGGAACTGCGCTTGTGACTGGAAGGCTAGAGTATGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
-| 4e8d7a4662640b90817f015280cf5713 | TACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGCGTAAAGGGAGCGTAGGTGGATATTTAAGTGGGATGTGAAATACTCGGGCTTAACCTGGGTGCTGCATTCCAAACTGGATATCTAGAGTGCAGGAGAGGAAAGTAGAATTCCTAGTGTAGCGGTGAAATGCGTAGAGATTAGGAAGAATACCAGTGGCGAAGGCGACTTTCTGGACTGTAACTGACACTGAGGCTCGAAAGCGTGGGGAGCAAACAGG | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| 945184b6386c192c0066e0a98a154780 | TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGCACGCAGGCGGTCTGTCAAGTCGGATGTGAAATCCCCGGGCTCAACCTGGGAACTGCATTCGAAACTGGCAGGCTAGAGTCTTGTAGAGGGGGGTAGAATTCCAGGTGTAGCGGTGAAATGCGTAGAGATCTGGAGGAATACCGGTGGCGAAGGCGGCCCCCTGGACAAAGACTGACGCTCAGGTGCGAAAGCGTGGGGAGCAAACAGG |
+| 3a89febd301bc851f0e510219b356936 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTGCTAAGACCGATGTGAAATCCCCGGGCTTAACCTGGGAACTGCATTGGTGACTGGCAGGCTAGAGTGTGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGCCAACACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| dd78b6b4c49b1a8c83214298dd4f9716 | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTCGTAAGACAGACGTGAAATCCCCGGGCTCAACCTGGGAACTGCGTTTGTGACTGCGAGGCTAGAGTACGGCAGAGGGGGGTAGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAATACCGATGGCGAAGGCAGCCCCCTGGGTTAGTACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| cb50c99b715abf7cb58d3bfacc9a9a1b | TACGTAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGCAGGCGGTTTTTTAAGACAGGCGTGAAATCCCCGGGCTCAACCTGGGAACTGCGCTTGTGACTGGAAGGCTAGAGTATGGCAGAGGGGGGTGGAATTCCACGTGTAGCAGTGAAATGCGTAGAGATGTGGAGGAACACCGATGGCGAAGGCAGCCCCCTGGGCCAATACTGACGCTCATGCACGAAAGCGTGGGGAGCAAACAGG |
+| 4e8d7a4662640b90817f015280cf5713 | TACGTAGGTGGCAAGCGTTGTCCGGATTTACTGGGCGTAAAGGGAGCGTAGGTGGATATTTAAGTGGGATGTGAAATACTCGGGCTTAACCTGGGTGCTGCATTCCAAACTGGATATCTAGAGTGCAGGAGAGGAAAGTAGAATTCCTAGTGTAGCGGTGAAATGCGTAGAGATTAGGAAGAATACCAGTGGCGAAGGCGACTTTCTGGACTGTAACTGACACTGAGGCTCGAAAGCGTGGGGAGCAAACAGG |
 
 ---
 
@@ -27636,20 +27440,18 @@ Total Tables: 833
 | community_description_comment_sample_type | string | Yes | {"description": "description, comment=sample type"} |
 | replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
 | count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 36772
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | sdt_community_name | community_date_comment_sampling | community_description_comment_sample_type | replicate_series_experimental_context_technical_replicate_count_unit | count_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 1 | 14993 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 2 | 7884 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | PBR1-20200131 | 2020-01-31 | liquid reactor effluent | 1 | 13021 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 1 | 2894 | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 2 | 8324 | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | sdt_community_name | community_date_comment_sampling | community_description_comment_sample_type | replicate_series_experimental_context_technical_replicate_count_unit | count_count_unit |
+|---|---|---|---|---|---|
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 1 | 14993 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200101 | 2020-01-01 | liquid reactor effluent | 2 | 7884 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200131 | 2020-01-31 | liquid reactor effluent | 1 | 13021 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 1 | 2894 |
+| 945184b6386c192c0066e0a98a154780 | PBR1-20200221 | 2020-02-21 | liquid reactor effluent | 2 | 8324 |
 
 ---
 
@@ -27666,20 +27468,18 @@ Total Tables: 833
 | taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
 | sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 3804
 
 ### Sample Data (5 rows)
 
-| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000351 | taxonomic domain | Bacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000252 | phylum | Proteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000253 | class | Gammaproteobacteria | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000254 | order | Enterobacteriales | ENIGMA:0000101 | ENIGMA:0000154 |
-| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000255 | family | Enterobacteriaceae | ENIGMA:0000101 | ENIGMA:0000154 |
+| sdt_asv_name | asv_confidence_confidence_unit | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000351 | taxonomic domain | Bacteria |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000252 | phylum | Proteobacteria |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000253 | class | Gammaproteobacteria |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000254 | order | Enterobacteriales |
+| 945184b6386c192c0066e0a98a154780 | 0.99996307 | ME:0000255 | family | Enterobacteriaceae |
 
 ---
 
@@ -27700,20 +27500,18 @@ Total Tables: 833
 | concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
 | standard_deviation_measurement_concentration_milligram_per_kilogram | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "milligram per kilogram"} |
 | below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 2860
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_detection_limit_parts_per_million | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | below_relative_detection_limit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|
-| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:30501 | beryllium atom | 4.570064095055915E-5 | 1.1561379254943824 | 0.1353687520692561 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
-| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:27560 | boron atom | 5.89769643386735E-4 | 4.356042701546581 | 0.1559073830305548 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
-| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:26708 | sodium atom | 0.016816804509727203 | 18.190284458025157 | 1.9367600664794666 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
-| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:25107 | magnesium atom | 0.001534344036925195 | 2981.5606837902938 | 125.46926055000455 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
-| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:28984 | aluminium atom | 0.0034072472363606545 | 10934.298478534265 | 45.54747641478123 | 0 | ENIGMA:0000101 | ENIGMA:0000103 |
+| sdt_sample_name | control_sys_oterm_id | control_sys_oterm_name | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_detection_limit_parts_per_million | concentration_milligram_per_kilogram | standard_deviation_measurement_concentration_milligram_per_kilogram | below_relative_detection_limit |
+|---|---|---|---|---|---|---|---|---|
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:30501 | beryllium atom | 4.570064095055915E-5 | 1.1561379254943824 | 0.1353687520692561 | 0 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:27560 | boron atom | 5.89769643386735E-4 | 4.356042701546581 | 0.1559073830305548 | 0 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:26708 | sodium atom | 0.016816804509727203 | 18.190284458025157 | 1.9367600664794666 | 0 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:25107 | magnesium atom | 0.001534344036925195 | 2981.5606837902938 | 125.46926055000455 | 0 |
+| EU05-20190906-TP1-R1 | NULL | NULL | CHEBI:28984 | aluminium atom | 0.0034072472363606545 | 10934.298478534265 | 45.54747641478123 | 0 |
 
 ---
 
@@ -28163,20 +27961,18 @@ Total Tables: 833
 | count_category_cell_cells_per_gram | double | Yes | {"description": "count, category=cell", "unit": "cells per gram"} |
 | coefficient_of_variation_measurement_count_percent | double | Yes | {"description": "coefficient of variation, measurement=count", "unit": "percent"} |
 | average_measurement_count_cells_per_well | double | Yes | {"description": "average, measurement=count", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 32
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | count_category_cell_cells_per_gram | coefficient_of_variation_measurement_count_percent | average_measurement_count_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1436302.309 | 7.213122508 | 12.4 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DB274 | 1.13 | 0.113 | NULL | 407765.5285 | 51.91911982 | 3.9 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DC305 | 0.97 | 0.097 | NULL | 1096213.435 | 37.67961102 | 9.0 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT15SED-ZC-DB366 | 0.98 | 0.098 | NULL | 916245.5152 | 22.01736912 | 7.6 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT15SED-ZV-DA335 | 1.04 | 0.104 | NULL | 749781.8816 | 31.41885054 | 6.6 | ENIGMA:0000165 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | count_category_cell_cells_per_gram | coefficient_of_variation_measurement_count_percent | average_measurement_count_cells_per_well |
+|---|---|---|---|---|---|---|
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1436302.309 | 7.213122508 | 12.4 |
+| CPT10SED-ZU-DB274 | 1.13 | 0.113 | NULL | 407765.5285 | 51.91911982 | 3.9 |
+| CPT10SED-ZU-DC305 | 0.97 | 0.097 | NULL | 1096213.435 | 37.67961102 | 9.0 |
+| CPT15SED-ZC-DB366 | 0.98 | 0.098 | NULL | 916245.5152 | 22.01736912 | 7.6 |
+| CPT15SED-ZV-DA335 | 1.04 | 0.104 | NULL | 749781.8816 | 31.41885054 | 6.6 |
 
 ---
 
@@ -28194,20 +27990,18 @@ Total Tables: 833
 | sdt_image_name | string | Yes | {"description": "image ID", "type": "foreign_key", "references": "sdt_image.sdt_image_name"} |
 | replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
 | count_category_cell_cells_per_well | int | Yes | {"description": "count, category=cell", "unit": "cells per well"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 230
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | replicate_series_count_unit | count_category_cell_cells_per_well | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1 | 11 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 2 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 3 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 4 | 13 | ENIGMA:0000165 | ENIGMA:0000067 |
-| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 5 | 12 | ENIGMA:0000165 | ENIGMA:0000067 |
+| sdt_sample_name | environmental_sample_weight_category_subsample_gram | environmental_sample_weight_category_filtered_gram | sdt_image_name | replicate_series_count_unit | count_category_cell_cells_per_well |
+|---|---|---|---|---|---|
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 1 | 11 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 2 | 13 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 3 | 13 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 4 | 13 |
+| CPT10SED-ZU-DA244 | 1.02 | 0.102 | NULL | 5 | 12 |
 
 ---
 
@@ -28222,20 +28016,18 @@ Total Tables: 833
 | sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
 | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=1", "unit": "parts per million"} |
 | standard_deviation_measurement_concentration_parts_per_million | double | Yes | {"description": "standard deviation, measurement=concentration", "unit": "parts per million"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 30
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | standard_deviation_measurement_concentration_parts_per_million | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| CPT10SED-ZU-DA244 | 0.96 | 0.02 | ENIGMA:0000165 | ENIGMA:0000053 |
-| CPT10SED-ZU-DB274 | 0.73 | 0.29 | ENIGMA:0000165 | ENIGMA:0000053 |
-| CPT10SED-ZU-DC305 | 0.91 | 0.37 | ENIGMA:0000165 | ENIGMA:0000053 |
-| CPT15SED-ZC-DB366 | 0.2 | 0.18 | ENIGMA:0000165 | ENIGMA:0000053 |
-| CPT15SED-ZV-DA335 | 0.79 | 0.26 | ENIGMA:0000165 | ENIGMA:0000053 |
+| sdt_sample_name | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_parts_per_million | standard_deviation_measurement_concentration_parts_per_million |
+|---|---|---|
+| CPT10SED-ZU-DA244 | 0.96 | 0.02 |
+| CPT10SED-ZU-DB274 | 0.73 | 0.29 |
+| CPT10SED-ZU-DC305 | 0.91 | 0.37 |
+| CPT15SED-ZC-DB366 | 0.2 | 0.18 |
+| CPT15SED-ZV-DA335 | 0.79 | 0.26 |
 
 ---
 
@@ -28254,20 +28046,18 @@ Total Tables: 833
 | water_pressure_method_cpt_piezocone_u2_relative_atmospheric_pressure_ton_per_square_foot | double | Yes | {"description": "water pressure, method=CPT piezocone u2, relative=atmospheric pressure", "unit": "ton per square foot"} |
 | soil_behavior_type_classification_sys_oterm_id | string | Yes | {"description": "soil behavior type classification, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 | soil_behavior_type_classification_sys_oterm_name | string | Yes | {"description": "soil behavior type classification"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 28589
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | depth_top_ground_surface_foot | pressure_method_cpt_tip_resistance_ton_per_square_foot | pressure_method_cpt_sleeve_friction_ton_per_square_foot | water_pressure_method_cpt_piezocone_u2_relative_atmospheric_pressure_ton_per_square_foot | soil_behavior_type_classification_sys_oterm_id | soil_behavior_type_classification_sys_oterm_name | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| CPT1 | 0.07 | 14.9298 | 0.0 | 0.0029 | SBT:0000011 | out of range (Robertson 1986 zone 0) | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT1 | 0.13 | 26.7886 | 0.1041 | -9.0E-4 | SBT:0000018 | silty sand to sandy silt (Robertson 1986 zone 7) | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT1 | 0.2 | 41.4357 | 0.1304 | -0.0067 | SBT:0000019 | sand to silty sand (Robertson 1986 zone 8) | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT1 | 0.26 | 118.0207 | 0.2694 | -0.0028 | SBT:0000020 | sand (Robertson 1986 zone 9) | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT1 | 0.33 | 153.4169 | 0.4545 | -0.0166 | SBT:0000021 | gravelly sand to sand (Robertson 1986 zone 10) | ENIGMA:0000165 | ENIGMA:0000066 |
+| sdt_location_name | depth_top_ground_surface_foot | pressure_method_cpt_tip_resistance_ton_per_square_foot | pressure_method_cpt_sleeve_friction_ton_per_square_foot | water_pressure_method_cpt_piezocone_u2_relative_atmospheric_pressure_ton_per_square_foot | soil_behavior_type_classification_sys_oterm_id | soil_behavior_type_classification_sys_oterm_name |
+|---|---|---|---|---|---|---|
+| CPT1 | 0.07 | 14.9298 | 0.0 | 0.0029 | SBT:0000011 | out of range (Robertson 1986 zone 0) |
+| CPT1 | 0.13 | 26.7886 | 0.1041 | -9.0E-4 | SBT:0000018 | silty sand to sandy silt (Robertson 1986 zone 7) |
+| CPT1 | 0.2 | 41.4357 | 0.1304 | -0.0067 | SBT:0000019 | sand to silty sand (Robertson 1986 zone 8) |
+| CPT1 | 0.26 | 118.0207 | 0.2694 | -0.0028 | SBT:0000020 | sand (Robertson 1986 zone 9) |
+| CPT1 | 0.33 | 153.4169 | 0.4545 | -0.0166 | SBT:0000021 | gravelly sand to sand (Robertson 1986 zone 10) |
 
 ---
 
@@ -28284,20 +28074,18 @@ Total Tables: 833
 | instrument_category_serial_number | int | Yes | {"description": "instrument, category=serial number"} |
 | depth_top_ground_surface_bottom_end_of_sounding_foot | double | Yes | {"description": "depth, top=ground surface, bottom=end of sounding", "unit": "foot"} |
 | elevation_relative_mean_sea_level_meter | double | Yes | {"description": "elevation, relative=mean sea level", "unit": "meter"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 94
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | datetime | instrument_category_serial_number | depth_top_ground_surface_bottom_end_of_sounding_foot | elevation_relative_mean_sea_level_meter | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|
-| CPT1 | 2020-10-13T09:04:11-04:00 | 2111 | 14.76 | 308.73 | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT2 | 2020-10-13T11:27:21-04:00 | 2422 | 3.02 | 308.519 | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT3 | 2020-10-18T10:39:45-04:00 | 2874 | 14.63 | 308.315 | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT4 | 2020-10-15T13:53:54-04:00 | 2422 | 12.86 | 308.496 | ENIGMA:0000165 | ENIGMA:0000066 |
-| CPT5 | 2020-10-18T11:25:55-04:00 | 2874 | 17.32 | 308.407 | ENIGMA:0000165 | ENIGMA:0000066 |
+| sdt_location_name | datetime | instrument_category_serial_number | depth_top_ground_surface_bottom_end_of_sounding_foot | elevation_relative_mean_sea_level_meter |
+|---|---|---|---|---|
+| CPT1 | 2020-10-13T09:04:11-04:00 | 2111 | 14.76 | 308.73 |
+| CPT2 | 2020-10-13T11:27:21-04:00 | 2422 | 3.02 | 308.519 |
+| CPT3 | 2020-10-18T10:39:45-04:00 | 2874 | 14.63 | 308.315 |
+| CPT4 | 2020-10-15T13:53:54-04:00 | 2422 | 12.86 | 308.496 |
+| CPT5 | 2020-10-18T11:25:55-04:00 | 2874 | 17.32 | 308.407 |
 
 ---
 
@@ -28313,20 +28101,18 @@ Total Tables: 833
 | environmental_sample_location_location | string | Yes | {"description": "location"} |
 | environmental_sample_location_datetime | string | Yes | {"description": "datetime"} |
 | depth_top_top_of_casing_bottom_water_surface_foot | double | Yes | {"description": "depth, top=top of casing, bottom=water surface", "unit": "foot"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 74
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_location | environmental_sample_location_datetime | depth_top_top_of_casing_bottom_water_surface_foot | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|
-| SG007-1 | SG007-1 | 2020-10-15 | 3.0 | ENIGMA:0000165 | ENIGMA:0000066 |
-| FW-007 | FW007 | 2020-10-15 | 8.79 | ENIGMA:0000165 | ENIGMA:0000066 |
-| SG008-1 | SG008-1 | 2020-10-15 | 3.08 | ENIGMA:0000165 | ENIGMA:0000066 |
-| FW-008 | FW008 | 2020-10-15 | 8.38 | ENIGMA:0000165 | ENIGMA:0000066 |
-| FW-009 | FW009 | 2020-10-15 | 10.55 | ENIGMA:0000165 | ENIGMA:0000066 |
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_datetime | depth_top_top_of_casing_bottom_water_surface_foot |
+|---|---|---|---|
+| SG007-1 | SG007-1 | 2020-10-15 | 3.0 |
+| FW-007 | FW007 | 2020-10-15 | 8.79 |
+| SG008-1 | SG008-1 | 2020-10-15 | 3.08 |
+| FW-008 | FW008 | 2020-10-15 | 8.38 |
+| FW-009 | FW009 | 2020-10-15 | 10.55 |
 
 ---
 
@@ -28341,20 +28127,18 @@ Total Tables: 833
 | sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
 | category | string | Yes | {"description": "category"} |
 | average_measurement_count_relative_em_grid_window_count_unit | double | Yes | {"description": "average, measurement=count, relative=EM grid window", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 60
 
 ### Sample Data (5 rows)
 
-| sdt_sample_name | category | average_measurement_count_relative_em_grid_window_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|
-| GW821E-2019-03-18-UF-R11 | microbes | 6.4 | ENIGMA:0000100 | ENIGMA:0000152 |
-| GW821E-2019-03-18-UF-R11 | large cells | 8.67 | ENIGMA:0000100 | ENIGMA:0000152 |
-| GW821E-2019-03-18-UF-R11 | ultra-small cells | 3.17 | ENIGMA:0000100 | ENIGMA:0000152 |
-| GW821E-2019-03-18-UF-R11 | phage | 2.33 | ENIGMA:0000100 | ENIGMA:0000152 |
-| GW821E-2019-04-01-UF-R11 | microbes | 2.0 | ENIGMA:0000100 | ENIGMA:0000152 |
+| sdt_sample_name | category | average_measurement_count_relative_em_grid_window_count_unit |
+|---|---|---|
+| GW821E-2019-03-18-UF-R11 | microbes | 6.4 |
+| GW821E-2019-03-18-UF-R11 | large cells | 8.67 |
+| GW821E-2019-03-18-UF-R11 | ultra-small cells | 3.17 |
+| GW821E-2019-03-18-UF-R11 | phage | 2.33 |
+| GW821E-2019-04-01-UF-R11 | microbes | 2.0 |
 
 ---
 
@@ -28388,20 +28172,18 @@ Total Tables: 833
 | maximum_measurement_velocity_micrometer_per_second | double | Yes | {"description": "maximum, measurement=velocity", "unit": "micrometer per second"} |
 | standard_deviation_measurement_velocity_micrometer_per_second | double | Yes | {"description": "standard deviation, measurement=velocity", "unit": "micrometer per second"} |
 | count_category_tracked_particles_count_unit | int | Yes | {"description": "count, category=tracked particles", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 39
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_borescope_foot | environmental_sample_location_datetime | environmental_sample_location_elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | environmental_sample_location_comment_category_weather | environmental_sample_location_category_category_preferential_flow | environmental_sample_location_comment_category_samplers | environmental_sample_location_comment_category_source_file | azimuth_method_borescope_flow_vector_degree | velocity_method_borescope_flow_vector_micrometer_per_second | average_measurement_azimuth_degree | median_measurement_azimuth_degree | minimum_measurement_azimuth_degree | maximum_measurement_azimuth_degree | standard_deviation_measurement_azimuth_degree | average_measurement_velocity_micrometer_per_second | median_measurement_velocity_micrometer_per_second | minimum_measurement_velocity_micrometer_per_second | maximum_measurement_velocity_micrometer_per_second | standard_deviation_measurement_velocity_micrometer_per_second | count_category_tracked_particles_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SSO-M4 | M4-SZ1 | 15.06 | 2024-01-31T12:20:48-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-18_Pref.log | 224.08 | 201.02 | 223.09 | 216.41 | 10.0 | 349.44 | 38.94 | 245.14 | 222.4 | 106.53 | 1096.0 | 97.58 | 634 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-M4 | M4-SZ1 | 16.06 | 2024-01-31T13:18:07-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-19_Pref.log | 176.8 | 345.77 | 177.23 | 177.07 | 42.17 | 265.11 | 22.12 | 368.43 | 367.84 | 152.91 | 3728.69 | 113.72 | 1445 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-M4 | M4-SZ1 | 17.06 | 2024-01-31T13:36:44-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-20_Pref.log | 154.29 | 91.43 | 151.07 | 169.36 | 3.85 | 326.66 | 70.74 | 203.0 | 183.22 | 81.23 | 4717.74 | 156.67 | 1955 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-M4 | M4-SZ1 | 18.06 | 2024-01-31T14:04:49-05:00 | 2.94 | sunny | no | Katie Fitzgerald Walker | 20240131_M4-SZ1-21.log | 209.75 | 25.38 | 213.78 | 169.15 | 44.66 | 356.52 | 101.26 | 174.07 | 157.05 | 91.38 | 2597.17 | 115.52 | 709 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 2.52 | sunny | no | Katie Fitzgerald Walker | 20240131_L9-SZ1-19.log | 80.23 | 200.31 | 125.95 | 102.37 | 0.42 | 353.07 | 89.75 | 301.38 | 209.59 | 93.75 | 2237.6 | 258.35 | 129 | ENIGMA:0000166 | ENIGMA:0000066 |
+| sdt_location_name | environmental_sample_location_location | environmental_sample_location_depth_top_ground_surface_bottom_borescope_foot | environmental_sample_location_datetime | environmental_sample_location_elevation_instrument_casing_top_casing_top_bottom_ground_surface_foot | environmental_sample_location_comment_category_weather | environmental_sample_location_category_category_preferential_flow | environmental_sample_location_comment_category_samplers | environmental_sample_location_comment_category_source_file | azimuth_method_borescope_flow_vector_degree | velocity_method_borescope_flow_vector_micrometer_per_second | average_measurement_azimuth_degree | median_measurement_azimuth_degree | minimum_measurement_azimuth_degree | maximum_measurement_azimuth_degree | standard_deviation_measurement_azimuth_degree | average_measurement_velocity_micrometer_per_second | median_measurement_velocity_micrometer_per_second | minimum_measurement_velocity_micrometer_per_second | maximum_measurement_velocity_micrometer_per_second | standard_deviation_measurement_velocity_micrometer_per_second | count_category_tracked_particles_count_unit |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| SSO-M4 | M4-SZ1 | 15.06 | 2024-01-31T12:20:48-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-18_Pref.log | 224.08 | 201.02 | 223.09 | 216.41 | 10.0 | 349.44 | 38.94 | 245.14 | 222.4 | 106.53 | 1096.0 | 97.58 | 634 |
+| SSO-M4 | M4-SZ1 | 16.06 | 2024-01-31T13:18:07-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-19_Pref.log | 176.8 | 345.77 | 177.23 | 177.07 | 42.17 | 265.11 | 22.12 | 368.43 | 367.84 | 152.91 | 3728.69 | 113.72 | 1445 |
+| SSO-M4 | M4-SZ1 | 17.06 | 2024-01-31T13:36:44-05:00 | 2.94 | sunny | yes | Katie Fitzgerald Walker | 20240131_M4-SZ1-20_Pref.log | 154.29 | 91.43 | 151.07 | 169.36 | 3.85 | 326.66 | 70.74 | 203.0 | 183.22 | 81.23 | 4717.74 | 156.67 | 1955 |
+| SSO-M4 | M4-SZ1 | 18.06 | 2024-01-31T14:04:49-05:00 | 2.94 | sunny | no | Katie Fitzgerald Walker | 20240131_M4-SZ1-21.log | 209.75 | 25.38 | 213.78 | 169.15 | 44.66 | 356.52 | 101.26 | 174.07 | 157.05 | 91.38 | 2597.17 | 115.52 | 709 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 2.52 | sunny | no | Katie Fitzgerald Walker | 20240131_L9-SZ1-19.log | 80.23 | 200.31 | 125.95 | 102.37 | 0.42 | 353.07 | 89.75 | 301.38 | 209.59 | 93.75 | 2237.6 | 258.35 | 129 |
 
 ---
 
@@ -28420,20 +28202,155 @@ Total Tables: 833
 | azimuth_degree | double | Yes | {"description": "azimuth", "unit": "degree"} |
 | velocity_micrometer_per_second | double | Yes | {"description": "velocity", "unit": "micrometer per second"} |
 | count_category_particles_in_frame_count_unit | int | Yes | {"description": "count, category=particles in frame", "unit": "count unit"} |
-| enigma_campaign_sys_oterm_id | string | Yes | {"description": "ENIGMA Campaign, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id | string | Yes | {"description": "ENIGMA Labs and Personnel, comment=Contact Person or Lab, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
 
 **Total Rows:** 52036
 
 ### Sample Data (5 rows)
 
-| sdt_location_name | time_series_location | time_series_depth_top_ground_surface_bottom_borescope_foot | time_series_datetime | azimuth_degree | velocity_micrometer_per_second | count_category_particles_in_frame_count_unit | enigma_campaign_sys_oterm_id | enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id |
-|---|---|---|---|---|---|---|---|---|
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 48.1 | 657.1 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 46.3 | 923.7 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 62.4 | 574.4 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 73.6 | 712.0 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
-| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 63.3 | 776.8 | 2 | ENIGMA:0000166 | ENIGMA:0000066 |
+| sdt_location_name | time_series_location | time_series_depth_top_ground_surface_bottom_borescope_foot | time_series_datetime | azimuth_degree | velocity_micrometer_per_second | count_category_particles_in_frame_count_unit |
+|---|---|---|---|---|---|---|
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 48.1 | 657.1 | 2 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:13-05:00 | 46.3 | 923.7 | 2 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 62.4 | 574.4 | 2 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 73.6 | 712.0 | 2 |
+| SSO-L9 | L9-SZ1 | 16.48 | 2024-01-31T14:59:14-05:00 | 63.3 | 776.8 | 2 |
+
+---
+
+## Table: ddt_brick0002166
+
+**Table Description:** zhou_lab_corepilot_2017_OTU_ITS.ndarray - Zhou Lab fungal ITS2 OTU representative sequences, 2017 Pilot Core sediment (UPARSE 97% OTUs, version 171101)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| asv_description_category_source_asv_label | string | Yes | {"description": "description, category=source OTU label"} |
+| sequence_sequence_type_its_2_sequence | string | Yes | {"description": "sequence, sequence type=ITS-2 sequence"} |
+
+**Total Rows:** 1330
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | asv_description_category_source_asv_label | sequence_sequence_type_its_2_sequence |
+|---|---|---|
+| 00e26040a68e34205446e1a8200c071f | OTU1 | AACGCACATTGCGCCCCCTGGTATTCCGGGGGGCATGCCTGTTCGAGCGTCATTTCACCACTCAAGCCTCGCTTGGTATTGGGCGACGCGGTCCGCCGCGCGCCTCAAATCGACCGGCTGGGTCTTTCGTCCCCTCAGCGTTGTGGAAACTATTCGCTAAAGGGTGCCGCGGGAGGCCACGCCGTAAAACAACCCCATTTCTAAGGTTGACCTCGGATCAGGTAGGGATACCCGCTGAACTTAA |
+| fa7f31b6365cfbd106678dfe6fd63cae | OTU10 | AACGCACATTGCGCCCTTCGGTATTCCGTTGGGCATGCCTGTTCGAGCGTCATTTAAACCTTCAAGCTATGCTTGGTGTTGGGTGTTTGTTCCGCCTCAGCGTGTGGACTCGCCTCAAATTCATTGGCAGCCGGTATGTTGGCTTCGTGCGCAGCACATTGCAAGCGACTTCAGCAGACCCCCTCCCATAAGCCCTTTTTTTACTTTGACCTCGGATCAGGTAGGGATACCCGCTGAACTTAA |
+| 9c6fe943e913c7ed2b88a61d6b5bb7b8 | OTU100 | AACGCACATTGCGCCCCTTGGTATTCCATGGGGCATGCCTGTTCGAGCGTCATTTGTACCTTCAAGCTCTGCTTGGTGTTGGGTGTTTGTCTCCTGTAGACTCGCCTTAAAACAATTGGCAGCCGGCGTATTGATTTCGGAGCGCAGTACATCTCGCGCTTTGCACTCATAACGACGACATCCAAAAGTACATTTTTACACTCTTGACCTCGGATCAGGTAGGGATACCCGCTGAACTTAA |
+| da7eaf540af26b289a6f3be2ae3c6a8e | OTU1000 | AACGCACATTGCGCCCTTTGGTATTCCGAAGGGCATGCCTGTTCGAGCGTCATTTCAAACCTCAAGCTCACGCTTGGTATTGGGCGTCGTCCGCTAGGACGTGCCAGAAACCTGTAGGCAGTGGTGCCCGCCTCCCAGCGTAGTCAATCTACCCGCTTCGGAGCGCGCGGTACCGCCCGCCGGACGAACAACCACTATTTTTCTATGGTTTGACCTCGGATCAGGTAGGGATACCCGCTGAACTTAA |
+| 44a859d9839710b4fb3b97220df1342f | OTU1001 | AACGCACATTGCGCCCCTTGGTATTCCGAGGGGCATGCCTGTTCGAGCGTCATTATGACCACTCAAGCCTAGCTTGGTATTGGGGTTCGCGGTTTCGCGGCCCTTAAAATCAGTGGCGGTGCCATCTGGCTCTAAGCGTAGTAATTTATCTCGCTATTGGGTCCGGTAGTTGCTTGCCAATAACCTCCAACTTTTAAGGTTGACCTCGGATCAGGTAGGGATACCCGCTGAACTTAA |
+
+---
+
+## Table: ddt_brick0002167
+
+**Table Description:** zhou_lab_corepilot_2017_OTU_count.ndarray - Zhou Lab fungal ITS OTU counts, 2017 Pilot Core sediment: raw counts for the 53 samples with detectable ITS (version 171101)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| asv_description_category_source_asv_label | string | Yes | {"description": "description, category=source OTU label"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+
+**Total Rows:** 70490
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | asv_description_category_source_asv_label | sdt_community_name | count_count_unit |
+|---|---|---|---|
+| 00e26040a68e34205446e1a8200c071f | OTU1 | EB106-02-01 | 790 |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | EB106-02-02 | 655 |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | EB106-02-03 | 392 |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | EB106-03-01 | 1444 |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | EB106-03-02 | 2 |
+
+---
+
+## Table: ddt_brick0002168
+
+**Table Description:** zhou_lab_corepilot_2017_OTU_taxonomy.ndarray - Zhou Lab fungal ITS OTU taxonomy (RDP Classifier, Warcup fungal ITS trainset June 2016, confidence 0.8), 2017 Pilot Core sediment (version 171101)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| asv_description_category_source_asv_label | string | Yes | {"description": "description, category=source OTU label"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 9310
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | asv_description_category_source_asv_label | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|---|
+| 00e26040a68e34205446e1a8200c071f | OTU1 | ME:0000251 | kingdom | Fungi |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | ME:0000252 | phylum | Ascomycota |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | ME:0000253 | class | Dothideomycetes |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | ME:0000254 | order | Capnodiales |
+| 00e26040a68e34205446e1a8200c071f | OTU1 | ME:0000255 | family | Mycosphaerellaceae |
+
+---
+
+## Table: ddt_brick0002169
+
+**Table Description:** zhou_lab_corepilot_2017_geochip5.ndarray - Zhou Lab GeoChip 5.0 functional gene array signal (normalized, log-transformed, total-scaled), 2017 Pilot Core sediment, 105,203 probes x 49 samples (version 171025)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| microarray_probe_name | string | Yes | {"description": "microarray probe name"} |
+| gene_symbol | string | Yes | {"description": "gene symbol"} |
+| geochip_gene_category_sys_oterm_id | string | Yes | {"description": "GeoChip gene category, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| geochip_gene_category_sys_oterm_name | string | Yes | {"description": "GeoChip gene category"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| hybridization_intensity_dimensionless_unit | double | Yes | {"description": "hybridization intensity", "unit": "dimensionless unit"} |
+
+**Total Rows:** 5154947
+
+### Sample Data (5 rows)
+
+| microarray_probe_name | gene_symbol | geochip_gene_category_sys_oterm_id | geochip_gene_category_sys_oterm_name | sdt_community_name | hybridization_intensity_dimensionless_unit |
+|---|---|---|---|---|---|
+| 296092765 | terc | GEOCHIP:0000206 | Tellurium detoxification | EB106-02-01 | 6.689034204 |
+| 296092765 | terc | GEOCHIP:0000206 | Tellurium detoxification | EB106-02-02 | 0.0 |
+| 296092765 | terc | GEOCHIP:0000206 | Tellurium detoxification | EB106-02-03 | 4.643562257 |
+| 296092765 | terc | GEOCHIP:0000206 | Tellurium detoxification | EB106-03-03 | 0.0 |
+| 296092765 | terc | GEOCHIP:0000206 | Tellurium detoxification | EB106-03-04 | 9.735775702 |
+
+---
+
+## Table: ddt_brick0002170
+
+**Table Description:** zhou_lab_corepilot_2017_geochip5_taxonomy.ndarray - Zhou Lab GeoChip 5.0 probe taxonomy: NCBI lineage and organism of each probe's target sequence, 2017 Pilot Core sediment (version 171025)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| microarray_probe_name | string | Yes | {"description": "microarray probe name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+
+**Total Rows:** 946827
+
+### Sample Data (5 rows)
+
+| microarray_probe_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name |
+|---|---|---|---|
+| 296092765 | ME:0000351 | taxonomic domain | Bacteria |
+| 296092765 | ME:0000252 | phylum | Actinobacteria |
+| 296092765 | ME:0000253 | class | Actinobacteria |
+| 296092765 | ME:0000254 | order | Actinomycetales |
+| 296092765 | ME:0000255 | family | Pseudonocardiaceae |
 
 ---
 
@@ -28476,7 +28393,7 @@ Total Tables: 833
 | sdt_asv_id | string | No | {"description": "Unique identifier for each ASV/OTU (Primary key)", "type": "primary_key"} |
 | sdt_asv_name | string | No | {"description": "Unique name assigned to the ASV/OTU, usually md5sum", "type": "unique_key"} |
 
-**Total Rows:** 225833
+**Total Rows:** 227163
 
 ### Sample Data (5 rows)
 
@@ -28759,7 +28676,7 @@ Total Tables: 833
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 75
+**Total Rows:** 77
 
 ### Sample Data (5 rows)
 
@@ -28790,7 +28707,7 @@ Total Tables: 833
 | sequencing_technology_sys_oterm_name | string | No | {"description": "Sequencing technology used (e.g., Illumina)"} |
 | link | string | No | {"description": "Link to the reads file (e.g., fastq)"} |
 
-**Total Rows:** 20835
+**Total Rows:** 20888
 
 ### Sample Data (5 rows)
 
@@ -28881,7 +28798,7 @@ Total Tables: 833
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 5575
+**Total Rows:** 16395
 
 ### Sample Data (5 rows)
 
@@ -28945,7 +28862,7 @@ Total Tables: 833
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 7244
+**Total Rows:** 19313
 
 ### Sample Data (5 rows)
 
@@ -28980,7 +28897,7 @@ Total Tables: 833
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 101435
+**Total Rows:** 101543
 
 ### Sample Data (5 rows)
 
@@ -29022,7 +28939,7 @@ Total Tables: 833
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 128610
+**Total Rows:** 128766
 
 ### Sample Data (5 rows)
 
@@ -29064,7 +28981,7 @@ Total Tables: 833
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 112616
+**Total Rows:** 112830
 
 ### Sample Data (5 rows)
 

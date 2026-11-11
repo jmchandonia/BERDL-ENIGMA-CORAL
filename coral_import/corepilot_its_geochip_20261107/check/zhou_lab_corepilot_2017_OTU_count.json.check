@@ -1,0 +1,15 @@
+property: ENIGMA Campaign <ENIGMA:0000002> = Core Pilot <ENIGMA:0000021>
+property: ENIGMA Labs and Personnel <ENIGMA:0000029> = Zhou Lab <ENIGMA:0000090>
+property: comment <ME:0000011> = OTUs are named by the MD5 of their representative sequence (as the Zhou Lab ASV sets are); the lab's labels OTU1..OTU1330 are kept as 'source OTU label'
+property: comment <ME:0000011> = Communities are the existing pilot core sediment communities EB<well>-<section>-<sample> (Zhou sample ID EB1060201 = EB106-02-01); 53 of the 59 pilot core samples had detectable ITS. Counts are the lab's AllDetectedSamples table (not rarefied; per-sample totals 1 to 7,256). The lab's analysis table (SamplesWithEnoughSequences) keeps the 45 samples with more than 1,000 sequences rarefied to 1,250 reads; it is derivable and not loaded
+property: comment <ME:0000011> = Source: ENIGMA team Google Drive FRC Sequence Data/Zhou Lab/Pilot.ITS.sequencing.ENIGMA.version171101/AllDetectedSamples/ENITS.V171101.All.OTU.csv
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_var: description <ME:0000202>; category <ME:0000013> = source OTU label
+composite_microtype: description, category=source OTU label
+dim_size: 1330
+dim: community <ME:0000231>
+dim_var: community ID <ME:0000233>
+dim_size: 53
+data_var: count <ME:0000126> (count unit <UO:0000189>)
+Generic is OK!

@@ -58,9 +58,9 @@ Chakraborty C/N/moisture, Hazen pH/conductivity, Zhou 16S OTUs.
 
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
-| `FRC_Microarray/2017_Pilot_Core_GeoChip_JoeLab/Pilot.core.GeoChip.T5S2.log.RA.csv` + ReadMe | GeoChip 5 functional-gene relative abundance for EB106/EB271 cores | in document (csv) | **not in CORAL (gap)** |
+| `FRC_Microarray/2017_Pilot_Core_GeoChip_JoeLab/Pilot.core.GeoChip.T5S2.log.RA.csv` + ReadMe | GeoChip 5 functional-gene relative abundance for EB106/EB271 cores | in document (csv) | in CORAL (`zhou_lab_corepilot_2017_geochip5` + `_taxonomy`, 2026-11-10) |
 | `FRC Sequence Data/Zhou Lab/Pilot.16S.sequencing.ENIGMA.Version170606/` (OTU tables, treatment csv, Analysis_ArkinLab merged csv) | Pilot core 16S OTUs + Arkin-lab merge with field measurements | in document (csv) + linked (Drive, Box, zhoulab5.rccc.ou.edu) | in CORAL (`zhou_otu_count_corepilot_*`); Arkin merged tables are derived |
-| `FRC Sequence Data/Zhou Lab/Pilot.ITS.sequencing.ENIGMA.version171101/` (ITS OTU tables + ReadMe) | Pilot core fungal ITS OTUs | in document (csv) + linked (Dropbox zip) | **not in CORAL (gap)** |
+| `FRC Sequence Data/Zhou Lab/Pilot.ITS.sequencing.ENIGMA.version171101/` (ITS OTU tables + ReadMe) | Pilot core fungal ITS OTUs | in document (csv) + linked (Dropbox zip) | in CORAL (`zhou_lab_corepilot_2017_OTU_ITS/_count/_taxonomy`, 2026-11-10) |
 | `FRC Sequence Data/Zhou Lab/100_Well_16s_Sequence/` (`otu.table.txt.gz`, README) | 100 Well Survey OTU table | files in folder | in CORAL (`zhou_otu_count_100ws_v2`, `zhou_otu_id_100ws`, `zhou_otu_repseq_100ws`) |
 | `FRC Sequence Data/Alm Lab/` (eotus lineages, README) | 100WS Alm-lab eOTU tables | files in folder | not in CORAL (superseded by Zhou OTUs; low priority) |
 | `FRC Sequence Data/Arkin Lab/README.docx` | Email describing 2017 bottom-up analysis | n/a | n/a |
@@ -362,7 +362,7 @@ Ordered roughly by how self-contained the source tables are.
 | 11 | 2022 Discovery nitrifying-community reactor amplicons (16S, 18S, amoA) | `2022_Discovery_Nitrifying_Community/Sequencing_Results/` | no | gap (needs campaign) |
 | 12 | One-off SSO 16S ASV sets (colloids, FTP6 AOA, FTP7 microcalorimetry) | `2023_2024_2025_One-Off Sampliing/2023-…`, `2024-FTP6-…`, `2024-FTP7-…` | yes (one-off samples exist) | **loaded** (one-off 16S, 2026-10-27) |
 | 13 | RecycNec and SSOM6SED enrichment 16S; EnCom M6 metagenomes | `Enrichments/RecycNec/`, `Enrichments/SSOM6SED/`, `2025_EnCom_SSO_sediment_M6_pilot/` | partly (SSO communities exist) | RecycNec waiting on Mingfei Chen (email 2026-10-27); SSOM6SED blocked (no count table) |
-| 14 | Pilot core GeoChip and fungal ITS | `FRC_Microarray/…`, `FRC Sequence Data/Zhou Lab/Pilot.ITS…` | yes | gap (ITS then GeoChip) |
+| 14 | Pilot core GeoChip and fungal ITS | `FRC_Microarray/…`, `FRC Sequence Data/Zhou Lab/Pilot.ITS…` | yes | **loaded** (2026-11-10, coral_import/corepilot_its_geochip_20261107) |
 | 15 | PPI datasets (TAP, tagless) | `PPI data/` | strains exist | gap (separate thread) |
 | 16 | Sensor files missing from the troll series: `DP06_LT400_20190728_20191206.xlsx`, `EFPW01_08022022…`, `EFPW05_09292022…`, EFPW01 2022 HydroVu export; LevelTROLL downloads after 2026-05-04 | `FRC Well Metadata/Well monitoring…`, `Hazen SSO Continuous Monitoring/AQUATROLL DATA/Download Zips/` | yes | gap (pre-2023 FRC sensor files, CORAL) |
 | 17 | 2013–2015 FW305/FW306 core geochemistry | `FRC Well Metadata/Core samples/` | strains exist | gap (check whether new samples are needed) |

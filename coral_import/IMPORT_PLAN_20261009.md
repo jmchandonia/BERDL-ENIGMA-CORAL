@@ -266,3 +266,15 @@ statistics with null vectors; 3 no-colloid attempts are rows with nulls. COMO pa
 `coral_import/ontology_update_20261107_borescope`: ME:0000519 velocity, ME:0000520 azimuth, ME:0000521 micrometer
 per second, wind speed/direction re-parented, median/minimum/maximum made valid dimension variables. The FTP's 63
 April-May 2023 measurements are not on the Drive (ask Hazen Lab).
+
+## Status 2026-11-10: 2017 Pilot Core fungal ITS and GeoChip 5.0 (Zhou Lab)
+
+`coral_import/corepilot_its_geochip_20261107/` (built by `tools/build_corepilot_its_geochip_coral_import.py`): fungal ITS2
+OTU sequences, raw counts (1,330 MD5-named OTUs x 53 samples; the lab's rarefied 45-sample table not loaded) and RDP
+Warcup taxonomy; GeoChip 5.0 signal (105,203 probes x 49 samples, zeros = not detected) and probe taxonomy (NCBI
+lineage + organism). New ontology `geochip_functional_gene_category.obo` (prefix GEOCHIP, 251 category terms built from
+the probe classification: near-duplicates merged, context-dependent names reworded, 55 ChEBI xrefs) and COMO
+microarray probe name / gene symbol (`coral_import/ontology_update_20261107_corepilot`, with PROCESS:0000054
+Microarray Hybridization). About 10,800 new Taxa (NCBI taxid by exact name, normalized name or NCBI synonym), 53
+Reads, 2 Protocols. Also: duplicate Brick0000450 withdrawn; campaign/personnel array context no longer
+materialized as Lakehouse columns (sync-coral-to-berdl/CONTEXT_COLUMNS_PLAN_20261110.md).

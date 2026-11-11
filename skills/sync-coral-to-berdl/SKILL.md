@@ -49,7 +49,8 @@ path remains available only for a cluster that still accepts Delta.
   extra rows; the verifier fails on any string value wrapped in quotes.
 - Use BERDL ingest structured `schema` entries for column comments. Generate manual `ALTER TABLE` SQL only when comment validation shows BERDL ingest did not apply a required comment, or for table-level comments not supported by ingest.
 - Expand array-level context into brick columns only when the context term has
-  an unambiguous foreign-key mapping in `sys_ddt_typedef`. Keep comments,
+  an unambiguous foreign-key mapping in `sys_ddt_typedef` and links the brick to
+  an object; campaign and personnel context are never expanded. Keep comments,
   instrumentation, measurements, and other non-foreign-key context only in
   `ddt_ndarray_metadata`.
 - Normalize legacy ENIGMA repository URLs and filesystem paths to
@@ -187,9 +188,15 @@ command or require the user to source `.env` manually.
      `sys_oterm`, using deterministic native-ontology precedence.
    - Put reports directly under `reports/` and generated metadata directly under `metadata/`.
    - Produce BERDL ingest config with structured per-column schema maps, not `schema_sql`, so ingest applies column comments.
-   - Materialize foreign-key-valued array context as a constant column in the
+   - Materialize foreign-key-valued array context that links a brick to an
+     object (Location, Strain, a carbon-source term) as a constant column in the
      brick TSV, with the same foreign-key comment and a corresponding
-     `sys_ddt_typedef` variable row. Reconcile those three artifacts
+     `sys_ddt_typedef` variable row. Never materialize ENIGMA Campaign or ENIGMA
+     Labs and Personnel context (user decision 2026-11-10): they describe the
+     whole brick, are recorded on the producing process, and stay in
+     `ddt_ndarray_metadata`; `expand_array_context_foreign_keys` removes such
+     columns and their derived typedef rows from reused brick tables, but keeps
+     them where a brick declares them as a real dimension variable or variable. Reconcile those three artifacts
      independently so reruns restore derived typedef rows even when the brick
      column already exists. Report and skip ambiguous mappings.
    - Regenerate `sys_process_input` and `sys_process_output` from the current

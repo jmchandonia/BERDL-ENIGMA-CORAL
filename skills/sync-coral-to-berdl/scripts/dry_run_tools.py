@@ -412,6 +412,73 @@ def _load_array_context_fk_map(typedef_path):
     return resolved, conflicts
 
 
+# Array-context terms that are never materialized as brick columns (user decision 2026-11-10): campaign and
+# personnel describe the whole brick, are recorded on the process that produced it, and stay readable in
+# ddt_ndarray.ddt_ndarray_metadata. Context that links a brick to an object (location, strain, carbon source)
+# is still expanded so single-location series stay joinable.
+EXCLUDED_ARRAY_CONTEXT_TERMS = {
+    "ENIGMA:0000002": "ENIGMA Campaign",
+    "ENIGMA:0000029": "ENIGMA Labs and Personnel",
+}
+
+
+def _is_excluded_context(term_id, term_name):
+    if term_id and term_id in EXCLUDED_ARRAY_CONTEXT_TERMS:
+        return True
+    return bool(term_name) and term_name.casefold() in {
+        name.casefold() for name in EXCLUDED_ARRAY_CONTEXT_TERMS.values()
+    }
+
+
+EXCLUDED_ARRAY_CONTEXT_COLUMNS = {
+    "enigma_campaign_sys_oterm_id",
+    "enigma_labs_and_personnel_comment_contact_person_or_lab_sys_oterm_id",
+}
+
+
+def _excluded_context_columns(fk_map):
+    columns = set(EXCLUDED_ARRAY_CONTEXT_COLUMNS)
+    for term_id, term_name in EXCLUDED_ARRAY_CONTEXT_TERMS.items():
+        for key in (("id", term_id), ("name", term_name.casefold())):
+            if key in fk_map:
+                columns.add(fk_map[key]["column"])
+    return columns
+
+
+def _drop_tsv_columns(path, columns):
+    with path.open(newline="", encoding="utf-8") as source:
+        reader = csv.DictReader(source, delimiter="\t")
+        fieldnames = list(reader.fieldnames or [])
+        keep = [name for name in fieldnames if name not in columns]
+        if keep == fieldnames:
+            return 0
+        with tempfile.NamedTemporaryFile(
+            "w", newline="", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False,
+        ) as target:
+            temp_path = Path(target.name)
+            writer = csv.DictWriter(target, delimiter="\t", fieldnames=keep, extrasaction="ignore")
+            writer.writeheader()
+            for row in reader:
+                writer.writerow(row)
+    temp_path.replace(path)  # atomic: breaks a hard link to the prior run without touching it
+    return len(fieldnames) - len(keep)
+
+
+def _drop_schema_fields(path, columns):
+    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+    pattern = re.compile(r"^\s*StructField\(\s*(" + "|".join(re.escape(json.dumps(c)) for c in sorted(columns)) + r")\s*,")
+    kept = [line for line in lines if not pattern.match(line)]
+    if len(kept) == len(lines):
+        return 0
+    with tempfile.NamedTemporaryFile(
+        "w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False,
+    ) as target:
+        temp_path = Path(target.name)
+        target.write("".join(kept))
+    temp_path.replace(path)
+    return len(lines) - len(kept)
+
+
 def _lookup_context_fk(fk_map, term_id, term_name):
     if term_id and ("id", term_id) in fk_map:
         return fk_map[("id", term_id)]
@@ -464,6 +531,9 @@ def _array_context_entries(metadata_text, fk_map):
             skipped_non_fk += 1
             continue
 
+        if _is_excluded_context(term_id, term_name):
+            skipped_non_fk += 1
+            continue
         mapping = _lookup_context_fk(fk_map, term_id, term_name)
         if not mapping:
             skipped_non_fk += 1
@@ -597,10 +667,41 @@ def expand_array_context_foreign_keys(data_dir, schema_dir, reports_dir):
         reader = csv.DictReader(handle, delimiter="\t")
         typedef_fieldnames = list(reader.fieldnames or [])
         typedef_rows = list(reader)
-    existing_typedef = {
+    # remove previously materialized campaign/personnel context columns; a brick whose own typedef declares
+    # the column (a real dimension variable or variable, not array context) keeps it
+    excluded_columns = _excluded_context_columns(fk_map)
+    derived_excluded = {
+        (row.get("ddt_ndarray_id", ""), row.get("berdl_column_name", ""))
+        for row in typedef_rows
+        if row.get("berdl_column_name", "") in excluded_columns
+        and (row.get("original_csv_string") or "").startswith("array_context,")
+    }
+    if derived_excluded:
+        typedef_rows = [
+            row for row in typedef_rows
+            if (row.get("ddt_ndarray_id", ""), row.get("berdl_column_name", "")) not in derived_excluded
+        ]
+    genuine = {
         (row.get("ddt_ndarray_id", ""), row.get("berdl_column_name", ""))
         for row in typedef_rows
     }
+    excluded_removed = 0
+    excluded_bricks = []
+    if excluded_columns:
+        for data_path in sorted(data_dir.glob("Brick*.tsv")):
+            brick_id = data_path.stem
+            with data_path.open(encoding="utf-8", errors="replace") as handle:
+                header = handle.readline().rstrip("\n\r").split("\t")
+            drop = {c for c in excluded_columns if c in header and (brick_id, c) not in genuine}
+            if not drop:
+                continue
+            excluded_removed += _drop_tsv_columns(data_path, drop)
+            schema_path = schema_dir / f"{brick_id}_schema.py"
+            if schema_path.exists():
+                _drop_schema_fields(schema_path, drop)
+            excluded_bricks.append({"ddt_ndarray_id": brick_id, "columns_removed": ",".join(sorted(drop))})
+    write_tsv_if_rows(reports_dir / "array_context_excluded_columns_removed.tsv", excluded_bricks, ["ddt_ndarray_id", "columns_removed"])
+    existing_typedef = set(genuine)
 
     report_rows = []
     additions = []
@@ -706,7 +807,7 @@ def expand_array_context_foreign_keys(data_dir, schema_dir, reports_dir):
                 "reason": entry["metadata_format"],
             })
 
-    if additions:
+    if additions or derived_excluded:
         write_tsv(typedef_path, typedef_rows + additions, typedef_fieldnames)
     report_fieldnames = [
         "ddt_ndarray_id",
@@ -736,6 +837,9 @@ def expand_array_context_foreign_keys(data_dir, schema_dir, reports_dir):
         "array_context_non_fk_entries_skipped": skipped_non_fk,
         "array_context_issues": issue_count,
         "array_context_mapping_conflicts": len(mapping_conflicts),
+        "array_context_excluded_columns_removed": excluded_removed,
+        "array_context_excluded_bricks_updated": len(excluded_bricks),
+        "array_context_excluded_typedef_rows_removed": len(derived_excluded),
     }
 
 

@@ -1,0 +1,2 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Withdraw Data <PROCESS:0000052>	John-Marc Chandonia <ENIGMA:0000057>	27 Well Survey <ENIGMA:0000101>	null	2026-11-10	2026-11-10	Generic: zhou_lab_27_well_survey_ASV_16S.ndarray	

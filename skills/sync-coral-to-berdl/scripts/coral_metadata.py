@@ -29,6 +29,7 @@ CANONICAL_ONTOLOGY_BY_PREFIX = {
     "NCBITAXON": "ncbitaxon",
     "PROCESS": "process_ontology",
     "SBT": "robertson_soil_behavior_type",
+    "GEOCHIP": "geochip_functional_gene_category",
     "UO": "uo",
 }
 
@@ -47,6 +48,7 @@ FULL_INCLUDE_ONTOLOGIES = {
     "data_type_ontology",
     "process_ontology",
     "robertson_soil_behavior_type",
+    "geochip_functional_gene_category",
 }
 
 SYS_OTERM_SCHEMA = [
