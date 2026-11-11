@@ -371,6 +371,18 @@ Ordered roughly by how self-contained the source tables are.
 | 20 | Five Plasmidsaurus long-read isolate sequencing runs (Oct 2026) added to the genome batch sheet; two strains (GW821-FHT14H06, EU05-FHT14E09) exist in CORAL, three (GW821-HT13G08, GW821-HT20B11, GW821-FHT1410) do not. **Newer version only in the My Drive copy** | `My Drive …/ENIGMA Isolate List and Sequences/GenomeBatches/GenomeSamples_metadata.xlsx` (2026-10-05) | partly | gap (separate thread; 3 strains not in CORAL) |
 | 21 | CPT flow-model inputs: `CPT_full_data_{Location,ProbeData,Sediment}.csv`, Revil resistivity profile interpolations, `Water Level Master 20201020_final4.xlsx` (same source data as item 8, in model-ready form). **Only in the My Drive copy** | `My Drive …/Cone Penetrometer Sampling 2020/Manuscript/Jupyter notebooks/source_overlapping/data_cpt/` | yes | with item 8 |
 
+### Re-review 2026-11-10
+
+Mirror re-scanned (25,654 files; daily refresh). Since 2026-10-07 only 62 files changed outside the duplicate CPT
+shortcut: Sampling Mission Control (handled by enigma.sso_staging), the M5-VSZ tracer folder (loaded), isolate exports
+written back from CORAL, re-touched copies of loaded files, and one new top-level folder `2026_Timeseries/` holding only
+`Fall 2026 Gantt Chart.xlsx` (planning). No new data sets. Remaining candidates, in suggested order: (1) 2017 EVO
+injection 16S zOTUs + geochemistry (71 samples, 8 wells, 9 time points; needs a campaign term and Locations FW-216,
+GP01, GP03, MLSB3); (2) small hydrology gaps: 2025 pump test Pump Log sheet (242 rows), DP06 LevelTROLL 2019, EFPW01 and
+EFPW05 2022 logs, April 2024 pump-test TROLL logs (readme says raw); (3) 2013-2015 FW305/FW306 core geochemistry;
+(4) 2022 Discovery nitrifying reactors (16S, 18S, amoA; needs campaign and samples); (5) PPI and EnCom metagenomes
+(need a modeling decision). Waiting on people: RecycNec (Mingfei Chen), SSOM6SED (no count table), isolate images.
+
 Not import candidates: planning documents (FTPs, meeting notes, manuscripts),
 CORAL exports stored on Drive, raw sequence reads (fastq, ab1), PDFs of
 radiological reports and field sheets, and derived analysis outputs
