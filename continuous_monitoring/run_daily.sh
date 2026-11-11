@@ -144,6 +144,9 @@ log "nitrate correction (one-time; no-op once recorded in ingest_runs)"
 # that block the load, which rides out the same race with --wait-for-spark.
 "$PY" fix_nitrate_20261019.py --if-needed >> "$LOG" 2>&1 || log "nitrate correction step failed (continuing; it is a recorded no-op)"
 
+log "L9-SZ2 depth offset correction (one-time; no-op once recorded in ingest_runs)"
+"$PY" fix_offset_20261111.py --id l9-sz2-depth-offset-20261111 --if-needed >> "$LOG" 2>&1 || log "offset correction step failed (continuing; it is a recorded no-op once applied)"
+
 log "load"
 # Flag silent instruments only on a normal daily run; a --load-only backfill
 # loads a fixed old staging dir where stale timestamps are expected.

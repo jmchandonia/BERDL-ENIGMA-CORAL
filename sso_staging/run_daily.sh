@@ -131,6 +131,8 @@ log "jupyterhub"
 if [ "$cm_tables" -gt 0 ]; then
     log "cm nitrate correction (recorded no-op)"
     "$CM_PY" "$CM_CODE/fix_nitrate_20261019.py" --if-needed >> "$LOG" 2>&1 || log "cm nitrate step failed (continuing)"
+    log "cm L9-SZ2 depth offset correction (one-time; no-op once recorded)"
+    "$CM_PY" "$CM_CODE/fix_offset_20261111.py" --id l9-sz2-depth-offset-20261111 --if-needed >> "$LOG" 2>&1 || log "cm offset step failed (continuing)"
     log "cm load"
     "$CM_PY" "$CM_CODE/cm_load.py" --staging "$CM_STAGE" --run-id "$RUN_ID" --wait-for-spark 300 --check-staleness >> "$LOG" 2>&1 || log "cm load failed (see report)"
     [ -f "$CM_STAGE/build_state_pending.json" ] && mv "$CM_STAGE/build_state_pending.json" "$CM_BASE/state/build_state.json"

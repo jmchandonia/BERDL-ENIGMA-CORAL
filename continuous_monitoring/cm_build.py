@@ -17,7 +17,8 @@ the July 2026 corrections are applied here instead of after the fact:
 
 * HydroVu SSO Aqua TROLL (SZ1/SZ2/SZ3) timestamps are shifted by +4 h;
 * their depth channel is labelled ground surface -> water surface;
-* value ranges listed in corrections.json (e.g. the dead WS3 anemometer)
+* value ranges listed in corrections.json: nulled (e.g. the dead WS3 anemometer)
+  or offset by a constant (e.g. the L9-SZ2 depth reference from 2026-09-24)
   are nulled.
 
 Output is one TSV per location/zone table, with the brick column names from
@@ -200,6 +201,7 @@ class Builder:
         self.column_map = cm.load_column_map()["measurements"]
         corrections = cm.load_corrections()
         self.null_ranges = corrections.get("null_ranges", [])
+        self.offset_ranges = corrections.get("offset_ranges", [])
         self.holdback_cutoff = now - holdback if holdback is not None else None
         # (table, timestamp) -> label -> (priority, path, value, source kind)
         self.cells: dict[tuple[str, datetime], dict[str, tuple[int, str, float | None, str]]] = defaultdict(dict)
@@ -247,6 +249,11 @@ class Builder:
                     self.stats["nonzero_values_nulled_by_corrections"] += 1
                 value = None
                 self.stats["values_nulled_by_corrections"] += 1
+        for rng in self.offset_ranges:
+            if (value is not None and rng["table"] == table and label in rng["labels"]
+                    and rng["start"] <= timestamp.date().isoformat() <= rng["end"]):
+                value = round(value + rng["offset"], 6)
+                self.stats["values_offset_by_corrections"] += 1
         cell = self.cells[(table, timestamp)]
         current = cell.get(label)
         candidate = (rec.source_priority, rec.source_path, value, source_kind)
@@ -486,6 +493,9 @@ class Builder:
         for rng in self.null_ranges:
             if rng["table"] == table:
                 notes.append(f"{', '.join(rng['labels'])} nulled from {rng['start']} to {rng['end']}: {rng['reason']}")
+        for rng in self.offset_ranges:
+            if rng["table"] == table:
+                notes.append(f"{', '.join(rng['labels'])} offset by {rng['offset']:+g} from {rng['start']} to {rng['end']}: {rng['reason']}")
         depth_ft = None
         if zone:
             key = location[4:] if location.startswith("SSO-") else location

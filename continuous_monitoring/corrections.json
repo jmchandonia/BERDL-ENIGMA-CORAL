@@ -1,12 +1,28 @@
 {
-  "_comment": "Value ranges nulled by cm_build.py. Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair).",
+  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id).",
   "null_ranges": [
     {
       "table": "hazen_hobo_ws3",
-      "labels": ["wind speed, mph", "gust speed, mph"],
+      "labels": [
+        "wind speed, mph",
+        "gust speed, mph"
+      ],
       "start": "2025-03-27",
       "end": "9999-12-31",
       "reason": "the WS3 anemometer has reported only zeros since 2025-03-26 18:30 (CORAL dropped these columns from the 2026-01-23 to 2026-04-30 brick for the same reason)"
+    }
+  ],
+  "offset_ranges": [
+    {
+      "id": "l9-sz2-depth-offset-20261111",
+      "table": "hazen_aquatroll600_sso_l9_sz2",
+      "labels": [
+        "depth, top=ground surface, bottom=water surface, ft"
+      ],
+      "start": "2026-09-24",
+      "end": "9999-12-31",
+      "offset": 4.07,
+      "reason": "the L9-SZ2 Aqua TROLL 600 came back from its 2026-09-23 service out of calibration: its depth to water reads 4.07 ft too shallow (S. Shekhar, 2026-11-09, from manual depths; L9-SZ1 in the same well reads as expected). Offset = the change in the hour-aligned SZ1 - SZ2 difference from before (2025-10-01..2026-09-22, mean -0.15 ft, n=5430) to after (2026-09-24..2026-11-06, mean +3.92 ft, n=893); residual spread 0.17 ft matches the zones' normal difference. Remove this entry when the sonde is recalibrated."
     }
   ]
 }
