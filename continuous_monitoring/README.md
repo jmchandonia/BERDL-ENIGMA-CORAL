@@ -58,12 +58,14 @@ These corrections differ from the bricks and are listed in
   - The bricks instead keep one arbitrary 15-minute phase per day, which is
     mostly interpolated values.
 - **The value ranges listed in `corrections.json`**: `null_ranges` (the dead WS3
-  anemometer from 2025-03-27 on) and `offset_ranges` (a constant added to the
+  anemometer from 2025-03-27 on; every L8-SZ1 channel from 2026-10-11, a failing
+  sonde whose stray readings passed the generic filters) and `offset_ranges` (a constant added to the
   value: L9-SZ2 depth to water +4.07 ft from 2026-09-24, the sonde's
   post-service calibration error, until it is recalibrated).  Each entry's
   reason is written into the table's `table_metadata` notes.  Rows loaded
   before an entry existed are corrected once by the matching `fix_*.py`
-  script (`fix_nitrate_20261019.py`, `fix_offset_20261111.py --id ...`),
+  script (`fix_nitrate_20261019.py`, `fix_offset_20261111.py --all`, which
+  applies every entry that has an `id` and is not yet recorded),
   which records itself in `ingest_runs` and is a no-op afterwards;
   `run_daily.sh` runs them non-fatally before each load.
 

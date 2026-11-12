@@ -10,6 +10,21 @@
       "start": "2025-03-27",
       "end": "9999-12-31",
       "reason": "the WS3 anemometer has reported only zeros since 2025-03-26 18:30 (CORAL dropped these columns from the 2026-01-23 to 2026-04-30 brick for the same reason)"
+    },
+    {
+      "id": "l8-sz1-dead-sonde-20261111",
+      "table": "hazen_aquatroll600_sso_l8_sz1",
+      "labels": [
+        "concentration, molecule from list=dioxygen, state=dissolved, mg/L",
+        "concentration, molecule from list=nitrate, mg/L",
+        "conductivity, microsiemen per cm",
+        "depth, top=ground surface, bottom=water surface, ft",
+        "pH, pH",
+        "temperature, degree Celsius"
+      ],
+      "start": "2026-10-11",
+      "end": "9999-12-31",
+      "reason": "the L8-SZ1 Aqua TROLL 600 stopped transmitting on 2026-10-11 (S. Shekhar, 2026-11-09); the few readings since (2026-10-23, 10-28, 11-06, 11-07) report 56-60 C and 3,000-4,800 uS/cm, so the sonde is failing, not reporting. Remove this entry when it is replaced or repaired."
     }
   ],
   "offset_ranges": [

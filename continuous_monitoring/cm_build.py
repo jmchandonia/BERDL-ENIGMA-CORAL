@@ -17,9 +17,9 @@ the July 2026 corrections are applied here instead of after the fact:
 
 * HydroVu SSO Aqua TROLL (SZ1/SZ2/SZ3) timestamps are shifted by +4 h;
 * their depth channel is labelled ground surface -> water surface;
-* value ranges listed in corrections.json: nulled (e.g. the dead WS3 anemometer)
-  or offset by a constant (e.g. the L9-SZ2 depth reference from 2026-09-24)
-  are nulled.
+* value ranges listed in corrections.json are nulled (e.g. the dead WS3
+  anemometer) or offset by a constant (e.g. the L9-SZ2 depth reference from
+  2026-09-24).
 
 Output is one TSV per location/zone table, with the brick column names from
 column_map.json, plus a manifest.json describing the run.
