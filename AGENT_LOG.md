@@ -2431,3 +2431,19 @@ Validation completed before live export:
   ddt_brick0000450 dropped, 213/213 foreign keys after disabling Spark broadcast joins in check_foreign_keys.py
   (the first FK run failed with "Not enough memory to build and broadcast the table"). Only Brick0002146 keeps
   campaign/personnel columns (real variables); 329 current bricks keep sdt_location_name.
+- 2026-11-11: FEBa/fitprivate update to the 2026-10-21 release (work driven from
+  /scratch/jmc/fitprivate-rbtnseq, which also refreshed `enigma.fitprivate` to all 150 organisms).
+  New `tools/build_feba_update_coral_import.py` stages only changed organisms; package and record in
+  `coral_import/feba_20261111/` (README there). Loaded to production CORAL in three verified stages:
+  Genome0007818 `GW456-12-10-14-TSB1.4` (Sphingo3, new), 4,967 Genes, 334 Conditions,
+  TnSeq_Library0000070, Brick0002171-0002177 (five `_v3` fitness bricks, the Sphingo3 brick, and
+  `feba_tnseq_condition_metadata_20261111`), Assay Fitness Process0223428, Update Data
+  Process0223429-0223434. New genome files and one manifest row published to niya's EDR master by
+  the user's instruction; dipa, local EDR copy and MinIO mirror not updated. CORAL-to-BERDL sync
+  not run yet.
+- 2026-11-11: sync-20261111-183230 (run from the fitprivate session with a copy of sync_prep.sh, PREV sync-20261110-162303):
+  16 tables imported (ddt_brick0002171-0002177, sdt_condition, sdt_gene, sdt_genome, sdt_tnseq_library, ddt_ndarray,
+  sys_ddt_typedef, sys_process and its input/output tables), six superseded FEBa brick tables dropped
+  (ddt_brick0001674, 1699, 1704-1707), 81/81 foreign keys, schema references republished. The exported FEBa bricks
+  have full [genes x conditions] shape and match the fitprivate source; all 4,179 metadata-brick conditions resolve
+  in enigma.fitprivate.experiment.

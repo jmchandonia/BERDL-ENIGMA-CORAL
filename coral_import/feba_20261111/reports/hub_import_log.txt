@@ -1,0 +1,89 @@
+
+=== [0] from coral.dataprovider import DataProvider
+from coral import toolx
+--- [0] done in 0 s
+
+=== [1] toolx.update_core('Genome_feba_additions_20261111.tsv', 'Genome')
+Doing Genome: Genome_feba_additions_20261111.tsv
+Can not create a collection for type Genome
+size=1
+--- [1] done in 0 s
+
+=== [2] toolx.update_core('Gene_feba_additions_20261111.tsv', 'Gene')
+Doing Gene: Gene_feba_additions_20261111.tsv
+Can not create a collection for type Gene
+size=4967
+..........500
+..........1000
+..........1500
+..........2000
+..........2500
+..........3000
+..........3500
+..........4000
+..........4500
+.........--- [2] done in 31 s
+
+=== [3] toolx.update_core('Condition_feba_additions_20261111.tsv', 'Condition')
+Doing Condition: Condition_feba_additions_20261111.tsv
+Can not create a collection for type Condition
+size=334
+......--- [3] done in 1 s
+
+=== [4] toolx.update_core('TnSeq_Library_feba_additions_20261111.tsv', 'TnSeq_Library')
+Doing TnSeq_Library: TnSeq_Library_feba_additions_20261111.tsv
+Can not create a collection for type TnSeq_Library
+size=1
+--- [4] done in 0 s
+[appended 5 cells to upload_new_data_claude.ipynb; it now has 151 cells]
+[session deleted]
+
+=== [0] from coral.dataprovider import DataProvider
+from coral import toolx
+--- [0] done in 0 s
+
+=== [1] toolx.upload_brick('feba_tnseq_fitness_GW460-12-10-14-LB2.4_v3_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_GW460-12-10-14-LB2.4_v3_20261111.json
+--- [1] done in 1 s
+
+=== [2] toolx.upload_brick('feba_tnseq_fitness_GW822-FHT05C05.3_v3_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_GW822-FHT05C05.3_v3_20261111.json
+--- [2] done in 1 s
+
+=== [3] toolx.upload_brick('feba_tnseq_fitness_GW823-FHT01H08.4_v3_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_GW823-FHT01H08.4_v3_20261111.json
+--- [3] done in 0 s
+
+=== [4] toolx.upload_brick('feba_tnseq_fitness_MT49.4_v3_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_MT49.4_v3_20261111.json
+--- [4] done in 4 s
+
+=== [5] toolx.upload_brick('feba_tnseq_fitness_MT58.3_v3_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_MT58.3_v3_20261111.json
+--- [5] done in 7 s
+
+=== [6] toolx.upload_brick('feba_tnseq_fitness_GW456-12-10-14-TSB1.4_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_fitness_GW456-12-10-14-TSB1.4_20261111.json
+--- [6] done in 1 s
+
+=== [7] toolx.upload_brick('feba_tnseq_condition_metadata_20261111.json')
+Doing Brick: /home/coral/prod/data_import/data/feba_tnseq_condition_metadata_20261111.json
+--- [7] done in 0 s
+
+=== [8] toolx.upload_process('Assay Fitness', 'process_assay_fitness_feba_20261111.tsv')
+Can not create a collection for type Process
+Doing Assay Fitness: /home/coral/prod/data_import/data/process_assay_fitness_feba_20261111.tsv
+--- [8] done in 0 s
+[appended 9 cells to upload_new_data_claude.ipynb; it now has 161 cells]
+[session deleted]
+
+=== [0] from coral.dataprovider import DataProvider
+from coral import toolx
+--- [0] done in 0 s
+
+=== [1] toolx.upload_process('Update Data', 'process_update_data_feba_20261111.tsv')
+Can not create a collection for type Process
+Doing Update Data: /home/coral/prod/data_import/data/process_update_data_feba_20261111.tsv
+--- [1] done in 2 s
+[appended 2 cells to upload_new_data_claude.ipynb; it now has 164 cells]
+[session deleted]

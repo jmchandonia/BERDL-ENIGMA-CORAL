@@ -1,0 +1,64 @@
+{
+ "genes": {
+  "GW460-12-10-14-LB2.4": [
+   3274,
+   "55efb52ca21022dd1cf73e9618b42699286c58a4486459f0e002563ede499a4c"
+  ],
+  "GW822-FHT05C05.3": [
+   5707,
+   "adb1e2a2c41f2ab6273aba9b0f3badbc85b29ac27bd4ce496785efaa8897b020"
+  ],
+  "GW823-FHT01H08.4": [
+   5441,
+   "f223c16fc391993b7921c5ab0143025e11be3306101f43f102d69b00b7b53d64"
+  ],
+  "MT49.4": [
+   5043,
+   "d3be3cda42bdd7adc84dd532bdc606d69918c05665898772aa1d57c41b5ec167"
+  ],
+  "MT58.3": [
+   4370,
+   "0868e08f853568b6e15bc6c628203d6b83cf31ed47b948c0e88a34f7db9d6f24"
+  ]
+ },
+ "conditions": [
+  3846,
+  "223def705da331dc6b6ad2360d2891fc2219e7f0d35ead9cc39b9e787233bac6"
+ ],
+ "libraries": [
+  "EB106-05-01-XG201.4.Enterobacter_XG201_ML2.tnseq_library",
+  "FW104-10B01.4.Rhodanobacter sp. FW104-10B01.tnseq_library",
+  "FW104-10B01.4.rhodanobacter_10B01_ML12.tnseq_library",
+  "FW215-L2.3.PseudoFW215-L2_ML1.tnseq_library",
+  "FW300-N1B4.3.PsfN1B4_ML1.tnseq_library",
+  "FW300-N1B4.3.pseudo1_N1B4_ML1.tnseq_library",
+  "FW300-N2C3.3.pseudo5_N2-C3_1_ML2.tnseq_library",
+  "FW300-N2C3.3.pseudo5_N2-C3_1_ML2B.tnseq_library",
+  "FW300-N2C3.3.pseudo5_N2-C3_1_ML2a.tnseq_library",
+  "FW300-N2E2.3.pseudo6_N2E2_ML5.tnseq_library",
+  "FW300-N2E2.3.pseudo6_N2E2_ML5a.tnseq_library",
+  "FW300-N2E2.3.pseudo6_N2E2_ML5b.tnseq_library",
+  "FW300-N2E2.3.pseudo6_N2E2_ML5c.tnseq_library",
+  "FW300-N2E3.3.pseudo3_N2E3_ML2.tnseq_library",
+  "FW300-N2E3.3.pseudo3_N2E3_ML2a.tnseq_library",
+  "FW507-4G11.4.cupriavidus_4G11_ML11.tnseq_library",
+  "FW507-4G11.4.cupriavidus_4G11_ML11_FieldsLab.tnseq_library",
+  "FW507-4G11.4.cupriavidus_4G11_ML11_JBEI.tnseq_library",
+  "FW507-4G11.4.cupriavidus_4G11_ML11a.tnseq_library",
+  "FW510-R12.4.rhodanobacter_R12_ML3.tnseq_library",
+  "FW510-T8.4.rhodanobacter_T8_ML1.tnseq_library",
+  "GW101-3H11.6.acidovorax_3H11_ML3a.tnseq_library",
+  "GW456-L13.3.pseudo13_ML2.tnseq_library",
+  "GW456-L13.3.pseudo13_ML2a.tnseq_library",
+  "GW460-11-11-14-LB1.3.Phaga5_ML11.tnseq_library",
+  "GW460-11-11-14-LB5.3.Pedo557_ML3.tnseq_library",
+  "GW460-12-10-14-LB2.4.Brev2_ML6a.tnseq_library",
+  "GW821-FHT01A05.4.Collimonas_GW821-FHT01A05_ML4.tnseq_library",
+  "GW822-FHT05C05.3.Janthino_FHT05C05_ML1.tnseq_library",
+  "GW823-FHT01H08.4.Janthinobacterium_agari_ML9.tnseq_library",
+  "MT123.5.Castellaniella_MT123_ML3.tnseq_library",
+  "MT42.3.Rhodanobacter_MT42_ML2.tnseq_library",
+  "MT49.4.MT049_ML3.tnseq_library",
+  "MT58.3.MT058_ML2.tnseq_library"
+ ]
+}

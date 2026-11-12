@@ -927,3 +927,11 @@ precedence and to require a real `SELECT 1 AS ready` Spark probe with bounded
 retry after JupyterHub spawn. Schema references were regenerated in all eight
 dependent repository locations, and the repository sync skill was copied and
 diff-verified against its installed local copy.
+
+### 2026-11-11 incremental update to the fitprivate release of 2026-10-21
+
+Later fitprivate releases are handled incrementally by
+`tools/build_feba_update_coral_import.py`, not by rerunning the first import. The 2026-11-11 run
+added one organism (Sphingo3, genome `GW456-12-10-14-TSB1.4`), replaced five fitness bricks with
+`_v3` versions and replaced the condition-metadata brick; see `coral_import/feba_20261111/README.md`.
+Scope remains ENIGMA isolates only (now 23); Btheta, Keio and Putida stay excluded.
