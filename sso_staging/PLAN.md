@@ -106,6 +106,7 @@ alone is not unique.  The serial is data, not microtype context.
 | `rate_instrument_pump_liter_per_minute` | DOUBLE | COMO rate, instrument=pump; unit `liter per minute` (MINT, only mint in namespace) |
 | `volume_liter` | DOUBLE | COMO volume (EXISTS; liter UO:0000099) |
 | `ph_ph` | DOUBLE | COMO pH (EXISTS; UO:0000196); instrument dropped from name |
+| `conductivity_microsiemen_per_centimeter` | DOUBLE | COMO conductivity (EXISTS; ME:0000124, µS/cm ME:0000295), in-field meter; added 2026-11-12 |
 | `mass_gram` | DOUBLE | COMO mass (EXISTS; gram UO:0000021) — collected-gas sample mass |
 | `field_notes` | STRING | free text |
 | `source_file`/`ingest_run_id`/`ingested_at` | | bookkeeping |

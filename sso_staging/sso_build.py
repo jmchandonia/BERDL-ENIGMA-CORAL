@@ -363,7 +363,7 @@ def read_field(path: Path) -> tuple[list[dict], dict, list[dict]]:
         # Keep only rows with actual field data; skip pre-seeded calendar/blank rows.
         has_data = any(cell_to_str(rec.get(k)) for k in (
             "Pump Time On", "Pump Time Off", "Pump Rate (L/min)", "Total Volume (L)",
-            "In-field pH", "Restek Bag Mass (g)", "Field Notes"))
+            "In-field pH", "In-field Cond (uS/cm)", "Restek Bag Mass (g)", "Field Notes"))
         if not well or not date or not has_data:
             continue
         loc = sso.spreadsheet_location(well)
@@ -389,6 +389,7 @@ def read_field(path: Path) -> tuple[list[dict], dict, list[dict]]:
             "rate_instrument_pump_liter_per_minute": cell_to_str(rec.get("Pump Rate (L/min)")),
             "volume_liter": cell_to_str(rec.get("Total Volume (L)")),
             "ph_ph": cell_to_str(rec.get("In-field pH")),
+            "conductivity_microsiemen_per_centimeter": cell_to_str(rec.get("In-field Cond (uS/cm)")),
             "mass_gram": cell_to_str(rec.get("Restek Bag Mass (g)")),
             "field_notes": cell_to_str(rec.get("Field Notes")),
             "source_file": path.name,

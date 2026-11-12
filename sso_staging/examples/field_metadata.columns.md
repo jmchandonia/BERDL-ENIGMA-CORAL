@@ -31,6 +31,7 @@ so `pump` is not minted.
 | `Pump Rate (L/min)` | `rate_instrument_pump_liter_per_minute` | rate, instrument=pump | liter per minute (mint — see below) |
 | `Total Volume (L)` | `volume_liter` | volume | liter UO:0000099 |
 | `In-field pH` | `ph_ph` | pH | pH UO:0000196 |
+| `In-field Cond (uS/cm)` | `conductivity_microsiemen_per_centimeter` | conductivity ME:0000124 | microsiemen per centimeter ME:0000295 (same column name as the Aqua TROLL tables; added to the sheet 2026-11-12) |
 | `Restek Bag Mass (g)` | `mass_gram` | mass | gram UO:0000021 |
 
 (`ph_ph` is the honest CORAL derivation — measurement label `pH` + unit label
@@ -44,6 +45,7 @@ CORAL-conversion review if a cleaner column is wanted.)
 | Pump Rate (L/min) | rate ME:0000264 | pump | liter per minute | mint under UO:0000270 |
 | Total Volume (L) | volume ME:0000360 | — | liter | UO:0000099 |
 | In-field pH | pH ME:0000121 | — | pH | UO:0000196 |
+| In-field Cond (uS/cm) | conductivity ME:0000124 | — | microsiemen per centimeter | ME:0000295 |
 | Restek Bag Mass (g) | mass ME:0000135 | — | gram | UO:0000021 |
 
 **Decisions (settled, user 2026-10-30):**

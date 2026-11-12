@@ -44,6 +44,7 @@ VALUE_TYPE = {  # measurement term -> sys_oterm id
     "volume": "ME:0000360",
     "mass": "ME:0000135",
     "pH": "ME:0000121",
+    "conductivity": "ME:0000124",
 }
 
 MOLECULE_CHEBI = {
@@ -71,6 +72,7 @@ UNIT_OTERM = {  # unit label -> sys_oterm id
     "liter": "UO:0000099",
     "gram": "UO:0000021",
     "pH": "UO:0000196",
+    "microsiemen per centimeter": "ME:0000295",
     "second": "UO:0000010",
     # Minted 2026-10-30 as ME:0000517 under ME:0000294 "units not in UO",
     # is_a UO:0000270 "volumetric flow rate unit" (not stock UO; UO only has
@@ -317,6 +319,9 @@ FIELD_COLUMNS = [
           context=[("instrument", "pump")]),
     _meas("volume_liter", "Total Volume (L)", "volume", "liter"),
     _meas("ph_ph", "In-field pH", "pH", "pH"),
+    _meas("conductivity_microsiemen_per_centimeter", "In-field Cond (uS/cm)", "conductivity", "microsiemen per centimeter",
+          note="in-field meter reading during the draw, as written on the field sheet; the Aqua TROLL sonde's "
+               "conductivity is in continuous_monitoring"),
     _meas("mass_gram", "Restek Bag Mass (g)", "mass", "gram",
           note="gross as-weighed mass of the Restek gas-sampling bag (includes bag tare; "
                "not net gas mass -- verified from data 2026-10-30, ~95-116 g, bag-dominated)"),
@@ -327,7 +332,7 @@ FIELD_COLUMNS = [
 
 FIELD_KNOWN_SOURCE = {
     "Timepoint", "Date (YYYYMMDD)", "Well", "Pump Time On", "Pump Time Off",
-    "Pump Rate (L/min)", "Total Volume (L)", "In-field pH", "Restek Bag Mass (g)", "Field Notes",
+    "Pump Rate (L/min)", "Total Volume (L)", "In-field pH", "In-field Cond (uS/cm)", "Restek Bag Mass (g)", "Field Notes",
 }
 
 # ======================================================================
