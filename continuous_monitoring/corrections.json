@@ -1,5 +1,5 @@
 {
-  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id).",
+  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id). air_readings: a groundwater sonde reporting a water temperature above max_water_temperature_c is in air, so every channel of that reading is nulled (the row is dropped).",
   "null_ranges": [
     {
       "table": "hazen_hobo_ws3",
@@ -40,5 +40,12 @@
       "offset": 4.07,
       "reason": "the L9-SZ2 Aqua TROLL 600 came back from its 2026-09-23 service out of calibration: its depth to water reads 4.07 ft too shallow (S. Shekhar, 2026-11-09, from manual depths; L9-SZ1 in the same well reads as expected). Offset = the change in the hour-aligned SZ1 - SZ2 difference from before (2025-10-01..2026-09-22, mean -0.15 ft, n=5430) to after (2026-09-24..2026-11-06, mean +3.92 ft, n=893); residual spread 0.17 ft matches the zones' normal difference. Remove this entry when the sonde is recalibrated."
     }
-  ]
+  ],
+  "air_readings": {
+    "id": "air-readings-20261111",
+    "table_prefix": "hazen_aquatroll600_",
+    "temperature_label": "temperature, degree Celsius",
+    "max_water_temperature_c": 25.0,
+    "reason": "groundwater at the SSO and EFPW wells is 17-20 C (99th percentile at most 22.6 C); a reading above 25 C means the Aqua TROLL was out of the water (lifted for service or sampling), so every channel of that reading is an air measurement. Confirmed with the field team 2026-11-11 for M4-SZ1 2025-10-23..11-03, M4-SZ2 2026-06-06..15 and M5-SZ1 2026-09-22..30 (intermittent)."
+  }
 }

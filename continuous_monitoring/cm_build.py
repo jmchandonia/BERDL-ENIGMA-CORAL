@@ -19,7 +19,10 @@ the July 2026 corrections are applied here instead of after the fact:
 * their depth channel is labelled ground surface -> water surface;
 * value ranges listed in corrections.json are nulled (e.g. the dead WS3
   anemometer) or offset by a constant (e.g. the L9-SZ2 depth reference from
-  2026-09-24).
+  2026-09-24);
+* an Aqua TROLL reading whose water temperature exceeds corrections.json
+  air_readings.max_water_temperature_c (25 C) is an air reading (sonde out of
+  the water): every channel is nulled and the row dropped.
 
 Output is one TSV per location/zone table, with the brick column names from
 column_map.json, plus a manifest.json describing the run.
@@ -202,6 +205,7 @@ class Builder:
         corrections = cm.load_corrections()
         self.null_ranges = corrections.get("null_ranges", [])
         self.offset_ranges = corrections.get("offset_ranges", [])
+        self.air = corrections.get("air_readings")
         self.holdback_cutoff = now - holdback if holdback is not None else None
         # (table, timestamp) -> label -> (priority, path, value, source kind)
         self.cells: dict[tuple[str, datetime], dict[str, tuple[int, str, float | None, str]]] = defaultdict(dict)
@@ -496,6 +500,9 @@ class Builder:
         for rng in self.offset_ranges:
             if rng["table"] == table:
                 notes.append(f"{', '.join(rng['labels'])} offset by {rng['offset']:+g} from {rng['start']} to {rng['end']}: {rng['reason']}")
+        if self.air and table.startswith(self.air["table_prefix"]):
+            notes.append(f"Readings with temperature above {self.air['max_water_temperature_c']:g} C are dropped "
+                         f"(every channel nulled): {self.air['reason']}")
         depth_ft = None
         if zone:
             key = location[4:] if location.startswith("SSO-") else location
@@ -536,6 +543,11 @@ class Builder:
                 for timestamp in sorted(by_table[table]):
                     cell = self.cells[(table, timestamp)]
                     values = [cell[label][2] if label in cell else None for label in labels]
+                    if self.air and table.startswith(self.air["table_prefix"]) and self.air["temperature_label"] in cell:
+                        temp = cell[self.air["temperature_label"]][2]
+                        if temp is not None and temp > self.air["max_water_temperature_c"]:
+                            self.stats["air_readings_dropped"] += 1
+                            continue  # sonde out of the water: every channel is an air reading
                     if all(v is None for v in values):
                         continue
                     sources = sorted({Path(cell[label][1]).name for label in cell})
