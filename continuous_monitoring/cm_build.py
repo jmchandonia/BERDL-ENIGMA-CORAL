@@ -579,6 +579,7 @@ class Builder:
         manifest["files_deferred"] = self.files_deferred
         (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2, default=sorted) + "\n")
         (out_dir / "files_used.txt").write_text("".join(f"{p}\n" for p in self.files_used))
+        manifest["stats"] = dict(self.stats)  # includes counters incremented while writing
         return manifest
 
 
