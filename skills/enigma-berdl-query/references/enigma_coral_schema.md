@@ -30,7 +30,7 @@ Total Tables: 844
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1952
+**Total Rows:** 1953
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 844
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9611
+**Total Rows:** 9612
 
 ### Sample Data (5 rows)
 
@@ -28356,36 +28356,6 @@ Total Tables: 844
 
 ---
 
-## Table: ddt_brick0002179
-
-**Table Description:** hazen_sediment_extractable_fwb306_2015.ndarray - Hazen Lab extractable elements and anions of the FWB-306 sediment core (UGA soil test, 2015)
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
-| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
-| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
-| molecule_method | string | Yes | {"description": "method"} |
-| molecule_detection_limit_milligram_per_kilogram | double | Yes | {"description": "detection limit", "unit": "milligram per kilogram"} |
-| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
-
-**Total Rows:** 232
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | replicate_series_count_unit | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_method | molecule_detection_limit_milligram_per_kilogram | concentration_milligram_per_kilogram |
-|---|---|---|---|---|---|---|
-| FWB306-01 | 1 | CHEBI:22984 | calcium atom | Mehlich 1 | NULL | 2168.3638 |
-| FWB306-01 | 1 | CHEBI:28694 | copper atom | Mehlich 1 | NULL | 0.2878 |
-| FWB306-01 | 1 | CHEBI:18248 | iron atom | Mehlich 1 | NULL | 11.0275 |
-| FWB306-01 | 1 | CHEBI:26216 | potassium atom | Mehlich 1 | NULL | 64.8038 |
-| FWB306-01 | 1 | CHEBI:25107 | magnesium atom | Mehlich 1 | NULL | 148.4479 |
-
----
-
 ## Table: ddt_brick0002180
 
 **Table Description:** hazen_sediment_soil_properties_fwb306_2015.hndarray - Hazen Lab soil properties of the FWB-306 sediment core (UGA soil test, 2015)
@@ -28548,6 +28518,37 @@ Total Tables: 844
 | 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000253 | class | Vicinamibacteria | 1.0 |
 | 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000254 | order | Subgroup_17 | 1.0 |
 | 53f35ea075eaadb8bb881ce05f819629 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+
+---
+
+## Table: ddt_brick0002185
+
+**Table Description:** hazen_sediment_extractable_fwb306_2015_v2.hndarray - Hazen Lab extractable elements and anions of the FWB-306 sediment core (UGA soil test, 2015)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| molecule_method | string | Yes | {"description": "method"} |
+| molecule_detection_limit_milligram_per_kilogram | double | Yes | {"description": "detection limit", "unit": "milligram per kilogram"} |
+| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+
+**Total Rows:** 320
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_count_unit | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_method | molecule_detection_limit_milligram_per_kilogram | concentration_milligram_per_kilogram | below_relative_detection_limit |
+|---|---|---|---|---|---|---|---|
+| FWB306-01 | 1 | CHEBI:22984 | calcium atom | Mehlich 1 | NULL | 2168.3638 | 0 |
+| FWB306-01 | 1 | CHEBI:28694 | copper atom | Mehlich 1 | NULL | 0.2878 | 0 |
+| FWB306-01 | 1 | CHEBI:18248 | iron atom | Mehlich 1 | NULL | 11.0275 | 0 |
+| FWB306-01 | 1 | CHEBI:26216 | potassium atom | Mehlich 1 | NULL | 64.8038 | 0 |
+| FWB306-01 | 1 | CHEBI:25107 | magnesium atom | Mehlich 1 | NULL | 148.4479 | 0 |
 
 ---
 
@@ -29059,7 +29060,7 @@ Total Tables: 844
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 19357
+**Total Rows:** 19360
 
 ### Sample Data (5 rows)
 
@@ -29094,7 +29095,7 @@ Total Tables: 844
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 101935
+**Total Rows:** 101936
 
 ### Sample Data (5 rows)
 
@@ -29136,7 +29137,7 @@ Total Tables: 844
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 129390
+**Total Rows:** 129391
 
 ### Sample Data (5 rows)
 
@@ -29178,7 +29179,7 @@ Total Tables: 844
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 113225
+**Total Rows:** 113226
 
 ### Sample Data (5 rows)
 

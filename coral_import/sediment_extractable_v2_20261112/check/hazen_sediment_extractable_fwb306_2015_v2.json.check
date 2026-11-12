@@ -1,0 +1,22 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Soil test report of the University of Georgia Soil, Plant, and Water Laboratory (Athens, GA) for Sindhu Jagadamma, completed 2015-08-06; eight depth intervals of the FWB-306 core collected 2015-06-10, each analysed in duplicate
+property: comment <ME:0000011> = Replaces hazen_sediment_extractable_fwb306_2015.ndarray (Brick0002179): the same measurements, with the below variable added so that every sample, replicate and analyte keeps a row in the Lakehouse table
+property: comment <ME:0000011> = Method Mehlich 1: elements extracted from the soil by the Mehlich 1 dilute acid solution. Method water extract: 5 g soil shaken in 20 mL deionized water for 15 minutes. All values are mg per kg of soil. Nitrate is reported as nitrate nitrogen
+property: comment <ME:0000011> = Every sample was measured for every analyte. Where the laboratory reported a value as below its detection limit, the concentration is blank and the below variable is true. The detection limit of each analyte is on the molecule dimension (blank for analytes that were always detected). For the Mehlich 1 elements it is the smallest limit in the report: the laboratory states a limit for each sample, and it differs between samples (Cd: 0.04, 0.05, 0.06; Cr: 0.04, 0.05; Mo: 0.04, 0.05, 0.06; Pb: 0.03, 0.05 mg/kg; for Cd, Cr and Mo the limit rises with the sample's moisture, which suggests a dry-soil basis)
+property: comment <ME:0000011> = Below the detection limit in every sample (below is true in all 16 measurements): Cd (Mehlich 1; limit 0.04 to 0.06 mg/kg); Mo (Mehlich 1; limit 0.04 to 0.06 mg/kg); fluoride (water extract; limit 0.7 mg/kg); phosphate (water extract; limit 4 mg/kg); U (water extract; limit 1 mg/kg)
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, FRC Well Metadata/Core samples/FW306_Sediment_chemical analysis.xls. The ORNL FRC sample collection log carries a rounded copy of these values
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 8
+dim: replicate series <ME:0000005>
+dim_var: replicate series <ME:0000005> (count unit <UO:0000189>)
+dim_size: 2
+dim: molecule <ME:0000027>
+dim_var: molecule from list <ME:0000381>
+dim_var: method <ME:0000007>
+dim_var: detection limit <ME:0000038> (milligram per kilogram <UO:0000308>)
+dim_size: 20
+data_var: concentration <ME:0000129> (milligram per kilogram <UO:0000308>)
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit
+composite_microtype: below, relative=detection limit
+Generic is OK!

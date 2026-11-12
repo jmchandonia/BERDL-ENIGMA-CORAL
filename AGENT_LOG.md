@@ -2336,6 +2336,11 @@ Validation completed before live export:
   (id air-readings-20261111, table prefix hazen_aquatroll600_, max_water_temperature_c 25): cm_build
   drops the whole row (stats air_readings_dropped, standing note per table); the fixer's kind "air"
   nulled every measurement column on those 1,717 live rows (recorded in ingest_runs). README updated.
+- 2026-11-12: field sheet gained `In-field Cond (uS/cm)` (email NEW COLUMN; empty so far). Added
+  `field_metadata.conductivity_microsiemen_per_centimeter` after ph_ph (COMO conductivity ME:0000124,
+  uS/cm ME:0000295 -- same name as the Aqua TROLL tables; no instrument token in the name, note says
+  in-field meter), source header in FIELD_KNOWN_SOURCE, typedef 47 rows. Live via `--add-columns`
+  then a normal load (run 20261112T155422Z-cond); zero drift. Commit bf50c81, deployed to dipa/niya.
 - 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
   corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
   102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
@@ -2494,3 +2499,9 @@ Validation completed before live export:
   flag, a converter change, or leaving it. The Drive log workbook used for precision
   (`evo_memory_2017_source/ORNL_Field_Sampling_Requirements_Responses.xlsx`) is not committed (requesters' contact
   details); copy it from the team Drive `FRC Sample Request Logs/` to rebuild.
+- 2026-11-12: Brick0002185 hazen_sediment_extractable_fwb306_2015_v2 supersedes Brick0002179 (same measurements plus a
+  below-detection-limit variable, so the Lakehouse table keeps all 320 rows; the converter drops blank
+  analyte-replicate pairs of a one-variable brick as "replicate not run"). sync-20261112-152215: ddt_brick0002185
+  imported (320 rows), ddt_brick0002179 dropped, verification and foreign keys passed. ChEBI review of all bricks:
+  `coral_import/CHEBI_MIXUP_REVIEW_20261112.md`; replacement bricks for the 160 affected current bricks built and
+  validated by `tools/build_chebi_term_fix_coral_import.py` (not loaded yet).

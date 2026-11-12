@@ -1,0 +1,2 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Update Data <PROCESS:0000053>	John-Marc Chandonia <ENIGMA:0000057>	Natural Organic Matter <ENIGMA:0000027>	null	2026-11-12	2026-11-12	Generic: hazen_sediment_extractable_fwb306_2015.ndarray	Generic: hazen_sediment_extractable_fwb306_2015_v2.hndarray
