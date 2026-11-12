@@ -1,5 +1,5 @@
 {
-  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id).",
+  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id).",
   "null_ranges": [
     {
       "table": "hazen_hobo_ws3",
@@ -24,7 +24,8 @@
       ],
       "start": "2026-10-11",
       "end": "9999-12-31",
-      "reason": "the L8-SZ1 Aqua TROLL 600 stopped transmitting on 2026-10-11 (S. Shekhar, 2026-11-09); the few readings since (2026-10-23, 10-28, 11-06, 11-07) report 56-60 C and 3,000-4,800 uS/cm, so the sonde is failing, not reporting. Remove this entry when it is replaced or repaired."
+      "reason": "the L8-SZ1 Aqua TROLL 600 stopped transmitting on 2026-10-11 (S. Shekhar, 2026-11-09); the few readings since (2026-10-23, 10-28, 11-06, 11-07) report 56-60 C and 3,000-4,800 uS/cm, so the sonde is failing, not reporting. Remove this entry when it is replaced or repaired.",
+      "expect_nonzero": true
     }
   ],
   "offset_ranges": [

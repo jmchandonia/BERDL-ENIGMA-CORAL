@@ -245,7 +245,7 @@ class Builder:
         value = rec.value
         for rng in self.null_ranges:
             if rng["table"] == table and label in rng["labels"] and rng["start"] <= timestamp.date().isoformat() <= rng["end"]:
-                if value not in (None, 0.0):
+                if value not in (None, 0.0) and not rng.get("expect_nonzero"):
                     self.stats["nonzero_values_nulled_by_corrections"] += 1
                 value = None
                 self.stats["values_nulled_by_corrections"] += 1
