@@ -1,0 +1,20 @@
+property: method <ME:0000007> = Processed zOTU table: chloroplast and mitochondrial sequences removed, replicate filters of a sample combined by resampling weighted by DNA amount, every sample rarefied to 10,448 reads
+property: comment <ME:0000011> = Communities are the filters of each groundwater sample: 53 of the 2009 injection (0.2 micron; injection 2009-02-09, days -28 to 269) and 83 of the 2017 injection (48 on 0.2 micron filters, days -6 to 372; 35 on 0.1 micron filters, days 1 to 246; injection 2017-12-13)
+property: comment <ME:0000011> = Library key: SRA PRJNA1084851 (0.2 micron libraries; collection dates and wells agree with this key) and the sample table of the paper's code (github.com/jpmichael93/Publications). In that table the 0.1 micron libraries labelled day 2, 81 and 107 are the visits of days 1, 78 and 106, and APEVO28 (labelled FW215 day 81, as APEVO24 is) is taken as the FW215 visit of day 106. The 0.1 micron libraries and W7D80 (GP03, 2009-04-30) are not in SRA
+property: comment <ME:0000011> = On the community dimension: the date of the injection the community belongs to (2009-02-09 or 2017-12-13), the days from that injection to the sampling date, and the laboratory's library label (the column name in the zOTU table)
+property: comment <ME:0000011> = zOTUs are named by the MD5 of their representative sequence, as the other Zhou Lab ASV sets are
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, 2017 EVO Injection/Zhou - 16S sequencing/V230222.zOTU/20230222.zOTU.tabular
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_size: 10216
+dim: community <ME:0000231>
+dim_var: community ID <ME:0000233>
+dim_var: date <ME:0000009>; category <ME:0000013> = EVO injection
+composite_microtype: date, category=EVO injection
+dim_var: time elapsed <ME:0000122>; relative <ME:0000020> = EVO injection (day <UO:0000033>)
+composite_microtype: time elapsed, relative=EVO injection, day
+dim_var: description <ME:0000202>; category <ME:0000013> = source library label
+composite_microtype: description, category=source library label
+dim_size: 136
+data_var: count <ME:0000126> (count unit <UO:0000189>)
+Generic is OK!

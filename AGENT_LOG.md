@@ -2308,6 +2308,34 @@ Validation completed before live export:
   unlogged draws), 0 orphans, 144/144 toc rows linked, column_typedef 46 rows, zero drift. One
   failed run row (20261106T213637Z-links, table_metadata asked toc for sample_date) left in
   ingest_runs. Deployed to dipa and niya.
+- 2026-11-11: continuous_monitoring L9-SZ2 depth correction (Shekhar's Mission Control follow-up). Data
+  check from the staging TSVs (BERDL down): U2-SZ2 / U3-SZ1 last readings 2026-09-24 10:00 / 09:53,
+  L8-SZ1 nothing real since 10/10 (stray rows 10/23, 10/28, 11/06-07 with 57-59 C and >3000 uS/cm are
+  junk), L9: both sondes off 09/23, afterwards SZ2 depth-to-water 4.07 ft shallower than SZ1 (pre: SZ1-SZ2
+  -0.15 ft n=5430; post 09/24-11/06: +3.92 ft n=893; residual 0.17 ft = normal zone spread). Implemented
+  corrections.json `offset_ranges` (+4.07 ft on L9-SZ2 depth from 2026-09-24, open-ended) in cm_build
+  (value + offset, stats, table_metadata note), `fix_offset_20261111.py` (one-off UPDATE of rows ingested
+  before deployment, ingest_runs-recorded, --if-needed), step added to cm and combined run_daily.sh,
+  README. Deployed (cutoff 2026-11-11 23:26 UTC) and applied live once BERDL returned: 954 values +4.07,
+  sum check ok, post-fix hour-aligned SZ1-SZ2 = -0.15 ft (= pre-service), 0 uncorrected rows, recorded as
+  ingest_runs l9-sz2-depth-offset-20261111. Flagged: L9-SZ1 dropped 1.7 ft at 2026-11-07 10:00
+  (T17 sampling day) and is sparse since; not a reference after that.
+- 2026-11-11 (later): L8-SZ1 cleanup. The 20 stray rows since 10/11 (56-60 C, 3,000-4,800 uS/cm) passed the
+  builder's generic filters (temperature < 60 C, conductivity has no upper bound). A global conductivity cap
+  is NOT viable: M4-SZ2 legitimately reads up to 25,500 uS/cm (p99.9 24,800), U1-SZ2 7,300. Done instead:
+  corrections.json null_ranges entry l8-sz1-dead-sonde-20261111 (all six channels from 2026-10-11,
+  open-ended); fix_offset_20261111.py generalized to offset AND null entries with `--all --if-needed`
+  (both run_daily.sh); applied live: 20 rows x 5 channels nulled (pH already NULL), 28,170 pre-10/11 rows
+  untouched; cm_build skips all-NULL rows, so no further L8-SZ1 junk is appended. Noted, not acted on:
+  M5-SZ1 Sep 2026 has 54 readings > 30 C (max 58 C, service period) and M4-SZ2 Jun 2026 227 readings
+  > 30 C (max 32.6) -- candidates for review with Shekhar.
+- 2026-11-11 (later still): user confirmed those are out-of-water periods. Survey (temperature > 25 C,
+  groundwater p99 <= 22.6 C) found four episodes: M4-SZ1 2025-10-23..11-03 (1,070 rows, sonde lifted),
+  M4-SZ2 2026-06-06..15 (578), M5-SZ1 2026-09-22..30 (68, intermittent between real readings), M5-SZ2
+  2024-10-12 (1). Implemented a generic rule instead of entries: corrections.json `air_readings`
+  (id air-readings-20261111, table prefix hazen_aquatroll600_, max_water_temperature_c 25): cm_build
+  drops the whole row (stats air_readings_dropped, standing note per table); the fixer's kind "air"
+  nulled every measurement column on those 1,717 live rows (recorded in ingest_runs). README updated.
 - 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
   corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
   102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
@@ -2447,3 +2475,22 @@ Validation completed before live export:
   (ddt_brick0001674, 1699, 1704-1707), 81/81 foreign keys, schema references republished. The exported FEBa bricks
   have full [genes x conditions] shape and match the fitprivate source; all 4,179 metadata-brick conditions resolve
   in enigma.fitprivate.experiment.
+- 2026-11-11: EVO injection (Memory campaign), FWB-306 sediment chemistry and the Brick0000007 replacement
+  (`coral_import/evo_memory_brick7_20261111`, builder `tools/build_evo_memory_brick7_coral_import.py`, decisions in
+  `coral_import/EVO_MEMORY_PLAN_20261111.md`). Loaded on the hub: Brick0002178 hazen_field_post100ws_v2 (supersedes
+  Brick0000007: correct ChEBI terms, full-precision values from the Drive workbook, scientific-notation bug fixed,
+  January 2015 metals and floor values left out, EVO rows moved out), Brick0002179/2180 FWB-306 sediment extractable
+  analytes and soil properties (UGA soil report), Brick0002181 EVO geochemistry (58 samples; published Table S1 with
+  day -6 metals halved and the day-15 FW215/FW216 swap corrected, plus log-derived temperature, redox, Cl, PO4 and
+  injection wells), Brick0002182-2184 zOTU sequences/counts/taxonomy (10,216 x 136). Static: 76 Samples, 136
+  Communities, 169 Reads, 2,086 OTUs, 58 Taxa, 2 Protocols; processes 76 Sampling, 136 Filter, 169 16S Sequencing,
+  Classify OTUs, 2 Assay Geochemistry, Update Data. COMO: ME:0000524-0000527 (lime buffer capacity, cation exchange
+  capacity, meq/100 g, ppm CaCO3 per pH unit; `coral_import/ontology_update_20261111_sediment`). Sample moves by
+  guarded AQL: 14 samples GP01-30/GP03-29 -> GP01-18/GP03-19, twelve renamed; the first import stopped at 18 Filter
+  processes because SYS_ObjectTypeID still held the old names (fixed, remainder loaded). sync-20261111-195223 (PREV
+  sync-20261111-183230): 19 tables imported, ddt_brick0000007 dropped, 258/258 foreign keys, comments and row counts
+  verified. Open: the Lakehouse table of Brick0002179 has 232 of 320 rows (the converter skips blank
+  analyte-replicate pairs as "replicate not run"); user to choose between a superseding brick with a below-limit
+  flag, a converter change, or leaving it. The Drive log workbook used for precision
+  (`evo_memory_2017_source/ORNL_Field_Sampling_Requirements_Responses.xlsx`) is not committed (requesters' contact
+  details); copy it from the team Drive `FRC Sample Request Logs/` to rebuild.

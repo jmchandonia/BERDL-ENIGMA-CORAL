@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 838
+Total Tables: 844
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 838
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 1945
+**Total Rows:** 1952
 
 ### Sample Data (5 rows)
 
@@ -68,111 +68,17 @@ Total Tables: 838
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9581
+**Total Rows:** 9611
 
 ### Sample Data (5 rows)
 
 | ddt_ndarray_id | berdl_column_name | berdl_column_data_type | scalar_type | foreign_key | comment | unit_sys_oterm_id | unit_sys_oterm_name | dimension_number | dimension_oterm_id | dimension_oterm_name | variable_number | variable_oterm_id | variable_oterm_name | original_csv_string |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Brick0000007 | ph_ph | variable | float | NULL | pH | UO:0000196 | pH | NULL | NULL | NULL | 1 | ME:0000121 | pH | 1,pH <ME:0000121>,pH <UO:0000196> |
-| Brick0000007 | specific_conductivity_temperature_20_0_microsiemen_per_centimeter | variable | float | NULL | specific conductivity, Temperature=20.0 | ME:0000295 | microsiemen per centimeter | NULL | NULL | NULL | 2 | ME:0000301 | specific conductivity | 2,Specific Conductivity <ME:0000301>,Temperature <ME:0000123>,20.0,microsiemen per centimeter <ME:0000295> |
-| Brick0000007 | temperature_degree_celsius | variable | float | NULL | temperature | UO:0000027 | degree Celsius | NULL | NULL | NULL | 3 | ME:0000123 | temperature | 3,Temperature <ME:0000123>,degree Celsius <UO:0000027> |
-| Brick0000007 | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | variable | float | NULL | concentration, Molecule from list=oxygen atom, State=dissolved | UO:0000273 | milligram per liter | NULL | NULL | NULL | 4 | ME:0000129 | concentration | 4,Concentration <ME:0000129>,Molecule from list <ME:0000381>,oxygen atom <CHEBI:25805>,State <ME:0000037>,dissolved,milligram per liter <UO:0000273> |
-| Brick0000007 | redox_potential_millivolt | variable | float | NULL | redox potential | UO:0000247 | millivolt | NULL | NULL | NULL | 5 | ME:0000125 | redox potential | 5,Redox Potential <ME:0000125>,millivolt <UO:0000247> |
-
----
-
-## Table: ddt_brick0000007
-
-**Table Description:** hazen_field_post100ws.hndarray - Hazen Lab Field Sample Measurements post-100 Well Survey
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
-| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
-| specific_conductivity_temperature_20_0_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity, Temperature=20.0", "unit": "microsiemen per centimeter"} |
-| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
-| concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=oxygen atom, State=dissolved", "unit": "milligram per liter"} |
-| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
-| count_category_cell_method_aodc_cells_per_milliliter | int | Yes | {"description": "count, Category=cell, Method=AODC", "unit": "cells per milliliter"} |
-| concentration_molecule_from_list_l_selenocysteine_residue_method_icpms_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=L-selenocysteine residue, Method=ICPMS", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_sulfide_2_parts_per_million | double | Yes | {"description": "concentration, Molecule from list=sulfide(2-)", "unit": "parts per million"} |
-| concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=iron(2+)", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_carbon_dioxide_micromolar | double | Yes | {"description": "concentration, Molecule from list=carbon dioxide", "unit": "micromolar"} |
-| concentration_molecule_from_list_methane_micromolar | double | Yes | {"description": "concentration, Molecule from list=methane", "unit": "micromolar"} |
-| concentration_molecule_from_list_carbon_monoxide_micromolar | double | Yes | {"description": "concentration, Molecule from list=carbon monoxide", "unit": "micromolar"} |
-| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=elemental carbon, State=dissolved, Organic=0", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=elemental carbon, State=dissolved, Organic=1", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_chlorine_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=chlorine atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=nitrate", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_phosphate_ion_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=phosphate ion", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_sulfate_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=sulfate", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_silver_0_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=silver(0)", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_aluminium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=aluminium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_arsane_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=arsane", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_barium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=barium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_beryllium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=beryllium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_bismuth_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=bismuth atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_calcium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=calcium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_cadmium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=cadmium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_cobalt_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=cobalt atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_chromium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=chromium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_caesium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=caesium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_copper_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=copper atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_iron_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=iron atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_gly_d_ala_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=Gly-D-Ala", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_lysine_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=lysine", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_lithium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=lithium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_magnesium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=magnesium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_manganese_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=manganese atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_sodium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=sodium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_nickel_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=nickel atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_lead_2_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=lead(2+)", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_selenium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=selenium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_strontium_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=strontium atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_l_selenocysteine_residue_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=L-selenocysteine residue", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_zinc_atom_milligram_per_liter | double | Yes | {"description": "concentration, Molecule from list=zinc atom", "unit": "milligram per liter"} |
-| concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | double | Yes | {"description": "concentration, Molecule from list=water, State=in soil", "unit": "percent"} |
-| ph_physiochemical_state_in_water_ph | double | Yes | {"description": "pH, State=in water", "unit": "pH"} |
-| conductivity_millimhos_per_centimeter | double | Yes | {"description": "conductivity", "unit": "millimhos per centimeter"} |
-| concentration_molecule_from_list_calcium_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=calcium atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_cadmium_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=cadmium atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_chromium_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=chromium atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_copper_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=copper atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_iron_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=iron atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_lysine_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=lysine", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_magnesium_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=magnesium atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_manganese_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=manganese atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_molybdenum_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=molybdenum atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_sodium_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=sodium atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_nickel_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=nickel atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_l_proline_residue_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=L-proline residue", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_lead_2_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=lead(2+)", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_zinc_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=zinc atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_chlorine_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=chlorine atom", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_l_phenylalanine_residue_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=L-phenylalanine residue", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_nitrate_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=nitrate", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_phosphate_ion_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=phosphate ion", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_sulfate_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=sulfate", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_l_selenocysteine_residue_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=L-selenocysteine residue", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=elemental carbon, State=dissolved, Organic=1", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_elemental_carbon_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=elemental carbon", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_elemental_carbon_organic_1_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=elemental carbon, Organic=1", "unit": "milligram per kilogram"} |
-| concentration_molecule_from_list_nitrogen_atom_milligram_per_kilogram | double | Yes | {"description": "concentration, Molecule from list=nitrogen atom", "unit": "milligram per kilogram"} |
-
-**Total Rows:** 449
-
-### Sample Data (5 rows)
-
-| sdt_sample_name | ph_ph | specific_conductivity_temperature_20_0_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | count_category_cell_method_aodc_cells_per_milliliter | concentration_molecule_from_list_l_selenocysteine_residue_method_icpms_milligram_per_liter | concentration_molecule_from_list_sulfide_2_parts_per_million | concentration_molecule_from_list_iron_2_milligram_per_liter | concentration_molecule_from_list_carbon_dioxide_micromolar | concentration_molecule_from_list_methane_micromolar | concentration_molecule_from_list_carbon_monoxide_micromolar | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_milligram_per_liter | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_liter | concentration_molecule_from_list_chlorine_atom_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_phosphate_ion_milligram_per_liter | concentration_molecule_from_list_sulfate_milligram_per_liter | concentration_molecule_from_list_silver_0_milligram_per_liter | concentration_molecule_from_list_aluminium_atom_milligram_per_liter | concentration_molecule_from_list_arsane_milligram_per_liter | concentration_molecule_from_list_barium_atom_milligram_per_liter | concentration_molecule_from_list_beryllium_atom_milligram_per_liter | concentration_molecule_from_list_bismuth_atom_milligram_per_liter | concentration_molecule_from_list_calcium_atom_milligram_per_liter | concentration_molecule_from_list_cadmium_atom_milligram_per_liter | concentration_molecule_from_list_cobalt_atom_milligram_per_liter | concentration_molecule_from_list_chromium_atom_milligram_per_liter | concentration_molecule_from_list_caesium_atom_milligram_per_liter | concentration_molecule_from_list_copper_atom_milligram_per_liter | concentration_molecule_from_list_iron_atom_milligram_per_liter | concentration_molecule_from_list_gly_d_ala_milligram_per_liter | concentration_molecule_from_list_lysine_milligram_per_liter | concentration_molecule_from_list_lithium_atom_milligram_per_liter | concentration_molecule_from_list_magnesium_atom_milligram_per_liter | concentration_molecule_from_list_manganese_atom_milligram_per_liter | concentration_molecule_from_list_sodium_atom_milligram_per_liter | concentration_molecule_from_list_nickel_atom_milligram_per_liter | concentration_molecule_from_list_lead_2_milligram_per_liter | concentration_molecule_from_list_selenium_atom_milligram_per_liter | concentration_molecule_from_list_strontium_atom_milligram_per_liter | concentration_molecule_from_list_l_selenocysteine_residue_milligram_per_liter | concentration_molecule_from_list_zinc_atom_milligram_per_liter | concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | ph_physiochemical_state_in_water_ph | conductivity_millimhos_per_centimeter | concentration_molecule_from_list_calcium_atom_milligram_per_kilogram | concentration_molecule_from_list_cadmium_atom_milligram_per_kilogram | concentration_molecule_from_list_chromium_atom_milligram_per_kilogram | concentration_molecule_from_list_copper_atom_milligram_per_kilogram | concentration_molecule_from_list_iron_atom_milligram_per_kilogram | concentration_molecule_from_list_lysine_milligram_per_kilogram | concentration_molecule_from_list_magnesium_atom_milligram_per_kilogram | concentration_molecule_from_list_manganese_atom_milligram_per_kilogram | concentration_molecule_from_list_molybdenum_atom_milligram_per_kilogram | concentration_molecule_from_list_sodium_atom_milligram_per_kilogram | concentration_molecule_from_list_nickel_atom_milligram_per_kilogram | concentration_molecule_from_list_l_proline_residue_milligram_per_kilogram | concentration_molecule_from_list_lead_2_milligram_per_kilogram | concentration_molecule_from_list_zinc_atom_milligram_per_kilogram | concentration_molecule_from_list_chlorine_atom_milligram_per_kilogram | concentration_molecule_from_list_l_phenylalanine_residue_milligram_per_kilogram | concentration_molecule_from_list_nitrate_milligram_per_kilogram | concentration_molecule_from_list_phosphate_ion_milligram_per_kilogram | concentration_molecule_from_list_sulfate_milligram_per_kilogram | concentration_molecule_from_list_l_selenocysteine_residue_milligram_per_kilogram | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_kilogram | concentration_molecule_from_list_elemental_carbon_milligram_per_kilogram | concentration_molecule_from_list_elemental_carbon_organic_1_milligram_per_kilogram | concentration_molecule_from_list_nitrogen_atom_milligram_per_kilogram |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| GW460-11-04-13 | 7.56 | 334.5 | 19.39 | 6.0 | 203.0 | 552000 | NULL | 0.038 | 0.04 | 43.85210417 | NULL | NULL | 43.58 | 16.47 | 1.1058999999999999 | 0.6952 | NULL | 9.0678 | NULL | 0.024035 | NULL | 0.5944659999999998 | 0.005254999999999999 | NULL | 71.281 | NULL | NULL | NULL | 5.2 | 0.010386000000000001 | NULL | 0.017198 | 3.2430000000000003 | 0.021255000000000003 | 11.756 | 0.005235999999999999 | 14.311 | 1.27E-4 | NULL | NULL | 1.09203 | 0.005009 | 0.050223000000000004 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| GW456-11-04-13 | 7.0 | 234.1 | 15.25 | 0.1 | 241.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| GW456-11-04-13-2 | 7.6499999999999995 | 223.2 | 15.01 | 0.1 | 181.0 | 1210000 | NULL | 0.004 | 0.02 | 6.560659858999999 | NULL | NULL | 37.32 | 15.360000000000001 | 0.9099 | 0.1691 | NULL | 7.2895 | NULL | 0.010587000000000001 | NULL | 0.42205400000000004 | 0.005267 | NULL | 43.958 | NULL | NULL | NULL | 1.27E-4 | 8.31E-4 | NULL | 0.012082 | 2.771 | 0.024543 | 7.986000000000001 | 0.011673 | 19.901 | 0.003616 | NULL | NULL | 0.8343900000000001 | 0.004821000000000001 | 0.03792399999999999 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| FW301-11-05-13 | 6.81 | 280.8 | 17.130000000000003 | 3.07 | 198.0 | 47800 | NULL | NULL | 0.01 | 105.66375249999999 | NULL | NULL | 48.0 | 17.14 | 1.468 | 0.2326 | NULL | 6.5415 | NULL | 0.007667 | NULL | 0.16059400000000001 | 0.005268 | NULL | 61.308 | NULL | NULL | 1.43E-4 | 4.4 | 0.005398 | NULL | 0.004357 | 1.6560000000000001 | 0.007902000000000001 | 4.095 | 0.002604 | 2.8759999999999994 | 4.1700000000000005E-4 | NULL | NULL | 0.149684 | 0.003662 | 0.06874400000000001 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
-| FW300-11-05-13 | 6.85 | 343.0 | 18.0 | 1.51 | 102.0 | 281000 | NULL | 0.07200000000000001 | 0.12000000000000001 | 167.61053219999997 | NULL | NULL | 51.11 | 17.150000000000002 | 1.3611 | 0.1068 | NULL | 7.288 | NULL | 0.0052899999999999996 | NULL | 0.14427800000000002 | 0.005268 | NULL | 66.585 | NULL | NULL | NULL | 4.4 | 0.0052699999999999995 | NULL | 0.0036680000000000003 | 1.039 | 0.007671 | 2.1630000000000003 | 0.018209 | 3.195 | 6.720000000000001E-4 | NULL | 2.1 | 0.128616 | 0.0026680000000000002 | 0.056621000000000005 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| Brick0000008 | concentration_molecule_from_list_sulfide_milligram_per_liter | variable | float | NULL | concentration, Molecule from list=sulfide | UO:0000273 | milligram per liter | NULL | NULL | NULL | 1 | ME:0000129 | concentration | 1,Concentration <ME:0000129>,Molecule from list <ME:0000381>,sulfide <CHEBI:26822>,milligram per liter <UO:0000273> |
+| Brick0000008 | concentration_molecule_from_list_iron_2_milligram_per_liter | variable | float | NULL | concentration, Molecule from list=iron(2+) | UO:0000273 | milligram per liter | NULL | NULL | NULL | 2 | ME:0000129 | concentration | 2,Concentration <ME:0000129>,Molecule from list <ME:0000381>,iron(2+) <CHEBI:29033>,milligram per liter <UO:0000273> |
+| Brick0000008 | comment | variable | string | NULL | comment | NULL | NULL | NULL | NULL | NULL | 3 | ME:0000011 | comment | 3,Comment <ME:0000011> |
+| Brick0000008 | sdt_sample_name | dimension_variable | object_ref | sdt_sample.sdt_sample_name | environmental sample ID | NULL | NULL | 1 | DA:0000042 | Environmental Sample | 1 | ME:0000102 | environmental sample ID | dmeta,2,Environmental Sample <DA:0000042>,Environmental Sample ID <ME:0000102> |
+| Brick0000009 | temperature_degree_celsius | variable | float | NULL | temperature | UO:0000027 | degree Celsius | NULL | NULL | NULL | 1 | ME:0000123 | temperature | 1,Temperature <ME:0000123>,degree Celsius <UO:0000027> |
 
 ---
 
@@ -28383,6 +28289,268 @@ Total Tables: 838
 
 ---
 
+## Table: ddt_brick0002178
+
+**Table Description:** hazen_field_post100ws_v2.hndarray - Hazen Lab field sample measurements after the 100 Well Survey (corrected 2026-11-11)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| specific_conductivity_temperature_20_0_degree_celsius_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity, temperature=20.0, degree Celsius=microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=oxygen atom, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| count_category_cell_method_aodc_cells_per_milliliter | double | Yes | {"description": "count, category=cell, method=AODC", "unit": "cells per milliliter"} |
+| concentration_molecule_from_list_sulfide_2_parts_per_million | double | Yes | {"description": "concentration, molecule from list=sulfide(2-)", "unit": "parts per million"} |
+| concentration_molecule_from_list_iron_2_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron(2+)", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_carbon_dioxide_micromolar | double | Yes | {"description": "concentration, molecule from list=carbon dioxide", "unit": "micromolar"} |
+| concentration_molecule_from_list_methane_micromolar | double | Yes | {"description": "concentration, molecule from list=methane", "unit": "micromolar"} |
+| concentration_molecule_from_list_carbon_monoxide_micromolar | double | Yes | {"description": "concentration, molecule from list=carbon monoxide", "unit": "micromolar"} |
+| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=0", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=1", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_chloride_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=chloride", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| below_relative_detection_limit_molecule_from_list_nitrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrate"} |
+| concentration_molecule_from_list_phosphate_ion_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=phosphate ion", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_sulfate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=sulfate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_silver_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=silver atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_aluminium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=aluminium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_arsenic_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=arsenic atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_barium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=barium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_beryllium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=beryllium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_bismuth_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=bismuth atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_calcium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=calcium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_cadmium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=cadmium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_cobalt_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=cobalt atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_chromium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=chromium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_caesium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=caesium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_copper_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=copper atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_iron_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_gallium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=gallium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_potassium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=potassium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_lithium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=lithium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_magnesium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=magnesium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_manganese_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=manganese atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_sodium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=sodium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_nickel_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nickel atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_lead_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=lead atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_selenium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=selenium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_strontium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=strontium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_uranium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=uranium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_zinc_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=zinc atom", "unit": "milligram per liter"} |
+
+**Total Rows:** 257
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | ph_ph | specific_conductivity_temperature_20_0_degree_celsius_microsiemen_per_centimeter | temperature_degree_celsius | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | count_category_cell_method_aodc_cells_per_milliliter | concentration_molecule_from_list_sulfide_2_parts_per_million | concentration_molecule_from_list_iron_2_milligram_per_liter | concentration_molecule_from_list_carbon_dioxide_micromolar | concentration_molecule_from_list_methane_micromolar | concentration_molecule_from_list_carbon_monoxide_micromolar | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_0_milligram_per_liter | concentration_molecule_from_list_elemental_carbon_physiochemical_state_dissolved_organic_1_milligram_per_liter | concentration_molecule_from_list_chloride_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | below_relative_detection_limit_molecule_from_list_nitrate | concentration_molecule_from_list_phosphate_ion_milligram_per_liter | concentration_molecule_from_list_sulfate_milligram_per_liter | concentration_molecule_from_list_silver_atom_milligram_per_liter | concentration_molecule_from_list_aluminium_atom_milligram_per_liter | concentration_molecule_from_list_arsenic_atom_milligram_per_liter | concentration_molecule_from_list_barium_atom_milligram_per_liter | concentration_molecule_from_list_beryllium_atom_milligram_per_liter | concentration_molecule_from_list_bismuth_atom_milligram_per_liter | concentration_molecule_from_list_calcium_atom_milligram_per_liter | concentration_molecule_from_list_cadmium_atom_milligram_per_liter | concentration_molecule_from_list_cobalt_atom_milligram_per_liter | concentration_molecule_from_list_chromium_atom_milligram_per_liter | concentration_molecule_from_list_caesium_atom_milligram_per_liter | concentration_molecule_from_list_copper_atom_milligram_per_liter | concentration_molecule_from_list_iron_atom_milligram_per_liter | concentration_molecule_from_list_gallium_atom_milligram_per_liter | concentration_molecule_from_list_potassium_atom_milligram_per_liter | concentration_molecule_from_list_lithium_atom_milligram_per_liter | concentration_molecule_from_list_magnesium_atom_milligram_per_liter | concentration_molecule_from_list_manganese_atom_milligram_per_liter | concentration_molecule_from_list_sodium_atom_milligram_per_liter | concentration_molecule_from_list_nickel_atom_milligram_per_liter | concentration_molecule_from_list_lead_atom_milligram_per_liter | concentration_molecule_from_list_selenium_atom_milligram_per_liter | concentration_molecule_from_list_strontium_atom_milligram_per_liter | concentration_molecule_from_list_uranium_atom_milligram_per_liter | concentration_molecule_from_list_zinc_atom_milligram_per_liter |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| GW460-11-04-13 | 7.56 | 334.5 | 19.39 | 6.0 | 203.0 | 552339.319471 | 0.038 | 0.04 | 43.8521041719 | NULL | NULL | 43.58 | 16.47 | 1.10590446671 | 0.695189300338 | 0 | NULL | 9.06776806751 | NULL | 0.024035 | NULL | 0.594466 | 0.005255 | NULL | 71.281 | NULL | NULL | NULL | 5.2E-5 | 0.010386 | NULL | 0.017198 | 3.243 | 0.021255 | 11.756 | 0.005236 | 14.311 | 1.27E-4 | NULL | NULL | 1.09203 | 0.005009 | 0.050223 |
+| GW456-11-04-13 | 7.0 | 234.1 | 15.25 | 0.1 | 241.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| GW456-11-04-13-2 | 7.65 | 223.2 | 15.01 | 0.1 | 181.0 | 1210000.0 | 0.004 | 0.02 | 6.56065985911 | NULL | NULL | 37.32 | 15.36 | 0.909891547325 | 0.16905878943 | 0 | NULL | 7.28946608322 | NULL | 0.010587 | NULL | 0.422054 | 0.005267 | NULL | 43.958 | NULL | NULL | NULL | 1.27E-4 | 8.31E-4 | NULL | 0.012082 | 2.771 | 0.024543 | 7.986 | 0.011673 | 19.901 | 0.003616 | NULL | NULL | 0.83439 | 0.004821 | 0.037924 |
+| FW301-11-05-13 | 6.81 | 280.8 | 17.13 | 3.07 | 198.0 | 47849.7164461 | NULL | 0.01 | 105.663752529 | NULL | NULL | 48.0 | 17.14 | 1.46795751825 | 0.232557020655 | 0 | NULL | 6.54146889268 | NULL | 0.007667 | NULL | 0.160594 | 0.005268 | NULL | 61.308 | NULL | NULL | 1.43E-4 | 4.4E-5 | 0.005398 | NULL | 0.004357 | 1.656 | 0.007902 | 4.095 | 0.002604 | 2.876 | 4.17E-4 | NULL | NULL | 0.149684 | 0.003662 | 0.068744 |
+| FW300-11-05-13 | 6.85 | 343.0 | 18.0 | 1.51 | 102.0 | 280600.189036 | 0.072 | 0.12 | 167.610532163 | NULL | NULL | 51.11 | 17.15 | 1.3611015798 | 0.106800683495 | 0 | NULL | 7.28798391873 | NULL | 0.00529 | NULL | 0.144278 | 0.005268 | NULL | 66.585 | NULL | NULL | NULL | 4.4E-5 | 0.00527 | NULL | 0.003668 | 1.039 | 0.007671 | 2.163 | 0.018209 | 3.195 | 6.72E-4 | NULL | 2.1E-5 | 0.128616 | 0.002668 | 0.056621 |
+
+---
+
+## Table: ddt_brick0002179
+
+**Table Description:** hazen_sediment_extractable_fwb306_2015.ndarray - Hazen Lab extractable elements and anions of the FWB-306 sediment core (UGA soil test, 2015)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| molecule_method | string | Yes | {"description": "method"} |
+| molecule_detection_limit_milligram_per_kilogram | double | Yes | {"description": "detection limit", "unit": "milligram per kilogram"} |
+| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
+
+**Total Rows:** 232
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_count_unit | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_method | molecule_detection_limit_milligram_per_kilogram | concentration_milligram_per_kilogram |
+|---|---|---|---|---|---|---|
+| FWB306-01 | 1 | CHEBI:22984 | calcium atom | Mehlich 1 | NULL | 2168.3638 |
+| FWB306-01 | 1 | CHEBI:28694 | copper atom | Mehlich 1 | NULL | 0.2878 |
+| FWB306-01 | 1 | CHEBI:18248 | iron atom | Mehlich 1 | NULL | 11.0275 |
+| FWB306-01 | 1 | CHEBI:26216 | potassium atom | Mehlich 1 | NULL | 64.8038 |
+| FWB306-01 | 1 | CHEBI:25107 | magnesium atom | Mehlich 1 | NULL | 148.4479 |
+
+---
+
+## Table: ddt_brick0002180
+
+**Table Description:** hazen_sediment_soil_properties_fwb306_2015.hndarray - Hazen Lab soil properties of the FWB-306 sediment core (UGA soil test, 2015)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| replicate_series_count_unit | int | Yes | {"description": "replicate series", "unit": "count unit"} |
+| ph_method_in_0_01_m_cacl2_ph | double | Yes | {"description": "pH, method=in 0.01 M CaCl2", "unit": "pH"} |
+| ph_method_equivalent_water_ph_ph | double | Yes | {"description": "pH, method=equivalent water pH", "unit": "pH"} |
+| lime_buffer_capacity_ppm_calcium_carbonate_per_ph_unit | double | Yes | {"description": "lime buffer capacity", "unit": "ppm calcium carbonate per pH unit"} |
+| cation_exchange_capacity_milliequivalent_per_100_grams | double | Yes | {"description": "cation exchange capacity", "unit": "milliequivalent per 100 grams"} |
+| concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil", "unit": "percent"} |
+| conductivity_method_soluble_salts_millimhos_per_centimeter | double | Yes | {"description": "conductivity, method=soluble salts", "unit": "millimhos per centimeter"} |
+| concentration_molecule_from_list_elemental_carbon_organic_1_method_water_extract_milligram_per_kilogram | double | Yes | {"description": "concentration, molecule from list=elemental carbon, organic=1, method=water extract", "unit": "milligram per kilogram"} |
+| concentration_molecule_from_list_elemental_carbon_percent | double | Yes | {"description": "concentration, molecule from list=elemental carbon", "unit": "percent"} |
+| concentration_molecule_from_list_elemental_carbon_organic_1_percent | double | Yes | {"description": "concentration, molecule from list=elemental carbon, organic=1", "unit": "percent"} |
+| concentration_molecule_from_list_nitrogen_atom_percent | double | Yes | {"description": "concentration, molecule from list=nitrogen atom", "unit": "percent"} |
+
+**Total Rows:** 16
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | replicate_series_count_unit | ph_method_in_0_01_m_cacl2_ph | ph_method_equivalent_water_ph_ph | lime_buffer_capacity_ppm_calcium_carbonate_per_ph_unit | cation_exchange_capacity_milliequivalent_per_100_grams | concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | conductivity_method_soluble_salts_millimhos_per_centimeter | concentration_molecule_from_list_elemental_carbon_organic_1_method_water_extract_milligram_per_kilogram | concentration_molecule_from_list_elemental_carbon_percent | concentration_molecule_from_list_elemental_carbon_organic_1_percent | concentration_molecule_from_list_nitrogen_atom_percent |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| FWB306-01 | 1 | 6.63 | 7.23 | 338.0 | 12.2697249448 | 14.6942252842909 | 0.13 | 81.2 | 0.9579 | 0.5469 | 0.0547 |
+| FWB306-01 | 2 | 6.33 | 6.93 | 339.0 | 9.7055507787 | 15.4669779006927 | 0.09 | 107.2 | 0.6379 | 0.4731 | 0.0754 |
+| FWB306-02 | 1 | 4.43 | 5.03 | 1767.0 | 24.5133255457 | 21.4171974522293 | 0.04 | 21.4 | 0.2014 | 0.0959 | 0.0218 |
+| FWB306-02 | 2 | 4.25 | 4.85 | 1939.0 | 28.6779338891 | 22.5947451846871 | 0.03 | 26.04 | 0.2687 | 0.1127 | 0.0432 |
+| FWB306-03 | 1 | 4.28 | 4.88 | 4780.0 | 61.5231360942 | 29.7901364113326 | 0.02 | 16.96 | 0.1436 | 0.1024 | 0.0188 |
+
+---
+
+## Table: ddt_brick0002181
+
+**Table Description:** hazen_geochemistry_evo_injection_2017.hndarray - Hazen Lab groundwater geochemistry during the 2017 EVO injection (Memory campaign)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_time_elapsed_relative_evo_injection_day | double | Yes | {"description": "time elapsed, relative=EVO injection", "unit": "day"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=oxygen atom, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| specific_conductivity_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity", "unit": "microsiemen per centimeter"} |
+| elevation_category_water_level_meter | double | Yes | {"description": "elevation, category=water level", "unit": "meter"} |
+| concentration_molecule_from_list_uranium_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=uranium atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_manganese_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=manganese atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_iron_atom_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=iron atom", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_sulfate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=sulfate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_acetate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=acetate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_ammonium_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=ammonium", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_chloride_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=chloride", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_phosphate_ion_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=phosphate ion", "unit": "milligram per liter"} |
+| below_relative_detection_limit_molecule_from_list_iron_atom | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=iron atom"} |
+| below_relative_detection_limit_molecule_from_list_nitrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrate"} |
+| below_relative_detection_limit_molecule_from_list_acetate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=acetate"} |
+| below_relative_detection_limit_molecule_from_list_ammonium | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=ammonium"} |
+| description_category_oxygen_content | string | Yes | {"description": "description, category=oxygen content"} |
+| description_category_nitrate_reduction | string | Yes | {"description": "description, category=nitrate reduction"} |
+| description_category_sulfate_reduction | string | Yes | {"description": "description, category=sulfate reduction"} |
+| description_category_phase | string | Yes | {"description": "description, category=phase"} |
+
+**Total Rows:** 58
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_time_elapsed_relative_evo_injection_day | ph_ph | temperature_degree_celsius | concentration_molecule_from_list_oxygen_atom_physiochemical_state_dissolved_milligram_per_liter | redox_potential_millivolt | specific_conductivity_microsiemen_per_centimeter | elevation_category_water_level_meter | concentration_molecule_from_list_uranium_atom_milligram_per_liter | concentration_molecule_from_list_manganese_atom_milligram_per_liter | concentration_molecule_from_list_iron_atom_milligram_per_liter | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_sulfate_milligram_per_liter | concentration_molecule_from_list_acetate_milligram_per_liter | concentration_molecule_from_list_ammonium_milligram_per_liter | concentration_molecule_from_list_chloride_milligram_per_liter | concentration_molecule_from_list_phosphate_ion_milligram_per_liter | below_relative_detection_limit_molecule_from_list_iron_atom | below_relative_detection_limit_molecule_from_list_nitrate | below_relative_detection_limit_molecule_from_list_acetate | below_relative_detection_limit_molecule_from_list_ammonium | description_category_oxygen_content | description_category_nitrate_reduction | description_category_sulfate_reduction | description_category_phase |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FW212-12-07-17 | -6.0 | 7.5 | 19.06 | 0.85 | -310.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| FW213-12-07-17 | -6.0 | 7.63 | 18.74 | 0.59 | -301.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| FW214-12-07-17 | -6.0 | 7.0 | 18.42 | 0.26 | -300.0 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL |
+| FW215-12-07-17 | -6.0 | 7.6 | 19.29 | 0.59 | -291.0 | 678.9 | 300.46 | 0.863 | 0.6295 | 5.815 | 9.68 | 65.66 | 0.107 | 1.0008 | 14.41 | 0.12 | 0 | 0 | 0 | 0 | Slightly Aerobic | Not Reduced | Not Reduced | Control |
+| FW216-19-12-07-17 | -6.0 | 7.37 | 18.13 | 0.23 | -199.0 | 661.5 | 300.46 | 0.9795 | 0.675 | 12.98 | 21.7 | 61.66 | 0.086 | 0.8634 | 13.77 | 0.11 | 0 | 0 | 0 | 0 | Slightly Aerobic | Not Reduced | Not Reduced | Phase0 |
+
+---
+
+## Table: ddt_brick0002182
+
+**Table Description:** zhou_lab_evo_injection_2009_2017_zOTU_16S.ndarray - Zhou Lab 16S zOTU sequences, 2009 and 2017 EVO injections, ORR Area 2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sequence_sequence_type_16s_sequence | string | Yes | {"description": "sequence, sequence type=16S sequence"} |
+
+**Total Rows:** 10216
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sequence_sequence_type_16s_sequence |
+|---|---|
+| 02bb9662aa72c434ec9b7ab39b443d40 | TACAGAGGTGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGCCCTGTAAGTCCCGCGTGAAAGCCCTCGGCTCAACCGAGGAACTGCGCGGGAGACTGCAAGGCTTGAGTTCGGGAGAGGGAAGTGGAATTCCGGGTGTAGCGGTGAAATGCGCAGATATCCGGAGGAACACCAGTGGCGAAGGCGGCTTCCTGGACCGACACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACGGG |
+| 53f35ea075eaadb8bb881ce05f819629 | TACAGAGGTGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGTCCGATAAGTCCCGCGTGAAAGCCCCCGGCTCAACTGGGGAACTGCGCGGGAAACTGACGGACTTGAGTTCGGGAGAGGGAAGCGGAATTCCGGGTGTAGCGGTGAAATGCGTAGATATCCGGAGGAACACCGGTGGCGAAGGCGGCTTCCTGGACCGACACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACGGG |
+| 607134bc2e1149b196ebfca3dfd07b8f | TACAGAGGTGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGTTCGACAAGTCCCGCGTGAAAGCCCCCGGCTCAACTGGGGAACTGCGCGGGAAACTGACGGGCTTGAGTTCGGGAGAGGGAAGCGGAATTCCGGGTGTAGCGGTGAAATGCGTAGATATCCGGAGGAACACCGGTGGCGAAGGCGGCTTCCTGGACCGACACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACGGG |
+| 9d37fe245efc42c50c29dbac979038d0 | TACAGAGGTGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGTTTGCCAAGTCCCGTGTGAAAGCCCCCGGCTCAACCGGGGAACGGCGCGGGAAACTAGCAGGCTTGAGTTCGGGAGAGGGAAGCGGAATTCCGGGTGTAGCGGTGAAATGCGCAGATATCCGGAGGAACACCGGTGGCGAAGGCGGCTTCCTGGACCGACACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACGGG |
+| 4d7789f90b7822ac60da8d8077973306 | TACAGAGGTGGCAAGCGTTGTTCGGAATTACTGGGCGTAAAGGGCGCGTAGGCGGTTCGGTAAGTCCCGCGTGAAATCCCCCGGCTCAACTGGGGAACTGCGCGGGAAACTGCCGGGCTTGAGTTCGGGAGAGGGAAGCGGAATTCCGGGTGTAGCGGTGAAATGCGCAGATATCCGGAGGAACACCGGTGGCGAAGGCGGCTTCCTGGACCGACACTGACGCTGAGGCGCGAAAGCTAGGGGAGCAAACGGG |
+
+---
+
+## Table: ddt_brick0002183
+
+**Table Description:** zhou_lab_evo_injection_2009_2017_zOTU_count.ndarray - Zhou Lab 16S zOTU counts (rarefied to 10,448 reads per sample), 2009 and 2017 EVO injections, ORR Area 2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| sdt_community_name | string | Yes | {"description": "community ID", "type": "foreign_key", "references": "sdt_community.sdt_community_name"} |
+| community_date_category_evo_injection | string | Yes | {"description": "date, category=EVO injection"} |
+| community_time_elapsed_relative_evo_injection_day | double | Yes | {"description": "time elapsed, relative=EVO injection", "unit": "day"} |
+| community_description_category_source_library_label | string | Yes | {"description": "description, category=source library label"} |
+| count_count_unit | int | Yes | {"description": "count", "unit": "count unit"} |
+
+**Total Rows:** 1389376
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | sdt_community_name | community_date_category_evo_injection | community_time_elapsed_relative_evo_injection_day | community_description_category_source_library_label | count_count_unit |
+|---|---|---|---|---|---|
+| 02bb9662aa72c434ec9b7ab39b443d40 | MLSB3-12-14-17 0.1 micron filter | 2017-12-13 | 1.0 | APEVO1 | 2 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | GP03-19-12-28-17 0.1 micron filter | 2017-12-13 | 15.0 | APEVO10 | 0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | FW216-19-12-28-17 0.1 micron filter | 2017-12-13 | 15.0 | APEVO11 | 0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | FW215-12-28-17 0.1 micron filter | 2017-12-13 | 15.0 | APEVO12 | 0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | MLSB3-12-28-17 0.1 micron filter | 2017-12-13 | 15.0 | APEVO13 | 0 |
+
+---
+
+## Table: ddt_brick0002184
+
+**Table Description:** zhou_lab_evo_injection_2009_2017_zOTU_taxonomy.ndarray - Zhou Lab 16S zOTU taxonomy (RDP classifier, SILVA 138), 2009 and 2017 EVO injections, ORR Area 2
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_asv_name | string | Yes | {"description": "ASV ID", "type": "foreign_key", "references": "sdt_asv.sdt_asv_name"} |
+| taxonomic_level_sys_oterm_id | string | Yes | {"description": "taxonomic level, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| taxonomic_level_sys_oterm_name | string | Yes | {"description": "taxonomic level"} |
+| sdt_taxon_name | string | Yes | {"description": "taxon ID", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_name"} |
+| confidence_confidence_unit | double | Yes | {"description": "confidence", "unit": "confidence unit"} |
+
+**Total Rows:** 71512
+
+### Sample Data (5 rows)
+
+| sdt_asv_name | taxonomic_level_sys_oterm_id | taxonomic_level_sys_oterm_name | sdt_taxon_name | confidence_confidence_unit |
+|---|---|---|---|---|
+| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000252 | phylum | Acidobacteriota | 1.0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000253 | class | Vicinamibacteria | 1.0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000254 | order | Subgroup_17 | 1.0 |
+| 53f35ea075eaadb8bb881ce05f819629 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -28422,7 +28590,7 @@ Total Tables: 838
 | sdt_asv_id | string | No | {"description": "Unique identifier for each ASV/OTU (Primary key)", "type": "primary_key"} |
 | sdt_asv_name | string | No | {"description": "Unique name assigned to the ASV/OTU, usually md5sum", "type": "unique_key"} |
 
-**Total Rows:** 227163
+**Total Rows:** 229249
 
 ### Sample Data (5 rows)
 
@@ -28481,7 +28649,7 @@ Total Tables: 838
 | defined_sdt_strain_names | array<string> | Yes | {"description": "List of strains that comprise the community, if the community is defined", "type": "foreign_key", "references": "sdt_strain.sdt_strain_name"} |
 | sdt_community_description | string | Yes | {"description": "Free-text field providing additional details or notes about the community"} |
 
-**Total Rows:** 4788
+**Total Rows:** 4924
 
 ### Sample Data (5 rows)
 
@@ -28705,7 +28873,7 @@ Total Tables: 838
 | sdt_protocol_description | string | Yes | {"description": "Detailed description of the protocol"} |
 | link | string | Yes | {"description": "URL linking to additional documentation of the protocol, such as protocols.io"} |
 
-**Total Rows:** 77
+**Total Rows:** 79
 
 ### Sample Data (5 rows)
 
@@ -28736,7 +28904,7 @@ Total Tables: 838
 | sequencing_technology_sys_oterm_name | string | No | {"description": "Sequencing technology used (e.g., Illumina)"} |
 | link | string | No | {"description": "Link to the reads file (e.g., fastq)"} |
 
-**Total Rows:** 20888
+**Total Rows:** 21057
 
 ### Sample Data (5 rows)
 
@@ -28772,7 +28940,7 @@ Total Tables: 838
 | env_package_sys_oterm_name | string | No | {"description": "MIxS environmental package classification of the sample"} |
 | sdt_sample_description | string | Yes | {"description": "Free-form description or notes about the sample"} |
 
-**Total Rows:** 4731
+**Total Rows:** 4807
 
 ### Sample Data (5 rows)
 
@@ -28827,7 +28995,7 @@ Total Tables: 838
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 16395
+**Total Rows:** 16453
 
 ### Sample Data (5 rows)
 
@@ -28891,7 +29059,7 @@ Total Tables: 838
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 19313
+**Total Rows:** 19357
 
 ### Sample Data (5 rows)
 
@@ -28926,7 +29094,7 @@ Total Tables: 838
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 101550
+**Total Rows:** 101935
 
 ### Sample Data (5 rows)
 
@@ -28968,7 +29136,7 @@ Total Tables: 838
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 128773
+**Total Rows:** 129390
 
 ### Sample Data (5 rows)
 
@@ -29010,7 +29178,7 @@ Total Tables: 838
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 112837
+**Total Rows:** 113225
 
 ### Sample Data (5 rows)
 

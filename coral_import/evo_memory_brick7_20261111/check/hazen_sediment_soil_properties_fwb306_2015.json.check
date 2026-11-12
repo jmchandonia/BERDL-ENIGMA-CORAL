@@ -1,0 +1,30 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Soil test report of the University of Georgia Soil, Plant, and Water Laboratory (Athens, GA) for Sindhu Jagadamma, completed 2015-08-06; eight depth intervals of the FWB-306 core collected 2015-06-10, each analysed in duplicate
+property: comment <ME:0000011> = Lime buffer capacity and pH per the laboratory's methods (UGA CAES publications 7335 and 7336). Equivalent water pH is the laboratory's conversion of the CaCl2 pH (CaCl2 pH + 0.6). Cation exchange capacity is the laboratory's calculated value. Base saturation (extractable bases as a share of cation exchange capacity) is not stored
+property: comment <ME:0000011> = Water-extractable organic carbon: 5 g soil shaken in 20 mL deionized water for 15 minutes, mg per kg of soil. Total carbon, total organic carbon and total nitrogen are percent of the soil
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, FRC Well Metadata/Core samples/FW306_Sediment_chemical analysis.xls. The ORNL FRC sample collection log carries a rounded copy of these values
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 8
+dim: replicate series <ME:0000005>
+dim_var: replicate series <ME:0000005> (count unit <UO:0000189>)
+dim_size: 2
+data_var: pH <ME:0000121>; method <ME:0000007> = in 0.01 M CaCl2 (pH <UO:0000196>)
+composite_microtype: pH, method=in 0.01 M CaCl2, pH
+data_var: pH <ME:0000121>; method <ME:0000007> = equivalent water pH (pH <UO:0000196>)
+composite_microtype: pH, method=equivalent water pH, pH
+data_var: lime buffer capacity <ME:0000524> (ppm calcium carbonate per pH unit <ME:0000527>)
+data_var: cation exchange capacity <ME:0000525> (milliequivalent per 100 grams <ME:0000526>)
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = water <CHEBI:15377>; physiochemical state <ME:0000037> = in soil (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=water, physiochemical state=in soil, percent
+data_var: conductivity <ME:0000124>; method <ME:0000007> = soluble salts (millimhos per centimeter <ME:0000347>)
+composite_microtype: conductivity, method=soluble salts, millimhos per centimeter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415>; organic <ME:0000346> = 1; method <ME:0000007> = water extract (milligram per kilogram <UO:0000308>)
+composite_microtype: concentration, molecule from list=elemental carbon, organic=1, method=water extract, milligram per kilogram
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415> (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=elemental carbon, percent
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415>; organic <ME:0000346> = 1 (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=elemental carbon, organic=1, percent
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nitrogen atom <CHEBI:25555> (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=nitrogen atom, percent
+Generic is OK!

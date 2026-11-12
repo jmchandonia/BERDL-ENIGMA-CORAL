@@ -1,0 +1,627 @@
+{
+ "name": "hazen_sediment_soil_properties_fwb306_2015.hndarray",
+ "description": "Hazen Lab soil properties of the FWB-306 sediment core (UGA soil test, 2015)",
+ "data_type": {
+  "term_name": "Chemical Measurement",
+  "oterm_ref": "DA:0000005",
+  "oterm_name": "Chemical Measurement"
+ },
+ "array_context": [
+  {
+   "value_type": {
+    "term_name": "data variables type",
+    "oterm_ref": "ME:0000293",
+    "oterm_name": "data variables type"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "DA:0000005",
+    "string_value": "Chemical Measurement"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Soil test report of the University of Georgia Soil, Plant, and Water Laboratory (Athens, GA) for Sindhu Jagadamma, completed 2015-08-06; eight depth intervals of the FWB-306 core collected 2015-06-10, each analysed in duplicate"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Lime buffer capacity and pH per the laboratory's methods (UGA CAES publications 7335 and 7336). Equivalent water pH is the laboratory's conversion of the CaCl2 pH (CaCl2 pH + 0.6). Cation exchange capacity is the laboratory's calculated value. Base saturation (extractable bases as a share of cation exchange capacity) is not stored"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Water-extractable organic carbon: 5 g soil shaken in 20 mL deionized water for 15 minutes, mg per kg of soil. Total carbon, total organic carbon and total nitrogen are percent of the soil"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Source: ENIGMA Google Drive, FRC Well Metadata/Core samples/FW306_Sediment_chemical analysis.xls. The ORNL FRC sample collection log carries a rounded copy of these values"
+   }
+  }
+ ],
+ "n_dimensions": 2,
+ "dim_context": [
+  {
+   "data_type": {
+    "term_name": "environmental sample",
+    "oterm_ref": "ME:0000100",
+    "oterm_name": "environmental sample"
+   },
+   "size": 8,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "environmental sample ID",
+      "oterm_ref": "ME:0000102",
+      "oterm_name": "environmental sample ID"
+     },
+     "values": {
+      "scalar_type": "object_ref",
+      "object_refs": [
+       "FWB306-01",
+       "FWB306-02",
+       "FWB306-03",
+       "FWB306-04",
+       "FWB306-05",
+       "FWB306-06",
+       "FWB306-07",
+       "FWB306-08"
+      ],
+      "string_values": [
+       "FWB306-01",
+       "FWB306-02",
+       "FWB306-03",
+       "FWB306-04",
+       "FWB306-05",
+       "FWB306-06",
+       "FWB306-07",
+       "FWB306-08"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "data_type": {
+    "term_name": "replicate series",
+    "oterm_ref": "ME:0000005",
+    "oterm_name": "replicate series"
+   },
+   "size": 2,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "replicate series",
+      "oterm_ref": "ME:0000005",
+      "oterm_name": "replicate series"
+     },
+     "values": {
+      "scalar_type": "int",
+      "int_values": [
+       1,
+       2
+      ]
+     },
+     "value_units": {
+      "term_name": "count unit",
+      "oterm_ref": "UO:0000189",
+      "oterm_name": "count unit"
+     },
+     "value_context": []
+    }
+   ]
+  }
+ ],
+ "typed_values": [
+  {
+   "value_type": {
+    "term_name": "pH",
+    "oterm_ref": "ME:0000121",
+    "oterm_name": "pH"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     6.63,
+     6.33,
+     4.43,
+     4.25,
+     4.28,
+     4.1,
+     3.94,
+     3.92,
+     4.42,
+     4.4,
+     4.31,
+     4.42,
+     4.52,
+     4.72,
+     4.64,
+     4.68
+    ]
+   },
+   "value_units": {
+    "term_name": "pH",
+    "oterm_ref": "UO:0000196",
+    "oterm_name": "pH"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "in 0.01 M CaCl2"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "pH",
+    "oterm_ref": "ME:0000121",
+    "oterm_name": "pH"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     7.23,
+     6.93,
+     5.03,
+     4.85,
+     4.88,
+     4.7,
+     4.54,
+     4.52,
+     5.02,
+     5.0,
+     4.91,
+     5.02,
+     5.12,
+     5.32,
+     5.24,
+     5.28
+    ]
+   },
+   "value_units": {
+    "term_name": "pH",
+    "oterm_ref": "UO:0000196",
+    "oterm_name": "pH"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "equivalent water pH"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "lime buffer capacity",
+    "oterm_ref": "ME:0000524",
+    "oterm_name": "lime buffer capacity"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     338.0,
+     339.0,
+     1767.0,
+     1939.0,
+     4780.0,
+     1860.0,
+     1216.0,
+     1305.0,
+     688.0,
+     685.0,
+     745.0,
+     554.0,
+     546.0,
+     419.0,
+     435.0,
+     397.0
+    ]
+   },
+   "value_units": {
+    "term_name": "ppm calcium carbonate per pH unit",
+    "oterm_ref": "ME:0000527",
+    "oterm_name": "ppm calcium carbonate per pH unit"
+   },
+   "value_context": []
+  },
+  {
+   "value_type": {
+    "term_name": "cation exchange capacity",
+    "oterm_ref": "ME:0000525",
+    "oterm_name": "cation exchange capacity"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     12.2697249448,
+     9.7055507787,
+     24.5133255457,
+     28.6779338891,
+     61.5231360942,
+     28.0802212965,
+     20.1827625095,
+     21.736882126,
+     14.7000455396,
+     14.7977782848,
+     18.0225273863,
+     15.7752532887,
+     15.735456199,
+     13.9032012559,
+     13.5804499153,
+     13.2114022832
+    ]
+   },
+   "value_units": {
+    "term_name": "milliequivalent per 100 grams",
+    "oterm_ref": "ME:0000526",
+    "oterm_name": "milliequivalent per 100 grams"
+   },
+   "value_context": []
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     14.6942252842909,
+     15.4669779006927,
+     21.4171974522293,
+     22.5947451846871,
+     29.7901364113326,
+     30.0017608733932,
+     17.950370609088,
+     19.550511365458,
+     11.9768767301742,
+     11.5974418107035,
+     10.7090852932092,
+     10.8265802269044,
+     9.31091770190186,
+     9.31731614415469,
+     16.5426133890485,
+     16.2885222033487
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15377",
+      "string_value": "water"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "physiochemical state",
+      "oterm_ref": "ME:0000037",
+      "oterm_name": "physiochemical state"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "in soil"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "conductivity",
+    "oterm_ref": "ME:0000124",
+    "oterm_name": "conductivity"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.13,
+     0.09,
+     0.04,
+     0.03,
+     0.02,
+     0.02,
+     0.03,
+     0.03,
+     0.02,
+     0.02,
+     0.02,
+     0.02,
+     0.15,
+     0.01,
+     0.17,
+     0.02
+    ]
+   },
+   "value_units": {
+    "term_name": "millimhos per centimeter",
+    "oterm_ref": "ME:0000347",
+    "oterm_name": "millimhos per centimeter"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "soluble salts"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     81.2,
+     107.2,
+     21.4,
+     26.04,
+     16.96,
+     21.08,
+     15.12,
+     16.04,
+     16.76,
+     21.68,
+     42.4,
+     41.2,
+     38.04,
+     37.4,
+     31.08,
+     46.0
+    ]
+   },
+   "value_units": {
+    "term_name": "milligram per kilogram",
+    "oterm_ref": "UO:0000308",
+    "oterm_name": "milligram per kilogram"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:33415",
+      "string_value": "elemental carbon"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "organic",
+      "oterm_ref": "ME:0000346",
+      "oterm_name": "organic"
+     },
+     "value": {
+      "scalar_type": "boolean",
+      "boolean_value": 1
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "method",
+      "oterm_ref": "ME:0000007",
+      "oterm_name": "method"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "water extract"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.9579,
+     0.6379,
+     0.2014,
+     0.2687,
+     0.1436,
+     0.1416,
+     0.1113,
+     0.0994,
+     0.0702,
+     0.1242,
+     0.0779,
+     0.0831,
+     0.0869,
+     0.0761,
+     0.1006,
+     0.048
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:33415",
+      "string_value": "elemental carbon"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.5469,
+     0.4731,
+     0.0959,
+     0.1127,
+     0.1024,
+     0.1166,
+     0.0445,
+     0.0664,
+     0.0353,
+     0.0327,
+     0.0452,
+     0.0409,
+     0.0358,
+     0.035,
+     0.0356,
+     0.048
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:33415",
+      "string_value": "elemental carbon"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "organic",
+      "oterm_ref": "ME:0000346",
+      "oterm_name": "organic"
+     },
+     "value": {
+      "scalar_type": "boolean",
+      "boolean_value": 1
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.0547,
+     0.0754,
+     0.0218,
+     0.0432,
+     0.0188,
+     0.0503,
+     0.0488,
+     0.0422,
+     0.0354,
+     0.0337,
+     0.0556,
+     0.0386,
+     0.0432,
+     0.0347,
+     0.034,
+     0.0373
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:25555",
+      "string_value": "nitrogen atom"
+     }
+    }
+   ]
+  }
+ ]
+}

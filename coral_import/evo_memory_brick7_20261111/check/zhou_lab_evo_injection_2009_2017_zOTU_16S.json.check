@@ -1,0 +1,8 @@
+property: comment <ME:0000011> = zOTUs are named by the MD5 of their representative sequence, as the other Zhou Lab ASV sets are
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, 2017 EVO Injection/Zhou - 16S sequencing/V230222.zOTU/Unprocessed data/20230222.repseq.fasta (the 10,216 zOTUs of the processed table)
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_size: 10216
+data_var: sequence <ME:0000282>; sequence type <ME:0000189> = 16S sequence <ME:0000190>
+composite_microtype: sequence, sequence type=16S sequence
+Generic is OK!

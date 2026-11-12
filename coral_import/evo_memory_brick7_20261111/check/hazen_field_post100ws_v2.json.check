@@ -1,0 +1,96 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Replaces hazen_field_post100ws (Brick0000007). Rebuilt from the ORNL FRC sample collection log (Collected Samples sheet, updated 2019-02-08)
+property: comment <ME:0000011> = Corrected molecule terms for K, U, Ga, As, Ag, Cl and Pb; values written in scientific notation, which the earlier brick stored 1e5 to 1e6 too large, are now correct
+property: comment <ME:0000011> = Left out: metals of the 18 time-series samples of 2015-01-05 to 2015-01-12 (attached to the wrong wells in the log); metals of GW458-12-1-14 and FW303-12-9-14 (copies of other rows); DOC of FW301-1-5-15 (copy of DIC); Bi, Cs and U of the 2014-2015 time series and Be, Sr, U and Zn of the 2015-03-31 samples (the same floor value in every well)
+property: comment <ME:0000011> = The 2017-2018 EVO injection samples of this log are not here: all their measurements are in hazen_geochemistry_evo_injection_2017
+property: comment <ME:0000011> = Values are at the precision of the log workbook on the ENIGMA Google Drive where a workbook row matches (the 2019 tab-separated export rounds to about five digits). Nitrate reported as 0 is stored as below detection. The specific conductivity of GW456-12-15-14 (1.217 uS/cm; 220 to 370 on the well's other dates) is left out
+property: comment <ME:0000011> = Dissolved organic carbon of November 2013 (15 to 20 mg/L) is as reported; it tracks dissolved inorganic carbon and is about 100 times the 2014-2015 values at the same wells
+property: comment <ME:0000011> = FW106-061015 was logged as ranges; midpoints are stored
+property: comment <ME:0000011> = CO2, CH4 and CO are in micromolar: the log heads the columns 'CO2', 'CH4 umol' and 'CO umol', and umol is read as micromolar
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 257
+data_var: pH <ME:0000121> (pH <UO:0000196>)
+data_var: specific conductivity <ME:0000301>; temperature <ME:0000123> = 20.0 (degree Celsius <UO:0000027>) (microsiemen per centimeter <ME:0000295>)
+composite_microtype: specific conductivity, temperature=20.0, degree Celsius, microsiemen per centimeter
+data_var: temperature <ME:0000123> (degree Celsius <UO:0000027>)
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = oxygen atom <CHEBI:25805>; physiochemical state <ME:0000037> = dissolved (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=oxygen atom, physiochemical state=dissolved, milligram per liter
+data_var: redox potential <ME:0000125> (millivolt <UO:0000247>)
+data_var: count <ME:0000126>; category <ME:0000013> = cell <ME:0000040>; method <ME:0000007> = AODC (cells per milliliter <UO:0000201>)
+composite_microtype: count, category=cell, method=AODC, cells per milliliter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = sulfide(2-) <CHEBI:15138> (parts per million <UO:0000169>)
+composite_microtype: concentration, molecule from list=sulfide(2-), parts per million
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = iron(2+) <CHEBI:29033> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=iron(2+), milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = carbon dioxide <CHEBI:16526> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=carbon dioxide, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = methane <CHEBI:16183> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=methane, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = carbon monoxide <CHEBI:17245> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=carbon monoxide, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415>; physiochemical state <ME:0000037> = dissolved; organic <ME:0000346> = 0 (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=0, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415>; physiochemical state <ME:0000037> = dissolved; organic <ME:0000346> = 1 (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=elemental carbon, physiochemical state=dissolved, organic=1, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = chloride <CHEBI:17996> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=chloride, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nitrate <CHEBI:17632> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=nitrate, milligram per liter
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = nitrate <CHEBI:17632>
+composite_microtype: below, relative=detection limit, molecule from list=nitrate
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = phosphate ion <CHEBI:35780> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=phosphate ion, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = sulfate <CHEBI:16189> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=sulfate, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = silver atom <CHEBI:30512> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=silver atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = aluminium atom <CHEBI:28984> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=aluminium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = arsenic atom <CHEBI:27563> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=arsenic atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = barium atom <CHEBI:32594> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=barium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = beryllium atom <CHEBI:30501> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=beryllium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = bismuth atom <CHEBI:33301> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=bismuth atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = calcium atom <CHEBI:22984> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=calcium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = cadmium atom <CHEBI:22977> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=cadmium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = cobalt atom <CHEBI:27638> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=cobalt atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = chromium atom <CHEBI:28073> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=chromium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = caesium atom <CHEBI:30514> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=caesium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = copper atom <CHEBI:28694> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=copper atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = iron atom <CHEBI:18248> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=iron atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = gallium atom <CHEBI:49631> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=gallium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = potassium atom <CHEBI:26216> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=potassium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = lithium atom <CHEBI:30145> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=lithium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = magnesium atom <CHEBI:25107> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=magnesium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = manganese atom <CHEBI:18291> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=manganese atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = sodium atom <CHEBI:26708> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=sodium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nickel atom <CHEBI:28112> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=nickel atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = lead atom <CHEBI:25016> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=lead atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = selenium atom <CHEBI:27568> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=selenium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = strontium atom <CHEBI:33324> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=strontium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = uranium atom <CHEBI:27214> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=uranium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = zinc atom <CHEBI:27363> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=zinc atom, milligram per liter
+Generic is OK!

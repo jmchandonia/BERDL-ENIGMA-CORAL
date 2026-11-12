@@ -1,0 +1,2 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Assay Geochemistry <PROCESS:0000005>	Hazen Lab <ENIGMA:0000066>	Natural Organic Matter <ENIGMA:0000027>	null	2015-08-06	2015-08-06	Sample: FWB306-01, Sample: FWB306-02, Sample: FWB306-03, Sample: FWB306-04, Sample: FWB306-05, Sample: FWB306-06, Sample: FWB306-07, Sample: FWB306-08	Generic: hazen_sediment_extractable_fwb306_2015.ndarray, Generic: hazen_sediment_soil_properties_fwb306_2015.hndarray

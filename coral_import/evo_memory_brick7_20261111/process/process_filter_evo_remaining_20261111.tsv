@@ -1,0 +1,19 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2017-12-28	2017-12-28	Sample: GP03-19-12-28-17	Community: GP03-19-12-28-17 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2018-01-04	2018-01-04	Sample: GP03-19-01-04-18	Community: GP03-19-01-04-18 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2018-01-04	2018-01-04	Sample: GP01-18-01-04-18	Community: GP01-18-01-04-18 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2017-12-14	2017-12-14	Sample: GP03-19-12-14-17	Community: GP03-19-12-14-17 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2017-12-21	2017-12-21	Sample: GP01-18-12-21-17	Community: GP01-18-12-21-17 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2017-12-21	2017-12-21	Sample: GP03-19-12-21-17	Community: GP03-19-12-21-17 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.1 micron filter	2017-12-28	2017-12-28	Sample: GP01-18-12-28-17	Community: GP01-18-12-28-17 0.1 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-14	2017-12-14	Sample: GP03-19-12-14-17	Community: GP03-19-12-14-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-21	2017-12-21	Sample: GP01-18-12-21-17	Community: GP01-18-12-21-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-21	2017-12-21	Sample: GP03-19-12-21-17	Community: GP03-19-12-21-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-28	2017-12-28	Sample: GP01-18-12-28-17	Community: GP01-18-12-28-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-28	2017-12-28	Sample: GP03-19-12-28-17	Community: GP03-19-12-28-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2018-01-04	2018-01-04	Sample: GP01-18-01-04-18	Community: GP01-18-01-04-18 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2018-01-04	2018-01-04	Sample: GP03-19-01-04-18	Community: GP03-19-01-04-18 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2018-02-01	2018-02-01	Sample: GP01-18-02-01-18	Community: GP01-18-02-01-18 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2018-02-01	2018-02-01	Sample: GP03-19-02-01-18	Community: GP03-19-02-01-18 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-07	2017-12-07	Sample: GP01-18-12-07-17	Community: GP01-18-12-07-17 0.2 micron filter
+Filter <PROCESS:0000012>	Hazen Lab <ENIGMA:0000066>	Memory <ENIGMA:0000008>	0.2 micron filter	2017-12-07	2017-12-07	Sample: GP03-19-12-07-17	Community: GP03-19-12-07-17 0.2 micron filter

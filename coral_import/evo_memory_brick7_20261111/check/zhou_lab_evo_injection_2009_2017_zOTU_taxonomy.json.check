@@ -1,0 +1,14 @@
+property: data variables type <ME:0000293> = Taxonomic Assignment <DA:0000067>
+property: comment <ME:0000011> = Variables: taxon ID (a CORAL Taxon; species are given as genus plus epithet; unassigned levels, NA in the source, are null) and the classifier confidence for each level; the source has no species confidence
+property: comment <ME:0000011> = Taxon names are SILVA 138's, as in the source, except where CORAL already has the taxon under another spelling: Candidatus_Aquiluna is stored as Candidatus Aquiluna; Candidatus_Turbabacter is stored as Candidatus Turbabacter; Clostridium_sensu_stricto_12 magnum is stored as Clostridium sensu stricto 12 magnum; Clostridium_sensu_stricto_7 homopropionicum is stored as Clostridium sensu stricto 7 homopropionicum; Gammaproteobacteria_Incertae_Sedis is stored as Gammaproteobacteria_incertae_sedis; Rhizobiales_Incertae_Sedis is stored as Rhizobiales_incertae_sedis
+property: comment <ME:0000011> = zOTUs are named by the MD5 of their representative sequence, as the other Zhou Lab ASV sets are
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, 2017 EVO Injection/Zhou - 16S sequencing/V230222.zOTU/20230222.zOTU.Classification.tabular
+dim: ASV <ME:0000184>
+dim_var: ASV ID <ME:0000222>
+dim_size: 10216
+dim: taxonomic level <ME:0000090>
+dim_var: taxonomic level <ME:0000090>
+dim_size: 7
+data_var: taxon ID <ME:0000047>
+data_var: confidence <ME:0000160> (confidence unit <ME:0000380>)
+Generic is OK!

@@ -1,0 +1,2 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Update Data <PROCESS:0000053>	John-Marc Chandonia <ENIGMA:0000057>	Field Sampling <ENIGMA:0000095>	null	2026-11-11	2026-11-11	Generic: hazen_field_post100ws.hndarray	Generic: hazen_field_post100ws_v2.hndarray

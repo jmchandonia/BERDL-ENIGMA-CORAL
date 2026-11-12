@@ -1,0 +1,58 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Geochemistry of the injection wells FW212, FW213 and FW214, the control well FW215 and the monitoring wells FW216, MLSB3, GP01 and GP03 before and after the emulsified vegetable oil injection of 2017-12-13 (ORR Area 2). Published as Table S1 of Michael et al. 2024, Water Research, doi:10.1016/j.watres.2024.121460; source: ENIGMA Google Drive, 2017 EVO Injection/Zhou - 16S sequencing/20230222.metadata.csv (provided by Andrew Putt)
+property: comment <ME:0000011> = Corrections to the published table: (1) U, Mn and Fe of 2017-12-07 are halved, because that day's metals are doubled in the table (Adams 2019 thesis: MLSB3 1111.5 ug/L U before injection, table 2.223 mg/L; later dates agree); (2) nitrate and sulfate of FW215 and FW216 on 2017-12-28 are exchanged back (the ORNL sample log and the Hazen Lab slides of May 2018 agree against the table)
+property: comment <ME:0000011> = A zero in the published table is stored as below detection (blank value, below = true) for Fe, nitrate, acetate and ammonium. Acetate was measured in micromolar and converted to mg/L in the table. For 2018-04-26 the table has no detectable acetate, but the Adams thesis lists 63.75 (FW215), 70.41 (FW216), 10.00 (MLSB3), 105.81 (GP01) and 256.75 (GP03) micromolar
+property: comment <ME:0000011> = Temperature and redox potential, and every measurement of the injection wells FW212, FW213 and FW214 and of GP01 on 2017-12-14 (pH, temperature, dissolved oxygen, redox potential), are from the ORNL FRC sample collection log, which covers 2017-12-07 to 2018-02-01; the published table has only the control and monitoring wells
+property: comment <ME:0000011> = Chloride and phosphate are from the ORNL FRC sample collection log (2017-12-07 to 2018-02-01), where the ion chromatography results sit under the As and Be headers. Chloride of 2018-02-01 (52 to 73 mg/L in four wells) is 4 to 5 times the earlier visits and is unexplained
+property: comment <ME:0000011> = Water level is the elevation of the water surface in the well in meters above mean sea level, from the depth to water measured before pumping (ground surface at these wells is 304.5 to 304.7 m). FW216 on 2017-12-14 and 2017-12-21 and MLSB3 on 2017-12-21 read 0.8 to 1.7 m below the other wells of the same day, and are as published
+property: comment <ME:0000011> = GP01 nitrate of 2018-03-29 is 17.63 mg/L here and 1.76 in the Hazen Lab slides. Iron is the Fe-54 isotope reading and is erratic
+property: comment <ME:0000011> = Mg, K, Ca and Al of the published table are not stored: Mg, K and Ca cannot be mg/L as labelled (about 0.14 meq/L of cations against 1.2 meq/L of sulfate), and Al is the same in every well and visit
+property: comment <ME:0000011> = The four description variables (categories oxygen content, nitrate reduction, sulfate reduction, phase) are the paper authors' groupings of the well-visits
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_var: time elapsed <ME:0000122>; relative <ME:0000020> = EVO injection (day <UO:0000033>)
+composite_microtype: time elapsed, relative=EVO injection, day
+dim_size: 58
+data_var: pH <ME:0000121> (pH <UO:0000196>)
+data_var: temperature <ME:0000123> (degree Celsius <UO:0000027>)
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = oxygen atom <CHEBI:25805>; physiochemical state <ME:0000037> = dissolved (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=oxygen atom, physiochemical state=dissolved, milligram per liter
+data_var: redox potential <ME:0000125> (millivolt <UO:0000247>)
+data_var: specific conductivity <ME:0000301> (microsiemen per centimeter <ME:0000295>)
+data_var: elevation <ME:0000220>; category <ME:0000013> = water level (meter <UO:0000008>)
+composite_microtype: elevation, category=water level, meter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = uranium atom <CHEBI:27214> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=uranium atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = manganese atom <CHEBI:18291> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=manganese atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = iron atom <CHEBI:18248> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=iron atom, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nitrate <CHEBI:17632> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=nitrate, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = sulfate <CHEBI:16189> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=sulfate, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = acetate <CHEBI:30089> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=acetate, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = ammonium <CHEBI:28938> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=ammonium, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = chloride <CHEBI:17996> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=chloride, milligram per liter
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = phosphate ion <CHEBI:35780> (milligram per liter <UO:0000273>)
+composite_microtype: concentration, molecule from list=phosphate ion, milligram per liter
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = iron atom <CHEBI:18248>
+composite_microtype: below, relative=detection limit, molecule from list=iron atom
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = nitrate <CHEBI:17632>
+composite_microtype: below, relative=detection limit, molecule from list=nitrate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = acetate <CHEBI:30089>
+composite_microtype: below, relative=detection limit, molecule from list=acetate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = ammonium <CHEBI:28938>
+composite_microtype: below, relative=detection limit, molecule from list=ammonium
+data_var: description <ME:0000202>; category <ME:0000013> = oxygen content
+composite_microtype: description, category=oxygen content
+data_var: description <ME:0000202>; category <ME:0000013> = nitrate reduction
+composite_microtype: description, category=nitrate reduction
+data_var: description <ME:0000202>; category <ME:0000013> = sulfate reduction
+composite_microtype: description, category=sulfate reduction
+data_var: description <ME:0000202>; category <ME:0000013> = phase
+composite_microtype: description, category=phase
+Generic is OK!
