@@ -90,14 +90,18 @@ Two Picarro G2508 analyzers run concurrently (`Gas_Data/README.txt`, updated
 2026-10-28): **A = ORNL-EA-031620** and **B = ORNL-EA-007299**, each with its own
 Eosense 12-port multiplexer and Firesting O2 probe, so two rows can share an
 `epoch_time`.  Every row carries the analyzer serial in `picarro_serial` and the
-dedup key is (`epoch_time`, `picarro_serial`).  Attribution: well-ports use the
-README's dated port assignment (`sso_schema.GAS_PORT_ASSIGNMENT`, versioned in
-git, not a lakehouse table); reference channels (Std / N2 / Drierite) use the
-row's column signature (`NH3_dry` reported = A, `O2_%` reported = B, each
-analyzer reports exactly one).  The build cross-checks the two rules on every
-row: a well-port whose rows carry the other analyzer's signature means a port
-was moved, so those rows are **held** and the email raises GAS PORT MOVED?
-(also GAS ROWS UNATTRIBUTED, GAS NEW PORT, GAS PORT MAP).  Edit the assignment
+dedup key is (`epoch_time`, `picarro_serial`).  Attribution: exports from
+2026-11-12 on carry a `Picarro` column (`System A (2561-JFAADS2075)` /
+`System B (3699-JFAADS2191)`: Kris's label, the multiplexer unit, the Picarro
+analyzer id), matched by its `System A` / `System B` prefix and used as the
+row's analyzer; older exports fall back to the README's dated port assignment
+for well-ports (`sso_schema.GAS_PORT_ASSIGNMENT`, versioned in git, not a
+lakehouse table) and the row's column signature for reference channels
+(`NH3_dry` reported = A, `O2_%` reported = B, each analyzer reports exactly
+one).  The build cross-checks all the rules on every row: a disagreement means
+a port was moved or a system relabelled, so those rows are **held** and the
+email raises GAS PORT MOVED? (also GAS UNKNOWN ANALYZER for a `Picarro` value
+with no known prefix, GAS ROWS UNATTRIBUTED, GAS NEW PORT, GAS PORT MAP).  Edit the assignment
 after confirming with Kris, then re-stage with `--full-gas`.  The serial is data,
 not microtype context (`column_typedef` keeps `instrument=picarro`), so at CORAL
 conversion each analyzer becomes its own brick with the serial as brick-level

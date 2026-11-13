@@ -201,14 +201,17 @@ def pick_gas_file(source_dir: Path, gas_file: str | None) -> Path:
 
 
 def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
-    """Attribute every gas row to an analyzer and cross-check the two rules.
+    """Attribute every gas row to an analyzer and cross-check the rules.
 
+    export     : the CSV's Picarro column ("System A (...)" / "System B (...)", from
+                 2026-11-12), matched by schema.GAS_INSTRUMENTS export_prefix
     signature  : NH3_dry reported -> A, O2_% reported -> B (per row, from the CSV)
     assignment : well-port -> analyzer from schema.GAS_WELL_INSTRUMENT (the README table)
-    Well rows take the assignment, reference rows the signature.  Returns
-    (picarro_serial Series, keep mask, checks dict).  Rows are HELD (not staged)
-    when the assignment and the signature disagree (a port was moved: edit the
-    assignment, then re-stage with --full-gas), when neither rule applies, or
+    The export column wins where present; otherwise well rows take the assignment
+    and reference rows the signature.  Returns (picarro_serial Series, keep mask,
+    checks dict).  Rows are HELD (not staged) when the rules disagree (a port was
+    moved: edit the assignment, then re-stage with --full-gas), when the Picarro
+    column names an analyzer not in GAS_INSTRUMENTS, when no rule applies, or
     when the row names neither a well-port nor a reference channel.
     """
     import numpy as np
@@ -228,13 +231,23 @@ def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
     is_well = well_port.notna()
     channel = well_port.where(is_well, ref)  # the one name a row has, for reporting
     assigned = well_port.map(schema.GAS_WELL_INSTRUMENT)
-    serial = pd.Series(np.where(is_well & assigned.notna(), assigned, sig), index=raw.index, dtype=object)
+    inferred = pd.Series(np.where(is_well & assigned.notna(), assigned, sig), index=raw.index, dtype=object)
 
-    conflict = is_well & assigned.notna() & sig.notna() & (assigned != sig)
+    # The export's own analyzer column (prefix match), where present.
+    export_label = raw["Picarro"].str.strip() if "Picarro" in raw else pd.Series("", index=raw.index)
+    exported = pd.Series(None, index=raw.index, dtype=object)
+    for s, meta in schema.GAS_INSTRUMENTS.items():
+        exported = exported.mask(export_label.str.startswith(meta["export_prefix"]), s)
+    unknown_analyzer = (export_label != "") & exported.isna()
+    serial = exported.where(exported.notna(), inferred)
+
+    conflict = ((is_well & assigned.notna() & sig.notna() & (assigned != sig))
+                | (exported.notna() & sig.notna() & (exported != sig))
+                | (exported.notna() & is_well & assigned.notna() & (exported != assigned)))
     no_channel = channel.isna()
     unattributed = serial.isna() | no_channel
     unknown_port = is_well & assigned.isna()
-    keep = ~(conflict | unattributed)
+    keep = ~(conflict | unattributed | unknown_analyzer)
 
     def tally(mask, cols):
         if not mask.any():
@@ -249,8 +262,9 @@ def gas_instrument_checks(frame: pd.DataFrame, raw: pd.DataFrame):
     port_map_mismatch = keep & expected.notna() & (expected != channel)
 
     checks = {
-        "conflicts": tally(conflict, {"well_port": well_port, "assigned": assigned, "signature": sig}),
-        "unattributed": tally(unattributed & ~conflict, {"channel": channel}),
+        "conflicts": tally(conflict, {"well_port": well_port, "assigned": assigned, "signature": sig, "exported": exported}),
+        "unattributed": tally(unattributed & ~conflict & ~unknown_analyzer, {"channel": channel}),
+        "unknown_analyzer": tally(unknown_analyzer, {"picarro": export_label}),
         "unknown_ports": tally(unknown_port & keep, {"well_port": well_port, "picarro_serial": serial}),
         "port_map_mismatch": tally(port_map_mismatch, {"picarro_serial": serial, "multiplexer_on_state": on_state,
                                                        "channel": channel, "assigned_channel": expected}),
@@ -271,7 +285,7 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     d = drift(actual, schema.GAS_KNOWN_SOURCE)
     names = [c["name"] for c in staged_columns("picarro_gas")]
     empty_checks = {"conflicts": [], "unattributed": [], "unknown_ports": [], "port_map_mismatch": [],
-                    "rows_held": 0, "rows_by_serial": {}}
+                    "unknown_analyzer": [], "rows_held": 0, "rows_by_serial": {}}
 
     epoch = pd.to_numeric(raw.get("EPOCH_TIME", pd.Series("", index=raw.index)), errors="coerce")
     mask = epoch.notna()
@@ -307,7 +321,7 @@ def read_gas(paths: list[Path], last_epoch: float | None) -> tuple[pd.DataFrame,
     out["zone"] = np.where(is_ref | (depth == ""), None, depth)
     for c in schema.GAS_COLUMNS:
         src = c.get("src")
-        if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "DateTime", "Port", "Depth", "Well"):
+        if c["role"] in ("measurement", "dim") and src and src not in ("TIME", "EPOCH_TIME", "DateTime", "Picarro", "Port", "Depth", "Well"):
             out[c["name"]] = raw[src].values if src in raw else ""
     out["source_file"] = paths[-1].name
 
@@ -641,7 +655,7 @@ def main() -> None:
     if max_epoch is not None:
         (args.out / "gas_state_pending.json").write_text(json.dumps({"last_epoch": max_epoch}) + "\n")
     log(f"gas: staged {len(gas_rows)} rows {gas_checks['rows_by_serial']}, held {gas_checks['rows_held']}")
-    for kind in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"):
+    for kind in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch", "unknown_analyzer"):
         if gas_checks[kind]:
             log(f"gas: {kind}: {gas_checks[kind]}")
 
@@ -703,7 +717,7 @@ def main() -> None:
     # Exit code 3 signals "loaded, but something needs a human" (new/missing columns,
     # held ids, or an un-ingested source file), mirroring cm_build.py's
     # unknown-label convention so run_daily can note it.
-    gas_flags = any(gas_checks[k] for k in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch"))
+    gas_flags = any(gas_checks[k] for k in ("conflicts", "unattributed", "unknown_ports", "port_map_mismatch", "unknown_analyzer"))
     flags = (any(v["new_columns"] or v["missing_columns"] for v in manifest["drift"].values())
              or bool(held) or bool(unknown) or gas_flags or bool(ambiguous))
     sys.exit(3 if flags else 0)

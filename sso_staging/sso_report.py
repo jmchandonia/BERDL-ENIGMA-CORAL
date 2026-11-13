@@ -150,12 +150,20 @@ def attention_items(data: dict) -> list[tuple[str, str, str]]:
     gc = data.get("gas_checks") or {}
     if gc.get("conflicts"):
         held_rows = sum(c["rows"] for c in gc["conflicts"])
-        detail = "; ".join(f"{c['well_port']}: assigned {_label(c['assigned'])}, rows look like {_label(c['signature'])} "
-                           f"({c['rows']:,} rows)" for c in gc["conflicts"][:6])
+        detail = "; ".join(f"{c['well_port'] or '(reference)'}: assigned {_label(c['assigned'])}, rows look like {_label(c['signature'])}"
+                           f"{', export says ' + _label(c['exported']) if c.get('exported') else ''} ({c['rows']:,} rows)"
+                           for c in gc["conflicts"][:6])
         items.append(("GAS PORT MOVED?", f"{held_rows:,} gas rows held: analyzer attribution conflict",
                       f"picarro_gas: {detail} -- the README port assignment in sso_schema.py disagrees with the rows' "
                       "column signature; those rows are HELD (not loaded).  Confirm the new assignment with Kris, "
                       "update GAS_PORT_ASSIGNMENT (new valid_from), then re-stage with sso_build.py --full-gas."))
+    if gc.get("unknown_analyzer"):
+        n = sum(c["rows"] for c in gc["unknown_analyzer"])
+        detail = "; ".join(f"{c['picarro']!r} ({c['rows']:,} rows)" for c in gc["unknown_analyzer"][:6])
+        items.append(("GAS UNKNOWN ANALYZER", f"{n:,} gas rows held: Picarro column names an unknown system",
+                      f"picarro_gas: {detail} -- the export's Picarro column does not start with a known system label "
+                      "(GAS_INSTRUMENTS export_prefix in sso_schema.py: 'System A', 'System B'); HELD (not loaded).  "
+                      "A new or relabelled analyzer: confirm with Kris, add it to GAS_INSTRUMENTS, re-stage with --full-gas."))
     if gc.get("unattributed"):
         n = sum(c["rows"] for c in gc["unattributed"])
         detail = "; ".join(f"{c['channel'] or '(no port or channel name)'} ({c['rows']:,} rows)" for c in gc["unattributed"][:6])

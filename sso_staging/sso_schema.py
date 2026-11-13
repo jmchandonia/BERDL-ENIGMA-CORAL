@@ -162,10 +162,16 @@ def _bookkeeping():
 
 # The two analyzers and the per-row column signature that tells them apart
 # (verified on the 2026-10-28 export: every row reports exactly one of the two).
+# `export_prefix` matches the CSV's Picarro column (exports from 2026-11-12 on), e.g.
+# "System A (2561-JFAADS2075)": Kris's system label, then the multiplexer unit and the
+# Picarro analyzer id (model code JFAADS + unit number).  Matched by prefix so a
+# cosmetic change in the parenthesis does not stop the load; an unknown value is held.
 GAS_INSTRUMENTS = {
     "ORNL-EA-031620": {"label": "A", "model": "Picarro G2508", "signature": "NH3_dry",
+                       "export_prefix": "System A", "picarro_id": "JFAADS2075", "multiplexer_id": "2561",
                        "note": "reports NH3_dry; no internal O2 probe (O2_% / O2_dry_% empty)"},
     "ORNL-EA-007299": {"label": "B", "model": "Picarro G2508", "signature": "O2_%",
+                       "export_prefix": "System B", "picarro_id": "JFAADS2191", "multiplexer_id": "3699",
                        "note": "internal O2 probe (O2_% / O2_dry_%); NH3_dry empty"},
 }
 
@@ -207,11 +213,13 @@ GAS_COLUMNS = [
     {"name": "epoch_time", "src": "EPOCH_TIME", "type": "DOUBLE", "role": "key",
      "desc": "unix epoch seconds; dedup key together with instrument (the two analyzers run "
              "concurrently and can report the same epoch)"},
-    {"name": "picarro_serial", "src": "Port (assignment) / NH3_dry, O2_% (signature)", "type": "STRING", "role": "key",
-     "desc": "Picarro G2508 analyzer serial that produced the row: ORNL-EA-031620 (Picarro A) or "
-             "ORNL-EA-007299 (Picarro B).  Well-ports per the dated port assignment in sso_schema.py "
-             "(Gas_Data/README.txt); reference channels per the row's column signature "
-             "(NH3_dry reported = A, O2_% reported = B).  Part of the dedup key"},
+    {"name": "picarro_serial", "src": "Picarro (export) / Port (assignment) / NH3_dry, O2_% (signature)", "type": "STRING", "role": "key",
+     "desc": "Picarro G2508 analyzer that produced the row, as its ORNL asset tag: ORNL-EA-031620 (System A, "
+             "analyzer JFAADS2075, multiplexer 2561) or ORNL-EA-007299 (System B, analyzer JFAADS2191, "
+             "multiplexer 3699).  From the export's Picarro column (System A / System B) where present; "
+             "cross-checked against the dated port assignment in sso_schema.py (Gas_Data/README.txt) for "
+             "well-ports and the row's column signature (NH3_dry reported = A, O2_% reported = B); older "
+             "exports without the column use those two rules.  Part of the dedup key"},
 
     _meas("concentration_molecule_from_list_dinitrogen_oxide_condition_wet_parts_per_million_by_volume",
           "N2O_ppm", "concentration", "parts per million by volume",
@@ -283,7 +291,7 @@ GAS_KNOWN_SOURCE = {
     "TIME", "EPOCH_TIME", "N2O_ppm", "N2O_dry_ppm", "CO2_ppm", "CO2_dry_ppm",
     "CH4_ppm", "CH4_dry_ppm", "H2O_%", "NH3_ppb", "NH3_dry", "O2_%", "O2_dry_%",
     "on_state", "timedelta", "set", "DateTime", "O2p_%", "TrailerTemp_C",
-    "Port", "Depth", "Well",
+    "Picarro", "Port", "Depth", "Well",
 }
 
 # ======================================================================
@@ -483,7 +491,7 @@ TYPEDEF = {
         "time_series_datetime": {"dim": "time series", "var": "datetime"},
         "epoch_time": {"dim": "time series", "note": "unix-epoch form of time_series_datetime; dropped at conversion"},
         "picarro_serial": {"dim": "time series", "note": "becomes brick-level context instrument <ME:0000012> "
-                           "(one brick per analyzer) at conversion"},
+                           "(one brick per analyzer; A = JFAADS2075, B = JFAADS2191) at conversion"},
         "sdt_location_name": {"dim": "environmental sample location", "var": "Environmental Sample Location ID"},
         "well_port": {"dim": "environmental sample location", "note": "field label <well>-<zone>; redundant with "
                       "sdt_location_name + zone at conversion"},
