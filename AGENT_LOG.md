@@ -2341,6 +2341,15 @@ Validation completed before live export:
   uS/cm ME:0000295 -- same name as the Aqua TROLL tables; no instrument token in the name, note says
   in-field meter), source header in FIELD_KNOWN_SOURCE, typedef 47 rows. Live via `--add-columns`
   then a normal load (run 20261112T155422Z-cond); zero drift. Commit bf50c81, deployed to dipa/niya.
+- 2026-11-13: Kris's 2026_11_12 gas export (1.68M rows to Nov 9; today's run appended 729,350, table
+  1,674,734) adds a `Picarro` column: "System A (2561-JFAADS2075)" / "System B (3699-JFAADS2191)"
+  (label, multiplexer unit, Picarro analyzer id -- JFAADS = G2508 model code; nothing in our records
+  contradicted it, so Kris was not asked). Agrees with the NH3_dry/O2_% signature on 100% of rows. No new
+  lakehouse column (same fact as picarro_serial): the export column is now the primary attribution
+  (prefix match on "System A"/"System B"), the port assignment and signature remain cross-checks (disagreement
+  -> held, GAS PORT MOVED? now says what the export claims), an unknown prefix -> held + new ACTION
+  GAS UNKNOWN ANALYZER; older exports use the old rules unchanged (verified identical on the 10/28 file).
+  GAS_INSTRUMENTS carries export_prefix/picarro_id/multiplexer_id; picarro_serial comment synced.
 - 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
   corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
   102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
@@ -2505,3 +2514,10 @@ Validation completed before live export:
   imported (320 rows), ddt_brick0002179 dropped, verification and foreign keys passed. ChEBI review of all bricks:
   `coral_import/CHEBI_MIXUP_REVIEW_20261112.md`; replacement bricks for the 160 affected current bricks built and
   validated by `tools/build_chebi_term_fix_coral_import.py` (not loaded yet).
+- 2026-11-13: ChEBI term corrections loaded: 160 replacement bricks Brick0002186-0002345 (`coral_import/chebi_term_fix_20261112`),
+  each the hub's stored brick with only the wrong or imprecise molecule terms replaced, one Update Data process per
+  brick; all 160 verified on the hub (same shape, linked once). Group A: Brick0000059/62 (XRF), 72/73 (Adams core
+  pilot), 81 (100WS field; "butyryl group" confirmed as bromide against the survey's Br values). Group B: phosphorus(.),
+  uranium(0), L-valine/L-asparagine/L-histidine/glycine residue. sync-20261113-102740: 166 tables imported, 160
+  superseded tables dropped, row counts and comments verified. Adams element table in
+  `tools/build_sso_batch_ab_coral_import.py` now uses phosphorus atom.

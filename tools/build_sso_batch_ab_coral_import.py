@@ -112,7 +112,7 @@ T = {
 }
 ELEMENTS = [  # order of the ICP-MS template columns L..BK and of Brick0000080 (adams_metals_27ws)
     ("Be", "CHEBI:30501"), ("B", "CHEBI:27560"), ("Na", "CHEBI:26708"), ("Mg", "CHEBI:25107"), ("Al", "CHEBI:28984"),
-    ("P", "CHEBI:30207"), ("K", "CHEBI:26216"), ("Ca", "CHEBI:22984"), ("Ti", "CHEBI:33341"), ("V", "CHEBI:27698"),
+    ("P", "CHEBI:28659"), ("K", "CHEBI:26216"), ("Ca", "CHEBI:22984"), ("Ti", "CHEBI:33341"), ("V", "CHEBI:27698"),
     ("Cr", "CHEBI:28073"), ("Mn", "CHEBI:18291"), ("Fe", "CHEBI:18248"), ("Co", "CHEBI:27638"), ("Ni", "CHEBI:28112"),
     ("Cu", "CHEBI:28694"), ("Zn", "CHEBI:27363"), ("Ga", "CHEBI:49631"), ("Ge", "CHEBI:30441"), ("As", "CHEBI:27563"),
     ("Se", "CHEBI:27568"), ("Rb", "CHEBI:33322"), ("Sr", "CHEBI:33324"), ("Zr", "CHEBI:33342"), ("Nb", "CHEBI:33344"),
