@@ -2521,3 +2521,16 @@ Validation completed before live export:
   uranium(0), L-valine/L-asparagine/L-histidine/glycine residue. sync-20261113-102740: 166 tables imported, 160
   superseded tables dropped, row counts and comments verified. Adams element table in
   `tools/build_sso_batch_ab_coral_import.py` now uses phosphorus atom.
+- 2026-11-13: FW305 sediment core (2013) and FWB-306 Chakraborty Lab sediment properties loaded
+  (`coral_import/fw305_core_20261113`, builder `tools/build_fw305_core_coral_import.py`, sources in
+  `coral_import/fw305_core_2013_source`). 54 Samples FW305-01-00 … FW305-08-00 at FW-305 (depth = bottom of each core
+  section, date 2013-05-29 = well completion; Sampling processes Elias Lab, Natural and Synthetic Ecologies).
+  Brick0002346 elias_sediment_anions_iron_fw305_core_2013 (54 x 33: moisture, Fe2+/Fe3+, 15 anions and organic acids
+  in µM with a below flag each; empty cells are non-detects), Brick0002347 adams_metals_fw305_core_2013 (54 samples x
+  64 isotopes x 3 instrument runs, mg/kg, below flag; isotope mass as molecular weight, gas mode as presence of
+  helium as in the core pilot bricks), Brick0002348 chakraborty_sediment_properties_fwb306_2015 (8 x 8: pH and
+  nitrate mean/SD, organic carbon, freeze-dry moisture replicates). sync-20261113-162127 (PREV sync-20261113-102740):
+  3 brick tables and 7 system tables imported, no drops, 59/59 foreign keys, verification passed. Found on the way:
+  the two "bioreactor" samples at FW-305 (Sample0002965/2966) come from Fields Lab laboratory glass-bead biofilm
+  reactors fed FW-305 groundwater (MicroParticle campaign; reactors sacrificed the week of 2014-06-09), not from
+  sediment; their material, depth and descriptions are left as they are for now at the user's request.

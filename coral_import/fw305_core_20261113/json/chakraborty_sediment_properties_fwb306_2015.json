@@ -1,0 +1,527 @@
+{
+ "name": "chakraborty_sediment_properties_fwb306_2015.hndarray",
+ "description": "Chakraborty Lab pH, nitrate, organic carbon and freeze-dry moisture of the FWB-306 sediment core (2015)",
+ "data_type": {
+  "term_name": "Chemical Measurement",
+  "oterm_ref": "DA:0000005",
+  "oterm_name": "Chemical Measurement"
+ },
+ "array_context": [
+  {
+   "value_type": {
+    "term_name": "data variables type",
+    "oterm_ref": "ME:0000293",
+    "oterm_name": "data variables type"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "DA:0000005",
+    "string_value": "Chemical Measurement"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Depth intervals of the FWB-306 core collected 2015-06-10; workbook by Xiaoqin Wu (Chakraborty Lab, LBNL), 2015-08-24. pH, nitrate and organic carbon cover FWB306-02 to FWB306-07 (3 to 18 ft); moisture covers all eight intervals"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "pH and nitrate were measured by Alex Aaring; the workbook gives only the mean and standard deviation of each. The standard deviations are consistent with three replicates: where the nitrate standard deviation is exactly the square root of 3 times the mean (FWB306-05, FWB306-07), one replicate of three was above zero"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Nitrate is mg per kg of sediment. The nitrate means include replicates read as zero. Nitrate of FWB306-06 is 0 with standard deviation 0 in the workbook and is stored as below detection (blank concentration and standard deviation, below = true); the workbook gives no detection limit"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Organic carbon is percent of the sediment. It is a separate measurement from the total organic carbon of the UGA soil test (hazen_sediment_soil_properties_fwb306_2015)"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Moisture is by freeze-drying: mass lost as percent of the wet sediment mass, (before - after) / (before - bag). FWB306-02 to FWB306-07 were weighed as two portions (replicate 1 and replicate 2); FWB306-01 and FWB306-08 as one. These values are separate from, and do not agree with, the moisture of the UGA soil test: FWB306-03 and FWB306-04 lost about 0.2 percent of their mass here, and the UGA test found 30 and 18 to 20 percent"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Not stored: the workbook's sulfate and moisture summary columns, which are the UGA soil test values already in hazen_sediment_extractable_fwb306_2015_v2 and hazen_sediment_soil_properties_fwb306_2015; and the bag and sediment weights"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Source: ENIGMA Google Drive, 1506_CoreSummary.xlsx, sheets FW306 summary and FW306 moisture"
+   }
+  }
+ ],
+ "n_dimensions": 1,
+ "dim_context": [
+  {
+   "data_type": {
+    "term_name": "environmental sample",
+    "oterm_ref": "ME:0000100",
+    "oterm_name": "environmental sample"
+   },
+   "size": 8,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "environmental sample ID",
+      "oterm_ref": "ME:0000102",
+      "oterm_name": "environmental sample ID"
+     },
+     "values": {
+      "scalar_type": "object_ref",
+      "object_refs": [
+       "FWB306-01",
+       "FWB306-02",
+       "FWB306-03",
+       "FWB306-04",
+       "FWB306-05",
+       "FWB306-06",
+       "FWB306-07",
+       "FWB306-08"
+      ],
+      "string_values": [
+       "FWB306-01",
+       "FWB306-02",
+       "FWB306-03",
+       "FWB306-04",
+       "FWB306-05",
+       "FWB306-06",
+       "FWB306-07",
+       "FWB306-08"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "typed_values": [
+  {
+   "value_type": {
+    "term_name": "pH",
+    "oterm_ref": "ME:0000121",
+    "oterm_name": "pH"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     5.446666666666666,
+     4.996666666666667,
+     4.833333333333333,
+     5.073333333333333,
+     5.256666666666667,
+     5.213333333333334,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "pH",
+    "oterm_ref": "UO:0000196",
+    "oterm_name": "pH"
+   },
+   "value_context": []
+  },
+  {
+   "value_type": {
+    "term_name": "standard deviation",
+    "oterm_ref": "ME:0000149",
+    "oterm_name": "standard deviation"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     0.670621602197047,
+     0.12503332889007368,
+     0.13012814197295414,
+     0.10408329997330676,
+     0.005773502691896135,
+     0.09291573243177574,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "pH",
+    "oterm_ref": "UO:0000196",
+    "oterm_name": "pH"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000121",
+      "string_value": "pH"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     10.0378,
+     6.8448,
+     12.526066666666665,
+     1.1862666666666666,
+     null,
+     1.4590666666666667,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "milligram per kilogram",
+    "oterm_ref": "UO:0000308",
+    "oterm_name": "milligram per kilogram"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17632",
+      "string_value": "nitrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "standard deviation",
+    "oterm_ref": "ME:0000149",
+    "oterm_name": "standard deviation"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     14.443912338421331,
+     8.50636384831968,
+     1.142522793353959,
+     2.05467413799204,
+     null,
+     2.5271775982968294,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "milligram per kilogram",
+    "oterm_ref": "UO:0000308",
+    "oterm_name": "milligram per kilogram"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "measurement",
+      "oterm_ref": "ME:0000120",
+      "oterm_name": "measurement"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "ME:0000129",
+      "string_value": "concentration"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17632",
+      "string_value": "nitrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     null,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     null
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17632",
+      "string_value": "nitrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     0.167,
+     0.048,
+     0.031,
+     0.04,
+     0.034,
+     0.031,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:33415",
+      "string_value": "elemental carbon"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "organic",
+      "oterm_ref": "ME:0000346",
+      "oterm_name": "organic"
+     },
+     "value": {
+      "scalar_type": "boolean",
+      "boolean_value": 1
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     16.329257700273935,
+     13.770175861238261,
+     0.22615519043293925,
+     0.19293086331878037,
+     10.818007136975028,
+     17.83021408374849,
+     13.082953937670396,
+     19.18902023187087
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15377",
+      "string_value": "water"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "physiochemical state",
+      "oterm_ref": "ME:0000037",
+      "oterm_name": "physiochemical state"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "in soil"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "replicate series",
+      "oterm_ref": "ME:0000005",
+      "oterm_name": "replicate series"
+     },
+     "value": {
+      "scalar_type": "int",
+      "int_value": 1
+     },
+     "value_units": {
+      "term_name": "count unit",
+      "oterm_ref": "UO:0000189",
+      "oterm_name": "count unit"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     19.35055811412068,
+     0.1904234888187167,
+     0.22787090848067754,
+     13.681405140273034,
+     17.09260745822083,
+     14.147231663011265,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15377",
+      "string_value": "water"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "physiochemical state",
+      "oterm_ref": "ME:0000037",
+      "oterm_name": "physiochemical state"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "in soil"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "replicate series",
+      "oterm_ref": "ME:0000005",
+      "oterm_name": "replicate series"
+     },
+     "value": {
+      "scalar_type": "int",
+      "int_value": 2
+     },
+     "value_units": {
+      "term_name": "count unit",
+      "oterm_ref": "UO:0000189",
+      "oterm_name": "count unit"
+     }
+    }
+   ]
+  }
+ ]
+}

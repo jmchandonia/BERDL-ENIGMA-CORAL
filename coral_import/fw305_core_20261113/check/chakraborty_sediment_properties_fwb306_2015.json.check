@@ -1,0 +1,27 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Depth intervals of the FWB-306 core collected 2015-06-10; workbook by Xiaoqin Wu (Chakraborty Lab, LBNL), 2015-08-24. pH, nitrate and organic carbon cover FWB306-02 to FWB306-07 (3 to 18 ft); moisture covers all eight intervals
+property: comment <ME:0000011> = pH and nitrate were measured by Alex Aaring; the workbook gives only the mean and standard deviation of each. The standard deviations are consistent with three replicates: where the nitrate standard deviation is exactly the square root of 3 times the mean (FWB306-05, FWB306-07), one replicate of three was above zero
+property: comment <ME:0000011> = Nitrate is mg per kg of sediment. The nitrate means include replicates read as zero. Nitrate of FWB306-06 is 0 with standard deviation 0 in the workbook and is stored as below detection (blank concentration and standard deviation, below = true); the workbook gives no detection limit
+property: comment <ME:0000011> = Organic carbon is percent of the sediment. It is a separate measurement from the total organic carbon of the UGA soil test (hazen_sediment_soil_properties_fwb306_2015)
+property: comment <ME:0000011> = Moisture is by freeze-drying: mass lost as percent of the wet sediment mass, (before - after) / (before - bag). FWB306-02 to FWB306-07 were weighed as two portions (replicate 1 and replicate 2); FWB306-01 and FWB306-08 as one. These values are separate from, and do not agree with, the moisture of the UGA soil test: FWB306-03 and FWB306-04 lost about 0.2 percent of their mass here, and the UGA test found 30 and 18 to 20 percent
+property: comment <ME:0000011> = Not stored: the workbook's sulfate and moisture summary columns, which are the UGA soil test values already in hazen_sediment_extractable_fwb306_2015_v2 and hazen_sediment_soil_properties_fwb306_2015; and the bag and sediment weights
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, 1506_CoreSummary.xlsx, sheets FW306 summary and FW306 moisture
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 8
+data_var: pH <ME:0000121> (pH <UO:0000196>)
+data_var: standard deviation <ME:0000149>; measurement <ME:0000120> = pH <ME:0000121> (pH <UO:0000196>)
+composite_microtype: standard deviation, measurement=pH, pH
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nitrate <CHEBI:17632> (milligram per kilogram <UO:0000308>)
+composite_microtype: concentration, molecule from list=nitrate, milligram per kilogram
+data_var: standard deviation <ME:0000149>; measurement <ME:0000120> = concentration <ME:0000129>; molecule from list <ME:0000381> = nitrate <CHEBI:17632> (milligram per kilogram <UO:0000308>)
+composite_microtype: standard deviation, measurement=concentration, molecule from list=nitrate, milligram per kilogram
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = nitrate <CHEBI:17632>
+composite_microtype: below, relative=detection limit, molecule from list=nitrate
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = elemental carbon <CHEBI:33415>; organic <ME:0000346> = 1 (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=elemental carbon, organic=1, percent
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = water <CHEBI:15377>; physiochemical state <ME:0000037> = in soil; replicate series <ME:0000005> = 1 (count unit <UO:0000189>) (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=water, physiochemical state=in soil, replicate series=1, count unit, percent
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = water <CHEBI:15377>; physiochemical state <ME:0000037> = in soil; replicate series <ME:0000005> = 2 (count unit <UO:0000189>) (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=water, physiochemical state=in soil, replicate series=2, count unit, percent
+Generic is OK!

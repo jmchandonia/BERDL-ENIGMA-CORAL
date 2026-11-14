@@ -1,0 +1,3110 @@
+{
+ "name": "elias_sediment_anions_iron_fw305_core_2013.hndarray",
+ "description": "Elias Lab anions, organic acids, iron and moisture of the FW305 sediment core (2013)",
+ "data_type": {
+  "term_name": "Chemical Measurement",
+  "oterm_ref": "DA:0000005",
+  "oterm_name": "Chemical Measurement"
+ },
+ "array_context": [
+  {
+   "value_type": {
+    "term_name": "data variables type",
+    "oterm_ref": "ME:0000293",
+    "oterm_name": "data variables type"
+   },
+   "value": {
+    "scalar_type": "oterm_ref",
+    "oterm_ref": "DA:0000005",
+    "string_value": "Chemical Measurement"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Sediment core taken during the installation of well FW-305 (Oak Ridge FRC, Background A; well completed 2013-05-29), 54 sections from 0.5 to 26.08 ft below ground surface. Measured by the Elias Lab (ORNL); workbook by Kathryn Bailey, 2013-08-02"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Anions and organic acids by ion chromatography, micromolar as given in the workbook. Iron(2+) and iron(3+) are mg of iron per g of soil. Moisture content is percent"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Where the workbook leaves an anion or organic acid cell empty, the analyte was not detected in that section: the concentration is blank and the below variable of that analyte is true. The workbook gives no detection limits; every section has values from the same ion chromatography run. Butyrate and citrate were not detected in any section. Formate of FW305-01-36 is blank with below false: the workbook has 6969, a typing error with no recoverable value (all other formate values are 0.03 to 6.95)"
+   }
+  },
+  {
+   "value_type": {
+    "term_name": "comment",
+    "oterm_ref": "ME:0000011",
+    "oterm_name": "comment"
+   },
+   "value": {
+    "scalar_type": "string",
+    "string_value": "Source: ENIGMA Google Drive, IC Analysis of Core.xlsx. The workbook's injection number (order of the instrument runs) is not stored"
+   }
+  }
+ ],
+ "n_dimensions": 1,
+ "dim_context": [
+  {
+   "data_type": {
+    "term_name": "environmental sample",
+    "oterm_ref": "ME:0000100",
+    "oterm_name": "environmental sample"
+   },
+   "size": 54,
+   "typed_values": [
+    {
+     "value_type": {
+      "term_name": "environmental sample ID",
+      "oterm_ref": "ME:0000102",
+      "oterm_name": "environmental sample ID"
+     },
+     "values": {
+      "scalar_type": "object_ref",
+      "object_refs": [
+       "FW305-01-00",
+       "FW305-01-06",
+       "FW305-01-12",
+       "FW305-01-18",
+       "FW305-01-24",
+       "FW305-01-30",
+       "FW305-01-36",
+       "FW305-01-42",
+       "FW305-01-48",
+       "FW305-01-51",
+       "FW305-02-00",
+       "FW305-02-06",
+       "FW305-02-12",
+       "FW305-02-18",
+       "FW305-02-24",
+       "FW305-02-30",
+       "FW305-02-36",
+       "FW305-03-00",
+       "FW305-03-06",
+       "FW305-03-12",
+       "FW305-03-18",
+       "FW305-03-24",
+       "FW305-03-32",
+       "FW305-03-36",
+       "FW305-03-44",
+       "FW305-04-00",
+       "FW305-04-06",
+       "FW305-04-12",
+       "FW305-04-18",
+       "FW305-04-24",
+       "FW305-05-00",
+       "FW305-05-06",
+       "FW305-05-12",
+       "FW305-05-18",
+       "FW305-05-24",
+       "FW305-05-30",
+       "FW305-05-36",
+       "FW305-06-00",
+       "FW305-06-06",
+       "FW305-06-12",
+       "FW305-06-18",
+       "FW305-06-24",
+       "FW305-06-30",
+       "FW305-06-36",
+       "FW305-06-42",
+       "FW305-06-48",
+       "FW305-06-54",
+       "FW305-07-00",
+       "FW305-07-06",
+       "FW305-07-12",
+       "FW305-07-18",
+       "FW305-07-24",
+       "FW305-07-30",
+       "FW305-08-00"
+      ],
+      "string_values": [
+       "FW305-01-00",
+       "FW305-01-06",
+       "FW305-01-12",
+       "FW305-01-18",
+       "FW305-01-24",
+       "FW305-01-30",
+       "FW305-01-36",
+       "FW305-01-42",
+       "FW305-01-48",
+       "FW305-01-51",
+       "FW305-02-00",
+       "FW305-02-06",
+       "FW305-02-12",
+       "FW305-02-18",
+       "FW305-02-24",
+       "FW305-02-30",
+       "FW305-02-36",
+       "FW305-03-00",
+       "FW305-03-06",
+       "FW305-03-12",
+       "FW305-03-18",
+       "FW305-03-24",
+       "FW305-03-32",
+       "FW305-03-36",
+       "FW305-03-44",
+       "FW305-04-00",
+       "FW305-04-06",
+       "FW305-04-12",
+       "FW305-04-18",
+       "FW305-04-24",
+       "FW305-05-00",
+       "FW305-05-06",
+       "FW305-05-12",
+       "FW305-05-18",
+       "FW305-05-24",
+       "FW305-05-30",
+       "FW305-05-36",
+       "FW305-06-00",
+       "FW305-06-06",
+       "FW305-06-12",
+       "FW305-06-18",
+       "FW305-06-24",
+       "FW305-06-30",
+       "FW305-06-36",
+       "FW305-06-42",
+       "FW305-06-48",
+       "FW305-06-54",
+       "FW305-07-00",
+       "FW305-07-06",
+       "FW305-07-12",
+       "FW305-07-18",
+       "FW305-07-24",
+       "FW305-07-30",
+       "FW305-08-00"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "typed_values": [
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     7.582558512343695,
+     17.34306125550995,
+     20.651667959658653,
+     18.32728250638702,
+     21.730382293762588,
+     25.49794739242816,
+     18.130527599878008,
+     14.776894865525662,
+     15.605513619954053,
+     2.900641025641022,
+     15.05220883534136,
+     12.162378136487149,
+     17.04854991187308,
+     18.4444444444444,
+     17.536534446764136,
+     9.462365591397841,
+     23.998839233894373,
+     23.72057706909642,
+     16.08647273883325,
+     18.53832442067737,
+     14.725697786333015,
+     14.849895649381935,
+     16.205533596837938,
+     17.902559867877798,
+     13.656316046171355,
+     14.676657436064517,
+     12.83537595230213,
+     21.05018587360594,
+     36.28553577007185,
+     27.46331236897275,
+     23.543888433141916,
+     27.32125525719833,
+     21.14683985426896,
+     20.774532326878884,
+     11.683681737157656,
+     12.99225306649447,
+     22.602241304031452,
+     13.562988850058261,
+     10.307767464582312,
+     21.496243057824245,
+     23.202114341354857,
+     40.18468396752112,
+     31.58659082657634,
+     45.52937378954166,
+     37.754432042022344,
+     16.689591930307188,
+     19.295329898620565,
+     15.420488108192117,
+     13.79880873593649,
+     16.15932642487043,
+     14.411027568922307,
+     17.61904761904762,
+     14.003396634244254,
+     15.548589341692775
+    ]
+   },
+   "value_units": {
+    "term_name": "percent",
+    "oterm_ref": "UO:0000187",
+    "oterm_name": "percent"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15377",
+      "string_value": "water"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "physiochemical state",
+      "oterm_ref": "ME:0000037",
+      "oterm_name": "physiochemical state"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "in soil"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.019994688000000004,
+     0.02499336,
+     0.019994688000000004,
+     0.02499336,
+     0.02499336,
+     0.014996016000000001,
+     0.029992032000000002,
+     0.03998937600000001,
+     0.03998937600000001,
+     0.004998672000000001,
+     0.04998672,
+     0.02499336,
+     0.029992032000000002,
+     0.02499336,
+     0.019994688000000004,
+     0.019994688000000004,
+     0.029992032000000002,
+     0.034990704,
+     0.019994688000000004,
+     0.019994688000000004,
+     0.02499336,
+     0.029992032000000002,
+     0.029992032000000002,
+     0.03998937600000001,
+     0.029992032000000002,
+     0.04498804799999999,
+     0.019994688000000004,
+     0.02499336,
+     0.04998672,
+     0.029992032000000002,
+     0.03998937600000001,
+     0.02499336,
+     0.054985391999999994,
+     0.04498804799999999,
+     0.07997875200000001,
+     0.07997875200000001,
+     0.04998672,
+     0.094974768,
+     0.03998937600000001,
+     0.04998672,
+     0.04498804799999999,
+     0.04998672,
+     0.034990704,
+     0.029992032000000002,
+     0.029992032000000002,
+     0.03998937600000001,
+     0.04498804799999999,
+     0.03998937600000001,
+     0.069981408,
+     0.08997609599999998,
+     0.029992032000000002,
+     0.054985391999999994,
+     0.054985391999999994,
+     0.034990704
+    ]
+   },
+   "value_units": {
+    "term_name": "milligram per gram",
+    "oterm_ref": "ME:0000352",
+    "oterm_name": "milligram per gram"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:29033",
+      "string_value": "iron(2+)"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     2.839245696,
+     1.7245418399999999,
+     0.19994688,
+     0.289922976,
+     1.204679952,
+     1.444616208,
+     1.3246480800000004,
+     0.6248340000000001,
+     0.9597450239999998,
+     0.3449083680000001,
+     0.789790176,
+     0.7248074400000001,
+     7.812924336,
+     2.8342470239999997,
+     0.819782208,
+     0.364903056,
+     4.258868543999999,
+     4.57378488,
+     1.159691904,
+     3.529062432,
+     1.684552464,
+     2.7542682720000005,
+     2.464345296,
+     2.729274912,
+     2.0094661439999997,
+     1.8145179359999997,
+     1.3546401120000002,
+     2.989205856,
+     7.433025264,
+     0.9197556480000001,
+     6.083383824,
+     2.6592935040000003,
+     8.222815439999998,
+     4.348844639999999,
+     8.892637488,
+     4.613774256,
+     4.143899088,
+     9.007606943999999,
+     5.858443584000001,
+     2.684286864,
+     6.318321407999999,
+     5.558523264000001,
+     9.37251,
+     3.9239575200000005,
+     6.548260320000001,
+     7.8529137119999985,
+     6.293328048,
+     4.813721136,
+     8.602714512,
+     3.998937599999999,
+     5.453551152,
+     9.292531248,
+     3.3141195360000006,
+     4.268865888
+    ]
+   },
+   "value_units": {
+    "term_name": "milligram per gram",
+    "oterm_ref": "ME:0000352",
+    "oterm_name": "milligram per gram"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:29034",
+      "string_value": "iron(3+)"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     76.4728,
+     480.7451,
+     120.4698,
+     125.3644,
+     null,
+     null,
+     5.8102,
+     12.9381,
+     6.022,
+     9.9972,
+     13.4098,
+     11.449,
+     null,
+     null,
+     17.8229,
+     33.1541,
+     29.8506,
+     28.9528,
+     22.4321,
+     30.588,
+     23.7631,
+     null,
+     44.9377,
+     null,
+     33.3614,
+     null,
+     null,
+     26.3717,
+     null,
+     59.4821,
+     29.566,
+     42.9056,
+     42.5546,
+     64.7741,
+     null,
+     182.7757,
+     190.9731,
+     161.8519,
+     null,
+     null,
+     239.4435,
+     220.616,
+     142.7337,
+     126.4128,
+     5.6278,
+     null,
+     261.9795,
+     null,
+     189.7925,
+     238.9758,
+     null,
+     204.9726,
+     203.559,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17051",
+      "string_value": "fluoride"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     159.0594,
+     38.6695,
+     2.7291,
+     2.8828,
+     5.3896,
+     1.2826,
+     4.1523,
+     4.651,
+     4.9117,
+     7.3105,
+     4.5971,
+     2.5956,
+     2.75,
+     3.9572,
+     4.7571,
+     5.26,
+     3.2784,
+     5.7807,
+     6.5081,
+     8.6517,
+     5.5829,
+     5.7241,
+     9.8144,
+     8.7901,
+     11.705,
+     7.0017,
+     10.4751,
+     6.146,
+     2.6211,
+     6.1323,
+     6.0076,
+     7.4641,
+     4.5573,
+     9.7648,
+     7.7893,
+     16.0946,
+     12.3236,
+     12.9476,
+     10.7953,
+     9.2887,
+     3.5014,
+     7.0624,
+     3.8246,
+     2.4609,
+     4.8085,
+     10.6366,
+     10.6211,
+     10.2817,
+     12.1025,
+     7.9027,
+     6.0974,
+     7.456,
+     9.6804,
+     9.0649
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17996",
+      "string_value": "chloride"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.5787,
+     0.2423,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.165,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.1384,
+     null,
+     null,
+     null,
+     0.2257,
+     null,
+     null,
+     0.079,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.1245,
+     null,
+     1.6897,
+     null,
+     0.1035,
+     0.1312,
+     null,
+     0.1226,
+     0.0858,
+     null,
+     null,
+     null,
+     null,
+     0.1781,
+     null,
+     null,
+     0.093,
+     0.2622,
+     null,
+     null,
+     10.0552,
+     null,
+     0.2252
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15858",
+      "string_value": "bromide"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     2.39,
+     1.4933,
+     1.227,
+     1.1127,
+     0.2937,
+     0.5812,
+     0.6296,
+     0.4629,
+     0.8687,
+     1.2349,
+     0.8535,
+     0.7482,
+     1.0397,
+     1.2286,
+     1.8186,
+     3.7944,
+     2.617,
+     3.5412,
+     3.193,
+     4.5158,
+     2.7491,
+     2.0373,
+     2.4964,
+     2.3783,
+     2.3238,
+     1.4713,
+     1.6309,
+     1.4776,
+     1.3759,
+     1.9846,
+     0.6074,
+     1.1136,
+     1.803,
+     2.4942,
+     1.293,
+     1.3374,
+     1.2835,
+     1.0131,
+     0.8253,
+     1.8927,
+     1.6207,
+     1.79,
+     0.7087,
+     1.116,
+     5.4615,
+     1.3609,
+     1.0673,
+     0.9624,
+     1.4744,
+     0.5358,
+     1.1391,
+     0.3965,
+     0.4774,
+     0.8282
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17632",
+      "string_value": "nitrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     25.8242,
+     6.4995,
+     5.1437,
+     10.7774,
+     13.8387,
+     72.0015,
+     77.9948,
+     21.0001,
+     33.6958,
+     27.3678,
+     9.6254,
+     48.7536,
+     23.4918,
+     28.1361,
+     14.575,
+     0.398,
+     4.7518,
+     7.8988,
+     7.4268,
+     0.0801,
+     10.1399,
+     7.8412,
+     0.8045,
+     0.0762,
+     0.0545,
+     0.2113,
+     0.2024,
+     0.2523,
+     0.3229,
+     0.4707,
+     0.5159,
+     0.1357,
+     0.4039,
+     0.5409,
+     1.4463,
+     2.1923,
+     2.0551,
+     3.295,
+     1.6945,
+     4.2295,
+     1.1412,
+     2.073,
+     2.3378,
+     1.4438,
+     4.3157,
+     1.8576,
+     1.0022,
+     1.8025,
+     1.1342,
+     1.3593,
+     1.6839,
+     1.4599,
+     1.1619,
+     2.0502
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:16189",
+      "string_value": "sulfate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     0.3913,
+     0.1351,
+     0.1181,
+     0.1049,
+     0.1049,
+     0.2295,
+     0.2295,
+     0.2295,
+     0.2295,
+     0.2295,
+     0.2295,
+     0.1652,
+     0.1652,
+     0.1652,
+     0.1652,
+     0.1292,
+     0.1652,
+     0.0921,
+     0.0921,
+     0.1112,
+     0.0903,
+     0.1533,
+     0.2376,
+     0.2904,
+     0.1918,
+     0.2265,
+     0.2142,
+     0.297,
+     0.4787,
+     0.529,
+     0.3201,
+     0.3236,
+     0.7955,
+     0.885,
+     0.296,
+     0.0824,
+     0.1577,
+     0.0744,
+     1.4454,
+     2.0045,
+     3.5339,
+     6.5143,
+     10.861,
+     7.5178,
+     7.6657,
+     6.3634,
+     3.4175,
+     0.1455,
+     0.1973,
+     0.2813,
+     0.2742,
+     0.1908,
+     2.6278,
+     2.4941
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:35780",
+      "string_value": "phosphate ion"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     1.0441,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.008,
+     0.4636,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.7194,
+     null,
+     null,
+     0.7174,
+     null,
+     null,
+     null,
+     null,
+     1.9833,
+     null,
+     4.4132,
+     null,
+     null,
+     null,
+     2.4959,
+     0.4109
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:24996",
+      "string_value": "lactate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     4.6909,
+     0.1051,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     2.5897,
+     3.9536,
+     null,
+     null,
+     null,
+     3.6446,
+     1.4622,
+     null,
+     null,
+     1.4659,
+     2.9878,
+     1.5913,
+     13.713,
+     0.5392,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     4.0067,
+     null,
+     0.3028,
+     3.7668,
+     null,
+     null,
+     10.803
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:30089",
+      "string_value": "acetate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     1.2088,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17272",
+      "string_value": "propionate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     2.4467,
+     1.9984,
+     1.6013,
+     1.6574,
+     0.6068,
+     null,
+     null,
+     0.5575,
+     0.5786,
+     0.7318,
+     0.8815,
+     0.9875,
+     0.6744,
+     1.0458,
+     0.7806,
+     1.0015,
+     0.751,
+     1.1721,
+     1.1081,
+     0.7573,
+     0.7574,
+     0.8354,
+     0.8956,
+     0.5689,
+     0.5347,
+     3.411,
+     3.8412,
+     2.7829,
+     0.9808,
+     1.3993,
+     3.9871,
+     2.8693,
+     0.9387,
+     1.9703,
+     2.8539,
+     2.998,
+     3.2258,
+     6.9528,
+     1.6716,
+     1.7551,
+     2.8016,
+     1.6189,
+     1.5226,
+     1.0741,
+     1.3632,
+     1.0218,
+     1.1487,
+     2.9322,
+     0.675,
+     1.978,
+     3.2231,
+     2.1309,
+     0.0292,
+     3.2398
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15740",
+      "string_value": "formate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17968",
+      "string_value": "butyrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     1.8541,
+     null,
+     1.2895,
+     1.4082,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.8043,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.6866
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15361",
+      "string_value": "pyruvate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     4.8778,
+     0.3495,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     0.2153,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:26806",
+      "string_value": "succinate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     5.8967,
+     1.1147,
+     0.4062,
+     0.3824,
+     0.426,
+     null,
+     0.373,
+     0.4052,
+     0.3944,
+     0.3945,
+     0.3927,
+     0.4321,
+     0.3858,
+     0.4115,
+     0.4127,
+     0.4054,
+     0.3981,
+     0.4113,
+     0.4089,
+     0.4283,
+     0.4085,
+     0.3984,
+     0.4207,
+     0.4345,
+     0.3792,
+     4.62,
+     0.4327,
+     0.3902,
+     0.4329,
+     0.4474,
+     0.5026,
+     0.4077,
+     0.461,
+     0.4171,
+     0.4471,
+     0.6002,
+     0.5116,
+     0.5513,
+     0.4458,
+     0.7677,
+     0.4589,
+     0.4828,
+     0.3824,
+     0.4842,
+     0.4259,
+     0.4643,
+     0.4253,
+     0.662,
+     0.5696,
+     0.4975,
+     0.5477,
+     0.4987,
+     0.4688,
+     0.5617
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:29806",
+      "string_value": "fumarate(2-)"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "concentration",
+    "oterm_ref": "ME:0000129",
+    "oterm_name": "concentration"
+   },
+   "values": {
+    "scalar_type": "float",
+    "float_values": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "value_units": {
+    "term_name": "micromolar",
+    "oterm_ref": "UO:0000064",
+    "oterm_name": "micromolar"
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:16947",
+      "string_value": "citrate(3-)"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17051",
+      "string_value": "fluoride"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17996",
+      "string_value": "chloride"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     0,
+     1,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15858",
+      "string_value": "bromide"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17632",
+      "string_value": "nitrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:16189",
+      "string_value": "sulfate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:35780",
+      "string_value": "phosphate ion"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     1,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:24996",
+      "string_value": "lactate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     1,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:30089",
+      "string_value": "acetate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17272",
+      "string_value": "propionate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15740",
+      "string_value": "formate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:17968",
+      "string_value": "butyrate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:15361",
+      "string_value": "pyruvate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:26806",
+      "string_value": "succinate"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:29806",
+      "string_value": "fumarate(2-)"
+     }
+    }
+   ]
+  },
+  {
+   "value_type": {
+    "term_name": "below",
+    "oterm_ref": "ME:0000363",
+    "oterm_name": "below"
+   },
+   "values": {
+    "scalar_type": "boolean",
+    "boolean_values": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   "value_context": [
+    {
+     "value_type": {
+      "term_name": "relative",
+      "oterm_ref": "ME:0000020",
+      "oterm_name": "relative"
+     },
+     "value": {
+      "scalar_type": "string",
+      "string_value": "detection limit"
+     }
+    },
+    {
+     "value_type": {
+      "term_name": "molecule from list",
+      "oterm_ref": "ME:0000381",
+      "oterm_name": "molecule from list"
+     },
+     "value": {
+      "scalar_type": "oterm_ref",
+      "oterm_ref": "CHEBI:16947",
+      "string_value": "citrate(3-)"
+     }
+    }
+   ]
+  }
+ ]
+}

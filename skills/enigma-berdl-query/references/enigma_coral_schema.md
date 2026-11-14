@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 844
+Total Tables: 847
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 844
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 2113
+**Total Rows:** 2116
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 844
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9612
+**Total Rows:** 9664
 
 ### Sample Data (5 rows)
 
@@ -28552,6 +28552,127 @@ Total Tables: 844
 
 ---
 
+## Table: ddt_brick0002346
+
+**Table Description:** elias_sediment_anions_iron_fw305_core_2013.hndarray - Elias Lab anions, organic acids, iron and moisture of the FW305 sediment core (2013)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil", "unit": "percent"} |
+| concentration_molecule_from_list_iron_2_milligram_per_gram | double | Yes | {"description": "concentration, molecule from list=iron(2+)", "unit": "milligram per gram"} |
+| concentration_molecule_from_list_iron_3_milligram_per_gram | double | Yes | {"description": "concentration, molecule from list=iron(3+)", "unit": "milligram per gram"} |
+| concentration_molecule_from_list_fluoride_micromolar | double | Yes | {"description": "concentration, molecule from list=fluoride", "unit": "micromolar"} |
+| concentration_molecule_from_list_chloride_micromolar | double | Yes | {"description": "concentration, molecule from list=chloride", "unit": "micromolar"} |
+| concentration_molecule_from_list_bromide_micromolar | double | Yes | {"description": "concentration, molecule from list=bromide", "unit": "micromolar"} |
+| concentration_molecule_from_list_nitrate_micromolar | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "micromolar"} |
+| concentration_molecule_from_list_sulfate_micromolar | double | Yes | {"description": "concentration, molecule from list=sulfate", "unit": "micromolar"} |
+| concentration_molecule_from_list_phosphate_ion_micromolar | double | Yes | {"description": "concentration, molecule from list=phosphate ion", "unit": "micromolar"} |
+| concentration_molecule_from_list_lactate_micromolar | double | Yes | {"description": "concentration, molecule from list=lactate", "unit": "micromolar"} |
+| concentration_molecule_from_list_acetate_micromolar | double | Yes | {"description": "concentration, molecule from list=acetate", "unit": "micromolar"} |
+| concentration_molecule_from_list_propionate_micromolar | double | Yes | {"description": "concentration, molecule from list=propionate", "unit": "micromolar"} |
+| concentration_molecule_from_list_formate_micromolar | double | Yes | {"description": "concentration, molecule from list=formate", "unit": "micromolar"} |
+| concentration_molecule_from_list_butyrate_micromolar | double | Yes | {"description": "concentration, molecule from list=butyrate", "unit": "micromolar"} |
+| concentration_molecule_from_list_pyruvate_micromolar | double | Yes | {"description": "concentration, molecule from list=pyruvate", "unit": "micromolar"} |
+| concentration_molecule_from_list_succinate_micromolar | double | Yes | {"description": "concentration, molecule from list=succinate", "unit": "micromolar"} |
+| concentration_molecule_from_list_fumarate_2_micromolar | double | Yes | {"description": "concentration, molecule from list=fumarate(2-)", "unit": "micromolar"} |
+| concentration_molecule_from_list_citrate_3_micromolar | double | Yes | {"description": "concentration, molecule from list=citrate(3-)", "unit": "micromolar"} |
+| below_relative_detection_limit_molecule_from_list_fluoride | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=fluoride"} |
+| below_relative_detection_limit_molecule_from_list_chloride | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=chloride"} |
+| below_relative_detection_limit_molecule_from_list_bromide | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=bromide"} |
+| below_relative_detection_limit_molecule_from_list_nitrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrate"} |
+| below_relative_detection_limit_molecule_from_list_sulfate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=sulfate"} |
+| below_relative_detection_limit_molecule_from_list_phosphate_ion | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=phosphate ion"} |
+| below_relative_detection_limit_molecule_from_list_lactate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=lactate"} |
+| below_relative_detection_limit_molecule_from_list_acetate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=acetate"} |
+| below_relative_detection_limit_molecule_from_list_propionate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=propionate"} |
+| below_relative_detection_limit_molecule_from_list_formate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=formate"} |
+| below_relative_detection_limit_molecule_from_list_butyrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=butyrate"} |
+| below_relative_detection_limit_molecule_from_list_pyruvate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=pyruvate"} |
+| below_relative_detection_limit_molecule_from_list_succinate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=succinate"} |
+| below_relative_detection_limit_molecule_from_list_fumarate_2 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=fumarate(2-)"} |
+| below_relative_detection_limit_molecule_from_list_citrate_3 | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=citrate(3-)"} |
+
+**Total Rows:** 54
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | concentration_molecule_from_list_water_physiochemical_state_in_soil_percent | concentration_molecule_from_list_iron_2_milligram_per_gram | concentration_molecule_from_list_iron_3_milligram_per_gram | concentration_molecule_from_list_fluoride_micromolar | concentration_molecule_from_list_chloride_micromolar | concentration_molecule_from_list_bromide_micromolar | concentration_molecule_from_list_nitrate_micromolar | concentration_molecule_from_list_sulfate_micromolar | concentration_molecule_from_list_phosphate_ion_micromolar | concentration_molecule_from_list_lactate_micromolar | concentration_molecule_from_list_acetate_micromolar | concentration_molecule_from_list_propionate_micromolar | concentration_molecule_from_list_formate_micromolar | concentration_molecule_from_list_butyrate_micromolar | concentration_molecule_from_list_pyruvate_micromolar | concentration_molecule_from_list_succinate_micromolar | concentration_molecule_from_list_fumarate_2_micromolar | concentration_molecule_from_list_citrate_3_micromolar | below_relative_detection_limit_molecule_from_list_fluoride | below_relative_detection_limit_molecule_from_list_chloride | below_relative_detection_limit_molecule_from_list_bromide | below_relative_detection_limit_molecule_from_list_nitrate | below_relative_detection_limit_molecule_from_list_sulfate | below_relative_detection_limit_molecule_from_list_phosphate_ion | below_relative_detection_limit_molecule_from_list_lactate | below_relative_detection_limit_molecule_from_list_acetate | below_relative_detection_limit_molecule_from_list_propionate | below_relative_detection_limit_molecule_from_list_formate | below_relative_detection_limit_molecule_from_list_butyrate | below_relative_detection_limit_molecule_from_list_pyruvate | below_relative_detection_limit_molecule_from_list_succinate | below_relative_detection_limit_molecule_from_list_fumarate_2 | below_relative_detection_limit_molecule_from_list_citrate_3 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FW305-01-00 | 7.582558512343695 | 0.019994688000000004 | 2.839245696 | 76.4728 | 159.0594 | 0.5787 | 2.39 | 25.8242 | 0.3913 | NULL | 4.6909 | NULL | 2.4467 | NULL | 1.8541 | 4.8778 | 5.8967 | NULL | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 1 |
+| FW305-01-06 | 17.34306125550995 | 0.02499336 | 1.7245418399999999 | 480.7451 | 38.6695 | 0.2423 | 1.4933 | 6.4995 | 0.1351 | NULL | 0.1051 | NULL | 1.9984 | NULL | NULL | 0.3495 | 1.1147 | NULL | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 |
+| FW305-01-12 | 20.651667959658653 | 0.019994688000000004 | 0.19994688 | 120.4698 | 2.7291 | NULL | 1.227 | 5.1437 | 0.1181 | NULL | NULL | NULL | 1.6013 | NULL | 1.2895 | NULL | 0.4062 | NULL | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+| FW305-01-18 | 18.32728250638702 | 0.02499336 | 0.289922976 | 125.3644 | 2.8828 | NULL | 1.1127 | 10.7774 | 0.1049 | NULL | NULL | NULL | 1.6574 | NULL | 1.4082 | NULL | 0.3824 | NULL | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+| FW305-01-24 | 21.730382293762588 | 0.02499336 | 1.204679952 | NULL | 5.3896 | NULL | 0.2937 | 13.8387 | 0.1049 | NULL | NULL | NULL | 0.6068 | NULL | NULL | NULL | 0.426 | NULL | 1 | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | 0 | 1 |
+
+---
+
+## Table: ddt_brick0002347
+
+**Table Description:** adams_metals_fw305_core_2013.hndarray - Adams Lab ICP-MS element concentrations (64 isotopes, three instrument runs) of the FW305 sediment core (2013)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| environmental_sample_weight_category_dry_sediment_digested_gram | double | Yes | {"description": "weight, category=dry sediment digested", "unit": "gram"} |
+| molecule_from_list_sys_oterm_id | string | Yes | {"description": "molecule from list, ontology term CURIE", "type": "foreign_key", "references": "sys_oterm.sys_oterm_id"} |
+| molecule_from_list_sys_oterm_name | string | Yes | {"description": "molecule from list"} |
+| molecule_molecular_weight_dalton | double | Yes | {"description": "molecular weight", "unit": "dalton"} |
+| molecule_presence_molecule_from_list_helium_0 | boolean | Yes | {"description": "presence, molecule from list=helium(0)"} |
+| replicate_series_experimental_context_technical_replicate_count_unit | int | Yes | {"description": "replicate series, experimental context=technical replicate", "unit": "count unit"} |
+| concentration_milligram_per_kilogram | double | Yes | {"description": "concentration", "unit": "milligram per kilogram"} |
+| below_relative_detection_limit | boolean | Yes | {"description": "below, relative=detection limit"} |
+
+**Total Rows:** 10368
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | environmental_sample_weight_category_dry_sediment_digested_gram | molecule_from_list_sys_oterm_id | molecule_from_list_sys_oterm_name | molecule_molecular_weight_dalton | molecule_presence_molecule_from_list_helium_0 | replicate_series_experimental_context_technical_replicate_count_unit | concentration_milligram_per_kilogram | below_relative_detection_limit |
+|---|---|---|---|---|---|---|---|---|
+| FW305-01-00 | 0.9956 | CHEBI:25107 | magnesium atom | 24.0 | 1 | 1 | 101651.4846303881 | 0 |
+| FW305-01-00 | 0.9956 | CHEBI:25107 | magnesium atom | 24.0 | 1 | 2 | 102714.28781851025 | 0 |
+| FW305-01-00 | 0.9956 | CHEBI:25107 | magnesium atom | 24.0 | 1 | 3 | 106379.99639462192 | 0 |
+| FW305-01-00 | 0.9956 | CHEBI:28659 | phosphorus atom | 31.0 | 1 | 1 | 130.8132315970269 | 0 |
+| FW305-01-00 | 0.9956 | CHEBI:28659 | phosphorus atom | 31.0 | 1 | 2 | 123.42389665407794 | 0 |
+
+---
+
+## Table: ddt_brick0002348
+
+**Table Description:** chakraborty_sediment_properties_fwb306_2015.hndarray - Chakraborty Lab pH, nitrate, organic carbon and freeze-dry moisture of the FWB-306 sediment core (2015)
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| sdt_sample_name | string | Yes | {"description": "environmental sample ID", "type": "foreign_key", "references": "sdt_sample.sdt_sample_name"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| standard_deviation_measurement_ph_ph | double | Yes | {"description": "standard deviation, measurement=pH", "unit": "pH"} |
+| concentration_molecule_from_list_nitrate_milligram_per_kilogram | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per kilogram"} |
+| standard_deviation_measurement_concentration_molecule_from_list_nitrate_milligram_per_kilogram | double | Yes | {"description": "standard deviation, measurement=concentration, molecule from list=nitrate", "unit": "milligram per kilogram"} |
+| below_relative_detection_limit_molecule_from_list_nitrate | boolean | Yes | {"description": "below, relative=detection limit, molecule from list=nitrate"} |
+| concentration_molecule_from_list_elemental_carbon_organic_1_percent | double | Yes | {"description": "concentration, molecule from list=elemental carbon, organic=1", "unit": "percent"} |
+| concentration_molecule_from_list_water_physiochemical_state_in_soil_replicate_series_1_count_unit_percent | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil, replicate series=1, count unit=percent"} |
+| concentration_molecule_from_list_water_physiochemical_state_in_soil_replicate_series_2_count_unit_percent | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil, replicate series=2, count unit=percent"} |
+
+**Total Rows:** 8
+
+### Sample Data (5 rows)
+
+| sdt_sample_name | ph_ph | standard_deviation_measurement_ph_ph | concentration_molecule_from_list_nitrate_milligram_per_kilogram | standard_deviation_measurement_concentration_molecule_from_list_nitrate_milligram_per_kilogram | below_relative_detection_limit_molecule_from_list_nitrate | concentration_molecule_from_list_elemental_carbon_organic_1_percent | concentration_molecule_from_list_water_physiochemical_state_in_soil_replicate_series_1_count_unit_percent | concentration_molecule_from_list_water_physiochemical_state_in_soil_replicate_series_2_count_unit_percent |
+|---|---|---|---|---|---|---|---|---|
+| FWB306-02 | 5.446666666666666 | 0.670621602197047 | 10.0378 | 14.443912338421331 | 0 | 0.167 | 13.770175861238261 | 19.35055811412068 |
+| FWB306-03 | 4.996666666666667 | 0.12503332889007368 | 6.8448 | 8.50636384831968 | 0 | 0.048 | 0.22615519043293925 | 0.1904234888187167 |
+| FWB306-04 | 4.833333333333333 | 0.13012814197295414 | 12.526066666666665 | 1.142522793353959 | 0 | 0.031 | 0.19293086331878037 | 0.22787090848067754 |
+| FWB306-05 | 5.073333333333333 | 0.10408329997330676 | 1.1862666666666666 | 2.05467413799204 | 0 | 0.04 | 10.818007136975028 | 13.681405140273034 |
+| FWB306-06 | 5.256666666666667 | 0.005773502691896135 | NULL | NULL | 1 | 0.034 | 17.83021408374849 | 17.09260745822083 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -28941,7 +29062,7 @@ Total Tables: 844
 | env_package_sys_oterm_name | string | No | {"description": "MIxS environmental package classification of the sample"} |
 | sdt_sample_description | string | Yes | {"description": "Free-form description or notes about the sample"} |
 
-**Total Rows:** 4807
+**Total Rows:** 4861
 
 ### Sample Data (5 rows)
 
@@ -29060,7 +29181,7 @@ Total Tables: 844
 | sys_oterm_links | array<string> | Yes | {"description": "Indicates that values are links to other tables (Ref) or ontological terms (ORef)"} |
 | sys_oterm_properties | string | Yes | {"description": "Semicolon-separated map of properties to values for terms that are CORAL microtypes, including scalar data_type, is_valid_data_variable, is_valid_dimension, is_valid_data_variable, is_valid_dimension_variable, is_valid_property, valid_units, and valid_units_parent"} |
 
-**Total Rows:** 19362
+**Total Rows:** 19368
 
 ### Sample Data (5 rows)
 
@@ -29095,7 +29216,7 @@ Total Tables: 844
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 102096
+**Total Rows:** 102153
 
 ### Sample Data (5 rows)
 
@@ -29137,7 +29258,7 @@ Total Tables: 844
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 129551
+**Total Rows:** 129721
 
 ### Sample Data (5 rows)
 
@@ -29179,7 +29300,7 @@ Total Tables: 844
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 113386
+**Total Rows:** 113443
 
 ### Sample Data (5 rows)
 

@@ -1,0 +1,75 @@
+property: data variables type <ME:0000293> = Chemical Measurement <DA:0000005>
+property: comment <ME:0000011> = Sediment core taken during the installation of well FW-305 (Oak Ridge FRC, Background A; well completed 2013-05-29), 54 sections from 0.5 to 26.08 ft below ground surface. Measured by the Elias Lab (ORNL); workbook by Kathryn Bailey, 2013-08-02
+property: comment <ME:0000011> = Anions and organic acids by ion chromatography, micromolar as given in the workbook. Iron(2+) and iron(3+) are mg of iron per g of soil. Moisture content is percent
+property: comment <ME:0000011> = Where the workbook leaves an anion or organic acid cell empty, the analyte was not detected in that section: the concentration is blank and the below variable of that analyte is true. The workbook gives no detection limits; every section has values from the same ion chromatography run. Butyrate and citrate were not detected in any section. Formate of FW305-01-36 is blank with below false: the workbook has 6969, a typing error with no recoverable value (all other formate values are 0.03 to 6.95)
+property: comment <ME:0000011> = Source: ENIGMA Google Drive, IC Analysis of Core.xlsx. The workbook's injection number (order of the instrument runs) is not stored
+dim: environmental sample <ME:0000100>
+dim_var: environmental sample ID <ME:0000102>
+dim_size: 54
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = water <CHEBI:15377>; physiochemical state <ME:0000037> = in soil (percent <UO:0000187>)
+composite_microtype: concentration, molecule from list=water, physiochemical state=in soil, percent
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = iron(2+) <CHEBI:29033> (milligram per gram <ME:0000352>)
+composite_microtype: concentration, molecule from list=iron(2+), milligram per gram
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = iron(3+) <CHEBI:29034> (milligram per gram <ME:0000352>)
+composite_microtype: concentration, molecule from list=iron(3+), milligram per gram
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = fluoride <CHEBI:17051> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=fluoride, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = chloride <CHEBI:17996> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=chloride, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = bromide <CHEBI:15858> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=bromide, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = nitrate <CHEBI:17632> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=nitrate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = sulfate <CHEBI:16189> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=sulfate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = phosphate ion <CHEBI:35780> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=phosphate ion, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = lactate <CHEBI:24996> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=lactate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = acetate <CHEBI:30089> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=acetate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = propionate <CHEBI:17272> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=propionate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = formate <CHEBI:15740> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=formate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = butyrate <CHEBI:17968> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=butyrate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = pyruvate <CHEBI:15361> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=pyruvate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = succinate <CHEBI:26806> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=succinate, micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = fumarate(2-) <CHEBI:29806> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=fumarate(2-), micromolar
+data_var: concentration <ME:0000129>; molecule from list <ME:0000381> = citrate(3-) <CHEBI:16947> (micromolar <UO:0000064>)
+composite_microtype: concentration, molecule from list=citrate(3-), micromolar
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = fluoride <CHEBI:17051>
+composite_microtype: below, relative=detection limit, molecule from list=fluoride
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = chloride <CHEBI:17996>
+composite_microtype: below, relative=detection limit, molecule from list=chloride
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = bromide <CHEBI:15858>
+composite_microtype: below, relative=detection limit, molecule from list=bromide
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = nitrate <CHEBI:17632>
+composite_microtype: below, relative=detection limit, molecule from list=nitrate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = sulfate <CHEBI:16189>
+composite_microtype: below, relative=detection limit, molecule from list=sulfate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = phosphate ion <CHEBI:35780>
+composite_microtype: below, relative=detection limit, molecule from list=phosphate ion
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = lactate <CHEBI:24996>
+composite_microtype: below, relative=detection limit, molecule from list=lactate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = acetate <CHEBI:30089>
+composite_microtype: below, relative=detection limit, molecule from list=acetate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = propionate <CHEBI:17272>
+composite_microtype: below, relative=detection limit, molecule from list=propionate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = formate <CHEBI:15740>
+composite_microtype: below, relative=detection limit, molecule from list=formate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = butyrate <CHEBI:17968>
+composite_microtype: below, relative=detection limit, molecule from list=butyrate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = pyruvate <CHEBI:15361>
+composite_microtype: below, relative=detection limit, molecule from list=pyruvate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = succinate <CHEBI:26806>
+composite_microtype: below, relative=detection limit, molecule from list=succinate
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = fumarate(2-) <CHEBI:29806>
+composite_microtype: below, relative=detection limit, molecule from list=fumarate(2-)
+data_var: below <ME:0000363>; relative <ME:0000020> = detection limit; molecule from list <ME:0000381> = citrate(3-) <CHEBI:16947>
+composite_microtype: below, relative=detection limit, molecule from list=citrate(3-)
+Generic is OK!
