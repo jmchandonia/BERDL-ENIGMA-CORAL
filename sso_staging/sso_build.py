@@ -501,6 +501,20 @@ def _open_workbook(path: Path):
         return None  # (csv, image, ...): left for the source inventory to flag
 
 
+def sheet_date_yyyymmdd(value: str) -> str:
+    """The lab's numeric Date Sampled -> YYYYMMDD.  Rows through 2026-10-20 write
+    MMDDYY (102026); rows from 2026-10-22 on write MMDDYYYY (10222026).  Anything
+    else is returned as is (and then fails the id cross-check)."""
+    s = (value or "").strip()
+    if s.isdigit() and len(s) in (5, 6):
+        s = s.zfill(6)
+        return f"20{s[4:6]}{s[:2]}{s[2:4]}"
+    if s.isdigit() and len(s) in (7, 8):
+        s = s.zfill(8)
+        return f"{s[4:8]}{s[:2]}{s[2:4]}"
+    return s
+
+
 def iter_toc_sheets(folder: Path):
     """Yield (path, sheet_title, header, records) for every worksheet in every
     workbook under the folder whose header has the TOC/TN result columns.
@@ -560,8 +574,7 @@ def read_toc(source_dir: Path, registry: dict[str, dict]) -> tuple[list[dict], d
                 continue
             sheet_well = cell_to_str(rec.get("Well")).upper()
             sheet_zone = cell_to_str(rec.get("Zone")).upper()
-            sheet_date = cell_to_str(rec.get("Date Sampled")).zfill(6)
-            sheet_date = f"20{sheet_date[4:6]}{sheet_date[:2]}{sheet_date[2:4]}" if len(sheet_date) == 6 and sheet_date.isdigit() else sheet_date
+            sheet_date = sheet_date_yyyymmdd(cell_to_str(rec.get("Date Sampled")))
             mismatch = [k for k, a, b in (("Well", sheet_well, parts["well"]), ("Zone", sheet_zone, parts["zone"]),
                                           ("Date Sampled", sheet_date, parts["sample_date"])) if a and a != b]
             if mismatch:

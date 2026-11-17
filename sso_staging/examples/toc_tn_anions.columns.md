@@ -58,3 +58,8 @@ campaign-end conversion is mechanical.
 - Held reasons: id not `<well>-<zone>-MMDDYY`; id contradicts the sheet's own
   Well/Zone/Date Sampled; illegal CORAL id; duplicate id within one file; no
   matching ANIONS sample in the manifest.
+- The sheet's numeric `Date Sampled` is MMDDYY through 2026-10-20 and MMDDYYYY
+  from 2026-10-22 on (the lab changed style mid-file, 2026-11-12); both are
+  accepted.  Lab ids with no well (`Rain-101026`, `PL Runoff-101026`) and the
+  EFPW anion samples (`EFPW02-100626`) have no registry sample and stay held
+  until the manifest lists them or they are modelled separately.
