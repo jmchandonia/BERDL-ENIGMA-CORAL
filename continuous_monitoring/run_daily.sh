@@ -155,6 +155,9 @@ STALE_FLAG=
 "$PY" cm_load.py --staging "$STAGE" --run-id "$RUN_ID" --wait-for-spark 300 $STALE_FLAG >> "$LOG" 2>&1 || fail "load"
 [ -f "$STAGE/build_state_pending.json" ] && mv "$STAGE/build_state_pending.json" "$BASE/state/build_state.json"
 [ -f "$STAGE/reading_schedule_pending.json" ] && mv "$STAGE/reading_schedule_pending.json" "$BASE/state/reading_schedule.json"
+
+log "out-of-water check (year-round rule on the last window of days; idempotent)"
+"$PY" cm_out_of_water.py --run-id "$RUN_ID" --result "$STAGE/load_result.json" >> "$LOG" 2>&1 || log "out-of-water check failed (continuing; the window is re-evaluated next run)"
 grep -h "^WARNING" "$LOG"
 report_load
 log "done"

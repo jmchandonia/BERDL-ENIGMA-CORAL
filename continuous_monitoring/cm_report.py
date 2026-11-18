@@ -139,11 +139,33 @@ def body(data: dict, diff: dict) -> str:
     if carried:
         lines += ["", f"({len(carried)} instrument(s) still silent from earlier reports — not repeated here.)"]
 
+    lines += out_of_water_lines(data)
+
     files_deferred = json.loads(data.get("details", "{}")).get("files_deferred")
     if files_deferred:
         lines += ["", f"Note: {files_deferred} source file(s) deferred to a later run."]
 
     return "\n".join(lines) + "\n"
+
+
+def out_of_water_lines(data: dict) -> list[str]:
+    """Readings nulled by cm_out_of_water.py after this load (year-round out-of-water rule)."""
+    oow = data.get("out_of_water") or {}
+    tables = oow.get("tables") or {}
+    if not tables:
+        return []
+    lines = ["", f"Out-of-water readings nulled (cm_out_of_water.py, local dates {oow.get('since', '?')}..{oow.get('until', '?')}):"]
+    for table, info in sorted(tables.items()):
+        for d, v in sorted((info.get("air_days") or {}).items()):
+            lines.append(f"  {table}  {d}  {v['rows']:>4} readings, every channel nulled (sonde out of the well: {v['why']})")
+        parts = []
+        if info.get("temperature_nulled"):
+            parts.append(f"{info['temperature_nulled']} temperature(s) outside the water band")
+        if info.get("depth_nulled"):
+            parts.append(f"{info['depth_nulled']} depth(s) at zero")
+        if parts:
+            lines.append(f"  {table}  {'; '.join(parts)} nulled (rows kept)")
+    return lines
 
 
 def main() -> None:

@@ -1,5 +1,5 @@
 {
-  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id). air_readings: a groundwater sonde reporting a water temperature above max_water_temperature_c is in air, so every channel of that reading is nulled (the row is dropped). sentinels: a value the instrument emits instead of a reading (pH exactly 0, conductivity below 1 uS/cm, ORP below -10,000 mV) is nulled, the row kept; each entry has its own id. null_rows: per-instrument row filter -- while in effect, a row whose named channel satisfies the condition is dropped whole (a sonde in a fault state).",
+  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id). out_of_water: applied by cm_out_of_water.py to the live tables after each load (re-evaluating the last window_days local days) rather than at stage time, because the decision needs whole days: a depth at or below zero_depth_ft (no water above the pressure sensor) or a temperature outside water_temperature_c is not a water reading and is nulled; on a day when at least air_day_share of a sonde's readings are outside the temperature band, or at least that share have no depth while the temperature swings more than air_day_temperature_range_c, the sonde was out of the well and every channel of those readings is nulled. sentinels: a value the instrument emits instead of a reading (pH exactly 0, conductivity below 1 uS/cm, ORP below -10,000 mV) is nulled, the row kept; each entry has its own id. null_rows: per-instrument row filter -- while in effect, a row whose named channel satisfies the condition is dropped whole (a sonde in a fault state).",
   "null_ranges": [
     {
       "table": "hazen_hobo_ws3",
@@ -41,12 +41,20 @@
       "reason": "the L9-SZ2 Aqua TROLL 600 came back from its 2026-09-23 service out of calibration: its depth to water reads 4.07 ft too shallow (S. Shekhar, 2026-11-09, from manual depths; L9-SZ1 in the same well reads as expected). Offset = the change in the hour-aligned SZ1 - SZ2 difference from before (2025-10-01..2026-09-22, mean -0.15 ft, n=5430) to after (2026-09-24..2026-11-06, mean +3.92 ft, n=893); residual spread 0.17 ft matches the zones' normal difference. Remove this entry when the sonde is recalibrated."
     }
   ],
-  "air_readings": {
-    "id": "air-readings-20261111",
+  "out_of_water": {
+    "id": "out-of-water-20261119",
     "table_prefix": "hazen_aquatroll600_",
     "temperature_label": "temperature, degree Celsius",
-    "max_water_temperature_c": 25.0,
-    "reason": "groundwater at the SSO and EFPW wells is 17-20 C (99th percentile at most 22.6 C); a reading above 25 C means the Aqua TROLL was out of the water (lifted for service or sampling), so every channel of that reading is an air measurement. Confirmed with the field team 2026-11-11 for M4-SZ1 2025-10-23..11-03, M4-SZ2 2026-06-06..15 and M5-SZ1 2026-09-22..30 (intermittent)."
+    "depth_label": "depth, top=ground surface, bottom=water surface, ft",
+    "water_temperature_c": {
+      "min": 8.0,
+      "max": 25.0
+    },
+    "zero_depth_ft": 0.1,
+    "air_day_share": 0.5,
+    "air_day_temperature_range_c": 2.0,
+    "window_days": 21,
+    "reason": "groundwater at the SSO and EFPW wells is 14-21 C (storm recharge brings it down to 10.6 C at L7, the 99th percentile is 22.6 C), so a temperature outside 8-25 C is air, a shed or a bucket, not the well; a depth to water at or below 0.1 ft means no water above the pressure sensor (the water table never came closer than 0.33 ft to the surface, even at the peak of a storm at M4). Oxygen, conductivity and depth swings cannot be used: every big storm (2024-11-14, 2025-10-28, the L7/M4 winter events) raises oxygen to saturation, halves the conductivity and moves the water table 4-10 ft in several wells at once. Replaces the 25 C-only rule of 2026-11-11 (air-readings-20261111), which worked in summer but missed sondes lying in the shade in August 2025 (L7-SZ1, M6-SZ2: depth 0.00, 17-24 C) and would miss any winter lift-out. Confirmed episodes: M4-SZ1 2025-10-23..11-03 (indoors, >25 C), M4-SZ2 2026-06-09..15 (hanging above the water, >25 C), M6-SZ2 2025-08-20..21. A sonde sitting in a bucket at room temperature, or hanging dry inside the casing in winter, is not detectable from its own channels; use null_ranges for such episodes when the field team reports them."
   },
   "sentinels": [
     {

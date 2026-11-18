@@ -20,12 +20,14 @@ the July 2026 corrections are applied here instead of after the fact:
 * value ranges listed in corrections.json are nulled (e.g. the dead WS3
   anemometer) or offset by a constant (e.g. the L9-SZ2 depth reference from
   2026-09-24);
-* an Aqua TROLL reading whose water temperature exceeds corrections.json
-  air_readings.max_water_temperature_c (25 C) is an air reading (sonde out of
-  the water): every channel is nulled and the row dropped;
 * corrections.json sentinels (pH exactly 0, conductivity below 1 uS/cm, ORP
-  below -10,000 mV: instrument codes, not readings) are nulled, the row kept; null_rows entries drop whole rows of one instrument while a named
-  channel shows its fault state (U2-SZ1 conductivity < 100 from 2026-10-14).
+  below -10,000 mV: instrument codes, not readings) are nulled, the row kept;
+  null_rows entries drop whole rows of one instrument while a named channel
+  shows its fault state (U2-SZ1 conductivity < 100 from 2026-10-14).
+
+Out-of-water readings (corrections.json out_of_water) are NOT handled here:
+that decision needs whole days, so cm_out_of_water.py applies it to the live
+tables after each load.  This builder only writes the rule into the table notes.
 
 Output is one TSV per location/zone table, with the brick column names from
 column_map.json, plus a manifest.json describing the run.
@@ -212,7 +214,7 @@ class Builder:
         corrections = cm.load_corrections()
         self.null_ranges = corrections.get("null_ranges", [])
         self.offset_ranges = corrections.get("offset_ranges", [])
-        self.air = corrections.get("air_readings")
+        self.out_of_water = corrections.get("out_of_water")
         self.sentinels = corrections.get("sentinels", [])
         self.null_rows = corrections.get("null_rows", [])
         self.holdback_cutoff = now - holdback if holdback is not None else None
@@ -513,9 +515,16 @@ class Builder:
         for rng in self.offset_ranges:
             if rng["table"] == table:
                 notes.append(f"{', '.join(rng['labels'])} offset by {rng['offset']:+g} from {rng['start']} to {rng['end']}: {rng['reason']}")
-        if self.air and table.startswith(self.air["table_prefix"]):
-            notes.append(f"Readings with temperature above {self.air['max_water_temperature_c']:g} C are dropped "
-                         f"(every channel nulled): {self.air['reason']}")
+        oow = self.out_of_water
+        if oow and table.startswith(oow["table_prefix"]):
+            band = oow["water_temperature_c"]
+            notes.append(f"Out-of-water readings are nulled after each load (cm_out_of_water.py, re-evaluating the last "
+                         f"{oow['window_days']} days): a depth to water at or below {oow['zero_depth_ft']:g} ft (no water above "
+                         f"the pressure sensor) and a temperature outside {band['min']:g}-{band['max']:g} C are not water readings "
+                         f"and are nulled; on a day when at least {oow['air_day_share']:.0%} of this sonde's readings are outside "
+                         f"the temperature band, or at least that share have no depth while the temperature swings more than "
+                         f"{oow['air_day_temperature_range_c']:g} C, the sonde was out of the well and every channel of those "
+                         f"readings is nulled: {oow['reason']}")
         for rule in self.sentinels:
             if rule["label"] in info["labels"]:
                 how = f"= {rule['equals']:g}" if "equals" in rule else f"below {rule['below']:g}"
@@ -564,11 +573,6 @@ class Builder:
                 for timestamp in sorted(by_table[table]):
                     cell = self.cells[(table, timestamp)]
                     values = [cell[label][2] if label in cell else None for label in labels]
-                    if self.air and table.startswith(self.air["table_prefix"]) and self.air["temperature_label"] in cell:
-                        temp = cell[self.air["temperature_label"]][2]
-                        if temp is not None and temp > self.air["max_water_temperature_c"]:
-                            self.stats["air_readings_dropped"] += 1
-                            continue  # sonde out of the water: every channel is an air reading
                     if any(ent["table"] == table and ent["start"] <= timestamp.date().isoformat() <= ent["end"]
                            and ent["when"]["label"] in cell and cell[ent["when"]["label"]][2] is not None
                            and cell[ent["when"]["label"]][2] < ent["when"]["below"] for ent in self.null_rows):

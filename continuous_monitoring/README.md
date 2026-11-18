@@ -68,12 +68,37 @@ These corrections differ from the bricks and are listed in
   applies every entry that has an `id` and is not yet recorded),
   which records itself in `ingest_runs` and is a no-op afterwards;
   `run_daily.sh` runs them non-fatally before each load.
-- **Air readings.** An Aqua TROLL reading whose water temperature exceeds
-  `air_readings.max_water_temperature_c` (25 °C; groundwater here is 17–20 °C)
-  means the sonde was out of the water, so every channel of that reading is
-  nulled and the row dropped (`corrections.json`, applied once to history by
-  the same fix script).  Confirmed episodes: M4-SZ1 Oct–Nov 2025, M4-SZ2 June
-  2026, M5-SZ1 late Sept 2026.
+- **Out-of-water readings** (`corrections.json` `out_of_water`, applied by
+  `cm_out_of_water.py` to the live tables after every load, not at stage
+  time, because the decision needs whole days and the loader appends partial
+  days).  Year-round rule, re-evaluated over the last `window_days` (21) local
+  days each run; every action is idempotent and only nulls more:
+  - a depth to water at or below `zero_depth_ft` (0.1 ft) means no water above
+    the pressure sensor (the water table never came within 0.33 ft of the
+    surface here, even at a storm peak) → depth nulled, row kept;
+  - a temperature outside `water_temperature_c` (8–25 °C; groundwater is
+    14–21 °C, 10.6 °C after winter storms at L7, 22.6 °C at the 99th
+    percentile) is air, a shed or a bucket → temperature nulled, row kept;
+  - a sonde-day on which at least `air_day_share` (half) of the readings are
+    outside the temperature band, or at least half have no depth while the
+    temperature swings more than `air_day_temperature_range_c` (2 °C; water
+    never does), is a day the sonde spent out of the well → every channel of
+    those readings nulled, and the daily report raises CM OUT OF WATER.
+
+  Oxygen, conductivity and water-level swings are deliberately not signals:
+  every big storm (2024-11-14, 2025-10-28, the L7/M4 winter events) raises
+  oxygen to saturation, halves the conductivity and moves the water table
+  4–10 ft in several of these fracture-fed wells at once.  A sonde sitting in
+  a bucket at room temperature, or hanging dry inside the casing in winter, is
+  invisible to its own channels: use `null_ranges` when the field team reports
+  such an episode.  Known episodes: M4-SZ1 2025-10-23..11-03 (indoors), M4-SZ2
+  2026-06-09..15 (above the water), M6-SZ2 and L7-SZ1 2025-08-20..21 (lying in
+  the shade, depth 0.00).  History was processed once
+  (`--since 2024-01-01 --record-id out-of-water-20261119`); the earlier 25 °C
+  rule (`air-readings-20261111`) had blanked 1,717 rows, of which
+  `restore_air_rows_20261119.py` restored the non-temperature channels of 89
+  that were temperature-sensor faults (M5-SZ1 Sept 2026 spikes to 150 °C
+  between normal readings; M4-SZ2's first hot readings on 2026-06-06/07).
 - **Sentinels and fault rows.** `corrections.json` `sentinels` nulls a value the
   instrument emits instead of a reading (pH exactly 0, conductivity below 1 µS/cm
   from a dry or failed cell, ORP below -10,000 mV), keeping the row; `null_rows` drops whole rows of one instrument while a

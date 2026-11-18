@@ -137,6 +137,8 @@ if [ "$cm_tables" -gt 0 ]; then
     "$CM_PY" "$CM_CODE/cm_load.py" --staging "$CM_STAGE" --run-id "$RUN_ID" --wait-for-spark 300 --check-staleness >> "$LOG" 2>&1 || log "cm load failed (see report)"
     [ -f "$CM_STAGE/build_state_pending.json" ] && mv "$CM_STAGE/build_state_pending.json" "$CM_BASE/state/build_state.json"
     [ -f "$CM_STAGE/reading_schedule_pending.json" ] && mv "$CM_STAGE/reading_schedule_pending.json" "$CM_BASE/state/reading_schedule.json"
+    log "cm out-of-water check (year-round rule on the last window of days; idempotent)"
+    "$CM_PY" "$CM_CODE/cm_out_of_water.py" --run-id "$RUN_ID" --result "$CM_STAGE/load_result.json" >> "$LOG" 2>&1 || log "cm out-of-water check failed (continuing; the window is re-evaluated next run)"
 else
     log "cm: no new data to load"
     # Stub result so the combined report can still show cm ran cleanly.

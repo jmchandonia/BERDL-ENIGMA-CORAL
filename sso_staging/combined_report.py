@@ -96,6 +96,18 @@ def attention(cm_data, cm_diff, sso_data) -> tuple[list[tuple[str, str, str]], b
                           f"continuous_monitoring {table}: source label(s) not in column_map.json: "
                           f"{', '.join(repr(l) for l in labels)} -- the whole table is HELD BACK (nothing loaded) "
                           "until the label is mapped (build_column_map.py) or the source header is fixed."))
+        oow = cm_data.get("out_of_water") or {}
+        if oow.get("rows_nulled"):
+            where = []
+            for table, info in sorted((oow.get("tables") or {}).items()):
+                days = sorted(info.get("air_days") or {})
+                if days:
+                    where.append(f"{table} {days[0]}{'..' + days[-1] if len(days) > 1 else ''} ({sum(v['rows'] for v in info['air_days'].values())} rows)")
+            items.append(("CM OUT OF WATER", f"{oow['rows_nulled']} cm readings nulled (sonde out of the well)",
+                          f"continuous_monitoring: {oow['rows_nulled']} readings nulled on every channel because the sonde "
+                          f"was out of the well that day (temperature outside 8-25 C, or no water above the pressure sensor "
+                          f"with the temperature swinging): {'; '.join(where)} -- tell the field team if this was not a "
+                          "planned lift-out."))
         for table, cols in sorted((cm_data.get("comment_drift") or {}).items()):
             items.append(("CM COMMENT DRIFT", f"{len(cols)} cm comment(s) in {table} differ",
                           f"continuous_monitoring {table}: {len(cols)} column/table comment(s) differ from the "

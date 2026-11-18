@@ -2350,6 +2350,31 @@ Validation completed before live export:
   -> held, GAS PORT MOVED? now says what the export claims), an unknown prefix -> held + new ACTION
   GAS UNKNOWN ANALYZER; older exports use the old rules unchanged (verified identical on the 10/28 file).
   GAS_INSTRUMENTS carries export_prefix/picarro_id/multiplexer_id; picarro_serial comment synced.
+- 2026-11-17: morning ACTIONs. (1) HELD 140 toc rows: the lab's 2026-11-12 workbook update (144 -> 284
+  rows) writes Date Sampled as MMDDYYYY from the 10/22 rows on (MMDDYY before); the id/date cross-check
+  mangled it. Fixed (sheet_date_yyyymmdd accepts both), 270 rows stage, 126 new results loaded (run
+  20261117T192226Z-tocdates; toc now 270 rows, 15 dates x 18 well-ports, all linked to draws). Still held,
+  legitimately: EFPW02/EFPW03 anion results on 10/06, 10/14, 10/20, 10/26, 11/01 (the manifest lists EFPW
+  only for NitrateIso/Nitrite/WaterIso/pH, every 6 days from 10/08 -- no Anions assay, and 10/06 is not even
+  a manifest EFPW date), plus Rain-101026/110126 and 'PL Runoff'-101026/110126 (non-well samples). Needs
+  Katie: add those samples to the manifest (or model rain/runoff separately). (2) KBase token: the user's
+  new token went into the repo .env but the pipeline reads dipa's credentials.env; the old token was
+  revoked when the new one was made (Spark auth failed). The auto-mode gate blocks me from touching
+  credentials.env; the user's `!` commands in bash syntax silently fail (login shell is tcsh) -- a bash
+  script path run via `!` works (scratchpad copy_token.sh). New token valid to 2026-12-17.
+- 2026-11-18: sonde data quality, continuous_monitoring. (1) U2-SZ1 pH question: around Nov 1 pH is 4.6-4.7
+  (not 0/NULL); real 0.0 values start Nov 6 inside a fault state (temp pinned 19.8-20.1 C, cond 11-99,
+  NO3 19-46 vs water 18.0-18.4 C / cond >= 1,631 / NO3 >= 184), one sonde, same HydroVu parameter stream
+  (no duplicates, no SZ2 params). Also U2-SZ1 since its 10/14 return reads like SZ2's water (pH 4.5,
+  cond ~1,900) while U2-SZ2 is silent since 9/24 -> swap/move question for Kris; sonde pH disagrees with
+  the field meter by >1 unit. (2) corrections.json gained `sentinels` (per-entry ids; equals/below) and
+  `null_rows` (per-instrument row filter); fixer handles both. Applied live: pH=0 -> NULL (347 values,
+  6 tables); U2-SZ1 rows with cond<100 from 10/14 dropped (55); conductivity<1 uS/cm -> NULL (45,298
+  values, 14 tables; M4-SZ1 cell dead since 9/24, 20,280); ORP<-10000 -> NULL (2). (3) Sentinel scan of
+  every column since Oct 1: open questions -- DO exactly 0.00 (L9-SZ2 100%, U1-SZ2 100%, M5/M6 >80%:
+  anoxic or dead RDO cap?), WS3 soil water content negative (1,057 rows), L9-SZ1 nitrate 0.0 on 55%.
+  Meeting outcomes: 'PL' = parking lot; rain + runoff samples to be added to the manifest. Commits
+  d9cb6aa, 9f8a338; deployed dipa+niya.
 - 2026-11-04: CPT physical data survey started. CORAL has 110 CPT locations (the inventory said 40;
   corrected). CPT_full_data.xlsx Location sheet (108 bores, `CPT-01`/`CPT10SED` style) matches
   102 of them exactly by coordinate after name normalization; the five `CPT{26,59,63,69,73}SED`
@@ -2534,3 +2559,34 @@ Validation completed before live export:
   the two "bioreactor" samples at FW-305 (Sample0002965/2966) come from Fields Lab laboratory glass-bead biofilm
   reactors fed FW-305 groundwater (MicroParticle campaign; reactors sacrificed the week of 2014-06-09), not from
   sediment; their material, depth and descriptions are left as they are for now at the user's request.
+- 2026-11-18 (evening): Terry: the 25 C air rule only works in summer. Investigated year-round signals on the
+  full history (daily aggregates of all 20 Aqua TROLL tables + raw archive). Findings: oxygen jumping to
+  saturation, conductivity halving and 4-10 ft water-level swings are NOT lift-out signals here -- every big
+  storm (2024-11-14, 2025-10-28, the L7/M4 winter events) does all three in several fracture-fed wells at
+  once, and the L7-SZ1 "winter exposures" I suspected are cold storm recharge (DTW 10.4 -> 3.9 ft in a day,
+  12 C, cond 150, recovering over a week). The M4-SZ1 Oct-2025 "lift-out" signature on those channels is the
+  2025-10-28 storm seen in every neighbour; only its >25 C temperature was unique (sonde indoors). What IS a
+  clean year-round signal: a flat zero on the pressure channel (depth 0.00: M4-SZ2 Jan 10-16 and Feb 13-Mar
+  13 2025 with no DO/cond; L7-SZ1 and M6-SZ2 2025-08-20..21 lying in the shade at 17-24 C, which the 25 C
+  rule missed). Implemented corrections.json `out_of_water` (id out-of-water-20261119) applied by NEW
+  cm_out_of_water.py to the LIVE tables after each load (the decision needs whole days; the loader appends
+  partial days), re-evaluating the last 21 local days, idempotent, only ever nulls more: depth <= 0.1 ft ->
+  depth NULL (storm peaks never came within 0.33 ft of the surface); temperature outside 8-25 C -> temperature
+  NULL (water is 14-21 C, 10.6 after winter storms); a sonde-day with >= 50% of readings outside the band, or
+  >= 50% with zero depth AND a temperature swing > 2 C, is an air day -> every channel of those readings
+  nulled, ACTION "CM OUT OF WATER" in the daily email (cm_report section + combined_report item), recorded in
+  ingest_runs (<run>-out-of-water). Days with < 3 readings are not judged. cm_build no longer drops hot rows
+  (air_readings removed from corrections.json, fixer kind "air" removed); the build writes the rule into the
+  table notes. Step added to BOTH run_daily.sh after the load (non-fatal). Live: restore_air_rows_20261119.py
+  rebuilt the 4 blanked tables' days from the raw archive and restored the non-temperature channels of 89 of
+  the 1,717 rows the 25 C rule had blanked (M5-SZ1 Sep 2026: temperature spikes to 150 C between normal
+  readings, depth steady 11.2-12.0 ft, DO 0 -- a sensor fault; M4-SZ2 2026-06-06/07 first 20 hot readings;
+  one row each M5-SZ1/M5-SZ2 2024-10-12); the real lift-outs (M4-SZ1 10/23-11/03, M4-SZ2 6/09-6/15) stay
+  blank (recorded restore-air-rows-20261119). History pass (--since 2024-01-01, recorded out-of-water-
+  20261119): M6-SZ2 2025-08-20/21 26 readings and L8-SZ1 2024-10-03 3 readings (0.4 C) nulled on every
+  channel; 3,084 zero depths nulled (3,050 = M4-SZ2 Jan-Mar 2025, temperature kept: it tracks the storm
+  cooling seen at M4-SZ1 so the sonde was probably in the well with a dead pressure sensor and no DO/cond
+  -- ask Shekhar), 1 cold temperature (L7-SZ1 2024-12-20, 6.4 C). No storm day flagged. Dry runs reviewed
+  before applying; second pass nulls nothing. Not detectable from a sonde's own channels (documented): a
+  sonde in a bucket at room temperature, or hanging dry inside the casing in winter -> null_ranges when the
+  field team reports it. Deployed to dipa and niya.

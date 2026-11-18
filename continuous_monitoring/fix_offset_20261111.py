@@ -8,12 +8,12 @@ before the entry existed, so old and new rows agree:
     deployment of the entry; later rows were staged with the offset already)
   * null_ranges:   value -> NULL for every row in the date range (idempotent,
     so no cutoff)
-  * air_readings:  every measurement column -> NULL on rows whose temperature
-    exceeds max_water_temperature_c, in every table with the prefix (idempotent)
   * sentinels:     the named column -> NULL where it equals / is below the
     sentinel, in every table that has the column (idempotent)
   * null_rows:     every measurement column -> NULL on rows of one table, in the
     date range, whose named channel is below the threshold (idempotent)
+The out_of_water rule is not an entry here: cm_out_of_water.py applies it to the
+live tables after every load (and once over history with --since).
 Entries: l9-sz2-depth-offset-20261111 (L9-SZ2 depth to water +4.07 ft from
 2026-09-24, post-service calibration error); l8-sz1-dead-sonde-20261111 (every
 L8-SZ1 channel nulled from 2026-10-11, failing sonde).
@@ -62,7 +62,6 @@ def main() -> None:
     corrections = cm.load_corrections()
     entries = [("offset", e) for e in corrections.get("offset_ranges", []) if e.get("id")] + \
               [("null", e) for e in corrections.get("null_ranges", []) if e.get("id")] + \
-              ([("air", corrections["air_readings"])] if corrections.get("air_readings", {}).get("id") else []) + \
               [("sentinel", e) for e in corrections.get("sentinels", []) if e.get("id")] + \
               [("rows", e) for e in corrections.get("null_rows", []) if e.get("id")]
     if args.id:
@@ -81,9 +80,7 @@ def main() -> None:
             continue
         if done:
             sys.exit(f"{entry['id']} is already recorded in ingest_runs; refusing to apply it twice")
-        if kind == "air":
-            apply_air(spark, ns, entry, columns, args)
-        elif kind == "sentinel":
+        if kind == "sentinel":
             apply_sentinel(spark, ns, entry, columns, args)
         elif kind == "rows":
             apply_rows(spark, ns, entry, columns, args)
@@ -155,48 +152,6 @@ def apply_rows(spark, ns: str, entry: dict, columns: dict, args) -> None:
     if not args.dry_run:
         _record(loader, entry["id"], started, f"{table}: every measurement column set to NULL on rows with "
                 f"{cond_col} < {below:g} for local dates {start}..{end}: {entry['reason']}", per_table)
-
-
-def apply_air(spark, ns: str, entry: dict, columns: dict, args) -> None:
-    """Null every measurement column on rows whose temperature says the sonde was in air."""
-    loader = cm_load.Loader(spark, entry["id"], args.dry_run)
-    temp_col, limit = columns[entry["temperature_label"]]["column"], float(entry["max_water_temperature_c"])
-    measurement_cols = {v["column"] for v in columns.values()}
-    started = datetime.now(timezone.utc)
-    tables = sorted(t for t in loader.existing_tables() if t.startswith(entry["table_prefix"]))
-    per_table = {}
-    for table in tables:
-        target = f"{ns}.`{table}`"
-        cols = [c for c in spark.table(target).columns if c in measurement_cols]
-        if temp_col not in cols:
-            continue
-        where = f"{temp_col} > {limit!r}"
-        n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {where}").collect()[0]["n"]
-        if not n:
-            continue
-        print(f"{table}: {n} air readings (temperature > {limit:g} C)")
-        if args.dry_run:
-            print(f"[dry-run] would null {len(cols)} columns on those rows")
-            continue
-        spark.sql(f"UPDATE {target} SET {', '.join(f'{c} = NULL' for c in cols)} WHERE {where}")
-        left = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {where}").collect()[0]["n"]
-        ok = left == 0
-        per_table[table] = {"rows": int(n), "columns": len(cols), "ok": ok}
-        print(f"  {n} rows nulled across {len(cols)} columns; {left} remain ({'ok' if ok else 'CHECK'})")
-        if not ok:
-            sys.exit(f"check failed for {table}; stopping")
-    if not args.dry_run:
-        loader.record_run(
-            {
-                "ingest_run_id": entry["id"], "mode": "correction",
-                "started_at": pd.Timestamp(started), "finished_at": pd.Timestamp.now(tz="UTC"), "status": "ok",
-                "tables_loaded": len(per_table), "rows_staged": 0, "rows_appended": 0,
-                "details": json.dumps({"correction": f"{entry['table_prefix']}*: every measurement column set to NULL on rows "
-                                                     f"with {temp_col} > {limit:g}: {entry['reason']}", "tables": per_table}),
-            },
-            loader.existing_tables(),
-        )
-        print(f"recorded {entry['id']} in ingest_runs")
 
 
 def apply_entry(spark, ns: str, kind: str, entry: dict, columns: dict, args) -> None:
