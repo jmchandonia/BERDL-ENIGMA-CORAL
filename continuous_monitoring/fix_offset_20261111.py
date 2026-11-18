@@ -10,6 +10,10 @@ before the entry existed, so old and new rows agree:
     so no cutoff)
   * air_readings:  every measurement column -> NULL on rows whose temperature
     exceeds max_water_temperature_c, in every table with the prefix (idempotent)
+  * sentinels:     the named column -> NULL where it equals the sentinel, in every
+    table that has the column (idempotent)
+  * null_rows:     every measurement column -> NULL on rows of one table, in the
+    date range, whose named channel is below the threshold (idempotent)
 Entries: l9-sz2-depth-offset-20261111 (L9-SZ2 depth to water +4.07 ft from
 2026-09-24, post-service calibration error); l8-sz1-dead-sonde-20261111 (every
 L8-SZ1 channel nulled from 2026-10-11, failing sonde).
@@ -58,7 +62,9 @@ def main() -> None:
     corrections = cm.load_corrections()
     entries = [("offset", e) for e in corrections.get("offset_ranges", []) if e.get("id")] + \
               [("null", e) for e in corrections.get("null_ranges", []) if e.get("id")] + \
-              ([("air", corrections["air_readings"])] if corrections.get("air_readings", {}).get("id") else [])
+              ([("air", corrections["air_readings"])] if corrections.get("air_readings", {}).get("id") else []) + \
+              ([("sentinel", corrections["sentinels"])] if corrections.get("sentinels", {}).get("id") else []) + \
+              [("rows", e) for e in corrections.get("null_rows", []) if e.get("id")]
     if args.id:
         entries = [(k, e) for k, e in entries if e["id"] == args.id]
         if not entries:
@@ -77,8 +83,78 @@ def main() -> None:
             sys.exit(f"{entry['id']} is already recorded in ingest_runs; refusing to apply it twice")
         if kind == "air":
             apply_air(spark, ns, entry, columns, args)
+        elif kind == "sentinel":
+            apply_sentinel(spark, ns, entry, columns, args)
+        elif kind == "rows":
+            apply_rows(spark, ns, entry, columns, args)
         else:
             apply_entry(spark, ns, kind, entry, columns, args)
+
+
+def _record(loader, entry_id: str, started, what: str, per_table: dict) -> None:
+    loader.record_run(
+        {
+            "ingest_run_id": entry_id, "mode": "correction",
+            "started_at": pd.Timestamp(started), "finished_at": pd.Timestamp.now(tz="UTC"), "status": "ok",
+            "tables_loaded": len(per_table), "rows_staged": 0, "rows_appended": 0,
+            "details": json.dumps({"correction": what, "tables": per_table}),
+        },
+        loader.existing_tables(),
+    )
+    print(f"recorded {entry_id} in ingest_runs")
+
+
+def apply_sentinel(spark, ns: str, entry: dict, columns: dict, args) -> None:
+    """Null the named column wherever it equals the sentinel, in every table that has it."""
+    loader = cm_load.Loader(spark, entry["id"], args.dry_run)
+    started = datetime.now(timezone.utc)
+    per_table = {}
+    for rule in entry["rules"]:
+        col, v = columns[rule["label"]]["column"], rule["equals"]
+        for table in sorted(loader.existing_tables()):
+            target = f"{ns}.`{table}`"
+            if not table.startswith("hazen_") or col not in spark.table(target).columns:
+                continue
+            n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {col} = {v!r}").collect()[0]["n"]
+            if not n:
+                continue
+            print(f"{table}.{col}: {n} values equal to {v!r}")
+            if args.dry_run:
+                continue
+            spark.sql(f"UPDATE {target} SET {col} = NULL WHERE {col} = {v!r}")
+            left = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {col} = {v!r}").collect()[0]["n"]
+            per_table[f"{table}.{col}"] = {"values": int(n), "ok": left == 0}
+            print(f"  nulled; {left} remain ({'ok' if left == 0 else 'CHECK'})")
+            if left:
+                sys.exit(f"check failed for {table}.{col}; stopping")
+    if not args.dry_run:
+        _record(loader, entry["id"], started, f"sentinel values nulled: {entry['reason']}", per_table)
+
+
+def apply_rows(spark, ns: str, entry: dict, columns: dict, args) -> None:
+    """Null every measurement column on the rows of one table that are in the entry's fault state."""
+    loader = cm_load.Loader(spark, entry["id"], args.dry_run)
+    started = datetime.now(timezone.utc)
+    table, start, end = entry["table"], entry["start"], entry["end"]
+    target = f"{ns}.`{table}`"
+    cond_col, below = columns[entry["when"]["label"]]["column"], float(entry["when"]["below"])
+    measurement_cols = {v["column"] for v in columns.values()}
+    cols = [c for c in spark.table(target).columns if c in measurement_cols]
+    where = (f"{cond_col} < {below!r} AND to_date(from_utc_timestamp(to_timestamp({cm.TIMESTAMP_COLUMN}), 'America/New_York')) "
+             f"BETWEEN DATE '{start}' AND DATE '{end}'")
+    n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {where}").collect()[0]["n"]
+    print(f"{table}: {n} rows with {cond_col} < {below:g} in [{start}, {end}]")
+    per_table = {}
+    if n and not args.dry_run:
+        spark.sql(f"UPDATE {target} SET {', '.join(f'{c} = NULL' for c in cols)} WHERE {where}")
+        left = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {where}").collect()[0]["n"]
+        per_table[table] = {"rows": int(n), "columns": len(cols), "ok": left == 0}
+        print(f"  {n} rows nulled across {len(cols)} columns; {left} remain ({'ok' if left == 0 else 'CHECK'})")
+        if left:
+            sys.exit(f"check failed for {table}; stopping")
+    if not args.dry_run:
+        _record(loader, entry["id"], started, f"{table}: every measurement column set to NULL on rows with "
+                f"{cond_col} < {below:g} for local dates {start}..{end}: {entry['reason']}", per_table)
 
 
 def apply_air(spark, ns: str, entry: dict, columns: dict, args) -> None:

@@ -22,7 +22,10 @@ the July 2026 corrections are applied here instead of after the fact:
   2026-09-24);
 * an Aqua TROLL reading whose water temperature exceeds corrections.json
   air_readings.max_water_temperature_c (25 C) is an air reading (sonde out of
-  the water): every channel is nulled and the row dropped.
+  the water): every channel is nulled and the row dropped;
+* corrections.json sentinels (pH 0.00 = electrode dropout) are nulled, the row
+  kept; null_rows entries drop whole rows of one instrument while a named
+  channel shows its fault state (U2-SZ1 conductivity < 100 from 2026-10-14).
 
 Output is one TSV per location/zone table, with the brick column names from
 column_map.json, plus a manifest.json describing the run.
@@ -206,6 +209,8 @@ class Builder:
         self.null_ranges = corrections.get("null_ranges", [])
         self.offset_ranges = corrections.get("offset_ranges", [])
         self.air = corrections.get("air_readings")
+        self.sentinels = (corrections.get("sentinels") or {}).get("rules", [])
+        self.null_rows = corrections.get("null_rows", [])
         self.holdback_cutoff = now - holdback if holdback is not None else None
         # (table, timestamp) -> label -> (priority, path, value, source kind)
         self.cells: dict[tuple[str, datetime], dict[str, tuple[int, str, float | None, str]]] = defaultdict(dict)
@@ -258,6 +263,10 @@ class Builder:
                     and rng["start"] <= timestamp.date().isoformat() <= rng["end"]):
                 value = round(value + rng["offset"], 6)
                 self.stats["values_offset_by_corrections"] += 1
+        for rule in self.sentinels:
+            if value is not None and label == rule["label"] and value == rule["equals"]:
+                value = None
+                self.stats["sentinel_values_nulled"] += 1
         cell = self.cells[(table, timestamp)]
         current = cell.get(label)
         candidate = (rec.source_priority, rec.source_path, value, source_kind)
@@ -503,6 +512,13 @@ class Builder:
         if self.air and table.startswith(self.air["table_prefix"]):
             notes.append(f"Readings with temperature above {self.air['max_water_temperature_c']:g} C are dropped "
                          f"(every channel nulled): {self.air['reason']}")
+        for rule in self.sentinels:
+            if rule["label"] in info["labels"]:
+                notes.append(f"{rule['label']} = {rule['equals']:g} is nulled (instrument sentinel)")
+        for ent in self.null_rows:
+            if ent["table"] == table:
+                notes.append(f"Rows with {ent['when']['label']} below {ent['when']['below']:g} from {ent['start']} to "
+                             f"{ent['end']} are dropped (every channel nulled): {ent['reason']}")
         depth_ft = None
         if zone:
             key = location[4:] if location.startswith("SSO-") else location
@@ -548,6 +564,11 @@ class Builder:
                         if temp is not None and temp > self.air["max_water_temperature_c"]:
                             self.stats["air_readings_dropped"] += 1
                             continue  # sonde out of the water: every channel is an air reading
+                    if any(ent["table"] == table and ent["start"] <= timestamp.date().isoformat() <= ent["end"]
+                           and ent["when"]["label"] in cell and cell[ent["when"]["label"]][2] is not None
+                           and cell[ent["when"]["label"]][2] < ent["when"]["below"] for ent in self.null_rows):
+                        self.stats["fault_rows_dropped"] += 1
+                        continue  # instrument fault state: every channel is a default, not a reading
                     if all(v is None for v in values):
                         continue
                     sources = sorted({Path(cell[label][1]).name for label in cell})
