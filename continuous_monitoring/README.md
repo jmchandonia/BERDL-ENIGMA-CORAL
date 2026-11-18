@@ -75,8 +75,8 @@ These corrections differ from the bricks and are listed in
   the same fix script).  Confirmed episodes: M4-SZ1 Oct–Nov 2025, M4-SZ2 June
   2026, M5-SZ1 late Sept 2026.
 - **Sentinels and fault rows.** `corrections.json` `sentinels` nulls a value the
-  instrument emits instead of a reading (pH 0.00, the electrode dropping out),
-  keeping the row; `null_rows` drops whole rows of one instrument while a
+  instrument emits instead of a reading (pH exactly 0, conductivity below 1 µS/cm
+  from a dry or failed cell, ORP below -10,000 mV), keeping the row; `null_rows` drops whole rows of one instrument while a
   named channel shows its fault state (U2-SZ1 from 2026-10-14: conductivity
   below 100 µS/cm marks the sonde's default-output state).  Both are applied
   once to history by the fix script.

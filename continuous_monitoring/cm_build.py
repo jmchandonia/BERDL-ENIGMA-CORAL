@@ -23,8 +23,8 @@ the July 2026 corrections are applied here instead of after the fact:
 * an Aqua TROLL reading whose water temperature exceeds corrections.json
   air_readings.max_water_temperature_c (25 C) is an air reading (sonde out of
   the water): every channel is nulled and the row dropped;
-* corrections.json sentinels (pH 0.00 = electrode dropout) are nulled, the row
-  kept; null_rows entries drop whole rows of one instrument while a named
+* corrections.json sentinels (pH exactly 0, conductivity below 1 uS/cm, ORP
+  below -10,000 mV: instrument codes, not readings) are nulled, the row kept; null_rows entries drop whole rows of one instrument while a named
   channel shows its fault state (U2-SZ1 conductivity < 100 from 2026-10-14).
 
 Output is one TSV per location/zone table, with the brick column names from
@@ -95,6 +95,10 @@ DEPTH_NOTE = (
 # Site names used in LI-COR export headers ("Background Site A" before "Background A").
 EXPORT_SITES = [("Background Site A", "WS2"), ("Background A", "WS2"), ("Area 2", "WS1"), ("Area 3", "WS3")]
 EXPORT_TIME_FORMATS = ("%m/%d/%y %H:%M:%S %z", "%m/%d/%Y %H:%M:%S %z", "%m/%d/%y %H:%M:%S", "%m/%d/%Y %H:%M:%S")
+
+
+def _is_sentinel(value: float, rule: dict) -> bool:
+    return ("equals" in rule and value == rule["equals"]) or ("below" in rule and value < rule["below"])
 
 
 def breaks(second: list[tuple[int, float]]) -> list[int]:
@@ -209,7 +213,7 @@ class Builder:
         self.null_ranges = corrections.get("null_ranges", [])
         self.offset_ranges = corrections.get("offset_ranges", [])
         self.air = corrections.get("air_readings")
-        self.sentinels = (corrections.get("sentinels") or {}).get("rules", [])
+        self.sentinels = corrections.get("sentinels", [])
         self.null_rows = corrections.get("null_rows", [])
         self.holdback_cutoff = now - holdback if holdback is not None else None
         # (table, timestamp) -> label -> (priority, path, value, source kind)
@@ -264,7 +268,7 @@ class Builder:
                 value = round(value + rng["offset"], 6)
                 self.stats["values_offset_by_corrections"] += 1
         for rule in self.sentinels:
-            if value is not None and label == rule["label"] and value == rule["equals"]:
+            if value is not None and label == rule["label"] and _is_sentinel(value, rule):
                 value = None
                 self.stats["sentinel_values_nulled"] += 1
         cell = self.cells[(table, timestamp)]
@@ -514,7 +518,8 @@ class Builder:
                          f"(every channel nulled): {self.air['reason']}")
         for rule in self.sentinels:
             if rule["label"] in info["labels"]:
-                notes.append(f"{rule['label']} = {rule['equals']:g} is nulled (instrument sentinel)")
+                how = f"= {rule['equals']:g}" if "equals" in rule else f"below {rule['below']:g}"
+                notes.append(f"{rule['label']} {how} is nulled (instrument sentinel): {rule['reason']}")
         for ent in self.null_rows:
             if ent["table"] == table:
                 notes.append(f"Rows with {ent['when']['label']} below {ent['when']['below']:g} from {ent['start']} to "

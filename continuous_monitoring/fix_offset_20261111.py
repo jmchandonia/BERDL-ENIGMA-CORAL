@@ -10,8 +10,8 @@ before the entry existed, so old and new rows agree:
     so no cutoff)
   * air_readings:  every measurement column -> NULL on rows whose temperature
     exceeds max_water_temperature_c, in every table with the prefix (idempotent)
-  * sentinels:     the named column -> NULL where it equals the sentinel, in every
-    table that has the column (idempotent)
+  * sentinels:     the named column -> NULL where it equals / is below the
+    sentinel, in every table that has the column (idempotent)
   * null_rows:     every measurement column -> NULL on rows of one table, in the
     date range, whose named channel is below the threshold (idempotent)
 Entries: l9-sz2-depth-offset-20261111 (L9-SZ2 depth to water +4.07 ft from
@@ -63,7 +63,7 @@ def main() -> None:
     entries = [("offset", e) for e in corrections.get("offset_ranges", []) if e.get("id")] + \
               [("null", e) for e in corrections.get("null_ranges", []) if e.get("id")] + \
               ([("air", corrections["air_readings"])] if corrections.get("air_readings", {}).get("id") else []) + \
-              ([("sentinel", corrections["sentinels"])] if corrections.get("sentinels", {}).get("id") else []) + \
+              [("sentinel", e) for e in corrections.get("sentinels", []) if e.get("id")] + \
               [("rows", e) for e in corrections.get("null_rows", []) if e.get("id")]
     if args.id:
         entries = [(k, e) for k, e in entries if e["id"] == args.id]
@@ -105,28 +105,28 @@ def _record(loader, entry_id: str, started, what: str, per_table: dict) -> None:
 
 
 def apply_sentinel(spark, ns: str, entry: dict, columns: dict, args) -> None:
-    """Null the named column wherever it equals the sentinel, in every table that has it."""
+    """Null the named column wherever it matches the sentinel, in every table that has it."""
     loader = cm_load.Loader(spark, entry["id"], args.dry_run)
     started = datetime.now(timezone.utc)
     per_table = {}
-    for rule in entry["rules"]:
-        col, v = columns[rule["label"]]["column"], rule["equals"]
-        for table in sorted(loader.existing_tables()):
-            target = f"{ns}.`{table}`"
-            if not table.startswith("hazen_") or col not in spark.table(target).columns:
-                continue
-            n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {col} = {v!r}").collect()[0]["n"]
-            if not n:
-                continue
-            print(f"{table}.{col}: {n} values equal to {v!r}")
-            if args.dry_run:
-                continue
-            spark.sql(f"UPDATE {target} SET {col} = NULL WHERE {col} = {v!r}")
-            left = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {col} = {v!r}").collect()[0]["n"]
-            per_table[f"{table}.{col}"] = {"values": int(n), "ok": left == 0}
-            print(f"  nulled; {left} remain ({'ok' if left == 0 else 'CHECK'})")
-            if left:
-                sys.exit(f"check failed for {table}.{col}; stopping")
+    col = columns[entry["label"]]["column"]
+    test = f"{col} = {entry['equals']!r}" if "equals" in entry else f"{col} < {entry['below']!r}"
+    for table in sorted(loader.existing_tables()):
+        target = f"{ns}.`{table}`"
+        if not table.startswith("hazen_") or col not in spark.table(target).columns:
+            continue
+        n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {test}").collect()[0]["n"]
+        if not n:
+            continue
+        print(f"{table}.{col}: {n} values where {test}")
+        if args.dry_run:
+            continue
+        spark.sql(f"UPDATE {target} SET {col} = NULL WHERE {test}")
+        left = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {test}").collect()[0]["n"]
+        per_table[f"{table}.{col}"] = {"values": int(n), "ok": left == 0}
+        print(f"  nulled; {left} remain ({'ok' if left == 0 else 'CHECK'})")
+        if left:
+            sys.exit(f"check failed for {table}.{col}; stopping")
     if not args.dry_run:
         _record(loader, entry["id"], started, f"sentinel values nulled: {entry['reason']}", per_table)
 

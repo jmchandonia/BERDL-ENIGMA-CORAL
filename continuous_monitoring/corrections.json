@@ -1,5 +1,5 @@
 {
-  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id). air_readings: a groundwater sonde reporting a water temperature above max_water_temperature_c is in air, so every channel of that reading is nulled (the row is dropped). sentinels: a value the instrument emits instead of a reading (pH 0.00) is nulled, the row kept. null_rows: per-instrument row filter -- while in effect, a row whose named channel satisfies the condition is dropped whole (a sonde in a fault state).",
+  "_comment": "Value corrections applied by cm_build.py. null_ranges: values nulled (e.g. a dead sensor). offset_ranges: a constant added to the value (e.g. a sonde redeployed with a wrong depth reference). Dates are local (America/New_York) and inclusive; an end of 9999-12-31 means still in effect. cm_build.py warns when a nulled value is nonzero (e.g. after a sensor repair) unless the entry sets expect_nonzero (a failing sonde emitting junk). The fix_*.py scripts apply the same correction once to rows loaded before it existed (recorded in ingest_runs under the entry's id). air_readings: a groundwater sonde reporting a water temperature above max_water_temperature_c is in air, so every channel of that reading is nulled (the row is dropped). sentinels: a value the instrument emits instead of a reading (pH exactly 0, conductivity below 1 uS/cm, ORP below -10,000 mV) is nulled, the row kept; each entry has its own id. null_rows: per-instrument row filter -- while in effect, a row whose named channel satisfies the condition is dropped whole (a sonde in a fault state).",
   "null_ranges": [
     {
       "table": "hazen_hobo_ws3",
@@ -48,16 +48,26 @@
     "max_water_temperature_c": 25.0,
     "reason": "groundwater at the SSO and EFPW wells is 17-20 C (99th percentile at most 22.6 C); a reading above 25 C means the Aqua TROLL was out of the water (lifted for service or sampling), so every channel of that reading is an air measurement. Confirmed with the field team 2026-11-11 for M4-SZ1 2025-10-23..11-03, M4-SZ2 2026-06-06..15 and M5-SZ1 2026-09-22..30 (intermittent)."
   },
-  "sentinels": {
-    "id": "ph-zero-sentinel-20261118",
-    "rules": [
-      {
-        "label": "pH, pH",
-        "equals": 0
-      }
-    ],
-    "reason": "an Aqua TROLL pH of exactly 0.00 is the electrode dropping out, not water (seen on L7-SZ1 Aug 2025-Jan 2026, U3-SZ2 Sep 2026, M5-SZ1, M4-SZ1, M4-SZ2, U2-SZ1); the other channels of such a row are usually fine"
-  },
+  "sentinels": [
+    {
+      "id": "ph-zero-sentinel-20261118",
+      "label": "pH, pH",
+      "equals": 0,
+      "reason": "an Aqua TROLL pH of exactly 0.00 is the electrode dropping out, not water (seen on L7-SZ1 Aug 2025-Jan 2026, U3-SZ2 Sep 2026, M5-SZ1, M4-SZ1, M4-SZ2, U2-SZ1); the other channels of such a row are usually fine"
+    },
+    {
+      "id": "conductivity-dry-cell-sentinel-20261118",
+      "label": "conductivity, microsiemen per cm",
+      "below": 1,
+      "reason": "groundwater cannot read below 1 uS/cm; the Aqua TROLL reports 0.05-0.1 when the conductivity cell is dry or failed (M4-SZ1 every reading since 2026-09-24, M5-SZ2, L7-SZ2, U2-SZ1, U3-SZ2, L8-SZ1 and others, ~45,000 values in all); the other channels of such a row are usually fine"
+    },
+    {
+      "id": "redox-sentinel-20261118",
+      "label": "redox potential, mV",
+      "below": -10000,
+      "reason": "an ORP of -50,000 mV is an instrument code, not a reading (L8-SZ1)"
+    }
+  ],
   "null_rows": [
     {
       "id": "u2-sz1-fault-rows-20261118",
