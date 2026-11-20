@@ -2590,3 +2590,19 @@ Validation completed before live export:
   before applying; second pass nulls nothing. Not detectable from a sonde's own channels (documented): a
   sonde in a bucket at room temperature, or hanging dry inside the casing in winter -> null_ranges when the
   field team reports it. Deployed to dipa and niya.
+- 2026-11-19: Monitoring update loaded (`coral_import/monitoring_update_20261117`, builder
+  `tools/build_monitoring_update_coral_import.py`; 134 bricks Brick0002349-0002482). New: DP06 Level TROLL 2019, 2025 pump
+  log (COMO ME:0000528 flow rate, `coral_import/ontology_update_20261117_flow_rate`), WS3 2022-05..2024-05 (rain-only brick
+  + full brick), WS2 2019-06..07, EFPW01 HydroVu export (3 bricks; nitrate drift noted), EFPW05 direct download (clock
+  Eastern, not the export's Central). Replacements (Update Data each): 5 HydroVu Level TROLL bricks +4 h (two with the depth
+  relabelled), 3 WS3 bricks with wind speed/gust blank after 2025-03-26 18:30, 109 Aqua TROLL bricks with total dissolved
+  solids in parts per thousand (was parts per trillion), conductivity and derived values blanked where the sensor reports
+  its floor (<0.1 uS/cm; 25,662 readings in 23 bricks, 6 of them not otherwise replaced), 2 weather bricks 2018-19 with the
+  mislabelled mmHg pressure set to inHg. sync-20261119-211840 (PREV sync-20261113-162127): 140 tables imported, 125
+  superseded brick tables dropped, row counts and comments verified, 186/186 foreign keys. WITHDRAWN: item 2 of the EDR
+  `CORAL_FIXES_PENDING.md` (the API minute series at L8/L9/M6/U3 is not interpolated; compared with the L8-SZ2 manual log
+  and scanned over all raw files) - the EDR file now carries a status table. Open for the continuous-monitoring feed (not
+  changed): hourly thinning at those four wells, floor conductivity readings, the "parts per trillion" column name. Open for
+  the next manual bricks: builder corrections (item 3), deployment depths that are below top of casing. The first ontology
+  reload lost its websocket after 10 minutes and was cut off (term collection checked intact); reloads now go through
+  scratchpad `hub_tools/run_long.py` (kernel thread + polling).

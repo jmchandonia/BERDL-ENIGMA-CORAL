@@ -133,7 +133,7 @@ geochemical CPT data are **not** in CORAL.
 | `…/FTP For SSO Installation/SSO Screens.xlsx`, `Y-12 New Wells.xlsx`, `SSO sediment analysis/SSO Sediment Mastersheet.xlsx`, `SSO_SedimentSampleCollection.xlsx` | SSO well screens, survey coordinates, sediment core inventory | in document | well construction in CORAL (`hazen_oak_ridge_well_construction_data_v3`); core inventory: samples in CORAL |
 | `…/tracer tests 20220608/` (FTP, field guide, transmissivity test) | 2022 Area 3/Area 1 tracer test plans | n/a | n/a (no result data in Drive) |
 | `…/colloidal borescope-March-12-2021/Colloidal Borescope 31221.docx` | Borescope results FW126/127/128 | in document (text) | not in CORAL |
-| `Manuscript/cpt paper data/HydroVu_EFPW0{1,2,3}_2022-08-17_Export.htm` | 2022 AquaTROLL exports for EFPW01–03 | in document (htm) | EFPW02/03 in CORAL (`hazen_aquatroll600_EFPW02/03_*`); **EFPW01 not** |
+| `Manuscript/cpt paper data/HydroVu_EFPW0{1,2,3}_2022-08-17_Export.htm` | 2022 AquaTROLL exports for EFPW01–03 | in document (htm) | EFPW02/03 in CORAL (`hazen_aquatroll600_EFPW02/03_*`); EFPW01 loaded 2026-11-19 (`hazen_aquatroll600_EFPW01_*`, three bricks) |
 | `Manuscript/Jupyter notebooks/…`, `MEETING NOTES 2021/`, `FTP: Field Test Plan/`, `CPT Deliverables list.xlsx`, `Putt Dissertation Chapter 4-5.docx` | Notebooks, meeting notes, plans; ESS-DIVE link to published CPT dataset (doi:10.15485/1868939) | n/a / linked (ESS-DIVE) | n/a |
 | `List of Measurements10072020.xlsx`, `CPT measurements*.xlsx`, `Shipping/Samples for shipment_*.xlsx`, `CPT Sediment __ARCHIVED SAMPLES/` | Measurement plan, shipping and archive inventories | in document | samples in CORAL; archive inventory not |
 
@@ -147,7 +147,7 @@ geochemical CPT data are **not** in CORAL.
 | `Chain of Custody Sheets/IntegratedGWSampling_AllSheetsandInfo_*.xlsx`, `2019 Spring Master Spreadsheet.xlsx`, `2019 Spring samples shipped.xlsx` | Spring 2019 sampling sheets and chain of custody | in document | samples in CORAL |
 | `Core samples/1506_CoreSummary.xlsx`, `Copy of IC Analysis of Core.xlsx`, `Copy of Static Loaded Preprocessed…ORNL+Batch 2.xlsm`, `FW305 Core Depths….xlsx` | 2013–2015 FW305/FW306 core inventory, moisture, Fe(II/III), IC anions, ICP-MS | in document | in CORAL (2026-11-13: `elias_sediment_anions_iron_fw305_core_2013`, `adams_metals_fw305_core_2013`, `chakraborty_sediment_properties_fwb306_2015`) |
 | `FRC well sampling locations ENIGMA.xlsx` | Well lists for Area 3, pH manipulation, Istok, SRS experiments | in document | locations in CORAL |
-| `Well monitoring and weather data/*_AT600_*.csv`, `*_LT400_*.csv` (27 files, 2018–2020) | AquaTROLL 600 / LevelTROLL 400 logs | in document (csv) | in CORAL (`hazen_aquatroll600_*`, `hazen_leveltroll400_*`) for 26 of 27; **`DP06_LT400_20190728_20191206.xlsx` not in CORAL (gap)** |
+| `Well monitoring and weather data/*_AT600_*.csv`, `*_LT400_*.csv` (27 files, 2018–2020) | AquaTROLL 600 / LevelTROLL 400 logs | in document (csv) | in CORAL (`hazen_aquatroll600_*`, `hazen_leveltroll400_*`) for 26 of 27; `DP06_LT400_20190728_20191206.xlsx` loaded 2026-11-19 (`hazen_leveltroll400_DP06_20190728_20191206`) |
 | `Well monitoring and weather data/Area_2_Weather_20180730_20190622.xlsx`, `BGA_Weather_…xlsx`, `old_data/` (49 interim HOBO/TROLL csv) | HOBO weather stations, interim downloads | in document | in CORAL (`hazen_hobo_WS1_20180730_20190622`, `hazen_hobo_WS2_…`); `old_data` superseded |
 
 ### FRC Sample Request Logs
@@ -167,7 +167,7 @@ geochemical CPT data are **not** in CORAL.
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
 | `AQUATROLL DATA/Data Files-Cleaned+Marked/Data Files {START-December 2025, December 2025, March 2026} Downloads/<well>/VuSitu_Log_*.csv/.xlsx` (301 files) | Cleaned AquaTROLL 600 (SZ) and LevelTROLL 500 (VSZ/VZ) logs for all 9 SSO wells, Aug 2024 → Mar 2026 | in document (csv) | in CORAL: every file's log date falls inside a `hazen_aquatroll600_SSO-*` / `hazen_leveltroll500_SSO-*` brick range (283 sensor bricks) |
-| `AQUATROLL DATA/Download Zips/` (49 zip, 32 html, csv; `AT600 download_05092023/`, `Level Troll Downloads May 2026/`) | Raw direct downloads | files in folder (zip) | raw of the above; `EFPW03`, `EFPW06` 2022–23 in CORAL; **`EFPW01_08022022…csv` and `EFPW05_09292022…xlsx` not in CORAL (gap)**; May 2026 LevelTROLL zips extend past the last brick (2026-05-04) |
+| `AQUATROLL DATA/Download Zips/` (49 zip, 32 html, csv; `AT600 download_05092023/`, `Level Troll Downloads May 2026/`) | Raw direct downloads | files in folder (zip) | raw of the above; `EFPW03`, `EFPW06` 2022–23 in CORAL; `EFPW05_09292022…xlsx` loaded 2026-11-19 (`hazen_aquatroll600_EFPW05_20230301_20230509`); `EFPW01_08022022…csv` holds one reading taken in air (not loaded); May 2026 LevelTROLL zips extend past the last brick (2026-05-04) |
 | `README Clean(ed) Aquatroll Files.docx`, `README Direct Troll Downloads.docx` | Documentation | n/a | n/a |
 
 ### 2023_SSO_Drilling／Sediment Core
@@ -237,7 +237,7 @@ geochemical CPT data are **not** in CORAL.
 
 | Document | Data type | Where the data live | CORAL status |
 | --- | --- | --- | --- |
-| `2025_PumpTest_Metadata.xlsx` (Sample Metadata 131×30, Field Log, Pump Log 243×6) | Sample metadata, field log, pump log | in document + linked (Google Doc) | in CORAL (`pumptest_2025_field_measurements`, 127 rows); Pump Log sheet not confirmed |
+| `2025_PumpTest_Metadata.xlsx` (Sample Metadata 131×30, Field Log, Pump Log 243×6) | Sample metadata, field log, pump log | in document + linked (Google Doc) | in CORAL (`pumptest_2025_field_measurements_v2`; Pump Log sheet loaded 2026-11-19 as `hazen_pump_log_sso_pump_test_2025`) |
 | `Fields_activity_cell counts/Fields_CellCounts/2025_PumpTests2_FixedCellCounts_Shreve.xlsx` | Fixed cell counts | in document | in CORAL (`pumptest_2025_fields_cell_counts`) |
 | `Hazen - Field Data/TROLL Files - Direct Downloads／Corrected/<well>/VuSitu_Log_2025-08/09-*.xlsx` (31) and `TROLL Files - HydroVu/HydroVu_<well>_2025-09-20_Export.xlsx` (9) | AquaTROLL logs Aug–Sep 2025 | in document | in CORAL (dates fall inside `…_20250819_20251008` bricks) |
 | `Hazen - Field Data/Weather Data in Area 3/rain_10-03-25_to_10-30-25…csv` | HOBO rain gauge Oct 2025 | in document | in CORAL (`hazen_hobo_WS3_20250604_20260122`) presumed; rain column not verified |
@@ -364,7 +364,7 @@ Ordered roughly by how self-contained the source tables are.
 | 13 | RecycNec and SSOM6SED enrichment 16S; EnCom M6 metagenomes | `Enrichments/RecycNec/`, `Enrichments/SSOM6SED/`, `2025_EnCom_SSO_sediment_M6_pilot/` | partly (SSO communities exist) | RecycNec waiting on Mingfei Chen (email 2026-10-27); SSOM6SED blocked (no count table) |
 | 14 | Pilot core GeoChip and fungal ITS | `FRC_Microarray/…`, `FRC Sequence Data/Zhou Lab/Pilot.ITS…` | yes | **loaded** (2026-11-10, coral_import/corepilot_its_geochip_20261107) |
 | 15 | PPI datasets (TAP, tagless) | `PPI data/` | strains exist | gap (separate thread) |
-| 16 | Sensor files missing from the troll series: `DP06_LT400_20190728_20191206.xlsx`, `EFPW01_08022022…`, `EFPW05_09292022…`, EFPW01 2022 HydroVu export; LevelTROLL downloads after 2026-05-04 | `FRC Well Metadata/Well monitoring…`, `Hazen SSO Continuous Monitoring/AQUATROLL DATA/Download Zips/` | yes | gap (pre-2023 FRC sensor files, CORAL) |
+| 16 | Sensor files missing from the troll series: `DP06_LT400_20190728_20191206.xlsx`, `EFPW01_08022022…`, `EFPW05_09292022…`, EFPW01 2022 HydroVu export; LevelTROLL downloads after 2026-05-04 | `FRC Well Metadata/Well monitoring…`, `Hazen SSO Continuous Monitoring/AQUATROLL DATA/Download Zips/` | yes | **loaded** 2026-11-19 (DP06, EFPW01 HydroVu export, EFPW05; `coral_import/monitoring_update_20261117`); LevelTROLL downloads after 2026-05-04 wait for the manual bricks |
 | 17 | 2013–2015 FW305/FW306 core geochemistry | `FRC Well Metadata/Core samples/` | yes | **loaded** (2026-11-13, 54 FW305 core samples, Brick0002346-0002348; FWB-306 UGA soil test Brick0002180, 0002185) |
 | 18 | Walian EM isolate list rows added after 2022 and the linked image files | `ENIGMA_Imaging/Walian_EM_isolates.xlsx` | yes | gap (separate thread) |
 | 19 | 2026 M5-VSZ bromide tracer injection: 12 probe logs (Apr 9 to May 11, 2026) and injection DTW metadata. **Only in the My Drive copy** | `My Drive …/2026_SSO_Tracer Tests/M5-VSZ Injection 20260410/` | locations exist | **loaded** (hydrology 2026-10-20) |

@@ -1,0 +1,10 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2019-07-28	2019-12-06	Location: DP06	Generic: hazen_leveltroll400_DP06_20190728_20191206.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Subsurface Observatory <ENIGMA:0000166>	null	2025-09-22	2025-09-29	Location: SSO-U2, Location: SSO-M4, Location: SSO-M5, Location: SSO-L9	Generic: hazen_pump_log_sso_pump_test_2025.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2022-05-09	2023-07-25	Location: WS3	Generic: hazen_hobo_WS3_20220509_20230725.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2023-07-25	2024-05-22	Location: WS3	Generic: hazen_hobo_WS3_20230725_20240522.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2019-06-22	2019-07-23	Location: WS2	Generic: hazen_hobo_WS2_20190622_20190723.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2022-08-16	2022-12-07	Location: EFPW01	Generic: hazen_aquatroll600_EFPW01_20220816_20221207.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2022-12-21	2023-02-09	Location: EFPW01	Generic: hazen_aquatroll600_EFPW01_20221221_20230209.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2023-02-16	2023-08-14	Location: EFPW01	Generic: hazen_aquatroll600_EFPW01_20230216_20230814.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2023-03-01	2023-05-09	Location: EFPW05	Generic: hazen_aquatroll600_EFPW05_20230301_20230509.hndarray
