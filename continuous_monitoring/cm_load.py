@@ -83,6 +83,36 @@ def fixed_columns() -> dict[str, tuple[str, str]]:
     }
 
 
+# Fixed-schema tables: column -> (spark type, JSON comment).  Synced like the data
+# tables' comments by --sync-comments (Loader.spec_drift).
+TABLE_METADATA_COLUMNS = {
+    "table_name": ("STRING", comment("data table name in this namespace", type="primary_key")),
+    cm.LOCATION_COLUMN: ("STRING", comment("environmental sample location ID", type="foreign_key", references="enigma.coral.sdt_location.sdt_location_name")),
+    "instrument": ("STRING", comment("instrument model")),
+    "instrument_zone": ("STRING", comment("instrument position in the well (SZ1, SZ2, SZ3, VSZ, VZ); null for single-instrument locations")),
+    "deployment_depth_m": ("DOUBLE", comment("depth of the instrument below the top of the well casing (the deployment depth measured by the field team; the SSO casings stick up above ground, so this is more than the depth below ground surface)", unit="meter")),
+    "description": ("STRING", comment("table description")),
+    "notes": ("STRING", comment("JSON list of processing notes (unit conversions, timestamp and label corrections)")),
+    "provenance": ("STRING", comment("JSON list of data sources in the table")),
+    "first_timestamp": ("STRING", comment("earliest time_series_datetime in the table")),
+    "last_timestamp": ("STRING", comment("latest time_series_datetime in the table")),
+    "row_count": ("BIGINT", comment("rows in the table")),
+    "updated_at": ("TIMESTAMP", comment("time this row was written (UTC)")),
+}
+
+INGEST_RUNS_COLUMNS = {
+    "ingest_run_id": ("STRING", comment("load identifier", type="primary_key")),
+    "mode": ("STRING", comment("incremental (daily) or backfill")),
+    "started_at": ("TIMESTAMP", comment("load start (UTC)")),
+    "finished_at": ("TIMESTAMP", comment("load end (UTC)")),
+    "status": ("STRING", comment("ok or error")),
+    "tables_loaded": ("BIGINT", comment("data tables with staged rows")),
+    "rows_staged": ("BIGINT", comment("rows staged for append")),
+    "rows_appended": ("BIGINT", comment("rows appended (staged rows minus rows already present)")),
+    "details": ("STRING", comment("JSON with per-table counts, deferred files and errors")),
+}
+
+
 def token_expiry(token: str) -> tuple[datetime | None, int | None]:
     """Return (expiry datetime UTC, days remaining), or (None, None) if unknown."""
     try:
@@ -235,6 +265,15 @@ class Loader:
                     drift.append({"column": None, "live": r["data_type"], "expected": expected_table})
         return drift
 
+    def spec_drift(self, table: str, specs: dict[str, tuple[str, str]]) -> list[dict]:
+        """Comment drift for a fixed-schema table (table_metadata, ingest_runs)."""
+        drift = []
+        for f in self.spark.table(full_name(table)).schema.fields:
+            live = (f.metadata or {}).get("comment")
+            if f.name in specs and live != specs[f.name][1]:
+                drift.append({"column": f.name, "live": live, "expected": specs[f.name][1]})
+        return drift
+
     def apply_comments(self, table: str, drift: list[dict]) -> int:
         for d in drift:
             if d["column"] is None:
@@ -307,20 +346,7 @@ class Loader:
 
     def write_table_metadata(self, manifest_tables: dict, existing: set[str]) -> dict:
         table = "table_metadata"
-        specs = {
-            "table_name": ("STRING", comment("data table name in this namespace", type="primary_key")),
-            cm.LOCATION_COLUMN: ("STRING", comment("environmental sample location ID", type="foreign_key", references="enigma.coral.sdt_location.sdt_location_name")),
-            "instrument": ("STRING", comment("instrument model")),
-            "instrument_zone": ("STRING", comment("instrument position in the well (SZ1, SZ2, SZ3, VSZ, VZ); null for single-instrument locations")),
-            "deployment_depth_m": ("DOUBLE", comment("depth of the instrument below ground surface", unit="meter")),
-            "description": ("STRING", comment("table description")),
-            "notes": ("STRING", comment("JSON list of processing notes (unit conversions, timestamp and label corrections)")),
-            "provenance": ("STRING", comment("JSON list of data sources in the table")),
-            "first_timestamp": ("STRING", comment("earliest time_series_datetime in the table")),
-            "last_timestamp": ("STRING", comment("latest time_series_datetime in the table")),
-            "row_count": ("BIGINT", comment("rows in the table")),
-            "updated_at": ("TIMESTAMP", comment("time this row was written (UTC)")),
-        }
+        specs = TABLE_METADATA_COLUMNS
         if self.dry_run:
             log(f"[dry-run] would rewrite {table} with {len(manifest_tables)} tables")
             return {}
@@ -378,17 +404,7 @@ class Loader:
 
     def record_run(self, record: dict, existing: set[str]) -> None:
         table = "ingest_runs"
-        specs = {
-            "ingest_run_id": ("STRING", comment("load identifier", type="primary_key")),
-            "mode": ("STRING", comment("incremental (daily) or backfill")),
-            "started_at": ("TIMESTAMP", comment("load start (UTC)")),
-            "finished_at": ("TIMESTAMP", comment("load end (UTC)")),
-            "status": ("STRING", comment("ok or error")),
-            "tables_loaded": ("BIGINT", comment("data tables with staged rows")),
-            "rows_staged": ("BIGINT", comment("rows staged for append")),
-            "rows_appended": ("BIGINT", comment("rows appended (staged rows minus rows already present)")),
-            "details": ("STRING", comment("JSON with per-table counts, deferred files and errors")),
-        }
+        specs = INGEST_RUNS_COLUMNS
         if self.dry_run:
             log(f"[dry-run] would record run {json.dumps(record, default=str)[:400]}")
             return
@@ -454,21 +470,28 @@ def main() -> None:
     status, error = "ok", None
     comment_drift: dict[str, list[str]] = {}
     comments_synced = 0
-    if args.comments_only:
+
+    def sync_all_comments() -> int:
+        # Deliberate, reviewed comment update: column comments of every data
+        # table (table descriptions come from the build manifest, so those are
+        # synced below for the tables in this manifest) and of the fixed-schema
+        # tables table_metadata and ingest_runs.
+        n = 0
         for table in sorted(existing - {"table_metadata", "ingest_runs"}):
             if args.tables and table not in args.tables:
                 continue
-            comments_synced += loader.apply_comments(table, loader.comment_drift(table))
+            n += loader.apply_comments(table, loader.comment_drift(table))
+        for table, specs in (("table_metadata", TABLE_METADATA_COLUMNS), ("ingest_runs", INGEST_RUNS_COLUMNS)):
+            if table in existing and not (args.tables and table not in args.tables):
+                n += loader.apply_comments(table, loader.spec_drift(table, specs))
+        return n
+
+    if args.comments_only:
+        comments_synced += sync_all_comments()
         log(f"comments-only: {comments_synced} comment(s) {'would be ' if args.dry_run else ''}synced")
         return
     if args.sync_comments:
-        # Deliberate, reviewed comment update across all data tables (column
-        # comments only; table descriptions come from the build manifest, so
-        # those are synced below for the tables in this manifest).
-        for table in sorted(existing - {"table_metadata", "ingest_runs"}):
-            if args.tables and table not in args.tables:
-                continue
-            comments_synced += loader.apply_comments(table, loader.comment_drift(table))
+        comments_synced += sync_all_comments()
     try:
         for table, info in sorted(manifest["tables"].items()):
             if args.tables and table not in args.tables:

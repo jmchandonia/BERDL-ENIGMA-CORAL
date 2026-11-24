@@ -16,7 +16,10 @@ The out_of_water rule is not an entry here: cm_out_of_water.py applies it to the
 live tables after every load (and once over history with --since).
 Entries: l9-sz2-depth-offset-20261111 (L9-SZ2 depth to water +4.07 ft from
 2026-09-24, post-service calibration error); l8-sz1-dead-sonde-20261111 (every
-L8-SZ1 channel nulled from 2026-10-11, failing sonde).
+L8-SZ1 channel nulled from 2026-10-11, failing sonde); ws3-anemometer-20261124
+(WS3 wind speed and gust speed nulled from 2025-03-26 18:45, the first reading
+after the anemometer's last real one; an entry's start and end may be local
+date-times as well as dates).
 
 Each application is recorded in ingest_runs with mode "correction" and
 ingest_run_id = the entry's id, and is refused a second time.  `--all` applies
@@ -88,6 +91,17 @@ def main() -> None:
             apply_entry(spark, ns, kind, entry, columns, args)
 
 
+def local_range_sql(start: str, end: str) -> str:
+    """SQL test that a row's local (America/New_York) time is within an entry's
+    inclusive range; start and end are local dates (whole days) or local
+    date-times ("2025-03-26T18:45:00").  The stored strings carry the Eastern
+    offset, so the instant is exact."""
+    local = f"from_utc_timestamp(to_timestamp({cm.TIMESTAMP_COLUMN}), 'America/New_York')"
+    lo = f"{local} >= TIMESTAMP '{start.replace('T', ' ')}'" if len(start) > 10 else f"to_date({local}) >= DATE '{start}'"
+    hi = f"{local} <= TIMESTAMP '{end.replace('T', ' ')}'" if len(end) > 10 else f"to_date({local}) <= DATE '{end}'"
+    return f"({lo} AND {hi})"
+
+
 def _record(loader, entry_id: str, started, what: str, per_table: dict) -> None:
     loader.record_run(
         {
@@ -137,8 +151,7 @@ def apply_rows(spark, ns: str, entry: dict, columns: dict, args) -> None:
     cond_col, below = columns[entry["when"]["label"]]["column"], float(entry["when"]["below"])
     measurement_cols = {v["column"] for v in columns.values()}
     cols = [c for c in spark.table(target).columns if c in measurement_cols]
-    where = (f"{cond_col} < {below!r} AND to_date(from_utc_timestamp(to_timestamp({cm.TIMESTAMP_COLUMN}), 'America/New_York')) "
-             f"BETWEEN DATE '{start}' AND DATE '{end}'")
+    where = f"{cond_col} < {below!r} AND {local_range_sql(start, end)}"
     n = spark.sql(f"SELECT count(*) AS n FROM {target} WHERE {where}").collect()[0]["n"]
     print(f"{table}: {n} rows with {cond_col} < {below:g} in [{start}, {end}]")
     per_table = {}
@@ -165,9 +178,7 @@ def apply_entry(spark, ns: str, kind: str, entry: dict, columns: dict, args) -> 
 
     started = datetime.now(timezone.utc)
     target = f"{ns}.`{table}`"
-    # Local dates: the range is inclusive and the stored strings carry the Eastern offset.
-    in_range = (f"to_date(from_utc_timestamp(to_timestamp({cm.TIMESTAMP_COLUMN}), 'America/New_York')) "
-                f"BETWEEN DATE '{start}' AND DATE '{end}'")
+    in_range = local_range_sql(start, end)
     if kind == "offset":
         in_range += f" AND ingested_at < TIMESTAMP '{cutoff}'"
     per_column = {}

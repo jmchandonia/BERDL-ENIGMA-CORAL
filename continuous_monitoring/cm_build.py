@@ -41,7 +41,7 @@ import json
 import statistics
 import sys
 from collections import Counter, defaultdict
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, time as dtime, timedelta, timezone
 from pathlib import Path
 
 import cm_common as cm
@@ -97,10 +97,40 @@ DEPTH_NOTE = (
 # Site names used in LI-COR export headers ("Background Site A" before "Background A").
 EXPORT_SITES = [("Background Site A", "WS2"), ("Background A", "WS2"), ("Area 2", "WS1"), ("Area 3", "WS3")]
 EXPORT_TIME_FORMATS = ("%m/%d/%y %H:%M:%S %z", "%m/%d/%Y %H:%M:%S %z", "%m/%d/%y %H:%M:%S", "%m/%d/%Y %H:%M:%S")
+# HOBOlink exports print the station's standard time all year: the Area 2 and
+# Background A files carry "-0500" on every row, summer included, and are parsed
+# with that offset.  The Area 3 export prints no offset, and its times are the
+# same fixed UTC-5 (it has 02:00-02:45 readings on the spring-forward mornings
+# of 2023 and 2024, no repeated hour in autumn, and its last readings match the
+# LI-COR API only when read as UTC-5).  Until 2026-11-24 a time without an
+# offset was read as DST-aware local time, which stamped every summer WS3
+# export reading one hour early; fix_ws3_export_20261124.py rebuilt those rows.
+EXPORT_NAIVE_OFFSET = timezone(timedelta(hours=-5))
 
 
 def _is_sentinel(value: float, rule: dict) -> bool:
     return ("equals" in rule and value == rule["equals"]) or ("below" in rule and value < rule["below"])
+
+
+def range_bounds(entry: dict) -> tuple[datetime, datetime]:
+    """Inclusive local-time bounds of a corrections.json entry.
+
+    "start" and "end" are local (America/New_York) dates, meaning whole days,
+    or local date-times such as "2025-03-26T18:45:00" when a cut falls within
+    a day.
+    """
+    def bound(text: str, is_end: bool) -> datetime:
+        if len(text) > 10:
+            return datetime.fromisoformat(text)
+        return datetime.combine(date.fromisoformat(text), dtime.max if is_end else dtime.min)
+
+    return bound(entry["start"], False), bound(entry["end"], True)
+
+
+def in_range(entry: dict, timestamp: datetime) -> bool:
+    """True if the (offset-aware local) timestamp is within the entry's bounds."""
+    lo, hi = entry["_bounds"]
+    return lo <= timestamp.replace(tzinfo=None) <= hi
 
 
 def breaks(second: list[tuple[int, float]]) -> list[int]:
@@ -217,6 +247,8 @@ class Builder:
         self.out_of_water = corrections.get("out_of_water")
         self.sentinels = corrections.get("sentinels", [])
         self.null_rows = corrections.get("null_rows", [])
+        for entry in self.null_ranges + self.offset_ranges + self.null_rows:
+            entry["_bounds"] = range_bounds(entry)
         self.holdback_cutoff = now - holdback if holdback is not None else None
         # (table, timestamp) -> label -> (priority, path, value, source kind)
         self.cells: dict[tuple[str, datetime], dict[str, tuple[int, str, float | None, str]]] = defaultdict(dict)
@@ -259,14 +291,13 @@ class Builder:
         info["labels"].add(label)
         value = rec.value
         for rng in self.null_ranges:
-            if rng["table"] == table and label in rng["labels"] and rng["start"] <= timestamp.date().isoformat() <= rng["end"]:
+            if rng["table"] == table and label in rng["labels"] and in_range(rng, timestamp):
                 if value not in (None, 0.0) and not rng.get("expect_nonzero"):
                     self.stats["nonzero_values_nulled_by_corrections"] += 1
                 value = None
                 self.stats["values_nulled_by_corrections"] += 1
         for rng in self.offset_ranges:
-            if (value is not None and rng["table"] == table and label in rng["labels"]
-                    and rng["start"] <= timestamp.date().isoformat() <= rng["end"]):
+            if value is not None and rng["table"] == table and label in rng["labels"] and in_range(rng, timestamp):
                 value = round(value + rng["offset"], 6)
                 self.stats["values_offset_by_corrections"] += 1
         for rule in self.sentinels:
@@ -457,6 +488,8 @@ class Builder:
         Date and Time columns and site names "Area 2"/"Background A", which
         silently skips the Area 3 export (date and time in one column) and
         the "Background Site A" columns.  This parser handles both layouts.
+        Times carry the export's own offset where it prints one; a time
+        without an offset is fixed UTC-5 (EXPORT_NAIVE_OFFSET).
         """
         b = self.b
         for path in sorted((cm.FAM_ROOT / "licor").glob("*.csv")):
@@ -486,7 +519,9 @@ class Builder:
                     if timestamp is None:
                         self.stats["licor_export_unparsed_rows"] += 1
                         continue
-                    timestamp = b.local_naive_from_source(timestamp, None)
+                    if timestamp.tzinfo is None:
+                        self.stats["licor_export_naive_timestamps"] += 1
+                    timestamp = b.local_naive_from_source(timestamp, EXPORT_NAIVE_OFFSET)
                     for idx, location, measurement, header in columns:
                         value = b.parse_float(row[idx]) if idx < len(row) else None
                         b.add_record(records, location, timestamp, measurement, value, "licor_root", str(path), header)
@@ -573,7 +608,7 @@ class Builder:
                 for timestamp in sorted(by_table[table]):
                     cell = self.cells[(table, timestamp)]
                     values = [cell[label][2] if label in cell else None for label in labels]
-                    if any(ent["table"] == table and ent["start"] <= timestamp.date().isoformat() <= ent["end"]
+                    if any(ent["table"] == table and in_range(ent, timestamp)
                            and ent["when"]["label"] in cell and cell[ent["when"]["label"]][2] is not None
                            and cell[ent["when"]["label"]][2] < ent["when"]["below"] for ent in self.null_rows):
                         self.stats["fault_rows_dropped"] += 1
@@ -632,7 +667,14 @@ def main() -> None:
     parser.add_argument("--out", type=Path, required=True, help="staging directory for this run")
     parser.add_argument("--holdback-minutes", type=int, default=60)
     parser.add_argument("--no-state", action="store_true", help="do not read or update build_state.json")
+    parser.add_argument("--exports-only", action="store_true",
+                        help="backfill mode: parse only the LI-COR CSV exports (no HydroVu or LI-COR API files, no state); "
+                             "stages the export-derived rows of WS1, WS2 and WS3 for a rebuild such as fix_ws3_export_20261124.py")
     args = parser.parse_args()
+    if args.exports_only and args.mode != "backfill":
+        parser.error("--exports-only needs --mode backfill")
+    if args.exports_only:
+        args.no_state = True
 
     now = datetime.now(timezone.utc)
     builder = Builder(timedelta(minutes=args.holdback_minutes) if args.holdback_minutes > 0 else None, now)
@@ -646,11 +688,11 @@ def main() -> None:
 
     hydrovu_files: list[tuple[Path, bool]] = []
     licor_files: list[Path] = []
-    if args.mode == "backfill":
+    if args.mode == "backfill" and not args.exports_only:
         for path in sorted((cm.FAM_ROOT / "hydrovu/data").rglob("*.json")):
             hydrovu_files.append((path, True))
         licor_files += sorted(p for p in (cm.FAM_ROOT / "licor/data").rglob("*.json"))
-    for rel, entry in sorted(fetch_state.items()):
+    for rel, entry in (sorted(fetch_state.items()) if not args.exports_only else []):
         path = cm.FETCH_DIR / rel
         if not path.exists():
             continue
@@ -706,7 +748,8 @@ def main() -> None:
     horizon = int(now.timestamp()) - 90 * 86400
     for key, history in builder.schedules.items():
         builder.schedules[key] = [e for i, e in enumerate(history) if e["since"] >= horizon or i == len(history) - 1 or history[i + 1]["since"] > horizon]
-    (args.out / "reading_schedule_pending.json").write_text(json.dumps(builder.schedules, indent=1, sort_keys=True) + "\n")
+    if not args.exports_only:  # an exports-only build saw no HydroVu stream, so it must not commit empty schedules
+        (args.out / "reading_schedule_pending.json").write_text(json.dumps(builder.schedules, indent=1, sort_keys=True) + "\n")
     if manifest["unknown_labels"]:
         sys.exit(3)
 

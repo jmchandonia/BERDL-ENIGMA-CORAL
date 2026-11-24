@@ -8,6 +8,10 @@
 #   run_daily.sh                      normal daily run
 #   run_daily.sh --load-only DIR      skip fetch/build; load an existing staging
 #                                     directory (e.g. a backfill) and commit its state
+#   run_daily.sh --exec SCRIPT ARGS   maintenance: open the proxy chain under the
+#                                     daily lock and run one code/ script with the
+#                                     venv python (a fix_*.py, cm_load.py
+#                                     --sync-comments ...); prints its output
 
 set -u
 BASE=${CM_WORK_ROOT:-/data/edr/field_automated_measurements/continuous_monitoring}
@@ -19,9 +23,14 @@ REPORT_TO=${CM_REPORT_TO:-jmc}
 RUN_ID=$(date -u +%Y%m%dT%H%M%SZ)
 STAGE=$BASE/staging/$RUN_ID
 LOAD_ONLY=
+EXEC=
 if [ "${1:-}" = "--load-only" ]; then
     LOAD_ONLY=1
     STAGE=$(cd "$2" && pwd) || exit 1
+elif [ "${1:-}" = "--exec" ]; then
+    EXEC=1
+    shift
+    [ $# -ge 1 ] || { echo "usage: run_daily.sh --exec SCRIPT [ARGS...]"; exit 2; }
 fi
 LOG=$BASE/logs/daily_$RUN_ID.log
 SOCK=$BASE/state/tunnel.sock
@@ -84,7 +93,7 @@ report_load() {  # email the success report built from the staging load_result.j
 
 cd "$CODE" || fail "cd $CODE"
 
-if [ -z "$LOAD_ONLY" ]; then
+if [ -z "$LOAD_ONLY" ] && [ -z "$EXEC" ]; then
 log "fetch"
 "$PY" cm_fetch.py >> "$LOG" 2>&1 || fail "fetch"
 
@@ -136,6 +145,19 @@ fi
 log "jupyterhub"
 "$BASE/.venv/bin/berdl-remote" login --hub-url https://hub.berdl.kbase.us >> "$LOG" 2>&1 || fail "berdl-remote login"
 "$BASE/.venv/bin/berdl-remote" spawn --timeout 180 >> "$LOG" 2>&1 || fail "berdl-remote spawn"
+
+if [ -n "$EXEC" ]; then
+    log "exec: $*"
+    OUT=$BASE/logs/exec_$RUN_ID.out
+    "$PY" "$@" > "$OUT" 2>&1
+    rc=$?
+    cat "$OUT" >> "$LOG"
+    cat "$OUT"
+    [ $rc -eq 0 ] || fail "exec $1 (exit $rc)"
+    log "done"
+    cleanup
+    exit 0
+fi
 
 log "nitrate correction (one-time; no-op once recorded in ingest_runs)"
 # Non-fatal: the correction is permanently recorded, so this is a no-op whose

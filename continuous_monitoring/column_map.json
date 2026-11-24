@@ -146,15 +146,15 @@
       ]
     },
     "concentration, phase=solid, state=dissolved, ppt": {
-      "column": "concentration_phase_solid_physiochemical_state_dissolved_parts_per_trillion",
+      "column": "concentration_phase_solid_physiochemical_state_dissolved_parts_per_thousand",
       "scalar_type": "float",
       "description": "concentration, phase=solid, physiochemical state=dissolved",
-      "unit": "parts per trillion",
-      "unit_sys_oterm_id": "UO:0000171",
+      "unit": "parts per thousand",
+      "unit_sys_oterm_id": "UO:0000168",
       "example_bricks": [
-        "Brick0001322",
-        "Brick0001487",
-        "Brick0001502"
+        "Brick0002366",
+        "Brick0002367",
+        "Brick0002368"
       ]
     },
     "conductivity, microsiemen per cm": {

@@ -22,7 +22,7 @@ How it differs from the CORAL bricks:
 | Table | Contents |
 |---|---|
 | `hazen_<family>_<location>[_<zone>]` | Brick-style columns: `time_series_datetime`, the measurement columns (same names, types and JSON comments as the enigma.coral brick columns), and `sdt_location_name`, which references `enigma.coral.sdt_location`. Also `provenance`, `source_file`, `ingest_run_id` and `ingested_at`. |
-| `table_metadata` | One row per data table: instrument, zone, deployment depth, processing notes (nitrate units, timestamp/depth corrections), first and last timestamps, row count. Rewritten each run. |
+| `table_metadata` | One row per data table: instrument, zone, deployment depth (below the top of the well casing, as the field team measures it; the SSO casings stick up above ground), processing notes (nitrate units, timestamp/depth corrections), first and last timestamps, row count. Rewritten each run. |
 | `ingest_runs` | One row per load: mode, times, status, rows staged and appended, details. |
 
 ## Processing
@@ -40,9 +40,20 @@ These corrections differ from the bricks and are listed in
 
 - **+4 h on every HydroVu SSO timestamp,** Aqua TROLL SZ and Level TROLL
   VZ/VSZ alike. This was verified against manual VuSitu logs
-  (`analysis/lag_test.py`). The 2022–23 EFPW HydroVu data is left
-  unshifted; it could not be checked.
+  (`analysis/lag_test.py`). The 2022–23 EFPW HydroVu data is not shifted:
+  a barometric-pressure lag test against the WS1 weather station (CORAL
+  monitoring update, 2026-11-24) shows its clock is right.
 - **The SZ depth relabel** to ground surface → water surface.
+- **LI-COR export times are fixed Eastern Standard Time.** HOBOlink exports
+  print the station's standard time all year (`-0500` on every Area 2 and
+  Background A row, summer included). The Area 3 export prints no offset; its
+  times are the same fixed UTC-5 and are read with that offset
+  (`EXPORT_NAIVE_OFFSET`), then stored as local time like everything else.
+  Until 2026-11-24 they were read as DST-aware local time, which stamped every
+  summer WS3 export reading one hour early and dropped the 02:00–02:45
+  readings of the two spring-forward mornings; `fix_ws3_export_20261124.py`
+  rebuilt those rows from a `cm_build.py --mode backfill --exports-only`
+  staging (ingest run `ws3-export-est-20261124`).
 - **Real reading times for interpolated HydroVu streams.** At SSO-L8, L9, M6
   and U3, HydroVu returns a 1-minute series interpolated between real
   readings, usually hourly at a fixed minute for each instrument. Slope breaks
@@ -58,11 +69,12 @@ These corrections differ from the bricks and are listed in
   - The bricks instead keep one arbitrary 15-minute phase per day, which is
     mostly interpolated values.
 - **The value ranges listed in `corrections.json`**: `null_ranges` (the dead WS3
-  anemometer from 2025-03-27 on; every L8-SZ1 channel from 2026-10-11, a failing
+  anemometer after its last real reading at 2025-03-26 18:30; every L8-SZ1 channel from 2026-10-11, a failing
   sonde whose stray readings passed the generic filters) and `offset_ranges` (a constant added to the
   value: L9-SZ2 depth to water +4.07 ft from 2026-09-24, the sonde's
-  post-service calibration error, until it is recalibrated).  Each entry's
-  reason is written into the table's `table_metadata` notes.  Rows loaded
+  post-service calibration error, until it is recalibrated).  `start` and
+  `end` are local dates, or local date-times when a cut falls within a day.
+  Each entry's reason is written into the table's `table_metadata` notes.  Rows loaded
   before an entry existed are corrected once by the matching `fix_*.py`
   script (`fix_nitrate_20261019.py`, `fix_offset_20261111.py --all`, which
   applies every entry that has an `id` and is not yet recorded),
@@ -155,6 +167,10 @@ $B/code/run_daily.sh --load-only $B/staging/backfill
 
 # compare staged tables with the active API-derived CORAL bricks (run on stout)
 python3 compare_with_bricks.py --staging /mnt/net/dipa.jmcnet$B/staging/backfill --out compare.json
+
+# maintenance: run one code/ script through the proxy chain, under the daily lock
+$B/code/run_daily.sh --exec fix_offset_20261111.py --all --dry-run
+$B/code/run_daily.sh --exec cm_load.py --staging /any --sync-comments --comments-only
 ```
 
 The first load was on 2026-10-16: 42 tables and 1,471,200 rows (ingest run
