@@ -2606,3 +2606,15 @@ Validation completed before live export:
   the next manual bricks: builder corrections (item 3), deployment depths that are below top of casing. The first ontology
   reload lost its websocket after 10 minutes and was cut off (term collection checked intact); reloads now go through
   scratchpad `hub_tools/run_long.py` (kernel thread + polling).
+- 2026-11-24: Monitoring update 2 loaded (`coral_import/monitoring_update_20261124`, builder
+  `tools/build_monitoring_update2_coral_import.py`): Brick0002483-0002487. New: EFPW03 direct download 2023-04-01 to 05-09
+  (5,434 readings, clock Central as labelled, confirmed against the HydroVu brick) and EFPW06 direct download 2023-01-18 to
+  05-09 (15,970 readings, clock Eastern as labelled, not checkable); both add nitrate. Replacements (Update Data each):
+  Brick0001232 (EFPW03 HydroVu) ending where the download begins; Brick0002351 and Brick0002352 (WS3, Area 3 LI-COR export)
+  with the clock corrected - the export is on Eastern Standard Time all year and had been read as local time, so 47,245
+  daylight-saving readings were one hour early (my error in the 2026-11-19 load; found by comparing the export with the API
+  data of late May 2024). sync-20261124-131101 (PREV sync-20261119-211840): 10 tables imported, 3 superseded brick tables
+  dropped, row counts and comments verified, 56/56 foreign keys. The first two sync attempts stopped at login because the
+  KBase SOCKS tunnel (port 1338) was down; the user restarted it. `continuous_monitoring/RELAY_NOTE_20261124.md` lists five
+  findings for the continuous-monitoring feed (same WS3 clock error, hourly thinning at L8/L9/M6/U3, floor conductivity,
+  "parts per trillion", smaller items); the user relayed it to that session.

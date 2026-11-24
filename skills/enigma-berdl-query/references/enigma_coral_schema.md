@@ -2,7 +2,7 @@
 
 Lakehouse namespace `enigma.coral` (Iceberg). Use `enigma.coral` as the BERDL MCP `database` value and `enigma.coral.<table>` in Spark SQL.
 
-Total Tables: 856
+Total Tables: 858
 
 ---
 
@@ -30,7 +30,7 @@ Total Tables: 856
 | withdrawn_date | string | Yes | {"description": "Date when this dataset was withdrawn, or null if the dataset is currently valid"} |
 | superceded_by_ddt_ndarray_id | string | Yes | {"description": "Dataset that supercedes this one, if the dataset was withdrawn and replaced, or null if the dataset is currently valid", "type": "foreign_key", "references": "ddt_ndarray.ddt_ndarray_id"} |
 
-**Total Rows:** 2250
+**Total Rows:** 2255
 
 ### Sample Data (5 rows)
 
@@ -68,7 +68,7 @@ Total Tables: 856
 | variable_oterm_name | string | Yes | {"description": "Dimension variable data type"} |
 | original_csv_string | string | Yes | {"description": "Original representation of this variable in the CORAL data dump CSV"} |
 
-**Total Rows:** 9765
+**Total Rows:** 9800
 
 ### Sample Data (5 rows)
 
@@ -8126,47 +8126,6 @@ Total Tables: 856
 | 2023-01-18T14:10:00.000-05:00 | 14.241231224388436 | 97.0 | 15.71399974822998 | 475.1323461532593 | 639.3090209960938 | 0.9987928867340088 | 3.1421826232910157 | 94.28977966308594 | 5.195548057556152 | 220.29748535156253 | 1564.1888427734375 | 0.36028164625167847 | 730.9728393554688 | 18.434566497802734 | 4.193058967590332 | EFPW02 |
 | 2023-01-18T14:40:00.000-05:00 | 14.243116040932653 | 97.0 | 15.696000099182129 | 474.66957569122314 | 638.77099609375 | 0.998791515827179 | 3.1422494796752933 | 93.7032699584961 | 5.206583499908447 | 244.81645202636722 | 1565.5062255859375 | 0.35991936922073364 | 730.2608642578125 | 18.440637588500977 | 4.192958831787109 | EFPW02 |
 | 2023-01-18T15:10:00.000-05:00 | 14.244277380619259 | 97.0 | 15.71399974822998 | 474.3531346321106 | 638.4100341796875 | 0.998790442943573 | 3.1389290428161623 | 93.97506713867188 | 5.201514720916748 | 268.2220153808594 | 1566.3914794921875 | 0.3596717417240143 | 729.7740478515625 | 18.445293426513672 | 4.1883344650268555 | EFPW02 |
-
----
-
-## Table: ddt_brick0001232
-
-**Table Description:** hazen_aquatroll600_EFPW03_20221221_20230405.hndarray - Hazen Lab Aqua TROLL 600 Data
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| time_series_datetime | string | Yes | {"description": "datetime"} |
-| air_pressure_pound_per_square_inch | double | Yes | {"description": "air pressure", "unit": "pound per square inch"} |
-| charge_instrument_battery_percent | double | Yes | {"description": "charge, instrument=battery", "unit": "percent"} |
-| charge_instrument_external_power_source_volt | double | Yes | {"description": "charge, instrument=external power source", "unit": "volt"} |
-| concentration_molecule_from_list_rhodamine_b_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=rhodamine B", "unit": "milligram per liter"} |
-| concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, phase=solid, physiochemical state=dissolved", "unit": "milligram per liter"} |
-| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
-| density_molecule_from_list_water_gram_per_cubic_centimeter | double | Yes | {"description": "density, molecule from list=water", "unit": "gram per cubic centimeter"} |
-| depth_top_water_surface_bottom_instrument_meter | double | Yes | {"description": "depth, top=water surface, bottom=instrument", "unit": "meter"} |
-| ph_millivolt | double | Yes | {"description": "pH", "unit": "millivolt"} |
-| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
-| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
-| resistivity_ohm_cm | double | Yes | {"description": "resistivity", "unit": "ohm-cm"} |
-| salinity_practical_salinity_unit | double | Yes | {"description": "salinity", "unit": "practical salinity unit"} |
-| specific_conductivity_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity", "unit": "microsiemen per centimeter"} |
-| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
-| water_pressure_pound_per_square_inch | double | Yes | {"description": "water pressure", "unit": "pound per square inch"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-
-**Total Rows:** 4969
-
-### Sample Data (5 rows)
-
-| time_series_datetime | air_pressure_pound_per_square_inch | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_rhodamine_b_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_water_surface_bottom_instrument_meter | ph_millivolt | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2022-12-21T12:20:00.000-05:00 | 14.365168829235905 | 98.0 | 15.633000373840332 | 4.687051987275481E-4 | 382.69564509391785 | 521.7477416992188 | 0.9986204504966736 | 3.438948811340332 | 104.13169860839844 | 4.899471759796143 | 227.513916015625 | 1916.635009765625 | 0.28814345598220825 | 588.7625122070312 | 19.040678024291992 | 4.614383697509766 | EFPW03 |
-| 2022-12-21T12:50:00.000-05:00 | 14.355863949063949 | 98.0 | 15.62399959564209 | 6.550987018272281E-4 | 380.7724118232727 | 519.1127319335938 | 0.9986194968223572 | 3.44403687286377 | 102.98490905761719 | 4.920299530029297 | 222.5595703125 | 1926.3638916015625 | 0.28664860129356384 | 585.8037109375 | 19.039514541625977 | 4.621613502502441 | EFPW03 |
-| 2022-12-21T13:20:00.000-05:00 | 14.347042960428078 | 98.0 | 15.614999771118164 | 5.951711209490895E-4 | 375.8753538131714 | 512.4478759765625 | 0.9986163377761841 | 3.449108656311035 | 98.24037170410156 | 5.006506443023682 | 219.29562377929688 | 1951.41796875 | 0.2828446328639984 | 578.269775390625 | 19.040542602539062 | 4.628870010375977 | EFPW03 |
-| 2022-12-21T13:50:00.000-05:00 | 14.340149276373742 | 98.0 | 15.614999771118164 | 4.7120568342506886E-4 | 373.1231093406677 | 508.68475341796875 | 0.9986148476600647 | 3.4532717742919923 | 101.49002075195312 | 4.9474592208862305 | 217.30484008789062 | 1965.8541259765625 | 0.2807074785232544 | 574.0355224609375 | 19.039554595947266 | 4.634791374206543 | EFPW03 |
-| 2022-12-21T14:20:00.000-05:00 | 14.33096241852766 | 98.0 | 15.62399959564209 | 6.338137900456786E-4 | 382.9837739467621 | 522.1403198242188 | 0.9986206293106079 | 3.4573043769836427 | 102.86093139648438 | 4.9225592613220215 | 215.34027099609375 | 1915.1939697265625 | 0.28836745023727417 | 589.205810546875 | 19.040651321411133 | 4.64047908782959 | EFPW03 |
 
 ---
 
@@ -23550,69 +23509,6 @@ Total Tables: 856
 
 ---
 
-## Table: ddt_brick0002351
-
-**Table Description:** hazen_hobo_WS3_20220509_20230725.hndarray - Hazen Lab HOBO Weather Station Data for WS3 from 2022-05-09 to 2023-07-25
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| time_series_datetime | string | Yes | {"description": "datetime"} |
-| rainfall_inch | double | Yes | {"description": "rainfall", "unit": "inch"} |
-| rainfall_mathematical_context_cumulative_inch | double | Yes | {"description": "rainfall, mathematical context=cumulative", "unit": "inch"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-
-**Total Rows:** 42409
-
-### Sample Data (5 rows)
-
-| time_series_datetime | rainfall_inch | rainfall_mathematical_context_cumulative_inch | sdt_location_name |
-|---|---|---|---|
-| 2022-05-09T13:15:00.000-04:00 | 0.0 | NULL | WS3 |
-| 2022-05-09T13:30:00.000-04:00 | 0.0 | NULL | WS3 |
-| 2022-05-09T13:45:00.000-04:00 | 0.0 | NULL | WS3 |
-| 2022-05-09T14:00:00.000-04:00 | 0.0 | NULL | WS3 |
-| 2022-05-09T14:15:00.000-04:00 | 0.0 | NULL | WS3 |
-
----
-
-## Table: ddt_brick0002352
-
-**Table Description:** hazen_hobo_WS3_20230725_20240522.hndarray - Hazen Lab HOBO Weather Station Data for WS3 from 2023-07-25 to 2024-05-22
-
-### Schema
-
-| Column Name | Data Type | Nullable | Comment |
-|-------------|-----------|----------|----------|
-| time_series_datetime | string | Yes | {"description": "datetime"} |
-| air_pressure_inhg | double | Yes | {"description": "air pressure", "unit": "inHg"} |
-| concentration_molecule_from_list_water_physiochemical_state_in_soil_m_3_per_m_3 | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil", "unit": "m^3 per m^3"} |
-| dew_point_degree_fahrenheit | double | Yes | {"description": "dew point", "unit": "degree Fahrenheit"} |
-| gust_speed_mile_per_hour | double | Yes | {"description": "gust speed", "unit": "mile per hour"} |
-| rainfall_inch | double | Yes | {"description": "rainfall", "unit": "inch"} |
-| rainfall_mathematical_context_cumulative_inch | double | Yes | {"description": "rainfall, mathematical context=cumulative", "unit": "inch"} |
-| relative_humidity_percent | double | Yes | {"description": "relative humidity", "unit": "percent"} |
-| solar_radiation_watt_per_square_meter | double | Yes | {"description": "solar radiation", "unit": "watt per square meter"} |
-| temperature_degree_fahrenheit | double | Yes | {"description": "temperature", "unit": "degree Fahrenheit"} |
-| wind_direction_degree | double | Yes | {"description": "wind direction", "unit": "degree"} |
-| wind_speed_mile_per_hour | double | Yes | {"description": "wind speed", "unit": "mile per hour"} |
-| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
-
-**Total Rows:** 29032
-
-### Sample Data (5 rows)
-
-| time_series_datetime | air_pressure_inhg | concentration_molecule_from_list_water_physiochemical_state_in_soil_m_3_per_m_3 | dew_point_degree_fahrenheit | gust_speed_mile_per_hour | rainfall_inch | rainfall_mathematical_context_cumulative_inch | relative_humidity_percent | solar_radiation_watt_per_square_meter | temperature_degree_fahrenheit | wind_direction_degree | wind_speed_mile_per_hour | sdt_location_name |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2023-07-25T08:30:00.000-04:00 | 29.139 | 0.7186 | 72.8 | 6.0 | 0.0 | 0.0 | 83.6 | 482.0 | 78.12 | 278.0 | 1.0 | WS3 |
-| 2023-07-25T08:45:00.000-04:00 | 29.136 | 0.7186 | 73.32 | 6.0 | 0.0 | 0.0 | 81.7 | 517.0 | 79.35 | 298.0 | 1.0 | WS3 |
-| 2023-07-25T09:00:00.000-04:00 | 29.136 | 0.7186 | 72.94 | 9.0 | 0.0 | 0.0 | 79.3 | 597.0 | 79.88 | 286.0 | 1.0 | WS3 |
-| 2023-07-25T09:15:00.000-04:00 | 29.133 | 0.7186 | 73.03 | 6.0 | 0.0 | 0.0 | 77.5 | 587.0 | 80.67 | 296.0 | 1.0 | WS3 |
-| 2023-07-25T09:30:00.000-04:00 | 29.13 | 0.7186 | 73.6 | 6.0 | 0.0 | 0.0 | 76.0 | 629.0 | 81.86 | 278.0 | 1.0 | WS3 |
-
----
-
 ## Table: ddt_brick0002353
 
 **Table Description:** hazen_hobo_WS2_20190622_20190723.hndarray - Hazen Lab HOBO Weather Station Data for WS2 from 2019-06-22 to 2019-07-23
@@ -28981,6 +28877,191 @@ Total Tables: 856
 
 ---
 
+## Table: ddt_brick0002483
+
+**Table Description:** hazen_aquatroll600_EFPW03_20230401_20230509.hndarray - Hazen Lab Aqua TROLL 600 Data for EFPW03 from 2023-04-01 to 2023-05-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| air_pressure_millimetres_of_mercury | double | Yes | {"description": "air pressure", "unit": "millimetres of mercury"} |
+| charge_instrument_battery_percent | double | Yes | {"description": "charge, instrument=battery", "unit": "percent"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_rhodamine_b_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=rhodamine B", "unit": "milligram per liter"} |
+| concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, phase=solid, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| density_molecule_from_list_water_gram_per_cubic_centimeter | double | Yes | {"description": "density, molecule from list=water", "unit": "gram per cubic centimeter"} |
+| depth_top_water_surface_bottom_instrument_meter | double | Yes | {"description": "depth, top=water surface, bottom=instrument", "unit": "meter"} |
+| ph_millivolt | double | Yes | {"description": "pH", "unit": "millivolt"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| resistivity_ohm_cm | double | Yes | {"description": "resistivity", "unit": "ohm-cm"} |
+| salinity_practical_salinity_unit | double | Yes | {"description": "salinity", "unit": "practical salinity unit"} |
+| specific_conductivity_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| water_pressure_pound_per_square_inch | double | Yes | {"description": "water pressure", "unit": "pound per square inch"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+
+**Total Rows:** 5434
+
+### Sample Data (5 rows)
+
+| time_series_datetime | air_pressure_millimetres_of_mercury | charge_instrument_battery_percent | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_rhodamine_b_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_water_surface_bottom_instrument_meter | ph_millivolt | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2023-04-01T16:07:41.000-04:00 | 728.185 | 82.0 | 75.04 | 5.0E-6 | 382.0 | 504.155 | 0.999 | 3.557016 | 102.034 | 4.928 | 205.229 | 1983.519 | 0.288 | 588.102 | 17.527 | 4.782 | EFPW03 |
+| 2023-04-01T16:17:41.000-04:00 | 728.341 | 82.0 | 75.198 | 4.0E-6 | 382.0 | 503.91 | 0.999 | 3.5567112000000005 | 101.717 | 4.934 | 205.131 | 1984.48 | 0.287 | 587.829 | 17.526 | 4.782 | EFPW03 |
+| 2023-04-01T16:27:41.000-04:00 | 728.132 | 82.0 | 75.11 | 5.0E-6 | 382.0 | 504.04 | 0.999 | 3.5588448 | 101.094 | 4.945 | 204.912 | 1983.968 | 0.288 | 587.98 | 17.526 | 4.784 | EFPW03 |
+| 2023-04-01T16:37:41.000-04:00 | 728.573 | 82.0 | 74.871 | 5.0E-6 | 382.0 | 503.774 | 0.999 | 3.5557968000000004 | 101.359 | 4.94 | 204.976 | 1985.018 | 0.287 | 587.678 | 17.525 | 4.78 | EFPW03 |
+| 2023-04-01T16:47:41.000-04:00 | 728.678 | 82.0 | 77.529 | 5.0E-6 | 382.0 | 503.961 | 0.999 | 3.5533584 | 100.35 | 4.959 | 204.814 | 1984.279 | 0.287 | 587.891 | 17.525 | 4.777 | EFPW03 |
+
+---
+
+## Table: ddt_brick0002484
+
+**Table Description:** hazen_aquatroll600_EFPW06_20230118_20230509.hndarray - Hazen Lab Aqua TROLL 600 Data for EFPW06 from 2023-01-18 to 2023-05-09
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| charge_instrument_battery_percent | double | Yes | {"description": "charge, instrument=battery", "unit": "percent"} |
+| concentration_molecule_from_list_nitrate_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=nitrate", "unit": "milligram per liter"} |
+| concentration_molecule_from_list_rhodamine_b_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=rhodamine B", "unit": "milligram per liter"} |
+| concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, phase=solid, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| density_molecule_from_list_water_gram_per_cubic_centimeter | double | Yes | {"description": "density, molecule from list=water", "unit": "gram per cubic centimeter"} |
+| depth_top_water_surface_bottom_instrument_meter | double | Yes | {"description": "depth, top=water surface, bottom=instrument", "unit": "meter"} |
+| ph_millivolt | double | Yes | {"description": "pH", "unit": "millivolt"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| resistivity_ohm_cm | double | Yes | {"description": "resistivity", "unit": "ohm-cm"} |
+| salinity_practical_salinity_unit | double | Yes | {"description": "salinity", "unit": "practical salinity unit"} |
+| specific_conductivity_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| water_pressure_pound_per_square_inch | double | Yes | {"description": "water pressure", "unit": "pound per square inch"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+
+**Total Rows:** 15970
+
+### Sample Data (5 rows)
+
+| time_series_datetime | charge_instrument_battery_percent | concentration_molecule_from_list_nitrate_milligram_per_liter | concentration_molecule_from_list_rhodamine_b_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_water_surface_bottom_instrument_meter | ph_millivolt | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2023-01-18T13:00:00.000-05:00 | 72.0 | 1.8 | 4.0E-6 | 565.0 | 750.22 | 0.999 | 3.2958024000000004 | -10.443 | 6.977 | -70.033 | 1332.943 | 0.431 | 869.623 | 17.811 | 4.411 | EFPW06 |
+| 2023-01-18T13:10:00.000-05:00 | 72.0 | 1.791 | 5.0E-6 | 565.0 | 749.749 | 0.999 | 3.2924496 | -9.596 | 6.962 | -69.022 | 1333.78 | 0.431 | 869.252 | 17.802 | 4.407 | EFPW06 |
+| 2023-01-18T13:20:00.000-05:00 | 72.0 | 1.788 | 5.0E-6 | 565.0 | 749.937 | 0.999 | 3.2918400000000005 | -9.556 | 6.962 | -68.834 | 1333.445 | 0.431 | 869.605 | 17.795 | 4.406 | EFPW06 |
+| 2023-01-18T13:30:00.000-05:00 | 72.0 | 1.789 | 5.0E-6 | 566.0 | 750.29 | 0.999 | 3.2915352 | -9.549 | 6.962 | -68.851 | 1332.818 | 0.431 | 870.123 | 17.79 | 4.405 | EFPW06 |
+| 2023-01-18T13:40:00.000-05:00 | 72.0 | 1.792 | 4.0E-6 | 566.0 | 750.457 | 0.999 | 3.2900112000000004 | -9.413 | 6.959 | -69.628 | 1332.522 | 0.432 | 870.417 | 17.784 | 4.403 | EFPW06 |
+
+---
+
+## Table: ddt_brick0002485
+
+**Table Description:** hazen_aquatroll600_EFPW03_20221221_20230401_v2.hndarray - Hazen Lab Aqua TROLL 600 Data
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| air_pressure_pound_per_square_inch | double | Yes | {"description": "air pressure", "unit": "pound per square inch"} |
+| charge_instrument_battery_percent | double | Yes | {"description": "charge, instrument=battery", "unit": "percent"} |
+| charge_instrument_external_power_source_volt | double | Yes | {"description": "charge, instrument=external power source", "unit": "volt"} |
+| concentration_molecule_from_list_rhodamine_b_milligram_per_liter | double | Yes | {"description": "concentration, molecule from list=rhodamine B", "unit": "milligram per liter"} |
+| concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | double | Yes | {"description": "concentration, phase=solid, physiochemical state=dissolved", "unit": "milligram per liter"} |
+| conductivity_microsiemen_per_centimeter | double | Yes | {"description": "conductivity", "unit": "microsiemen per centimeter"} |
+| density_molecule_from_list_water_gram_per_cubic_centimeter | double | Yes | {"description": "density, molecule from list=water", "unit": "gram per cubic centimeter"} |
+| depth_top_water_surface_bottom_instrument_meter | double | Yes | {"description": "depth, top=water surface, bottom=instrument", "unit": "meter"} |
+| ph_millivolt | double | Yes | {"description": "pH", "unit": "millivolt"} |
+| ph_ph | double | Yes | {"description": "pH", "unit": "pH"} |
+| redox_potential_millivolt | double | Yes | {"description": "redox potential", "unit": "millivolt"} |
+| resistivity_ohm_cm | double | Yes | {"description": "resistivity", "unit": "ohm-cm"} |
+| salinity_practical_salinity_unit | double | Yes | {"description": "salinity", "unit": "practical salinity unit"} |
+| specific_conductivity_microsiemen_per_centimeter | double | Yes | {"description": "specific conductivity", "unit": "microsiemen per centimeter"} |
+| temperature_degree_celsius | double | Yes | {"description": "temperature", "unit": "degree Celsius"} |
+| water_pressure_pound_per_square_inch | double | Yes | {"description": "water pressure", "unit": "pound per square inch"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+
+**Total Rows:** 4779
+
+### Sample Data (5 rows)
+
+| time_series_datetime | air_pressure_pound_per_square_inch | charge_instrument_battery_percent | charge_instrument_external_power_source_volt | concentration_molecule_from_list_rhodamine_b_milligram_per_liter | concentration_phase_solid_physiochemical_state_dissolved_milligram_per_liter | conductivity_microsiemen_per_centimeter | density_molecule_from_list_water_gram_per_cubic_centimeter | depth_top_water_surface_bottom_instrument_meter | ph_millivolt | ph_ph | redox_potential_millivolt | resistivity_ohm_cm | salinity_practical_salinity_unit | specific_conductivity_microsiemen_per_centimeter | temperature_degree_celsius | water_pressure_pound_per_square_inch | sdt_location_name |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2022-12-21T12:20:00.000-05:00 | 14.365168829235905 | 98.0 | 15.633000373840332 | 4.687051987275481E-4 | 382.69564509391785 | 521.7477416992188 | 0.9986204504966736 | 3.438948811340332 | 104.13169860839844 | 4.899471759796143 | 227.513916015625 | 1916.635009765625 | 0.28814345598220825 | 588.7625122070312 | 19.040678024291992 | 4.614383697509766 | EFPW03 |
+| 2022-12-21T12:50:00.000-05:00 | 14.355863949063949 | 98.0 | 15.62399959564209 | 6.550987018272281E-4 | 380.7724118232727 | 519.1127319335938 | 0.9986194968223572 | 3.44403687286377 | 102.98490905761719 | 4.920299530029297 | 222.5595703125 | 1926.3638916015625 | 0.28664860129356384 | 585.8037109375 | 19.039514541625977 | 4.621613502502441 | EFPW03 |
+| 2022-12-21T13:20:00.000-05:00 | 14.347042960428078 | 98.0 | 15.614999771118164 | 5.951711209490895E-4 | 375.8753538131714 | 512.4478759765625 | 0.9986163377761841 | 3.449108656311035 | 98.24037170410156 | 5.006506443023682 | 219.29562377929688 | 1951.41796875 | 0.2828446328639984 | 578.269775390625 | 19.040542602539062 | 4.628870010375977 | EFPW03 |
+| 2022-12-21T13:50:00.000-05:00 | 14.340149276373742 | 98.0 | 15.614999771118164 | 4.7120568342506886E-4 | 373.1231093406677 | 508.68475341796875 | 0.9986148476600647 | 3.4532717742919923 | 101.49002075195312 | 4.9474592208862305 | 217.30484008789062 | 1965.8541259765625 | 0.2807074785232544 | 574.0355224609375 | 19.039554595947266 | 4.634791374206543 | EFPW03 |
+| 2022-12-21T14:20:00.000-05:00 | 14.33096241852766 | 98.0 | 15.62399959564209 | 6.338137900456786E-4 | 382.9837739467621 | 522.1403198242188 | 0.9986206293106079 | 3.4573043769836427 | 102.86093139648438 | 4.9225592613220215 | 215.34027099609375 | 1915.1939697265625 | 0.28836745023727417 | 589.205810546875 | 19.040651321411133 | 4.64047908782959 | EFPW03 |
+
+---
+
+## Table: ddt_brick0002486
+
+**Table Description:** hazen_hobo_WS3_20220509_20230725_v2.hndarray - Hazen Lab HOBO Weather Station Data for WS3 from 2022-05-09 to 2023-07-25
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| rainfall_inch | double | Yes | {"description": "rainfall", "unit": "inch"} |
+| rainfall_mathematical_context_cumulative_inch | double | Yes | {"description": "rainfall, mathematical context=cumulative", "unit": "inch"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+
+**Total Rows:** 42409
+
+### Sample Data (5 rows)
+
+| time_series_datetime | rainfall_inch | rainfall_mathematical_context_cumulative_inch | sdt_location_name |
+|---|---|---|---|
+| 2022-05-09T14:15:00.000-04:00 | 0.0 | NULL | WS3 |
+| 2022-05-09T14:30:00.000-04:00 | 0.0 | NULL | WS3 |
+| 2022-05-09T14:45:00.000-04:00 | 0.0 | NULL | WS3 |
+| 2022-05-09T15:00:00.000-04:00 | 0.0 | NULL | WS3 |
+| 2022-05-09T15:15:00.000-04:00 | 0.0 | NULL | WS3 |
+
+---
+
+## Table: ddt_brick0002487
+
+**Table Description:** hazen_hobo_WS3_20230725_20240522_v2.hndarray - Hazen Lab HOBO Weather Station Data for WS3 from 2023-07-25 to 2024-05-22
+
+### Schema
+
+| Column Name | Data Type | Nullable | Comment |
+|-------------|-----------|----------|----------|
+| time_series_datetime | string | Yes | {"description": "datetime"} |
+| air_pressure_inhg | double | Yes | {"description": "air pressure", "unit": "inHg"} |
+| concentration_molecule_from_list_water_physiochemical_state_in_soil_m_3_per_m_3 | double | Yes | {"description": "concentration, molecule from list=water, physiochemical state=in soil", "unit": "m^3 per m^3"} |
+| dew_point_degree_fahrenheit | double | Yes | {"description": "dew point", "unit": "degree Fahrenheit"} |
+| gust_speed_mile_per_hour | double | Yes | {"description": "gust speed", "unit": "mile per hour"} |
+| rainfall_inch | double | Yes | {"description": "rainfall", "unit": "inch"} |
+| rainfall_mathematical_context_cumulative_inch | double | Yes | {"description": "rainfall, mathematical context=cumulative", "unit": "inch"} |
+| relative_humidity_percent | double | Yes | {"description": "relative humidity", "unit": "percent"} |
+| solar_radiation_watt_per_square_meter | double | Yes | {"description": "solar radiation", "unit": "watt per square meter"} |
+| temperature_degree_fahrenheit | double | Yes | {"description": "temperature", "unit": "degree Fahrenheit"} |
+| wind_direction_degree | double | Yes | {"description": "wind direction", "unit": "degree"} |
+| wind_speed_mile_per_hour | double | Yes | {"description": "wind speed", "unit": "mile per hour"} |
+| sdt_location_name | string | Yes | {"description": "environmental sample location ID", "type": "foreign_key", "references": "sdt_location.sdt_location_name"} |
+
+**Total Rows:** 29028
+
+### Sample Data (5 rows)
+
+| time_series_datetime | air_pressure_inhg | concentration_molecule_from_list_water_physiochemical_state_in_soil_m_3_per_m_3 | dew_point_degree_fahrenheit | gust_speed_mile_per_hour | rainfall_inch | rainfall_mathematical_context_cumulative_inch | relative_humidity_percent | solar_radiation_watt_per_square_meter | temperature_degree_fahrenheit | wind_direction_degree | wind_speed_mile_per_hour | sdt_location_name |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2023-07-25T09:30:00.000-04:00 | 29.139 | 0.7186 | 72.8 | 6.0 | 0.0 | 0.0 | 83.6 | 482.0 | 78.12 | 278.0 | 1.0 | WS3 |
+| 2023-07-25T09:45:00.000-04:00 | 29.136 | 0.7186 | 73.32 | 6.0 | 0.0 | 0.0 | 81.7 | 517.0 | 79.35 | 298.0 | 1.0 | WS3 |
+| 2023-07-25T10:00:00.000-04:00 | 29.136 | 0.7186 | 72.94 | 9.0 | 0.0 | 0.0 | 79.3 | 597.0 | 79.88 | 286.0 | 1.0 | WS3 |
+| 2023-07-25T10:15:00.000-04:00 | 29.133 | 0.7186 | 73.03 | 6.0 | 0.0 | 0.0 | 77.5 | 587.0 | 80.67 | 296.0 | 1.0 | WS3 |
+| 2023-07-25T10:30:00.000-04:00 | 29.13 | 0.7186 | 73.6 | 6.0 | 0.0 | 0.0 | 76.0 | 629.0 | 81.86 | 278.0 | 1.0 | WS3 |
+
+---
+
 ## Table: sdt_assembly
 
 **Table Description:** A genome assembly, including only the contigs and not annotated genes
@@ -29524,7 +29605,7 @@ Total Tables: 856
 | input_objects | array<string> | Yes | {"description": "List of references to data that were input to this process"} |
 | output_objects | array<string> | Yes | {"description": "List of references to data that were produced by this process"} |
 
-**Total Rows:** 102287
+**Total Rows:** 102292
 
 ### Sample Data (5 rows)
 
@@ -29566,7 +29647,7 @@ Total Tables: 856
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 129858
+**Total Rows:** 129863
 
 ### Sample Data (5 rows)
 
@@ -29608,7 +29689,7 @@ Total Tables: 856
 | sdt_taxon_id | string | Yes | {"description": "Linked process object from sdt_taxon", "type": "foreign_key", "references": "sdt_taxon.sdt_taxon_id"} |
 | sdt_tnseq_library_id | string | Yes | {"description": "Linked process object from sdt_tnseq_library", "type": "foreign_key", "references": "sdt_tnseq_library.sdt_tnseq_library_id"} |
 
-**Total Rows:** 113577
+**Total Rows:** 113582
 
 ### Sample Data (5 rows)
 
