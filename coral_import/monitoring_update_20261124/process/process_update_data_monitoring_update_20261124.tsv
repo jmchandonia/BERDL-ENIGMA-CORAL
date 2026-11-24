@@ -1,0 +1,4 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Update Data <PROCESS:0000053>	John-Marc Chandonia <ENIGMA:0000057>	Field Sampling <ENIGMA:0000095>	null	2026-11-24	2026-11-24	Generic: hazen_aquatroll600_EFPW03_20221221_20230405.hndarray	Generic: hazen_aquatroll600_EFPW03_20221221_20230401_v2.hndarray
+Update Data <PROCESS:0000053>	John-Marc Chandonia <ENIGMA:0000057>	Field Sampling <ENIGMA:0000095>	null	2026-11-24	2026-11-24	Generic: hazen_hobo_WS3_20220509_20230725.hndarray	Generic: hazen_hobo_WS3_20220509_20230725_v2.hndarray
+Update Data <PROCESS:0000053>	John-Marc Chandonia <ENIGMA:0000057>	Field Sampling <ENIGMA:0000095>	null	2026-11-24	2026-11-24	Generic: hazen_hobo_WS3_20230725_20240522.hndarray	Generic: hazen_hobo_WS3_20230725_20240522_v2.hndarray

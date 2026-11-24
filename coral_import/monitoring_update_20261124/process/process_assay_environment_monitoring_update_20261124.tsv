@@ -1,0 +1,3 @@
+process	person	campaign	protocol	date_start	date_end	input_objects	output_objects
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2023-04-01	2023-05-09	Location: EFPW03	Generic: hazen_aquatroll600_EFPW03_20230401_20230509.hndarray
+Assay Environment <PROCESS:0000004>	Hazen Lab <ENIGMA:0000066>	Field Sampling <ENIGMA:0000095>	null	2023-01-18	2023-05-09	Location: EFPW06	Generic: hazen_aquatroll600_EFPW06_20230118_20230509.hndarray
