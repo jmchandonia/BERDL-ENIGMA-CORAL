@@ -2625,3 +2625,10 @@ Validation completed before live export:
   processes (IDs unchanged). sync-20261125-104240 (PREV sync-20261124-131101) with forced re-download/reload of the 19 brick
   tables plus sdt_taxon: 20 tables imported, 70/70 foreign keys. `sync_prep.sh` in the scratchpad now takes FORCE_BRICKS /
   FORCE_TABLES for in-place edits. Not yet done: deleting the 252 retired Taxon records (23 superseded bricks still use them).
+- 2026-11-25 (later): Taxon spelling cleanup part 2 (`coral_import/taxon_spelling_20261125/part2`), in place: 121 Taxon records
+  renamed (spaces for underscores that stand for a space, NCBI capitalisation: lower-case "incertae sedis", `Candidatus Genus`),
+  6 NCBI ids copied to kept twins, 25 brick files edited in data_store (19 current, 6 withdrawn; 76,052 cells), 252 retired Taxon
+  records deleted (16,201 left, no spelling duplicates). Underscores that are part of an identifier (619 names) kept. Checked the
+  Taxon table and the 19 bricks as re-downloaded from CORAL against the plan cell by cell (also round 1 retroactively: 69,978
+  cells, no unexpected change). sync-20261125-121532 (PREV sync-20261125-104240): 20 tables reloaded, 108/108 foreign keys.
+  Note: brick downloads write object references as `name <name>`.

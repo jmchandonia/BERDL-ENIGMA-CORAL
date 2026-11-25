@@ -29506,7 +29506,7 @@ Total Tables: 858
 | sdt_taxon_name | string | No | {"description": "Unique taxon name, typically the scientific name", "type": "unique_key"} |
 | ncbi_taxid | string | Yes | {"description": "NCBI taxonomy identifier for the taxon, if available"} |
 
-**Total Rows:** 16453
+**Total Rows:** 16201
 
 ### Sample Data (5 rows)
 

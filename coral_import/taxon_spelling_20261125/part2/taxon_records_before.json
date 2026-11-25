@@ -1,0 +1,4930 @@
+{
+ "Taxon0000018": {
+  "_id": "SDT_Taxon/Taxon0000018",
+  "_key": "Taxon0000018",
+  "_rev": "_cLdiHpe---",
+  "id": "Taxon0000018",
+  "name": "Absconditabacteriales (SR1)",
+  "ncbi_taxid": null
+ },
+ "Taxon0000026": {
+  "_id": "SDT_Taxon/Taxon0000026",
+  "_key": "Taxon0000026",
+  "_rev": "_cLdiHvi---",
+  "id": "Taxon0000026",
+  "name": "Acetobacterales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000046": {
+  "_id": "SDT_Taxon/Taxon0000046",
+  "_key": "Taxon0000046",
+  "_rev": "_cLdiI-----",
+  "id": "Taxon0000046",
+  "name": "Acidimicrobineae_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000058": {
+  "_id": "SDT_Taxon/Taxon0000058",
+  "_key": "Taxon0000058",
+  "_rev": "_cLdiIG2---",
+  "id": "Taxon0000058",
+  "name": "Acidobacteriaceae (Subgroup 1)",
+  "ncbi_taxid": null
+ },
+ "Taxon0000128": {
+  "_id": "SDT_Taxon/Taxon0000128",
+  "_key": "Taxon0000128",
+  "_rev": "_cLdiI6e---",
+  "id": "Taxon0000128",
+  "name": "[Agitococcus] lubricus group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000132": {
+  "_id": "SDT_Taxon/Taxon0000132",
+  "_key": "Taxon0000132",
+  "_rev": "_cLdiI9a---",
+  "id": "Taxon0000132",
+  "name": "AKAU3564 sediment group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000155": {
+  "_id": "SDT_Taxon/Taxon0000155",
+  "_key": "Taxon0000155",
+  "_rev": "_cLdiJN6---",
+  "id": "Taxon0000155",
+  "name": "Alphaproteobacteria_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000168": {
+  "_id": "SDT_Taxon/Taxon0000168",
+  "_key": "Taxon0000168",
+  "_rev": "_cLdiJW6---",
+  "id": "Taxon0000168",
+  "name": "Aminicenantes_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000211": {
+  "_id": "SDT_Taxon/Taxon0000211",
+  "_key": "Taxon0000211",
+  "_rev": "_cLdiJ0W---",
+  "id": "Taxon0000211",
+  "name": "[Aquaspirillum] arcticum group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000288": {
+  "_id": "SDT_Taxon/Taxon0000288",
+  "_key": "Taxon0000288",
+  "_rev": "_cLdiKp6---",
+  "id": "Taxon0000288",
+  "name": "Bacillaceae 1",
+  "ncbi_taxid": null
+ },
+ "Taxon0000291": {
+  "_id": "SDT_Taxon/Taxon0000291",
+  "_key": "Taxon0000291",
+  "_rev": "_cLdiKsK---",
+  "id": "Taxon0000291",
+  "name": "Bacillales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000292": {
+  "_id": "SDT_Taxon/Taxon0000292",
+  "_key": "Taxon0000292",
+  "_rev": "_cLdiKsy---",
+  "id": "Taxon0000292",
+  "name": "Bacillales_Incertae Sedis XII",
+  "ncbi_taxid": null
+ },
+ "Taxon0000293": {
+  "_id": "SDT_Taxon/Taxon0000293",
+  "_key": "Taxon0000293",
+  "_rev": "_cLdiKtm---",
+  "id": "Taxon0000293",
+  "name": "Bacillales_Incertae Sedis XI",
+  "ncbi_taxid": null
+ },
+ "Taxon0000320": {
+  "_id": "SDT_Taxon/Taxon0000320",
+  "_key": "Taxon0000320",
+  "_rev": "_cLdiLBO---",
+  "id": "Taxon0000320",
+  "name": "Bacteroidales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000323": {
+  "_id": "SDT_Taxon/Taxon0000323",
+  "_key": "Taxon0000323",
+  "_rev": "_cLdiLDW---",
+  "id": "Taxon0000323",
+  "name": "Bacteroidetes BD2-2",
+  "ncbi_taxid": null
+ },
+ "Taxon0000324": {
+  "_id": "SDT_Taxon/Taxon0000324",
+  "_key": "Taxon0000324",
+  "_rev": "_cLdiLE----",
+  "id": "Taxon0000324",
+  "name": "Bacteroidetes_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000326": {
+  "_id": "SDT_Taxon/Taxon0000326",
+  "_key": "Taxon0000326",
+  "_rev": "_cLdiLFa---",
+  "id": "Taxon0000326",
+  "name": "Bacteroidetes vadinHA17",
+  "ncbi_taxid": null
+ },
+ "Taxon0000327": {
+  "_id": "SDT_Taxon/Taxon0000327",
+  "_key": "Taxon0000327",
+  "_rev": "_cLdiLGG---",
+  "id": "Taxon0000327",
+  "name": "Bacteroidetes VC2.1 Bac22",
+  "ncbi_taxid": null
+ },
+ "Taxon0000333": {
+  "_id": "SDT_Taxon/Taxon0000333",
+  "_key": "Taxon0000333",
+  "_rev": "_cLdiLKK---",
+  "id": "Taxon0000333",
+  "name": "BD1-7 clade",
+  "ncbi_taxid": "NCBITaxon:744998"
+ },
+ "Taxon0000334": {
+  "_id": "SDT_Taxon/Taxon0000334",
+  "_key": "Taxon0000334",
+  "_rev": "_cLdiLK2---",
+  "id": "Taxon0000334",
+  "name": "BD2-11 terrestrial group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000382": {
+  "_id": "SDT_Taxon/Taxon0000382",
+  "_key": "Taxon0000382",
+  "_rev": "_cLdiLra---",
+  "id": "Taxon0000382",
+  "name": "BRC1_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000404": {
+  "_id": "SDT_Taxon/Taxon0000404",
+  "_key": "Taxon0000404",
+  "_rev": "_cLdiL6a---",
+  "id": "Taxon0000404",
+  "name": "Burkholderiales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000416": {
+  "_id": "SDT_Taxon/Taxon0000416",
+  "_key": "Taxon0000416",
+  "_rev": "_cLdiMCa---",
+  "id": "Taxon0000416",
+  "name": "[Caedibacter] taeniospiralis group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000453": {
+  "_id": "SDT_Taxon/Taxon0000453",
+  "_key": "Taxon0000453",
+  "_rev": "_cLdiMbu---",
+  "id": "Taxon0000453",
+  "name": "Candidatus Abawacabacteria",
+  "ncbi_taxid": "NCBITaxon:1817796"
+ },
+ "Taxon0000454": {
+  "_id": "SDT_Taxon/Taxon0000454",
+  "_key": "Taxon0000454",
+  "_rev": "_cLdiMcW---",
+  "id": "Taxon0000454",
+  "name": "Candidatus Accumulibacter",
+  "ncbi_taxid": "NCBITaxon:327159"
+ },
+ "Taxon0000456": {
+  "_id": "SDT_Taxon/Taxon0000456",
+  "_key": "Taxon0000456",
+  "_rev": "_cLdiMdu---",
+  "id": "Taxon0000456",
+  "name": "Candidatus Adlerbacteria",
+  "ncbi_taxid": "NCBITaxon:1752736"
+ },
+ "Taxon0000457": {
+  "_id": "SDT_Taxon/Taxon0000457",
+  "_key": "Taxon0000457",
+  "_rev": "_cLdiMee---",
+  "id": "Taxon0000457",
+  "name": "Candidatus Aenigmarchaeum",
+  "ncbi_taxid": "NCBITaxon:1462427"
+ },
+ "Taxon0000461": {
+  "_id": "SDT_Taxon/Taxon0000461",
+  "_key": "Taxon0000461",
+  "_rev": "_cLdiMhG---",
+  "id": "Taxon0000461",
+  "name": "Candidatus Amesbacteria",
+  "ncbi_taxid": "NCBITaxon:1752730"
+ },
+ "Taxon0000467": {
+  "_id": "SDT_Taxon/Taxon0000467",
+  "_key": "Taxon0000467",
+  "_rev": "_cLdiMlK---",
+  "id": "Taxon0000467",
+  "name": "Candidatus Azambacteria",
+  "ncbi_taxid": "NCBITaxon:1752741"
+ },
+ "Taxon0000468": {
+  "_id": "SDT_Taxon/Taxon0000468",
+  "_key": "Taxon0000468",
+  "_rev": "_cLdiMly---",
+  "id": "Taxon0000468",
+  "name": "Candidatus Bacilloplasma",
+  "ncbi_taxid": "NCBITaxon:467747"
+ },
+ "Taxon0000469": {
+  "_id": "SDT_Taxon/Taxon0000469",
+  "_key": "Taxon0000469",
+  "_rev": "_cLdiMmi---",
+  "id": "Taxon0000469",
+  "name": "Candidatus Bealeia",
+  "ncbi_taxid": null
+ },
+ "Taxon0000470": {
+  "_id": "SDT_Taxon/Taxon0000470",
+  "_key": "Taxon0000470",
+  "_rev": "_cLdiMnK---",
+  "id": "Taxon0000470",
+  "name": "Candidatus Beckwithbacteria",
+  "ncbi_taxid": "NCBITaxon:1752726"
+ },
+ "Taxon0000474": {
+  "_id": "SDT_Taxon/Taxon0000474",
+  "_key": "Taxon0000474",
+  "_rev": "_cLdiMp6---",
+  "id": "Taxon0000474",
+  "name": "Candidatus Berkiella",
+  "ncbi_taxid": "NCBITaxon:1755683"
+ },
+ "Taxon0000476": {
+  "_id": "SDT_Taxon/Taxon0000476",
+  "_key": "Taxon0000476",
+  "_rev": "_cLdiMrS---",
+  "id": "Taxon0000476",
+  "name": "Candidatus Brennerbacteria",
+  "ncbi_taxid": "NCBITaxon:1817902"
+ },
+ "Taxon0000477": {
+  "_id": "SDT_Taxon/Taxon0000477",
+  "_key": "Taxon0000477",
+  "_rev": "_cLdiMs----",
+  "id": "Taxon0000477",
+  "name": "Candidatus Brocadiaceae",
+  "ncbi_taxid": "NCBITaxon:1127830"
+ },
+ "Taxon0000478": {
+  "_id": "SDT_Taxon/Taxon0000478",
+  "_key": "Taxon0000478",
+  "_rev": "_cLdiMsq---",
+  "id": "Taxon0000478",
+  "name": "Candidatus Brocadiales",
+  "ncbi_taxid": "NCBITaxon:1127829"
+ },
+ "Taxon0000479": {
+  "_id": "SDT_Taxon/Taxon0000479",
+  "_key": "Taxon0000479",
+  "_rev": "_cLdiMtS---",
+  "id": "Taxon0000479",
+  "name": "Candidatus Brocadia",
+  "ncbi_taxid": "NCBITaxon:380240"
+ },
+ "Taxon0000482": {
+  "_id": "SDT_Taxon/Taxon0000482",
+  "_key": "Taxon0000482",
+  "_rev": "_cLdiMva---",
+  "id": "Taxon0000482",
+  "name": "Candidatus Buchananbacteria",
+  "ncbi_taxid": "NCBITaxon:1817903"
+ },
+ "Taxon0000483": {
+  "_id": "SDT_Taxon/Taxon0000483",
+  "_key": "Taxon0000483",
+  "_rev": "_cLdiMwC---",
+  "id": "Taxon0000483",
+  "name": "Candidatus Campbellbacteria",
+  "ncbi_taxid": "NCBITaxon:1752727"
+ },
+ "Taxon0000484": {
+  "_id": "SDT_Taxon/Taxon0000484",
+  "_key": "Taxon0000484",
+  "_rev": "_cLdiMwu---",
+  "id": "Taxon0000484",
+  "name": "Candidatus Captivus",
+  "ncbi_taxid": "NCBITaxon:679161"
+ },
+ "Taxon0000486": {
+  "_id": "SDT_Taxon/Taxon0000486",
+  "_key": "Taxon0000486",
+  "_rev": "_cLdiMyC---",
+  "id": "Taxon0000486",
+  "name": "Candidatus Chisholmbacteria",
+  "ncbi_taxid": "NCBITaxon:1817900"
+ },
+ "Taxon0000489": {
+  "_id": "SDT_Taxon/Taxon0000489",
+  "_key": "Taxon0000489",
+  "_rev": "_cLdiM0K---",
+  "id": "Taxon0000489",
+  "name": "Candidatus Collierbacteria",
+  "ncbi_taxid": "NCBITaxon:1752725"
+ },
+ "Taxon0000493": {
+  "_id": "SDT_Taxon/Taxon0000493",
+  "_key": "Taxon0000493",
+  "_rev": "_cLdiM22---",
+  "id": "Taxon0000493",
+  "name": "Candidatus Colwellbacteria",
+  "ncbi_taxid": "NCBITaxon:1817904"
+ },
+ "Taxon0000494": {
+  "_id": "SDT_Taxon/Taxon0000494",
+  "_key": "Taxon0000494",
+  "_rev": "_cLdiM3e---",
+  "id": "Taxon0000494",
+  "name": "Candidatus Curtissbacteria",
+  "ncbi_taxid": "NCBITaxon:1752717"
+ },
+ "Taxon0000498": {
+  "_id": "SDT_Taxon/Taxon0000498",
+  "_key": "Taxon0000498",
+  "_rev": "_cLdiM6O---",
+  "id": "Taxon0000498",
+  "name": "Candidatus Daviesbacteria",
+  "ncbi_taxid": "NCBITaxon:1752718"
+ },
+ "Taxon0000501": {
+  "_id": "SDT_Taxon/Taxon0000501",
+  "_key": "Taxon0000501",
+  "_rev": "_cLdiM8a---",
+  "id": "Taxon0000501",
+  "name": "Candidatus Doudnabacteria",
+  "ncbi_taxid": "NCBITaxon:1817799"
+ },
+ "Taxon0000502": {
+  "_id": "SDT_Taxon/Taxon0000502",
+  "_key": "Taxon0000502",
+  "_rev": "_cLdiM9K---",
+  "id": "Taxon0000502",
+  "name": "Candidatus Endoecteinascidia",
+  "ncbi_taxid": "NCBITaxon:330062"
+ },
+ "Taxon0000507": {
+  "_id": "SDT_Taxon/Taxon0000507",
+  "_key": "Taxon0000507",
+  "_rev": "_cLdiNAe---",
+  "id": "Taxon0000507",
+  "name": "Candidatus Falkowbacteria",
+  "ncbi_taxid": "NCBITaxon:1752728"
+ },
+ "Taxon0000509": {
+  "_id": "SDT_Taxon/Taxon0000509",
+  "_key": "Taxon0000509",
+  "_rev": "_cLdiNB2---",
+  "id": "Taxon0000509",
+  "name": "Candidatus Finniella",
+  "ncbi_taxid": "NCBITaxon:1777753"
+ },
+ "Taxon0000514": {
+  "_id": "SDT_Taxon/Taxon0000514",
+  "_key": "Taxon0000514",
+  "_rev": "_cLdiNFK---",
+  "id": "Taxon0000514",
+  "name": "Candidatus Giovannonibacteria",
+  "ncbi_taxid": "NCBITaxon:1752738"
+ },
+ "Taxon0000519": {
+  "_id": "SDT_Taxon/Taxon0000519",
+  "_key": "Taxon0000519",
+  "_rev": "_cLdiNIq---",
+  "id": "Taxon0000519",
+  "name": "Candidatus Gottesmanbacteria",
+  "ncbi_taxid": "NCBITaxon:1752720"
+ },
+ "Taxon0000522": {
+  "_id": "SDT_Taxon/Taxon0000522",
+  "_key": "Taxon0000522",
+  "_rev": "_cLdiNKu---",
+  "id": "Taxon0000522",
+  "name": "Candidatus Hepatoplasma",
+  "ncbi_taxid": "NCBITaxon:295595"
+ },
+ "Taxon0000526": {
+  "_id": "SDT_Taxon/Taxon0000526",
+  "_key": "Taxon0000526",
+  "_rev": "_cLdiNNa---",
+  "id": "Taxon0000526",
+  "name": "Candidatus Iainarchaeum",
+  "ncbi_taxid": "NCBITaxon:1462418"
+ },
+ "Taxon0000528": {
+  "_id": "SDT_Taxon/Taxon0000528",
+  "_key": "Taxon0000528",
+  "_rev": "_cLdiNOy---",
+  "id": "Taxon0000528",
+  "name": "Candidatus Jacksonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817906"
+ },
+ "Taxon0000529": {
+  "_id": "SDT_Taxon/Taxon0000529",
+  "_key": "Taxon0000529",
+  "_rev": "_cLdiNPe---",
+  "id": "Taxon0000529",
+  "name": "Candidatus Jidaibacter",
+  "ncbi_taxid": null
+ },
+ "Taxon0000532": {
+  "_id": "SDT_Taxon/Taxon0000532",
+  "_key": "Taxon0000532",
+  "_rev": "_cLdiNRe---",
+  "id": "Taxon0000532",
+  "name": "Candidatus Jorgensenbacteria",
+  "ncbi_taxid": "NCBITaxon:1752739"
+ },
+ "Taxon0000534": {
+  "_id": "SDT_Taxon/Taxon0000534",
+  "_key": "Taxon0000534",
+  "_rev": "_cLdiNS2---",
+  "id": "Taxon0000534",
+  "name": "Candidatus Kaiserbacteria",
+  "ncbi_taxid": "NCBITaxon:1752734"
+ },
+ "Taxon0000536": {
+  "_id": "SDT_Taxon/Taxon0000536",
+  "_key": "Taxon0000536",
+  "_rev": "_cLdiNUO---",
+  "id": "Taxon0000536",
+  "name": "Candidatus Kerfeldbacteria",
+  "ncbi_taxid": "NCBITaxon:1817907"
+ },
+ "Taxon0000537": {
+  "_id": "SDT_Taxon/Taxon0000537",
+  "_key": "Taxon0000537",
+  "_rev": "_cLdiNU2---",
+  "id": "Taxon0000537",
+  "name": "Candidatus Komeilibacteria",
+  "ncbi_taxid": "NCBITaxon:1817908"
+ },
+ "Taxon0000538": {
+  "_id": "SDT_Taxon/Taxon0000538",
+  "_key": "Taxon0000538",
+  "_rev": "_cLdiNVm---",
+  "id": "Taxon0000538",
+  "name": "Candidatus Koribacter",
+  "ncbi_taxid": "NCBITaxon:658061"
+ },
+ "Taxon0000540": {
+  "_id": "SDT_Taxon/Taxon0000540",
+  "_key": "Taxon0000540",
+  "_rev": "_cLdiNW6---",
+  "id": "Taxon0000540",
+  "name": "Candidatus Kuenenbacteria",
+  "ncbi_taxid": "NCBITaxon:1752740"
+ },
+ "Taxon0000541": {
+  "_id": "SDT_Taxon/Taxon0000541",
+  "_key": "Taxon0000541",
+  "_rev": "_cLdiNXm---",
+  "id": "Taxon0000541",
+  "name": "Candidatus Kuenenia",
+  "ncbi_taxid": "NCBITaxon:380738"
+ },
+ "Taxon0000544": {
+  "_id": "SDT_Taxon/Taxon0000544",
+  "_key": "Taxon0000544",
+  "_rev": "_cLdiNZm---",
+  "id": "Taxon0000544",
+  "name": "Candidatus Levybacteria",
+  "ncbi_taxid": "NCBITaxon:1752719"
+ },
+ "Taxon0000545": {
+  "_id": "SDT_Taxon/Taxon0000545",
+  "_key": "Taxon0000545",
+  "_rev": "_cLdiNaW---",
+  "id": "Taxon0000545",
+  "name": "Candidatus Liberibacter",
+  "ncbi_taxid": "NCBITaxon:34019"
+ },
+ "Taxon0000547": {
+  "_id": "SDT_Taxon/Taxon0000547",
+  "_key": "Taxon0000547",
+  "_rev": "_cLdiNbu---",
+  "id": "Taxon0000547",
+  "name": "Candidatus Liptonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817909"
+ },
+ "Taxon0000550": {
+  "_id": "SDT_Taxon/Taxon0000550",
+  "_key": "Taxon0000550",
+  "_rev": "_cLdiNe----",
+  "id": "Taxon0000550",
+  "name": "Candidatus Lloydbacteria",
+  "ncbi_taxid": null
+ },
+ "Taxon0000559": {
+  "_id": "SDT_Taxon/Taxon0000559",
+  "_key": "Taxon0000559",
+  "_rev": "_cLdiNkC---",
+  "id": "Taxon0000559",
+  "name": "Candidatus Magasanikbacteria",
+  "ncbi_taxid": "NCBITaxon:1752731"
+ },
+ "Taxon0000560": {
+  "_id": "SDT_Taxon/Taxon0000560",
+  "_key": "Taxon0000560",
+  "_rev": "_cLdiNkq---",
+  "id": "Taxon0000560",
+  "name": "Candidatus Magnetobacterium",
+  "ncbi_taxid": "NCBITaxon:40118"
+ },
+ "Taxon0000561": {
+  "_id": "SDT_Taxon/Taxon0000561",
+  "_key": "Taxon0000561",
+  "_rev": "_cLdiNlW---",
+  "id": "Taxon0000561",
+  "name": "Candidatus Megaira",
+  "ncbi_taxid": "NCBITaxon:1742636"
+ },
+ "Taxon0000562": {
+  "_id": "SDT_Taxon/Taxon0000562",
+  "_key": "Taxon0000562",
+  "_rev": "_cLdiNmC---",
+  "id": "Taxon0000562",
+  "name": "Candidatus Methanoperedens",
+  "ncbi_taxid": "NCBITaxon:1392997"
+ },
+ "Taxon0000563": {
+  "_id": "SDT_Taxon/Taxon0000563",
+  "_key": "Taxon0000563",
+  "_rev": "_cLdiNmu---",
+  "id": "Taxon0000563",
+  "name": "Candidatus Methylomirabilis",
+  "ncbi_taxid": "NCBITaxon:1170227"
+ },
+ "Taxon0000567": {
+  "_id": "SDT_Taxon/Taxon0000567",
+  "_key": "Taxon0000567",
+  "_rev": "_cLdiNpa---",
+  "id": "Taxon0000567",
+  "name": "Candidatus Moranbacteria",
+  "ncbi_taxid": "NCBITaxon:1752737"
+ },
+ "Taxon0000568": {
+  "_id": "SDT_Taxon/Taxon0000568",
+  "_key": "Taxon0000568",
+  "_rev": "_cLdiNqG---",
+  "id": "Taxon0000568",
+  "name": "Candidatus Nitrocosmicus",
+  "ncbi_taxid": null
+ },
+ "Taxon0000570": {
+  "_id": "SDT_Taxon/Taxon0000570",
+  "_key": "Taxon0000570",
+  "_rev": "_cLdiNre---",
+  "id": "Taxon0000570",
+  "name": "Candidatus Nitrososphaera",
+  "ncbi_taxid": null
+ },
+ "Taxon0000571": {
+  "_id": "SDT_Taxon/Taxon0000571",
+  "_key": "Taxon0000571",
+  "_rev": "_cLdiNsG---",
+  "id": "Taxon0000571",
+  "name": "Candidatus Nitrosotalea",
+  "ncbi_taxid": "NCBITaxon:1078904"
+ },
+ "Taxon0000572": {
+  "_id": "SDT_Taxon/Taxon0000572",
+  "_key": "Taxon0000572",
+  "_rev": "_cLdiNs2---",
+  "id": "Taxon0000572",
+  "name": "Candidatus Nitrosotenuis",
+  "ncbi_taxid": "NCBITaxon:1825023"
+ },
+ "Taxon0000578": {
+  "_id": "SDT_Taxon/Taxon0000578",
+  "_key": "Taxon0000578",
+  "_rev": "_cLdiNw2---",
+  "id": "Taxon0000578",
+  "name": "Candidatus Nomurabacteria",
+  "ncbi_taxid": "NCBITaxon:1752729"
+ },
+ "Taxon0000582": {
+  "_id": "SDT_Taxon/Taxon0000582",
+  "_key": "Taxon0000582",
+  "_rev": "_cLdiNzm---",
+  "id": "Taxon0000582",
+  "name": "Candidatus Omnitrophus",
+  "ncbi_taxid": "NCBITaxon:1431823"
+ },
+ "Taxon0000583": {
+  "_id": "SDT_Taxon/Taxon0000583",
+  "_key": "Taxon0000583",
+  "_rev": "_cLdiN0S---",
+  "id": "Taxon0000583",
+  "name": "Candidatus Ovatusbacter",
+  "ncbi_taxid": "NCBITaxon:1885582"
+ },
+ "Taxon0000586": {
+  "_id": "SDT_Taxon/Taxon0000586",
+  "_key": "Taxon0000586",
+  "_rev": "_cLdiN2W---",
+  "id": "Taxon0000586",
+  "name": "Candidatus Pacebacteria",
+  "ncbi_taxid": "NCBITaxon:1752724"
+ },
+ "Taxon0000587": {
+  "_id": "SDT_Taxon/Taxon0000587",
+  "_key": "Taxon0000587",
+  "_rev": "_cLdiN3----",
+  "id": "Taxon0000587",
+  "name": "Candidatus Paceibacter",
+  "ncbi_taxid": "NCBITaxon:1432328"
+ },
+ "Taxon0000589": {
+  "_id": "SDT_Taxon/Taxon0000589",
+  "_key": "Taxon0000589",
+  "_rev": "_cLdiN4S---",
+  "id": "Taxon0000589",
+  "name": "Candidatus Paracaedibacter",
+  "ncbi_taxid": "NCBITaxon:1521255"
+ },
+ "Taxon0000590": {
+  "_id": "SDT_Taxon/Taxon0000590",
+  "_key": "Taxon0000590",
+  "_rev": "_cLdiN5C---",
+  "id": "Taxon0000590",
+  "name": "Candidatus Paraholospora",
+  "ncbi_taxid": "NCBITaxon:679162"
+ },
+ "Taxon0000596": {
+  "_id": "SDT_Taxon/Taxon0000596",
+  "_key": "Taxon0000596",
+  "_rev": "_cLdiN9C---",
+  "id": "Taxon0000596",
+  "name": "Candidatus Peregrinibacteria",
+  "ncbi_taxid": "NCBITaxon:1619053"
+ },
+ "Taxon0000600": {
+  "_id": "SDT_Taxon/Taxon0000600",
+  "_key": "Taxon0000600",
+  "_rev": "_cLdiO_6---",
+  "id": "Taxon0000600",
+  "name": "Candidatus Peribacteria",
+  "ncbi_taxid": "NCBITaxon:1801911"
+ },
+ "Taxon0000602": {
+  "_id": "SDT_Taxon/Taxon0000602",
+  "_key": "Taxon0000602",
+  "_rev": "_cLdiOBS---",
+  "id": "Taxon0000602",
+  "name": "Candidatus Portnoybacteria",
+  "ncbi_taxid": "NCBITaxon:1817913"
+ },
+ "Taxon0000603": {
+  "_id": "SDT_Taxon/Taxon0000603",
+  "_key": "Taxon0000603",
+  "_rev": "_cLdiOC----",
+  "id": "Taxon0000603",
+  "name": "Candidatus Protochlamydia",
+  "ncbi_taxid": "NCBITaxon:282132"
+ },
+ "Taxon0000604": {
+  "_id": "SDT_Taxon/Taxon0000604",
+  "_key": "Taxon0000604",
+  "_rev": "_cLdiOCq---",
+  "id": "Taxon0000604",
+  "name": "Candidatus Raymondbacteria",
+  "ncbi_taxid": "NCBITaxon:1817809"
+ },
+ "Taxon0000605": {
+  "_id": "SDT_Taxon/Taxon0000605",
+  "_key": "Taxon0000605",
+  "_rev": "_cLdiODW---",
+  "id": "Taxon0000605",
+  "name": "Candidatus Rhabdochlamydia",
+  "ncbi_taxid": "NCBITaxon:292833"
+ },
+ "Taxon0000608": {
+  "_id": "SDT_Taxon/Taxon0000608",
+  "_key": "Taxon0000608",
+  "_rev": "_cLdiOFa---",
+  "id": "Taxon0000608",
+  "name": "Candidatus Roizmanbacteria",
+  "ncbi_taxid": "NCBITaxon:1752723"
+ },
+ "Taxon0000610": {
+  "_id": "SDT_Taxon/Taxon0000610",
+  "_key": "Taxon0000610",
+  "_rev": "_cLdiOGy---",
+  "id": "Taxon0000610",
+  "name": "Candidatus Rubidus",
+  "ncbi_taxid": "NCBITaxon:1851152"
+ },
+ "Taxon0000612": {
+  "_id": "SDT_Taxon/Taxon0000612",
+  "_key": "Taxon0000612",
+  "_rev": "_cLdiOIC---",
+  "id": "Taxon0000612",
+  "name": "Candidatus Ryanbacteria",
+  "ncbi_taxid": "NCBITaxon:1817914"
+ },
+ "Taxon0000613": {
+  "_id": "SDT_Taxon/Taxon0000613",
+  "_key": "Taxon0000613",
+  "_rev": "_cLdiOIy---",
+  "id": "Taxon0000613",
+  "name": "Candidatus Saccharibacteria",
+  "ncbi_taxid": "NCBITaxon:95818"
+ },
+ "Taxon0000616": {
+  "_id": "SDT_Taxon/Taxon0000616",
+  "_key": "Taxon0000616",
+  "_rev": "_cLdiOKy---",
+  "id": "Taxon0000616",
+  "name": "Candidatus Shapirobacteria",
+  "ncbi_taxid": "NCBITaxon:1752721"
+ },
+ "Taxon0000617": {
+  "_id": "SDT_Taxon/Taxon0000617",
+  "_key": "Taxon0000617",
+  "_rev": "_cLdiOLi---",
+  "id": "Taxon0000617",
+  "name": "Candidatus Soleaferrea",
+  "ncbi_taxid": "NCBITaxon:1470353"
+ },
+ "Taxon0000618": {
+  "_id": "SDT_Taxon/Taxon0000618",
+  "_key": "Taxon0000618",
+  "_rev": "_cLdiOMK---",
+  "id": "Taxon0000618",
+  "name": "Candidatus Solibacter",
+  "ncbi_taxid": "NCBITaxon:332162"
+ },
+ "Taxon0000621": {
+  "_id": "SDT_Taxon/Taxon0000621",
+  "_key": "Taxon0000621",
+  "_rev": "_cLdiOOK---",
+  "id": "Taxon0000621",
+  "name": "Candidatus Spechtbacteria",
+  "ncbi_taxid": "NCBITaxon:1817915"
+ },
+ "Taxon0000624": {
+  "_id": "SDT_Taxon/Taxon0000624",
+  "_key": "Taxon0000624",
+  "_rev": "_cLdiOQO---",
+  "id": "Taxon0000624",
+  "name": "Candidatus Staskawiczbacteria",
+  "ncbi_taxid": "NCBITaxon:1817916"
+ },
+ "Taxon0000626": {
+  "_id": "SDT_Taxon/Taxon0000626",
+  "_key": "Taxon0000626",
+  "_rev": "_cLdiORm---",
+  "id": "Taxon0000626",
+  "name": "Candidatus Tenderia",
+  "ncbi_taxid": "NCBITaxon:1813600"
+ },
+ "Taxon0000628": {
+  "_id": "SDT_Taxon/Taxon0000628",
+  "_key": "Taxon0000628",
+  "_rev": "_cLdiOT----",
+  "id": "Taxon0000628",
+  "name": "Candidatus Terrybacteria",
+  "ncbi_taxid": "NCBITaxon:1817920"
+ },
+ "Taxon0000629": {
+  "_id": "SDT_Taxon/Taxon0000629",
+  "_key": "Taxon0000629",
+  "_rev": "_cLdiOTm---",
+  "id": "Taxon0000629",
+  "name": "Candidatus Udaeobacter",
+  "ncbi_taxid": null
+ },
+ "Taxon0000635": {
+  "_id": "SDT_Taxon/Taxon0000635",
+  "_key": "Taxon0000635",
+  "_rev": "_cLdiOXq---",
+  "id": "Taxon0000635",
+  "name": "Candidatus Uhrbacteria",
+  "ncbi_taxid": "NCBITaxon:1752732"
+ },
+ "Taxon0000637": {
+  "_id": "SDT_Taxon/Taxon0000637",
+  "_key": "Taxon0000637",
+  "_rev": "_cLdiOZ----",
+  "id": "Taxon0000637",
+  "name": "Candidatus Vogelbacteria",
+  "ncbi_taxid": "NCBITaxon:1817922"
+ },
+ "Taxon0000645": {
+  "_id": "SDT_Taxon/Taxon0000645",
+  "_key": "Taxon0000645",
+  "_rev": "_cLdiOeW---",
+  "id": "Taxon0000645",
+  "name": "Candidatus Woesebacteria",
+  "ncbi_taxid": "NCBITaxon:1752722"
+ },
+ "Taxon0000648": {
+  "_id": "SDT_Taxon/Taxon0000648",
+  "_key": "Taxon0000648",
+  "_rev": "_cLdiOgW---",
+  "id": "Taxon0000648",
+  "name": "Candidatus Wolfebacteria",
+  "ncbi_taxid": "NCBITaxon:1752735"
+ },
+ "Taxon0000649": {
+  "_id": "SDT_Taxon/Taxon0000649",
+  "_key": "Taxon0000649",
+  "_rev": "_cLdiOhC---",
+  "id": "Taxon0000649",
+  "name": "Candidatus Woykebacteria",
+  "ncbi_taxid": "NCBITaxon:1817899"
+ },
+ "Taxon0000650": {
+  "_id": "SDT_Taxon/Taxon0000650",
+  "_key": "Taxon0000650",
+  "_rev": "_cLdiOh6---",
+  "id": "Taxon0000650",
+  "name": "Candidatus Xiphinematobacter",
+  "ncbi_taxid": "NCBITaxon:134550"
+ },
+ "Taxon0000654": {
+  "_id": "SDT_Taxon/Taxon0000654",
+  "_key": "Taxon0000654",
+  "_rev": "_cLdiOkm---",
+  "id": "Taxon0000654",
+  "name": "Candidatus Yanofskybacteria",
+  "ncbi_taxid": "NCBITaxon:1752733"
+ },
+ "Taxon0000655": {
+  "_id": "SDT_Taxon/Taxon0000655",
+  "_key": "Taxon0000655",
+  "_rev": "_cLdiOlS---",
+  "id": "Taxon0000655",
+  "name": "Candidatus Yonathbacteria",
+  "ncbi_taxid": "NCBITaxon:1817924"
+ },
+ "Taxon0000659": {
+  "_id": "SDT_Taxon/Taxon0000659",
+  "_key": "Taxon0000659",
+  "_rev": "_cLdiOo----",
+  "id": "Taxon0000659",
+  "name": "Candidatus Zambryskibacteria",
+  "ncbi_taxid": "NCBITaxon:1817925"
+ },
+ "Taxon0000752": {
+  "_id": "SDT_Taxon/Taxon0000752",
+  "_key": "Taxon0000752",
+  "_rev": "_cLdiPnS---",
+  "id": "Taxon0000752",
+  "name": "CL500-29 marine group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000757": {
+  "_id": "SDT_Taxon/Taxon0000757",
+  "_key": "Taxon0000757",
+  "_rev": "_cLdiPqq---",
+  "id": "Taxon0000757",
+  "name": "Clostridiaceae 1",
+  "ncbi_taxid": null
+ },
+ "Taxon0000762": {
+  "_id": "SDT_Taxon/Taxon0000762",
+  "_key": "Taxon0000762",
+  "_rev": "_cLdiPuC---",
+  "id": "Taxon0000762",
+  "name": "Clostridiales_Incertae Sedis IV",
+  "ncbi_taxid": null
+ },
+ "Taxon0000763": {
+  "_id": "SDT_Taxon/Taxon0000763",
+  "_key": "Taxon0000763",
+  "_rev": "_cLdiPuy---",
+  "id": "Taxon0000763",
+  "name": "Clostridiales_Incertae Sedis XIII",
+  "ncbi_taxid": null
+ },
+ "Taxon0000764": {
+  "_id": "SDT_Taxon/Taxon0000764",
+  "_key": "Taxon0000764",
+  "_rev": "_cLdiPva---",
+  "id": "Taxon0000764",
+  "name": "Clostridiales_Incertae Sedis XII",
+  "ncbi_taxid": null
+ },
+ "Taxon0000765": {
+  "_id": "SDT_Taxon/Taxon0000765",
+  "_key": "Taxon0000765",
+  "_rev": "_cLdiPwG---",
+  "id": "Taxon0000765",
+  "name": "Clostridiales_Incertae Sedis XI",
+  "ncbi_taxid": null
+ },
+ "Taxon0000766": {
+  "_id": "SDT_Taxon/Taxon0000766",
+  "_key": "Taxon0000766",
+  "_rev": "_cLdiPwy---",
+  "id": "Taxon0000766",
+  "name": "Clostridiales_Incertae Sedis XVIII",
+  "ncbi_taxid": null
+ },
+ "Taxon0000767": {
+  "_id": "SDT_Taxon/Taxon0000767",
+  "_key": "Taxon0000767",
+  "_rev": "_cLdiPxe---",
+  "id": "Taxon0000767",
+  "name": "Clostridiales_Incertae Sedis XVII",
+  "ncbi_taxid": null
+ },
+ "Taxon0000772": {
+  "_id": "SDT_Taxon/Taxon0000772",
+  "_key": "Taxon0000772",
+  "_rev": "_cLdiP1----",
+  "id": "Taxon0000772",
+  "name": "Clostridium IV",
+  "ncbi_taxid": null
+ },
+ "Taxon0000773": {
+  "_id": "SDT_Taxon/Taxon0000773",
+  "_key": "Taxon0000773",
+  "_rev": "_cLdiP1m---",
+  "id": "Taxon0000773",
+  "name": "Clostridium sensu stricto 18",
+  "ncbi_taxid": null
+ },
+ "Taxon0000774": {
+  "_id": "SDT_Taxon/Taxon0000774",
+  "_key": "Taxon0000774",
+  "_rev": "_cLdiP2O---",
+  "id": "Taxon0000774",
+  "name": "Clostridium sensu stricto 1",
+  "ncbi_taxid": null
+ },
+ "Taxon0000775": {
+  "_id": "SDT_Taxon/Taxon0000775",
+  "_key": "Taxon0000775",
+  "_rev": "_cLdiP3----",
+  "id": "Taxon0000775",
+  "name": "Clostridium sensu stricto 2",
+  "ncbi_taxid": null
+ },
+ "Taxon0000776": {
+  "_id": "SDT_Taxon/Taxon0000776",
+  "_key": "Taxon0000776",
+  "_rev": "_cLdiP3m---",
+  "id": "Taxon0000776",
+  "name": "Clostridium sensu stricto",
+  "ncbi_taxid": null
+ },
+ "Taxon0000779": {
+  "_id": "SDT_Taxon/Taxon0000779",
+  "_key": "Taxon0000779",
+  "_rev": "_cLdiP5q---",
+  "id": "Taxon0000779",
+  "name": "Clostridium XlVa",
+  "ncbi_taxid": null
+ },
+ "Taxon0000785": {
+  "_id": "SDT_Taxon/Taxon0000785",
+  "_key": "Taxon0000785",
+  "_rev": "_cLdiP9y---",
+  "id": "Taxon0000785",
+  "name": "_Coleoptera",
+  "ncbi_taxid": null
+ },
+ "Taxon0000800": {
+  "_id": "SDT_Taxon/Taxon0000800",
+  "_key": "Taxon0000800",
+  "_rev": "_cLdiQIK---",
+  "id": "Taxon0000800",
+  "name": "Coriobacteriales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000805": {
+  "_id": "SDT_Taxon/Taxon0000805",
+  "_key": "Taxon0000805",
+  "_rev": "_cLdiQLi---",
+  "id": "Taxon0000805",
+  "name": "Corynebacterineae_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000834": {
+  "_id": "SDT_Taxon/Taxon0000834",
+  "_key": "Taxon0000834",
+  "_rev": "_cLdiQfG---",
+  "id": "Taxon0000834",
+  "name": "CWT CU03-E12",
+  "ncbi_taxid": null
+ },
+ "Taxon0000852": {
+  "_id": "SDT_Taxon/Taxon0000852",
+  "_key": "Taxon0000852",
+  "_rev": "_cLdiQri---",
+  "id": "Taxon0000852",
+  "name": "Deep Sea Euryarchaeotic Group(DSEG)",
+  "ncbi_taxid": null
+ },
+ "Taxon0000854": {
+  "_id": "SDT_Taxon/Taxon0000854",
+  "_key": "Taxon0000854",
+  "_rev": "_cLdiQs6---",
+  "id": "Taxon0000854",
+  "name": "Deferribacterales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000882": {
+  "_id": "SDT_Taxon/Taxon0000882",
+  "_key": "Taxon0000882",
+  "_rev": "_cLdiR_y---",
+  "id": "Taxon0000882",
+  "name": "Deltaproteobacteria_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000883": {
+  "_id": "SDT_Taxon/Taxon0000883",
+  "_key": "Taxon0000883",
+  "_rev": "_mfO_fAa---",
+  "id": "Taxon0000883",
+  "name": "Deltaproteobacteria incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0000915": {
+  "_id": "SDT_Taxon/Taxon0000915",
+  "_key": "Taxon0000915",
+  "_rev": "_cLdiRWS---",
+  "id": "Taxon0000915",
+  "name": "[Desulfobacterium] catecholicum group",
+  "ncbi_taxid": null
+ },
+ "Taxon0000960": {
+  "_id": "SDT_Taxon/Taxon0000960",
+  "_key": "Taxon0000960",
+  "_rev": "_cLdiR1C---",
+  "id": "Taxon0000960",
+  "name": "Diapherotrites Incertae Sedis AR10",
+  "ncbi_taxid": null
+ },
+ "Taxon0001034": {
+  "_id": "SDT_Taxon/Taxon0001034",
+  "_key": "Taxon0001034",
+  "_rev": "_cLdiSnq---",
+  "id": "Taxon0001034",
+  "name": "Entomoplasmatales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001040": {
+  "_id": "SDT_Taxon/Taxon0001040",
+  "_key": "Taxon0001040",
+  "_rev": "_cLdiSru---",
+  "id": "Taxon0001040",
+  "name": "env.OPS 17",
+  "ncbi_taxid": null
+ },
+ "Taxon0001049": {
+  "_id": "SDT_Taxon/Taxon0001049",
+  "_key": "Taxon0001049",
+  "_rev": "_cLdiSxy---",
+  "id": "Taxon0001049",
+  "name": "Erysipelotrichaceae_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001151": {
+  "_id": "SDT_Taxon/Taxon0001151",
+  "_key": "Taxon0001151",
+  "_rev": "_cLdiT4e---",
+  "id": "Taxon0001151",
+  "name": "FukuN18 freshwater group",
+  "ncbi_taxid": null
+ },
+ "Taxon0001173": {
+  "_id": "SDT_Taxon/Taxon0001173",
+  "_key": "Taxon0001173",
+  "_rev": "_cLdiUHO---",
+  "id": "Taxon0001173",
+  "name": "Gammaproteobacteria_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001174": {
+  "_id": "SDT_Taxon/Taxon0001174",
+  "_key": "Taxon0001174",
+  "_rev": "_mfO_fAy---",
+  "id": "Taxon0001174",
+  "name": "Gammaproteobacteria incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001262": {
+  "_id": "SDT_Taxon/Taxon0001262",
+  "_key": "Taxon0001262",
+  "_rev": "_cLdiVDm---",
+  "id": "Taxon0001262",
+  "name": "Group 1.1c",
+  "ncbi_taxid": null
+ },
+ "Taxon0001352": {
+  "_id": "SDT_Taxon/Taxon0001352",
+  "_key": "Taxon0001352",
+  "_rev": "_cLdiWDa---",
+  "id": "Taxon0001352",
+  "name": "Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001377": {
+  "_id": "SDT_Taxon/Taxon0001377",
+  "_key": "Taxon0001377",
+  "_rev": "_cLdiWYW---",
+  "id": "Taxon0001377",
+  "name": "JGI 0000069-P22",
+  "ncbi_taxid": null
+ },
+ "Taxon0001378": {
+  "_id": "SDT_Taxon/Taxon0001378",
+  "_key": "Taxon0001378",
+  "_rev": "_cLdiWZC---",
+  "id": "Taxon0001378",
+  "name": "JGI 0001001-H03",
+  "ncbi_taxid": null
+ },
+ "Taxon0001426": {
+  "_id": "SDT_Taxon/Taxon0001426",
+  "_key": "Taxon0001426",
+  "_rev": "_cLdiW5m---",
+  "id": "Taxon0001426",
+  "name": "Lachnospiraceae UCG-008",
+  "ncbi_taxid": null
+ },
+ "Taxon0001427": {
+  "_id": "SDT_Taxon/Taxon0001427",
+  "_key": "Taxon0001427",
+  "_rev": "_cLdiW6O---",
+  "id": "Taxon0001427",
+  "name": "Lachnospiracea_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001441": {
+  "_id": "SDT_Taxon/Taxon0001441",
+  "_key": "Taxon0001441",
+  "_rev": "_cLdiXDq---",
+  "id": "Taxon0001441",
+  "name": "Latescibacteria_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001485": {
+  "_id": "SDT_Taxon/Taxon0001485",
+  "_key": "Taxon0001485",
+  "_rev": "_cLdiXhi---",
+  "id": "Taxon0001485",
+  "name": "Lineage IIa",
+  "ncbi_taxid": null
+ },
+ "Taxon0001486": {
+  "_id": "SDT_Taxon/Taxon0001486",
+  "_key": "Taxon0001486",
+  "_rev": "_cLdiXiK---",
+  "id": "Taxon0001486",
+  "name": "Lineage IIb",
+  "ncbi_taxid": null
+ },
+ "Taxon0001487": {
+  "_id": "SDT_Taxon/Taxon0001487",
+  "_key": "Taxon0001487",
+  "_rev": "_cLdiXi6---",
+  "id": "Taxon0001487",
+  "name": "Lineage IIc",
+  "ncbi_taxid": null
+ },
+ "Taxon0001488": {
+  "_id": "SDT_Taxon/Taxon0001488",
+  "_key": "Taxon0001488",
+  "_rev": "_cLdiXji---",
+  "id": "Taxon0001488",
+  "name": "Lineage IV",
+  "ncbi_taxid": null
+ },
+ "Taxon0001516": {
+  "_id": "SDT_Taxon/Taxon0001516",
+  "_key": "Taxon0001516",
+  "_rev": "_cLdiX2q---",
+  "id": "Taxon0001516",
+  "name": "Marine Benthic Group D and DHVEG-1",
+  "ncbi_taxid": null
+ },
+ "Taxon0001517": {
+  "_id": "SDT_Taxon/Taxon0001517",
+  "_key": "Taxon0001517",
+  "_rev": "_cLdiX3W---",
+  "id": "Taxon0001517",
+  "name": "Marine Group II",
+  "ncbi_taxid": "NCBITaxon:133814"
+ },
+ "Taxon0001625": {
+  "_id": "SDT_Taxon/Taxon0001625",
+  "_key": "Taxon0001625",
+  "_rev": "_cLdiZA6---",
+  "id": "Taxon0001625",
+  "name": "Microcoleus PCC-7113",
+  "ncbi_taxid": null
+ },
+ "Taxon0001629": {
+  "_id": "SDT_Taxon/Taxon0001629",
+  "_key": "Taxon0001629",
+  "_rev": "_cLdiZDm---",
+  "id": "Taxon0001629",
+  "name": "Microgenomates_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001709": {
+  "_id": "SDT_Taxon/Taxon0001709",
+  "_key": "Taxon0001709",
+  "_rev": "_cLdiZ6u---",
+  "id": "Taxon0001709",
+  "name": "_Neoptera",
+  "ncbi_taxid": null
+ },
+ "Taxon0001768": {
+  "_id": "SDT_Taxon/Taxon0001768",
+  "_key": "Taxon0001768",
+  "_rev": "_cLdiajC---",
+  "id": "Taxon0001768",
+  "name": "Nostoc PCC-73102",
+  "ncbi_taxid": null
+ },
+ "Taxon0001772": {
+  "_id": "SDT_Taxon/Taxon0001772",
+  "_key": "Taxon0001772",
+  "_rev": "_cLdialu---",
+  "id": "Taxon0001772",
+  "name": "NS10 marine group",
+  "ncbi_taxid": null
+ },
+ "Taxon0001773": {
+  "_id": "SDT_Taxon/Taxon0001773",
+  "_key": "Taxon0001773",
+  "_rev": "_cLdiama---",
+  "id": "Taxon0001773",
+  "name": "NS11-12 marine group",
+  "ncbi_taxid": null
+ },
+ "Taxon0001774": {
+  "_id": "SDT_Taxon/Taxon0001774",
+  "_key": "Taxon0001774",
+  "_rev": "_cLdianC---",
+  "id": "Taxon0001774",
+  "name": "NS9 marine group",
+  "ncbi_taxid": null
+ },
+ "Taxon0001784": {
+  "_id": "SDT_Taxon/Taxon0001784",
+  "_key": "Taxon0001784",
+  "_rev": "_cLdiat6---",
+  "id": "Taxon0001784",
+  "name": "OD1_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001806": {
+  "_id": "SDT_Taxon/Taxon0001806",
+  "_key": "Taxon0001806",
+  "_rev": "_cLdia82---",
+  "id": "Taxon0001806",
+  "name": "OM27 clade",
+  "ncbi_taxid": "NCBITaxon:1302713"
+ },
+ "Taxon0001812": {
+  "_id": "SDT_Taxon/Taxon0001812",
+  "_key": "Taxon0001812",
+  "_rev": "_cLdibA2---",
+  "id": "Taxon0001812",
+  "name": "Omnitrophica_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001817": {
+  "_id": "SDT_Taxon/Taxon0001817",
+  "_key": "Taxon0001817",
+  "_rev": "_cLdibEO---",
+  "id": "Taxon0001817",
+  "name": "OP11_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001846": {
+  "_id": "SDT_Taxon/Taxon0001846",
+  "_key": "Taxon0001846",
+  "_rev": "_cLdibX6---",
+  "id": "Taxon0001846",
+  "name": "Pacearchaeota Incertae Sedis AR13",
+  "ncbi_taxid": null
+ },
+ "Taxon0001852": {
+  "_id": "SDT_Taxon/Taxon0001852",
+  "_key": "Taxon0001852",
+  "_rev": "_cLdibcO---",
+  "id": "Taxon0001852",
+  "name": "Paenibacillaceae 1",
+  "ncbi_taxid": null
+ },
+ "Taxon0001888": {
+  "_id": "SDT_Taxon/Taxon0001888",
+  "_key": "Taxon0001888",
+  "_rev": "_cLdib0e---",
+  "id": "Taxon0001888",
+  "name": "Parcubacteria_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0001951": {
+  "_id": "SDT_Taxon/Taxon0001951",
+  "_key": "Taxon0001951",
+  "_rev": "_cLdicfe---",
+  "id": "Taxon0001951",
+  "name": "Peptococcaceae 1",
+  "ncbi_taxid": null
+ },
+ "Taxon0001952": {
+  "_id": "SDT_Taxon/Taxon0001952",
+  "_key": "Taxon0001952",
+  "_rev": "_cLdicgG---",
+  "id": "Taxon0001952",
+  "name": "Peptococcaceae 2",
+  "ncbi_taxid": null
+ },
+ "Taxon0001990": {
+  "_id": "SDT_Taxon/Taxon0001990",
+  "_key": "Taxon0001990",
+  "_rev": "_cLdic52---",
+  "id": "Taxon0001990",
+  "name": "Pir4 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0001996": {
+  "_id": "SDT_Taxon/Taxon0001996",
+  "_key": "Taxon0001996",
+  "_rev": "_cLdic96---",
+  "id": "Taxon0001996",
+  "name": "Pla1 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0001997": {
+  "_id": "SDT_Taxon/Taxon0001997",
+  "_key": "Taxon0001997",
+  "_rev": "_cLdid-i---",
+  "id": "Taxon0001997",
+  "name": "Pla3 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0001998": {
+  "_id": "SDT_Taxon/Taxon0001998",
+  "_key": "Taxon0001998",
+  "_rev": "_cLdid_S---",
+  "id": "Taxon0001998",
+  "name": "Pla4 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0002012": {
+  "_id": "SDT_Taxon/Taxon0002012",
+  "_key": "Taxon0002012",
+  "_rev": "_cLdidI6---",
+  "id": "Taxon0002012",
+  "name": "Planktothrix NIVA-CYA 15",
+  "ncbi_taxid": null
+ },
+ "Taxon0002014": {
+  "_id": "SDT_Taxon/Taxon0002014",
+  "_key": "Taxon0002014",
+  "_rev": "_cLdidKO---",
+  "id": "Taxon0002014",
+  "name": "Planococcaceae_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002030": {
+  "_id": "SDT_Taxon/Taxon0002030",
+  "_key": "Taxon0002030",
+  "_rev": "_cLdidVm---",
+  "id": "Taxon0002030",
+  "name": "Poribacteria_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002036": {
+  "_id": "SDT_Taxon/Taxon0002036",
+  "_key": "Taxon0002036",
+  "_rev": "_cLdidZ6---",
+  "id": "Taxon0002036",
+  "name": "possible genus 04",
+  "ncbi_taxid": null
+ },
+ "Taxon0002079": {
+  "_id": "SDT_Taxon/Taxon0002079",
+  "_key": "Taxon0002079",
+  "_rev": "_cLdid3q---",
+  "id": "Taxon0002079",
+  "name": "Pseudomonadales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002129": {
+  "_id": "SDT_Taxon/Taxon0002129",
+  "_key": "Taxon0002129",
+  "_rev": "_cLdieZ2---",
+  "id": "Taxon0002129",
+  "name": "Rhizobiales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002130": {
+  "_id": "SDT_Taxon/Taxon0002130",
+  "_key": "Taxon0002130",
+  "_rev": "_mfO_fBG---",
+  "id": "Taxon0002130",
+  "name": "Rhizobiales incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002216": {
+  "_id": "SDT_Taxon/Taxon0002216",
+  "_key": "Taxon0002216",
+  "_rev": "_cLdifWS---",
+  "id": "Taxon0002216",
+  "name": "S0134 terrestrial group",
+  "ncbi_taxid": null
+ },
+ "Taxon0002222": {
+  "_id": "SDT_Taxon/Taxon0002222",
+  "_key": "Taxon0002222",
+  "_rev": "_cLdifaS---",
+  "id": "Taxon0002222",
+  "name": "Saccharibacteria_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002247": {
+  "_id": "SDT_Taxon/Taxon0002247",
+  "_key": "Taxon0002247",
+  "_rev": "_cLdifrW---",
+  "id": "Taxon0002247",
+  "name": "SAR202 clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0002248": {
+  "_id": "SDT_Taxon/Taxon0002248",
+  "_key": "Taxon0002248",
+  "_rev": "_cLdifs----",
+  "id": "Taxon0002248",
+  "name": "SAR324 clade(Marine group B)",
+  "ncbi_taxid": null
+ },
+ "Taxon0002252": {
+  "_id": "SDT_Taxon/Taxon0002252",
+  "_key": "Taxon0002252",
+  "_rev": "_cLdifu2---",
+  "id": "Taxon0002252",
+  "name": "S-BQ2-57 soil group",
+  "ncbi_taxid": null
+ },
+ "Taxon0002316": {
+  "_id": "SDT_Taxon/Taxon0002316",
+  "_key": "Taxon0002316",
+  "_rev": "_cLdigaW---",
+  "id": "Taxon0002316",
+  "name": "Spartobacteria_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002344": {
+  "_id": "SDT_Taxon/Taxon0002344",
+  "_key": "Taxon0002344",
+  "_rev": "_cLdigta---",
+  "id": "Taxon0002344",
+  "name": "Spirochaeta 2",
+  "ncbi_taxid": null
+ },
+ "Taxon0002346": {
+  "_id": "SDT_Taxon/Taxon0002346",
+  "_key": "Taxon0002346",
+  "_rev": "_cLdiguy---",
+  "id": "Taxon0002346",
+  "name": "Spirochaetales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002368": {
+  "_id": "SDT_Taxon/Taxon0002368",
+  "_key": "Taxon0002368",
+  "_rev": "_cLdig9u---",
+  "id": "Taxon0002368",
+  "name": "SR1_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002401": {
+  "_id": "SDT_Taxon/Taxon0002401",
+  "_key": "Taxon0002401",
+  "_rev": "_cLdihUa---",
+  "id": "Taxon0002401",
+  "name": "Streptosporangineae_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002403": {
+  "_id": "SDT_Taxon/Taxon0002403",
+  "_key": "Taxon0002403",
+  "_rev": "_cLdihVu---",
+  "id": "Taxon0002403",
+  "name": "Subdivision3_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002405": {
+  "_id": "SDT_Taxon/Taxon0002405",
+  "_key": "Taxon0002405",
+  "_rev": "_cLdihXG---",
+  "id": "Taxon0002405",
+  "name": "Subdivision5_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002408": {
+  "_id": "SDT_Taxon/Taxon0002408",
+  "_key": "Taxon0002408",
+  "_rev": "_cLdihZG---",
+  "id": "Taxon0002408",
+  "name": "Subgroup 10",
+  "ncbi_taxid": null
+ },
+ "Taxon0002409": {
+  "_id": "SDT_Taxon/Taxon0002409",
+  "_key": "Taxon0002409",
+  "_rev": "_cLdihZ2---",
+  "id": "Taxon0002409",
+  "name": "Subgroup 11",
+  "ncbi_taxid": null
+ },
+ "Taxon0002410": {
+  "_id": "SDT_Taxon/Taxon0002410",
+  "_key": "Taxon0002410",
+  "_rev": "_cLdihae---",
+  "id": "Taxon0002410",
+  "name": "Subgroup 12",
+  "ncbi_taxid": null
+ },
+ "Taxon0002411": {
+  "_id": "SDT_Taxon/Taxon0002411",
+  "_key": "Taxon0002411",
+  "_rev": "_cLdihbG---",
+  "id": "Taxon0002411",
+  "name": "Subgroup 13",
+  "ncbi_taxid": null
+ },
+ "Taxon0002412": {
+  "_id": "SDT_Taxon/Taxon0002412",
+  "_key": "Taxon0002412",
+  "_rev": "_cLdihby---",
+  "id": "Taxon0002412",
+  "name": "Subgroup 15",
+  "ncbi_taxid": null
+ },
+ "Taxon0002413": {
+  "_id": "SDT_Taxon/Taxon0002413",
+  "_key": "Taxon0002413",
+  "_rev": "_cLdihce---",
+  "id": "Taxon0002413",
+  "name": "Subgroup 17",
+  "ncbi_taxid": null
+ },
+ "Taxon0002414": {
+  "_id": "SDT_Taxon/Taxon0002414",
+  "_key": "Taxon0002414",
+  "_rev": "_cLdihdK---",
+  "id": "Taxon0002414",
+  "name": "Subgroup 18",
+  "ncbi_taxid": null
+ },
+ "Taxon0002416": {
+  "_id": "SDT_Taxon/Taxon0002416",
+  "_key": "Taxon0002416",
+  "_rev": "_cLdihei---",
+  "id": "Taxon0002416",
+  "name": "Subgroup 20",
+  "ncbi_taxid": null
+ },
+ "Taxon0002417": {
+  "_id": "SDT_Taxon/Taxon0002417",
+  "_key": "Taxon0002417",
+  "_rev": "_cLdihfK---",
+  "id": "Taxon0002417",
+  "name": "Subgroup 21",
+  "ncbi_taxid": null
+ },
+ "Taxon0002418": {
+  "_id": "SDT_Taxon/Taxon0002418",
+  "_key": "Taxon0002418",
+  "_rev": "_cLdihf6---",
+  "id": "Taxon0002418",
+  "name": "Subgroup 22",
+  "ncbi_taxid": null
+ },
+ "Taxon0002419": {
+  "_id": "SDT_Taxon/Taxon0002419",
+  "_key": "Taxon0002419",
+  "_rev": "_cLdihgi---",
+  "id": "Taxon0002419",
+  "name": "Subgroup 25",
+  "ncbi_taxid": null
+ },
+ "Taxon0002420": {
+  "_id": "SDT_Taxon/Taxon0002420",
+  "_key": "Taxon0002420",
+  "_rev": "_cLdihhO---",
+  "id": "Taxon0002420",
+  "name": "Subgroup 26",
+  "ncbi_taxid": null
+ },
+ "Taxon0002421": {
+  "_id": "SDT_Taxon/Taxon0002421",
+  "_key": "Taxon0002421",
+  "_rev": "_cLdihh6---",
+  "id": "Taxon0002421",
+  "name": "Subgroup 2",
+  "ncbi_taxid": null
+ },
+ "Taxon0002422": {
+  "_id": "SDT_Taxon/Taxon0002422",
+  "_key": "Taxon0002422",
+  "_rev": "_cLdihii---",
+  "id": "Taxon0002422",
+  "name": "Subgroup 5",
+  "ncbi_taxid": null
+ },
+ "Taxon0002424": {
+  "_id": "SDT_Taxon/Taxon0002424",
+  "_key": "Taxon0002424",
+  "_rev": "_cLdihj6---",
+  "id": "Taxon0002424",
+  "name": "Subgroup 7",
+  "ncbi_taxid": null
+ },
+ "Taxon0002425": {
+  "_id": "SDT_Taxon/Taxon0002425",
+  "_key": "Taxon0002425",
+  "_rev": "_cLdihkm---",
+  "id": "Taxon0002425",
+  "name": "Subgroup 9",
+  "ncbi_taxid": null
+ },
+ "Taxon0002443": {
+  "_id": "SDT_Taxon/Taxon0002443",
+  "_key": "Taxon0002443",
+  "_rev": "_cLdihwy---",
+  "id": "Taxon0002443",
+  "name": "Sva0996 marine group",
+  "ncbi_taxid": null
+ },
+ "Taxon0002565": {
+  "_id": "SDT_Taxon/Taxon0002565",
+  "_key": "Taxon0002565",
+  "_rev": "_cLdijEC---",
+  "id": "Taxon0002565",
+  "name": "Thiotrichales_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002575": {
+  "_id": "SDT_Taxon/Taxon0002575",
+  "_key": "Taxon0002575",
+  "_rev": "_cLdijKu---",
+  "id": "Taxon0002575",
+  "name": "TM7_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002591": {
+  "_id": "SDT_Taxon/Taxon0002591",
+  "_key": "Taxon0002591",
+  "_rev": "_cLdijVe---",
+  "id": "Taxon0002591",
+  "name": "Tychonema CCAP 1459-11B",
+  "ncbi_taxid": null
+ },
+ "Taxon0002779": {
+  "_id": "SDT_Taxon/Taxon0002779",
+  "_key": "Taxon0002779",
+  "_rev": "_cLdilVO---",
+  "id": "Taxon0002779",
+  "name": "Unknown Family",
+  "ncbi_taxid": null
+ },
+ "Taxon0002821": {
+  "_id": "SDT_Taxon/Taxon0002821",
+  "_key": "Taxon0002821",
+  "_rev": "_cLdilxu---",
+  "id": "Taxon0002821",
+  "name": "WD2101 soil group",
+  "ncbi_taxid": null
+ },
+ "Taxon0002827": {
+  "_id": "SDT_Taxon/Taxon0002827",
+  "_key": "Taxon0002827",
+  "_rev": "_cLdil1u---",
+  "id": "Taxon0002827",
+  "name": "Woesearchaeota Incertae Sedis AR15",
+  "ncbi_taxid": null
+ },
+ "Taxon0002828": {
+  "_id": "SDT_Taxon/Taxon0002828",
+  "_key": "Taxon0002828",
+  "_rev": "_cLdil2a---",
+  "id": "Taxon0002828",
+  "name": "Woesearchaeota Incertae Sedis AR16",
+  "ncbi_taxid": null
+ },
+ "Taxon0002829": {
+  "_id": "SDT_Taxon/Taxon0002829",
+  "_key": "Taxon0002829",
+  "_rev": "_cLdil3C---",
+  "id": "Taxon0002829",
+  "name": "Woesearchaeota Incertae Sedis AR17",
+  "ncbi_taxid": null
+ },
+ "Taxon0002830": {
+  "_id": "SDT_Taxon/Taxon0002830",
+  "_key": "Taxon0002830",
+  "_rev": "_cLdil3y---",
+  "id": "Taxon0002830",
+  "name": "Woesearchaeota Incertae Sedis AR18",
+  "ncbi_taxid": null
+ },
+ "Taxon0002831": {
+  "_id": "SDT_Taxon/Taxon0002831",
+  "_key": "Taxon0002831",
+  "_rev": "_cLdil4a---",
+  "id": "Taxon0002831",
+  "name": "Woesearchaeota Incertae Sedis AR20",
+  "ncbi_taxid": null
+ },
+ "Taxon0002835": {
+  "_id": "SDT_Taxon/Taxon0002835",
+  "_key": "Taxon0002835",
+  "_rev": "_cLdil7O---",
+  "id": "Taxon0002835",
+  "name": "WPS-1_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002836": {
+  "_id": "SDT_Taxon/Taxon0002836",
+  "_key": "Taxon0002836",
+  "_rev": "_cLdil72---",
+  "id": "Taxon0002836",
+  "name": "WPS-2_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002839": {
+  "_id": "SDT_Taxon/Taxon0002839",
+  "_key": "Taxon0002839",
+  "_rev": "_cLdim-G---",
+  "id": "Taxon0002839",
+  "name": "WS3_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002857": {
+  "_id": "SDT_Taxon/Taxon0002857",
+  "_key": "Taxon0002857",
+  "_rev": "_cLdimK6---",
+  "id": "Taxon0002857",
+  "name": "ZB3_genera_incertae_sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0002885": {
+  "_id": "SDT_Taxon/Taxon0002885",
+  "_key": "Taxon0002885",
+  "_rev": "_etW69Cm---",
+  "id": "Taxon0002885",
+  "name": "b-17BO",
+  "ncbi_taxid": null
+ },
+ "Taxon0003214": {
+  "_id": "SDT_Taxon/Taxon0003214",
+  "_key": "Taxon0003214",
+  "_rev": "_fcDRUVS---",
+  "id": "Taxon0003214",
+  "name": "B-17BO",
+  "ncbi_taxid": null
+ },
+ "Taxon0004865": {
+  "_id": "SDT_Taxon/Taxon0004865",
+  "_key": "Taxon0004865",
+  "_rev": "_ld8eTHG---",
+  "id": "Taxon0004865",
+  "name": "Candidatus Obscuribacter",
+  "ncbi_taxid": null
+ },
+ "Taxon0004870": {
+  "_id": "SDT_Taxon/Taxon0004870",
+  "_key": "Taxon0004870",
+  "_rev": "_ld8eTNi---",
+  "id": "Taxon0004870",
+  "name": "Clostridia UCG-014",
+  "ncbi_taxid": null
+ },
+ "Taxon0004871": {
+  "_id": "SDT_Taxon/Taxon0004871",
+  "_key": "Taxon0004871",
+  "_rev": "_ld8eTOG---",
+  "id": "Taxon0004871",
+  "name": "Clostridia vadinBB60 group",
+  "ncbi_taxid": null
+ },
+ "Taxon0004917": {
+  "_id": "SDT_Taxon/Taxon0004917",
+  "_key": "Taxon0004917",
+  "_rev": "_ld8eT3q---",
+  "id": "Taxon0004917",
+  "name": "Hyphomicrobiales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0004955": {
+  "_id": "SDT_Taxon/Taxon0004955",
+  "_key": "Taxon0004955",
+  "_rev": "_ld8eUOq---",
+  "id": "Taxon0004955",
+  "name": "Micrococcales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0004997": {
+  "_id": "SDT_Taxon/Taxon0004997",
+  "_key": "Taxon0004997",
+  "_rev": "_ld8eUs6---",
+  "id": "Taxon0004997",
+  "name": "SCGC AAA011-D5",
+  "ncbi_taxid": null
+ },
+ "Taxon0005038": {
+  "_id": "SDT_Taxon/Taxon0005038",
+  "_key": "Taxon0005038",
+  "_rev": "_ld8eVGC---",
+  "id": "Taxon0005038",
+  "name": "hgcI clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0005048": {
+  "_id": "SDT_Taxon/Taxon0005048",
+  "_key": "Taxon0005048",
+  "_rev": "_lyjY502---",
+  "id": "Taxon0005048",
+  "name": "Bacillaceae_1",
+  "ncbi_taxid": null
+ },
+ "Taxon0005049": {
+  "_id": "SDT_Taxon/Taxon0005049",
+  "_key": "Taxon0005049",
+  "_rev": "_lyjY51O---",
+  "id": "Taxon0005049",
+  "name": "Bacillales_Incertae_Sedis_X",
+  "ncbi_taxid": null
+ },
+ "Taxon0005050": {
+  "_id": "SDT_Taxon/Taxon0005050",
+  "_key": "Taxon0005050",
+  "_rev": "_lyjY51e---",
+  "id": "Taxon0005050",
+  "name": "Bacillales_Incertae_Sedis_XII",
+  "ncbi_taxid": null
+ },
+ "Taxon0005053": {
+  "_id": "SDT_Taxon/Taxon0005053",
+  "_key": "Taxon0005053",
+  "_rev": "_lyjY56a---",
+  "id": "Taxon0005053",
+  "name": "Clostridiaceae_1",
+  "ncbi_taxid": null
+ },
+ "Taxon0005054": {
+  "_id": "SDT_Taxon/Taxon0005054",
+  "_key": "Taxon0005054",
+  "_rev": "_lyjY57O---",
+  "id": "Taxon0005054",
+  "name": "Clostridiales_Incertae_Sedis_III",
+  "ncbi_taxid": null
+ },
+ "Taxon0005055": {
+  "_id": "SDT_Taxon/Taxon0005055",
+  "_key": "Taxon0005055",
+  "_rev": "_lyjY57u---",
+  "id": "Taxon0005055",
+  "name": "Clostridium_sensu_stricto",
+  "ncbi_taxid": null
+ },
+ "Taxon0005069": {
+  "_id": "SDT_Taxon/Taxon0005069",
+  "_key": "Taxon0005069",
+  "_rev": "_lyjY6Qe---",
+  "id": "Taxon0005069",
+  "name": "Paenibacillaceae_1",
+  "ncbi_taxid": null
+ },
+ "Taxon0005072": {
+  "_id": "SDT_Taxon/Taxon0005072",
+  "_key": "Taxon0005072",
+  "_rev": "_lyjY6SW---",
+  "id": "Taxon0005072",
+  "name": "Peptococcaceae_1",
+  "ncbi_taxid": null
+ },
+ "Taxon0005086": {
+  "_id": "SDT_Taxon/Taxon0005086",
+  "_key": "Taxon0005086",
+  "_rev": "_lyyoWmG---",
+  "id": "Taxon0005086",
+  "name": "Candidatus_Brocadiaceae",
+  "ncbi_taxid": null
+ },
+ "Taxon0005087": {
+  "_id": "SDT_Taxon/Taxon0005087",
+  "_key": "Taxon0005087",
+  "_rev": "_lyyoWme---",
+  "id": "Taxon0005087",
+  "name": "Candidatus_Brocadiales",
+  "ncbi_taxid": null
+ },
+ "Taxon0005095": {
+  "_id": "SDT_Taxon/Taxon0005095",
+  "_key": "Taxon0005095",
+  "_rev": "_lyyrh3C---",
+  "id": "Taxon0005095",
+  "name": "Clostridiales_Incertae_Sedis_XIII",
+  "ncbi_taxid": null
+ },
+ "Taxon0005096": {
+  "_id": "SDT_Taxon/Taxon0005096",
+  "_key": "Taxon0005096",
+  "_rev": "_lyyrh3e---",
+  "id": "Taxon0005096",
+  "name": "Clostridium_IV",
+  "ncbi_taxid": null
+ },
+ "Taxon0005097": {
+  "_id": "SDT_Taxon/Taxon0005097",
+  "_key": "Taxon0005097",
+  "_rev": "_lyyrh32---",
+  "id": "Taxon0005097",
+  "name": "Clostridium_XlVa",
+  "ncbi_taxid": null
+ },
+ "Taxon0005101": {
+  "_id": "SDT_Taxon/Taxon0005101",
+  "_key": "Taxon0005101",
+  "_rev": "_lyyriK2---",
+  "id": "Taxon0005101",
+  "name": "Pacearchaeota_Incertae_Sedis_AR13",
+  "ncbi_taxid": null
+ },
+ "Taxon0005102": {
+  "_id": "SDT_Taxon/Taxon0005102",
+  "_key": "Taxon0005102",
+  "_rev": "_lyyriM2---",
+  "id": "Taxon0005102",
+  "name": "Peptococcaceae_2",
+  "ncbi_taxid": null
+ },
+ "Taxon0005113": {
+  "_id": "SDT_Taxon/Taxon0005113",
+  "_key": "Taxon0005113",
+  "_rev": "_lyysy9O---",
+  "id": "Taxon0005113",
+  "name": "Candidatus_Saccharibacteria",
+  "ncbi_taxid": null
+ },
+ "Taxon0005121": {
+  "_id": "SDT_Taxon/Taxon0005121",
+  "_key": "Taxon0005121",
+  "_rev": "_lyysznK---",
+  "id": "Taxon0005121",
+  "name": "Woesearchaeota_Incertae_Sedis_AR17",
+  "ncbi_taxid": null
+ },
+ "Taxon0005144": {
+  "_id": "SDT_Taxon/Taxon0005144",
+  "_key": "Taxon0005144",
+  "_rev": "_l3BPhjq---",
+  "id": "Taxon0005144",
+  "name": "AKAU3564_sediment_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005154": {
+  "_id": "SDT_Taxon/Taxon0005154",
+  "_key": "Taxon0005154",
+  "_rev": "_l3BPhmy---",
+  "id": "Taxon0005154",
+  "name": "Absconditabacteriales_(SR1)",
+  "ncbi_taxid": null
+ },
+ "Taxon0005170": {
+  "_id": "SDT_Taxon/Taxon0005170",
+  "_key": "Taxon0005170",
+  "_rev": "_l3BPhti---",
+  "id": "Taxon0005170",
+  "name": "Acidobacteriaceae_(Subgroup_1)",
+  "ncbi_taxid": null
+ },
+ "Taxon0005174": {
+  "_id": "SDT_Taxon/Taxon0005174",
+  "_key": "Taxon0005174",
+  "_rev": "_l3BPhvS---",
+  "id": "Taxon0005174",
+  "name": "Actinomycetales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005210": {
+  "_id": "SDT_Taxon/Taxon0005210",
+  "_key": "Taxon0005210",
+  "_rev": "_mfO_f_m---",
+  "id": "Taxon0005210",
+  "name": "Alphaproteobacteria incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005226": {
+  "_id": "SDT_Taxon/Taxon0005226",
+  "_key": "Taxon0005226",
+  "_rev": "_l3BPiEe---",
+  "id": "Taxon0005226",
+  "name": "Anaerolineaceae UCG-001",
+  "ncbi_taxid": null
+ },
+ "Taxon0005227": {
+  "_id": "SDT_Taxon/Taxon0005227",
+  "_key": "Taxon0005227",
+  "_rev": "_l3BPiFG---",
+  "id": "Taxon0005227",
+  "name": "Anaerolineaceae_UCG-001",
+  "ncbi_taxid": null
+ },
+ "Taxon0005308": {
+  "_id": "SDT_Taxon/Taxon0005308",
+  "_key": "Taxon0005308",
+  "_rev": "_l3BPilu---",
+  "id": "Taxon0005308",
+  "name": "Arctic97B-4_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005328": {
+  "_id": "SDT_Taxon/Taxon0005328",
+  "_key": "Taxon0005328",
+  "_rev": "_l3BPiuC---",
+  "id": "Taxon0005328",
+  "name": "Azospirillales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005329": {
+  "_id": "SDT_Taxon/Taxon0005329",
+  "_key": "Taxon0005329",
+  "_rev": "_l3BPiuW---",
+  "id": "Taxon0005329",
+  "name": "Azospirillales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005336": {
+  "_id": "SDT_Taxon/Taxon0005336",
+  "_key": "Taxon0005336",
+  "_rev": "_l3BPiwW---",
+  "id": "Taxon0005336",
+  "name": "BD1-7_clade",
+  "ncbi_taxid": "NCBITaxon:744998"
+ },
+ "Taxon0005337": {
+  "_id": "SDT_Taxon/Taxon0005337",
+  "_key": "Taxon0005337",
+  "_rev": "_l3BPiwm---",
+  "id": "Taxon0005337",
+  "name": "BD2-11_terrestrial_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005363": {
+  "_id": "SDT_Taxon/Taxon0005363",
+  "_key": "Taxon0005363",
+  "_rev": "_l3BPi7a---",
+  "id": "Taxon0005363",
+  "name": "Bacteroidetes_BD2-2",
+  "ncbi_taxid": null
+ },
+ "Taxon0005364": {
+  "_id": "SDT_Taxon/Taxon0005364",
+  "_key": "Taxon0005364",
+  "_rev": "_l3BPi7y---",
+  "id": "Taxon0005364",
+  "name": "Bacteroidetes_VC2.1_Bac22",
+  "ncbi_taxid": null
+ },
+ "Taxon0005365": {
+  "_id": "SDT_Taxon/Taxon0005365",
+  "_key": "Taxon0005365",
+  "_rev": "_l3BPi8K---",
+  "id": "Taxon0005365",
+  "name": "Bacteroidetes_vadinHA17",
+  "ncbi_taxid": null
+ },
+ "Taxon0005386": {
+  "_id": "SDT_Taxon/Taxon0005386",
+  "_key": "Taxon0005386",
+  "_rev": "_l3BPjFa---",
+  "id": "Taxon0005386",
+  "name": "Blvii28 wastewater-sludge group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005387": {
+  "_id": "SDT_Taxon/Taxon0005387",
+  "_key": "Taxon0005387",
+  "_rev": "_l3BPjF6---",
+  "id": "Taxon0005387",
+  "name": "Blvii28_wastewater-sludge_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005396": {
+  "_id": "SDT_Taxon/Taxon0005396",
+  "_key": "Taxon0005396",
+  "_rev": "_l3BPjJO---",
+  "id": "Taxon0005396",
+  "name": "Brachyspirales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005397": {
+  "_id": "SDT_Taxon/Taxon0005397",
+  "_key": "Taxon0005397",
+  "_rev": "_l3BPjJe---",
+  "id": "Taxon0005397",
+  "name": "Brachyspirales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005433": {
+  "_id": "SDT_Taxon/Taxon0005433",
+  "_key": "Taxon0005433",
+  "_rev": "_l3BPjXi---",
+  "id": "Taxon0005433",
+  "name": "CL500-29_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005436": {
+  "_id": "SDT_Taxon/Taxon0005436",
+  "_key": "Taxon0005436",
+  "_rev": "_l3BPjZC---",
+  "id": "Taxon0005436",
+  "name": "CPla-3 termite group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005437": {
+  "_id": "SDT_Taxon/Taxon0005437",
+  "_key": "Taxon0005437",
+  "_rev": "_l3BPjZa---",
+  "id": "Taxon0005437",
+  "name": "CPla-3_termite_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005438": {
+  "_id": "SDT_Taxon/Taxon0005438",
+  "_key": "Taxon0005438",
+  "_rev": "_l3BPjZ2---",
+  "id": "Taxon0005438",
+  "name": "CWT_CU03-E12",
+  "ncbi_taxid": null
+ },
+ "Taxon0005465": {
+  "_id": "SDT_Taxon/Taxon0005465",
+  "_key": "Taxon0005465",
+  "_rev": "_l3BPjou---",
+  "id": "Taxon0005465",
+  "name": "Candidatus Altiarchaeum",
+  "ncbi_taxid": "NCBITaxon:1803512"
+ },
+ "Taxon0005466": {
+  "_id": "SDT_Taxon/Taxon0005466",
+  "_key": "Taxon0005466",
+  "_rev": "_l3BPjpW---",
+  "id": "Taxon0005466",
+  "name": "Candidatus Alysiosphaera",
+  "ncbi_taxid": "NCBITaxon:356778"
+ },
+ "Taxon0005467": {
+  "_id": "SDT_Taxon/Taxon0005467",
+  "_key": "Taxon0005467",
+  "_rev": "_l3BPjq----",
+  "id": "Taxon0005467",
+  "name": "Candidatus Amoebophilus",
+  "ncbi_taxid": "NCBITaxon:281119"
+ },
+ "Taxon0005470": {
+  "_id": "SDT_Taxon/Taxon0005470",
+  "_key": "Taxon0005470",
+  "_rev": "_l3BPjru---",
+  "id": "Taxon0005470",
+  "name": "Candidatus Anammoximicrobium",
+  "ncbi_taxid": "NCBITaxon:1441942"
+ },
+ "Taxon0005472": {
+  "_id": "SDT_Taxon/Taxon0005472",
+  "_key": "Taxon0005472",
+  "_rev": "_l3BPjtG---",
+  "id": "Taxon0005472",
+  "name": "Candidatus Babela",
+  "ncbi_taxid": "NCBITaxon:1551504"
+ },
+ "Taxon0005474": {
+  "_id": "SDT_Taxon/Taxon0005474",
+  "_key": "Taxon0005474",
+  "_rev": "_l3BPjuS---",
+  "id": "Taxon0005474",
+  "name": "Candidatus Chloroploca",
+  "ncbi_taxid": "NCBITaxon:1579476"
+ },
+ "Taxon0005477": {
+  "_id": "SDT_Taxon/Taxon0005477",
+  "_key": "Taxon0005477",
+  "_rev": "_l3BPjw----",
+  "id": "Taxon0005477",
+  "name": "Candidatus Competibacter",
+  "ncbi_taxid": "NCBITaxon:221279"
+ },
+ "Taxon0005483": {
+  "_id": "SDT_Taxon/Taxon0005483",
+  "_key": "Taxon0005483",
+  "_rev": "_l3BPjzO---",
+  "id": "Taxon0005483",
+  "name": "Candidatus Latescibacter",
+  "ncbi_taxid": "NCBITaxon:1432311"
+ },
+ "Taxon0005486": {
+  "_id": "SDT_Taxon/Taxon0005486",
+  "_key": "Taxon0005486",
+  "_rev": "_l3BPj0q---",
+  "id": "Taxon0005486",
+  "name": "Candidatus Metachlamydia",
+  "ncbi_taxid": "NCBITaxon:749220"
+ },
+ "Taxon0005488": {
+  "_id": "SDT_Taxon/Taxon0005488",
+  "_key": "Taxon0005488",
+  "_rev": "_l3BPj1m---",
+  "id": "Taxon0005488",
+  "name": "Candidatus Micrarchaeum",
+  "ncbi_taxid": "NCBITaxon:662756"
+ },
+ "Taxon0005490": {
+  "_id": "SDT_Taxon/Taxon0005490",
+  "_key": "Taxon0005490",
+  "_rev": "_l3BPj2i---",
+  "id": "Taxon0005490",
+  "name": "Candidatus Nealsonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817911"
+ },
+ "Taxon0005492": {
+  "_id": "SDT_Taxon/Taxon0005492",
+  "_key": "Taxon0005492",
+  "_rev": "_l3BPj3e---",
+  "id": "Taxon0005492",
+  "name": "Candidatus Nitrotoga",
+  "ncbi_taxid": "NCBITaxon:453161"
+ },
+ "Taxon0005493": {
+  "_id": "SDT_Taxon/Taxon0005493",
+  "_key": "Taxon0005493",
+  "_rev": "_l3BPj36---",
+  "id": "Taxon0005493",
+  "name": "Candidatus Nucleicultrix",
+  "ncbi_taxid": "NCBITaxon:1509243"
+ },
+ "Taxon0005495": {
+  "_id": "SDT_Taxon/Taxon0005495",
+  "_key": "Taxon0005495",
+  "_rev": "_l3BPj4u---",
+  "id": "Taxon0005495",
+  "name": "Candidatus Planktophila",
+  "ncbi_taxid": "NCBITaxon:622681"
+ },
+ "Taxon0005496": {
+  "_id": "SDT_Taxon/Taxon0005496",
+  "_key": "Taxon0005496",
+  "_rev": "_l3BPj5G---",
+  "id": "Taxon0005496",
+  "name": "Candidatus Renichlamydia",
+  "ncbi_taxid": "NCBITaxon:1177738"
+ },
+ "Taxon0005497": {
+  "_id": "SDT_Taxon/Taxon0005497",
+  "_key": "Taxon0005497",
+  "_rev": "_l3BPj5i---",
+  "id": "Taxon0005497",
+  "name": "Candidatus Symbiobacter",
+  "ncbi_taxid": "NCBITaxon:1436289"
+ },
+ "Taxon0005503": {
+  "_id": "SDT_Taxon/Taxon0005503",
+  "_key": "Taxon0005503",
+  "_rev": "_l3BPj7q---",
+  "id": "Taxon0005503",
+  "name": "Candidatus_Abawacabacteria",
+  "ncbi_taxid": "NCBITaxon:1817796"
+ },
+ "Taxon0005504": {
+  "_id": "SDT_Taxon/Taxon0005504",
+  "_key": "Taxon0005504",
+  "_rev": "_l3BPj8----",
+  "id": "Taxon0005504",
+  "name": "Candidatus_Accumulibacter",
+  "ncbi_taxid": "NCBITaxon:327159"
+ },
+ "Taxon0005505": {
+  "_id": "SDT_Taxon/Taxon0005505",
+  "_key": "Taxon0005505",
+  "_rev": "_l3BPj8W---",
+  "id": "Taxon0005505",
+  "name": "Candidatus_Adlerbacteria",
+  "ncbi_taxid": "NCBITaxon:1752736"
+ },
+ "Taxon0005506": {
+  "_id": "SDT_Taxon/Taxon0005506",
+  "_key": "Taxon0005506",
+  "_rev": "_l3BPj8q---",
+  "id": "Taxon0005506",
+  "name": "Candidatus_Aenigmarchaeum",
+  "ncbi_taxid": "NCBITaxon:1462427"
+ },
+ "Taxon0005507": {
+  "_id": "SDT_Taxon/Taxon0005507",
+  "_key": "Taxon0005507",
+  "_rev": "_l3BPj9G---",
+  "id": "Taxon0005507",
+  "name": "Candidatus_Altiarchaeum",
+  "ncbi_taxid": "NCBITaxon:1803512"
+ },
+ "Taxon0005508": {
+  "_id": "SDT_Taxon/Taxon0005508",
+  "_key": "Taxon0005508",
+  "_rev": "_l3BPj9e---",
+  "id": "Taxon0005508",
+  "name": "Candidatus_Alysiosphaera",
+  "ncbi_taxid": "NCBITaxon:356778"
+ },
+ "Taxon0005509": {
+  "_id": "SDT_Taxon/Taxon0005509",
+  "_key": "Taxon0005509",
+  "_rev": "_l3BPj9y---",
+  "id": "Taxon0005509",
+  "name": "Candidatus_Amesbacteria",
+  "ncbi_taxid": "NCBITaxon:1752730"
+ },
+ "Taxon0005510": {
+  "_id": "SDT_Taxon/Taxon0005510",
+  "_key": "Taxon0005510",
+  "_rev": "_l3BPk-K---",
+  "id": "Taxon0005510",
+  "name": "Candidatus_Amoebophilus",
+  "ncbi_taxid": "NCBITaxon:281119"
+ },
+ "Taxon0005511": {
+  "_id": "SDT_Taxon/Taxon0005511",
+  "_key": "Taxon0005511",
+  "_rev": "_l3BPk-i---",
+  "id": "Taxon0005511",
+  "name": "Candidatus_Anammoximicrobium",
+  "ncbi_taxid": "NCBITaxon:1441942"
+ },
+ "Taxon0005512": {
+  "_id": "SDT_Taxon/Taxon0005512",
+  "_key": "Taxon0005512",
+  "_rev": "_l3BPk-6---",
+  "id": "Taxon0005512",
+  "name": "Candidatus_Ancillula",
+  "ncbi_taxid": "NCBITaxon:1265508"
+ },
+ "Taxon0005513": {
+  "_id": "SDT_Taxon/Taxon0005513",
+  "_key": "Taxon0005513",
+  "_rev": "_l3BPk_S---",
+  "id": "Taxon0005513",
+  "name": "Candidatus_Azambacteria",
+  "ncbi_taxid": "NCBITaxon:1752741"
+ },
+ "Taxon0005514": {
+  "_id": "SDT_Taxon/Taxon0005514",
+  "_key": "Taxon0005514",
+  "_rev": "_l3BPk_y---",
+  "id": "Taxon0005514",
+  "name": "Candidatus_Babela",
+  "ncbi_taxid": "NCBITaxon:1551504"
+ },
+ "Taxon0005515": {
+  "_id": "SDT_Taxon/Taxon0005515",
+  "_key": "Taxon0005515",
+  "_rev": "_l3BPkAK---",
+  "id": "Taxon0005515",
+  "name": "Candidatus_Bacilloplasma",
+  "ncbi_taxid": "NCBITaxon:467747"
+ },
+ "Taxon0005516": {
+  "_id": "SDT_Taxon/Taxon0005516",
+  "_key": "Taxon0005516",
+  "_rev": "_l3BPkAi---",
+  "id": "Taxon0005516",
+  "name": "Candidatus_Bealeia",
+  "ncbi_taxid": "NCBITaxon:1920992"
+ },
+ "Taxon0005517": {
+  "_id": "SDT_Taxon/Taxon0005517",
+  "_key": "Taxon0005517",
+  "_rev": "_l3BPkA6---",
+  "id": "Taxon0005517",
+  "name": "Candidatus_Beckwithbacteria",
+  "ncbi_taxid": "NCBITaxon:1752726"
+ },
+ "Taxon0005518": {
+  "_id": "SDT_Taxon/Taxon0005518",
+  "_key": "Taxon0005518",
+  "_rev": "_l3BPkBS---",
+  "id": "Taxon0005518",
+  "name": "Candidatus_Berkiella",
+  "ncbi_taxid": "NCBITaxon:1755683"
+ },
+ "Taxon0005519": {
+  "_id": "SDT_Taxon/Taxon0005519",
+  "_key": "Taxon0005519",
+  "_rev": "_l3BPkBq---",
+  "id": "Taxon0005519",
+  "name": "Candidatus_Brennerbacteria",
+  "ncbi_taxid": "NCBITaxon:1817902"
+ },
+ "Taxon0005520": {
+  "_id": "SDT_Taxon/Taxon0005520",
+  "_key": "Taxon0005520",
+  "_rev": "_l3BPkCC---",
+  "id": "Taxon0005520",
+  "name": "Candidatus_Brocadia",
+  "ncbi_taxid": "NCBITaxon:380240"
+ },
+ "Taxon0005521": {
+  "_id": "SDT_Taxon/Taxon0005521",
+  "_key": "Taxon0005521",
+  "_rev": "_l3BPkCi---",
+  "id": "Taxon0005521",
+  "name": "Candidatus_Buchananbacteria",
+  "ncbi_taxid": "NCBITaxon:1817903"
+ },
+ "Taxon0005522": {
+  "_id": "SDT_Taxon/Taxon0005522",
+  "_key": "Taxon0005522",
+  "_rev": "_l3BPkCy---",
+  "id": "Taxon0005522",
+  "name": "Candidatus_Campbellbacteria",
+  "ncbi_taxid": "NCBITaxon:1752727"
+ },
+ "Taxon0005523": {
+  "_id": "SDT_Taxon/Taxon0005523",
+  "_key": "Taxon0005523",
+  "_rev": "_l3BPkDC---",
+  "id": "Taxon0005523",
+  "name": "Candidatus_Captivus",
+  "ncbi_taxid": "NCBITaxon:679161"
+ },
+ "Taxon0005524": {
+  "_id": "SDT_Taxon/Taxon0005524",
+  "_key": "Taxon0005524",
+  "_rev": "_l3BPkDW---",
+  "id": "Taxon0005524",
+  "name": "Candidatus_Chisholmbacteria",
+  "ncbi_taxid": "NCBITaxon:1817900"
+ },
+ "Taxon0005525": {
+  "_id": "SDT_Taxon/Taxon0005525",
+  "_key": "Taxon0005525",
+  "_rev": "_l3BPkDm---",
+  "id": "Taxon0005525",
+  "name": "Candidatus_Chloroploca",
+  "ncbi_taxid": "NCBITaxon:1579476"
+ },
+ "Taxon0005526": {
+  "_id": "SDT_Taxon/Taxon0005526",
+  "_key": "Taxon0005526",
+  "_rev": "_l3BPkD2---",
+  "id": "Taxon0005526",
+  "name": "Candidatus_Collierbacteria",
+  "ncbi_taxid": "NCBITaxon:1752725"
+ },
+ "Taxon0005527": {
+  "_id": "SDT_Taxon/Taxon0005527",
+  "_key": "Taxon0005527",
+  "_rev": "_l3BPkEK---",
+  "id": "Taxon0005527",
+  "name": "Candidatus_Colwellbacteria",
+  "ncbi_taxid": "NCBITaxon:1817904"
+ },
+ "Taxon0005528": {
+  "_id": "SDT_Taxon/Taxon0005528",
+  "_key": "Taxon0005528",
+  "_rev": "_l3BPkEa---",
+  "id": "Taxon0005528",
+  "name": "Candidatus_Competibacter",
+  "ncbi_taxid": "NCBITaxon:221279"
+ },
+ "Taxon0005529": {
+  "_id": "SDT_Taxon/Taxon0005529",
+  "_key": "Taxon0005529",
+  "_rev": "_l3BPkEq---",
+  "id": "Taxon0005529",
+  "name": "Candidatus_Cryptoprodotis",
+  "ncbi_taxid": "NCBITaxon:672771"
+ },
+ "Taxon0005530": {
+  "_id": "SDT_Taxon/Taxon0005530",
+  "_key": "Taxon0005530",
+  "_rev": "_l3BPkF----",
+  "id": "Taxon0005530",
+  "name": "Candidatus_Curtissbacteria",
+  "ncbi_taxid": "NCBITaxon:1752717"
+ },
+ "Taxon0005531": {
+  "_id": "SDT_Taxon/Taxon0005531",
+  "_key": "Taxon0005531",
+  "_rev": "_l3BPkFO---",
+  "id": "Taxon0005531",
+  "name": "Candidatus_Daviesbacteria",
+  "ncbi_taxid": "NCBITaxon:1752718"
+ },
+ "Taxon0005532": {
+  "_id": "SDT_Taxon/Taxon0005532",
+  "_key": "Taxon0005532",
+  "_rev": "_l3BPkFe---",
+  "id": "Taxon0005532",
+  "name": "Candidatus_Desulforudis",
+  "ncbi_taxid": "NCBITaxon:471826"
+ },
+ "Taxon0005533": {
+  "_id": "SDT_Taxon/Taxon0005533",
+  "_key": "Taxon0005533",
+  "_rev": "_l3BPkF6---",
+  "id": "Taxon0005533",
+  "name": "Candidatus_Doudnabacteria",
+  "ncbi_taxid": "NCBITaxon:1817799"
+ },
+ "Taxon0005534": {
+  "_id": "SDT_Taxon/Taxon0005534",
+  "_key": "Taxon0005534",
+  "_rev": "_l3BPkGO---",
+  "id": "Taxon0005534",
+  "name": "Candidatus_Endoecteinascidia",
+  "ncbi_taxid": "NCBITaxon:330062"
+ },
+ "Taxon0005535": {
+  "_id": "SDT_Taxon/Taxon0005535",
+  "_key": "Taxon0005535",
+  "_rev": "_l3BPkGe---",
+  "id": "Taxon0005535",
+  "name": "Candidatus_Endonucleariobacter",
+  "ncbi_taxid": "NCBITaxon:1885586"
+ },
+ "Taxon0005536": {
+  "_id": "SDT_Taxon/Taxon0005536",
+  "_key": "Taxon0005536",
+  "_rev": "_l3BPkGu---",
+  "id": "Taxon0005536",
+  "name": "Candidatus_Entotheonella",
+  "ncbi_taxid": "NCBITaxon:93171"
+ },
+ "Taxon0005537": {
+  "_id": "SDT_Taxon/Taxon0005537",
+  "_key": "Taxon0005537",
+  "_rev": "_l3BPkHC---",
+  "id": "Taxon0005537",
+  "name": "Candidatus_Falkowbacteria",
+  "ncbi_taxid": "NCBITaxon:1752728"
+ },
+ "Taxon0005538": {
+  "_id": "SDT_Taxon/Taxon0005538",
+  "_key": "Taxon0005538",
+  "_rev": "_l3BPkHS---",
+  "id": "Taxon0005538",
+  "name": "Candidatus_Finniella",
+  "ncbi_taxid": "NCBITaxon:1777753"
+ },
+ "Taxon0005539": {
+  "_id": "SDT_Taxon/Taxon0005539",
+  "_key": "Taxon0005539",
+  "_rev": "_l3BPkHi---",
+  "id": "Taxon0005539",
+  "name": "Candidatus_Fritschea",
+  "ncbi_taxid": "NCBITaxon:206680"
+ },
+ "Taxon0005540": {
+  "_id": "SDT_Taxon/Taxon0005540",
+  "_key": "Taxon0005540",
+  "_rev": "_l3BPkIG---",
+  "id": "Taxon0005540",
+  "name": "Candidatus_Gigarickettsia",
+  "ncbi_taxid": "NCBITaxon:1522200"
+ },
+ "Taxon0005541": {
+  "_id": "SDT_Taxon/Taxon0005541",
+  "_key": "Taxon0005541",
+  "_rev": "_l3BPkIy---",
+  "id": "Taxon0005541",
+  "name": "Candidatus_Giovannonibacteria",
+  "ncbi_taxid": "NCBITaxon:1752738"
+ },
+ "Taxon0005542": {
+  "_id": "SDT_Taxon/Taxon0005542",
+  "_key": "Taxon0005542",
+  "_rev": "_l3BPkJO---",
+  "id": "Taxon0005542",
+  "name": "Candidatus_Gortzia",
+  "ncbi_taxid": "NCBITaxon:1234608"
+ },
+ "Taxon0005543": {
+  "_id": "SDT_Taxon/Taxon0005543",
+  "_key": "Taxon0005543",
+  "_rev": "_l3BPkJm---",
+  "id": "Taxon0005543",
+  "name": "Candidatus_Gottesmanbacteria",
+  "ncbi_taxid": "NCBITaxon:1752720"
+ },
+ "Taxon0005544": {
+  "_id": "SDT_Taxon/Taxon0005544",
+  "_key": "Taxon0005544",
+  "_rev": "_l3BPkKC---",
+  "id": "Taxon0005544",
+  "name": "Candidatus_Hepatincola",
+  "ncbi_taxid": "NCBITaxon:263960"
+ },
+ "Taxon0005545": {
+  "_id": "SDT_Taxon/Taxon0005545",
+  "_key": "Taxon0005545",
+  "_rev": "_l3BPkKe---",
+  "id": "Taxon0005545",
+  "name": "Candidatus_Hepatoplasma",
+  "ncbi_taxid": "NCBITaxon:295595"
+ },
+ "Taxon0005546": {
+  "_id": "SDT_Taxon/Taxon0005546",
+  "_key": "Taxon0005546",
+  "_rev": "_l3BPkL----",
+  "id": "Taxon0005546",
+  "name": "Candidatus_Iainarchaeum",
+  "ncbi_taxid": "NCBITaxon:1462418"
+ },
+ "Taxon0005547": {
+  "_id": "SDT_Taxon/Taxon0005547",
+  "_key": "Taxon0005547",
+  "_rev": "_l3BPkLa---",
+  "id": "Taxon0005547",
+  "name": "Candidatus_Jacksonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817906"
+ },
+ "Taxon0005548": {
+  "_id": "SDT_Taxon/Taxon0005548",
+  "_key": "Taxon0005548",
+  "_rev": "_l3BPkLy---",
+  "id": "Taxon0005548",
+  "name": "Candidatus_Jettenia",
+  "ncbi_taxid": "NCBITaxon:360731"
+ },
+ "Taxon0005549": {
+  "_id": "SDT_Taxon/Taxon0005549",
+  "_key": "Taxon0005549",
+  "_rev": "_l3BPkMS---",
+  "id": "Taxon0005549",
+  "name": "Candidatus_Jidaibacter",
+  "ncbi_taxid": "NCBITaxon:1891672"
+ },
+ "Taxon0005550": {
+  "_id": "SDT_Taxon/Taxon0005550",
+  "_key": "Taxon0005550",
+  "_rev": "_l3BPkMu---",
+  "id": "Taxon0005550",
+  "name": "Candidatus_Jorgensenbacteria",
+  "ncbi_taxid": "NCBITaxon:1752739"
+ },
+ "Taxon0005551": {
+  "_id": "SDT_Taxon/Taxon0005551",
+  "_key": "Taxon0005551",
+  "_rev": "_l3BPkNO---",
+  "id": "Taxon0005551",
+  "name": "Candidatus_Kaiserbacteria",
+  "ncbi_taxid": "NCBITaxon:1752734"
+ },
+ "Taxon0005552": {
+  "_id": "SDT_Taxon/Taxon0005552",
+  "_key": "Taxon0005552",
+  "_rev": "_l3BPkNm---",
+  "id": "Taxon0005552",
+  "name": "Candidatus_Kerfeldbacteria",
+  "ncbi_taxid": "NCBITaxon:1817907"
+ },
+ "Taxon0005553": {
+  "_id": "SDT_Taxon/Taxon0005553",
+  "_key": "Taxon0005553",
+  "_rev": "_l3BPkOK---",
+  "id": "Taxon0005553",
+  "name": "Candidatus_Komeilibacteria",
+  "ncbi_taxid": "NCBITaxon:1817908"
+ },
+ "Taxon0005554": {
+  "_id": "SDT_Taxon/Taxon0005554",
+  "_key": "Taxon0005554",
+  "_rev": "_l3BPkOi---",
+  "id": "Taxon0005554",
+  "name": "Candidatus_Koribacter",
+  "ncbi_taxid": "NCBITaxon:658061"
+ },
+ "Taxon0005555": {
+  "_id": "SDT_Taxon/Taxon0005555",
+  "_key": "Taxon0005555",
+  "_rev": "_l3BPkO2---",
+  "id": "Taxon0005555",
+  "name": "Candidatus_Kuenenbacteria",
+  "ncbi_taxid": "NCBITaxon:1752740"
+ },
+ "Taxon0005556": {
+  "_id": "SDT_Taxon/Taxon0005556",
+  "_key": "Taxon0005556",
+  "_rev": "_l3BPkPG---",
+  "id": "Taxon0005556",
+  "name": "Candidatus_Kuenenia",
+  "ncbi_taxid": "NCBITaxon:380738"
+ },
+ "Taxon0005557": {
+  "_id": "SDT_Taxon/Taxon0005557",
+  "_key": "Taxon0005557",
+  "_rev": "_l3BPkPa---",
+  "id": "Taxon0005557",
+  "name": "Candidatus_Latescibacter",
+  "ncbi_taxid": "NCBITaxon:1432311"
+ },
+ "Taxon0005558": {
+  "_id": "SDT_Taxon/Taxon0005558",
+  "_key": "Taxon0005558",
+  "_rev": "_l3BPkPu---",
+  "id": "Taxon0005558",
+  "name": "Candidatus_Levybacteria",
+  "ncbi_taxid": "NCBITaxon:1752719"
+ },
+ "Taxon0005559": {
+  "_id": "SDT_Taxon/Taxon0005559",
+  "_key": "Taxon0005559",
+  "_rev": "_l3BPkQC---",
+  "id": "Taxon0005559",
+  "name": "Candidatus_Liberibacter",
+  "ncbi_taxid": null
+ },
+ "Taxon0005560": {
+  "_id": "SDT_Taxon/Taxon0005560",
+  "_key": "Taxon0005560",
+  "_rev": "_l3BPkQS---",
+  "id": "Taxon0005560",
+  "name": "Candidatus_Liptonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817909"
+ },
+ "Taxon0005561": {
+  "_id": "SDT_Taxon/Taxon0005561",
+  "_key": "Taxon0005561",
+  "_rev": "_l3BPkQi---",
+  "id": "Taxon0005561",
+  "name": "Candidatus_Lloydbacteria",
+  "ncbi_taxid": "NCBITaxon:1817910"
+ },
+ "Taxon0005562": {
+  "_id": "SDT_Taxon/Taxon0005562",
+  "_key": "Taxon0005562",
+  "_rev": "_l3BPkQ2---",
+  "id": "Taxon0005562",
+  "name": "Candidatus_Lumbricincola",
+  "ncbi_taxid": "NCBITaxon:483197"
+ },
+ "Taxon0005563": {
+  "_id": "SDT_Taxon/Taxon0005563",
+  "_key": "Taxon0005563",
+  "_rev": "_l3BPkRG---",
+  "id": "Taxon0005563",
+  "name": "Candidatus_Magasanikbacteria",
+  "ncbi_taxid": "NCBITaxon:1752731"
+ },
+ "Taxon0005564": {
+  "_id": "SDT_Taxon/Taxon0005564",
+  "_key": "Taxon0005564",
+  "_rev": "_l3BPkRW---",
+  "id": "Taxon0005564",
+  "name": "Candidatus_Magnetobacterium",
+  "ncbi_taxid": "NCBITaxon:40118"
+ },
+ "Taxon0005565": {
+  "_id": "SDT_Taxon/Taxon0005565",
+  "_key": "Taxon0005565",
+  "_rev": "_l3BPkRm---",
+  "id": "Taxon0005565",
+  "name": "Candidatus_Magnetoovum",
+  "ncbi_taxid": "NCBITaxon:995729"
+ },
+ "Taxon0005566": {
+  "_id": "SDT_Taxon/Taxon0005566",
+  "_key": "Taxon0005566",
+  "_rev": "_l3BPkR6---",
+  "id": "Taxon0005566",
+  "name": "Candidatus_Megaira",
+  "ncbi_taxid": "NCBITaxon:1742636"
+ },
+ "Taxon0005567": {
+  "_id": "SDT_Taxon/Taxon0005567",
+  "_key": "Taxon0005567",
+  "_rev": "_l3BPkSK---",
+  "id": "Taxon0005567",
+  "name": "Candidatus_Metachlamydia",
+  "ncbi_taxid": "NCBITaxon:749220"
+ },
+ "Taxon0005568": {
+  "_id": "SDT_Taxon/Taxon0005568",
+  "_key": "Taxon0005568",
+  "_rev": "_l3BPkSe---",
+  "id": "Taxon0005568",
+  "name": "Candidatus_Methanoperedens",
+  "ncbi_taxid": "NCBITaxon:1392997"
+ },
+ "Taxon0005569": {
+  "_id": "SDT_Taxon/Taxon0005569",
+  "_key": "Taxon0005569",
+  "_rev": "_l3BPkSy---",
+  "id": "Taxon0005569",
+  "name": "Candidatus_Methylomirabilis",
+  "ncbi_taxid": "NCBITaxon:1170227"
+ },
+ "Taxon0005570": {
+  "_id": "SDT_Taxon/Taxon0005570",
+  "_key": "Taxon0005570",
+  "_rev": "_l3BPkTC---",
+  "id": "Taxon0005570",
+  "name": "Candidatus_Methylopumilus",
+  "ncbi_taxid": "NCBITaxon:1679002"
+ },
+ "Taxon0005571": {
+  "_id": "SDT_Taxon/Taxon0005571",
+  "_key": "Taxon0005571",
+  "_rev": "_l3BPkTe---",
+  "id": "Taxon0005571",
+  "name": "Candidatus_Methylospira",
+  "ncbi_taxid": "NCBITaxon:1808977"
+ },
+ "Taxon0005572": {
+  "_id": "SDT_Taxon/Taxon0005572",
+  "_key": "Taxon0005572",
+  "_rev": "_l3BPkTu---",
+  "id": "Taxon0005572",
+  "name": "Candidatus_Micrarchaeum",
+  "ncbi_taxid": "NCBITaxon:662756"
+ },
+ "Taxon0005573": {
+  "_id": "SDT_Taxon/Taxon0005573",
+  "_key": "Taxon0005573",
+  "_rev": "_l3BPkU----",
+  "id": "Taxon0005573",
+  "name": "Candidatus_Midichloria",
+  "ncbi_taxid": "NCBITaxon:411566"
+ },
+ "Taxon0005574": {
+  "_id": "SDT_Taxon/Taxon0005574",
+  "_key": "Taxon0005574",
+  "_rev": "_l3BPkUS---",
+  "id": "Taxon0005574",
+  "name": "Candidatus_Moranbacteria",
+  "ncbi_taxid": "NCBITaxon:1752737"
+ },
+ "Taxon0005575": {
+  "_id": "SDT_Taxon/Taxon0005575",
+  "_key": "Taxon0005575",
+  "_rev": "_l3BPkUi---",
+  "id": "Taxon0005575",
+  "name": "Candidatus_Nealsonbacteria",
+  "ncbi_taxid": "NCBITaxon:1817911"
+ },
+ "Taxon0005576": {
+  "_id": "SDT_Taxon/Taxon0005576",
+  "_key": "Taxon0005576",
+  "_rev": "_l3BPkUy---",
+  "id": "Taxon0005576",
+  "name": "Candidatus_Nitrocosmicus",
+  "ncbi_taxid": null
+ },
+ "Taxon0005577": {
+  "_id": "SDT_Taxon/Taxon0005577",
+  "_key": "Taxon0005577",
+  "_rev": "_l3BPkVC---",
+  "id": "Taxon0005577",
+  "name": "Candidatus_Nitrososphaera",
+  "ncbi_taxid": "NCBITaxon:497726"
+ },
+ "Taxon0005578": {
+  "_id": "SDT_Taxon/Taxon0005578",
+  "_key": "Taxon0005578",
+  "_rev": "_l3BPkVW---",
+  "id": "Taxon0005578",
+  "name": "Candidatus_Nitrosotalea",
+  "ncbi_taxid": "NCBITaxon:1078904"
+ },
+ "Taxon0005579": {
+  "_id": "SDT_Taxon/Taxon0005579",
+  "_key": "Taxon0005579",
+  "_rev": "_l3BPkVm---",
+  "id": "Taxon0005579",
+  "name": "Candidatus_Nitrosotenuis",
+  "ncbi_taxid": "NCBITaxon:1825023"
+ },
+ "Taxon0005580": {
+  "_id": "SDT_Taxon/Taxon0005580",
+  "_key": "Taxon0005580",
+  "_rev": "_l3BPkV2---",
+  "id": "Taxon0005580",
+  "name": "Candidatus_Nitrotoga",
+  "ncbi_taxid": "NCBITaxon:453161"
+ },
+ "Taxon0005581": {
+  "_id": "SDT_Taxon/Taxon0005581",
+  "_key": "Taxon0005581",
+  "_rev": "_l3BPkWG---",
+  "id": "Taxon0005581",
+  "name": "Candidatus_Nomurabacteria",
+  "ncbi_taxid": "NCBITaxon:1752729"
+ },
+ "Taxon0005582": {
+  "_id": "SDT_Taxon/Taxon0005582",
+  "_key": "Taxon0005582",
+  "_rev": "_l3BPkWa---",
+  "id": "Taxon0005582",
+  "name": "Candidatus_Nucleicultrix",
+  "ncbi_taxid": "NCBITaxon:1509243"
+ },
+ "Taxon0005583": {
+  "_id": "SDT_Taxon/Taxon0005583",
+  "_key": "Taxon0005583",
+  "_rev": "_l3BPkWq---",
+  "id": "Taxon0005583",
+  "name": "Candidatus_Obscuribacter",
+  "ncbi_taxid": "NCBITaxon:1906156"
+ },
+ "Taxon0005584": {
+  "_id": "SDT_Taxon/Taxon0005584",
+  "_key": "Taxon0005584",
+  "_rev": "_l3BPkX----",
+  "id": "Taxon0005584",
+  "name": "Candidatus_Omnitrophus",
+  "ncbi_taxid": "NCBITaxon:1431823"
+ },
+ "Taxon0005585": {
+  "_id": "SDT_Taxon/Taxon0005585",
+  "_key": "Taxon0005585",
+  "_rev": "_l3BPkXO---",
+  "id": "Taxon0005585",
+  "name": "Candidatus_Ovatusbacter",
+  "ncbi_taxid": "NCBITaxon:1885582"
+ },
+ "Taxon0005586": {
+  "_id": "SDT_Taxon/Taxon0005586",
+  "_key": "Taxon0005586",
+  "_rev": "_l3BPkXi---",
+  "id": "Taxon0005586",
+  "name": "Candidatus_Pacebacteria",
+  "ncbi_taxid": "NCBITaxon:1752724"
+ },
+ "Taxon0005587": {
+  "_id": "SDT_Taxon/Taxon0005587",
+  "_key": "Taxon0005587",
+  "_rev": "_l3BPkXy---",
+  "id": "Taxon0005587",
+  "name": "Candidatus_Paceibacter",
+  "ncbi_taxid": "NCBITaxon:1432328"
+ },
+ "Taxon0005588": {
+  "_id": "SDT_Taxon/Taxon0005588",
+  "_key": "Taxon0005588",
+  "_rev": "_l3BPkYC---",
+  "id": "Taxon0005588",
+  "name": "Candidatus_Paracaedibacter",
+  "ncbi_taxid": "NCBITaxon:1521255"
+ },
+ "Taxon0005589": {
+  "_id": "SDT_Taxon/Taxon0005589",
+  "_key": "Taxon0005589",
+  "_rev": "_l3BPkYS---",
+  "id": "Taxon0005589",
+  "name": "Candidatus_Paraholospora",
+  "ncbi_taxid": "NCBITaxon:679162"
+ },
+ "Taxon0005590": {
+  "_id": "SDT_Taxon/Taxon0005590",
+  "_key": "Taxon0005590",
+  "_rev": "_l3BPkYu---",
+  "id": "Taxon0005590",
+  "name": "Candidatus_Peregrinibacteria",
+  "ncbi_taxid": "NCBITaxon:1619053"
+ },
+ "Taxon0005591": {
+  "_id": "SDT_Taxon/Taxon0005591",
+  "_key": "Taxon0005591",
+  "_rev": "_l3BPkZ----",
+  "id": "Taxon0005591",
+  "name": "Candidatus_Peribacteria",
+  "ncbi_taxid": "NCBITaxon:1801911"
+ },
+ "Taxon0005592": {
+  "_id": "SDT_Taxon/Taxon0005592",
+  "_key": "Taxon0005592",
+  "_rev": "_l3BPkZO---",
+  "id": "Taxon0005592",
+  "name": "Candidatus_Planktophila",
+  "ncbi_taxid": "NCBITaxon:622681"
+ },
+ "Taxon0005593": {
+  "_id": "SDT_Taxon/Taxon0005593",
+  "_key": "Taxon0005593",
+  "_rev": "_l3BPkZi---",
+  "id": "Taxon0005593",
+  "name": "Candidatus_Portnoybacteria",
+  "ncbi_taxid": "NCBITaxon:1817913"
+ },
+ "Taxon0005594": {
+  "_id": "SDT_Taxon/Taxon0005594",
+  "_key": "Taxon0005594",
+  "_rev": "_l3BPkZy---",
+  "id": "Taxon0005594",
+  "name": "Candidatus_Protochlamydia",
+  "ncbi_taxid": "NCBITaxon:282132"
+ },
+ "Taxon0005595": {
+  "_id": "SDT_Taxon/Taxon0005595",
+  "_key": "Taxon0005595",
+  "_rev": "_l3BPkaS---",
+  "id": "Taxon0005595",
+  "name": "Candidatus_Raymondbacteria",
+  "ncbi_taxid": "NCBITaxon:1817809"
+ },
+ "Taxon0005596": {
+  "_id": "SDT_Taxon/Taxon0005596",
+  "_key": "Taxon0005596",
+  "_rev": "_l3BPka2---",
+  "id": "Taxon0005596",
+  "name": "Candidatus_Renichlamydia",
+  "ncbi_taxid": "NCBITaxon:1177738"
+ },
+ "Taxon0005597": {
+  "_id": "SDT_Taxon/Taxon0005597",
+  "_key": "Taxon0005597",
+  "_rev": "_l3BPkbW---",
+  "id": "Taxon0005597",
+  "name": "Candidatus_Rhabdochlamydia",
+  "ncbi_taxid": "NCBITaxon:292833"
+ },
+ "Taxon0005598": {
+  "_id": "SDT_Taxon/Taxon0005598",
+  "_key": "Taxon0005598",
+  "_rev": "_l3BPkbu---",
+  "id": "Taxon0005598",
+  "name": "Candidatus_Riegeria",
+  "ncbi_taxid": "NCBITaxon:1068873"
+ },
+ "Taxon0005599": {
+  "_id": "SDT_Taxon/Taxon0005599",
+  "_key": "Taxon0005599",
+  "_rev": "_l3BPkcG---",
+  "id": "Taxon0005599",
+  "name": "Candidatus_Roizmanbacteria",
+  "ncbi_taxid": "NCBITaxon:1752723"
+ },
+ "Taxon0005600": {
+  "_id": "SDT_Taxon/Taxon0005600",
+  "_key": "Taxon0005600",
+  "_rev": "_l3BPkce---",
+  "id": "Taxon0005600",
+  "name": "Candidatus_Rubidus",
+  "ncbi_taxid": "NCBITaxon:1851152"
+ },
+ "Taxon0005601": {
+  "_id": "SDT_Taxon/Taxon0005601",
+  "_key": "Taxon0005601",
+  "_rev": "_l3BPkc2---",
+  "id": "Taxon0005601",
+  "name": "Candidatus_Ryanbacteria",
+  "ncbi_taxid": "NCBITaxon:1817914"
+ },
+ "Taxon0005602": {
+  "_id": "SDT_Taxon/Taxon0005602",
+  "_key": "Taxon0005602",
+  "_rev": "_l3BPkdO---",
+  "id": "Taxon0005602",
+  "name": "Candidatus_Saccharimonas",
+  "ncbi_taxid": "NCBITaxon:1331051"
+ },
+ "Taxon0005603": {
+  "_id": "SDT_Taxon/Taxon0005603",
+  "_key": "Taxon0005603",
+  "_rev": "_l3BPkdm---",
+  "id": "Taxon0005603",
+  "name": "Candidatus_Shapirobacteria",
+  "ncbi_taxid": "NCBITaxon:1752721"
+ },
+ "Taxon0005604": {
+  "_id": "SDT_Taxon/Taxon0005604",
+  "_key": "Taxon0005604",
+  "_rev": "_l3BPke----",
+  "id": "Taxon0005604",
+  "name": "Candidatus_Soleaferrea",
+  "ncbi_taxid": "NCBITaxon:1470353"
+ },
+ "Taxon0005605": {
+  "_id": "SDT_Taxon/Taxon0005605",
+  "_key": "Taxon0005605",
+  "_rev": "_l3BPkeW---",
+  "id": "Taxon0005605",
+  "name": "Candidatus_Solibacter",
+  "ncbi_taxid": "NCBITaxon:332162"
+ },
+ "Taxon0005606": {
+  "_id": "SDT_Taxon/Taxon0005606",
+  "_key": "Taxon0005606",
+  "_rev": "_l3BPkeu---",
+  "id": "Taxon0005606",
+  "name": "Candidatus_Spechtbacteria",
+  "ncbi_taxid": "NCBITaxon:1817915"
+ },
+ "Taxon0005607": {
+  "_id": "SDT_Taxon/Taxon0005607",
+  "_key": "Taxon0005607",
+  "_rev": "_l3BPkfC---",
+  "id": "Taxon0005607",
+  "name": "Candidatus_Spiroplasma",
+  "ncbi_taxid": null
+ },
+ "Taxon0005608": {
+  "_id": "SDT_Taxon/Taxon0005608",
+  "_key": "Taxon0005608",
+  "_rev": "_l3BPkfa---",
+  "id": "Taxon0005608",
+  "name": "Candidatus_Staskawiczbacteria",
+  "ncbi_taxid": "NCBITaxon:1817916"
+ },
+ "Taxon0005609": {
+  "_id": "SDT_Taxon/Taxon0005609",
+  "_key": "Taxon0005609",
+  "_rev": "_l3BPkf2---",
+  "id": "Taxon0005609",
+  "name": "Candidatus_Symbiobacter",
+  "ncbi_taxid": "NCBITaxon:1436289"
+ },
+ "Taxon0005610": {
+  "_id": "SDT_Taxon/Taxon0005610",
+  "_key": "Taxon0005610",
+  "_rev": "_l3BPkgK---",
+  "id": "Taxon0005610",
+  "name": "Candidatus_Tenderia",
+  "ncbi_taxid": "NCBITaxon:1813600"
+ },
+ "Taxon0005611": {
+  "_id": "SDT_Taxon/Taxon0005611",
+  "_key": "Taxon0005611",
+  "_rev": "_l3BPkgi---",
+  "id": "Taxon0005611",
+  "name": "Candidatus_Terrybacteria",
+  "ncbi_taxid": "NCBITaxon:1817920"
+ },
+ "Taxon0005612": {
+  "_id": "SDT_Taxon/Taxon0005612",
+  "_key": "Taxon0005612",
+  "_rev": "_l3BPkg2---",
+  "id": "Taxon0005612",
+  "name": "Candidatus_Tokpelaia",
+  "ncbi_taxid": "NCBITaxon:1902578"
+ },
+ "Taxon0005613": {
+  "_id": "SDT_Taxon/Taxon0005613",
+  "_key": "Taxon0005613",
+  "_rev": "_l3BPkhK---",
+  "id": "Taxon0005613",
+  "name": "Candidatus_Udaeobacter",
+  "ncbi_taxid": "NCBITaxon:1921511"
+ },
+ "Taxon0005614": {
+  "_id": "SDT_Taxon/Taxon0005614",
+  "_key": "Taxon0005614",
+  "_rev": "_l3BPkhi---",
+  "id": "Taxon0005614",
+  "name": "Candidatus_Uhrbacteria",
+  "ncbi_taxid": "NCBITaxon:1752732"
+ },
+ "Taxon0005615": {
+  "_id": "SDT_Taxon/Taxon0005615",
+  "_key": "Taxon0005615",
+  "_rev": "_l3BPkh2---",
+  "id": "Taxon0005615",
+  "name": "Candidatus_Vogelbacteria",
+  "ncbi_taxid": "NCBITaxon:1817922"
+ },
+ "Taxon0005616": {
+  "_id": "SDT_Taxon/Taxon0005616",
+  "_key": "Taxon0005616",
+  "_rev": "_l3BPkiO---",
+  "id": "Taxon0005616",
+  "name": "Candidatus_Woesebacteria",
+  "ncbi_taxid": "NCBITaxon:1752722"
+ },
+ "Taxon0005617": {
+  "_id": "SDT_Taxon/Taxon0005617",
+  "_key": "Taxon0005617",
+  "_rev": "_l3BPkii---",
+  "id": "Taxon0005617",
+  "name": "Candidatus_Wolfebacteria",
+  "ncbi_taxid": "NCBITaxon:1752735"
+ },
+ "Taxon0005618": {
+  "_id": "SDT_Taxon/Taxon0005618",
+  "_key": "Taxon0005618",
+  "_rev": "_l3BPki6---",
+  "id": "Taxon0005618",
+  "name": "Candidatus_Woykebacteria",
+  "ncbi_taxid": "NCBITaxon:1817899"
+ },
+ "Taxon0005619": {
+  "_id": "SDT_Taxon/Taxon0005619",
+  "_key": "Taxon0005619",
+  "_rev": "_l3BPkjS---",
+  "id": "Taxon0005619",
+  "name": "Candidatus_Xiphinematobacter",
+  "ncbi_taxid": "NCBITaxon:134550"
+ },
+ "Taxon0005620": {
+  "_id": "SDT_Taxon/Taxon0005620",
+  "_key": "Taxon0005620",
+  "_rev": "_l3BPkjm---",
+  "id": "Taxon0005620",
+  "name": "Candidatus_Yanofskybacteria",
+  "ncbi_taxid": "NCBITaxon:1752733"
+ },
+ "Taxon0005621": {
+  "_id": "SDT_Taxon/Taxon0005621",
+  "_key": "Taxon0005621",
+  "_rev": "_l3BPkkG---",
+  "id": "Taxon0005621",
+  "name": "Candidatus_Yonathbacteria",
+  "ncbi_taxid": "NCBITaxon:1817924"
+ },
+ "Taxon0005622": {
+  "_id": "SDT_Taxon/Taxon0005622",
+  "_key": "Taxon0005622",
+  "_rev": "_l3BPkki---",
+  "id": "Taxon0005622",
+  "name": "Candidatus_Zambryskibacteria",
+  "ncbi_taxid": "NCBITaxon:1817925"
+ },
+ "Taxon0005658": {
+  "_id": "SDT_Taxon/Taxon0005658",
+  "_key": "Taxon0005658",
+  "_rev": "_l3BPkx2---",
+  "id": "Taxon0005658",
+  "name": "Chlamydiales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005662": {
+  "_id": "SDT_Taxon/Taxon0005662",
+  "_key": "Taxon0005662",
+  "_rev": "_l3BPkza---",
+  "id": "Taxon0005662",
+  "name": "Christensenellaceae R-7 group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005663": {
+  "_id": "SDT_Taxon/Taxon0005663",
+  "_key": "Taxon0005663",
+  "_rev": "_l3BPkzy---",
+  "id": "Taxon0005663",
+  "name": "Christensenellaceae_R-7_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005666": {
+  "_id": "SDT_Taxon/Taxon0005666",
+  "_key": "Taxon0005666",
+  "_rev": "_l3BPk06---",
+  "id": "Taxon0005666",
+  "name": "Chroococcidiopsis SAG 2023",
+  "ncbi_taxid": null
+ },
+ "Taxon0005668": {
+  "_id": "SDT_Taxon/Taxon0005668",
+  "_key": "Taxon0005668",
+  "_rev": "_l3BPk1u---",
+  "id": "Taxon0005668",
+  "name": "Chroococcidiopsis_SAG_2023",
+  "ncbi_taxid": null
+ },
+ "Taxon0005681": {
+  "_id": "SDT_Taxon/Taxon0005681",
+  "_key": "Taxon0005681",
+  "_rev": "_l3BPk7O---",
+  "id": "Taxon0005681",
+  "name": "Clade III",
+  "ncbi_taxid": null
+ },
+ "Taxon0005682": {
+  "_id": "SDT_Taxon/Taxon0005682",
+  "_key": "Taxon0005682",
+  "_rev": "_l3BPk7q---",
+  "id": "Taxon0005682",
+  "name": "Clade_III",
+  "ncbi_taxid": null
+ },
+ "Taxon0005687": {
+  "_id": "SDT_Taxon/Taxon0005687",
+  "_key": "Taxon0005687",
+  "_rev": "_l3BPk9y---",
+  "id": "Taxon0005687",
+  "name": "Clostridia_UCG-014",
+  "ncbi_taxid": null
+ },
+ "Taxon0005688": {
+  "_id": "SDT_Taxon/Taxon0005688",
+  "_key": "Taxon0005688",
+  "_rev": "_l3BPl-S---",
+  "id": "Taxon0005688",
+  "name": "Clostridia_vadinBB60_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005692": {
+  "_id": "SDT_Taxon/Taxon0005692",
+  "_key": "Taxon0005692",
+  "_rev": "_l3BPlAu---",
+  "id": "Taxon0005692",
+  "name": "Clostridium sensu stricto 10",
+  "ncbi_taxid": null
+ },
+ "Taxon0005693": {
+  "_id": "SDT_Taxon/Taxon0005693",
+  "_key": "Taxon0005693",
+  "_rev": "_l3BPlBS---",
+  "id": "Taxon0005693",
+  "name": "Clostridium sensu stricto 12",
+  "ncbi_taxid": null
+ },
+ "Taxon0005696": {
+  "_id": "SDT_Taxon/Taxon0005696",
+  "_key": "Taxon0005696",
+  "_rev": "_l3BPlC6---",
+  "id": "Taxon0005696",
+  "name": "Clostridium sensu stricto 13",
+  "ncbi_taxid": null
+ },
+ "Taxon0005697": {
+  "_id": "SDT_Taxon/Taxon0005697",
+  "_key": "Taxon0005697",
+  "_rev": "_l3BPlDa---",
+  "id": "Taxon0005697",
+  "name": "Clostridium sensu stricto 3",
+  "ncbi_taxid": null
+ },
+ "Taxon0005699": {
+  "_id": "SDT_Taxon/Taxon0005699",
+  "_key": "Taxon0005699",
+  "_rev": "_l3BPlEW---",
+  "id": "Taxon0005699",
+  "name": "Clostridium sensu stricto 5",
+  "ncbi_taxid": null
+ },
+ "Taxon0005701": {
+  "_id": "SDT_Taxon/Taxon0005701",
+  "_key": "Taxon0005701",
+  "_rev": "_l3BPlFa---",
+  "id": "Taxon0005701",
+  "name": "Clostridium sensu stricto 8",
+  "ncbi_taxid": null
+ },
+ "Taxon0005702": {
+  "_id": "SDT_Taxon/Taxon0005702",
+  "_key": "Taxon0005702",
+  "_rev": "_l3BPlF6---",
+  "id": "Taxon0005702",
+  "name": "Clostridium sensu stricto 9",
+  "ncbi_taxid": null
+ },
+ "Taxon0005703": {
+  "_id": "SDT_Taxon/Taxon0005703",
+  "_key": "Taxon0005703",
+  "_rev": "_l3BPlGa---",
+  "id": "Taxon0005703",
+  "name": "Clostridium_sensu_stricto_1",
+  "ncbi_taxid": null
+ },
+ "Taxon0005704": {
+  "_id": "SDT_Taxon/Taxon0005704",
+  "_key": "Taxon0005704",
+  "_rev": "_l3BPlG6---",
+  "id": "Taxon0005704",
+  "name": "Clostridium_sensu_stricto_10",
+  "ncbi_taxid": null
+ },
+ "Taxon0005705": {
+  "_id": "SDT_Taxon/Taxon0005705",
+  "_key": "Taxon0005705",
+  "_rev": "_l3BPlHi---",
+  "id": "Taxon0005705",
+  "name": "Clostridium_sensu_stricto_11",
+  "ncbi_taxid": null
+ },
+ "Taxon0005706": {
+  "_id": "SDT_Taxon/Taxon0005706",
+  "_key": "Taxon0005706",
+  "_rev": "_l3BPlIC---",
+  "id": "Taxon0005706",
+  "name": "Clostridium_sensu_stricto_12",
+  "ncbi_taxid": null
+ },
+ "Taxon0005707": {
+  "_id": "SDT_Taxon/Taxon0005707",
+  "_key": "Taxon0005707",
+  "_rev": "_l3BPlIi---",
+  "id": "Taxon0005707",
+  "name": "Clostridium_sensu_stricto_13",
+  "ncbi_taxid": null
+ },
+ "Taxon0005710": {
+  "_id": "SDT_Taxon/Taxon0005710",
+  "_key": "Taxon0005710",
+  "_rev": "_l3BPlJu---",
+  "id": "Taxon0005710",
+  "name": "Clostridium_sensu_stricto_18",
+  "ncbi_taxid": null
+ },
+ "Taxon0005711": {
+  "_id": "SDT_Taxon/Taxon0005711",
+  "_key": "Taxon0005711",
+  "_rev": "_l3BPlKK---",
+  "id": "Taxon0005711",
+  "name": "Clostridium_sensu_stricto_2",
+  "ncbi_taxid": null
+ },
+ "Taxon0005712": {
+  "_id": "SDT_Taxon/Taxon0005712",
+  "_key": "Taxon0005712",
+  "_rev": "_l3BPlKy---",
+  "id": "Taxon0005712",
+  "name": "Clostridium_sensu_stricto_3",
+  "ncbi_taxid": null
+ },
+ "Taxon0005713": {
+  "_id": "SDT_Taxon/Taxon0005713",
+  "_key": "Taxon0005713",
+  "_rev": "_l3BPlLS---",
+  "id": "Taxon0005713",
+  "name": "Clostridium_sensu_stricto_5",
+  "ncbi_taxid": null
+ },
+ "Taxon0005715": {
+  "_id": "SDT_Taxon/Taxon0005715",
+  "_key": "Taxon0005715",
+  "_rev": "_l3BPlMG---",
+  "id": "Taxon0005715",
+  "name": "Clostridium_sensu_stricto_8",
+  "ncbi_taxid": null
+ },
+ "Taxon0005716": {
+  "_id": "SDT_Taxon/Taxon0005716",
+  "_key": "Taxon0005716",
+  "_rev": "_l3BPlMq---",
+  "id": "Taxon0005716",
+  "name": "Clostridium_sensu_stricto_9",
+  "ncbi_taxid": null
+ },
+ "Taxon0005732": {
+  "_id": "SDT_Taxon/Taxon0005732",
+  "_key": "Taxon0005732",
+  "_rev": "_l3BPlV2---",
+  "id": "Taxon0005732",
+  "name": "Coriobacteriales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005749": {
+  "_id": "SDT_Taxon/Taxon0005749",
+  "_key": "Taxon0005749",
+  "_rev": "_l3BPld2---",
+  "id": "Taxon0005749",
+  "name": "Cyanobium PCC-6307",
+  "ncbi_taxid": null
+ },
+ "Taxon0005750": {
+  "_id": "SDT_Taxon/Taxon0005750",
+  "_key": "Taxon0005750",
+  "_rev": "_l3BPleW---",
+  "id": "Taxon0005750",
+  "name": "Cyanobium_PCC-6307",
+  "ncbi_taxid": null
+ },
+ "Taxon0005767": {
+  "_id": "SDT_Taxon/Taxon0005767",
+  "_key": "Taxon0005767",
+  "_rev": "_l3BPlma---",
+  "id": "Taxon0005767",
+  "name": "Deep_Sea_Euryarchaeotic_Group(DSEG)",
+  "ncbi_taxid": null
+ },
+ "Taxon0005815": {
+  "_id": "SDT_Taxon/Taxon0005815",
+  "_key": "Taxon0005815",
+  "_rev": "_l3BPl9K---",
+  "id": "Taxon0005815",
+  "name": "Desulfotomaculales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005884": {
+  "_id": "SDT_Taxon/Taxon0005884",
+  "_key": "Taxon0005884",
+  "_rev": "_l3BPmXS---",
+  "id": "Taxon0005884",
+  "name": "Entomoplasmatales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0005947": {
+  "_id": "SDT_Taxon/Taxon0005947",
+  "_key": "Taxon0005947",
+  "_rev": "_l3BPmuS---",
+  "id": "Taxon0005947",
+  "name": "FukuN18_freshwater_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005956": {
+  "_id": "SDT_Taxon/Taxon0005956",
+  "_key": "Taxon0005956",
+  "_rev": "_l3BPmxq---",
+  "id": "Taxon0005956",
+  "name": "GKS98 freshwater group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005957": {
+  "_id": "SDT_Taxon/Taxon0005957",
+  "_key": "Taxon0005957",
+  "_rev": "_l3BPmyC---",
+  "id": "Taxon0005957",
+  "name": "GKS98_freshwater_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0005992": {
+  "_id": "SDT_Taxon/Taxon0005992",
+  "_key": "Taxon0005992",
+  "_rev": "_l3BPn_u---",
+  "id": "Taxon0005992",
+  "name": "Group_1.1c",
+  "ncbi_taxid": null
+ },
+ "Taxon0005998": {
+  "_id": "SDT_Taxon/Taxon0005998",
+  "_key": "Taxon0005998",
+  "_rev": "_l3BPnCK---",
+  "id": "Taxon0005998",
+  "name": "HSB OF53-F07",
+  "ncbi_taxid": null
+ },
+ "Taxon0005999": {
+  "_id": "SDT_Taxon/Taxon0005999",
+  "_key": "Taxon0005999",
+  "_rev": "_l3BPnCm---",
+  "id": "Taxon0005999",
+  "name": "HSB_OF53-F07",
+  "ncbi_taxid": null
+ },
+ "Taxon0006052": {
+  "_id": "SDT_Taxon/Taxon0006052",
+  "_key": "Taxon0006052",
+  "_rev": "_l3BPnZC---",
+  "id": "Taxon0006052",
+  "name": "Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006062": {
+  "_id": "SDT_Taxon/Taxon0006062",
+  "_key": "Taxon0006062",
+  "_rev": "_l3BPnda---",
+  "id": "Taxon0006062",
+  "name": "JCM 18997",
+  "ncbi_taxid": null
+ },
+ "Taxon0006063": {
+  "_id": "SDT_Taxon/Taxon0006063",
+  "_key": "Taxon0006063",
+  "_rev": "_l3BPndq---",
+  "id": "Taxon0006063",
+  "name": "JCM_18997",
+  "ncbi_taxid": null
+ },
+ "Taxon0006067": {
+  "_id": "SDT_Taxon/Taxon0006067",
+  "_key": "Taxon0006067",
+  "_rev": "_l3BPney---",
+  "id": "Taxon0006067",
+  "name": "JGI_0000069-P22",
+  "ncbi_taxid": null
+ },
+ "Taxon0006068": {
+  "_id": "SDT_Taxon/Taxon0006068",
+  "_key": "Taxon0006068",
+  "_rev": "_l3BPnfG---",
+  "id": "Taxon0006068",
+  "name": "JGI_0001001-H03",
+  "ncbi_taxid": null
+ },
+ "Taxon0006071": {
+  "_id": "SDT_Taxon/Taxon0006071",
+  "_key": "Taxon0006071",
+  "_rev": "_l3BPngC---",
+  "id": "Taxon0006071",
+  "name": "JTB255_marine_benthic_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006078": {
+  "_id": "SDT_Taxon/Taxon0006078",
+  "_key": "Taxon0006078",
+  "_rev": "_l3BPnjq---",
+  "id": "Taxon0006078",
+  "name": "KI89A_clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006112": {
+  "_id": "SDT_Taxon/Taxon0006112",
+  "_key": "Taxon0006112",
+  "_rev": "_l3BPoHO---",
+  "id": "Taxon0006112",
+  "name": "Lachnospiraceae_UCG-008",
+  "ncbi_taxid": null
+ },
+ "Taxon0006127": {
+  "_id": "SDT_Taxon/Taxon0006127",
+  "_key": "Taxon0006127",
+  "_rev": "_l3BPoNe---",
+  "id": "Taxon0006127",
+  "name": "Leptolyngbya_Es-Yyy1000",
+  "ncbi_taxid": null
+ },
+ "Taxon0006144": {
+  "_id": "SDT_Taxon/Taxon0006144",
+  "_key": "Taxon0006144",
+  "_rev": "_l3BPoVe---",
+  "id": "Taxon0006144",
+  "name": "Lineage_IIa",
+  "ncbi_taxid": null
+ },
+ "Taxon0006145": {
+  "_id": "SDT_Taxon/Taxon0006145",
+  "_key": "Taxon0006145",
+  "_rev": "_l3BPoV2---",
+  "id": "Taxon0006145",
+  "name": "Lineage_IIb",
+  "ncbi_taxid": null
+ },
+ "Taxon0006146": {
+  "_id": "SDT_Taxon/Taxon0006146",
+  "_key": "Taxon0006146",
+  "_rev": "_l3BPoWS---",
+  "id": "Taxon0006146",
+  "name": "Lineage_IIc",
+  "ncbi_taxid": null
+ },
+ "Taxon0006147": {
+  "_id": "SDT_Taxon/Taxon0006147",
+  "_key": "Taxon0006147",
+  "_rev": "_l3BPoWy---",
+  "id": "Taxon0006147",
+  "name": "Lineage_IV",
+  "ncbi_taxid": null
+ },
+ "Taxon0006164": {
+  "_id": "SDT_Taxon/Taxon0006164",
+  "_key": "Taxon0006164",
+  "_rev": "_l3BPofS---",
+  "id": "Taxon0006164",
+  "name": "M2PB4-65 termite group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006165": {
+  "_id": "SDT_Taxon/Taxon0006165",
+  "_key": "Taxon0006165",
+  "_rev": "_l3BPofy---",
+  "id": "Taxon0006165",
+  "name": "M2PB4-65_termite_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006166": {
+  "_id": "SDT_Taxon/Taxon0006166",
+  "_key": "Taxon0006166",
+  "_rev": "_l3BPogO---",
+  "id": "Taxon0006166",
+  "name": "M2PT2-76 termite group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006167": {
+  "_id": "SDT_Taxon/Taxon0006167",
+  "_key": "Taxon0006167",
+  "_rev": "_l3BPogu---",
+  "id": "Taxon0006167",
+  "name": "M2PT2-76_termite_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006176": {
+  "_id": "SDT_Taxon/Taxon0006176",
+  "_key": "Taxon0006176",
+  "_rev": "_l3BPolW---",
+  "id": "Taxon0006176",
+  "name": "ML635J-40_aquatic_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006177": {
+  "_id": "SDT_Taxon/Taxon0006177",
+  "_key": "Taxon0006177",
+  "_rev": "_l3BPol2---",
+  "id": "Taxon0006177",
+  "name": "MN 122.2a",
+  "ncbi_taxid": null
+ },
+ "Taxon0006178": {
+  "_id": "SDT_Taxon/Taxon0006178",
+  "_key": "Taxon0006178",
+  "_rev": "_l3BPomO---",
+  "id": "Taxon0006178",
+  "name": "MN_122.2a",
+  "ncbi_taxid": null
+ },
+ "Taxon0006197": {
+  "_id": "SDT_Taxon/Taxon0006197",
+  "_key": "Taxon0006197",
+  "_rev": "_l3BPovm---",
+  "id": "Taxon0006197",
+  "name": "Marine Benthic Group A",
+  "ncbi_taxid": null
+ },
+ "Taxon0006198": {
+  "_id": "SDT_Taxon/Taxon0006198",
+  "_key": "Taxon0006198",
+  "_rev": "_l3BPowC---",
+  "id": "Taxon0006198",
+  "name": "Marine_Benthic_Group_A",
+  "ncbi_taxid": null
+ },
+ "Taxon0006199": {
+  "_id": "SDT_Taxon/Taxon0006199",
+  "_key": "Taxon0006199",
+  "_rev": "_l3BPowi---",
+  "id": "Taxon0006199",
+  "name": "Marine_Benthic_Group_D_and_DHVEG-1",
+  "ncbi_taxid": null
+ },
+ "Taxon0006200": {
+  "_id": "SDT_Taxon/Taxon0006200",
+  "_key": "Taxon0006200",
+  "_rev": "_l3BPox----",
+  "id": "Taxon0006200",
+  "name": "Marine_Group_II",
+  "ncbi_taxid": "NCBITaxon:133814"
+ },
+ "Taxon0006202": {
+  "_id": "SDT_Taxon/Taxon0006202",
+  "_key": "Taxon0006202",
+  "_rev": "_l3BPoy----",
+  "id": "Taxon0006202",
+  "name": "Marinimicrobia (SAR406 clade)",
+  "ncbi_taxid": null
+ },
+ "Taxon0006203": {
+  "_id": "SDT_Taxon/Taxon0006203",
+  "_key": "Taxon0006203",
+  "_rev": "_l3BPoya---",
+  "id": "Taxon0006203",
+  "name": "Marinimicrobia_(SAR406_clade)",
+  "ncbi_taxid": null
+ },
+ "Taxon0006210": {
+  "_id": "SDT_Taxon/Taxon0006210",
+  "_key": "Taxon0006210",
+  "_rev": "_l3BPo1y---",
+  "id": "Taxon0006210",
+  "name": "Mastigocladopsis PCC-10914",
+  "ncbi_taxid": null
+ },
+ "Taxon0006211": {
+  "_id": "SDT_Taxon/Taxon0006211",
+  "_key": "Taxon0006211",
+  "_rev": "_l3BPo2S---",
+  "id": "Taxon0006211",
+  "name": "Mastigocladopsis_PCC-10914",
+  "ncbi_taxid": null
+ },
+ "Taxon0006254": {
+  "_id": "SDT_Taxon/Taxon0006254",
+  "_key": "Taxon0006254",
+  "_rev": "_l3BPpLm---",
+  "id": "Taxon0006254",
+  "name": "Microcoleus_PCC-7113",
+  "ncbi_taxid": null
+ },
+ "Taxon0006281": {
+  "_id": "SDT_Taxon/Taxon0006281",
+  "_key": "Taxon0006281",
+  "_rev": "_l3BPpYy---",
+  "id": "Taxon0006281",
+  "name": "NK4A214 group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006282": {
+  "_id": "SDT_Taxon/Taxon0006282",
+  "_key": "Taxon0006282",
+  "_rev": "_l3BPpZS---",
+  "id": "Taxon0006282",
+  "name": "NK4A214_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006285": {
+  "_id": "SDT_Taxon/Taxon0006285",
+  "_key": "Taxon0006285",
+  "_rev": "_l3BPpaq---",
+  "id": "Taxon0006285",
+  "name": "NS10_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006286": {
+  "_id": "SDT_Taxon/Taxon0006286",
+  "_key": "Taxon0006286",
+  "_rev": "_l3BPpbO---",
+  "id": "Taxon0006286",
+  "name": "NS11-12_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006287": {
+  "_id": "SDT_Taxon/Taxon0006287",
+  "_key": "Taxon0006287",
+  "_rev": "_l3BPpbu---",
+  "id": "Taxon0006287",
+  "name": "NS9_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006324": {
+  "_id": "SDT_Taxon/Taxon0006324",
+  "_key": "Taxon0006324",
+  "_rev": "_l3BPptm---",
+  "id": "Taxon0006324",
+  "name": "Nostoc_PCC-73102",
+  "ncbi_taxid": null
+ },
+ "Taxon0006340": {
+  "_id": "SDT_Taxon/Taxon0006340",
+  "_key": "Taxon0006340",
+  "_rev": "_l3BPp1W---",
+  "id": "Taxon0006340",
+  "name": "OM182 clade",
+  "ncbi_taxid": "NCBITaxon:745002"
+ },
+ "Taxon0006341": {
+  "_id": "SDT_Taxon/Taxon0006341",
+  "_key": "Taxon0006341",
+  "_rev": "_l3BPp12---",
+  "id": "Taxon0006341",
+  "name": "OM182_clade",
+  "ncbi_taxid": "NCBITaxon:745002"
+ },
+ "Taxon0006342": {
+  "_id": "SDT_Taxon/Taxon0006342",
+  "_key": "Taxon0006342",
+  "_rev": "_l3BPp2S---",
+  "id": "Taxon0006342",
+  "name": "OM27_clade",
+  "ncbi_taxid": "NCBITaxon:1302713"
+ },
+ "Taxon0006343": {
+  "_id": "SDT_Taxon/Taxon0006343",
+  "_key": "Taxon0006343",
+  "_rev": "_l3BPp2y---",
+  "id": "Taxon0006343",
+  "name": "OM60(NOR5) clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006344": {
+  "_id": "SDT_Taxon/Taxon0006344",
+  "_key": "Taxon0006344",
+  "_rev": "_l3BPp3S---",
+  "id": "Taxon0006344",
+  "name": "OM60(NOR5)_clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006367": {
+  "_id": "SDT_Taxon/Taxon0006367",
+  "_key": "Taxon0006367",
+  "_rev": "_l3BPqCm---",
+  "id": "Taxon0006367",
+  "name": "Oxyphotobacteria_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006373": {
+  "_id": "SDT_Taxon/Taxon0006373",
+  "_key": "Taxon0006373",
+  "_rev": "_l3BPqFS---",
+  "id": "Taxon0006373",
+  "name": "PS1_clade",
+  "ncbi_taxid": "NCBITaxon:2175150"
+ },
+ "Taxon0006433": {
+  "_id": "SDT_Taxon/Taxon0006433",
+  "_key": "Taxon0006433",
+  "_rev": "_l3BPqhK---",
+  "id": "Taxon0006433",
+  "name": "Pir1 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006434": {
+  "_id": "SDT_Taxon/Taxon0006434",
+  "_key": "Taxon0006434",
+  "_rev": "_l3BPqhm---",
+  "id": "Taxon0006434",
+  "name": "Pir1_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006435": {
+  "_id": "SDT_Taxon/Taxon0006435",
+  "_key": "Taxon0006435",
+  "_rev": "_l3BPqi----",
+  "id": "Taxon0006435",
+  "name": "Pir2 lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006436": {
+  "_id": "SDT_Taxon/Taxon0006436",
+  "_key": "Taxon0006436",
+  "_rev": "_l3BPqia---",
+  "id": "Taxon0006436",
+  "name": "Pir2_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006438": {
+  "_id": "SDT_Taxon/Taxon0006438",
+  "_key": "Taxon0006438",
+  "_rev": "_l3BPqjO---",
+  "id": "Taxon0006438",
+  "name": "Pir4_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006440": {
+  "_id": "SDT_Taxon/Taxon0006440",
+  "_key": "Taxon0006440",
+  "_rev": "_l3BPqkG---",
+  "id": "Taxon0006440",
+  "name": "Pla1_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006441": {
+  "_id": "SDT_Taxon/Taxon0006441",
+  "_key": "Taxon0006441",
+  "_rev": "_l3BPqkm---",
+  "id": "Taxon0006441",
+  "name": "Pla3_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006442": {
+  "_id": "SDT_Taxon/Taxon0006442",
+  "_key": "Taxon0006442",
+  "_rev": "_l3BPql----",
+  "id": "Taxon0006442",
+  "name": "Pla4_lineage",
+  "ncbi_taxid": null
+ },
+ "Taxon0006443": {
+  "_id": "SDT_Taxon/Taxon0006443",
+  "_key": "Taxon0006443",
+  "_rev": "_l3BPqle---",
+  "id": "Taxon0006443",
+  "name": "Planktothrix_NIVA-CYA_15",
+  "ncbi_taxid": null
+ },
+ "Taxon0006488": {
+  "_id": "SDT_Taxon/Taxon0006488",
+  "_key": "Taxon0006488",
+  "_rev": "_l3BPq6a---",
+  "id": "Taxon0006488",
+  "name": "Puniceispirillales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006520": {
+  "_id": "SDT_Taxon/Taxon0006520",
+  "_key": "Taxon0006520",
+  "_rev": "_l3BPrJq---",
+  "id": "Taxon0006520",
+  "name": "Rice Cluster I",
+  "ncbi_taxid": null
+ },
+ "Taxon0006522": {
+  "_id": "SDT_Taxon/Taxon0006522",
+  "_key": "Taxon0006522",
+  "_rev": "_l3BPrKy---",
+  "id": "Taxon0006522",
+  "name": "Rice_Cluster_I",
+  "ncbi_taxid": null
+ },
+ "Taxon0006525": {
+  "_id": "SDT_Taxon/Taxon0006525",
+  "_key": "Taxon0006525",
+  "_rev": "_l3BPrMG---",
+  "id": "Taxon0006525",
+  "name": "Rikenellaceae RC9 gut group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006526": {
+  "_id": "SDT_Taxon/Taxon0006526",
+  "_key": "Taxon0006526",
+  "_rev": "_l3BPrMe---",
+  "id": "Taxon0006526",
+  "name": "Rikenellaceae_RC9_gut_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006545": {
+  "_id": "SDT_Taxon/Taxon0006545",
+  "_key": "Taxon0006545",
+  "_rev": "_l3BPrVm---",
+  "id": "Taxon0006545",
+  "name": "Rs-E47_termite_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006565": {
+  "_id": "SDT_Taxon/Taxon0006565",
+  "_key": "Taxon0006565",
+  "_rev": "_l3BPre2---",
+  "id": "Taxon0006565",
+  "name": "S-BQ2-57_soil_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006566": {
+  "_id": "SDT_Taxon/Taxon0006566",
+  "_key": "Taxon0006566",
+  "_rev": "_l3BPrfW---",
+  "id": "Taxon0006566",
+  "name": "S0134_terrestrial_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006569": {
+  "_id": "SDT_Taxon/Taxon0006569",
+  "_key": "Taxon0006569",
+  "_rev": "_l3BPrgm---",
+  "id": "Taxon0006569",
+  "name": "SAR11 clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006570": {
+  "_id": "SDT_Taxon/Taxon0006570",
+  "_key": "Taxon0006570",
+  "_rev": "_l3BPrhC---",
+  "id": "Taxon0006570",
+  "name": "SAR11_clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006571": {
+  "_id": "SDT_Taxon/Taxon0006571",
+  "_key": "Taxon0006571",
+  "_rev": "_l3BPrhy---",
+  "id": "Taxon0006571",
+  "name": "SAR202_clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006572": {
+  "_id": "SDT_Taxon/Taxon0006572",
+  "_key": "Taxon0006572",
+  "_rev": "_l3BPriK---",
+  "id": "Taxon0006572",
+  "name": "SAR324_clade(Marine_group_B)",
+  "ncbi_taxid": null
+ },
+ "Taxon0006576": {
+  "_id": "SDT_Taxon/Taxon0006576",
+  "_key": "Taxon0006576",
+  "_rev": "_l3BPrj6---",
+  "id": "Taxon0006576",
+  "name": "SCGC AAA286-E23",
+  "ncbi_taxid": null
+ },
+ "Taxon0006577": {
+  "_id": "SDT_Taxon/Taxon0006577",
+  "_key": "Taxon0006577",
+  "_rev": "_l3BPrka---",
+  "id": "Taxon0006577",
+  "name": "SCGC AB-179-E04",
+  "ncbi_taxid": null
+ },
+ "Taxon0006579": {
+  "_id": "SDT_Taxon/Taxon0006579",
+  "_key": "Taxon0006579",
+  "_rev": "_l3BPrlW---",
+  "id": "Taxon0006579",
+  "name": "SCGC_AAA011-D5",
+  "ncbi_taxid": null
+ },
+ "Taxon0006581": {
+  "_id": "SDT_Taxon/Taxon0006581",
+  "_key": "Taxon0006581",
+  "_rev": "_l3BPrmO---",
+  "id": "Taxon0006581",
+  "name": "SCGC_AAA286-E23",
+  "ncbi_taxid": null
+ },
+ "Taxon0006582": {
+  "_id": "SDT_Taxon/Taxon0006582",
+  "_key": "Taxon0006582",
+  "_rev": "_l3BPrmy---",
+  "id": "Taxon0006582",
+  "name": "SCGC_AB-179-E04",
+  "ncbi_taxid": null
+ },
+ "Taxon0006648": {
+  "_id": "SDT_Taxon/Taxon0006648",
+  "_key": "Taxon0006648",
+  "_rev": "_l3BPsJS---",
+  "id": "Taxon0006648",
+  "name": "Spirochaeta_2",
+  "ncbi_taxid": null
+ },
+ "Taxon0006663": {
+  "_id": "SDT_Taxon/Taxon0006663",
+  "_key": "Taxon0006663",
+  "_rev": "_l3BPsRa---",
+  "id": "Taxon0006663",
+  "name": "Streptosporangiales_Incertae_Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006664": {
+  "_id": "SDT_Taxon/Taxon0006664",
+  "_key": "Taxon0006664",
+  "_rev": "_l3BPsR2---",
+  "id": "Taxon0006664",
+  "name": "Subgroup 23",
+  "ncbi_taxid": null
+ },
+ "Taxon0006665": {
+  "_id": "SDT_Taxon/Taxon0006665",
+  "_key": "Taxon0006665",
+  "_rev": "_l3BPsSW---",
+  "id": "Taxon0006665",
+  "name": "Subgroup_10",
+  "ncbi_taxid": null
+ },
+ "Taxon0006666": {
+  "_id": "SDT_Taxon/Taxon0006666",
+  "_key": "Taxon0006666",
+  "_rev": "_l3BPsS6---",
+  "id": "Taxon0006666",
+  "name": "Subgroup_11",
+  "ncbi_taxid": null
+ },
+ "Taxon0006667": {
+  "_id": "SDT_Taxon/Taxon0006667",
+  "_key": "Taxon0006667",
+  "_rev": "_l3BPsTa---",
+  "id": "Taxon0006667",
+  "name": "Subgroup_12",
+  "ncbi_taxid": null
+ },
+ "Taxon0006668": {
+  "_id": "SDT_Taxon/Taxon0006668",
+  "_key": "Taxon0006668",
+  "_rev": "_l3BPsTy---",
+  "id": "Taxon0006668",
+  "name": "Subgroup_13",
+  "ncbi_taxid": null
+ },
+ "Taxon0006669": {
+  "_id": "SDT_Taxon/Taxon0006669",
+  "_key": "Taxon0006669",
+  "_rev": "_l3BPsUO---",
+  "id": "Taxon0006669",
+  "name": "Subgroup_15",
+  "ncbi_taxid": null
+ },
+ "Taxon0006670": {
+  "_id": "SDT_Taxon/Taxon0006670",
+  "_key": "Taxon0006670",
+  "_rev": "_l3BPsUu---",
+  "id": "Taxon0006670",
+  "name": "Subgroup_17",
+  "ncbi_taxid": null
+ },
+ "Taxon0006671": {
+  "_id": "SDT_Taxon/Taxon0006671",
+  "_key": "Taxon0006671",
+  "_rev": "_l3BPsVO---",
+  "id": "Taxon0006671",
+  "name": "Subgroup_18",
+  "ncbi_taxid": null
+ },
+ "Taxon0006672": {
+  "_id": "SDT_Taxon/Taxon0006672",
+  "_key": "Taxon0006672",
+  "_rev": "_l3BPsVq---",
+  "id": "Taxon0006672",
+  "name": "Subgroup_2",
+  "ncbi_taxid": null
+ },
+ "Taxon0006673": {
+  "_id": "SDT_Taxon/Taxon0006673",
+  "_key": "Taxon0006673",
+  "_rev": "_l3BPsWK---",
+  "id": "Taxon0006673",
+  "name": "Subgroup_20",
+  "ncbi_taxid": null
+ },
+ "Taxon0006674": {
+  "_id": "SDT_Taxon/Taxon0006674",
+  "_key": "Taxon0006674",
+  "_rev": "_l3BPsWu---",
+  "id": "Taxon0006674",
+  "name": "Subgroup_21",
+  "ncbi_taxid": null
+ },
+ "Taxon0006675": {
+  "_id": "SDT_Taxon/Taxon0006675",
+  "_key": "Taxon0006675",
+  "_rev": "_l3BPsXK---",
+  "id": "Taxon0006675",
+  "name": "Subgroup_22",
+  "ncbi_taxid": null
+ },
+ "Taxon0006676": {
+  "_id": "SDT_Taxon/Taxon0006676",
+  "_key": "Taxon0006676",
+  "_rev": "_l3BPsXq---",
+  "id": "Taxon0006676",
+  "name": "Subgroup_23",
+  "ncbi_taxid": null
+ },
+ "Taxon0006677": {
+  "_id": "SDT_Taxon/Taxon0006677",
+  "_key": "Taxon0006677",
+  "_rev": "_l3BPsYK---",
+  "id": "Taxon0006677",
+  "name": "Subgroup_25",
+  "ncbi_taxid": null
+ },
+ "Taxon0006678": {
+  "_id": "SDT_Taxon/Taxon0006678",
+  "_key": "Taxon0006678",
+  "_rev": "_l3BPsYq---",
+  "id": "Taxon0006678",
+  "name": "Subgroup_26",
+  "ncbi_taxid": null
+ },
+ "Taxon0006679": {
+  "_id": "SDT_Taxon/Taxon0006679",
+  "_key": "Taxon0006679",
+  "_rev": "_l3BPsZK---",
+  "id": "Taxon0006679",
+  "name": "Subgroup_5",
+  "ncbi_taxid": null
+ },
+ "Taxon0006680": {
+  "_id": "SDT_Taxon/Taxon0006680",
+  "_key": "Taxon0006680",
+  "_rev": "_l3BPsZm---",
+  "id": "Taxon0006680",
+  "name": "Subgroup_7",
+  "ncbi_taxid": null
+ },
+ "Taxon0006681": {
+  "_id": "SDT_Taxon/Taxon0006681",
+  "_key": "Taxon0006681",
+  "_rev": "_l3BPsaC---",
+  "id": "Taxon0006681",
+  "name": "Subgroup_9",
+  "ncbi_taxid": null
+ },
+ "Taxon0006702": {
+  "_id": "SDT_Taxon/Taxon0006702",
+  "_key": "Taxon0006702",
+  "_rev": "_l3BPsh2---",
+  "id": "Taxon0006702",
+  "name": "Sva0081 sediment group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006703": {
+  "_id": "SDT_Taxon/Taxon0006703",
+  "_key": "Taxon0006703",
+  "_rev": "_l3BPsie---",
+  "id": "Taxon0006703",
+  "name": "Sva0081_sediment_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006704": {
+  "_id": "SDT_Taxon/Taxon0006704",
+  "_key": "Taxon0006704",
+  "_rev": "_l3BPsi6---",
+  "id": "Taxon0006704",
+  "name": "Sva0996_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006819": {
+  "_id": "SDT_Taxon/Taxon0006819",
+  "_key": "Taxon0006819",
+  "_rev": "_l3BPtTi---",
+  "id": "Taxon0006819",
+  "name": "Tychonema_CCAP_1459-11B",
+  "ncbi_taxid": null
+ },
+ "Taxon0006822": {
+  "_id": "SDT_Taxon/Taxon0006822",
+  "_key": "Taxon0006822",
+  "_rev": "_l3BPtUu---",
+  "id": "Taxon0006822",
+  "name": "UBA10353_marine_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006836": {
+  "_id": "SDT_Taxon/Taxon0006836",
+  "_key": "Taxon0006836",
+  "_rev": "_l3BPtaG---",
+  "id": "Taxon0006836",
+  "name": "Unknown_Family",
+  "ncbi_taxid": null
+ },
+ "Taxon0006837": {
+  "_id": "SDT_Taxon/Taxon0006837",
+  "_key": "Taxon0006837",
+  "_rev": "_l3BPtaa---",
+  "id": "Taxon0006837",
+  "name": "Urania-1B-19_marine_sediment_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006841": {
+  "_id": "SDT_Taxon/Taxon0006841",
+  "_key": "Taxon0006841",
+  "_rev": "_l3BPtc----",
+  "id": "Taxon0006841",
+  "name": "V9D2013_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006864": {
+  "_id": "SDT_Taxon/Taxon0006864",
+  "_key": "Taxon0006864",
+  "_rev": "_l3BPtjq---",
+  "id": "Taxon0006864",
+  "name": "WD2101_soil_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006899": {
+  "_id": "SDT_Taxon/Taxon0006899",
+  "_key": "Taxon0006899",
+  "_rev": "_l3BPtvq---",
+  "id": "Taxon0006899",
+  "name": "[Agitococcus]_lubricus_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006901": {
+  "_id": "SDT_Taxon/Taxon0006901",
+  "_key": "Taxon0006901",
+  "_rev": "_l3BPtwW---",
+  "id": "Taxon0006901",
+  "name": "[Aquaspirillum]_arcticum_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006902": {
+  "_id": "SDT_Taxon/Taxon0006902",
+  "_key": "Taxon0006902",
+  "_rev": "_l3BPtwq---",
+  "id": "Taxon0006902",
+  "name": "[Caedibacter]_taeniospiralis_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006903": {
+  "_id": "SDT_Taxon/Taxon0006903",
+  "_key": "Taxon0006903",
+  "_rev": "_l3BPtxC---",
+  "id": "Taxon0006903",
+  "name": "[Cytophaga] xylanolytica group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006904": {
+  "_id": "SDT_Taxon/Taxon0006904",
+  "_key": "Taxon0006904",
+  "_rev": "_l3BPtxa---",
+  "id": "Taxon0006904",
+  "name": "[Cytophaga]_xylanolytica_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006905": {
+  "_id": "SDT_Taxon/Taxon0006905",
+  "_key": "Taxon0006905",
+  "_rev": "_l3BPtx2---",
+  "id": "Taxon0006905",
+  "name": "[Desulfobacterium]_catecholicum_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006906": {
+  "_id": "SDT_Taxon/Taxon0006906",
+  "_key": "Taxon0006906",
+  "_rev": "_l3BPtyO---",
+  "id": "Taxon0006906",
+  "name": "[Eubacterium] brachy group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006907": {
+  "_id": "SDT_Taxon/Taxon0006907",
+  "_key": "Taxon0006907",
+  "_rev": "_l3BPtym---",
+  "id": "Taxon0006907",
+  "name": "[Eubacterium] coprostanoligenes group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006910": {
+  "_id": "SDT_Taxon/Taxon0006910",
+  "_key": "Taxon0006910",
+  "_rev": "_l3BPtzq---",
+  "id": "Taxon0006910",
+  "name": "[Eubacterium] nodatum group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006915": {
+  "_id": "SDT_Taxon/Taxon0006915",
+  "_key": "Taxon0006915",
+  "_rev": "_l3BPt1e---",
+  "id": "Taxon0006915",
+  "name": "[Eubacterium]_brachy_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006916": {
+  "_id": "SDT_Taxon/Taxon0006916",
+  "_key": "Taxon0006916",
+  "_rev": "_l3BPt16---",
+  "id": "Taxon0006916",
+  "name": "[Eubacterium]_coprostanoligenes_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006917": {
+  "_id": "SDT_Taxon/Taxon0006917",
+  "_key": "Taxon0006917",
+  "_rev": "_l3BPt2W---",
+  "id": "Taxon0006917",
+  "name": "[Eubacterium]_nodatum_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006922": {
+  "_id": "SDT_Taxon/Taxon0006922",
+  "_key": "Taxon0006922",
+  "_rev": "_l3BPt4e---",
+  "id": "Taxon0006922",
+  "name": "[Ruminococcus] torques group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006923": {
+  "_id": "SDT_Taxon/Taxon0006923",
+  "_key": "Taxon0006923",
+  "_rev": "_l3BPt46---",
+  "id": "Taxon0006923",
+  "name": "[Ruminococcus]_torques_group",
+  "ncbi_taxid": null
+ },
+ "Taxon0006924": {
+  "_id": "SDT_Taxon/Taxon0006924",
+  "_key": "Taxon0006924",
+  "_rev": "_l3BPt5a---",
+  "id": "Taxon0006924",
+  "name": "alphaI cluster",
+  "ncbi_taxid": null
+ },
+ "Taxon0006925": {
+  "_id": "SDT_Taxon/Taxon0006925",
+  "_key": "Taxon0006925",
+  "_rev": "_l3BPt6----",
+  "id": "Taxon0006925",
+  "name": "alphaI_cluster",
+  "ncbi_taxid": null
+ },
+ "Taxon0006928": {
+  "_id": "SDT_Taxon/Taxon0006928",
+  "_key": "Taxon0006928",
+  "_rev": "_l3BPt7a---",
+  "id": "Taxon0006928",
+  "name": "env.OPS_17",
+  "ncbi_taxid": null
+ },
+ "Taxon0006929": {
+  "_id": "SDT_Taxon/Taxon0006929",
+  "_key": "Taxon0006929",
+  "_rev": "_l3BPt72---",
+  "id": "Taxon0006929",
+  "name": "hgcI_clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0006935": {
+  "_id": "SDT_Taxon/Taxon0006935",
+  "_key": "Taxon0006935",
+  "_rev": "_l3BPu-m---",
+  "id": "Taxon0006935",
+  "name": "possible_genus_04",
+  "ncbi_taxid": null
+ },
+ "Taxon0006940": {
+  "_id": "SDT_Taxon/Taxon0006940",
+  "_key": "Taxon0006940",
+  "_rev": "_l3BPuBa---",
+  "id": "Taxon0006940",
+  "name": "type III",
+  "ncbi_taxid": null
+ },
+ "Taxon0006941": {
+  "_id": "SDT_Taxon/Taxon0006941",
+  "_key": "Taxon0006941",
+  "_rev": "_l3BPuCG---",
+  "id": "Taxon0006941",
+  "name": "type_III",
+  "ncbi_taxid": null
+ },
+ "Taxon0006968": {
+  "_id": "SDT_Taxon/Taxon0006968",
+  "_key": "Taxon0006968",
+  "_rev": "_mV6Hffm--A",
+  "id": "Taxon0006968",
+  "name": "Kordiimonadales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006978": {
+  "_id": "SDT_Taxon/Taxon0006978",
+  "_key": "Taxon0006978",
+  "_rev": "_mV6HfiO---",
+  "id": "Taxon0006978",
+  "name": "Nitrococcales Incertae Sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0006999": {
+  "_id": "SDT_Taxon/Taxon0006999",
+  "_key": "Taxon0006999",
+  "_rev": "_mWm6G7C---",
+  "id": "Taxon0006999",
+  "name": "Clostridium sensu stricto 11",
+  "ncbi_taxid": null
+ },
+ "Taxon0007001": {
+  "_id": "SDT_Taxon/Taxon0007001",
+  "_key": "Taxon0007001",
+  "_rev": "_mWm6G7e---",
+  "id": "Taxon0007001",
+  "name": "KI89A clade",
+  "ncbi_taxid": null
+ },
+ "Taxon0007004": {
+  "_id": "SDT_Taxon/Taxon0007004",
+  "_key": "Taxon0007004",
+  "_rev": "_mWm6G8K---",
+  "id": "Taxon0007004",
+  "name": "Leptolyngbya Es-Yyy1000",
+  "ncbi_taxid": null
+ },
+ "Taxon0007342": {
+  "_id": "SDT_Taxon/Taxon0007342",
+  "_key": "Taxon0007342",
+  "_rev": "_mad4TKa---",
+  "id": "Taxon0007342",
+  "name": "Aeromonas veronii bv. Sobria",
+  "ncbi_taxid": "NCBITaxon:114517"
+ },
+ "Taxon0007343": {
+  "_id": "SDT_Taxon/Taxon0007343",
+  "_key": "Taxon0007343",
+  "_rev": "_mad4TKm--A",
+  "id": "Taxon0007343",
+  "name": "Aeromonas veronii bv. sobria",
+  "ncbi_taxid": "NCBITaxon:114517"
+ },
+ "Taxon0007858": {
+  "_id": "SDT_Taxon/Taxon0007858",
+  "_key": "Taxon0007858",
+  "_rev": "_mad4U5O---",
+  "id": "Taxon0007858",
+  "name": "Auriculariales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:260899"
+ },
+ "Taxon0008158": {
+  "_id": "SDT_Taxon/Taxon0008158",
+  "_key": "Taxon0008158",
+  "_rev": "_mad4W-y---",
+  "id": "Taxon0008158",
+  "name": "Bacteroidetes Order II. Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:1100069"
+ },
+ "Taxon0008254": {
+  "_id": "SDT_Taxon/Taxon0008254",
+  "_key": "Taxon0008254",
+  "_rev": "_mad4WVC---",
+  "id": "Taxon0008254",
+  "name": "Beet soil-borne mosaic virus",
+  "ncbi_taxid": "NCBITaxon:76343"
+ },
+ "Taxon0008417": {
+  "_id": "SDT_Taxon/Taxon0008417",
+  "_key": "Taxon0008417",
+  "_rev": "_mad4W6q---",
+  "id": "Taxon0008417",
+  "name": "Bovine adenovirus 3",
+  "ncbi_taxid": "NCBITaxon:10510"
+ },
+ "Taxon0008814": {
+  "_id": "SDT_Taxon/Taxon0008814",
+  "_key": "Taxon0008814",
+  "_rev": "_mad4YYO---",
+  "id": "Taxon0008814",
+  "name": "Candidatus Desulforudis",
+  "ncbi_taxid": "NCBITaxon:471826"
+ },
+ "Taxon0008848": {
+  "_id": "SDT_Taxon/Taxon0008848",
+  "_key": "Taxon0008848",
+  "_rev": "_mad4Yg2---",
+  "id": "Taxon0008848",
+  "name": "Candidatus Midichloria",
+  "ncbi_taxid": "NCBITaxon:411566"
+ },
+ "Taxon0008896": {
+  "_id": "SDT_Taxon/Taxon0008896",
+  "_key": "Taxon0008896",
+  "_rev": "_mad4Ys6---",
+  "id": "Taxon0008896",
+  "name": "Candidatus Riegeria",
+  "ncbi_taxid": "NCBITaxon:1068873"
+ },
+ "Taxon0008946": {
+  "_id": "SDT_Taxon/Taxon0008946",
+  "_key": "Taxon0008946",
+  "_rev": "_mad4Y5e---",
+  "id": "Taxon0008946",
+  "name": "Capnodiales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:467990"
+ },
+ "Taxon0009255": {
+  "_id": "SDT_Taxon/Taxon0009255",
+  "_key": "Taxon0009255",
+  "_rev": "_mad4aAq---",
+  "id": "Taxon0009255",
+  "name": "Clostridiales Family XI. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:1737404"
+ },
+ "Taxon0009256": {
+  "_id": "SDT_Taxon/Taxon0009256",
+  "_key": "Taxon0009256",
+  "_rev": "_mad4aA6---",
+  "id": "Taxon0009256",
+  "name": "Clostridiales Family XIII. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:543314"
+ },
+ "Taxon0009257": {
+  "_id": "SDT_Taxon/Taxon0009257",
+  "_key": "Taxon0009257",
+  "_rev": "_mad4aBK---",
+  "id": "Taxon0009257",
+  "name": "Clostridiales Family XIV. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:543317"
+ },
+ "Taxon0009258": {
+  "_id": "SDT_Taxon/Taxon0009258",
+  "_key": "Taxon0009258",
+  "_rev": "_mad4aBa---",
+  "id": "Taxon0009258",
+  "name": "Clostridiales Family XVII. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:539000"
+ },
+ "Taxon0009259": {
+  "_id": "SDT_Taxon/Taxon0009259",
+  "_key": "Taxon0009259",
+  "_rev": "_mad4aBq---",
+  "id": "Taxon0009259",
+  "name": "Clostridiales Family XVIII. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:543349"
+ },
+ "Taxon0009393": {
+  "_id": "SDT_Taxon/Taxon0009393",
+  "_key": "Taxon0009393",
+  "_rev": "_mad4aji---",
+  "id": "Taxon0009393",
+  "name": "Coleoptera",
+  "ncbi_taxid": "NCBITaxon:7041"
+ },
+ "Taxon0010114": {
+  "_id": "SDT_Taxon/Taxon0010114",
+  "_key": "Taxon0010114",
+  "_rev": "_mad4dCe--A",
+  "id": "Taxon0010114",
+  "name": "Dothideomycetes_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:159987"
+ },
+ "Taxon0010529": {
+  "_id": "SDT_Taxon/Taxon0010529",
+  "_key": "Taxon0010529",
+  "_rev": "_mad4ej----",
+  "id": "Taxon0010529",
+  "name": "Exobasidiomycetidae_Incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0011322": {
+  "_id": "SDT_Taxon/Taxon0011322",
+  "_key": "Taxon0011322",
+  "_rev": "_mad4hfu---",
+  "id": "Taxon0011322",
+  "name": "Helotiales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:159639"
+ },
+ "Taxon0011478": {
+  "_id": "SDT_Taxon/Taxon0011478",
+  "_key": "Taxon0011478",
+  "_rev": "_mad4iDa---",
+  "id": "Taxon0011478",
+  "name": "Human picobirnavirus",
+  "ncbi_taxid": "NCBITaxon:145856"
+ },
+ "Taxon0011590": {
+  "_id": "SDT_Taxon/Taxon0011590",
+  "_key": "Taxon0011590",
+  "_rev": "_mad4ib2---",
+  "id": "Taxon0011590",
+  "name": "Hypocreales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:162454"
+ },
+ "Taxon0012101": {
+  "_id": "SDT_Taxon/Taxon0012101",
+  "_key": "Taxon0012101",
+  "_rev": "_mad4kFy---",
+  "id": "Taxon0012101",
+  "name": "Leotiomycetes_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:221903"
+ },
+ "Taxon0012340": {
+  "_id": "SDT_Taxon/Taxon0012340",
+  "_key": "Taxon0012340",
+  "_rev": "_mad4k1C---",
+  "id": "Taxon0012340",
+  "name": "Malasseziales_Incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0012548": {
+  "_id": "SDT_Taxon/Taxon0012548",
+  "_key": "Taxon0012548",
+  "_rev": "_mad4leK---",
+  "id": "Taxon0012548",
+  "name": "Methanocaldococcus infernus ME",
+  "ncbi_taxid": "NCBITaxon:573063"
+ },
+ "Taxon0012628": {
+  "_id": "SDT_Taxon/Taxon0012628",
+  "_key": "Taxon0012628",
+  "_rev": "_mad4lt6--A",
+  "id": "Taxon0012628",
+  "name": "Methanosarcina barkeri str. Fusaro",
+  "ncbi_taxid": "NCBITaxon:269797"
+ },
+ "Taxon0012629": {
+  "_id": "SDT_Taxon/Taxon0012629",
+  "_key": "Taxon0012629",
+  "_rev": "_mad4luK---",
+  "id": "Taxon0012629",
+  "name": "Methanosarcina barkeri str. fusaro",
+  "ncbi_taxid": "NCBITaxon:269797"
+ },
+ "Taxon0012927": {
+  "_id": "SDT_Taxon/Taxon0012927",
+  "_key": "Taxon0012927",
+  "_rev": "_mad4mpG---",
+  "id": "Taxon0012927",
+  "name": "Mucoromycotina_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:911333"
+ },
+ "Taxon0013963": {
+  "_id": "SDT_Taxon/Taxon0013963",
+  "_key": "Taxon0013963",
+  "_rev": "_mad4qHG---",
+  "id": "Taxon0013963",
+  "name": "Pezizomycotina_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:205932"
+ },
+ "Taxon0014171": {
+  "_id": "SDT_Taxon/Taxon0014171",
+  "_key": "Taxon0014171",
+  "_rev": "_mad4q2O---",
+  "id": "Taxon0014171",
+  "name": "Pleosporales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:147498"
+ },
+ "Taxon0015301": {
+  "_id": "SDT_Taxon/Taxon0015301",
+  "_key": "Taxon0015301",
+  "_rev": "_mad4u4---A",
+  "id": "Taxon0015301",
+  "name": "Saccharomycetales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:241407"
+ },
+ "Taxon0015688": {
+  "_id": "SDT_Taxon/Taxon0015688",
+  "_key": "Taxon0015688",
+  "_rev": "_mad4wMG--A",
+  "id": "Taxon0015688",
+  "name": "Sordariomycetes_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:147551"
+ },
+ "Taxon0015689": {
+  "_id": "SDT_Taxon/Taxon0015689",
+  "_key": "Taxon0015689",
+  "_rev": "_mad4wMW---",
+  "id": "Taxon0015689",
+  "name": "Sordariomycetidae_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:252199"
+ },
+ "Taxon0015805": {
+  "_id": "SDT_Taxon/Taxon0015805",
+  "_key": "Taxon0015805",
+  "_rev": "_mad4wk6---",
+  "id": "Taxon0015805",
+  "name": "Sporidiobolales_Incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0016580": {
+  "_id": "SDT_Taxon/Taxon0016580",
+  "_key": "Taxon0016580",
+  "_rev": "_mad4zbC--A",
+  "id": "Taxon0016580",
+  "name": "Thermoanaerobacterales Family III. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:543371"
+ },
+ "Taxon0016581": {
+  "_id": "SDT_Taxon/Taxon0016581",
+  "_key": "Taxon0016581",
+  "_rev": "_mad4zbO--A",
+  "id": "Taxon0016581",
+  "name": "Thermoanaerobacterales Family IV. Incertae Sedis",
+  "ncbi_taxid": "NCBITaxon:543372"
+ },
+ "Taxon0016856": {
+  "_id": "SDT_Taxon/Taxon0016856",
+  "_key": "Taxon0016856",
+  "_rev": "_mad40a6---",
+  "id": "Taxon0016856",
+  "name": "Tremellales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:415703"
+ },
+ "Taxon0016942": {
+  "_id": "SDT_Taxon/Taxon0016942",
+  "_key": "Taxon0016942",
+  "_rev": "_mad40su---",
+  "id": "Taxon0016942",
+  "name": "Trichosphaeriales_Incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0017034": {
+  "_id": "SDT_Taxon/Taxon0017034",
+  "_key": "Taxon0017034",
+  "_rev": "_mad41A----",
+  "id": "Taxon0017034",
+  "name": "Ustilaginomycotina_Incertae sedis",
+  "ncbi_taxid": null
+ },
+ "Taxon0017373": {
+  "_id": "SDT_Taxon/Taxon0017373",
+  "_key": "Taxon0017373",
+  "_rev": "_mad42Ge---",
+  "id": "Taxon0017373",
+  "name": "Xylariales_Incertae sedis",
+  "ncbi_taxid": "NCBITaxon:189359"
+ },
+ "Taxon0017511": {
+  "_id": "SDT_Taxon/Taxon0017511",
+  "_key": "Taxon0017511",
+  "_rev": "_mad42jS---",
+  "id": "Taxon0017511",
+  "name": "beet soil-borne mosaic virus",
+  "ncbi_taxid": "NCBITaxon:76343"
+ },
+ "Taxon0017516": {
+  "_id": "SDT_Taxon/Taxon0017516",
+  "_key": "Taxon0017516",
+  "_rev": "_mad42kS---",
+  "id": "Taxon0017516",
+  "name": "bovine adenovirus 3",
+  "ncbi_taxid": "NCBITaxon:10510"
+ },
+ "Taxon0017573": {
+  "_id": "SDT_Taxon/Taxon0017573",
+  "_key": "Taxon0017573",
+  "_rev": "_mad42w----",
+  "id": "Taxon0017573",
+  "name": "human picobirnavirus",
+  "ncbi_taxid": "NCBITaxon:145856"
+ },
+ "Taxon0017592": {
+  "_id": "SDT_Taxon/Taxon0017592",
+  "_key": "Taxon0017592",
+  "_rev": "_mad4206---",
+  "id": "Taxon0017592",
+  "name": "methanocaldococcus infernus ME",
+  "ncbi_taxid": "NCBITaxon:573063"
+ },
+ "Taxon0017856": {
+  "_id": "SDT_Taxon/Taxon0017856",
+  "_key": "Taxon0017856",
+  "_rev": "_ma1dM0m---",
+  "id": "Taxon0017856",
+  "name": "Candidatus_Paenicardinium",
+  "ncbi_taxid": "NCBITaxon:362860"
+ },
+ "Taxon0017857": {
+  "_id": "SDT_Taxon/Taxon0017857",
+  "_key": "Taxon0017857",
+  "_rev": "_ma1dM06---",
+  "id": "Taxon0017857",
+  "name": "Candidatus_Syntrophoarchaeum",
+  "ncbi_taxid": "NCBITaxon:1912923"
+ },
+ "Taxon0017888": {
+  "_id": "SDT_Taxon/Taxon0017888",
+  "_key": "Taxon0017888",
+  "_rev": "_ma1dM8G---",
+  "id": "Taxon0017888",
+  "name": "OM43_clade",
+  "ncbi_taxid": "NCBITaxon:1233498"
+ }
+}

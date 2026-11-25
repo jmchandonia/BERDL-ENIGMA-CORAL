@@ -1,0 +1,2161 @@
+{
+ "rename": {
+  "Taxon0000026": [
+   "Acetobacterales Incertae Sedis",
+   "Acetobacterales incertae sedis"
+  ],
+  "Taxon0000046": [
+   "Acidimicrobineae_incertae_sedis",
+   "Acidimicrobineae incertae sedis"
+  ],
+  "Taxon0000168": [
+   "Aminicenantes_genera_incertae_sedis",
+   "Aminicenantes genera incertae sedis"
+  ],
+  "Taxon0000291": [
+   "Bacillales_incertae_sedis",
+   "Bacillales incertae sedis"
+  ],
+  "Taxon0000292": [
+   "Bacillales_Incertae Sedis XII",
+   "Bacillales incertae sedis XII"
+  ],
+  "Taxon0000293": [
+   "Bacillales_Incertae Sedis XI",
+   "Bacillales incertae sedis XI"
+  ],
+  "Taxon0000320": [
+   "Bacteroidales_incertae_sedis",
+   "Bacteroidales incertae sedis"
+  ],
+  "Taxon0000324": [
+   "Bacteroidetes_incertae_sedis",
+   "Bacteroidetes incertae sedis"
+  ],
+  "Taxon0000382": [
+   "BRC1_genera_incertae_sedis",
+   "BRC1 genera incertae sedis"
+  ],
+  "Taxon0000404": [
+   "Burkholderiales_incertae_sedis",
+   "Burkholderiales incertae sedis"
+  ],
+  "Taxon0000762": [
+   "Clostridiales_Incertae Sedis IV",
+   "Clostridiales incertae sedis IV"
+  ],
+  "Taxon0000763": [
+   "Clostridiales_Incertae Sedis XIII",
+   "Clostridiales incertae sedis XIII"
+  ],
+  "Taxon0000764": [
+   "Clostridiales_Incertae Sedis XII",
+   "Clostridiales incertae sedis XII"
+  ],
+  "Taxon0000765": [
+   "Clostridiales_Incertae Sedis XI",
+   "Clostridiales incertae sedis XI"
+  ],
+  "Taxon0000766": [
+   "Clostridiales_Incertae Sedis XVIII",
+   "Clostridiales incertae sedis XVIII"
+  ],
+  "Taxon0000767": [
+   "Clostridiales_Incertae Sedis XVII",
+   "Clostridiales incertae sedis XVII"
+  ],
+  "Taxon0000800": [
+   "Coriobacteriales Incertae Sedis",
+   "Coriobacteriales incertae sedis"
+  ],
+  "Taxon0000805": [
+   "Corynebacterineae_incertae_sedis",
+   "Corynebacterineae incertae sedis"
+  ],
+  "Taxon0000854": [
+   "Deferribacterales_incertae_sedis",
+   "Deferribacterales incertae sedis"
+  ],
+  "Taxon0000960": [
+   "Diapherotrites Incertae Sedis AR10",
+   "Diapherotrites incertae sedis AR10"
+  ],
+  "Taxon0001034": [
+   "Entomoplasmatales Incertae Sedis",
+   "Entomoplasmatales incertae sedis"
+  ],
+  "Taxon0001049": [
+   "Erysipelotrichaceae_incertae_sedis",
+   "Erysipelotrichaceae incertae sedis"
+  ],
+  "Taxon0001352": [
+   "Incertae Sedis",
+   "incertae sedis"
+  ],
+  "Taxon0001427": [
+   "Lachnospiracea_incertae_sedis",
+   "Lachnospiracea incertae sedis"
+  ],
+  "Taxon0001441": [
+   "Latescibacteria_genera_incertae_sedis",
+   "Latescibacteria genera incertae sedis"
+  ],
+  "Taxon0001629": [
+   "Microgenomates_genera_incertae_sedis",
+   "Microgenomates genera incertae sedis"
+  ],
+  "Taxon0001709": [
+   "_Neoptera",
+   "Neoptera"
+  ],
+  "Taxon0001784": [
+   "OD1_genera_incertae_sedis",
+   "OD1 genera incertae sedis"
+  ],
+  "Taxon0001812": [
+   "Omnitrophica_genera_incertae_sedis",
+   "Omnitrophica genera incertae sedis"
+  ],
+  "Taxon0001817": [
+   "OP11_genera_incertae_sedis",
+   "OP11 genera incertae sedis"
+  ],
+  "Taxon0001846": [
+   "Pacearchaeota Incertae Sedis AR13",
+   "Pacearchaeota incertae sedis AR13"
+  ],
+  "Taxon0001888": [
+   "Parcubacteria_genera_incertae_sedis",
+   "Parcubacteria genera incertae sedis"
+  ],
+  "Taxon0002014": [
+   "Planococcaceae_incertae_sedis",
+   "Planococcaceae incertae sedis"
+  ],
+  "Taxon0002030": [
+   "Poribacteria_genera_incertae_sedis",
+   "Poribacteria genera incertae sedis"
+  ],
+  "Taxon0002079": [
+   "Pseudomonadales_incertae_sedis",
+   "Pseudomonadales incertae sedis"
+  ],
+  "Taxon0002222": [
+   "Saccharibacteria_genera_incertae_sedis",
+   "Saccharibacteria genera incertae sedis"
+  ],
+  "Taxon0002316": [
+   "Spartobacteria_genera_incertae_sedis",
+   "Spartobacteria genera incertae sedis"
+  ],
+  "Taxon0002346": [
+   "Spirochaetales_incertae_sedis",
+   "Spirochaetales incertae sedis"
+  ],
+  "Taxon0002368": [
+   "SR1_genera_incertae_sedis",
+   "SR1 genera incertae sedis"
+  ],
+  "Taxon0002401": [
+   "Streptosporangineae_incertae_sedis",
+   "Streptosporangineae incertae sedis"
+  ],
+  "Taxon0002403": [
+   "Subdivision3_genera_incertae_sedis",
+   "Subdivision3 genera incertae sedis"
+  ],
+  "Taxon0002405": [
+   "Subdivision5_genera_incertae_sedis",
+   "Subdivision5 genera incertae sedis"
+  ],
+  "Taxon0002565": [
+   "Thiotrichales_incertae_sedis",
+   "Thiotrichales incertae sedis"
+  ],
+  "Taxon0002575": [
+   "TM7_genera_incertae_sedis",
+   "TM7 genera incertae sedis"
+  ],
+  "Taxon0002827": [
+   "Woesearchaeota Incertae Sedis AR15",
+   "Woesearchaeota incertae sedis AR15"
+  ],
+  "Taxon0002828": [
+   "Woesearchaeota Incertae Sedis AR16",
+   "Woesearchaeota incertae sedis AR16"
+  ],
+  "Taxon0002829": [
+   "Woesearchaeota Incertae Sedis AR17",
+   "Woesearchaeota incertae sedis AR17"
+  ],
+  "Taxon0002830": [
+   "Woesearchaeota Incertae Sedis AR18",
+   "Woesearchaeota incertae sedis AR18"
+  ],
+  "Taxon0002831": [
+   "Woesearchaeota Incertae Sedis AR20",
+   "Woesearchaeota incertae sedis AR20"
+  ],
+  "Taxon0002835": [
+   "WPS-1_genera_incertae_sedis",
+   "WPS-1 genera incertae sedis"
+  ],
+  "Taxon0002836": [
+   "WPS-2_genera_incertae_sedis",
+   "WPS-2 genera incertae sedis"
+  ],
+  "Taxon0002839": [
+   "WS3_genera_incertae_sedis",
+   "WS3 genera incertae sedis"
+  ],
+  "Taxon0002857": [
+   "ZB3_genera_incertae_sedis",
+   "ZB3 genera incertae sedis"
+  ],
+  "Taxon0004917": [
+   "Hyphomicrobiales Incertae Sedis",
+   "Hyphomicrobiales incertae sedis"
+  ],
+  "Taxon0004955": [
+   "Micrococcales Incertae Sedis",
+   "Micrococcales incertae sedis"
+  ],
+  "Taxon0005049": [
+   "Bacillales_Incertae_Sedis_X",
+   "Bacillales incertae sedis X"
+  ],
+  "Taxon0005054": [
+   "Clostridiales_Incertae_Sedis_III",
+   "Clostridiales incertae sedis III"
+  ],
+  "Taxon0005174": [
+   "Actinomycetales_Incertae_Sedis",
+   "Actinomycetales incertae sedis"
+  ],
+  "Taxon0005308": [
+   "Arctic97B-4_marine_group",
+   "Arctic97B-4 marine group"
+  ],
+  "Taxon0005328": [
+   "Azospirillales Incertae Sedis",
+   "Azospirillales incertae sedis"
+  ],
+  "Taxon0005396": [
+   "Brachyspirales Incertae Sedis",
+   "Brachyspirales incertae sedis"
+  ],
+  "Taxon0005512": [
+   "Candidatus_Ancillula",
+   "Candidatus Ancillula"
+  ],
+  "Taxon0005529": [
+   "Candidatus_Cryptoprodotis",
+   "Candidatus Cryptoprodotis"
+  ],
+  "Taxon0005535": [
+   "Candidatus_Endonucleariobacter",
+   "Candidatus Endonucleariobacter"
+  ],
+  "Taxon0005536": [
+   "Candidatus_Entotheonella",
+   "Candidatus Entotheonella"
+  ],
+  "Taxon0005539": [
+   "Candidatus_Fritschea",
+   "Candidatus Fritschea"
+  ],
+  "Taxon0005540": [
+   "Candidatus_Gigarickettsia",
+   "Candidatus Gigarickettsia"
+  ],
+  "Taxon0005542": [
+   "Candidatus_Gortzia",
+   "Candidatus Gortzia"
+  ],
+  "Taxon0005544": [
+   "Candidatus_Hepatincola",
+   "Candidatus Hepatincola"
+  ],
+  "Taxon0005548": [
+   "Candidatus_Jettenia",
+   "Candidatus Jettenia"
+  ],
+  "Taxon0005562": [
+   "Candidatus_Lumbricincola",
+   "Candidatus Lumbricincola"
+  ],
+  "Taxon0005565": [
+   "Candidatus_Magnetoovum",
+   "Candidatus Magnetoovum"
+  ],
+  "Taxon0005570": [
+   "Candidatus_Methylopumilus",
+   "Candidatus Methylopumilus"
+  ],
+  "Taxon0005571": [
+   "Candidatus_Methylospira",
+   "Candidatus Methylospira"
+  ],
+  "Taxon0005602": [
+   "Candidatus_Saccharimonas",
+   "Candidatus Saccharimonas"
+  ],
+  "Taxon0005607": [
+   "Candidatus_Spiroplasma",
+   "Candidatus Spiroplasma"
+  ],
+  "Taxon0005612": [
+   "Candidatus_Tokpelaia",
+   "Candidatus Tokpelaia"
+  ],
+  "Taxon0005658": [
+   "Chlamydiales_Incertae_Sedis",
+   "Chlamydiales incertae sedis"
+  ],
+  "Taxon0005815": [
+   "Desulfotomaculales Incertae Sedis",
+   "Desulfotomaculales incertae sedis"
+  ],
+  "Taxon0006071": [
+   "JTB255_marine_benthic_group",
+   "JTB255 marine benthic group"
+  ],
+  "Taxon0006176": [
+   "ML635J-40_aquatic_group",
+   "ML635J-40 aquatic group"
+  ],
+  "Taxon0006367": [
+   "Oxyphotobacteria_Incertae_Sedis",
+   "Oxyphotobacteria incertae sedis"
+  ],
+  "Taxon0006373": [
+   "PS1_clade",
+   "PS1 clade"
+  ],
+  "Taxon0006488": [
+   "Puniceispirillales_Incertae_Sedis",
+   "Puniceispirillales incertae sedis"
+  ],
+  "Taxon0006545": [
+   "Rs-E47_termite_group",
+   "Rs-E47 termite group"
+  ],
+  "Taxon0006663": [
+   "Streptosporangiales_Incertae_Sedis",
+   "Streptosporangiales incertae sedis"
+  ],
+  "Taxon0006822": [
+   "UBA10353_marine_group",
+   "UBA10353 marine group"
+  ],
+  "Taxon0006837": [
+   "Urania-1B-19_marine_sediment_group",
+   "Urania-1B-19 marine sediment group"
+  ],
+  "Taxon0006841": [
+   "V9D2013_group",
+   "V9D2013 group"
+  ],
+  "Taxon0006968": [
+   "Kordiimonadales Incertae Sedis",
+   "Kordiimonadales incertae sedis"
+  ],
+  "Taxon0006978": [
+   "Nitrococcales Incertae Sedis",
+   "Nitrococcales incertae sedis"
+  ],
+  "Taxon0007858": [
+   "Auriculariales_Incertae sedis",
+   "Auriculariales incertae sedis"
+  ],
+  "Taxon0008158": [
+   "Bacteroidetes Order II. Incertae sedis",
+   "Bacteroidetes Order II. incertae sedis"
+  ],
+  "Taxon0008946": [
+   "Capnodiales_Incertae sedis",
+   "Capnodiales incertae sedis"
+  ],
+  "Taxon0009255": [
+   "Clostridiales Family XI. Incertae Sedis",
+   "Clostridiales Family XI. incertae sedis"
+  ],
+  "Taxon0009256": [
+   "Clostridiales Family XIII. Incertae Sedis",
+   "Clostridiales Family XIII. incertae sedis"
+  ],
+  "Taxon0009257": [
+   "Clostridiales Family XIV. Incertae Sedis",
+   "Clostridiales Family XIV. incertae sedis"
+  ],
+  "Taxon0009258": [
+   "Clostridiales Family XVII. Incertae Sedis",
+   "Clostridiales Family XVII. incertae sedis"
+  ],
+  "Taxon0009259": [
+   "Clostridiales Family XVIII. Incertae Sedis",
+   "Clostridiales Family XVIII. incertae sedis"
+  ],
+  "Taxon0010114": [
+   "Dothideomycetes_Incertae sedis",
+   "Dothideomycetes incertae sedis"
+  ],
+  "Taxon0010529": [
+   "Exobasidiomycetidae_Incertae sedis",
+   "Exobasidiomycetidae incertae sedis"
+  ],
+  "Taxon0011322": [
+   "Helotiales_Incertae sedis",
+   "Helotiales incertae sedis"
+  ],
+  "Taxon0011590": [
+   "Hypocreales_Incertae sedis",
+   "Hypocreales incertae sedis"
+  ],
+  "Taxon0012101": [
+   "Leotiomycetes_Incertae sedis",
+   "Leotiomycetes incertae sedis"
+  ],
+  "Taxon0012340": [
+   "Malasseziales_Incertae sedis",
+   "Malasseziales incertae sedis"
+  ],
+  "Taxon0012927": [
+   "Mucoromycotina_Incertae sedis",
+   "Mucoromycotina incertae sedis"
+  ],
+  "Taxon0013963": [
+   "Pezizomycotina_Incertae sedis",
+   "Pezizomycotina incertae sedis"
+  ],
+  "Taxon0014171": [
+   "Pleosporales_Incertae sedis",
+   "Pleosporales incertae sedis"
+  ],
+  "Taxon0015301": [
+   "Saccharomycetales_Incertae sedis",
+   "Saccharomycetales incertae sedis"
+  ],
+  "Taxon0015688": [
+   "Sordariomycetes_Incertae sedis",
+   "Sordariomycetes incertae sedis"
+  ],
+  "Taxon0015689": [
+   "Sordariomycetidae_Incertae sedis",
+   "Sordariomycetidae incertae sedis"
+  ],
+  "Taxon0015805": [
+   "Sporidiobolales_Incertae sedis",
+   "Sporidiobolales incertae sedis"
+  ],
+  "Taxon0016580": [
+   "Thermoanaerobacterales Family III. Incertae Sedis",
+   "Thermoanaerobacterales Family III. incertae sedis"
+  ],
+  "Taxon0016581": [
+   "Thermoanaerobacterales Family IV. Incertae Sedis",
+   "Thermoanaerobacterales Family IV. incertae sedis"
+  ],
+  "Taxon0016856": [
+   "Tremellales_Incertae sedis",
+   "Tremellales incertae sedis"
+  ],
+  "Taxon0016942": [
+   "Trichosphaeriales_Incertae sedis",
+   "Trichosphaeriales incertae sedis"
+  ],
+  "Taxon0017034": [
+   "Ustilaginomycotina_Incertae sedis",
+   "Ustilaginomycotina incertae sedis"
+  ],
+  "Taxon0017373": [
+   "Xylariales_Incertae sedis",
+   "Xylariales incertae sedis"
+  ],
+  "Taxon0017856": [
+   "Candidatus_Paenicardinium",
+   "Candidatus Paenicardinium"
+  ],
+  "Taxon0017857": [
+   "Candidatus_Syntrophoarchaeum",
+   "Candidatus Syntrophoarchaeum"
+  ],
+  "Taxon0017888": [
+   "OM43_clade",
+   "OM43 clade"
+  ]
+ },
+ "retire": {
+  "Taxon0005154": [
+   "Absconditabacteriales_(SR1)",
+   "Absconditabacteriales (SR1)",
+   "Taxon0000018"
+  ],
+  "Taxon0005170": [
+   "Acidobacteriaceae_(Subgroup_1)",
+   "Acidobacteriaceae (Subgroup 1)",
+   "Taxon0000058"
+  ],
+  "Taxon0006899": [
+   "[Agitococcus]_lubricus_group",
+   "[Agitococcus] lubricus group",
+   "Taxon0000128"
+  ],
+  "Taxon0005144": [
+   "AKAU3564_sediment_group",
+   "AKAU3564 sediment group",
+   "Taxon0000132"
+  ],
+  "Taxon0000155": [
+   "Alphaproteobacteria_incertae_sedis",
+   "Alphaproteobacteria incertae sedis",
+   "Taxon0005210"
+  ],
+  "Taxon0006901": [
+   "[Aquaspirillum]_arcticum_group",
+   "[Aquaspirillum] arcticum group",
+   "Taxon0000211"
+  ],
+  "Taxon0005048": [
+   "Bacillaceae_1",
+   "Bacillaceae 1",
+   "Taxon0000288"
+  ],
+  "Taxon0005050": [
+   "Bacillales_Incertae_Sedis_XII",
+   "Bacillales_Incertae Sedis XII",
+   "Taxon0000292"
+  ],
+  "Taxon0005363": [
+   "Bacteroidetes_BD2-2",
+   "Bacteroidetes BD2-2",
+   "Taxon0000323"
+  ],
+  "Taxon0005365": [
+   "Bacteroidetes_vadinHA17",
+   "Bacteroidetes vadinHA17",
+   "Taxon0000326"
+  ],
+  "Taxon0005364": [
+   "Bacteroidetes_VC2.1_Bac22",
+   "Bacteroidetes VC2.1 Bac22",
+   "Taxon0000327"
+  ],
+  "Taxon0005336": [
+   "BD1-7_clade",
+   "BD1-7 clade",
+   "Taxon0000333"
+  ],
+  "Taxon0005337": [
+   "BD2-11_terrestrial_group",
+   "BD2-11 terrestrial group",
+   "Taxon0000334"
+  ],
+  "Taxon0006902": [
+   "[Caedibacter]_taeniospiralis_group",
+   "[Caedibacter] taeniospiralis group",
+   "Taxon0000416"
+  ],
+  "Taxon0005503": [
+   "Candidatus_Abawacabacteria",
+   "Candidatus Abawacabacteria",
+   "Taxon0000453"
+  ],
+  "Taxon0005504": [
+   "Candidatus_Accumulibacter",
+   "Candidatus Accumulibacter",
+   "Taxon0000454"
+  ],
+  "Taxon0005505": [
+   "Candidatus_Adlerbacteria",
+   "Candidatus Adlerbacteria",
+   "Taxon0000456"
+  ],
+  "Taxon0005506": [
+   "Candidatus_Aenigmarchaeum",
+   "Candidatus Aenigmarchaeum",
+   "Taxon0000457"
+  ],
+  "Taxon0005509": [
+   "Candidatus_Amesbacteria",
+   "Candidatus Amesbacteria",
+   "Taxon0000461"
+  ],
+  "Taxon0005513": [
+   "Candidatus_Azambacteria",
+   "Candidatus Azambacteria",
+   "Taxon0000467"
+  ],
+  "Taxon0005515": [
+   "Candidatus_Bacilloplasma",
+   "Candidatus Bacilloplasma",
+   "Taxon0000468"
+  ],
+  "Taxon0005516": [
+   "Candidatus_Bealeia",
+   "Candidatus Bealeia",
+   "Taxon0000469"
+  ],
+  "Taxon0005517": [
+   "Candidatus_Beckwithbacteria",
+   "Candidatus Beckwithbacteria",
+   "Taxon0000470"
+  ],
+  "Taxon0005518": [
+   "Candidatus_Berkiella",
+   "Candidatus Berkiella",
+   "Taxon0000474"
+  ],
+  "Taxon0005519": [
+   "Candidatus_Brennerbacteria",
+   "Candidatus Brennerbacteria",
+   "Taxon0000476"
+  ],
+  "Taxon0005086": [
+   "Candidatus_Brocadiaceae",
+   "Candidatus Brocadiaceae",
+   "Taxon0000477"
+  ],
+  "Taxon0005087": [
+   "Candidatus_Brocadiales",
+   "Candidatus Brocadiales",
+   "Taxon0000478"
+  ],
+  "Taxon0005520": [
+   "Candidatus_Brocadia",
+   "Candidatus Brocadia",
+   "Taxon0000479"
+  ],
+  "Taxon0005521": [
+   "Candidatus_Buchananbacteria",
+   "Candidatus Buchananbacteria",
+   "Taxon0000482"
+  ],
+  "Taxon0005522": [
+   "Candidatus_Campbellbacteria",
+   "Candidatus Campbellbacteria",
+   "Taxon0000483"
+  ],
+  "Taxon0005523": [
+   "Candidatus_Captivus",
+   "Candidatus Captivus",
+   "Taxon0000484"
+  ],
+  "Taxon0005524": [
+   "Candidatus_Chisholmbacteria",
+   "Candidatus Chisholmbacteria",
+   "Taxon0000486"
+  ],
+  "Taxon0005526": [
+   "Candidatus_Collierbacteria",
+   "Candidatus Collierbacteria",
+   "Taxon0000489"
+  ],
+  "Taxon0005527": [
+   "Candidatus_Colwellbacteria",
+   "Candidatus Colwellbacteria",
+   "Taxon0000493"
+  ],
+  "Taxon0005530": [
+   "Candidatus_Curtissbacteria",
+   "Candidatus Curtissbacteria",
+   "Taxon0000494"
+  ],
+  "Taxon0005531": [
+   "Candidatus_Daviesbacteria",
+   "Candidatus Daviesbacteria",
+   "Taxon0000498"
+  ],
+  "Taxon0005533": [
+   "Candidatus_Doudnabacteria",
+   "Candidatus Doudnabacteria",
+   "Taxon0000501"
+  ],
+  "Taxon0005534": [
+   "Candidatus_Endoecteinascidia",
+   "Candidatus Endoecteinascidia",
+   "Taxon0000502"
+  ],
+  "Taxon0005537": [
+   "Candidatus_Falkowbacteria",
+   "Candidatus Falkowbacteria",
+   "Taxon0000507"
+  ],
+  "Taxon0005538": [
+   "Candidatus_Finniella",
+   "Candidatus Finniella",
+   "Taxon0000509"
+  ],
+  "Taxon0005541": [
+   "Candidatus_Giovannonibacteria",
+   "Candidatus Giovannonibacteria",
+   "Taxon0000514"
+  ],
+  "Taxon0005543": [
+   "Candidatus_Gottesmanbacteria",
+   "Candidatus Gottesmanbacteria",
+   "Taxon0000519"
+  ],
+  "Taxon0005545": [
+   "Candidatus_Hepatoplasma",
+   "Candidatus Hepatoplasma",
+   "Taxon0000522"
+  ],
+  "Taxon0005546": [
+   "Candidatus_Iainarchaeum",
+   "Candidatus Iainarchaeum",
+   "Taxon0000526"
+  ],
+  "Taxon0005547": [
+   "Candidatus_Jacksonbacteria",
+   "Candidatus Jacksonbacteria",
+   "Taxon0000528"
+  ],
+  "Taxon0005549": [
+   "Candidatus_Jidaibacter",
+   "Candidatus Jidaibacter",
+   "Taxon0000529"
+  ],
+  "Taxon0005550": [
+   "Candidatus_Jorgensenbacteria",
+   "Candidatus Jorgensenbacteria",
+   "Taxon0000532"
+  ],
+  "Taxon0005551": [
+   "Candidatus_Kaiserbacteria",
+   "Candidatus Kaiserbacteria",
+   "Taxon0000534"
+  ],
+  "Taxon0005552": [
+   "Candidatus_Kerfeldbacteria",
+   "Candidatus Kerfeldbacteria",
+   "Taxon0000536"
+  ],
+  "Taxon0005553": [
+   "Candidatus_Komeilibacteria",
+   "Candidatus Komeilibacteria",
+   "Taxon0000537"
+  ],
+  "Taxon0005554": [
+   "Candidatus_Koribacter",
+   "Candidatus Koribacter",
+   "Taxon0000538"
+  ],
+  "Taxon0005555": [
+   "Candidatus_Kuenenbacteria",
+   "Candidatus Kuenenbacteria",
+   "Taxon0000540"
+  ],
+  "Taxon0005556": [
+   "Candidatus_Kuenenia",
+   "Candidatus Kuenenia",
+   "Taxon0000541"
+  ],
+  "Taxon0005558": [
+   "Candidatus_Levybacteria",
+   "Candidatus Levybacteria",
+   "Taxon0000544"
+  ],
+  "Taxon0005559": [
+   "Candidatus_Liberibacter",
+   "Candidatus Liberibacter",
+   "Taxon0000545"
+  ],
+  "Taxon0005560": [
+   "Candidatus_Liptonbacteria",
+   "Candidatus Liptonbacteria",
+   "Taxon0000547"
+  ],
+  "Taxon0005561": [
+   "Candidatus_Lloydbacteria",
+   "Candidatus Lloydbacteria",
+   "Taxon0000550"
+  ],
+  "Taxon0005563": [
+   "Candidatus_Magasanikbacteria",
+   "Candidatus Magasanikbacteria",
+   "Taxon0000559"
+  ],
+  "Taxon0005564": [
+   "Candidatus_Magnetobacterium",
+   "Candidatus Magnetobacterium",
+   "Taxon0000560"
+  ],
+  "Taxon0005566": [
+   "Candidatus_Megaira",
+   "Candidatus Megaira",
+   "Taxon0000561"
+  ],
+  "Taxon0005568": [
+   "Candidatus_Methanoperedens",
+   "Candidatus Methanoperedens",
+   "Taxon0000562"
+  ],
+  "Taxon0005569": [
+   "Candidatus_Methylomirabilis",
+   "Candidatus Methylomirabilis",
+   "Taxon0000563"
+  ],
+  "Taxon0005574": [
+   "Candidatus_Moranbacteria",
+   "Candidatus Moranbacteria",
+   "Taxon0000567"
+  ],
+  "Taxon0005576": [
+   "Candidatus_Nitrocosmicus",
+   "Candidatus Nitrocosmicus",
+   "Taxon0000568"
+  ],
+  "Taxon0005577": [
+   "Candidatus_Nitrososphaera",
+   "Candidatus Nitrososphaera",
+   "Taxon0000570"
+  ],
+  "Taxon0005578": [
+   "Candidatus_Nitrosotalea",
+   "Candidatus Nitrosotalea",
+   "Taxon0000571"
+  ],
+  "Taxon0005579": [
+   "Candidatus_Nitrosotenuis",
+   "Candidatus Nitrosotenuis",
+   "Taxon0000572"
+  ],
+  "Taxon0005581": [
+   "Candidatus_Nomurabacteria",
+   "Candidatus Nomurabacteria",
+   "Taxon0000578"
+  ],
+  "Taxon0005584": [
+   "Candidatus_Omnitrophus",
+   "Candidatus Omnitrophus",
+   "Taxon0000582"
+  ],
+  "Taxon0005585": [
+   "Candidatus_Ovatusbacter",
+   "Candidatus Ovatusbacter",
+   "Taxon0000583"
+  ],
+  "Taxon0005586": [
+   "Candidatus_Pacebacteria",
+   "Candidatus Pacebacteria",
+   "Taxon0000586"
+  ],
+  "Taxon0005587": [
+   "Candidatus_Paceibacter",
+   "Candidatus Paceibacter",
+   "Taxon0000587"
+  ],
+  "Taxon0005588": [
+   "Candidatus_Paracaedibacter",
+   "Candidatus Paracaedibacter",
+   "Taxon0000589"
+  ],
+  "Taxon0005589": [
+   "Candidatus_Paraholospora",
+   "Candidatus Paraholospora",
+   "Taxon0000590"
+  ],
+  "Taxon0005590": [
+   "Candidatus_Peregrinibacteria",
+   "Candidatus Peregrinibacteria",
+   "Taxon0000596"
+  ],
+  "Taxon0005591": [
+   "Candidatus_Peribacteria",
+   "Candidatus Peribacteria",
+   "Taxon0000600"
+  ],
+  "Taxon0005593": [
+   "Candidatus_Portnoybacteria",
+   "Candidatus Portnoybacteria",
+   "Taxon0000602"
+  ],
+  "Taxon0005594": [
+   "Candidatus_Protochlamydia",
+   "Candidatus Protochlamydia",
+   "Taxon0000603"
+  ],
+  "Taxon0005595": [
+   "Candidatus_Raymondbacteria",
+   "Candidatus Raymondbacteria",
+   "Taxon0000604"
+  ],
+  "Taxon0005597": [
+   "Candidatus_Rhabdochlamydia",
+   "Candidatus Rhabdochlamydia",
+   "Taxon0000605"
+  ],
+  "Taxon0005599": [
+   "Candidatus_Roizmanbacteria",
+   "Candidatus Roizmanbacteria",
+   "Taxon0000608"
+  ],
+  "Taxon0005600": [
+   "Candidatus_Rubidus",
+   "Candidatus Rubidus",
+   "Taxon0000610"
+  ],
+  "Taxon0005601": [
+   "Candidatus_Ryanbacteria",
+   "Candidatus Ryanbacteria",
+   "Taxon0000612"
+  ],
+  "Taxon0005113": [
+   "Candidatus_Saccharibacteria",
+   "Candidatus Saccharibacteria",
+   "Taxon0000613"
+  ],
+  "Taxon0005603": [
+   "Candidatus_Shapirobacteria",
+   "Candidatus Shapirobacteria",
+   "Taxon0000616"
+  ],
+  "Taxon0005604": [
+   "Candidatus_Soleaferrea",
+   "Candidatus Soleaferrea",
+   "Taxon0000617"
+  ],
+  "Taxon0005605": [
+   "Candidatus_Solibacter",
+   "Candidatus Solibacter",
+   "Taxon0000618"
+  ],
+  "Taxon0005606": [
+   "Candidatus_Spechtbacteria",
+   "Candidatus Spechtbacteria",
+   "Taxon0000621"
+  ],
+  "Taxon0005608": [
+   "Candidatus_Staskawiczbacteria",
+   "Candidatus Staskawiczbacteria",
+   "Taxon0000624"
+  ],
+  "Taxon0005610": [
+   "Candidatus_Tenderia",
+   "Candidatus Tenderia",
+   "Taxon0000626"
+  ],
+  "Taxon0005611": [
+   "Candidatus_Terrybacteria",
+   "Candidatus Terrybacteria",
+   "Taxon0000628"
+  ],
+  "Taxon0005613": [
+   "Candidatus_Udaeobacter",
+   "Candidatus Udaeobacter",
+   "Taxon0000629"
+  ],
+  "Taxon0005614": [
+   "Candidatus_Uhrbacteria",
+   "Candidatus Uhrbacteria",
+   "Taxon0000635"
+  ],
+  "Taxon0005615": [
+   "Candidatus_Vogelbacteria",
+   "Candidatus Vogelbacteria",
+   "Taxon0000637"
+  ],
+  "Taxon0005616": [
+   "Candidatus_Woesebacteria",
+   "Candidatus Woesebacteria",
+   "Taxon0000645"
+  ],
+  "Taxon0005617": [
+   "Candidatus_Wolfebacteria",
+   "Candidatus Wolfebacteria",
+   "Taxon0000648"
+  ],
+  "Taxon0005618": [
+   "Candidatus_Woykebacteria",
+   "Candidatus Woykebacteria",
+   "Taxon0000649"
+  ],
+  "Taxon0005619": [
+   "Candidatus_Xiphinematobacter",
+   "Candidatus Xiphinematobacter",
+   "Taxon0000650"
+  ],
+  "Taxon0005620": [
+   "Candidatus_Yanofskybacteria",
+   "Candidatus Yanofskybacteria",
+   "Taxon0000654"
+  ],
+  "Taxon0005621": [
+   "Candidatus_Yonathbacteria",
+   "Candidatus Yonathbacteria",
+   "Taxon0000655"
+  ],
+  "Taxon0005622": [
+   "Candidatus_Zambryskibacteria",
+   "Candidatus Zambryskibacteria",
+   "Taxon0000659"
+  ],
+  "Taxon0005433": [
+   "CL500-29_marine_group",
+   "CL500-29 marine group",
+   "Taxon0000752"
+  ],
+  "Taxon0005053": [
+   "Clostridiaceae_1",
+   "Clostridiaceae 1",
+   "Taxon0000757"
+  ],
+  "Taxon0005095": [
+   "Clostridiales_Incertae_Sedis_XIII",
+   "Clostridiales_Incertae Sedis XIII",
+   "Taxon0000763"
+  ],
+  "Taxon0005096": [
+   "Clostridium_IV",
+   "Clostridium IV",
+   "Taxon0000772"
+  ],
+  "Taxon0005710": [
+   "Clostridium_sensu_stricto_18",
+   "Clostridium sensu stricto 18",
+   "Taxon0000773"
+  ],
+  "Taxon0005703": [
+   "Clostridium_sensu_stricto_1",
+   "Clostridium sensu stricto 1",
+   "Taxon0000774"
+  ],
+  "Taxon0005711": [
+   "Clostridium_sensu_stricto_2",
+   "Clostridium sensu stricto 2",
+   "Taxon0000775"
+  ],
+  "Taxon0005055": [
+   "Clostridium_sensu_stricto",
+   "Clostridium sensu stricto",
+   "Taxon0000776"
+  ],
+  "Taxon0005097": [
+   "Clostridium_XlVa",
+   "Clostridium XlVa",
+   "Taxon0000779"
+  ],
+  "Taxon0000785": [
+   "_Coleoptera",
+   "Coleoptera",
+   "Taxon0009393"
+  ],
+  "Taxon0005732": [
+   "Coriobacteriales_Incertae_Sedis",
+   "Coriobacteriales Incertae Sedis",
+   "Taxon0000800"
+  ],
+  "Taxon0005438": [
+   "CWT_CU03-E12",
+   "CWT CU03-E12",
+   "Taxon0000834"
+  ],
+  "Taxon0005767": [
+   "Deep_Sea_Euryarchaeotic_Group(DSEG)",
+   "Deep Sea Euryarchaeotic Group(DSEG)",
+   "Taxon0000852"
+  ],
+  "Taxon0000882": [
+   "Deltaproteobacteria_incertae_sedis",
+   "Deltaproteobacteria incertae sedis",
+   "Taxon0000883"
+  ],
+  "Taxon0006905": [
+   "[Desulfobacterium]_catecholicum_group",
+   "[Desulfobacterium] catecholicum group",
+   "Taxon0000915"
+  ],
+  "Taxon0005884": [
+   "Entomoplasmatales_Incertae_Sedis",
+   "Entomoplasmatales Incertae Sedis",
+   "Taxon0001034"
+  ],
+  "Taxon0006928": [
+   "env.OPS_17",
+   "env.OPS 17",
+   "Taxon0001040"
+  ],
+  "Taxon0005947": [
+   "FukuN18_freshwater_group",
+   "FukuN18 freshwater group",
+   "Taxon0001151"
+  ],
+  "Taxon0001173": [
+   "Gammaproteobacteria_incertae_sedis",
+   "Gammaproteobacteria incertae sedis",
+   "Taxon0001174"
+  ],
+  "Taxon0005992": [
+   "Group_1.1c",
+   "Group 1.1c",
+   "Taxon0001262"
+  ],
+  "Taxon0006052": [
+   "Incertae_Sedis",
+   "Incertae Sedis",
+   "Taxon0001352"
+  ],
+  "Taxon0006067": [
+   "JGI_0000069-P22",
+   "JGI 0000069-P22",
+   "Taxon0001377"
+  ],
+  "Taxon0006068": [
+   "JGI_0001001-H03",
+   "JGI 0001001-H03",
+   "Taxon0001378"
+  ],
+  "Taxon0006112": [
+   "Lachnospiraceae_UCG-008",
+   "Lachnospiraceae UCG-008",
+   "Taxon0001426"
+  ],
+  "Taxon0006144": [
+   "Lineage_IIa",
+   "Lineage IIa",
+   "Taxon0001485"
+  ],
+  "Taxon0006145": [
+   "Lineage_IIb",
+   "Lineage IIb",
+   "Taxon0001486"
+  ],
+  "Taxon0006146": [
+   "Lineage_IIc",
+   "Lineage IIc",
+   "Taxon0001487"
+  ],
+  "Taxon0006147": [
+   "Lineage_IV",
+   "Lineage IV",
+   "Taxon0001488"
+  ],
+  "Taxon0006199": [
+   "Marine_Benthic_Group_D_and_DHVEG-1",
+   "Marine Benthic Group D and DHVEG-1",
+   "Taxon0001516"
+  ],
+  "Taxon0006200": [
+   "Marine_Group_II",
+   "Marine Group II",
+   "Taxon0001517"
+  ],
+  "Taxon0006254": [
+   "Microcoleus_PCC-7113",
+   "Microcoleus PCC-7113",
+   "Taxon0001625"
+  ],
+  "Taxon0006324": [
+   "Nostoc_PCC-73102",
+   "Nostoc PCC-73102",
+   "Taxon0001768"
+  ],
+  "Taxon0006285": [
+   "NS10_marine_group",
+   "NS10 marine group",
+   "Taxon0001772"
+  ],
+  "Taxon0006286": [
+   "NS11-12_marine_group",
+   "NS11-12 marine group",
+   "Taxon0001773"
+  ],
+  "Taxon0006287": [
+   "NS9_marine_group",
+   "NS9 marine group",
+   "Taxon0001774"
+  ],
+  "Taxon0006342": [
+   "OM27_clade",
+   "OM27 clade",
+   "Taxon0001806"
+  ],
+  "Taxon0005101": [
+   "Pacearchaeota_Incertae_Sedis_AR13",
+   "Pacearchaeota Incertae Sedis AR13",
+   "Taxon0001846"
+  ],
+  "Taxon0005069": [
+   "Paenibacillaceae_1",
+   "Paenibacillaceae 1",
+   "Taxon0001852"
+  ],
+  "Taxon0005072": [
+   "Peptococcaceae_1",
+   "Peptococcaceae 1",
+   "Taxon0001951"
+  ],
+  "Taxon0005102": [
+   "Peptococcaceae_2",
+   "Peptococcaceae 2",
+   "Taxon0001952"
+  ],
+  "Taxon0006438": [
+   "Pir4_lineage",
+   "Pir4 lineage",
+   "Taxon0001990"
+  ],
+  "Taxon0006440": [
+   "Pla1_lineage",
+   "Pla1 lineage",
+   "Taxon0001996"
+  ],
+  "Taxon0006441": [
+   "Pla3_lineage",
+   "Pla3 lineage",
+   "Taxon0001997"
+  ],
+  "Taxon0006442": [
+   "Pla4_lineage",
+   "Pla4 lineage",
+   "Taxon0001998"
+  ],
+  "Taxon0006443": [
+   "Planktothrix_NIVA-CYA_15",
+   "Planktothrix NIVA-CYA 15",
+   "Taxon0002012"
+  ],
+  "Taxon0006935": [
+   "possible_genus_04",
+   "possible genus 04",
+   "Taxon0002036"
+  ],
+  "Taxon0002129": [
+   "Rhizobiales_incertae_sedis",
+   "Rhizobiales incertae sedis",
+   "Taxon0002130"
+  ],
+  "Taxon0006566": [
+   "S0134_terrestrial_group",
+   "S0134 terrestrial group",
+   "Taxon0002216"
+  ],
+  "Taxon0006571": [
+   "SAR202_clade",
+   "SAR202 clade",
+   "Taxon0002247"
+  ],
+  "Taxon0006572": [
+   "SAR324_clade(Marine_group_B)",
+   "SAR324 clade(Marine group B)",
+   "Taxon0002248"
+  ],
+  "Taxon0006565": [
+   "S-BQ2-57_soil_group",
+   "S-BQ2-57 soil group",
+   "Taxon0002252"
+  ],
+  "Taxon0006648": [
+   "Spirochaeta_2",
+   "Spirochaeta 2",
+   "Taxon0002344"
+  ],
+  "Taxon0006665": [
+   "Subgroup_10",
+   "Subgroup 10",
+   "Taxon0002408"
+  ],
+  "Taxon0006666": [
+   "Subgroup_11",
+   "Subgroup 11",
+   "Taxon0002409"
+  ],
+  "Taxon0006667": [
+   "Subgroup_12",
+   "Subgroup 12",
+   "Taxon0002410"
+  ],
+  "Taxon0006668": [
+   "Subgroup_13",
+   "Subgroup 13",
+   "Taxon0002411"
+  ],
+  "Taxon0006669": [
+   "Subgroup_15",
+   "Subgroup 15",
+   "Taxon0002412"
+  ],
+  "Taxon0006670": [
+   "Subgroup_17",
+   "Subgroup 17",
+   "Taxon0002413"
+  ],
+  "Taxon0006671": [
+   "Subgroup_18",
+   "Subgroup 18",
+   "Taxon0002414"
+  ],
+  "Taxon0006673": [
+   "Subgroup_20",
+   "Subgroup 20",
+   "Taxon0002416"
+  ],
+  "Taxon0006674": [
+   "Subgroup_21",
+   "Subgroup 21",
+   "Taxon0002417"
+  ],
+  "Taxon0006675": [
+   "Subgroup_22",
+   "Subgroup 22",
+   "Taxon0002418"
+  ],
+  "Taxon0006677": [
+   "Subgroup_25",
+   "Subgroup 25",
+   "Taxon0002419"
+  ],
+  "Taxon0006678": [
+   "Subgroup_26",
+   "Subgroup 26",
+   "Taxon0002420"
+  ],
+  "Taxon0006672": [
+   "Subgroup_2",
+   "Subgroup 2",
+   "Taxon0002421"
+  ],
+  "Taxon0006679": [
+   "Subgroup_5",
+   "Subgroup 5",
+   "Taxon0002422"
+  ],
+  "Taxon0006680": [
+   "Subgroup_7",
+   "Subgroup 7",
+   "Taxon0002424"
+  ],
+  "Taxon0006681": [
+   "Subgroup_9",
+   "Subgroup 9",
+   "Taxon0002425"
+  ],
+  "Taxon0006704": [
+   "Sva0996_marine_group",
+   "Sva0996 marine group",
+   "Taxon0002443"
+  ],
+  "Taxon0006819": [
+   "Tychonema_CCAP_1459-11B",
+   "Tychonema CCAP 1459-11B",
+   "Taxon0002591"
+  ],
+  "Taxon0006836": [
+   "Unknown_Family",
+   "Unknown Family",
+   "Taxon0002779"
+  ],
+  "Taxon0006864": [
+   "WD2101_soil_group",
+   "WD2101 soil group",
+   "Taxon0002821"
+  ],
+  "Taxon0005121": [
+   "Woesearchaeota_Incertae_Sedis_AR17",
+   "Woesearchaeota Incertae Sedis AR17",
+   "Taxon0002829"
+  ],
+  "Taxon0005583": [
+   "Candidatus_Obscuribacter",
+   "Candidatus Obscuribacter",
+   "Taxon0004865"
+  ],
+  "Taxon0005687": [
+   "Clostridia_UCG-014",
+   "Clostridia UCG-014",
+   "Taxon0004870"
+  ],
+  "Taxon0005688": [
+   "Clostridia_vadinBB60_group",
+   "Clostridia vadinBB60 group",
+   "Taxon0004871"
+  ],
+  "Taxon0006579": [
+   "SCGC_AAA011-D5",
+   "SCGC AAA011-D5",
+   "Taxon0004997"
+  ],
+  "Taxon0006929": [
+   "hgcI_clade",
+   "hgcI clade",
+   "Taxon0005038"
+  ],
+  "Taxon0005227": [
+   "Anaerolineaceae_UCG-001",
+   "Anaerolineaceae UCG-001",
+   "Taxon0005226"
+  ],
+  "Taxon0005329": [
+   "Azospirillales_Incertae_Sedis",
+   "Azospirillales Incertae Sedis",
+   "Taxon0005328"
+  ],
+  "Taxon0005387": [
+   "Blvii28_wastewater-sludge_group",
+   "Blvii28 wastewater-sludge group",
+   "Taxon0005386"
+  ],
+  "Taxon0005397": [
+   "Brachyspirales_Incertae_Sedis",
+   "Brachyspirales Incertae Sedis",
+   "Taxon0005396"
+  ],
+  "Taxon0005437": [
+   "CPla-3_termite_group",
+   "CPla-3 termite group",
+   "Taxon0005436"
+  ],
+  "Taxon0005507": [
+   "Candidatus_Altiarchaeum",
+   "Candidatus Altiarchaeum",
+   "Taxon0005465"
+  ],
+  "Taxon0005508": [
+   "Candidatus_Alysiosphaera",
+   "Candidatus Alysiosphaera",
+   "Taxon0005466"
+  ],
+  "Taxon0005510": [
+   "Candidatus_Amoebophilus",
+   "Candidatus Amoebophilus",
+   "Taxon0005467"
+  ],
+  "Taxon0005511": [
+   "Candidatus_Anammoximicrobium",
+   "Candidatus Anammoximicrobium",
+   "Taxon0005470"
+  ],
+  "Taxon0005514": [
+   "Candidatus_Babela",
+   "Candidatus Babela",
+   "Taxon0005472"
+  ],
+  "Taxon0005525": [
+   "Candidatus_Chloroploca",
+   "Candidatus Chloroploca",
+   "Taxon0005474"
+  ],
+  "Taxon0005528": [
+   "Candidatus_Competibacter",
+   "Candidatus Competibacter",
+   "Taxon0005477"
+  ],
+  "Taxon0005557": [
+   "Candidatus_Latescibacter",
+   "Candidatus Latescibacter",
+   "Taxon0005483"
+  ],
+  "Taxon0005567": [
+   "Candidatus_Metachlamydia",
+   "Candidatus Metachlamydia",
+   "Taxon0005486"
+  ],
+  "Taxon0005572": [
+   "Candidatus_Micrarchaeum",
+   "Candidatus Micrarchaeum",
+   "Taxon0005488"
+  ],
+  "Taxon0005575": [
+   "Candidatus_Nealsonbacteria",
+   "Candidatus Nealsonbacteria",
+   "Taxon0005490"
+  ],
+  "Taxon0005580": [
+   "Candidatus_Nitrotoga",
+   "Candidatus Nitrotoga",
+   "Taxon0005492"
+  ],
+  "Taxon0005582": [
+   "Candidatus_Nucleicultrix",
+   "Candidatus Nucleicultrix",
+   "Taxon0005493"
+  ],
+  "Taxon0005592": [
+   "Candidatus_Planktophila",
+   "Candidatus Planktophila",
+   "Taxon0005495"
+  ],
+  "Taxon0005596": [
+   "Candidatus_Renichlamydia",
+   "Candidatus Renichlamydia",
+   "Taxon0005496"
+  ],
+  "Taxon0005609": [
+   "Candidatus_Symbiobacter",
+   "Candidatus Symbiobacter",
+   "Taxon0005497"
+  ],
+  "Taxon0005532": [
+   "Candidatus_Desulforudis",
+   "Candidatus Desulforudis",
+   "Taxon0008814"
+  ],
+  "Taxon0005573": [
+   "Candidatus_Midichloria",
+   "Candidatus Midichloria",
+   "Taxon0008848"
+  ],
+  "Taxon0005598": [
+   "Candidatus_Riegeria",
+   "Candidatus Riegeria",
+   "Taxon0008896"
+  ],
+  "Taxon0005663": [
+   "Christensenellaceae_R-7_group",
+   "Christensenellaceae R-7 group",
+   "Taxon0005662"
+  ],
+  "Taxon0005668": [
+   "Chroococcidiopsis_SAG_2023",
+   "Chroococcidiopsis SAG 2023",
+   "Taxon0005666"
+  ],
+  "Taxon0005682": [
+   "Clade_III",
+   "Clade III",
+   "Taxon0005681"
+  ],
+  "Taxon0005704": [
+   "Clostridium_sensu_stricto_10",
+   "Clostridium sensu stricto 10",
+   "Taxon0005692"
+  ],
+  "Taxon0005706": [
+   "Clostridium_sensu_stricto_12",
+   "Clostridium sensu stricto 12",
+   "Taxon0005693"
+  ],
+  "Taxon0005707": [
+   "Clostridium_sensu_stricto_13",
+   "Clostridium sensu stricto 13",
+   "Taxon0005696"
+  ],
+  "Taxon0005712": [
+   "Clostridium_sensu_stricto_3",
+   "Clostridium sensu stricto 3",
+   "Taxon0005697"
+  ],
+  "Taxon0005713": [
+   "Clostridium_sensu_stricto_5",
+   "Clostridium sensu stricto 5",
+   "Taxon0005699"
+  ],
+  "Taxon0005715": [
+   "Clostridium_sensu_stricto_8",
+   "Clostridium sensu stricto 8",
+   "Taxon0005701"
+  ],
+  "Taxon0005716": [
+   "Clostridium_sensu_stricto_9",
+   "Clostridium sensu stricto 9",
+   "Taxon0005702"
+  ],
+  "Taxon0005705": [
+   "Clostridium_sensu_stricto_11",
+   "Clostridium sensu stricto 11",
+   "Taxon0006999"
+  ],
+  "Taxon0005750": [
+   "Cyanobium_PCC-6307",
+   "Cyanobium PCC-6307",
+   "Taxon0005749"
+  ],
+  "Taxon0005957": [
+   "GKS98_freshwater_group",
+   "GKS98 freshwater group",
+   "Taxon0005956"
+  ],
+  "Taxon0005999": [
+   "HSB_OF53-F07",
+   "HSB OF53-F07",
+   "Taxon0005998"
+  ],
+  "Taxon0006063": [
+   "JCM_18997",
+   "JCM 18997",
+   "Taxon0006062"
+  ],
+  "Taxon0006078": [
+   "KI89A_clade",
+   "KI89A clade",
+   "Taxon0007001"
+  ],
+  "Taxon0006127": [
+   "Leptolyngbya_Es-Yyy1000",
+   "Leptolyngbya Es-Yyy1000",
+   "Taxon0007004"
+  ],
+  "Taxon0006165": [
+   "M2PB4-65_termite_group",
+   "M2PB4-65 termite group",
+   "Taxon0006164"
+  ],
+  "Taxon0006167": [
+   "M2PT2-76_termite_group",
+   "M2PT2-76 termite group",
+   "Taxon0006166"
+  ],
+  "Taxon0006178": [
+   "MN_122.2a",
+   "MN 122.2a",
+   "Taxon0006177"
+  ],
+  "Taxon0006198": [
+   "Marine_Benthic_Group_A",
+   "Marine Benthic Group A",
+   "Taxon0006197"
+  ],
+  "Taxon0006203": [
+   "Marinimicrobia_(SAR406_clade)",
+   "Marinimicrobia (SAR406 clade)",
+   "Taxon0006202"
+  ],
+  "Taxon0006211": [
+   "Mastigocladopsis_PCC-10914",
+   "Mastigocladopsis PCC-10914",
+   "Taxon0006210"
+  ],
+  "Taxon0006282": [
+   "NK4A214_group",
+   "NK4A214 group",
+   "Taxon0006281"
+  ],
+  "Taxon0006341": [
+   "OM182_clade",
+   "OM182 clade",
+   "Taxon0006340"
+  ],
+  "Taxon0006344": [
+   "OM60(NOR5)_clade",
+   "OM60(NOR5) clade",
+   "Taxon0006343"
+  ],
+  "Taxon0006434": [
+   "Pir1_lineage",
+   "Pir1 lineage",
+   "Taxon0006433"
+  ],
+  "Taxon0006436": [
+   "Pir2_lineage",
+   "Pir2 lineage",
+   "Taxon0006435"
+  ],
+  "Taxon0006522": [
+   "Rice_Cluster_I",
+   "Rice Cluster I",
+   "Taxon0006520"
+  ],
+  "Taxon0006526": [
+   "Rikenellaceae_RC9_gut_group",
+   "Rikenellaceae RC9 gut group",
+   "Taxon0006525"
+  ],
+  "Taxon0006570": [
+   "SAR11_clade",
+   "SAR11 clade",
+   "Taxon0006569"
+  ],
+  "Taxon0006581": [
+   "SCGC_AAA286-E23",
+   "SCGC AAA286-E23",
+   "Taxon0006576"
+  ],
+  "Taxon0006582": [
+   "SCGC_AB-179-E04",
+   "SCGC AB-179-E04",
+   "Taxon0006577"
+  ],
+  "Taxon0006676": [
+   "Subgroup_23",
+   "Subgroup 23",
+   "Taxon0006664"
+  ],
+  "Taxon0006703": [
+   "Sva0081_sediment_group",
+   "Sva0081 sediment group",
+   "Taxon0006702"
+  ],
+  "Taxon0006904": [
+   "[Cytophaga]_xylanolytica_group",
+   "[Cytophaga] xylanolytica group",
+   "Taxon0006903"
+  ],
+  "Taxon0006915": [
+   "[Eubacterium]_brachy_group",
+   "[Eubacterium] brachy group",
+   "Taxon0006906"
+  ],
+  "Taxon0006916": [
+   "[Eubacterium]_coprostanoligenes_group",
+   "[Eubacterium] coprostanoligenes group",
+   "Taxon0006907"
+  ],
+  "Taxon0006917": [
+   "[Eubacterium]_nodatum_group",
+   "[Eubacterium] nodatum group",
+   "Taxon0006910"
+  ],
+  "Taxon0006923": [
+   "[Ruminococcus]_torques_group",
+   "[Ruminococcus] torques group",
+   "Taxon0006922"
+  ],
+  "Taxon0006925": [
+   "alphaI_cluster",
+   "alphaI cluster",
+   "Taxon0006924"
+  ],
+  "Taxon0006941": [
+   "type_III",
+   "type III",
+   "Taxon0006940"
+  ],
+  "Taxon0007342": [
+   "Aeromonas veronii bv. Sobria",
+   "Aeromonas veronii bv. sobria",
+   "Taxon0007343"
+  ],
+  "Taxon0017511": [
+   "beet soil-borne mosaic virus",
+   "Beet soil-borne mosaic virus",
+   "Taxon0008254"
+  ],
+  "Taxon0017516": [
+   "bovine adenovirus 3",
+   "Bovine adenovirus 3",
+   "Taxon0008417"
+  ],
+  "Taxon0017573": [
+   "human picobirnavirus",
+   "Human picobirnavirus",
+   "Taxon0011478"
+  ],
+  "Taxon0017592": [
+   "methanocaldococcus infernus ME",
+   "Methanocaldococcus infernus ME",
+   "Taxon0012548"
+  ],
+  "Taxon0012629": [
+   "Methanosarcina barkeri str. fusaro",
+   "Methanosarcina barkeri str. Fusaro",
+   "Taxon0012628"
+  ],
+  "Taxon0002885": [
+   "b-17BO",
+   "B-17BO",
+   "Taxon0003214"
+  ]
+ },
+ "ncbi_copy": {
+  "Taxon0000469": [
+   "Candidatus Bealeia",
+   "NCBITaxon:1920992",
+   "Taxon0005516"
+  ],
+  "Taxon0000529": [
+   "Candidatus Jidaibacter",
+   "NCBITaxon:1891672",
+   "Taxon0005549"
+  ],
+  "Taxon0000550": [
+   "Candidatus Lloydbacteria",
+   "NCBITaxon:1817910",
+   "Taxon0005561"
+  ],
+  "Taxon0000570": [
+   "Candidatus Nitrososphaera",
+   "NCBITaxon:497726",
+   "Taxon0005577"
+  ],
+  "Taxon0000629": [
+   "Candidatus Udaeobacter",
+   "NCBITaxon:1921511",
+   "Taxon0005613"
+  ],
+  "Taxon0004865": [
+   "Candidatus Obscuribacter",
+   "NCBITaxon:1906156",
+   "Taxon0005583"
+  ]
+ },
+ "value_map": {
+  "Absconditabacteriales_(SR1)": "Absconditabacteriales (SR1)",
+  "Acidobacteriaceae_(Subgroup_1)": "Acidobacteriaceae (Subgroup 1)",
+  "[Agitococcus]_lubricus_group": "[Agitococcus] lubricus group",
+  "AKAU3564_sediment_group": "AKAU3564 sediment group",
+  "Alphaproteobacteria_incertae_sedis": "Alphaproteobacteria incertae sedis",
+  "[Aquaspirillum]_arcticum_group": "[Aquaspirillum] arcticum group",
+  "Bacillaceae_1": "Bacillaceae 1",
+  "Bacillales_Incertae_Sedis_XII": "Bacillales incertae sedis XII",
+  "Bacteroidetes_BD2-2": "Bacteroidetes BD2-2",
+  "Bacteroidetes_vadinHA17": "Bacteroidetes vadinHA17",
+  "Bacteroidetes_VC2.1_Bac22": "Bacteroidetes VC2.1 Bac22",
+  "BD1-7_clade": "BD1-7 clade",
+  "BD2-11_terrestrial_group": "BD2-11 terrestrial group",
+  "[Caedibacter]_taeniospiralis_group": "[Caedibacter] taeniospiralis group",
+  "Candidatus_Abawacabacteria": "Candidatus Abawacabacteria",
+  "Candidatus_Accumulibacter": "Candidatus Accumulibacter",
+  "Candidatus_Adlerbacteria": "Candidatus Adlerbacteria",
+  "Candidatus_Aenigmarchaeum": "Candidatus Aenigmarchaeum",
+  "Candidatus_Amesbacteria": "Candidatus Amesbacteria",
+  "Candidatus_Azambacteria": "Candidatus Azambacteria",
+  "Candidatus_Bacilloplasma": "Candidatus Bacilloplasma",
+  "Candidatus_Bealeia": "Candidatus Bealeia",
+  "Candidatus_Beckwithbacteria": "Candidatus Beckwithbacteria",
+  "Candidatus_Berkiella": "Candidatus Berkiella",
+  "Candidatus_Brennerbacteria": "Candidatus Brennerbacteria",
+  "Candidatus_Brocadiaceae": "Candidatus Brocadiaceae",
+  "Candidatus_Brocadiales": "Candidatus Brocadiales",
+  "Candidatus_Brocadia": "Candidatus Brocadia",
+  "Candidatus_Buchananbacteria": "Candidatus Buchananbacteria",
+  "Candidatus_Campbellbacteria": "Candidatus Campbellbacteria",
+  "Candidatus_Captivus": "Candidatus Captivus",
+  "Candidatus_Chisholmbacteria": "Candidatus Chisholmbacteria",
+  "Candidatus_Collierbacteria": "Candidatus Collierbacteria",
+  "Candidatus_Colwellbacteria": "Candidatus Colwellbacteria",
+  "Candidatus_Curtissbacteria": "Candidatus Curtissbacteria",
+  "Candidatus_Daviesbacteria": "Candidatus Daviesbacteria",
+  "Candidatus_Doudnabacteria": "Candidatus Doudnabacteria",
+  "Candidatus_Endoecteinascidia": "Candidatus Endoecteinascidia",
+  "Candidatus_Falkowbacteria": "Candidatus Falkowbacteria",
+  "Candidatus_Finniella": "Candidatus Finniella",
+  "Candidatus_Giovannonibacteria": "Candidatus Giovannonibacteria",
+  "Candidatus_Gottesmanbacteria": "Candidatus Gottesmanbacteria",
+  "Candidatus_Hepatoplasma": "Candidatus Hepatoplasma",
+  "Candidatus_Iainarchaeum": "Candidatus Iainarchaeum",
+  "Candidatus_Jacksonbacteria": "Candidatus Jacksonbacteria",
+  "Candidatus_Jidaibacter": "Candidatus Jidaibacter",
+  "Candidatus_Jorgensenbacteria": "Candidatus Jorgensenbacteria",
+  "Candidatus_Kaiserbacteria": "Candidatus Kaiserbacteria",
+  "Candidatus_Kerfeldbacteria": "Candidatus Kerfeldbacteria",
+  "Candidatus_Komeilibacteria": "Candidatus Komeilibacteria",
+  "Candidatus_Koribacter": "Candidatus Koribacter",
+  "Candidatus_Kuenenbacteria": "Candidatus Kuenenbacteria",
+  "Candidatus_Kuenenia": "Candidatus Kuenenia",
+  "Candidatus_Levybacteria": "Candidatus Levybacteria",
+  "Candidatus_Liberibacter": "Candidatus Liberibacter",
+  "Candidatus_Liptonbacteria": "Candidatus Liptonbacteria",
+  "Candidatus_Lloydbacteria": "Candidatus Lloydbacteria",
+  "Candidatus_Magasanikbacteria": "Candidatus Magasanikbacteria",
+  "Candidatus_Magnetobacterium": "Candidatus Magnetobacterium",
+  "Candidatus_Megaira": "Candidatus Megaira",
+  "Candidatus_Methanoperedens": "Candidatus Methanoperedens",
+  "Candidatus_Methylomirabilis": "Candidatus Methylomirabilis",
+  "Candidatus_Moranbacteria": "Candidatus Moranbacteria",
+  "Candidatus_Nitrocosmicus": "Candidatus Nitrocosmicus",
+  "Candidatus_Nitrososphaera": "Candidatus Nitrososphaera",
+  "Candidatus_Nitrosotalea": "Candidatus Nitrosotalea",
+  "Candidatus_Nitrosotenuis": "Candidatus Nitrosotenuis",
+  "Candidatus_Nomurabacteria": "Candidatus Nomurabacteria",
+  "Candidatus_Omnitrophus": "Candidatus Omnitrophus",
+  "Candidatus_Ovatusbacter": "Candidatus Ovatusbacter",
+  "Candidatus_Pacebacteria": "Candidatus Pacebacteria",
+  "Candidatus_Paceibacter": "Candidatus Paceibacter",
+  "Candidatus_Paracaedibacter": "Candidatus Paracaedibacter",
+  "Candidatus_Paraholospora": "Candidatus Paraholospora",
+  "Candidatus_Peregrinibacteria": "Candidatus Peregrinibacteria",
+  "Candidatus_Peribacteria": "Candidatus Peribacteria",
+  "Candidatus_Portnoybacteria": "Candidatus Portnoybacteria",
+  "Candidatus_Protochlamydia": "Candidatus Protochlamydia",
+  "Candidatus_Raymondbacteria": "Candidatus Raymondbacteria",
+  "Candidatus_Rhabdochlamydia": "Candidatus Rhabdochlamydia",
+  "Candidatus_Roizmanbacteria": "Candidatus Roizmanbacteria",
+  "Candidatus_Rubidus": "Candidatus Rubidus",
+  "Candidatus_Ryanbacteria": "Candidatus Ryanbacteria",
+  "Candidatus_Saccharibacteria": "Candidatus Saccharibacteria",
+  "Candidatus_Shapirobacteria": "Candidatus Shapirobacteria",
+  "Candidatus_Soleaferrea": "Candidatus Soleaferrea",
+  "Candidatus_Solibacter": "Candidatus Solibacter",
+  "Candidatus_Spechtbacteria": "Candidatus Spechtbacteria",
+  "Candidatus_Staskawiczbacteria": "Candidatus Staskawiczbacteria",
+  "Candidatus_Tenderia": "Candidatus Tenderia",
+  "Candidatus_Terrybacteria": "Candidatus Terrybacteria",
+  "Candidatus_Udaeobacter": "Candidatus Udaeobacter",
+  "Candidatus_Uhrbacteria": "Candidatus Uhrbacteria",
+  "Candidatus_Vogelbacteria": "Candidatus Vogelbacteria",
+  "Candidatus_Woesebacteria": "Candidatus Woesebacteria",
+  "Candidatus_Wolfebacteria": "Candidatus Wolfebacteria",
+  "Candidatus_Woykebacteria": "Candidatus Woykebacteria",
+  "Candidatus_Xiphinematobacter": "Candidatus Xiphinematobacter",
+  "Candidatus_Yanofskybacteria": "Candidatus Yanofskybacteria",
+  "Candidatus_Yonathbacteria": "Candidatus Yonathbacteria",
+  "Candidatus_Zambryskibacteria": "Candidatus Zambryskibacteria",
+  "CL500-29_marine_group": "CL500-29 marine group",
+  "Clostridiaceae_1": "Clostridiaceae 1",
+  "Clostridiales_Incertae_Sedis_XIII": "Clostridiales incertae sedis XIII",
+  "Clostridium_IV": "Clostridium IV",
+  "Clostridium_sensu_stricto_18": "Clostridium sensu stricto 18",
+  "Clostridium_sensu_stricto_1": "Clostridium sensu stricto 1",
+  "Clostridium_sensu_stricto_2": "Clostridium sensu stricto 2",
+  "Clostridium_sensu_stricto": "Clostridium sensu stricto",
+  "Clostridium_XlVa": "Clostridium XlVa",
+  "_Coleoptera": "Coleoptera",
+  "Coriobacteriales_Incertae_Sedis": "Coriobacteriales incertae sedis",
+  "CWT_CU03-E12": "CWT CU03-E12",
+  "Deep_Sea_Euryarchaeotic_Group(DSEG)": "Deep Sea Euryarchaeotic Group(DSEG)",
+  "Deltaproteobacteria_incertae_sedis": "Deltaproteobacteria incertae sedis",
+  "[Desulfobacterium]_catecholicum_group": "[Desulfobacterium] catecholicum group",
+  "Entomoplasmatales_Incertae_Sedis": "Entomoplasmatales incertae sedis",
+  "env.OPS_17": "env.OPS 17",
+  "FukuN18_freshwater_group": "FukuN18 freshwater group",
+  "Gammaproteobacteria_incertae_sedis": "Gammaproteobacteria incertae sedis",
+  "Group_1.1c": "Group 1.1c",
+  "Incertae_Sedis": "incertae sedis",
+  "JGI_0000069-P22": "JGI 0000069-P22",
+  "JGI_0001001-H03": "JGI 0001001-H03",
+  "Lachnospiraceae_UCG-008": "Lachnospiraceae UCG-008",
+  "Lineage_IIa": "Lineage IIa",
+  "Lineage_IIb": "Lineage IIb",
+  "Lineage_IIc": "Lineage IIc",
+  "Lineage_IV": "Lineage IV",
+  "Marine_Benthic_Group_D_and_DHVEG-1": "Marine Benthic Group D and DHVEG-1",
+  "Marine_Group_II": "Marine Group II",
+  "Microcoleus_PCC-7113": "Microcoleus PCC-7113",
+  "Nostoc_PCC-73102": "Nostoc PCC-73102",
+  "NS10_marine_group": "NS10 marine group",
+  "NS11-12_marine_group": "NS11-12 marine group",
+  "NS9_marine_group": "NS9 marine group",
+  "OM27_clade": "OM27 clade",
+  "Pacearchaeota_Incertae_Sedis_AR13": "Pacearchaeota incertae sedis AR13",
+  "Paenibacillaceae_1": "Paenibacillaceae 1",
+  "Peptococcaceae_1": "Peptococcaceae 1",
+  "Peptococcaceae_2": "Peptococcaceae 2",
+  "Pir4_lineage": "Pir4 lineage",
+  "Pla1_lineage": "Pla1 lineage",
+  "Pla3_lineage": "Pla3 lineage",
+  "Pla4_lineage": "Pla4 lineage",
+  "Planktothrix_NIVA-CYA_15": "Planktothrix NIVA-CYA 15",
+  "possible_genus_04": "possible genus 04",
+  "Rhizobiales_incertae_sedis": "Rhizobiales incertae sedis",
+  "S0134_terrestrial_group": "S0134 terrestrial group",
+  "SAR202_clade": "SAR202 clade",
+  "SAR324_clade(Marine_group_B)": "SAR324 clade(Marine group B)",
+  "S-BQ2-57_soil_group": "S-BQ2-57 soil group",
+  "Spirochaeta_2": "Spirochaeta 2",
+  "Subgroup_10": "Subgroup 10",
+  "Subgroup_11": "Subgroup 11",
+  "Subgroup_12": "Subgroup 12",
+  "Subgroup_13": "Subgroup 13",
+  "Subgroup_15": "Subgroup 15",
+  "Subgroup_17": "Subgroup 17",
+  "Subgroup_18": "Subgroup 18",
+  "Subgroup_20": "Subgroup 20",
+  "Subgroup_21": "Subgroup 21",
+  "Subgroup_22": "Subgroup 22",
+  "Subgroup_25": "Subgroup 25",
+  "Subgroup_26": "Subgroup 26",
+  "Subgroup_2": "Subgroup 2",
+  "Subgroup_5": "Subgroup 5",
+  "Subgroup_7": "Subgroup 7",
+  "Subgroup_9": "Subgroup 9",
+  "Sva0996_marine_group": "Sva0996 marine group",
+  "Tychonema_CCAP_1459-11B": "Tychonema CCAP 1459-11B",
+  "Unknown_Family": "Unknown Family",
+  "WD2101_soil_group": "WD2101 soil group",
+  "Woesearchaeota_Incertae_Sedis_AR17": "Woesearchaeota incertae sedis AR17",
+  "Candidatus_Obscuribacter": "Candidatus Obscuribacter",
+  "Clostridia_UCG-014": "Clostridia UCG-014",
+  "Clostridia_vadinBB60_group": "Clostridia vadinBB60 group",
+  "SCGC_AAA011-D5": "SCGC AAA011-D5",
+  "hgcI_clade": "hgcI clade",
+  "Anaerolineaceae_UCG-001": "Anaerolineaceae UCG-001",
+  "Azospirillales_Incertae_Sedis": "Azospirillales incertae sedis",
+  "Blvii28_wastewater-sludge_group": "Blvii28 wastewater-sludge group",
+  "Brachyspirales_Incertae_Sedis": "Brachyspirales incertae sedis",
+  "CPla-3_termite_group": "CPla-3 termite group",
+  "Candidatus_Altiarchaeum": "Candidatus Altiarchaeum",
+  "Candidatus_Alysiosphaera": "Candidatus Alysiosphaera",
+  "Candidatus_Amoebophilus": "Candidatus Amoebophilus",
+  "Candidatus_Anammoximicrobium": "Candidatus Anammoximicrobium",
+  "Candidatus_Babela": "Candidatus Babela",
+  "Candidatus_Chloroploca": "Candidatus Chloroploca",
+  "Candidatus_Competibacter": "Candidatus Competibacter",
+  "Candidatus_Latescibacter": "Candidatus Latescibacter",
+  "Candidatus_Metachlamydia": "Candidatus Metachlamydia",
+  "Candidatus_Micrarchaeum": "Candidatus Micrarchaeum",
+  "Candidatus_Nealsonbacteria": "Candidatus Nealsonbacteria",
+  "Candidatus_Nitrotoga": "Candidatus Nitrotoga",
+  "Candidatus_Nucleicultrix": "Candidatus Nucleicultrix",
+  "Candidatus_Planktophila": "Candidatus Planktophila",
+  "Candidatus_Renichlamydia": "Candidatus Renichlamydia",
+  "Candidatus_Symbiobacter": "Candidatus Symbiobacter",
+  "Candidatus_Desulforudis": "Candidatus Desulforudis",
+  "Candidatus_Midichloria": "Candidatus Midichloria",
+  "Candidatus_Riegeria": "Candidatus Riegeria",
+  "Christensenellaceae_R-7_group": "Christensenellaceae R-7 group",
+  "Chroococcidiopsis_SAG_2023": "Chroococcidiopsis SAG 2023",
+  "Clade_III": "Clade III",
+  "Clostridium_sensu_stricto_10": "Clostridium sensu stricto 10",
+  "Clostridium_sensu_stricto_12": "Clostridium sensu stricto 12",
+  "Clostridium_sensu_stricto_13": "Clostridium sensu stricto 13",
+  "Clostridium_sensu_stricto_3": "Clostridium sensu stricto 3",
+  "Clostridium_sensu_stricto_5": "Clostridium sensu stricto 5",
+  "Clostridium_sensu_stricto_8": "Clostridium sensu stricto 8",
+  "Clostridium_sensu_stricto_9": "Clostridium sensu stricto 9",
+  "Clostridium_sensu_stricto_11": "Clostridium sensu stricto 11",
+  "Cyanobium_PCC-6307": "Cyanobium PCC-6307",
+  "GKS98_freshwater_group": "GKS98 freshwater group",
+  "HSB_OF53-F07": "HSB OF53-F07",
+  "JCM_18997": "JCM 18997",
+  "KI89A_clade": "KI89A clade",
+  "Leptolyngbya_Es-Yyy1000": "Leptolyngbya Es-Yyy1000",
+  "M2PB4-65_termite_group": "M2PB4-65 termite group",
+  "M2PT2-76_termite_group": "M2PT2-76 termite group",
+  "MN_122.2a": "MN 122.2a",
+  "Marine_Benthic_Group_A": "Marine Benthic Group A",
+  "Marinimicrobia_(SAR406_clade)": "Marinimicrobia (SAR406 clade)",
+  "Mastigocladopsis_PCC-10914": "Mastigocladopsis PCC-10914",
+  "NK4A214_group": "NK4A214 group",
+  "OM182_clade": "OM182 clade",
+  "OM60(NOR5)_clade": "OM60(NOR5) clade",
+  "Pir1_lineage": "Pir1 lineage",
+  "Pir2_lineage": "Pir2 lineage",
+  "Rice_Cluster_I": "Rice Cluster I",
+  "Rikenellaceae_RC9_gut_group": "Rikenellaceae RC9 gut group",
+  "SAR11_clade": "SAR11 clade",
+  "SCGC_AAA286-E23": "SCGC AAA286-E23",
+  "SCGC_AB-179-E04": "SCGC AB-179-E04",
+  "Subgroup_23": "Subgroup 23",
+  "Sva0081_sediment_group": "Sva0081 sediment group",
+  "[Cytophaga]_xylanolytica_group": "[Cytophaga] xylanolytica group",
+  "[Eubacterium]_brachy_group": "[Eubacterium] brachy group",
+  "[Eubacterium]_coprostanoligenes_group": "[Eubacterium] coprostanoligenes group",
+  "[Eubacterium]_nodatum_group": "[Eubacterium] nodatum group",
+  "[Ruminococcus]_torques_group": "[Ruminococcus] torques group",
+  "alphaI_cluster": "alphaI cluster",
+  "type_III": "type III",
+  "Aeromonas veronii bv. Sobria": "Aeromonas veronii bv. sobria",
+  "beet soil-borne mosaic virus": "Beet soil-borne mosaic virus",
+  "bovine adenovirus 3": "Bovine adenovirus 3",
+  "human picobirnavirus": "Human picobirnavirus",
+  "methanocaldococcus infernus ME": "Methanocaldococcus infernus ME",
+  "Methanosarcina barkeri str. fusaro": "Methanosarcina barkeri str. Fusaro",
+  "b-17BO": "B-17BO",
+  "Acetobacterales Incertae Sedis": "Acetobacterales incertae sedis",
+  "Acidimicrobineae_incertae_sedis": "Acidimicrobineae incertae sedis",
+  "Aminicenantes_genera_incertae_sedis": "Aminicenantes genera incertae sedis",
+  "Bacillales_incertae_sedis": "Bacillales incertae sedis",
+  "Bacillales_Incertae Sedis XII": "Bacillales incertae sedis XII",
+  "Bacillales_Incertae Sedis XI": "Bacillales incertae sedis XI",
+  "Bacteroidales_incertae_sedis": "Bacteroidales incertae sedis",
+  "Bacteroidetes_incertae_sedis": "Bacteroidetes incertae sedis",
+  "BRC1_genera_incertae_sedis": "BRC1 genera incertae sedis",
+  "Burkholderiales_incertae_sedis": "Burkholderiales incertae sedis",
+  "Clostridiales_Incertae Sedis IV": "Clostridiales incertae sedis IV",
+  "Clostridiales_Incertae Sedis XIII": "Clostridiales incertae sedis XIII",
+  "Clostridiales_Incertae Sedis XII": "Clostridiales incertae sedis XII",
+  "Clostridiales_Incertae Sedis XI": "Clostridiales incertae sedis XI",
+  "Clostridiales_Incertae Sedis XVIII": "Clostridiales incertae sedis XVIII",
+  "Clostridiales_Incertae Sedis XVII": "Clostridiales incertae sedis XVII",
+  "Coriobacteriales Incertae Sedis": "Coriobacteriales incertae sedis",
+  "Corynebacterineae_incertae_sedis": "Corynebacterineae incertae sedis",
+  "Deferribacterales_incertae_sedis": "Deferribacterales incertae sedis",
+  "Diapherotrites Incertae Sedis AR10": "Diapherotrites incertae sedis AR10",
+  "Entomoplasmatales Incertae Sedis": "Entomoplasmatales incertae sedis",
+  "Erysipelotrichaceae_incertae_sedis": "Erysipelotrichaceae incertae sedis",
+  "Incertae Sedis": "incertae sedis",
+  "Lachnospiracea_incertae_sedis": "Lachnospiracea incertae sedis",
+  "Latescibacteria_genera_incertae_sedis": "Latescibacteria genera incertae sedis",
+  "Microgenomates_genera_incertae_sedis": "Microgenomates genera incertae sedis",
+  "_Neoptera": "Neoptera",
+  "OD1_genera_incertae_sedis": "OD1 genera incertae sedis",
+  "Omnitrophica_genera_incertae_sedis": "Omnitrophica genera incertae sedis",
+  "OP11_genera_incertae_sedis": "OP11 genera incertae sedis",
+  "Pacearchaeota Incertae Sedis AR13": "Pacearchaeota incertae sedis AR13",
+  "Parcubacteria_genera_incertae_sedis": "Parcubacteria genera incertae sedis",
+  "Planococcaceae_incertae_sedis": "Planococcaceae incertae sedis",
+  "Poribacteria_genera_incertae_sedis": "Poribacteria genera incertae sedis",
+  "Pseudomonadales_incertae_sedis": "Pseudomonadales incertae sedis",
+  "Saccharibacteria_genera_incertae_sedis": "Saccharibacteria genera incertae sedis",
+  "Spartobacteria_genera_incertae_sedis": "Spartobacteria genera incertae sedis",
+  "Spirochaetales_incertae_sedis": "Spirochaetales incertae sedis",
+  "SR1_genera_incertae_sedis": "SR1 genera incertae sedis",
+  "Streptosporangineae_incertae_sedis": "Streptosporangineae incertae sedis",
+  "Subdivision3_genera_incertae_sedis": "Subdivision3 genera incertae sedis",
+  "Subdivision5_genera_incertae_sedis": "Subdivision5 genera incertae sedis",
+  "Thiotrichales_incertae_sedis": "Thiotrichales incertae sedis",
+  "TM7_genera_incertae_sedis": "TM7 genera incertae sedis",
+  "Woesearchaeota Incertae Sedis AR15": "Woesearchaeota incertae sedis AR15",
+  "Woesearchaeota Incertae Sedis AR16": "Woesearchaeota incertae sedis AR16",
+  "Woesearchaeota Incertae Sedis AR17": "Woesearchaeota incertae sedis AR17",
+  "Woesearchaeota Incertae Sedis AR18": "Woesearchaeota incertae sedis AR18",
+  "Woesearchaeota Incertae Sedis AR20": "Woesearchaeota incertae sedis AR20",
+  "WPS-1_genera_incertae_sedis": "WPS-1 genera incertae sedis",
+  "WPS-2_genera_incertae_sedis": "WPS-2 genera incertae sedis",
+  "WS3_genera_incertae_sedis": "WS3 genera incertae sedis",
+  "ZB3_genera_incertae_sedis": "ZB3 genera incertae sedis",
+  "Hyphomicrobiales Incertae Sedis": "Hyphomicrobiales incertae sedis",
+  "Micrococcales Incertae Sedis": "Micrococcales incertae sedis",
+  "Bacillales_Incertae_Sedis_X": "Bacillales incertae sedis X",
+  "Clostridiales_Incertae_Sedis_III": "Clostridiales incertae sedis III",
+  "Actinomycetales_Incertae_Sedis": "Actinomycetales incertae sedis",
+  "Arctic97B-4_marine_group": "Arctic97B-4 marine group",
+  "Azospirillales Incertae Sedis": "Azospirillales incertae sedis",
+  "Brachyspirales Incertae Sedis": "Brachyspirales incertae sedis",
+  "Candidatus_Ancillula": "Candidatus Ancillula",
+  "Candidatus_Cryptoprodotis": "Candidatus Cryptoprodotis",
+  "Candidatus_Endonucleariobacter": "Candidatus Endonucleariobacter",
+  "Candidatus_Entotheonella": "Candidatus Entotheonella",
+  "Candidatus_Fritschea": "Candidatus Fritschea",
+  "Candidatus_Gigarickettsia": "Candidatus Gigarickettsia",
+  "Candidatus_Gortzia": "Candidatus Gortzia",
+  "Candidatus_Hepatincola": "Candidatus Hepatincola",
+  "Candidatus_Jettenia": "Candidatus Jettenia",
+  "Candidatus_Lumbricincola": "Candidatus Lumbricincola",
+  "Candidatus_Magnetoovum": "Candidatus Magnetoovum",
+  "Candidatus_Methylopumilus": "Candidatus Methylopumilus",
+  "Candidatus_Methylospira": "Candidatus Methylospira",
+  "Candidatus_Saccharimonas": "Candidatus Saccharimonas",
+  "Candidatus_Spiroplasma": "Candidatus Spiroplasma",
+  "Candidatus_Tokpelaia": "Candidatus Tokpelaia",
+  "Chlamydiales_Incertae_Sedis": "Chlamydiales incertae sedis",
+  "Desulfotomaculales Incertae Sedis": "Desulfotomaculales incertae sedis",
+  "JTB255_marine_benthic_group": "JTB255 marine benthic group",
+  "ML635J-40_aquatic_group": "ML635J-40 aquatic group",
+  "Oxyphotobacteria_Incertae_Sedis": "Oxyphotobacteria incertae sedis",
+  "PS1_clade": "PS1 clade",
+  "Puniceispirillales_Incertae_Sedis": "Puniceispirillales incertae sedis",
+  "Rs-E47_termite_group": "Rs-E47 termite group",
+  "Streptosporangiales_Incertae_Sedis": "Streptosporangiales incertae sedis",
+  "UBA10353_marine_group": "UBA10353 marine group",
+  "Urania-1B-19_marine_sediment_group": "Urania-1B-19 marine sediment group",
+  "V9D2013_group": "V9D2013 group",
+  "Kordiimonadales Incertae Sedis": "Kordiimonadales incertae sedis",
+  "Nitrococcales Incertae Sedis": "Nitrococcales incertae sedis",
+  "Auriculariales_Incertae sedis": "Auriculariales incertae sedis",
+  "Bacteroidetes Order II. Incertae sedis": "Bacteroidetes Order II. incertae sedis",
+  "Capnodiales_Incertae sedis": "Capnodiales incertae sedis",
+  "Clostridiales Family XI. Incertae Sedis": "Clostridiales Family XI. incertae sedis",
+  "Clostridiales Family XIII. Incertae Sedis": "Clostridiales Family XIII. incertae sedis",
+  "Clostridiales Family XIV. Incertae Sedis": "Clostridiales Family XIV. incertae sedis",
+  "Clostridiales Family XVII. Incertae Sedis": "Clostridiales Family XVII. incertae sedis",
+  "Clostridiales Family XVIII. Incertae Sedis": "Clostridiales Family XVIII. incertae sedis",
+  "Dothideomycetes_Incertae sedis": "Dothideomycetes incertae sedis",
+  "Exobasidiomycetidae_Incertae sedis": "Exobasidiomycetidae incertae sedis",
+  "Helotiales_Incertae sedis": "Helotiales incertae sedis",
+  "Hypocreales_Incertae sedis": "Hypocreales incertae sedis",
+  "Leotiomycetes_Incertae sedis": "Leotiomycetes incertae sedis",
+  "Malasseziales_Incertae sedis": "Malasseziales incertae sedis",
+  "Mucoromycotina_Incertae sedis": "Mucoromycotina incertae sedis",
+  "Pezizomycotina_Incertae sedis": "Pezizomycotina incertae sedis",
+  "Pleosporales_Incertae sedis": "Pleosporales incertae sedis",
+  "Saccharomycetales_Incertae sedis": "Saccharomycetales incertae sedis",
+  "Sordariomycetes_Incertae sedis": "Sordariomycetes incertae sedis",
+  "Sordariomycetidae_Incertae sedis": "Sordariomycetidae incertae sedis",
+  "Sporidiobolales_Incertae sedis": "Sporidiobolales incertae sedis",
+  "Thermoanaerobacterales Family III. Incertae Sedis": "Thermoanaerobacterales Family III. incertae sedis",
+  "Thermoanaerobacterales Family IV. Incertae Sedis": "Thermoanaerobacterales Family IV. incertae sedis",
+  "Tremellales_Incertae sedis": "Tremellales incertae sedis",
+  "Trichosphaeriales_Incertae sedis": "Trichosphaeriales incertae sedis",
+  "Ustilaginomycotina_Incertae sedis": "Ustilaginomycotina incertae sedis",
+  "Xylariales_Incertae sedis": "Xylariales incertae sedis",
+  "Candidatus_Paenicardinium": "Candidatus Paenicardinium",
+  "Candidatus_Syntrophoarchaeum": "Candidatus Syntrophoarchaeum",
+  "OM43_clade": "OM43 clade",
+  "Alphaproteobacteria Incertae Sedis": "Alphaproteobacteria incertae sedis",
+  "Deltaproteobacteria Incertae Sedis": "Deltaproteobacteria incertae sedis",
+  "Gammaproteobacteria Incertae Sedis": "Gammaproteobacteria incertae sedis",
+  "Rhizobiales Incertae Sedis": "Rhizobiales incertae sedis"
+ }
+}
