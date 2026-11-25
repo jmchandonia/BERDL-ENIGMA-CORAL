@@ -2618,3 +2618,10 @@ Validation completed before live export:
   KBase SOCKS tunnel (port 1338) was down; the user restarted it. `continuous_monitoring/RELAY_NOTE_20261124.md` lists five
   findings for the continuous-monitoring feed (same WS3 clock error, hourly thinning at L8/L9/M6/U3, floor conductivity,
   "parts per trillion", smaller items); the user relayed it to that session.
+- 2026-11-25: Taxon spelling cleanup, in place at the user's direction (`coral_import/taxon_spelling_20261125`): four Taxon
+  records renamed by guarded AQL to lower-case "incertae sedis"; nineteen taxonomy brick files overwritten in
+  `coral-enigma:/home/coral/prod/data_store` with only taxon names replaced (252 retired spellings -> the kept, space-spelled
+  record); originals in `/home/coral/prod/data_store_backup_taxon_spelling_20261125`; verified through CORAL. No Update Data
+  processes (IDs unchanged). sync-20261125-104240 (PREV sync-20261124-131101) with forced re-download/reload of the 19 brick
+  tables plus sdt_taxon: 20 tables imported, 70/70 foreign keys. `sync_prep.sh` in the scratchpad now takes FORCE_BRICKS /
+  FORCE_TABLES for in-place edits. Not yet done: deleting the 252 retired Taxon records (23 superseded bricks still use them).

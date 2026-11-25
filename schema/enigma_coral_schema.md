@@ -11554,8 +11554,8 @@ Total Tables: 858
 | 0000672cf37091ed24be6595ac42659c | ME:0000351 | taxonomic domain | Bacteria |
 | 0000672cf37091ed24be6595ac42659c | ME:0000252 | phylum | Elusimicrobiota |
 | 0000672cf37091ed24be6595ac42659c | ME:0000253 | class | Elusimicrobia |
-| 0000672cf37091ed24be6595ac42659c | ME:0000254 | order | Lineage_IV |
-| 0000672cf37091ed24be6595ac42659c | ME:0000255 | family | Lineage_IV |
+| 0000672cf37091ed24be6595ac42659c | ME:0000254 | order | Lineage IV |
+| 0000672cf37091ed24be6595ac42659c | ME:0000255 | family | Lineage IV |
 
 ---
 
@@ -17224,7 +17224,7 @@ Total Tables: 858
 | 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
 | 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000252 | phylum | Acidobacteriota | 1.0 |
 | 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000253 | class | Vicinamibacteria | 1.0 |
-| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000254 | order | Subgroup_17 | 1.0 |
+| 02bb9662aa72c434ec9b7ab39b443d40 | ME:0000254 | order | Subgroup 17 | 1.0 |
 | 53f35ea075eaadb8bb881ce05f819629 | ME:0000351 | taxonomic domain | Bacteria | 1.0 |
 
 ---
