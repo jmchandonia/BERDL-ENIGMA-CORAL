@@ -2632,3 +2632,8 @@ Validation completed before live export:
   Taxon table and the 19 bricks as re-downloaded from CORAL against the plan cell by cell (also round 1 retroactively: 69,978
   cells, no unexpected change). sync-20261125-121532 (PREV sync-20261125-104240): 20 tables reloaded, 108/108 foreign keys.
   Note: brick downloads write object references as `name <name>`.
+- 2026-11-25 (afternoon): Bioreactor samples Sample0002965/2966: descriptions only, updated in place by guarded AQL with the
+  reactor provenance from Kothari et al. 2021 (`coral_import/bioreactor_sample_descriptions_20261125`); depth, date, material
+  and package left as recorded at the user's decision. sync-20261125-134831 (PREV sync-20261125-121532): sdt_sample reloaded,
+  download differs in those two descriptions only, 3/3 foreign keys. Cleanup round finished (Taxon duplicates done; no builder
+  in the repo writes "residue" terms).
